@@ -82,6 +82,11 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
 
 
     private void login() {
+        String nickName = nickNameView.getText().toString();
+        if (nickName == null || "".equals(nickName)) {
+            postMessage(POPUP_TOAST, "昵称不能为空");
+            return;
+        }
         postMessage(POPUP_PROGRESS, getString(R.string.sending));
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("openid", openID);
