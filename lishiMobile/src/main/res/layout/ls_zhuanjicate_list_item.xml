@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pla="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="棉服"
+            android:textColor="@color/ls_color_2acbc2"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:lineSpacingExtra="5dp"
+            android:singleLine="false"
+            android:text="sdfsdgdsdsgsdgdsgsdg"
+            android:textColor="#666666" />
+    </LinearLayout>
+
+    <com.lis99.mobile.entry.view.MyLinerLayout
+        android:id="@+id/ls_cate_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <com.huewu.pla.lib.MultiColumnListView
+            android:id="@+id/mlv_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            pla:plaColumnNumber="2" >
+        </com.huewu.pla.lib.MultiColumnListView>
+    </com.lis99.mobile.entry.view.MyLinerLayout>
+
+</LinearLayout>

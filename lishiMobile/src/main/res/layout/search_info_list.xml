@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pull_bg"
+              android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/text_color_blue"
+        >
+
+        <ImageView
+            android:id="@+id/titleLeftImage"
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:src="@drawable/ls_page_back_icon"
+            android:adjustViewBounds="true"
+            />
+
+        <Button
+            android:id="@+id/btn_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:background="@null"
+            android:text="俱乐部"
+            android:textColor="@color/white"
+            />
+
+        <com.lis99.mobile.util.ClearEditText
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:id="@+id/et_search"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dip"
+            android:layout_marginRight="15dip"
+            android:layout_marginTop="8dip"
+            android:layout_toLeftOf="@id/btn_type"
+            android:layout_toRightOf="@id/titleLeftImage"
+            android:background="@drawable/search_white_bar"
+            android:drawableLeft="@drawable/search_icon_more"
+            android:drawablePadding="10dip"
+            android:hint="@string/search_hint"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/list"
+            style="@style/listViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dip"
+            android:background="@drawable/search_list_bg"
+            android:dividerHeight="0px"
+            android:divider="@null"
+            >
+
+        </ListView>
+
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+</LinearLayout>

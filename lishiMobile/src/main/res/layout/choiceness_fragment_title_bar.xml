@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/title_height"
+              android:background="@color/text_color_blue"
+              android:gravity="center"
+              android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/layout_search"
+        android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="8dip"
+        android:background="@drawable/search_bar"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_icon"
+            android:layout_marginRight="10dip"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索俱乐部、话题、线路活动"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

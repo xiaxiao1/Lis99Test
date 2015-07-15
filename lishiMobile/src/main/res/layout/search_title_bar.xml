@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/title_height"
+              android:background="@color/text_color_blue"
+    >
+
+    <ImageView
+        android:layout_width="50dip"
+        android:layout_height="match_parent"
+        android:src="@drawable/ls_page_back_icon"
+        android:scaleType="center"
+        android:adjustViewBounds="true"
+        android:id="@+id/titleLeftImage"
+        android:layout_centerVertical="true"
+        />
+
+    <com.lis99.mobile.util.ClearEditText
+        android:imeOptions="actionSearch"
+        android:layout_centerVertical="true"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/titleLeftImage"
+        android:layout_marginRight="15dip"
+        android:id="@+id/et_search"
+        android:hint="@string/search_hint"
+        android:drawableLeft="@drawable/search_icon_more"
+        android:drawablePadding="10dip"
+        android:textSize="12sp"
+        android:background="@drawable/search_white_bar"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="8dip"
+        android:singleLine="true"
+        />
+
+</RelativeLayout>

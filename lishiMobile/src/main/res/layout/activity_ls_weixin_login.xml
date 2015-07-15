@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ls_page_title_height" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:src="@drawable/blue_break" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dip"
+        android:src="@drawable/login_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:background="@drawable/normal_bg"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp"
+        android:gravity="center_horizontal">
+
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/headerView"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ls_nologin_header_icon"
+            app:corner_radius="10dp" />
+
+        <EditText
+            android:id="@+id/nickNameView"
+            android:layout_width="match_parent"
+            android:layout_marginTop="32dip"
+            android:layout_height="45dp"
+            android:background="@drawable/edit_bg_login"
+            android:ems="10"
+            android:gravity="center"
+            android:textColor="@color/text_color_blue"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:textSize="16sp"
+            />
+
+        <Button
+            android:id="@+id/ls_login_bt"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dip"
+            android:background="@drawable/login_btn"
+            android:text="完成"
+            android:onClick="onClick"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

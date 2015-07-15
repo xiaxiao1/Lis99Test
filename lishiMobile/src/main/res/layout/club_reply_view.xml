@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#eee"
+    android:padding="5dip"
+    >
+    
+    <TextView 
+        style="@style/wrap_wrap"
+        android:textColor="#999"
+        android:text="回复@ 小春春"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:id="@+id/tv_reply_body"
+        />
+    
+    <TextView 
+        style="@style/wrap_wrap"
+        android:textColor="#999"
+        android:text="3楼"
+        android:id="@+id/tv_reply_floor"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp"
+        />
+    
+    <TextView 
+        android:layout_marginTop="5dip"
+        style="@style/fill_wrap"
+        android:textColor="#999"
+        android:text="对对对， 大家约起来吧， 我们在哪里集合啊！！！"
+        android:id="@+id/tv_reply_content"
+        android:layout_below="@id/tv_reply_body"
+        android:singleLine="true"
+        android:textSize="12sp"
+        />
+
+</RelativeLayout>

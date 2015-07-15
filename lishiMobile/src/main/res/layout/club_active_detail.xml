@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ebebeb"
+    >
+    
+	<include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title" />
+	
+	<LinearLayout 
+	    style="@style/fill_wrap"
+	    android:layout_height="50dip"
+	    android:orientation="horizontal"
+	    android:background="#e8e7e6"
+	    >
+	    
+	    <Button
+	        android:id="@+id/btn_info"
+	        style="@style/fill_wrap"
+    		android:layout_height="match_parent"
+	        android:layout_margin="1px"
+	        android:layout_weight="1"
+	        android:background="@drawable/club_active_info_btn_bg"
+	        android:drawableBottom="@drawable/grid_tab_bottom"
+	        android:paddingBottom="10dip"
+	        android:paddingTop="10dip"
+	        android:text="活动介绍"
+	        android:textColor="@color/text_color_blue" />
+	    
+	    <Button
+	        android:id="@+id/btn_route"
+	        style="@style/fill_wrap"
+    		android:layout_height="match_parent"
+	        android:layout_margin="1px"
+	        android:layout_weight="1"
+	        android:background="@drawable/club_active_info_btn_bg"
+	        android:paddingBottom="10dip"
+	        android:paddingTop="10dip"
+	        android:textColor="@color/color_text"
+	        android:text="具体行程" />
+	    
+	    <Button
+	        android:id="@+id/btn_zb"
+	        style="@style/fill_wrap"
+    		android:layout_height="match_parent"
+	        android:layout_margin="1px"
+	        android:layout_weight="1"
+	        android:background="@drawable/club_active_info_btn_bg"
+	        android:paddingBottom="10dip"
+	        android:paddingTop="10dip"
+	        android:textColor="@color/color_text"
+	        android:text="装备建议" />
+	    
+	</LinearLayout>
+	
+	<LinearLayout 
+	    style="@style/fill_wrap"
+	    android:layout_height="50dip"
+	    android:orientation="horizontal"
+	    android:background="#e8e7e6"
+	    android:paddingBottom="2px"
+	    >
+	    
+	    <Button
+	        android:id="@+id/btn_mz"
+	        style="@style/fill_wrap"
+    		android:layout_height="match_parent"
+	        android:layout_margin="1px"
+	        android:layout_weight="1"
+	        android:background="@drawable/club_active_info_btn_bg"
+	        android:paddingBottom="10dip"
+	        android:paddingTop="10dip"
+	        android:textColor="@color/color_text"
+	        android:text="免责声明"/>
+	    
+	    <Button
+	        android:id="@+id/btn_fy"
+	        style="@style/fill_wrap"
+    		android:layout_height="match_parent"
+	        android:layout_margin="1px"
+	        android:layout_weight="1"
+	        android:background="@drawable/club_active_info_btn_bg"
+	        android:paddingBottom="10dip"
+	        android:paddingTop="10dip"
+	        android:textColor="@color/color_text"
+	        android:text="费用说明" />
+	    
+	    <Button
+	        android:id="@+id/btn_zy"
+	        style="@style/fill_wrap"
+    		android:layout_height="match_parent"
+	        android:layout_margin="1px"
+	        android:layout_weight="1"
+	        android:background="@drawable/club_active_info_btn_bg"
+	        android:paddingBottom="10dip"
+	        android:paddingTop="10dip"
+	        android:textColor="@color/color_text"
+	        android:text="注意事项" />
+	    
+	</LinearLayout>
+	<!--下面部分  -->
+	<ScrollView 
+	    style="@style/scroll"
+	    >
+	    
+	    <FrameLayout 
+	        style="@style/fill_wrap"
+	        >
+	        
+	        <LinearLayout 
+	            android:id="@+id/layout"
+	    style="@style/fill_fill"
+	    android:orientation="vertical"
+	    >
+	
+	<LinearLayout 
+	    style="@style/fill_wrap"
+	    android:orientation="horizontal"
+	    android:background="#faf8f8"
+	    >
+	    
+	    <TextView 
+	        style="@style/wrap_wrap"
+	        android:text="集合时间"
+	        android:textColor="#ff7800"
+	        android:layout_margin="15dip"
+	        android:textSize="13sp"
+	        />
+	    
+	    <TextView 
+	        android:layout_gravity="center_vertical"
+	        style="@style/fill_wrap"
+	        android:singleLine="true"
+	        android:text="@string/temp_string"
+	        android:textColor="#666"
+	        android:id="@+id/tv_date"
+	        android:textSize="13sp"
+	        />
+	    
+	</LinearLayout>
+	
+	<View 
+	    style="@style/fill_wrap"
+	    android:layout_height="1px"
+	    android:background="#e8e7e6"
+	    />
+	
+	<RelativeLayout 
+	    style="@style/fill_wrap"
+	    android:orientation="horizontal"
+	    android:background="#faf8f8"
+	    android:id="@+id/layoutLocation"
+	    >
+	    
+	    <TextView 
+	        android:textSize="13sp"
+	        style="@style/wrap_wrap"
+	        android:text="集合地点"
+	        android:textColor="#ff7800"
+	        android:layout_margin="15dip"
+	        android:id="@+id/tv_0"
+	        android:layout_centerVertical="true"
+	        />
+
+	    	<ImageView 
+	        style="@style/wrap_wrap"
+	        android:src="@drawable/club_ditail_location"
+	        android:layout_marginLeft="10dip"
+	        android:id="@+id/iv_location"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginRight="15dip"
+	        />
+	    
+	    <TextView 
+	        android:textSize="13sp"
+	        android:id="@+id/tv_location"
+	        android:layout_gravity="center_vertical"
+	        style="@style/wrap_wrap"
+	        android:text="@string/temp_string_long"
+	        android:textColor="#666"
+	        android:maxLines="2"
+	        android:ellipsize="end"
+	        android:layout_toLeftOf="@id/iv_location"
+	        android:layout_toRightOf="@id/tv_0"
+	        />
+	    
+	    
+	</RelativeLayout>
+	
+	<View 
+	    style="@style/fill_wrap"
+	    android:layout_height="1px"
+	    android:background="#e8e7e6"
+	    />
+	
+	<LinearLayout 
+	    style="@style/fill_wrap"
+	    android:orientation="horizontal"
+	    android:background="#faf8f8"
+	    >
+	    
+	    <TextView 
+	        android:layout_margin="15dip"
+	        android:textSize="13sp"
+	        style="@style/wrap_wrap"
+	        android:text="活动领队"
+	        android:textColor="#ff7800"
+	        />
+	    
+	    <TextView 
+	        android:textSize="13sp"
+	        android:id="@+id/tv_leader"
+	        android:layout_gravity="center_vertical"
+	        style="@style/fill_wrap"
+	        android:singleLine="true"
+	        android:text="@string/temp_string"
+	        android:textColor="#666"
+	        />
+	    
+	</LinearLayout>
+	
+	<View 
+	    style="@style/fill_wrap"
+	    android:layout_height="1px"
+	    android:background="#e8e7e6"
+	    />
+	
+	<LinearLayout 
+	    style="@style/fill_wrap"
+	    android:orientation="horizontal"
+	    android:background="#faf8f8"
+	    >
+	    
+	    <TextView 
+	        android:layout_margin="15dip"
+	        android:textSize="13sp"
+	        style="@style/wrap_wrap"
+	        android:text="联系方式"
+	        android:textColor="#ff7800"
+	        />
+	    
+	    <TextView 
+	        android:textSize="13sp"
+	        android:id="@+id/tv_tel"
+	        android:layout_gravity="center_vertical"
+	        style="@style/fill_wrap"
+	        android:text="@string/temp_string_long"
+	        android:textColor="#666"
+	        android:maxLines="2"
+	        />
+	    
+	</LinearLayout>
+	
+	<View 
+	    style="@style/fill_wrap"
+	    android:layout_height="1px"
+	    android:background="#e8e7e6"
+	    />
+	
+	<LinearLayout 
+	    style="@style/fill_wrap"
+	    android:orientation="horizontal"
+	    android:background="#faf8f8"
+	    >
+	    
+	    <TextView 
+	        android:layout_margin="15dip"
+	        android:textSize="13sp"
+	        style="@style/wrap_wrap"
+	        android:text="活动人数"
+	        android:textColor="#ff7800"
+	        />
+	    
+	    <TextView 
+	        android:textSize="13sp"
+	        android:id="@+id/tv_join"
+	        android:layout_gravity="center_vertical"
+	        style="@style/fill_wrap"
+	        android:singleLine="true"
+	        android:text="@string/temp_string"
+	        android:textColor="#666"
+	        />
+	    
+	</LinearLayout>
+	
+	<View 
+	    style="@style/fill_wrap"
+	    android:layout_height="1px"
+	    android:background="#e8e7e6"
+	    />
+	
+	<LinearLayout 
+	    style="@style/fill_wrap"
+	    android:orientation="vertical"
+	    android:background="#faf8f8"
+	    >
+	    
+	    <TextView 
+	        android:layout_margin="15dip"
+	        android:textSize="13sp"
+	        style="@style/wrap_wrap"
+	        android:text="活动介绍"
+	        android:textColor="#ff7800"
+	        />
+	    
+	    <TextView 
+	        android:textSize="13sp"
+	        android:id="@+id/tv_info"
+	        android:layout_gravity="center_vertical"
+	        style="@style/fill_wrap"
+	        android:textColor="#666"
+	        android:paddingLeft="15dip"
+	        android:paddingRight="15dip"
+	        android:lineSpacingExtra="5dip"
+	        android:text="@string/temp_string_long"
+	        />
+	    
+	    <ImageView 
+	        android:id="@+id/iv_info"
+	        style="@style/fill_wrap"
+	        android:layout_margin="15dip"
+	        />
+	    
+	</LinearLayout>
+	
+	<View 
+	    style="@style/fill_wrap"
+	    android:layout_height="1px"
+	    android:background="#e8e7e6"
+	    />
+	
+	</LinearLayout>
+	
+	<TextView 
+	    android:textSize="13sp"
+	    android:id="@+id/tv_content"
+	    android:visibility="gone"
+	    android:layout_margin="20dip"
+	    style="@style/fill_wrap"
+	    android:textColor="#666"
+	    android:text="@string/temp_string_long"
+	    />
+	        
+	    </FrameLayout>
+	    
+	</ScrollView>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</LinearLayout>

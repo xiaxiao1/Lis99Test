@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@color/pull_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <ImageView 
+        style="@style/wrap_wrap"
+		android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/ten"
+        android:id="@+id/iv_title"
+        android:src="@drawable/equip_nearby_title"
+        />
+    <View 
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+        android:id="@+id/view_line"
+        android:layout_below="@id/iv_title"
+        />
+    
+    <RelativeLayout 
+        android:id="@+id/layout_info"
+        android:layout_below="@id/view_line"
+        style="@style/fill_wrap"
+        android:background="@color/white"
+        android:padding="@dimen/ten"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:id="@+id/layout_img"
+            >
+        
+        <com.lis99.mobile.club.widget.RoundedImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        app:corner_radius="3dip" 
+        app:border_color="#e8e8e8"
+        app:border_width="0px"
+
+        />
+
+            <ImageView
+                android:id="@+id/iv_load"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/load_image_temp_bg"
+                />
+
+        </RelativeLayout>
+
+		<LinearLayout 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_alignTop="@id/layout_img"
+			android:layout_alignBottom="@id/layout_img"
+			android:layout_toRightOf="@id/layout_img"
+			android:layout_marginLeft="@dimen/ten"
+		    >
+		    
+		    <TextView 
+		        android:gravity="center_vertical"
+		        android:layout_weight="1"
+		        style="@style/fill_wrap"
+		        android:id="@+id/tv_name"
+		        android:text="@string/temp_string_long"
+		        android:singleLine="true"
+		        />
+		    
+		    <TextView  
+		        android:gravity="center_vertical"
+		        android:layout_weight="1"
+		        style="@style/fill_wrap"
+		        android:id="@+id/tv_info"
+		        android:text="@string/temp_string_long"
+		        android:singleLine="true"
+		        android:textSize="12sp"
+		        android:textColor="@color/color_six"
+		        />
+		    
+		    <TextView  
+		        android:drawableLeft="@drawable/detail_map"
+		        android:drawablePadding="@dimen/five"
+		        android:gravity="center_vertical"
+		        android:layout_weight="1"
+		        style="@style/fill_wrap"
+		        android:id="@+id/tv_distance"
+		        android:text="@string/temp_string_long"
+		        android:singleLine="true"
+		        android:textSize="12sp"
+		        android:textColor="@color/color_six"
+		        />
+		    
+		</LinearLayout>        
+        
+    </RelativeLayout>
+    
+    <TextView 
+        android:visibility="gone"
+        android:background="@color/white"
+        style="@style/fill_wrap"
+        android:layout_height="50dip"
+        android:padding="10dip"
+        android:drawableTop="@drawable/club_icon_grid_add"
+        android:text="全部户外店"
+        android:textColor="#ff7800"
+        android:drawablePadding="0dip"
+        android:textSize="12sp"
+        android:id="@+id/tv_all"
+        android:gravity="center"
+        />
+    
+    <View 
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+        android:id="@+id/line_all"
+        android:layout_alignParentBottom="true"
+		android:visibility="gone"
+        />
+    
+    <View 
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+        android:id="@+id/line_half"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dip"
+        />
+
+</RelativeLayout>

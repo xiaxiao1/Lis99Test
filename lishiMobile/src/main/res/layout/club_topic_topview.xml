@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:id="@+id/roundedImageView1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ls_nologin_header_icon"
+        android:scaleType="fitXY"
+        app:corner_radius="@dimen/user_header_corner_radius" 
+        app:border_color="#e8e8e8"
+        app:border_width="1px"/>
+    
+    <RelativeLayout 
+        android:id="@+id/layout"
+        style="@style/fill_wrap"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/roundedImageView1"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        >
+        
+        <TextView
+        android:id="@+id/nameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="14sp"
+        android:textColor="#666"
+        android:text="@string/temp_string"
+        android:drawablePadding="4dip"
+        android:drawableRight="@drawable/club_tier_master"
+         />
+
+    <TextView
+        android:layout_below="@id/nameView"
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:textColor="#999"
+        android:text="@string/temp_string" />
+    
+    <TextView 
+        style="@style/wrap_wrap"
+        android:text="2楼"
+        android:textColor="#999"
+        android:layout_alignBottom="@+id/dateView"
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_floor"
+        android:textSize="12sp"
+        />
+    
+    <TextView 
+        android:visibility="gone"
+        style="@style/wrap_wrap"
+        android:text="删除"
+        android:textSize="12sp"
+        android:textColor="#fe7a60"
+        android:layout_alignTop="@+id/nameView"
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_floor_delete"
+        />
+        
+    </RelativeLayout>
+    
+    
+
+    
+
+    <ImageView
+        android:id="@+id/vipStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/roundedImageView1"
+        android:layout_alignBottom="@+id/roundedImageView1"
+        android:layout_marginLeft="-8dp"
+        android:src="@drawable/club_icon_v" />
+    
+    
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dip"
+    android:background="#20c0c0"
+    android:id="@+id/ll_bc"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dip"
+        android:text="店铺已关" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dip"
+        android:text="店铺信息错误" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dip"
+        android:text="地理位置错误" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dip"
+        android:text="其他" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dip"
+        android:textColor="@color/white"
+        android:background="@color/blue"
+        android:text="取消" />
+
+</LinearLayout>

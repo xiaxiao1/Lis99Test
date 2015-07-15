@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_left"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/ls_second_main_bg"
+        android:orientation="vertical" >
+
+        <com.lis99.mobile.entry.view.SlidingMenuView
+            android:id="@+id/ls_slidingmenu_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_nologin_bar_height"
+                    android:layout_marginTop="5dip"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:id="@+id/ls_nologin_header"
+                        android:layout_width="@dimen/ls_nologin_header_width"
+                        android:layout_height="@dimen/ls_nologin_header_height"
+                        android:layout_marginLeft="25dip"
+                        android:background="@drawable/ls_nologin_header_icon"
+                        android:visibility="gone" />
+                    <com.lis99.mobile.entry.view.AsyncLoadImageView
+                        android:id="@+id/ls_header"
+                        android:layout_width="@dimen/ls_nologin_header_width"
+                        android:layout_height="@dimen/ls_nologin_header_height"
+                        android:layout_marginLeft="25dip"
+                        android:visibility="gone"
+                         />
+
+                    <TextView
+                        android:id="@+id/ls_login_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:text="立即登录"
+                        android:textColor="@color/text_color_blue"
+                        android:textSize="@dimen/ls_text_18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/ls_login_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:orientation="vertical" 
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/ls_user_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/ls_text_18sp" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="积分"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:id="@+id/ls_user_point"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/ls_color_2acbc2" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    
+                    
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/lv_set"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#00000000"
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbars="none" >
+                </ListView>
+            </LinearLayout>
+        </com.lis99.mobile.entry.view.SlidingMenuView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_right"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:background="#000000"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/ls_title_bar_height" >
+
+            <ImageView
+                android:id="@+id/iv_set"
+                android:layout_width="@dimen/ls_title_header_width"
+                android:layout_height="@dimen/ls_title_header_height"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ls_title_header_default" />
+
+            <ImageView
+                android:layout_width="@dimen/ls_title_logo_width"
+                android:layout_height="@dimen/ls_title_logo_height"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ls_title_logo" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_sildeshow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:gravity="center" >
+
+            <RelativeLayout
+                android:id="@+id/sildeshow_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sildeshow_title_point_rel"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ls_sildeshow_point_height"
+                android:layout_alignParentBottom="true"
+                android:background="#aa444444"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:id="@+id/sildeshow_title_point_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_weight="1.0"
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1.0"
+                android:gravity="bottom" >
+
+             <ImageView
+                    android:id="@+id/ls_main_xuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ls_main_xuan_icon"
+                    android:clickable="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1.0"
+                android:gravity="bottom" >
+
+                 <ImageView
+                    android:id="@+id/ls_main_mai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ls_main_mai_icon"
+                    android:clickable="true" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dip"
+            android:layout_weight="1.0"
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1.0"
+                android:gravity="top" >
+
+                <ImageView
+                    android:id="@+id/ls_main_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ls_main_at_icon"
+                    android:clickable="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1.0"
+                android:gravity="top" >
+
+                <ImageView
+                    android:id="@+id/ls_main_shakes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ls_main_shakes_icon"
+                    android:clickable="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

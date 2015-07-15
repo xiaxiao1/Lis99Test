@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb"
+    >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title" />
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/refreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include1"
+        android:orientation="vertical" >
+    
+	<com.lis99.mobile.entry.view.MyScrollView 
+            style="@style/scroll"
+            >
+
+            <LinearLayout
+                style="@style/fill_fill"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/fill_wrap"
+                    android:background="@color/white"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:padding="10dip"
+                    android:text="@string/temp_string"
+                    android:textColor="@color/text_color_blue"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/totalView"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="还没有⽤户报名"
+                    android:textColor="#ff7800"
+                    android:textSize="12sp"
+                    android:background="@color/pull_bg"
+                    />
+                
+                <com.lis99.mobile.view.MyListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="3dip"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@null"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" >
+                </com.lis99.mobile.view.MyListView>
+            </LinearLayout>
+        </com.lis99.mobile.entry.view.MyScrollView>
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+</RelativeLayout>

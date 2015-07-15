@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">砾石</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="sending">数据加载中...</string>
+    <string name="network_error">网络好像有问题</string>
+    <string name="lasttime_refresh">上次更新：</string>
+    <string name="pull_to_refresh_pull_label">下拉以更新...</string>
+    <string name="pull_to_refresh_release_label">释放以更新...</string>
+    <string name="pull_to_refresh_refreshing_label">正在更新...</string>
+    <string name="password_yes">yes</string>
+    <string name="diqu">全部地区</string>
+    <string name="paixu">默认排序</string>
+    <string name="dianpu">全部店铺</string>
+    <string name="huwai">户外店</string>
+    <string name="shangchang">商场店</string>
+    <string name="xujudian">雪具店</string>
+    <string name="moren">默认排序</string>
+    <string name="juli">距离最近</string>
+    <string name="pingjia">总体评价</string>
+    <string name="renqi">人气高低</string>
+    <string name="discount">打折促销</string>
+    <string name="search_label">xxxs</string>
+    <string name="feedback1">详细描述您的问题，我们会尽快解决</string>
+    <string name="feedback2">填写您的QQ或是手机号，方便我们联系您</string>
+    <string name="str_toast_click_anzai">去首页“关于作者及源码下载”下载源码吧！</string>
+
+    <string-array name="select_head_items">
+        <item>拍摄</item>
+        <item>相册</item>
+    </string-array>
+    <string-array name="cate_items">
+        <item>跑步装备</item>
+        <item>徒步装备</item>
+        <item>登山装备</item>
+        <item>滑雪装备</item>
+        <item>攀岩装备</item>
+        <item>骑行装备</item>
+        <item>自驾露营装备</item>
+        <item>其他装备</item>
+    </string-array>
+    <string-array name="share_items">
+        <item>新浪微博</item>
+        <item>微信好友</item>
+        <item>微信朋友圈</item>
+        <item>QQ空间</item>
+        <!--
+        <item>腾讯微博</item> 
+
+
+        -->
+    </string-array>
+    <string-array name="draft_items">
+        <item>保存到草稿箱</item>
+        <item>不保存</item>
+    </string-array>
+
+    <string name="title_activity_ls_buy">LsBuyActivity</string>
+    <string name="title_activity_baidu_map">BaiduMapActivity</string>
+    <string name="title_activity_loc">LocActivity</string>
+    <string name="lj_false">网络不给力啊！</string>
+    <string name="title_activity_shop_detail">ShopDetailActivity</string>
+    <string name="tv_pingpai">主营品牌</string>
+    <string name="tv_chanping">主营产品</string>
+    <string name="title_activity_city_list">CityListActivity</string>
+    <string name="pull_to_refresh_footer_release_label">松开后加载</string>
+    <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
+    <string name="pull_to_refresh_footer_refreshing_label">加载中\u2026</string>
+    <string name="isLast">已经是最后一页</string>
+    <string name="title_activity_dis">DisActivity</string>
+    <string name="title_activity_shop_detail_map">ShopDetailMapActivity</string>
+    <string name="title_activity_pj">PJActivity</string>
+    <string name="title_activity_shop_detail_type">ShopDetailTYPEActivity</string>
+    <string name="yiguan">店铺已关</string>
+    <string name="xinxi">店铺信息错误</string>
+    <string name="weizhi">地理位置错误</string>
+    <string name="qita">其他</string>
+    <string name="quxiao">取消</string>
+    <string name="title_activity_fav">FavActivity</string>
+    <string name="wusuju">无数据</string>
+    <string name="title_activity_dpcw">DPCWActivity</string>
+    <string name="title_activity_qt">QTActivity</string>
+    <string name="ptr_pull_to_refresh">Pull to refresh</string>
+    <string name="ptr_release_to_refresh">Release to refresh</string>
+    <string name="ptr_loading">Loading</string>
+    <string name="ptr_last_updated">Updated: %1$s</string>
+    <string name="title_activity_qiang">QiangActivity</string>
+    <string name="title_activity_dzcx">DZCXActivity</string>
+    <string name="title_activity_goods_detail">GoodsDetailActivity</string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="title_activity_ls_activity_equip">LsActivityEquip</string>
+    <string name="title_activity_ls">LsActivity</string>
+    <string name="title_activity_ls_activity_detail">LsActivityDetail</string>
+    <string name="title_activity_ls_line_gallery">LsLineGalleryActivity</string>
+    <string name="title_activity_ls_line_big_image">LsLineBigImageActivity</string>
+    <string name="title_activity_ls_equi_filter">LsEquiFilterActivity</string>
+    <string name="title_activity_ls_equi_cate">LsEquiCateActivity</string>
+    <string name="title_activity_new_home">NewHomeActivity</string>
+    <string name="title_activity_lsweb">LSWebActivity</string>
+    <string name="title_activity_lsskiing_park">LSSkiingParkActivity</string>
+    <string name="title_activity_lsclub_detail">LSClubDetailActivity</string>
+    <string name="title_activity_club_brief">ClubBriefActivity</string>
+    <string name="title_activity_lsclub_topic">LSClubTopicActivity</string>
+    <string name="title_activity_lsclub_list">LSClubListActivity</string>
+    <string name="title_activity_lsclub_apply_list">LSClubApplyListActivity</string>
+    <string name="title_activity_lsclub_apply">LSClubApplyActivity</string>
+    <string name="title_activity_lsclub_publish">LSClubPublishActivity</string>
+    <string name="title_activity_lsclub_publish2">LSClubPublish2Activity</string>
+    <string name="title_activity_lsclub_topic_reply">LSClubTopicReplyActivity</string>
+    <string name="title_activity_lscollection">LSCollectionActivity</string>
+    <string name="title_activity_club_my_topic">ClubMyTopicActivity</string>
+    <string name="title_activity_lsclub_city_list_activity">LSClubCityListActivityActivity</string>
+    <string name="title_activity_lsclub_level">LSClubActivityLevel</string>
+	<string name="club_detail_like_num">0</string>
+	
+	<!-- 帖子详情 -->
+	<string name="club_detail_title">帖子详情</string>
+	<string name="club_detail_title_click">双击此处回到1楼</string>
+	
+	<string name="temp_string">砾石俱乐部</string>
+	<string name="temp_string_long">砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部</string>
+    <string name="title_activity_lsweixin_login">LSWeixinLoginActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+
+    <string name="search_hint">搜索俱乐部、话题、线路活动</string>
+
+</resources>

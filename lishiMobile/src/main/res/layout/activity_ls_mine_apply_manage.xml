@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb" >
+
+    <RelativeLayout
+    android:id="@+id/titlehead"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height" >
+    
+    <ImageView style="@style/fill_fill"
+            android:id="@+id/iv_title_bg"
+            android:background="@color/title_bar_bg"
+            />
+
+    <RelativeLayout
+        android:id="@+id/titleLeft"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/titleLeftImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ls_page_back_icon" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/titleRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="3dip"
+		android:layout_marginRight="10dip"
+         >
+
+        <TextView
+            android:id="@+id/titleRightImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+           android:text="" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_text_height" />
+    
+
+</RelativeLayout>
+
+   <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/refreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlehead"
+        android:orientation="vertical" >
+    
+	<com.lis99.mobile.entry.view.MyScrollView 
+            style="@style/scroll"
+            >
+
+            <LinearLayout
+                style="@style/fill_fill"
+                android:orientation="vertical" >
+
+                <com.lis99.mobile.view.MyListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dip"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@null"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" >
+                </com.lis99.mobile.view.MyListView>
+            </LinearLayout>
+        </com.lis99.mobile.entry.view.MyScrollView>
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+</RelativeLayout>

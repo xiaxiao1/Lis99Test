@@ -1,0 +1,54 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw600dp devices (e.g. 7" tablets) here.
+    -->
+    <dimen name="ls_title_bar_height">70dp</dimen>
+    <dimen name="ls_title_logo_width">190dp</dimen>
+    <dimen name="ls_title_logo_height">40dp</dimen>
+    <dimen name="ls_title_header_width">55dp</dimen>
+    <dimen name="ls_nologin_bar_height">70dp</dimen>
+    <dimen name="ls_title_header_height">55dp</dimen>
+    <dimen name="ls_nologin_header_width">55dp</dimen>
+    <dimen name="ls_nologin_header_height">55dp</dimen>
+    <dimen name="ls_text_18sp">22sp</dimen>
+    <dimen name="ls_main_item_height">100dp</dimen>
+    <dimen name="ls_menu_item_tv_sp">22sp</dimen>
+    <dimen name="ls_sildeshow_point_height">30dp</dimen>
+    <dimen name="ls_setting_bt_width">150dp</dimen>
+    <dimen name="ls_setting_bt_height">40dp</dimen>
+    <dimen name="ls_setting_bt_top">40dp</dimen>
+    <dimen name="ls_setting_bt_radius">20dp</dimen>
+	<dimen name="ls_page_title_height">65dp</dimen>
+	 <dimen name="ls_page_home_width">58dp</dimen>
+     <dimen name="ls_page_home_height">58dp</dimen>
+     <dimen name="ls_xuan_navigation_height">55dp</dimen>
+     <dimen name="ls_xuan_menu_height">45dp</dimen>
+     <dimen name="ls_login_qq_width">60dp</dimen>
+    <dimen name="ls_login_qq_height">60dp</dimen>
+      <dimen name="ls_regist_bg_height">210dp</dimen>
+      <dimen name="ls_regist_bg_height1">70dp</dimen>
+     <dimen name="ls_regist_bt_height">60dp</dimen>
+     <dimen name="ls_shai_margintop">220dp</dimen>
+    <dimen name="ls_shai_marginleft">60dp</dimen>
+    <dimen name="ls_shai_text1">40sp</dimen>
+    <dimen name="ls_shai_text2">20sp</dimen>
+    <dimen name="ls_shai_marginright1">85dp</dimen>
+	<dimen name="ls_shai_marginright2">20dp</dimen>
+	<dimen name="ls_like_share_height">70dp</dimen>
+	<dimen name="ls_wen_tiwen_bottom">80dp</dimen>
+	<dimen name="ls_wen_tiwen_height">60dp</dimen>
+	<dimen name="ls_wen_cate_item_height">150dp</dimen>
+	<dimen name="ls_wen_cate_item_textsize">20sp</dimen>
+	
+	<dimen name="ls_startup_logo_width">380dp</dimen>
+	<dimen name="ls_startup_logo_height">120dp</dimen>
+	<dimen name="ls_startup_logo_top">160dp</dimen>
+	<dimen name="ls_startup_ad_width">380dp</dimen>
+	<dimen name="ls_startup_ad_heigt">80dp</dimen>
+	<dimen name="ls_startup_bt_width">150dp</dimen>
+	<dimen name="ls_startup_bt_height">60dp</dimen>
+	<dimen name="ls_startup_bt_bottom">80dp</dimen>
+	<dimen name="ls_startup_bt_size">20sp</dimen>
+</resources>

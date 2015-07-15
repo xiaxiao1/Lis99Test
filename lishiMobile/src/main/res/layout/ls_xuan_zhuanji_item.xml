@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+    
+    <com.lis99.mobile.entry.view.FlowView1
+            android:id="@+id/ls_zhuanji_item_pic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#F2F2F2"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+             />
+    
+    <TextView
+            android:id="@+id/ls_zhuanji_item_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false" 
+            android:textColor="#111111"
+            android:textSize="16sp"
+            android:layout_margin="15dip"
+            android:lineSpacingExtra="3dp"
+            />
+    
+
+</LinearLayout>

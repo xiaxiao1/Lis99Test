@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ls_page_title_height"
+        android:background="@color/text_color_blue" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/ls_page_home_width"
+            android:layout_height="@dimen/ls_page_home_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ls_page_back_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="问题分类"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:padding="20dp" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:paddingRight="10dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/ll_paobu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg1"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="跑步装备"
+                        android:gravity="center"
+                         android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+                
+                <LinearLayout
+                     android:id="@+id/ll_dengshan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg2"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="登山装备"
+                        android:gravity="center"
+                         android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/text_color_blue" />
+                </LinearLayout>
+                <LinearLayout
+                     android:id="@+id/ll_panyan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg1"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="攀岩装备"
+                        android:gravity="center"
+                         android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                     android:id="@+id/ll_zijia"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg2"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="自家露营装备"
+                        android:gravity="center"
+                         android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/text_color_blue" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:paddingLeft="10dp"
+                android:orientation="vertical" >
+                
+                
+                <LinearLayout
+                     android:id="@+id/ll_tubu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg2"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="徒步装备"
+                        android:gravity="center"
+                         android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/text_color_blue" />
+                </LinearLayout>
+                <LinearLayout
+                     android:id="@+id/ll_huaxue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg1"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="滑雪装备"
+                        android:gravity="center"
+                         android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+                <LinearLayout
+                     android:id="@+id/ll_qixing"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg2"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="骑行装备"
+                        android:gravity="center"
+                         android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/text_color_blue" />
+                </LinearLayout>
+                 <LinearLayout
+                      android:id="@+id/ll_qita"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/ls_wen_cate_item_height"
+                    android:background="@drawable/ls_wen_cate_bg1"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:clickable="true"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="其他装备"
+                        android:gravity="center"
+                        android:textSize="@dimen/ls_wen_cate_item_textsize"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

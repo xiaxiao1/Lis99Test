@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+	    <com.lis99.mobile.entry.view.AutoResizeListView
+	            android:id="@+id/ls_wen_lv"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:cacheColorHint="#00000000"
+	            android:divider="#00000000"
+	            android:dividerHeight="0dp"
+	            android:scrollbars="none"
+	            >
+	        </com.lis99.mobile.entry.view.AutoResizeListView>
+
+  <LinearLayout
+      android:id="@+id/ls_more"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/ls_wen_item_bg"
+      android:clickable="true"
+      android:gravity="center_horizontal"
+      android:orientation="horizontal"
+      android:padding="15dp"
+      android:visibility="gone" >
+  
+    <ProgressBar  
+        android:id="@+id/pb_load_progress"  
+        style="@android:style/Widget.ProgressBar.Small.Inverse"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:gravity="center"  
+        android:visibility="gone"
+        android:indeterminate="true">  
+    </ProgressBar>  
+  
+    <TextView  
+        android:id="@+id/tv_load_more"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_marginLeft="10.0dp"  
+        android:gravity="center"  
+        android:text="加载更多"  
+        android:textSize="16sp"
+        android:textColor="@color/black" >  
+    </TextView>  
+  
+</LinearLayout> 
+</LinearLayout>

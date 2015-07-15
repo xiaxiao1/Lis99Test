@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dip"
+    android:paddingBottom="5dip" 
+    >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/normal_bg" >
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/roundedImageView1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/club_icon_header_default"
+            app:border_color="#e8e8e8"
+            app:border_width="1px"
+            app:corner_radius="20dp" />
+        
+           <ImageView
+                    android:id="@+id/newsDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/icon_reddot"
+                    android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/roundedImageView1"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/roundedImageView1"
+            android:layout_toLeftOf="@+id/newsDot"
+            android:layout_marginRight="5dp"
+            android:text="活动领队"
+            android:singleLine="true"
+            android:textColor="#666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/timeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/roundedImageView1"
+            android:layout_alignLeft="@+id/nameView"
+            android:text="发布于 2014-11-12 12:30"
+            android:textColor="#999"
+            android:textSize="12sp" />
+        
+     
+
+      
+        <View android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/roundedImageView1"/>
+        
+        
+    </RelativeLayout>
+
+    
+
+</RelativeLayout>

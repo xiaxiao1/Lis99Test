@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff">
+
+    <TextView 
+        style="@style/wrap_wrap"
+        android:drawableTop="@drawable/club_icon_grid_add"
+        android:text="全部俱乐部"
+        android:textColor="#ff7800"
+        android:drawablePadding="4dip"
+        android:layout_centerInParent="true"
+        android:textSize="12sp"
+        android:id="@+id/tv_all"
+        />
+    
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:id="@+id/roundedImageView1"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+         android:layout_marginLeft="10dip"
+        android:layout_marginTop="20dip"
+        android:layout_marginBottom="20dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/club_icon_header_default"
+        app:corner_radius="28dp"
+        app:border_color="#e8e8e8"
+        app:border_width="1px" />
+
+    <ImageView
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/club_same_city"
+        android:layout_marginTop="13dip"
+        android:visibility="visible" />
+
+    <LinearLayout 
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dip"
+        android:id="@+id/layout"
+        style="@style/fill_wrap"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/roundedImageView1"
+        android:layout_toLeftOf="@+id/addButton"
+        >
+    
+    <TextView
+        android:id="@+id/nameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:text=""
+        android:singleLine="true"
+        android:textColor="#666" 
+        android:layout_marginBottom="5dip"
+        />
+
+    <TextView
+        android:id="@+id/recentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#999"
+        android:singleLine="true"
+        android:textSize="14sp"
+        android:text="" />
+    
+    </LinearLayout>
+    
+    <View 
+        android:id="@+id/sepHalf"
+        android:background="#e8e8e8"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/layout"/>
+    
+    <View 
+        android:id="@+id/sepAll"
+        android:background="#e8e8e8"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"/>
+
+</RelativeLayout>

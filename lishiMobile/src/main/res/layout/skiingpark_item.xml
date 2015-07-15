@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff" >
+
+        <View
+            android:id="@+id/topSep"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#e8e8e8" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@+id/topSep"
+            android:scaleType="fitXY"
+            android:src="@drawable/skiingpark_default" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView1"
+            android:layout_alignRight="@+id/imageView1"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/skiingpark_sale_bg" />
+
+        <TextView
+            android:id="@+id/priceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="#ff7800"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:id="@+id/starPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView2"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/skiingpark_star" />
+
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/skiingpark_star" />
+
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/skiingpark_star" />
+
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/skiingpark_star" />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/skiingpark_star" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="塞北滑雪场"
+            android:textColor="@color/text_color_blue"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/middleSep"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_below="@+id/nameView"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#e8e8e8" />
+
+        <TextView
+            android:id="@+id/phoneView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/middleSep"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:drawableLeft="@drawable/skiingpark_icon_phone"
+            android:drawablePadding="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="TextView"
+            android:textColor="#999"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/timeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phoneView"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:drawableLeft="@drawable/skiingpark_icon_time"
+            android:drawablePadding="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="TextView"
+            android:textColor="#999"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/addressView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timeView"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:drawableLeft="@drawable/skiingpark_icon_location"
+            android:drawablePadding="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="TextView"
+            android:textColor="#999"
+            android:textSize="13sp" />
+
+        <View
+            android:id="@+id/bottomSep"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/addressView"
+            android:layout_marginTop="5dp"
+            android:background="#e8e8e8" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="5dip"
+              android:orientation="vertical"
+              android:paddingLeft="10dip"
+              android:paddingRight="10dip"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="线路活动"
+        android:textColor="@color/text_color_blue"
+        android:id="@+id/tv_active_title"
+        android:layout_marginTop="20dip"
+        android:layout_marginBottom="20dip"
+        />
+
+
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:orientation="horizontal"
+            >
+
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+
+                >
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:corner_radius="3dip"
+                    app:border_color="#e8e8e8"
+                    app:border_width="0px"
+
+                    />
+
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:id="@+id/iv_load"
+                    android:src="@drawable/load_image_temp_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dip"
+                >
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temp_string_long"
+                    android:textSize="17sp"
+                    android:textColor="@color/color_six"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    />
+
+                <TextView
+                    android:layout_marginTop="5dip"
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/search_item_time"
+                    android:drawablePadding="5dip"
+                    android:text="@string/temp_string"
+                    android:textColor="@color/color_nine"
+                    />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+

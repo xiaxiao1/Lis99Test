@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/textview_shape"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/lv_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="活动活动活动活动活动活动活动"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <com.lis99.mobile.entry.view.FlowView1
+            android:id="@+id/lv_item_imageview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/camera_crop_width" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 白色  -->
+	<color name="white">#ffffff</color>
+	<!-- 黑色  -->
+	<color name="black">#000000</color>
+	<!-- 透明色  -->
+	<color name="crystal">#00000000</color>
+	<!-- 深灰色  -->
+	<color name="dark_gray">#3a3a3a</color>
+	<!-- 灰色  -->
+	<color name="normal_gray">#565656</color>
+	<!-- 浅灰色  -->
+	<color name="light_gray">#868686</color>
+	<!-- 超浅灰色  -->
+	<color name="more_light_gray">#e3e3e3</color>
+	<color name="more_light_gray_tm">#88e3e3e3</color>
+	<color name="most_light_gray">#f0f0f0</color>
+	<color name="bantouming">#99999999</color>
+	<color name="transparent">#00000000</color>
+	<color name="transparent66">#66000000</color>
+    <color name="text_num_gray">#333</color>
+    <color name="dialog_title_blue">#9CCCF7</color>
+    <color name="ls_color_F7F6F6">#DEDEDE</color>
+    <color name="ls_color_DEDEDE">#bcbcbc</color>
+    <color name="ls_color_2acbc2">@color/text_color_blue</color>
+    <color name="blue">@color/text_color_blue</color>
+    <color name="color_translucence">#a07789ae</color>
+	<color name="color_translucencer">#307789ae</color>
+	<color name="color_transparent">#00000000</color>
+	<color name="color_white">#ffffffff</color>
+	<color name="color_touming">#e0ffffff</color>
+	<color name="gray2">#787878</color>
+	<color name="common_black">#4b4b4b</color>
+	<!-- view background -->
+	<color name="color_view_bkg">#fff5f5f5</color>
+	
+	<!--bottom navigate item text color -->
+	<color name="color_btm_navi_txt_normal">#ffb1c3e7</color>
+	<color name="color_btm_navi_txt_pressed">@color/color_white</color>
+	<color name="color_btm_navi_txt_checked">@color/color_white</color>
+	
+	<color name="color_list_item_bk_pressed">#ffeeeeee</color>
+	<color name="color_list_item_bk_selected">#ffeeeeee</color>
+	<color name="color_list_item_bk_disable">@color/color_white</color>
+	<color name="color_list_item_bk_normal">@color/color_white</color>
+	
+	<color name="color_txt_gray">#ff666666</color>
+	<color name="color_txt_disable">#ff86d1ff</color>
+	<color name="color_txt_light_gray">#ff999999</color>
+	<color name="color_txt_dark_gray">#ff333333</color>
+	
+	<!-- double list fragment list sample -->
+	<color name="color_list_double_list_select_bkg">#ffebebeb</color>
+	<color name="background_gray_color">#f0f2f1</color>
+	<!-- 上下拉刷新 -->
+	<color name="pull_text_color">#999999</color>
+	
+	<color name="title_bar_bg">#49a34b</color>
+	
+	
+	
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+	
+    
+    <color name="club_active_info_btn_bg">#f4f4f4</color>
+    <color name="color_text">#666666</color>
+    <color name="color_eee">#eeeeee</color>
+    <color name="color_like_press_red">#fe7a60</color>
+    
+    <color name="color_six">#73706e</color>
+    <color name="color_nine">#999999</color>
+    
+    
+    
+    <color name="text_color_blue">#49a34b</color>
+    <color name="pull_bg">#f7f3ec</color>
+    <color name="color_1px_stroke">#e3dbd0</color>
+    
+    
+    
+    <color name="color_shadow">#6036322a</color>
+    <color name="color_tab_unselect">#ac9f92</color>
+    
+</resources>

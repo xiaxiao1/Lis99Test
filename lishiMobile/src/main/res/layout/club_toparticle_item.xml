@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff">
+    
+    
+    <TextView 
+        android:id="@+id/titleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#666"
+        android:textSize="15sp"
+        android:paddingTop="17dp"
+        android:paddingBottom="17dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:singleLine="true"
+        android:text="@string/temp_string"
+        android:drawablePadding="6dp"
+        android:background="#fff"
+        android:drawableLeft="@drawable/club_icon_toparticle"/>
+    
+    <View android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="10dp"
+        android:background="#e8e8e8"
+        android:id="@+id/view_line_top"
+        />
+
+    <LinearLayout 
+        style="@style/fill_wrap"
+        android:orientation="vertical"
+        android:id="@+id/gapView"
+         android:visibility="gone"
+        >
+        
+        <View android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e8e8e8"/>
+        
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/pull_bg" />
+        
+        <View android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e8e8e8"/>
+        
+    </LinearLayout>
+    
+     
+    
+
+</LinearLayout>

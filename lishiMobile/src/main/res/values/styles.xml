@@ -1,0 +1,165 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="theme_dialog_alert" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="item_body">
+        <item name="android:textColor">#000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="server_dialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/crystal</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="MMListCatalog">
+        <item name="android:textSize">14.0dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/text_color_blue</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MMListItem">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">4.0dip</item>
+        <item name="android:paddingTop">4.0dip</item>
+        <item name="android:paddingRight">4.0dip</item>
+        <item name="android:paddingBottom">4.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MMFontTitleInList">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#ff595c61</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="common_big_gray_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray2</item>
+    </style>
+
+    <style name="common_gray_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray2</item>
+    </style>
+
+    <style name="common_black_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/common_black</item>
+    </style>
+
+    <style name="common_big_black_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/common_black</item>
+    </style>
+
+    <style name="common_blue_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="common_big_blue_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="PopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+    
+    <style name="fill_fill">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="fill_wrap">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="wrap_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="wrap_fill">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    
+    <style name="listViewStyle" parent="@fill_wrap" >
+        <item name="android:listSelector">#00000000</item>
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+    
+    <style name="scroll" parent="@fill_fill">
+        <item name="android:scrollbars">none</item>
+    </style>
+    
+    <!-- 自定义仿IOS的AlertDialog的样式 -->
+    <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    
+    <style name="text_small" parent="@fill_wrap">
+        <item name="android:textColor">@color/color_nine</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+    
+    <style name="text_large" parent="@fill_wrap">
+        <item name="android:textColor">@color/color_six</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+    
+    
+    
+</resources>
