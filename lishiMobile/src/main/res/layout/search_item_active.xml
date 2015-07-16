@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:text="线路活动"
         android:textColor="@color/text_color_blue"
-        android:layout_marginTop="10dip"
-        android:layout_marginBottom="20dip"
+        android:layout_marginBottom="10dip"
         />
 
 
@@ -83,10 +82,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/temp_string_long"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/color_six"
                     android:maxLines="2"
                     android:ellipsize="end"
+                    android:lineSpacingExtra="3dip"
                     />
 
                     <TextView
@@ -98,6 +98,7 @@
                         android:drawablePadding="5dip"
                         android:text="@string/temp_string"
                         android:textColor="@color/color_nine"
+                        android:textSize="12sp"
                         />
 
 
@@ -175,10 +176,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/temp_string_long"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/color_six"
                     android:maxLines="2"
                     android:ellipsize="end"
+                    android:lineSpacingExtra="3dip"
                     />
 
                 <TextView
@@ -190,6 +192,7 @@
                     android:drawablePadding="5dip"
                     android:text="@string/temp_string"
                     android:textColor="@color/color_nine"
+                    android:textSize="12sp"
                     />
 
 
@@ -263,10 +266,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/temp_string_long"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/color_six"
                     android:maxLines="2"
                     android:ellipsize="end"
+                    android:lineSpacingExtra="3dip"
                     />
 
                 <TextView
@@ -278,6 +282,7 @@
                     android:drawablePadding="5dip"
                     android:text="@string/temp_string"
                     android:textColor="@color/color_nine"
+                    android:textSize="12sp"
                     />
 
 
@@ -308,9 +313,10 @@
             android:layout_gravity="center"
             android:drawableLeft="@drawable/search_icon_more"
             android:drawablePadding="5dip"
-            android:padding="15dip"
+            android:padding="5dip"
             android:text="搜索更多线路活动"
             android:textColor="@color/color_six"
+            android:layout_marginTop="10dip"
             />
 
     </LinearLayout>
@@ -333,9 +339,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="15dip"
+            android:padding="10dip"
             android:text="没有“砾石”相关的线路活动"
             android:textColor="@color/color_six"
+            android:layout_marginTop="10dip"
             />
 
     </LinearLayout>

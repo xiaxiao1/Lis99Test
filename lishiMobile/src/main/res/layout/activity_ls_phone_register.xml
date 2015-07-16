@@ -24,7 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dip"
-        android:src="@drawable/login_title" />
+        android:src="@drawable/welcome_register"
+
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,6 +51,7 @@
             android:paddingLeft="9dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
+            android:singleLine="true"
             />
         
         
@@ -67,6 +70,7 @@
 	            android:paddingLeft="9dp"
 	            android:paddingRight="9dp"
 	            android:textSize="16sp"
+                android:singleLine="true"
 	            />
              
              <Button
@@ -98,6 +102,7 @@
             android:paddingLeft="9dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
+            android:singleLine="true"
             />
         
         <Button
@@ -118,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/ls_regist_bt_height"
-            android:layout_marginTop="15dip"
+            android:layout_marginTop="1dip"
             android:background="#fff"
             android:text="接受用户协议"
             android:drawablePadding="5dp"

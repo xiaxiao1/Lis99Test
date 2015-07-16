@@ -123,7 +123,9 @@
                 android:textSize="14sp"
                 android:text="大师RAIN"
                 android:singleLine="true"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:maxLength="16"
+                />
         </LinearLayout>
 
         <View

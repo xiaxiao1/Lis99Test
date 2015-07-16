@@ -49,6 +49,7 @@
             android:paddingLeft="9dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
+            android:singleLine="true"
             />
 
         <EditText
@@ -64,6 +65,7 @@
             android:paddingLeft="9dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
+            android:singleLine="true"
             />
         
         <Button
@@ -83,7 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/ls_regist_bt_height"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dip"
             android:background="#fff"
             android:text="忘记密码？"
             android:onClick="onClick"

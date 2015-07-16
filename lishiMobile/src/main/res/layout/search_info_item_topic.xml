@@ -16,8 +16,8 @@
         android:text="话题"
         android:textColor="@color/text_color_blue"
         android:id="@+id/tv_topic_title"
-        android:layout_marginBottom="20dip"
-        android:layout_marginTop="20dip"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
         />
 
 
@@ -48,18 +48,19 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="@string/temp_string_long"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textColor="@color/color_six"
                 />
 
             <TextView
                 android:layout_below="@id/tv_title"
-                android:layout_marginTop="10dip"
+                android:layout_marginTop="8dip"
                 android:id="@+id/tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temp_string"
                 android:textColor="@color/color_nine"
+                android:textSize="12sp"
                 />
 
             <TextView
@@ -70,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/temp_string"
                 android:textColor="@color/color_nine"
+                android:textSize="12sp"
                 />
 
         </RelativeLayout>

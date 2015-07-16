@@ -180,7 +180,7 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 			case R.id.ls_login_bt:
 				userName = phoneET.getText().toString().trim();
 				code = authCodeET.getText().toString().trim();
-				//pwd = pwdET.getText().toString();
+				pwd = pwdET.getText().toString();
 				if(StringUtils.isEmpty(userName) || !Pattern.matches("1[3|5|7|8][0-9]{9}",userName)){
 					postMessage(POPUP_TOAST, "手机号码填写不正确");
 					return;
@@ -189,7 +189,7 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 					postMessage(POPUP_TOAST, "验证码填写不正确");
 					return;
 				}	
-				/*
+
 				if(StringUtils.isEmpty(pwd)){
 					postMessage(POPUP_TOAST, "密码不能为空");
 					return;
@@ -199,7 +199,7 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 					postMessage(POPUP_TOAST, "密码长度必须在6-20位之间");
 					return;
 				}	
-				*/
+
 				register();;
 				
 				return;
@@ -246,7 +246,7 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 			Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();
 			LSRequestManager.getInstance().upDataInfo();
 			Intent intent = new Intent();
-			intent.putExtra("register", true);
+			intent.putExtra("login", true);
 			setResult(RESULT_OK, intent);
 			
 			finish();
