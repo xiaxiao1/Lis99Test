@@ -41,6 +41,7 @@ import com.lis99.mobile.newhome.LSSelectAdapter.OnSelectItemClickListener;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
 import com.lis99.mobile.newhome.LSWebActivity;
+import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -79,6 +80,8 @@ public class LSClubFragment extends LSFragment implements
 	List<View> plusViews = new ArrayList<View>();
 	
 	PullToRefreshView refreshView;
+
+	ImageView titleRightImage;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -120,7 +123,11 @@ public class LSClubFragment extends LSFragment implements
 
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		body = inflater.inflate(R.layout.fragment_club, container, false);
-		
+
+		titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
+		titleRightImage.setImageResource(R.drawable.club_search_title_right);
+		titleRightImage.setOnClickListener(this);
+
 		btn_club_level = (Button) findViewById(R.id.btn_club_level);
 		btn_leader_level = (Button) findViewById(R.id.btn_leader_level);
 		btn_leader_level.setOnClickListener(this);
@@ -414,6 +421,9 @@ public class LSClubFragment extends LSFragment implements
 			intent.putExtra("CLUB_LEVEL", 1);
 			startActivity(intent);
 			break;
+			case R.id.titleRightImage:
+				startActivity( new Intent(getActivity(), SearchActivity.class));
+				break;
 		}
 	}
 
