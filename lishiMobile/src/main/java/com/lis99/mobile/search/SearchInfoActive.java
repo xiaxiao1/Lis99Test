@@ -53,6 +53,7 @@ public class SearchInfoActive extends SearchInfoBase implements PullToRefreshVie
     @Override
     public void searchNew(String str) {
         searchText = str;
+
         clean();
         getActive();
     }

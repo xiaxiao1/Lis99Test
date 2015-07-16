@@ -710,7 +710,7 @@ public class LSLoginActivity extends LSBaseActivity {
                 Intent intent = new Intent(this, LSWeixinLoginActivity.class);
                 intent.putExtra("nickName", weixinNickName);
                 intent.putExtra("openID", openid);
-                intent.putExtra("openID", "obEKXuBn0N8uZDnfcmbQ1u47LCzI");
+//                intent.putExtra("openID", "obEKXuBn0N8uZDnfcmbQ1u47LCzI");
                 intent.putExtra("headerUrl", weixinHeader);
                 intent.putExtra("sex", weixinSex);
                 startActivityForResult(intent, 1001);

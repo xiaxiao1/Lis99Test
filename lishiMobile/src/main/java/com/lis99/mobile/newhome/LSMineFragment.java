@@ -3,6 +3,7 @@ package com.lis99.mobile.newhome;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -207,6 +208,11 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	/** 红点请求 */
 	public void getNoticeDot()
 	{
+		String userId = DataManager.getInstance().getUser().getUser_id();
+		if (TextUtils.isEmpty(userId))
+		{
+			return;
+		}
 		Task task = new Task(null, C.USER_NOTICE_TIPS_URL
 				+ DataManager.getInstance().getUser().getUser_id(), null,
 				C.USER_NOTICE_TIPS_URL, this);

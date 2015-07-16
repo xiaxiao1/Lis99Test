@@ -85,9 +85,13 @@ public class LSRequestManager
 	{
 		String Token = SharedPreferencesHelper.getPushToken();
 		if ( TextUtils.isEmpty(Token)) return;
+		String userid = DataManager.getInstance().getUser().getUser_id();
+		if ( TextUtils.isEmpty(userid))
+		{
+			return;
+		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		BaseModel model = new BaseModel();
-		String userid = DataManager.getInstance().getUser().getUser_id();
 		map.put("os_version", DeviceInfo.SDKVERSIONCODE);
 		map.put("os_name", "Android");
 		map.put("channel_number", DeviceInfo.CHANNELVERSION);
