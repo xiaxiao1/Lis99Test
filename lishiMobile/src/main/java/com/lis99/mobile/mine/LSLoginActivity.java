@@ -60,6 +60,8 @@ public class LSLoginActivity extends LSBaseActivity {
     private static final int THIRDLOGIN_SUCCESS = 201;
     private static final int THIRDLOGIN_SUCCESS1 = 202;
     private static final int WEIXIN_SUCCESS = 203;
+    private static final int LOGIN_SUCCESS = 204;
+    private static final int WEIXIN_LOGIN_FAIL = 205;
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
@@ -652,6 +654,8 @@ public class LSLoginActivity extends LSBaseActivity {
                         parserThirdLogin(result);
                     } else if (p.equals("weixin_auth")) {
                         parserWeixinAuthInfo(result);
+                    } else if (p.equals(C.WEIXIN_LOGIN)) {
+                        parseWeixinLoginInfo(result);
                     }
                 }
                 break;
@@ -705,7 +709,7 @@ public class LSLoginActivity extends LSBaseActivity {
                 startActivity(intent);
             }
                 break;
-            case WEIXIN_SUCCESS:
+            case WEIXIN_LOGIN_FAIL:
             {
                 Intent intent = new Intent(this, LSWeixinLoginActivity.class);
                 intent.putExtra("nickName", weixinNickName);
@@ -718,8 +722,63 @@ public class LSLoginActivity extends LSBaseActivity {
             }
 
                 break;
+            case WEIXIN_SUCCESS:
+            {
+                postMessage(POPUP_PROGRESS, getString(R.string.sending));
+                HashMap<String, Object> params = new HashMap<String, Object>();
+                params.put("openid", openid);
+                params.put("nickname", weixinNickName);
+                params.put("sex", weixinSex);
+                params.put("headimgurl", weixinHeader);
+                Task task = new Task(null, C.WEIXIN_LOGIN, C.HTTP_POST, C.WEIXIN_LOGIN,
+                        this);
+                task.setPostData(RequestParamUtil.getInstance(this)
+                        .getRequestParams(params).getBytes());
+                publishTask(task, IEvent.IO);
+            }
+            break;
+            case LOGIN_SUCCESS:
+            {
+                finish();
+
+            }
+
+            break;
         }
         return true;
+    }
+
+
+    private void parseWeixinLoginInfo(String result) {
+        try {
+            JsonNode root = LSFragment.mapper.readTree(result);
+            String errCode = root.get("status").asText("");
+            JsonNode data = root.get("data");
+            if (!"OK".equals(errCode)) {
+                postMessage(WEIXIN_LOGIN_FAIL);
+                return;
+            }
+
+            UserBean u = new UserBean();
+
+            String nickName = data.get("nickname").asText();
+
+
+            u.setUser_id(data.get("user_id").asText());
+            u.setHeadicon(weixinHeader);
+
+            u.setNickname(nickName);
+            DataManager.getInstance().setUser(u);
+            DataManager.getInstance().setLogin_flag(true);
+
+            postMessage(LOGIN_SUCCESS);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            postMessage(ActivityPattern1.DISMISS_PROGRESS);
+        }
+
     }
 
     private void saveThirdUserMeg(UserBean user) {
