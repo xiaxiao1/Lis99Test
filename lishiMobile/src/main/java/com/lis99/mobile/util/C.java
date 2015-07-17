@@ -192,6 +192,7 @@ public class C {
 	public static final String USER_SIGNIN_URL = DOMAIN + "/user/signin/";
 	/** 用户-修改资料 */
 	public static final String USER_SAVEPROFILE_URL = DOMAIN + "/user/saveProfile/";
+	public static final String USER_SAVE_NICKNAME_URL = DOMAIN + "/v2/user/updNickname";
 	/** 用户-修改头像 */
 	public static final String USER_SAVEPHOTO_URL = DOMAIN + "/user/savePhoto/";
 	/** 用户-所在地 */

@@ -148,7 +148,7 @@ public class LsSettingInfoActivity extends ActivityPattern {
 
     public void upName() {
         BaseModel model = new BaseModel();
-        String url = C.USER_SAVEPROFILE_URL;
+        String url = C.USER_SAVE_NICKNAME_URL;
         final String nickName = tv_nickname.getText().toString().trim();
         if (TextUtils.isEmpty(nickName)) {
             Common.toast("昵称不能为空");

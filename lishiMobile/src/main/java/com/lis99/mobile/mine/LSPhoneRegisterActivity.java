@@ -241,6 +241,7 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
             }
     		return true;
     	} else if (msg.what == REGIST_SUCCESS) {
+			SharedPreferencesHelper.saveaccounttype("phone");
 			SharedPreferencesHelper.saveUserPass(pwd);
 			SharedPreferencesHelper.saveUserPhone(userName);
 			Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();

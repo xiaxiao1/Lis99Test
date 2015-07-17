@@ -126,6 +126,7 @@ public class LSEmailLoginActivity extends LSBaseActivity {
 						model = (LSRegistModel) mTask.getResultModel();
 						if (model == null)
 							return;
+						SharedPreferencesHelper.saveaccounttype("email");
 						SharedPreferencesHelper.saveLSToken(model.token);
 						SharedPreferencesHelper.saveUserName(email);
 						SharedPreferencesHelper.saveUserPass(password);

@@ -53,8 +53,8 @@ public class SearchMainListModel extends BaseModel{
         public String title;
         public String dtime;
         public String image;
-        public int height;
-        public int width;
+        public String height;
+        public String width;
     }
 
 }

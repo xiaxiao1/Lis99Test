@@ -207,12 +207,40 @@ public class SharedPreferencesHelper {
 	}
 
 	public static void saveWeixinOpenID(String s) {
-		saveBase(C.WEIXIN_OPENID,s);
+		saveBase(C.WEIXIN_OPENID, s);
 	}
 
 	public static void removeWeixinOpenID() {
 		removeBase(C.WEIXIN_OPENID);
 	}
+
+
+
+	public static void saveWeixinNickName(String s) {
+		saveBase("weixin_nickName",s);
+	}
+
+	public static void removeWeixinNickName() {
+		removeBase("weixin_nickName");
+	}
+
+	public static void saveWeixinSex(String s) {
+		saveBase("weixin_sex",s);
+	}
+
+	public static void removeWeixinSex() {
+		removeBase("weixin_sex");
+	}
+
+	public static void saveWeixinHeader(String s) {
+		saveBase("weixin_header",s);
+	}
+
+	public static void removeWeixinHeader() {
+		removeBase("weixin_header");
+	}
+
+
 
 	public static void removePhone() {
 		removeBase(C.ACCOUNT_PHONE);

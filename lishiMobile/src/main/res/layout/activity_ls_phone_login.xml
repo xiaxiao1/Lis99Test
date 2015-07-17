@@ -86,7 +86,7 @@
             android:layout_height="@dimen/ls_regist_bt_height"
             android:layout_gravity="center_horizontal"
             android:background="#fff"
-            android:text="忘记密码？"
+            android:text="忘记密码?"
             android:onClick="onClick"
             android:textColor="#666"
             android:textSize="14sp" />

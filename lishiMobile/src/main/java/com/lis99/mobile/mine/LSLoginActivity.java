@@ -772,6 +772,13 @@ public class LSLoginActivity extends LSBaseActivity {
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
 
+            SharedPreferencesHelper.saveWeixinOpenID(openid);
+            SharedPreferencesHelper.saveWeixinHeader(weixinHeader);
+            SharedPreferencesHelper.saveWeixinNickName(weixinNickName);
+            SharedPreferencesHelper.saveWeixinSex(weixinSex+"");
+
+            SharedPreferencesHelper.saveaccounttype("wechat");
+
             postMessage(LOGIN_SUCCESS);
 
         } catch (Exception e) {
