@@ -27,7 +27,7 @@ public class Common {
     private static String TAG = "MYUTIL";
 
     public static void log(String str) {
-        Log.w(TAG, str);
+//        Log.w(TAG, str);
     }
 
     public static void log1(String str) {

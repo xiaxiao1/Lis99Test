@@ -54,6 +54,7 @@ public class LsStartupActivity extends ActivityPattern {
 
     private ImageView iv_img;
     private ImageView iv_info;
+    private ImageView iv_channel;
 
     private Animation animation_img, animation_info;
 
@@ -99,6 +100,21 @@ public class LsStartupActivity extends ActivityPattern {
 
         iv_img = (ImageView) findViewById(R.id.iv_img);
         iv_info = (ImageView) findViewById(R.id.iv_info);
+        iv_channel = (ImageView) findViewById(R.id.iv_channel);
+
+        //＝＝＝＝＝＝＝＝＝＝＝启动Icon ＝＝＝＝＝＝＝＝＝＝＝
+        if ( "baidu".equals(DeviceInfo.CHANNELVERSION))
+        {
+            iv_channel.setVisibility(View.VISIBLE);
+            iv_channel.setImageResource(R.drawable.star_page_channel_baidu);
+        }
+        else
+        {
+            iv_channel.setVisibility(View.INVISIBLE);
+        }
+
+        iv_img.setVisibility(View.INVISIBLE);
+        iv_info.setVisibility(View.INVISIBLE);
 
         animation_img = AnimationUtils.loadAnimation(this, R.anim.star_img_time);
         animation_info = AnimationUtils.loadAnimation(this, R.anim.star_info_time);
