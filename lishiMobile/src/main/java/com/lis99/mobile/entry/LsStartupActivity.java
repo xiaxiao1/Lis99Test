@@ -176,6 +176,10 @@ public class LsStartupActivity extends ActivityPattern {
         {
             QQLogin();
         }
+        else if ( SharedPreferencesHelper.SINALOGIN.equals(accountType))
+        {
+            SinaLogin();
+        }
         else {
             if (account != null && !"".equals(account)) {
                 postMessage(POPUP_PROGRESS, getString(R.string.sending));
@@ -430,6 +434,12 @@ private static final int LOGIN_SUCCESS = 200;
     {
         ThirdLogin thirdLogin = ThirdLogin.getInstance();
         thirdLogin.QQLogin(false);
+    }
+
+    private void SinaLogin ()
+    {
+        ThirdLogin thirdLogin = ThirdLogin.getInstance();
+        thirdLogin.SinaLogin(false);
     }
 
 }

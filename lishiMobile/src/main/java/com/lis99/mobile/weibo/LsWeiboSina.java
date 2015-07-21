@@ -41,9 +41,9 @@ public class LsWeiboSina{
     //静态工厂方法   
     public synchronized  static LsWeiboSina getInstance(Activity ct) {  
     	activity = ct;
+		mWeiboAuth = new WeiboAuth(activity, C.SINA_APP_KEY,C.SINA_REDIRECT_URL, C.SINA_SCOPE);
          if (single == null) {    
              single = new LsWeiboSina();
-             mWeiboAuth = new WeiboAuth(activity, C.SINA_APP_KEY,C.SINA_REDIRECT_URL, C.SINA_SCOPE);
          }
         return single;  
     }

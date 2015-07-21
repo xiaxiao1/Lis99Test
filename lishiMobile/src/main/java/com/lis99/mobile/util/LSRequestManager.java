@@ -339,5 +339,50 @@ public class LSRequestManager
 			MyRequestManager.getInstance().requestPostNoDialog(Url, map, model, call);
 		}
 	}
+
+	public void SinaLogin (String uid, String screen_name, String gender, String avatar_large, final CallBack callBack, boolean showDialog)
+	{
+		CallBack call = new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				QQLoginModel model = (QQLoginModel) mTask.getResultModel();
+				UserBean u = new UserBean();
+				u.setHeadicon(model.headicon);
+				u.setNickname(model.nickname);
+				u.setUser_id(model.user_id);
+
+				DataManager.getInstance().setUser(u);
+				DataManager.getInstance().setLogin_flag(true);
+
+				SharedPreferencesHelper.saveheadicon(model.headicon);
+				SharedPreferencesHelper.savenickname(model.nickname);
+				SharedPreferencesHelper.saveuser_id(model.user_id);
+
+				SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.SINALOGIN);
+				if ( callBack != null )
+				{
+					callBack.handler(null);
+				}
+			}
+		};
+
+		QQLoginModel model = new QQLoginModel();
+		String url = C.SINALOGINURL;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", uid);
+		map.put("screen_name", screen_name);
+		map.put("gender", gender);
+		map.put("avatar_large", avatar_large);
+
+		if ( showDialog )
+		{
+			MyRequestManager.getInstance().requestPost(url, map, model, call);
+		}
+		else
+		{
+			MyRequestManager.getInstance().requestPostNoDialog(url, map, model, call);
+		}
+
+	}
 	
 }

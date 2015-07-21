@@ -762,8 +762,7 @@ public class LsLoginActivity extends ActivityPattern
 		SharedPreferencesHelper.savenickname(user.getNickname());
 		SharedPreferencesHelper.saveuser_id(user.getUser_id());
 		SharedPreferencesHelper.saveheadicon(user.getHeadicon());
-		SharedPreferencesHelper.saveSn(user.getSn());
-		
+
 	}
 
 	private LSRegistModel model;

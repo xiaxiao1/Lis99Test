@@ -1,11 +1,9 @@
 package com.lis99.mobile.mine;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,7 +16,6 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
-import com.lis99.mobile.entry.AccessTokenKeeper;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LsImproveInfoActivity;
 import com.lis99.mobile.newhome.LSFragment;
@@ -27,25 +24,13 @@ import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.ThirdLogin;
-import com.lis99.mobile.weibo.LsWeiboSina;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WeiboAuth;
-import com.sina.weibo.sdk.auth.WeiboAuthListener;
-import com.sina.weibo.sdk.constant.WBConstants;
-import com.sina.weibo.sdk.exception.WeiboException;
-import com.sina.weibo.sdk.net.AsyncWeiboRunner;
-import com.sina.weibo.sdk.net.RequestListener;
-import com.sina.weibo.sdk.net.WeiboParameters;
-import com.sina.weibo.sdk.utils.UIUtils;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import org.apache.http.Header;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -61,40 +46,12 @@ public class LSLoginActivity extends LSBaseActivity {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-
-    /**
-     * WeiboSDKDemo 程序的 APP_SECRET。 请注意：请务必妥善保管好自己的
-     * APP_SECRET，不要直接暴露在程序中，此处仅作为一个DEMO来演示。
-     */
-    private static final String WEIBO_DEMO_APP_SECRET = C.SINA_APP_SERCET;
-
-    /**
-     * 通过 code 获取 Token 的 URL
-     */
-    private static final String OAUTH2_ACCESS_TOKEN_URL = "https://open.weibo.cn/oauth2/access_token";
-
     /**
      * 获取 Token 成功或失败的消息
      */
     private static final int MSG_FETCH_TOKEN_SUCCESS = 1;
     private static final int MSG_FETCH_TOKEN_FAILED = 2;
 
-    /**
-     * 获取到的 Code
-     */
-    private String mCode;
-    /**
-     * 获取到的 Token
-     */
-    private Oauth2AccessToken mAccessToken;
-    String unlogin;
-    String account1;
-    String password1;
-    String token1;
-    String tokenaccount1;
-    String tokenpassword1;
-
-    String access_token;
 
     String api_type, api_uid, api_token, api_nickname;
     String screen_name;
@@ -104,42 +61,6 @@ public class LSLoginActivity extends LSBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        mTencent = Tencent.createInstance(C.TENCENT_APP_ID,
-//                this.getApplicationContext());
-//
-//        String QQOpenId = SharedPreferencesHelper.getQQOpenId();
-//        String QQToken = SharedPreferencesHelper.getQQToken();
-//        String QQExpires = SharedPreferencesHelper.getExpires_in();
-//        if ( !TextUtils.isEmpty(QQOpenId) && !TextUtils.isEmpty(QQToken) && !TextUtils.isEmpty(QQExpires))
-//        {
-//            mTencent.setOpenId(QQOpenId);
-//            mTencent.setAccessToken(QQToken, QQExpires);
-//        }
-
-//        mTencent.setOpenId(SharedPreferencesHelper.get);
-
-//        mTencent.setOpenId(SharedPreferencesHelper.getValue(this,
-//                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_OPEN_ID));
-//        String expire = SharedPreferencesHelper.getValue(this,
-//                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_EXPIRES_IN);
-//        if (expire == null || "".equals(expire)) {
-//            expire = "0";
-//        }
-//        mTencent.setAccessToken(SharedPreferencesHelper
-//                .getValue(this, C.CONFIG_FILENAME, Context.MODE_PRIVATE,
-//                        C.TENCENT_ACCESS_TOKEN), expire);
-//
-//
-//        try {
-//            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-//            trustStore.load(null, null);
-//            SSLSocketFactory sf = new MySSLSocketFactory(trustStore);
-//            sf.setHostnameVerifier(MySSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
-//            client.setSSLSocketFactory(sf);
-//        }
-//        catch (Exception e) {
-//        }
 
         setContentView(R.layout.activity_ls_login);
         initViews();
@@ -212,25 +133,7 @@ public class LSLoginActivity extends LSBaseActivity {
             }
             return;
             case R.id.ls_ll_sina_login: {
-
-                // 取本地token
-                api_type = "sina";
-                mAccessToken = AccessTokenKeeper.readAccessToken(this);
-                mCode = SharedPreferencesHelper.getValue(LSLoginActivity.this,
-                        C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.SINA_CODE);
-                if (mAccessToken.isSessionValid()) {
-                    postMessage(POPUP_PROGRESS, getString(R.string.sending));
-                    doGetSinaWeiboNicknameTask();
-                } else {
-                    // 微博登陆
-                    LsWeiboSina
-                            .getInstance(this)
-                            .getWeiboAuth()
-                            .authorize(new AuthListener(),
-                                    WeiboAuth.OBTAIN_AUTH_CODE);
-                }
-
-
+                SinaLogin();
             }
             break;
             case R.id.ls_ll_qq_login: {
@@ -242,100 +145,6 @@ public class LSLoginActivity extends LSBaseActivity {
                 break;
         }
         super.onClick(v);
-    }
-
-
-    /**
-     * 微博认证授权回调类。
-     */
-    class AuthListener implements WeiboAuthListener {
-
-        @Override
-        public void onComplete(Bundle values) {
-            if (null == values) {
-                Toast.makeText(LSLoginActivity.this, "授权失败", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
-
-            String code = values.getString("code");
-            if (TextUtils.isEmpty(code)) {
-                Toast.makeText(LSLoginActivity.this, "授权失败", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
-            mCode = code;
-            SharedPreferencesHelper.saveSinaCode(code);
-            // SharedPreferencesHelper
-            // .putValue(LSLoginActivity.this, C.CONFIG_FILENAME,
-            // Context.MODE_PRIVATE, C.SINA_CODE, mCode);
-            fetchTokenAsync(mCode, WEIBO_DEMO_APP_SECRET);
-        }
-
-        @Override
-        public void onCancel() {
-            Toast.makeText(LSLoginActivity.this, "登录取消", Toast.LENGTH_LONG)
-                    .show();
-        }
-
-        @Override
-        public void onWeiboException(WeiboException e) {
-            UIUtils.showToast(LSLoginActivity.this,
-                    "Auth exception : " + e.getMessage(), Toast.LENGTH_LONG);
-        }
-    }
-
-    /**
-     * 异步获取 Token。
-     *
-     * @param authCode  授权 Code，该 Code 是一次性的，只能被获取一次 Token
-     * @param appSecret 应用程序的 APP_SECRET，请务必妥善保管好自己的 APP_SECRET，
-     *                  不要直接暴露在程序中，此处仅作为一个DEMO来演示。
-     */
-    public void fetchTokenAsync(String authCode, String appSecret) {
-        WeiboParameters requestParams = new WeiboParameters();
-        requestParams.add(WBConstants.AUTH_PARAMS_CLIENT_ID, C.SINA_APP_KEY);
-        requestParams.add(WBConstants.AUTH_PARAMS_CLIENT_SECRET, appSecret);
-        requestParams.add(WBConstants.AUTH_PARAMS_GRANT_TYPE,
-                "authorization_code");
-        requestParams.add(WBConstants.AUTH_PARAMS_CODE, authCode);
-        requestParams.add(WBConstants.AUTH_PARAMS_REDIRECT_URL,
-                C.SINA_REDIRECT_URL);
-
-        /**
-         * 请注意： {@link RequestListener} 对应的回调是运行在后台线程中的， 因此，需要使用 Handler 来配合更新
-         * UI。
-         */
-        AsyncWeiboRunner.requestAsync(OAUTH2_ACCESS_TOKEN_URL, requestParams,
-                "POST", new RequestListener() {
-                    @Override
-                    public void onComplete(String response) {
-
-                        // 获取 Token 成功
-                        Oauth2AccessToken token = Oauth2AccessToken
-                                .parseAccessToken(response);
-                        // 保存 Token 到 SharedPreferences
-
-                        if (token != null && token.isSessionValid()) {
-                            postMessage(POPUP_PROGRESS,
-                                    getString(R.string.sending));
-                            AccessTokenKeeper.writeAccessToken(
-                                    LSLoginActivity.this, token);
-                            mAccessToken = token;
-                            doGetSinaWeiboNicknameTask();
-                        } else {
-
-                        }
-                    }
-
-                    @Override
-                    public void onWeiboException(WeiboException arg0) {
-                        // TODO Auto-generated method stub
-                        mHandler1.obtainMessage(MSG_FETCH_TOKEN_FAILED)
-                                .sendToTarget();
-                    }
-
-                });
     }
 
     private Handler mHandler1 = new Handler() {
@@ -383,45 +192,11 @@ public class LSLoginActivity extends LSBaseActivity {
             params.put("access_token", api_token);
             params.put("third_nick", screen_name);
             params.put("oauth_token_secret", C.SINA_APP_SERCET);
-            params.put("oauth_token", mCode);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return RequestParamUtil.getInstance(this).getRequestParams(params);
-    }
-
-    private void doGetSinaWeiboNicknameTask() {
-        WeiboParameters requestParams = new WeiboParameters();
-        requestParams.add("source", C.SINA_APP_KEY);
-        requestParams.add("access_token", mAccessToken.getToken());
-        api_token = mAccessToken.getToken();
-        requestParams.add("uid", mAccessToken.getUid());
-        api_uid = mAccessToken.getUid();
-        AsyncWeiboRunner.requestAsync(
-                "https://api.weibo.com/2/users/show.json", requestParams,
-                "GET", new RequestListener() {
-                    @Override
-                    public void onComplete(String response) {
-                        System.out.println(response);
-                        try {
-                            JSONObject js = new JSONObject(response);
-                            screen_name = js.optString("screen_name");
-                            api_nickname = screen_name;
-                            doThirdLoginTask("sina");
-                        } catch (JSONException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onWeiboException(WeiboException arg0) {
-                        // TODO Auto-generated method stub
-                        postMessage(DISMISS_PROGRESS);
-                    }
-
-                });
     }
 
     @Override
@@ -722,7 +497,6 @@ public class LSLoginActivity extends LSBaseActivity {
         SharedPreferencesHelper.savenickname(user.getNickname());
         SharedPreferencesHelper.saveuser_id(user.getUser_id());
         SharedPreferencesHelper.saveheadicon(user.getHeadicon());
-        SharedPreferencesHelper.saveSn(user.getSn());
 
     }
 
@@ -741,6 +515,18 @@ public class LSLoginActivity extends LSBaseActivity {
 
     }
 
+    private void SinaLogin ()
+    {
+        CallBack call = new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                finish();
+            }
+        };
+        ThirdLogin thirdLogin = ThirdLogin.getInstance();
+        thirdLogin.setCallBack(call);
+        thirdLogin.SinaLogin(true);
+    }
 
 
 

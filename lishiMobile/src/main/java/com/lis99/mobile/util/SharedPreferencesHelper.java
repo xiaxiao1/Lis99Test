@@ -169,11 +169,14 @@ public class SharedPreferencesHelper {
 		removeQQSex();
 		removeQQNickName();
 		removeQQHeadIcon();
+
 		//===sina-----
 		removeSinaCode();
+		removeSinaNickName();
+		removeSinaHeadIcon();
+		removeSinaSex();
+		removeSinaUid();
 		
-		removeSn();
-
 
 		//用户
 		removeaccounttype();
@@ -329,6 +332,11 @@ public class SharedPreferencesHelper {
 	{
 		removeBase(C.SINA_CODE);
 	}
+
+	public static String getSinaCode ()
+	{
+		return getBase(C.SINA_CODE, "");
+	}
 	
 	public static void saveaccounttype ( String str )
 	{
@@ -342,15 +350,15 @@ public class SharedPreferencesHelper {
 	{
 		removeBase("accounttype");
 	}
-	public static void saveSn ( String str )
-	{
-		saveBase("sn", str);
-	}
-	
-	public static void removeSn ()
-	{
-		removeBase("sn");
-	}
+//	public static void saveSn ( String str )
+//	{
+//		saveBase("sn", str);
+//	}
+//
+//	public static void removeSn ()
+//	{
+//		removeBase("sn");
+//	}
 	
 	public static void savenickname ( String str )
 	{
@@ -455,6 +463,68 @@ public class SharedPreferencesHelper {
 	{
 		return getBase("QQHEADICON", "");
 	}
+
+	public static void saveSinaSex ( String sex )
+	{
+		saveBase("SINASEX", sex);
+	}
+
+	public static String getSinaSex ()
+	{
+		return getBase("SINASEX", "");
+	}
+
+	private static void removeSinaSex ()
+	{
+		removeBase("SINASEX");
+	}
+
+	public static void saveSinaNickName (String nickName )
+	{
+		saveBase("SINANICKNAME", nickName);
+	}
+
+	public static String getSinaNickName ()
+	{
+		return getBase("SINANICKNAME", "");
+	}
+
+	private static void removeSinaNickName ()
+	{
+		removeBase("SINANICKNAME");
+	}
+
+	public static void saveSinaHeadIcon ( String headIcon )
+	{
+		saveBase("SINAHEADICON", headIcon);
+	}
+
+	public static String getSinaHeadIcon ()
+	{
+		return getBase("SINAHEADICON", "");
+	}
+
+	private static void removeSinaHeadIcon ()
+	{
+		removeBase("SINAHEADICON");
+	}
+
+	public static void saveSinaUid ( String uid )
+	{
+		saveBase("SINAUID", uid);
+	}
+
+	public static String getSinaUid ()
+	{
+		return getBase("SINAUID", "");
+	}
+
+	private static void removeSinaUid ()
+	{
+		removeBase("SINAUID");
+	}
+
+
 
 	//登陆类型
 	public static String QQLOGIN = "QQLOGIN";

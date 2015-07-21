@@ -365,6 +365,8 @@ public class C {
 
 //QQ登录
 	public static final String QQLOGINURL = DOMAIN + "/v2/user/qqapi";
+//	SINA登录
+	public static final String SINALOGINURL = DOMAIN + "/v2/user/weiboapi";
 
 
 }
