@@ -363,7 +363,8 @@ public class C {
 	public static final String PHONE_REGISTER = DOMAIN + "/v2/user/regMobile/";
 	public static final String WEIXIN_LOGIN = DOMAIN + "/v2/user/weixinapi/";
 
-
+//QQ登录
+	public static final String QQLOGINURL = DOMAIN + "/v2/user/qqapi";
 
 
 }

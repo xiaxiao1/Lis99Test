@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StatusUtil;
@@ -148,35 +147,35 @@ public class LsSettingActivity extends ActivityPattern {
 		        CookieSyncManager.getInstance().sync();
 			
 			
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.ACCOUNT, "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.PASSWORD, "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.TOKEN, "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.TOKEN_ACCOUNT, "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.TOKEN_PASSWORD, "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.TENCENT_OPEN_ID, "");
-			
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.TENCENT_EXPIRES_IN, "");
-			
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, C.TENCENT_ACCESS_TOKEN, "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, "accounttype", "");
-
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, "nickname", "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, "user_id", "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, "headicon", "");
-			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-					Context.MODE_PRIVATE, "sn", "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.ACCOUNT, "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.PASSWORD, "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.TOKEN, "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.TOKEN_ACCOUNT, "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.TOKEN_PASSWORD, "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.TENCENT_OPEN_ID, "");
+//
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.TENCENT_EXPIRES_IN, "");
+//
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, C.TENCENT_ACCESS_TOKEN, "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, "accounttype", "");
+//
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, "nickname", "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, "user_id", "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, "headicon", "");
+//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
+//					Context.MODE_PRIVATE, "sn", "");
 			
 
 			SharedPreferencesHelper.cleanUserInfo();

@@ -14,7 +14,9 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.AccessTokenKeeper;
 import com.lis99.mobile.entry.ActivityPattern1;
@@ -24,9 +26,9 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
+import com.lis99.mobile.util.ThirdLogin;
 import com.lis99.mobile.weibo.LsWeiboSina;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
@@ -37,20 +39,14 @@ import com.sina.weibo.sdk.net.AsyncWeiboRunner;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.net.WeiboParameters;
 import com.sina.weibo.sdk.utils.UIUtils;
-import com.tencent.connect.UserInfo;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 
 import org.apache.http.Header;
-import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.KeyStore;
 import java.util.HashMap;
 
 
@@ -109,29 +105,41 @@ public class LSLoginActivity extends LSBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mTencent = Tencent.createInstance(C.TENCENT_APP_ID,
-                this.getApplicationContext());
-        mTencent.setOpenId(SharedPreferencesHelper.getValue(this,
-                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_OPEN_ID));
-        String expire = SharedPreferencesHelper.getValue(this,
-                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_EXPIRES_IN);
-        if (expire == null || "".equals(expire)) {
-            expire = "0";
-        }
-        mTencent.setAccessToken(SharedPreferencesHelper
-                .getValue(this, C.CONFIG_FILENAME, Context.MODE_PRIVATE,
-                        C.TENCENT_ACCESS_TOKEN), expire);
+//        mTencent = Tencent.createInstance(C.TENCENT_APP_ID,
+//                this.getApplicationContext());
+//
+//        String QQOpenId = SharedPreferencesHelper.getQQOpenId();
+//        String QQToken = SharedPreferencesHelper.getQQToken();
+//        String QQExpires = SharedPreferencesHelper.getExpires_in();
+//        if ( !TextUtils.isEmpty(QQOpenId) && !TextUtils.isEmpty(QQToken) && !TextUtils.isEmpty(QQExpires))
+//        {
+//            mTencent.setOpenId(QQOpenId);
+//            mTencent.setAccessToken(QQToken, QQExpires);
+//        }
 
+//        mTencent.setOpenId(SharedPreferencesHelper.get);
 
-        try {
-            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            trustStore.load(null, null);
-            SSLSocketFactory sf = new MySSLSocketFactory(trustStore);
-            sf.setHostnameVerifier(MySSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
-            client.setSSLSocketFactory(sf);
-        }
-        catch (Exception e) {
-        }
+//        mTencent.setOpenId(SharedPreferencesHelper.getValue(this,
+//                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_OPEN_ID));
+//        String expire = SharedPreferencesHelper.getValue(this,
+//                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_EXPIRES_IN);
+//        if (expire == null || "".equals(expire)) {
+//            expire = "0";
+//        }
+//        mTencent.setAccessToken(SharedPreferencesHelper
+//                .getValue(this, C.CONFIG_FILENAME, Context.MODE_PRIVATE,
+//                        C.TENCENT_ACCESS_TOKEN), expire);
+//
+//
+//        try {
+//            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+//            trustStore.load(null, null);
+//            SSLSocketFactory sf = new MySSLSocketFactory(trustStore);
+//            sf.setHostnameVerifier(MySSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+//            client.setSSLSocketFactory(sf);
+//        }
+//        catch (Exception e) {
+//        }
 
         setContentView(R.layout.activity_ls_login);
         initViews();
@@ -226,88 +234,7 @@ public class LSLoginActivity extends LSBaseActivity {
             }
             break;
             case R.id.ls_ll_qq_login: {
-
-                api_type = "qq";
-
-                postMessage(POPUP_PROGRESS);
-
-                if (mTencent.isSessionValid()) {
-                    UserInfo info = new UserInfo(LSLoginActivity.this,
-                            mTencent.getQQToken());
-                    info.getUserInfo(new IUiListener() {
-
-                        @Override
-                        public void onError(UiError arg0) {
-                            postMessage(DISMISS_PROGRESS);
-                        }
-
-                        @Override
-                        public void onComplete(Object res) {
-                            JSONObject json = (JSONObject) res;
-                            api_nickname = json.optString("nickname", "");
-                            doThirdLoginTask(api_type);
-                        }
-
-                        @Override
-                        public void onCancel() {
-                            postMessage(DISMISS_PROGRESS);
-                        }
-                    });
-                } else {
-                    mTencent.login(this, "all", new IUiListener() {
-
-                        @Override
-                        public void onError(UiError arg0) {
-                            Toast.makeText(LSLoginActivity.this, arg0.errorMessage,
-                                    Toast.LENGTH_SHORT).show();
-                            postMessage(DISMISS_PROGRESS);
-                        }
-
-                        @Override
-                        public void onComplete(Object res) {
-                            JSONObject json = (JSONObject) res;
-                            postMessage(POPUP_PROGRESS, getString(R.string.sending));
-                            System.out.println(json);
-                            api_uid = json.optString("openid");
-                            api_token = json.optString("access_token");
-                            final String expires_in = json.optString("expires_in");
-
-                            SharedPreferencesHelper.saveapi_uid(api_uid);
-                            SharedPreferencesHelper.saveLSToken(api_token);
-                            SharedPreferencesHelper.saveexpires_in(expires_in);
-                            SharedPreferencesHelper.saveapi_token(api_token);
-
-                            UserInfo info = new UserInfo(LSLoginActivity.this,
-                                    mTencent.getQQToken());
-                            info.getUserInfo(new IUiListener() {
-
-                                @Override
-                                public void onError(UiError arg0) {
-                                    postMessage(DISMISS_PROGRESS);
-                                }
-
-                                @Override
-                                public void onComplete(Object res) {
-                                    JSONObject json = (JSONObject) res;
-                                    api_nickname = json.optString("nickname", "");
-                                    doThirdLoginTask(api_type);
-                                }
-
-                                @Override
-                                public void onCancel() {
-                                    postMessage(DISMISS_PROGRESS);
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onCancel() {
-                            postMessage(DISMISS_PROGRESS);
-                            Toast.makeText(LSLoginActivity.this, "登录取消", 0).show();
-                        }
-                    });
-                }
-
+                QQLogin();
             }
             break;
 
@@ -689,7 +616,7 @@ public class LSLoginActivity extends LSBaseActivity {
 
             case THIRDLOGIN_SUCCESS:
                 LSRequestManager.getInstance().upDataInfo();
-                Toast.makeText(this, "登录成功", 0).show();
+                Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                 saveThirdUserMeg(DataManager.getInstance().getUser());
 
                 finish();
@@ -798,5 +725,23 @@ public class LSLoginActivity extends LSBaseActivity {
         SharedPreferencesHelper.saveSn(user.getSn());
 
     }
+
+    private void QQLogin ()
+    {
+        CallBack callBack = new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                finish();
+            }
+        };
+
+        ThirdLogin thirdLogin = ThirdLogin.getInstance();
+        thirdLogin.setCallBack(callBack);
+        thirdLogin.QQLogin(true);
+
+    }
+
+
+
 
 }

@@ -29,6 +29,7 @@ import com.lis99.mobile.util.PushManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StatusUtil;
+import com.lis99.mobile.util.ThirdLogin;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.HashMap;
@@ -119,6 +120,8 @@ public class LsStartupActivity extends ActivityPattern {
         animation_img = AnimationUtils.loadAnimation(this, R.anim.star_img_time);
         animation_info = AnimationUtils.loadAnimation(this, R.anim.star_info_time);
 
+
+
         account = SharedPreferencesHelper.getValue(this, C.CONFIG_FILENAME,
                 Context.MODE_PRIVATE, C.ACCOUNT);
         phone = SharedPreferencesHelper.getValue(this, C.CONFIG_FILENAME,
@@ -132,9 +135,11 @@ public class LsStartupActivity extends ActivityPattern {
         tokenpassword = SharedPreferencesHelper.getValue(this,
                 C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TOKEN_PASSWORD);
 
-        String accountType = SharedPreferencesHelper.getValue(this,
-                C.CONFIG_FILENAME, Context.MODE_PRIVATE, "accounttype");
-        if ("third".equals(accountType)) {
+//        String accountType = SharedPreferencesHelper.getValue(this,
+//                C.CONFIG_FILENAME, Context.MODE_PRIVATE, "accounttype");
+        String accountType = SharedPreferencesHelper.getaccounttype();
+
+        if (SharedPreferencesHelper.THIRD.equals(accountType)) {
             UserBean user = new UserBean();
             user.setEmail(SharedPreferencesHelper.getValue(this,
                     C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.ACCOUNT));
@@ -148,12 +153,14 @@ public class LsStartupActivity extends ActivityPattern {
                     C.CONFIG_FILENAME, Context.MODE_PRIVATE, "sn"));
             DataManager.getInstance().setLogin_flag(true);
             DataManager.getInstance().setUser(user);
+            //手机号登陆
         } else if ("phone".equals(accountType)) {
             if (phone != null && !"".equals(phone)) {
                 postMessage(POPUP_PROGRESS, getString(R.string.sending));
                 doPhoneLoginTask(phone, password);
             }
-        } else if ("wechat".equals(accountType)) {
+            //微信登录
+        } else if (SharedPreferencesHelper.WEIXINLOGIN.equals(accountType)) {
             weixinHeader = SharedPreferencesHelper.getValue(this,
                     C.CONFIG_FILENAME, Context.MODE_PRIVATE, "weixin_header");
             weixinNickName = SharedPreferencesHelper.getValue(this,
@@ -163,7 +170,13 @@ public class LsStartupActivity extends ActivityPattern {
             openid = SharedPreferencesHelper.getValue(this,
                     C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.WEIXIN_OPENID);
             doWechatLogin();
-        } else {
+        }
+        //QQ登录
+        else if ( SharedPreferencesHelper.QQLOGIN.equals(accountType))
+        {
+            QQLogin();
+        }
+        else {
             if (account != null && !"".equals(account)) {
                 postMessage(POPUP_PROGRESS, getString(R.string.sending));
                 doLoginTask(account, password);
@@ -411,4 +424,12 @@ private static final int LOGIN_SUCCESS = 200;
         }
         return true;
     }
+
+
+    private void QQLogin ()
+    {
+        ThirdLogin thirdLogin = ThirdLogin.getInstance();
+        thirdLogin.QQLogin(false);
+    }
+
 }

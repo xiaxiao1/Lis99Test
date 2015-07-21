@@ -13,6 +13,7 @@ import com.lis99.mobile.club.model.EquipAppraiseModel;
 import com.lis99.mobile.club.model.EquipRecommendModel;
 import com.lis99.mobile.club.model.EquipTypeModel;
 import com.lis99.mobile.club.model.NearbyModel;
+import com.lis99.mobile.club.model.QQLoginModel;
 import com.lis99.mobile.club.model.RedDotModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -77,7 +78,7 @@ public class LSRequestManager
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("user_id", userid);
 		String url = C.CLUB_TOPIC_INFO_LIKE + topicId;
-		MyRequestManager.getInstance().requestPost(url, map, model, call );
+		MyRequestManager.getInstance().requestPost(url, map, model, call);
 	}
 	
 	/**上传用户信息*/
@@ -222,30 +223,25 @@ public class LSRequestManager
 		
 		RedDotModel model = new RedDotModel();
 		
-		MyRequestManager.getInstance().requestGetNoDialog(url, model, new CallBack()
-		{
-			
+		MyRequestManager.getInstance().requestGetNoDialog(url, model, new CallBack() {
+
 			@Override
-			public void handler(MyTask mTask)
-			{
+			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
 				RedDotModel model = (RedDotModel) mTask.getResultModel();
 				int num = model.is_baoming + model.is_reply + model.manage_baoming;
-				Common.log("b================"+num);
-				Common.log("model.is_reply"+model.is_reply);
-				
+				Common.log("b================" + num);
+				Common.log("model.is_reply" + model.is_reply);
+
 				// Tab红点
-				if ( tab.mTabCur != LSTab.EVENT && num > 0 )
-				{
+				if (tab.mTabCur != LSTab.EVENT && num > 0) {
 					Common.log("Visible tab");
 					tab.visibleRedDot(true);
-				}
-				else
-				{
+				} else {
 					Common.log("gone tab");
 					tab.visibleRedDot(false);
 				}
-				
+
 			}
 		});
 		
@@ -290,7 +286,58 @@ public class LSRequestManager
 		String url = C.EQUIPAPPRAISE;
 		MyRequestManager.getInstance().requestGet(url, model, callBack);
 	}
-	
-	
+
+	/**
+	 *
+	 * @param openid
+	 * @param nickname
+	 * @param gender
+	 * @param figureurl
+	 * @param callBack
+	 * @param showDialog		是否显示Dialog
+	 */
+	public void QQLogin ( String openid, String nickname, String gender, String figureurl, final CallBack callBack, boolean showDialog )
+	{
+		CallBack call = new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				QQLoginModel model = (QQLoginModel) mTask.getResultModel();
+				UserBean u = new UserBean();
+				u.setHeadicon(model.headicon);
+				u.setNickname(model.nickname);
+				u.setUser_id(model.user_id);
+
+				DataManager.getInstance().setUser(u);
+				DataManager.getInstance().setLogin_flag(true);
+
+				SharedPreferencesHelper.saveheadicon(model.headicon);
+				SharedPreferencesHelper.savenickname(model.nickname);
+				SharedPreferencesHelper.saveuser_id(model.user_id);
+
+				SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.QQLOGIN);
+				if ( callBack != null )
+				{
+					callBack.handler(null);
+				}
+			}
+		};
+
+
+		QQLoginModel model = new QQLoginModel();
+		String Url = C.QQLOGINURL;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("openid", openid);
+		map.put("nickname", nickname);
+		map.put("gender", gender);
+		map.put("figureurl", figureurl);
+		if ( !showDialog )
+		{
+			MyRequestManager.getInstance().requestPost(Url, map, model, call);
+		}
+		else
+		{
+			MyRequestManager.getInstance().requestPostNoDialog(Url, map, model, call);
+		}
+	}
 	
 }
