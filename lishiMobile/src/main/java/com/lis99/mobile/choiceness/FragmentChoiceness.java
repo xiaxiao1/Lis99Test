@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -40,6 +41,10 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 	private ChoicenessModel model;
 
 	private LinearLayout layout_search;
+
+	private View headView;
+
+	private ImageView iv_subject, iv_active;
 	
 	@Override
 	protected void initViews(ViewGroup container)
@@ -68,9 +73,11 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 			{
 				// TODO Auto-generated method stub
 				if ( adapter == null ) return;
+//				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2 - 1);
 				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2);
+				if ( item == null ) return;
 				Intent intent = null;
-				if ( item.type == 1 || item.type == 2 )
+				if ( item.type == 1 || item.type == 2 || item.type == 5 || item.type == 6 )
 				{
 					intent = new Intent(FragmentChoiceness.this.getActivity(), LSClubTopicActivity.class);
 					intent.putExtra("topicID", item.topic_id);
@@ -112,7 +119,18 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 		layout_search = (LinearLayout) findViewById(R.id.layout_search);
 
 		layout_search.setOnClickListener(this);
-		
+
+		//==3.3====
+
+//		headView = View.inflate(getActivity(), R.layout.choiceness_head, null);
+//
+//		iv_subject = (ImageView) headView.findViewById(R.id.iv_subject);
+//		iv_active = (ImageView) headView.findViewById(R.id.iv_active);
+//
+//		iv_subject.setOnClickListener(this);
+//		iv_active.setOnClickListener(this);
+//
+//		list.addHeaderView(headView);
 	}
 	
 	private void cleanList ()
@@ -138,6 +156,11 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 		{
 			case R.id.layout_search:
 				startActivity(new Intent(getActivity(), SearchActivity.class));
+				break;
+			case R.id.iv_subject:
+				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
+				break;
+			case R.id.iv_active:
 				break;
 		}
 	}

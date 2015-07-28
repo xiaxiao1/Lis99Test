@@ -199,6 +199,7 @@ public class SharedPreferencesHelper {
 		removeWeixinNickName();
 		removeWeixinSex();
 		removeWeixinHeader();
+		removeWeiXinUnionid();
 
 		//==========手机号=========
 		removePhone();
@@ -261,6 +262,21 @@ public class SharedPreferencesHelper {
 
 	public static void removeWeixinHeader() {
 		removeBase("weixin_header");
+	}
+
+	public static void saveWeiXinUnionid ( String unionid )
+	{
+		saveBase("WEIXINUNIONID", unionid);
+	}
+
+	public static String getWeiXinUnionid ()
+	{
+		return getBase("WEIXINUNIONID", "");
+	}
+
+	private static void removeWeiXinUnionid ()
+	{
+		removeBase("WEIXINUNIONID");
 	}
 
 

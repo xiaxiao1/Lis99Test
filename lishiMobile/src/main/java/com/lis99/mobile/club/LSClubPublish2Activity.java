@@ -87,41 +87,46 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		if (bitmap != null)
 			params.put("thumb", new ByteArrayInputStream(BitmapUtil.bitampToByteArray(bitmap)), "image.jpg");
 		
-		client.post(C.CLUB_ADD_TOPIC, params, new JsonHttpResponseHandler(){
-			
+		client.post(C.CLUB_ADD_TOPIC, params, new JsonHttpResponseHandler() {
+
 			@Override
 			public void onStart() {
 				postMessage(ActivityPattern1.POPUP_PROGRESS,
 						getString(R.string.sending));
 			}
-			
-			
-			 @Override
-	            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-				 	String errorCode = response.optString("status","");
-				 	if ("OK".equals(errorCode)) {
-				 		postMessage(POPUP_TOAST, "发布成功");
-				 		
-				 		LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LSClubPublish2Activity.this);
-				        Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
-				        lbm.sendBroadcast(intent);
-				 		
-				 		
-				 		finish();
-				 	}
-	            }
-	            
-	            @Override
-	            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-	            	
-	            }
-	            
-	            @Override
-	            public void onFinish() {
-	            	postMessage(DISMISS_PROGRESS);
-	            }
+
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+				String errorCode = response.optString("status", "");
+				if ("OK".equals(errorCode)) {
+					postMessage(POPUP_TOAST, "发布成功");
+
+					LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LSClubPublish2Activity.this);
+					Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
+					lbm.sendBroadcast(intent);
+
+					setresult();
+					finish();
+				}
+			}
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+
+			}
+
+			@Override
+			public void onFinish() {
+				postMessage(DISMISS_PROGRESS);
+			}
 			
 		});
+	}
+
+	private void setresult ()
+	{
+		setResult(RESULT_OK);
 	}
 
 	@Override

@@ -220,6 +220,9 @@ public class LSSelectAdapter extends BaseAdapter {
 		
 		EquipTypeModel model = info.EquipTypeItem;
 		EquipRecommendModel modelHot = info.RecommendItem;
+
+		if ( modelHot == null || modelHot.zhuangbeilist == null || modelHot.zhuangbeilist.size() == 0 )
+			return view;
 		
 		holder.tv_1.setText(modelHot.zhuangbeilist.get(0).catename);
 		holder.tv_2.setText(modelHot.zhuangbeilist.get(1).catename);
@@ -230,13 +233,12 @@ public class LSSelectAdapter extends BaseAdapter {
 //		holder.tv_6.setText(modelHot.zhuangbeilist.get(5).catename);
 		
 		
-		
+		if ( model == null || model.accesslist == null || model.accesslist.size() == 0 )
+			return view;
 		
 		holder.tv_7.setText(model.accesslist.get(0).title);
 		holder.tv_8.setText(model.accesslist.get(1).title);
 		holder.tv_9.setText(model.accesslist.get(2).title);
-		
-		if ( model.accesslist == null || modelHot.zhuangbeilist == null ) return view;
 		
 		holder.tv_1.setOnClickListener( new EquipClick(model, modelHot));
 		holder.tv_2.setOnClickListener( new EquipClick(model, modelHot));

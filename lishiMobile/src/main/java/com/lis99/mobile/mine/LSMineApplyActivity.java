@@ -158,7 +158,10 @@ public class LSMineApplyActivity extends LSBaseActivity implements
 				@Override
 				public void run() {
 					postMessage(ActivityPattern1.POPUP_TOAST, "已清空");
-					adapter.clear();
+					if ( adapter != null )
+					{
+						adapter.clear();
+					}
 				}
 			});
 		} catch (Exception e) {
@@ -213,7 +216,10 @@ public class LSMineApplyActivity extends LSBaseActivity implements
 
 	private void cleanList() {
 		page = new Page();
-		adapter.clear();
+		if ( adapter != null )
+		{
+			adapter.clear();
+		}
 	}
 
 }

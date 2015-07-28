@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
-    android:versionCode="320"
-    android:versionName="3.2.0" >
+    android:versionCode="330"
+    android:versionName="3.3.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -861,6 +861,12 @@
             android:windowSoftInputMode="stateHidden"
             >
         </activity>
+
+        <!-- 3.3.0 -->
+        <activity android:name=".choiceness.ChoicenessAllActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
 
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"

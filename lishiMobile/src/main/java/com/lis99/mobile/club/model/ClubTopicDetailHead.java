@@ -51,7 +51,7 @@ import java.util.ArrayList;
 			LikeStatus	int	是否赞过
 			baomingNum	int	报名人数
 			passNum	int	通过人数
-createdate	string	添加时间
+			createdate	string	添加时间
 
  * @author yy
  *
@@ -80,6 +80,7 @@ public class ClubTopicDetailHead implements Serializable{
 	public String likeNum;
 	public String LikeStatus;
 	public String createdate;
+	public String times;
 	public String is_vip;
 	public String is_jion;
 	public ArrayList<Topic_image> topic_image;

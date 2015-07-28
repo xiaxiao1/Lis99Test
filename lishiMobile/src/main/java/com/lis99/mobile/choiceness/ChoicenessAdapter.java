@@ -28,11 +28,16 @@ public class ChoicenessAdapter extends BaseAdapter
 	private final int SUBJECT = 2;
 	//URL跳转
 	private final int URLITEM = 3;
-	
-//	private final int CLUB = 0;
-//	总数
-	private final int conut = 4;
-	
+	//新的话题样式
+	private final int IMGTOPIC = 4;
+
+	private final int IMGACTIVE = 5;
+
+	//	private final int CLUB = 0;
+	//	总数
+	private final int conut = 6;
+
+
 	public ArrayList<Omnibuslist> list;
 	
 	private DisplayImageOptions optionshead, optionsclub, optionsBg;
@@ -101,6 +106,12 @@ public class ChoicenessAdapter extends BaseAdapter
 			case 4:
 				num = SUBJECT;
 				break;
+			case 5:
+				num = IMGACTIVE;
+				break;
+			case 6:
+				num = IMGTOPIC;
+				break;
 		}
 		
 		return num;
@@ -127,6 +138,9 @@ public class ChoicenessAdapter extends BaseAdapter
 			case SUBJECT:
 			case URLITEM:
 				return getSubject(position, arg1, num);
+			case IMGACTIVE:
+			case IMGTOPIC:
+				return getSubjectTopic(position, arg1, num);
 		}
 		
 		return arg1;
@@ -236,6 +250,37 @@ public class ChoicenessAdapter extends BaseAdapter
 		holder.tv_info.setText(item.subhead);
 		
 		
+		return view;
+	}
+
+	private View getSubjectTopic ( int position, View view, int num )
+	{
+		SubjectHolder holder = null;
+		if ( view == null )
+		{
+			holder = new SubjectHolder();
+			view = View.inflate(a, R.layout.choiceness_item_subject, null);
+
+			holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+			holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
+			holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
+			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
+			holder.iv_subject = (ImageView) view.findViewById(R.id.iv_subject);
+			view.setTag(holder);
+		}
+		else
+		{
+			holder = (SubjectHolder) view.getTag();
+		}
+		holder.iv_subject.setVisibility(View.GONE);
+		Omnibuslist item = (Omnibuslist) getItem(position);
+		if ( item == null ) return view;
+
+		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+
+		holder.tv_title.setText(item.title);
+		holder.tv_info.setText(item.subhead);
+
 		return view;
 	}
 

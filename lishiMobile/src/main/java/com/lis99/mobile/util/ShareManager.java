@@ -372,6 +372,7 @@ public class ShareManager
 //						 }
 						break;
 					case R.id.iv_qzone:
+
 						String shareWx4Text = shareTxt +" "+ finalSharedUrl + ""
 								+ topicId;
 						// LsWeiboTencent.getInstance(LSBaseActivity.activity)

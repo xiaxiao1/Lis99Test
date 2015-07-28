@@ -528,9 +528,12 @@ public class LSSelectFragment extends LSFragment implements
 			{
 				// TODO Auto-generated method stub
 				EquipTypeModel model = (EquipTypeModel) mTask.getResultModel();
-				LSSelectContent item = loaedContents.get(0);
-				item.equipType = LSSelectAdapter.EQUIP_TYEP;
-				item.EquipTypeItem = model;
+				if ( loaedContents.size() > 0 )
+				{
+					LSSelectContent item = loaedContents.get(0);
+					item.equipType = LSSelectAdapter.EQUIP_TYEP;
+					item.EquipTypeItem = model;
+				}
 				loadSelects();
 				loadQucikEnter();
 			}

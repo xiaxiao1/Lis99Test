@@ -302,7 +302,8 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		//帖子属性
 		tv_active_style.setText(clubhead.catename + " " + clubhead.hardDegree);
 //		＝＝＝＝＝＝
-		tv_time.setText(clubhead.createdate + " 至 " + clubhead.deadline);
+//		tv_time.setText(clubhead.createdate + " 至 " + clubhead.deadline);
+		tv_time.setText(clubhead.times);
 		tv_location.setText(clubhead.aimaddress);
 		tv_rmb.setText(clubhead.consts);
 		

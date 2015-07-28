@@ -367,6 +367,7 @@ public class LsZhuangbeiDetail extends ActivityPattern implements
 			}
 		} else if (v.getId() == iv_share.getId()) {
 //			showShareList();
+			if ( zb1 == null ) return;
 			ShareManager.getInstance().showShareList(this, zb1.getTitle(), zb1.getShare_url(), zb1.getImage());
 		}
 	}

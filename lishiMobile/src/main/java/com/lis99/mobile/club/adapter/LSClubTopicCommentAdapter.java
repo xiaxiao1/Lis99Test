@@ -55,15 +55,17 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		Topiclist comment;
 		ImageView img;
 		TextView tvreply;
+		private int position;
 
 		public void setReply(TextView tv)
 		{
 			tvreply = tv;
 		}
 
-		CommentOnClickListener(Topiclist comment)
+		CommentOnClickListener(Topiclist comment, int position )
 		{
 			this.comment = comment;
+			this.position = position;
 		}
 
 		public void setImageView(ImageView img)
@@ -77,7 +79,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			// 删除
 			if (v.getId() == R.id.tv_floor_delete)
 			{
-				deleteNow(comment);
+				deleteNow(comment, position);
 			}
 			// 回复
 			else if (v.getId() == R.id.layout_club_detail_reply)
@@ -125,6 +127,17 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 	{
 		this.topiclist.addAll(0, topiclist);
 		notifyDataSetChanged();
+	}
+
+	private void remove(int position )
+	{
+		if ( topiclist == null || topiclist.size() == 0 || topiclist.size() <= position )
+		{
+			return;
+		}
+		topiclist.remove(position);
+		notifyDataSetChanged();
+
 	}
 
 	@Override
@@ -219,7 +232,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			holder.vipStar.setVisibility(View.GONE);
 		}
 
-		CommentOnClickListener l = new CommentOnClickListener(item);
+		CommentOnClickListener l = new CommentOnClickListener(item, position);
 		holder.layout_club_detail_like.setOnClickListener(l);
 		l.setReply(holder.tv_like);
 		l.setImageView(holder.iv_like);
@@ -363,7 +376,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 				});
 	}
 
-	private void deleteNow(Topiclist comment)
+	private void deleteNow(Topiclist comment, final int position )
 	{
 		LSRequestManager.getInstance().mClubTopicReplyDelete("" + clubId,
 				"" + comment.replytopic_id, new CallBack()
@@ -373,7 +386,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 					public void handler(MyTask mTask)
 					{
 						// TODO Auto-generated method stub
-						main.refrenshReply();
+//						main.refrenshReply();
+						remove(position);
 					}
 
 				});

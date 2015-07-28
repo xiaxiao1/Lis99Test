@@ -256,6 +256,7 @@ public class LSClubFragment extends LSFragment implements
 				// TODO Auto-generated method stub
 				DialogManager.getInstance().stopWaitting();
 				loadClubHomePageInfo(latitude, longitude);
+				if ( location != null )
 				location.stopLocation();
 				location = null;
 			}

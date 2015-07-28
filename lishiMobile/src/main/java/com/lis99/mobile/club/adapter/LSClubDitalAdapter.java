@@ -52,6 +52,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
+		if ( topiclist.size() <= position || position < 0 ) return null;
 		return topiclist.get(position);
 	}
 

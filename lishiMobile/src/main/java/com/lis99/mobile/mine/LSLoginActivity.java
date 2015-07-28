@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -176,28 +177,28 @@ public class LSLoginActivity extends LSBaseActivity {
         ;
     };
 
-    private void doThirdLoginTask(String type) {
-        postMessage(POPUP_PROGRESS);
-        Task task = new Task(null, C.USER_THIRDSIGN_URL, null,
-                "USER_THIRDSIGN_URL", this);
-        task.setPostData(getThirdLoginParams(type).getBytes());
-        publishTask(task, IEvent.IO);
-    }
-
-    private String getThirdLoginParams(String type) {
-        HashMap<String, Object> params = new HashMap<String, Object>();
-        try {
-            params.put("api_type", type);
-            params.put("api_uid", api_uid);
-            params.put("access_token", api_token);
-            params.put("third_nick", screen_name);
-            params.put("oauth_token_secret", C.SINA_APP_SERCET);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return RequestParamUtil.getInstance(this).getRequestParams(params);
-    }
+//    private void doThirdLoginTask(String type) {
+//        postMessage(POPUP_PROGRESS);
+//        Task task = new Task(null, C.USER_THIRDSIGN_URL, null,
+//                "USER_THIRDSIGN_URL", this);
+//        task.setPostData(getThirdLoginParams(type).getBytes());
+//        publishTask(task, IEvent.IO);
+//    }
+//
+//    private String getThirdLoginParams(String type) {
+//        HashMap<String, Object> params = new HashMap<String, Object>();
+//        try {
+//            params.put("api_type", type);
+//            params.put("api_uid", api_uid);
+//            params.put("access_token", api_token);
+//            params.put("third_nick", screen_name);
+//            params.put("oauth_token_secret", C.SINA_APP_SERCET);
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return RequestParamUtil.getInstance(this).getRequestParams(params);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -432,6 +433,7 @@ public class LSLoginActivity extends LSBaseActivity {
                 params.put("nickname", weixinNickName);
                 params.put("sex", weixinSex);
                 params.put("headimgurl", weixinHeader);
+                params.put("unionid", TextUtils.isEmpty(unionid) ? "0" : unionid);
                 Task task = new Task(null, C.WEIXIN_LOGIN, C.HTTP_POST, C.WEIXIN_LOGIN,
                         this);
                 task.setPostData(RequestParamUtil.getInstance(this)
@@ -466,20 +468,24 @@ public class LSLoginActivity extends LSBaseActivity {
 
             String nickName = data.get("nickname").asText();
 
+            String headicon = data.get("headicon").asText();
 
             u.setUser_id(data.get("user_id").asText());
-            u.setHeadicon(weixinHeader);
+
+            u.setHeadicon(headicon);
 
             u.setNickname(nickName);
+
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
 
             SharedPreferencesHelper.saveWeixinOpenID(openid);
             SharedPreferencesHelper.saveWeixinHeader(weixinHeader);
             SharedPreferencesHelper.saveWeixinNickName(weixinNickName);
-            SharedPreferencesHelper.saveWeixinSex(weixinSex+"");
+            SharedPreferencesHelper.saveWeixinSex(weixinSex + "");
+            SharedPreferencesHelper.saveWeiXinUnionid(unionid);
 
-            SharedPreferencesHelper.saveaccounttype("wechat");
+            SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.WEIXINLOGIN);
 
             postMessage(LOGIN_SUCCESS);
 

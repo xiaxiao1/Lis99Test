@@ -666,7 +666,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			Intent intent = new Intent(LSClubDetailActivity.this, LSClubPublish2Activity.class);
 			intent.putExtra("clubID", clubID);
-			startActivity(intent);
+//			startActivity(intent);
+			startActivityForResult(intent, 998);
 			return;
 		} else if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
 			if (TextUtils.isEmpty(clubHead.is_jion)) {
@@ -918,7 +919,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				setRightView(R.drawable.club_joined);
 			}
 		}
-		//删帖、置顶， 请求刷新
+		//删帖、置顶， 请求刷新, 发帖
 		else if ( resultCode == RESULT_OK  && requestCode == 998 )
 		{
 			cleanList();

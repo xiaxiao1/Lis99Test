@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pull_bg"
+    >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/activity_title" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/active_all_tab"
+        android:gravity="center_vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/layout_tab_data"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/active_all_date"
+                android:layout_marginRight="6dip"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="活动日期"
+                android:id="@+id/tv_data"
+                android:layout_marginRight="8dip"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/active_all_dot_select"
+                android:id="@+id/iv_data"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="20dip"
+            android:background="@color/color_nine"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/layout_tab_city"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/active_all_location"
+                android:layout_marginRight="6dip"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="集合地"
+                android:id="@+id/tv_city"
+                android:layout_marginRight="8dip"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/active_all_dot_select"
+                android:id="@+id/iv_city"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:orientation="vertical"
+        >
+
+        <ListView
+            style="@style/listViewStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:dividerHeight="0px"
+            android:divider="@null"
+            android:id="@+id/list"
+            ></ListView>
+
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+
+</LinearLayout>

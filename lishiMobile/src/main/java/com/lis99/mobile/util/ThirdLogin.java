@@ -1,5 +1,6 @@
 package com.lis99.mobile.util;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.sina.weibo.sdk.net.WeiboParameters;
 import com.sina.weibo.sdk.utils.UIUtils;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
+import com.tencent.open.utils.SystemUtils;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -82,8 +84,7 @@ public class ThirdLogin {
         mTencent = Tencent.createInstance(C.TENCENT_APP_ID, LSBaseActivity.activity);
 
         //SSO登录检查
-        if (!mTencent.isSupportSSOLogin(LSBaseActivity.activity)) {
-//            Common.toast("请先安装QQ");
+        if (!QQInstalled(LSBaseActivity.activity)) {
             return;
         }
 
@@ -215,6 +216,20 @@ public class ThirdLogin {
             LSRequestManager.getInstance().QQLogin(openid, nickname, sex, headicon, callBack, showDialog);
         } else {
             Common.toast("QQLoginParamsError");
+        }
+    }
+//检查是否安装QQ客户端
+    public boolean QQInstalled (Activity var1)
+    {
+        String var2 = SystemUtils.getAppVersionName(var1, "com.tencent.mobileqq");
+        if(var2 == null) {
+            Toast.makeText(var1, "没有安装QQ", 0).show();
+            return false;
+        } else if(SystemUtils.checkMobileQQ(var1)) {
+            return true;
+        } else {
+            Toast.makeText(var1, "已安装的QQ版本不支持登陆", 0).show();
+            return false;
         }
     }
 

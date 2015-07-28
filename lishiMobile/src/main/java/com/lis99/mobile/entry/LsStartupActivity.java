@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.PushManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
+import com.lis99.mobile.util.StartLogoOption;
 import com.lis99.mobile.util.StatusUtil;
 import com.lis99.mobile.util.ThirdLogin;
 import com.umeng.analytics.MobclickAgent;
@@ -49,6 +51,7 @@ public class LsStartupActivity extends ActivityPattern {
     String weixinHeader;
     String weixinSex;
     String openid;
+    String unionid;
 
 
     private boolean test = false;
@@ -95,6 +98,7 @@ public class LsStartupActivity extends ActivityPattern {
         Common.HEIGHT = metric.heightPixels;  // 屏幕高度（像素）
         Common.scale = metric.density;  // 屏幕密度（0.75 / 1.0 / 1.5）
 //        int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
+        //设备信息
         DeviceInfo.getDeviceInfo(this);
 
 //		ll_startup = (LinearLayout) findViewById(R.id.ll_startup);
@@ -104,15 +108,8 @@ public class LsStartupActivity extends ActivityPattern {
         iv_channel = (ImageView) findViewById(R.id.iv_channel);
 
         //＝＝＝＝＝＝＝＝＝＝＝启动Icon ＝＝＝＝＝＝＝＝＝＝＝
-        if ( "baidu".equals(DeviceInfo.CHANNELVERSION))
-        {
-            iv_channel.setVisibility(View.VISIBLE);
-            iv_channel.setImageResource(R.drawable.star_page_channel_baidu);
-        }
-        else
-        {
-            iv_channel.setVisibility(View.INVISIBLE);
-        }
+        StartLogoOption.showStartLogoOption(iv_channel);
+
 
         iv_img.setVisibility(View.INVISIBLE);
         iv_info.setVisibility(View.INVISIBLE);
@@ -169,6 +166,7 @@ public class LsStartupActivity extends ActivityPattern {
                     C.CONFIG_FILENAME, Context.MODE_PRIVATE, "weixin_sex");
             openid = SharedPreferencesHelper.getValue(this,
                     C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.WEIXIN_OPENID);
+            unionid = SharedPreferencesHelper.getWeiXinUnionid();
             doWechatLogin();
         }
         //QQ登录
@@ -272,6 +270,7 @@ public class LsStartupActivity extends ActivityPattern {
         params.put("nickname", weixinNickName);
         params.put("sex", weixinSex);
         params.put("headimgurl", weixinHeader);
+        params.put("unionid", TextUtils.isEmpty(unionid) ? "0" : unionid );
         Task task = new Task(null, C.WEIXIN_LOGIN, C.HTTP_POST, C.WEIXIN_LOGIN,
                 this);
         task.setPostData(RequestParamUtil.getInstance(this)
@@ -388,7 +387,7 @@ public class LsStartupActivity extends ActivityPattern {
             SharedPreferencesHelper.saveWeixinNickName(weixinNickName);
             SharedPreferencesHelper.saveWeixinSex(weixinSex + "");
 
-            SharedPreferencesHelper.saveaccounttype("wechat");
+            SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.WEIXINLOGIN);
 
             postMessage(LOGIN_SUCCESS);
 

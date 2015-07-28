@@ -80,8 +80,8 @@
 	</LinearLayout>
 	
 	</RelativeLayout>
-	
-	<ImageView 
+
+	<ImageView
 	    style="@style/wrap_wrap"
 	    android:src="@drawable/choiceness_label"
 	    android:layout_alignParentRight="true"
@@ -90,5 +90,5 @@
 	    android:layout_marginRight="3dip"
 	    android:id="@+id/iv_subject"
 	    />
-    
+
 </RelativeLayout>

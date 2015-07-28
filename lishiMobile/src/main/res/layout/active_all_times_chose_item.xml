@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/active_all_is_chosed"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dip"
+        android:id="@+id/tv_select"
+
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="全部"
+        android:textColor="@color/text_color_blue"
+        android:padding="18dip"
+        android:id="@+id/tv_all"
+        android:layout_toLeftOf="@+id/tv_select"
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+        android:id="@+id/iv_line"
+        android:layout_alignParentBottom="true"
+        />
+
+
+
+</RelativeLayout>

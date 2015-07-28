@@ -11,7 +11,7 @@ import java.util.ArrayList;
 			subhead	string	精选副标题
 			image	string	banner
 			url	string	跳转链接
-			type	int	精选类型(1:活动帖，2：话题帖 3：URL 4：帖子专题)
+			type	int	精选类型(1:活动帖，2：话题帖 3：URL 4：帖子专题， 5活动， 6 话题)
 			nickname	string	发帖者昵称
 			headicon	string	发帖者头像
 			is_vip	int	VIP(1:vip 0:不是vip)

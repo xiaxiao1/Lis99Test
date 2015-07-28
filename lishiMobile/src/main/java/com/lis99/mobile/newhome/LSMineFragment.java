@@ -78,10 +78,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	private void buildOptions()
 	{
 		options = new DisplayImageOptions.Builder()
-				.showImageOnLoading(R.drawable.ls_nologin_header_icon)
+//				.showImageOnLoading(R.drawable.ls_nologin_header_icon)
 				.showImageForEmptyUri(R.drawable.ls_nologin_header_icon)
 				.showImageOnFail(R.drawable.ls_nologin_header_icon)
-				.cacheInMemory(false).cacheOnDisk(true).build();
+				.cacheInMemory(true).cacheOnDisk(true).build();
 	}
 
 	@Override

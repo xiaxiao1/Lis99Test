@@ -42,6 +42,7 @@ public class LsSettingInfoActivity extends ActivityPattern {
     RoundedImageView roundedImageView1;
     EditText tv_nickname;
     private static final int LOGIN_SUCCESS = 200;
+    private String nickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,9 +105,10 @@ public class LsSettingInfoActivity extends ActivityPattern {
         switch (msg.what) {
             case LOGIN_SUCCESS:
                 UserBean user = DataManager.getInstance().getUser();
-                tv_email.setText(user.getEmail());
+//                tv_email.setText(user.getEmail());
+                nickname = user.getNickname();
                 tv_nickname.setText(user.getNickname());
-                tv_city.setText(user.getCity());
+//                tv_city.setText(user.getCity());
 //			user_head.setImage(user.getHeadicon(), null, null, "zhuangbei_detail");
                 ImageLoader.getInstance().displayImage(user.getHeadicon(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
                 break;
@@ -150,6 +152,11 @@ public class LsSettingInfoActivity extends ActivityPattern {
         BaseModel model = new BaseModel();
         String url = C.USER_SAVE_NICKNAME_URL;
         final String nickName = tv_nickname.getText().toString().trim();
+        if ( nickName.equals(this.nickname) )
+        {
+            upHead();
+            return;
+        }
         if (TextUtils.isEmpty(nickName)) {
             Common.toast("昵称不能为空");
             return;

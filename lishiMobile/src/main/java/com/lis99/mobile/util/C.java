@@ -367,6 +367,12 @@ public class C {
 	public static final String QQLOGINURL = DOMAIN + "/v2/user/qqapi";
 //	SINA登录
 	public static final String SINALOGINURL = DOMAIN + "/v2/user/weiboapi";
-
+	//=====3.4=======
+//	全部精选
+	public static final String CHOICENESSALL = DOMAIN + "/v3/club/zhuanti/";
+/**线路活动*/
+	public static final String ACTIVE_ALL = DOMAIN + "/v3/club/clubtopics/";
+	/**线路活动， 城市选择*/
+	public static final String ACTIVE_ALL_CITY = DOMAIN + "/v3/club/getAreaListInfo";
 
 }
