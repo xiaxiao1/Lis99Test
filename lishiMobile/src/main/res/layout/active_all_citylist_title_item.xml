@@ -6,14 +6,17 @@
     android:background="#fff" >
 
     <TextView
-        android:id="@+id/nameView"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="#666"
-        android:textSize="15sp"
-        android:text="北京"
-        android:gravity="center_vertical" />
+        android:id="@+id/titleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pull_bg"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:textSize="14sp"
+        android:textColor="#999"
+        android:text="" />
     
     <View android:background="#e8e8e8"
         android:layout_width="match_parent"

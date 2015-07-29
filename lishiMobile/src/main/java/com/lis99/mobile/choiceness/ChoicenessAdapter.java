@@ -70,7 +70,7 @@ public class ChoicenessAdapter extends BaseAdapter
 	public Object getItem(int arg0)
 	{
 		// TODO Auto-generated method stub
-		if ( list == null || list.size() == 0 ) return null;
+		if ( list == null || list.size() == 0 || arg0 < 0 ) return null;
 		return list.get(arg0);
 	}
 
