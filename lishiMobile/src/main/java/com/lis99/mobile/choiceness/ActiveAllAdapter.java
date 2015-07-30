@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.model.ActiveAll;
+import com.lis99.mobile.club.model.ActiveAllModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
@@ -51,7 +51,7 @@ public class ActiveAllAdapter extends MyBaseAdapter {
             holder = (Holder) view.getTag();
         }
 
-        ActiveAll.Clubtopiclist item = (ActiveAll.Clubtopiclist) getItem(i);
+        ActiveAllModel.Clubtopiclist item = (ActiveAllModel.Clubtopiclist) getItem(i);
 
         if ( item == null )
             return view;
@@ -71,6 +71,15 @@ public class ActiveAllAdapter extends MyBaseAdapter {
         }
 
         return view;
+    }
+//获取TopicId -1 没有TopicId
+    public int getTopicId ( int position )
+    {
+        int TopicId = -1;
+        ActiveAllModel.Clubtopiclist item = (ActiveAllModel.Clubtopiclist) getItem(position);
+        if ( item == null ) return TopicId;
+        TopicId = item.id;
+        return TopicId;
     }
 
 

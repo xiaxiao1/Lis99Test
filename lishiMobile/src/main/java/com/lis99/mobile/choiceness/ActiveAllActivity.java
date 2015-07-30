@@ -1,5 +1,6 @@
 package com.lis99.mobile.choiceness;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,16 +12,18 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.model.ActiveAll;
+import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ActiveAllCity;
+import com.lis99.mobile.club.model.ActiveAllModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
-import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.PopWindowUtil;
+import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +47,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
     private ActiveAllCityAdapter cityAdapter;
 
-    private ActiveAll activeAllModel;
+    private ActiveAllModel activeAllModel;
 
     private ActiveAllCity cityModel;
 //城市列表
@@ -86,6 +89,8 @@ public class ActiveAllActivity extends LSBaseActivity implements
         iv_city = (ImageView) findViewById(R.id.iv_city);
 
         pull_refresh_view = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
+        pull_refresh_view.setOnHeaderRefreshListener(this);
+        pull_refresh_view.setOnFooterRefreshListener(this);
         list = (ListView) findViewById(R.id.list);
         list_city = (ListView) findViewById(R.id.list_city);
 
@@ -95,7 +100,10 @@ public class ActiveAllActivity extends LSBaseActivity implements
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                if ( adapter == null || adapter.getTopicId(i) == -1 ) return;
+                Intent intent = new Intent(activity, LSClubTopicActivity.class);
+                intent.putExtra("topicID", adapter.getTopicId(i));
+                startActivity(intent);
             }
         });
 
@@ -105,7 +113,8 @@ public class ActiveAllActivity extends LSBaseActivity implements
                 HashMap<String, String> map = (HashMap<String, String>) cityAdapter.getItem(i);
                 setCurrentMap(map);
                 cityId = map.get("id");
-                Common.log("cityId="+cityId);
+//                Common.log("cityId="+cityId);
+                onHeaderRefresh(pull_refresh_view);
             }
         });
 
@@ -148,6 +157,37 @@ public class ActiveAllActivity extends LSBaseActivity implements
             return;
         }
 
+        String url = C.ACTIVE_ALL + page.pageNo;
+        activeAllModel = new ActiveAllModel();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("type", times);
+        map.put("cityid", cityId);
+
+        MyRequestManager.getInstance().requestPost(url, map, activeAllModel, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                activeAllModel = (ActiveAllModel) mTask.getResultModel();
+                page.nextPage();
+                if (adapter == null) {
+                    page.setPageSize(activeAllModel.totalpage);
+                    adapter = new ActiveAllAdapter(activity, activeAllModel.clubtopiclist);
+//                    list.setAdapter(adapter);
+
+                    AnimationAdapter animationAdapter = new CardsAnimationAdapter(adapter);
+                    animationAdapter.setAbsListView(list);
+                    list.setAdapter(animationAdapter);
+
+
+                } else {
+                    adapter.addList(activeAllModel.clubtopiclist);
+                }
+
+            }
+        });
+
+
 
 
     }
@@ -174,6 +214,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
                 return;
             }
             times = mTask.getresult();
+            onHeaderRefresh(pull_refresh_view);
 //            Common.log("data = " + times);
         }
     };

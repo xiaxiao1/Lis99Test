@@ -54,8 +54,6 @@ import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
-//import com.lis99.mobile.entry.view.PullDownToRefreshView.OnFooterRefreshListener;
-//import com.lis99.mobile.entry.view.PullDownToRefreshView.OnHeaderRefreshListener;
 
 public class LSClubFragment extends LSFragment implements
 		OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener,
