@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -50,13 +49,6 @@ public class BannerView extends RelativeLayout {
 		super(context);
 		mContext = context;
 		initView(context);
-	}
-
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-//		return super.onTouchEvent(event);
-		Common.log("onTouchEvent=onTouchEvent======onTouchEvent");
-		return true;
 	}
 
 	//	private float c_x;

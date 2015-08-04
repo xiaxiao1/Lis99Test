@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.adapter.LSClubGridViewAdapter;
+import com.lis99.mobile.club.model.ClubMainModel;
 import com.lis99.mobile.club.model.LSClub;
 import com.lis99.mobile.club.model.LSClubBannerItem;
 import com.lis99.mobile.club.model.LSClubGroup;
@@ -93,6 +95,10 @@ public class LSClubFragment extends LSFragment implements
 	private ListView my_club_listview;
 	private Button btn_club_level, btn_leader_level;
 	private LocationUtil location;
+
+	//====3.4======
+
+	private ClubMainModel model;
 	
 	private void buildOptions() {
 		options = ImageUtil.getImageOptionsClubAD();
@@ -141,76 +147,32 @@ public class LSClubFragment extends LSFragment implements
 
 		my_club_listview.addHeaderView(head);
 
-//		scrollView = (ScrollView) findViewById(R.id.scrollview);
-//		scrollView.smoothScrollTo(0, 0);
-//		topClubsView = (GridView) findViewById(R.id.gridView);
 
-//		bannerView.setOnTouchListener(new View.OnTouchListener() {
-//
-//		        @Override
-//		        public boolean onTouch(View v, MotionEvent event) {
-//		        	bannerView.getParent().requestDisallowInterceptTouchEvent(true);
-//		            return false;
-//		        }
-//		    });
+		bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
 
+		    @Override
+		    public boolean onTouch(View v, MotionEvent event) {
 
-//		bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
-//
-//		    int dragthreshold = 30;
-//		    int downX;
-//		    int downY;
-//
-//		    @Override
-//		    public boolean onTouch(View v, MotionEvent event) {
-//
-//		    	v.getParent().requestDisallowInterceptTouchEvent(true);
-//		    	refreshView.requestDisallowInterceptTouchEvent(true);
-//
-//		        switch (event.getAction()) {
-//		        case MotionEvent.ACTION_DOWN:
-//		            downX = (int) event.getRawX();
-//		            downY = (int) event.getRawY();
-//		            bannerView.stopAutoScroll();
-////		            refreshView.enable = false;
-//		            break;
-//		        case MotionEvent.ACTION_MOVE:
-//		            int distanceX = Math.abs((int) event.getRawX() - downX);
-//		            int distanceY = Math.abs((int) event.getRawY() - downY);
-//		            bannerView.stopAutoScroll();
-////		            refreshView.enable = false;
-//
-////		            if (distanceY > distanceX && distanceY > dragthreshold) {
-////		            	bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
-////		            bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
-////		            } else if (distanceX > distanceY && distanceX > dragthreshold) {
-////		            	bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
-////		            	scrollView.requestDisallowInterceptTouchEvent(false);
-////		            }
-//		            break;
-//		        case MotionEvent.ACTION_UP:
-//		        case MotionEvent.ACTION_CANCEL:
-//		        	bannerView.startAutoScroll();
-////		        	refreshView.enable = true;
-//		        	v.getParent().requestDisallowInterceptTouchEvent(false);
-////		            scrollView.requestDisallowInterceptTouchEvent(false);
-////		            bannerView.mViewPager.getParent().requestDisallowInterceptTouchEvent(false);
-//		            break;
-//		        }
-//		        return false;
-//		    }
-//		});
+				v.getParent().requestDisallowInterceptTouchEvent(true);
+
+		        switch (event.getAction()) {
+		        case MotionEvent.ACTION_DOWN:
+		            bannerView.stopAutoScroll();
+		            break;
+		        case MotionEvent.ACTION_MOVE:
+		            bannerView.stopAutoScroll();
+		            break;
+		        case MotionEvent.ACTION_UP:
+		        case MotionEvent.ACTION_CANCEL:
+		        	bannerView.startAutoScroll();
+		        	v.getParent().requestDisallowInterceptTouchEvent(false);
+		            break;
+		        }
+		        return false;
+		    }
+		});
 		
 		refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
-//		refreshView.setOnRefreshListener( new OnRefreshListener<ScrollView>() {
-//
-//			@Override
-//			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-//				// TODO Auto-generated method stub
-//				loadClubHomePageInfo();
-//				refreshView.onRefreshComplete();
-//			}
-//		});
 		refreshView.setOnHeaderRefreshListener(this);
 		refreshView.setOnFooterRefreshListener(this);
 		
@@ -232,22 +194,19 @@ public class LSClubFragment extends LSFragment implements
 			}
 		});
 		
-//		bodyView = (LinearLayout) findViewById(R.id.linearLayout1);
-		
 		setTitle("聚乐部");
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-//		loadClubHomePageInfo();
 		getLocation();
 		buildOptions();
 	}
 	
 	public void getLocation ()
 	{
-		Common.log("=======getLocation===============");
+//		Common.log("=======getLocation===============");
 		if (location != null ) return;
 		DialogManager.getInstance().startWaiting(getActivity(), null, "定位中...");
 		location = LocationUtil.getinstance();
@@ -266,6 +225,11 @@ public class LSClubFragment extends LSFragment implements
 			}
 		});
 		location.getLocation();
+	}
+
+	private void getClubHomePageList ()
+	{
+		
 	}
 
 	public void loadClubHomePageInfo(double latitude, double longitude ) {
