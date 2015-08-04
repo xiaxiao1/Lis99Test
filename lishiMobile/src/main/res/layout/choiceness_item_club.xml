@@ -34,10 +34,8 @@
             android:layout_marginLeft="1px"
             android:layout_marginRight="1px"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/choiceness_height"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/choiceness_shape_foreground"
+            android:layout_height="60dp"
+            android:background="@drawable/choiseness_subject_title_forground"
             app:border_width="0px"
             app:corner_radius="3dip"
             />

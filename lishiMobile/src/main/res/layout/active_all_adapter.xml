@@ -16,14 +16,14 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:border_width="0px"
-            app:corner_radius="5dip" />
+            app:corner_radius="3dip" />
         
         <com.lis99.mobile.club.widget.RoundedImageView
                 android:layout_width="match_parent"
                 android:layout_height="60dip"
                 android:src="@drawable/shadow_top" 
                 android:scaleType="fitXY"
-                app:corner_radius="5dip"
+                app:corner_radius="3dip"
                 />
 
         <ImageView
@@ -38,7 +38,7 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/club_active_list_bg"
+            android:background="@drawable/active_all_text_bg"
             android:layout_below="@id/iv_bg"
             android:layout_marginTop="-4dip"
             android:id="@+id/relativelayout_example"
@@ -48,38 +48,41 @@
                 android:id="@+id/tv_title"
                 style="@style/fill_wrap"
                 android:ellipsize="end"
-                android:paddingBottom="10dip"
-                android:paddingLeft="10dip"
+                android:paddingLeft="6dip"
                 android:paddingRight="10dip"
-                android:paddingTop="13dip"
+                android:paddingTop="6dip"
                 android:maxLines="2"
                 android:text="@string/temp_string_long"
                 android:textColor="#666666"
-                android:textSize="15sp"
-                android:layout_marginRight="100dip"
+                android:textSize="13sp"
+                android:minLines="2"
+                android:layout_marginRight="80dip"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="5dp"
                 />
 
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="100dip"
+            android:id="@+id/linearlayout"
+            android:layout_width="76dip"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_alignRight="@id/relativelayout_example"
             android:layout_alignTop="@id/relativelayout_example"
-            android:layout_marginTop="-25dip"
+            android:layout_marginTop="-20dip"
             android:gravity="center"
             >
 
             <com.lis99.mobile.club.widget.RoundedImageView
                 android:id="@+id/roundedImageView1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/club_icon_header_default"
                 app:corner_radius="28dp"
-                app:border_color="#eeeeee"
-                app:border_width="1px"
+                app:border_color="@color/white"
+                app:border_width="4px"
                 />
 
             <TextView
@@ -98,7 +101,15 @@
         </LinearLayout>
 
 
-
+        <View
+            android:layout_width="1px"
+            android:layout_height="20dip"
+            android:background="#eee"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/linearlayout"
+            android:layout_alignBottom="@id/linearlayout"
+            android:layout_marginRight="5dp"
+            />
 
 
         <RelativeLayout
@@ -113,7 +124,13 @@
                 android:drawablePadding="4dip"
                 android:text="@string/temp_string"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:shadowColor="@color/color_shadow"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="5"
+                />
 
             <TextView
                 android:id="@+id/tv_type"

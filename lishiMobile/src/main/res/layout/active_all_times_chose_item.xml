@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="全部"
         android:textColor="@color/text_color_blue"
-        android:padding="18dip"
+        android:padding="14dip"
         android:id="@+id/tv_all"
         android:layout_toLeftOf="@+id/tv_select"
         />
@@ -29,7 +29,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
-        android:background="@color/color_1px_stroke"
+        android:background="#eee"
         android:id="@+id/iv_line"
         android:layout_alignParentBottom="true"
         />

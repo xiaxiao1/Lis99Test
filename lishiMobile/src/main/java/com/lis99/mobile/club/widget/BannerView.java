@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -50,7 +51,15 @@ public class BannerView extends RelativeLayout {
 		mContext = context;
 		initView(context);
 	}
-//	private float c_x;
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+//		return super.onTouchEvent(event);
+		Common.log("onTouchEvent=onTouchEvent======onTouchEvent");
+		return true;
+	}
+
+	//	private float c_x;
 //	@Override
 //	public boolean onTouchEvent(MotionEvent event) {
 //		if ( event.getAction() == MotionEvent.ACTION_DOWN )
@@ -68,7 +77,7 @@ public class BannerView extends RelativeLayout {
 //		{
 //			mViewPager.getParent().requestDisallowInterceptTouchEvent(false);
 //		}
-//		
+//
 //		// TODO Auto-generated method stub
 //		return super.onTouchEvent(event);
 //	}

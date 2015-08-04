@@ -4,4 +4,43 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+
+        <com.lis99.mobile.club.widget.BannerView
+            android:id="@+id/viewBanner"
+            android:layout_width="match_parent"
+            android:layout_height="135dp" />
+
+        <LinearLayout
+            style="@style/fill_wrap"
+            android:orientation="horizontal"
+            android:layout_margin="8dip"
+            >
+
+            <Button
+                style="@style/fill_wrap"
+                android:layout_weight="1"
+                android:id="@+id/btn_club_level"
+                android:background="@drawable/banner1"
+                android:layout_marginRight="8dip"
+                />
+
+            <Button
+                style="@style/fill_wrap"
+                android:layout_weight="1"
+                android:id="@+id/btn_leader_level"
+                android:background="@drawable/banner2"
+
+                />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:src="@drawable/myaddclub"
+            style="@style/wrap_wrap"
+            android:layout_height="26dip"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dip"
+            />
+
 </LinearLayout>

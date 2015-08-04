@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
@@ -22,7 +20,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.adapter.LSClubGridViewAdapter;
-import com.lis99.mobile.club.adapter.LSClubRecommendAdapter;
 import com.lis99.mobile.club.model.LSClub;
 import com.lis99.mobile.club.model.LSClubBannerItem;
 import com.lis99.mobile.club.model.LSClubGroup;
@@ -73,13 +70,15 @@ public class LSClubFragment extends LSFragment implements
 
 	private final static int SHOW_HOME = 1001;
 	
-	LinearLayout bodyView;
+//	LinearLayout bodyView;
 	
 	List<View> plusViews = new ArrayList<View>();
 	
 	PullToRefreshView refreshView;
 
 	ImageView titleRightImage;
+
+	View head;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -121,22 +120,31 @@ public class LSClubFragment extends LSFragment implements
 
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		body = inflater.inflate(R.layout.fragment_club, container, false);
+//头
+		head = View.inflate(this.getActivity(), R.layout.club_main_list_head, null);
 
+		//搜索按钮
 		titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
 		titleRightImage.setImageResource(R.drawable.club_search_title_right);
 		titleRightImage.setOnClickListener(this);
 
-		btn_club_level = (Button) findViewById(R.id.btn_club_level);
-		btn_leader_level = (Button) findViewById(R.id.btn_leader_level);
+//		按钮
+		btn_club_level = (Button) head.findViewById(R.id.btn_club_level);
+		btn_leader_level = (Button) head.findViewById(R.id.btn_leader_level);
 		btn_leader_level.setOnClickListener(this);
 		btn_club_level.setOnClickListener(this);
-		
+//
+		bannerView = (BannerView) head.findViewById(R.id.viewBanner);
+
+
 		my_club_listview = (ListView) findViewById(R.id.my_club_listview);
-		scrollView = (ScrollView) findViewById(R.id.scrollview);
-		scrollView.smoothScrollTo(0, 0);
+
+		my_club_listview.addHeaderView(head);
+
+//		scrollView = (ScrollView) findViewById(R.id.scrollview);
+//		scrollView.smoothScrollTo(0, 0);
 //		topClubsView = (GridView) findViewById(R.id.gridView);
-		bannerView = (BannerView) findViewById(R.id.viewBanner);
-		
+
 //		bannerView.setOnTouchListener(new View.OnTouchListener() {
 //
 //		        @Override
@@ -145,55 +153,53 @@ public class LSClubFragment extends LSFragment implements
 //		            return false;
 //		        }
 //		    });
-		
-		
-		
-		
-		bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
 
-		    int dragthreshold = 30;
-		    int downX;
-		    int downY;
 
-		    @Override
-		    public boolean onTouch(View v, MotionEvent event) {
-
-		    	v.getParent().requestDisallowInterceptTouchEvent(true);
-		    	refreshView.requestDisallowInterceptTouchEvent(true);
-		    	
-		        switch (event.getAction()) {
-		        case MotionEvent.ACTION_DOWN:
-		            downX = (int) event.getRawX();
-		            downY = (int) event.getRawY();
-		            bannerView.stopAutoScroll();
-//		            refreshView.enable = false;
-		            break;
-		        case MotionEvent.ACTION_MOVE:
-		            int distanceX = Math.abs((int) event.getRawX() - downX);
-		            int distanceY = Math.abs((int) event.getRawY() - downY);
-		            bannerView.stopAutoScroll();
-//		            refreshView.enable = false;
-		            
-//		            if (distanceY > distanceX && distanceY > dragthreshold) {
-//		            	bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
-//		            bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
-//		            } else if (distanceX > distanceY && distanceX > dragthreshold) {
-//		            	bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
-//		            	scrollView.requestDisallowInterceptTouchEvent(false);
-//		            }
-		            break;
-		        case MotionEvent.ACTION_UP:
-		        case MotionEvent.ACTION_CANCEL:
-		        	bannerView.startAutoScroll();
-//		        	refreshView.enable = true;
-		        	v.getParent().requestDisallowInterceptTouchEvent(false);
-//		            scrollView.requestDisallowInterceptTouchEvent(false);
-//		            bannerView.mViewPager.getParent().requestDisallowInterceptTouchEvent(false);
-		            break;
-		        }
-		        return false;
-		    }
-		});
+//		bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
+//
+//		    int dragthreshold = 30;
+//		    int downX;
+//		    int downY;
+//
+//		    @Override
+//		    public boolean onTouch(View v, MotionEvent event) {
+//
+//		    	v.getParent().requestDisallowInterceptTouchEvent(true);
+//		    	refreshView.requestDisallowInterceptTouchEvent(true);
+//
+//		        switch (event.getAction()) {
+//		        case MotionEvent.ACTION_DOWN:
+//		            downX = (int) event.getRawX();
+//		            downY = (int) event.getRawY();
+//		            bannerView.stopAutoScroll();
+////		            refreshView.enable = false;
+//		            break;
+//		        case MotionEvent.ACTION_MOVE:
+//		            int distanceX = Math.abs((int) event.getRawX() - downX);
+//		            int distanceY = Math.abs((int) event.getRawY() - downY);
+//		            bannerView.stopAutoScroll();
+////		            refreshView.enable = false;
+//
+////		            if (distanceY > distanceX && distanceY > dragthreshold) {
+////		            	bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
+////		            bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
+////		            } else if (distanceX > distanceY && distanceX > dragthreshold) {
+////		            	bannerView.mViewPager.requestDisallowInterceptTouchEvent(true);
+////		            	scrollView.requestDisallowInterceptTouchEvent(false);
+////		            }
+//		            break;
+//		        case MotionEvent.ACTION_UP:
+//		        case MotionEvent.ACTION_CANCEL:
+//		        	bannerView.startAutoScroll();
+////		        	refreshView.enable = true;
+//		        	v.getParent().requestDisallowInterceptTouchEvent(false);
+////		            scrollView.requestDisallowInterceptTouchEvent(false);
+////		            bannerView.mViewPager.getParent().requestDisallowInterceptTouchEvent(false);
+//		            break;
+//		        }
+//		        return false;
+//		    }
+//		});
 		
 		refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
 //		refreshView.setOnRefreshListener( new OnRefreshListener<ScrollView>() {
@@ -226,7 +232,7 @@ public class LSClubFragment extends LSFragment implements
 			}
 		});
 		
-		bodyView = (LinearLayout) findViewById(R.id.linearLayout1);
+//		bodyView = (LinearLayout) findViewById(R.id.linearLayout1);
 		
 		setTitle("聚乐部");
 	}
@@ -336,59 +342,59 @@ public class LSClubFragment extends LSFragment implements
 				bannerView.startAutoScroll();
 			}
 			
-			LayoutInflater inflater = LayoutInflater.from(getActivity());
+//			LayoutInflater inflater = LayoutInflater.from(getActivity());
 			
-			int len = groups == null ? 0 : groups.size();
+//			int len = groups == null ? 0 : groups.size();
 			
-			for (View v : plusViews) {
-				bodyView.removeView(v);
-				
-			}
-			
-			plusViews.clear();
-			
-			for (int i = 0; i < len; i++) {
-				LSClubGroup group = groups.get(i);
-				View titleView = inflater.inflate(R.layout.club_list_title_view, bodyView, false);
-				bodyView.addView(titleView);
-//				TextView titleTextView = (TextView) titleView.findViewById(R.id.clubListTitleView);
-//				titleTextView.setText(group.getTypename());
-				
-				plusViews.add(titleView);
-				
-				final ListView listView = (ListView) inflater.inflate(R.layout.club_list_view, bodyView, false);
-				bodyView.addView(listView);
-				final LSClubRecommendAdapter adapter = new LSClubRecommendAdapter(getActivity(), group.getTyperanks());
-				listView.setAdapter(adapter);
-				listView.setOnItemClickListener(new OnItemClickListener() {
-
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						if ( position < (parent.getCount() - 1) )
-						{
-							MobclickAgent.onEvent(getActivity(), "Ranking_Club_Clicked");
-							LSClub club = (LSClub) adapter.getItem(position);
-							Intent intent = new Intent(getActivity(), LSClubDetailActivity.class);
-							intent.putExtra("clubID", club.getId());
-							startActivity(intent);
-						}
-						else
-						{
-							Intent intent = new Intent(getActivity(), LSClubListActivity.class);
-							startActivity(intent);
-						}
-					}
-				});
-				
-				plusViews.add(listView);
-			}
-			
-			View v = new View(getActivity());
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,50);
-			v.setLayoutParams(lp);
-			bodyView.addView(v);
-			plusViews.add(v);
+//			for (View v : plusViews) {
+//				bodyView.removeView(v);
+//
+//			}
+//
+//			plusViews.clear();
+//
+//			for (int i = 0; i < len; i++) {
+//				LSClubGroup group = groups.get(i);
+//				View titleView = inflater.inflate(R.layout.club_list_title_view, bodyView, false);
+//				bodyView.addView(titleView);
+////				TextView titleTextView = (TextView) titleView.findViewById(R.id.clubListTitleView);
+////				titleTextView.setText(group.getTypename());
+//
+//				plusViews.add(titleView);
+//
+//				final ListView listView = (ListView) inflater.inflate(R.layout.club_list_view, bodyView, false);
+//				bodyView.addView(listView);
+//				final LSClubRecommendAdapter adapter = new LSClubRecommendAdapter(getActivity(), group.getTyperanks());
+//				listView.setAdapter(adapter);
+//				listView.setOnItemClickListener(new OnItemClickListener() {
+//
+//					@Override
+//					public void onItemClick(AdapterView<?> parent, View view,
+//							int position, long id) {
+//						if ( position < (parent.getCount() - 1) )
+//						{
+//							MobclickAgent.onEvent(getActivity(), "Ranking_Club_Clicked");
+//							LSClub club = (LSClub) adapter.getItem(position);
+//							Intent intent = new Intent(getActivity(), LSClubDetailActivity.class);
+//							intent.putExtra("clubID", club.getId());
+//							startActivity(intent);
+//						}
+//						else
+//						{
+//							Intent intent = new Intent(getActivity(), LSClubListActivity.class);
+//							startActivity(intent);
+//						}
+//					}
+//				});
+//
+//				plusViews.add(listView);
+//			}
+//
+//			View v = new View(getActivity());
+//			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,50);
+//			v.setLayoutParams(lp);
+//			bodyView.addView(v);
+//			plusViews.add(v);
 			return true;
 		}
 		return super.handleMessage(msg);

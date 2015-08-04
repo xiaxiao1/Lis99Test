@@ -53,10 +53,13 @@ public class ActiveAllActivity extends LSBaseActivity implements
 //城市列表
     private static ArrayList<HashMap<String, String>> cityMap;
 
-    private HashMap<String, String> currentMap;
+    private static HashMap<String, String> currentMap;
 
     private String times = "0", cityId = "0";
+    //时间选择位置
+    private int position;
 
+    private AnimationAdapter animationAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +114,19 @@ public class ActiveAllActivity extends LSBaseActivity implements
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HashMap<String, String> map = (HashMap<String, String>) cityAdapter.getItem(i);
+                if ( !map.containsKey("id") )
+                {
+                    return;
+                }
                 setCurrentMap(map);
                 cityId = map.get("id");
+                if ( i == 0 )
+                {
+                    tv_city.setText("全部集合地");
+                }
+                else {
+                    tv_city.setText(map.get("name").toString());
+                }
 //                Common.log("cityId="+cityId);
                 onHeaderRefresh(pull_refresh_view);
             }
@@ -132,7 +146,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
                     return;
                 }
                 selectTab(tv_data, iv_data);
-                PopWindowUtil.showActiveAllTimes(layout_tab_data, dataCallBack);
+                PopWindowUtil.showActiveAllTimes(position, layout_tab_data, dataCallBack);
                 break;
             case R.id.layout_tab_city:
                 getCityList();
@@ -147,6 +161,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
         {
             adapter.clean();
             adapter = null;
+            list.setAdapter(null);
         }
     }
 
@@ -175,13 +190,14 @@ public class ActiveAllActivity extends LSBaseActivity implements
                     adapter = new ActiveAllAdapter(activity, activeAllModel.clubtopiclist);
 //                    list.setAdapter(adapter);
 
-                    AnimationAdapter animationAdapter = new CardsAnimationAdapter(adapter);
+                    animationAdapter = new CardsAnimationAdapter(adapter);
                     animationAdapter.setAbsListView(list);
                     list.setAdapter(animationAdapter);
 
 
                 } else {
                     adapter.addList(activeAllModel.clubtopiclist);
+                    animationAdapter.notifyDataSetChanged();
                 }
 
             }
@@ -213,11 +229,39 @@ public class ActiveAllActivity extends LSBaseActivity implements
             {
                 return;
             }
+            position = Integer.parseInt(mTask.getResultModel().toString());
             times = mTask.getresult();
             onHeaderRefresh(pull_refresh_view);
+            setTabData(position);
 //            Common.log("data = " + times);
         }
     };
+
+    private void setTabData ( int i )
+    {
+        String data = "";
+
+        switch (i)
+        {
+            case 0:
+                data = "全部日期";
+                break;
+            case 1:
+                data = "1周内";
+                break;
+            case 2:
+                data = "1-2周内";
+                break;
+            case 3:
+                data = "2周-1个月内";
+                break;
+            case 4:
+                data = "1个月后";
+                break;
+        }
+        if ( TextUtils.isEmpty(data)) return;
+        tv_data.setText(data);
+    }
 
     private void getCityList ()
     {
@@ -237,7 +281,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
             }
         });
     }
-
+//打开关闭城市列表
     private void setCityAdapter ()
     {
         if ( cityAdapter == null )
@@ -261,7 +305,11 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
     private void setCurrentMap ( HashMap<String, String> map )
     {
-        if ( currentMap == map ) return;
+        if ( currentMap == map )
+        {
+            setCityAdapter();
+            return;
+        }
         currentMap.put("select", "0");
         currentMap = map;
         currentMap.put("select", "1");
@@ -360,7 +408,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
     private void unSelectTab ( TextView tv, ImageView iv )
     {
-        tv.setTextColor(getResources().getColor(R.color.black));
+        tv.setTextColor(getResources().getColor(R.color.color_six));
         iv.setImageResource(R.drawable.active_all_dot_select);
     }
 
