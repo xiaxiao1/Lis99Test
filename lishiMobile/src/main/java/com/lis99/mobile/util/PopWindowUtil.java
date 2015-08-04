@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,6 +18,8 @@ import com.lis99.mobile.engine.base.MyTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.lis99.mobile.R.id.iv_line;
+
 /**
  * Created by yy on 15/7/27.
  */
@@ -26,11 +27,11 @@ public class PopWindowUtil {
 
     private static PopupWindow pop;
 
-    public static void showActiveAllTimes ( View parent, final CallBack callBack )
+    public static PopupWindow showActiveAllTimes ( View parent, final CallBack callBack )
     {
         if (pop != null && pop.isShowing()) {
             pop.dismiss();
-            return ;
+            return pop;
         }
 
         View v = View.inflate(LSBaseActivity.activity, R.layout.active_all_times_chose, null);
@@ -45,6 +46,9 @@ public class PopWindowUtil {
         map.put("name", "全部");
         map.put("value", "0");
         alist.add(map);
+
+        currentMap = map;
+
         map = new HashMap<String, String>();
 
         map.put("select", "0");
@@ -73,7 +77,12 @@ public class PopWindowUtil {
         map.put("value", "4");
         alist.add(map);
 
-        ActiveAllTimesAdapter adapter = new ActiveAllTimesAdapter(LSBaseActivity.activity, alist);
+        if ( position != 0 )
+        {
+            setMap(alist.get(position));
+        }
+
+        final ActiveAllTimesAdapter adapter = new ActiveAllTimesAdapter(LSBaseActivity.activity, alist);
 
         list.setAdapter(adapter);
 
@@ -81,10 +90,14 @@ public class PopWindowUtil {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (callBack != null) {
+                    position = i;
+                    HashMap<String, String> map = (HashMap<String, String>) adapter.getItem(i);
+                    setMap(map);
                     String value = alist.get(i).get("value");
                     MyTask task = new MyTask();
                     task.setresult(value);
                     callBack.handler(task);
+                    closePop();
                 }
             }
         });
@@ -101,18 +114,32 @@ public class PopWindowUtil {
             @Override
             public void onDismiss() {
                 // TODO Auto-generated method stub
-                WindowManager.LayoutParams lp = LSBaseActivity.activity
-                        .getWindow().getAttributes();
-                lp.alpha = 1.0f;
-                LSBaseActivity.activity.getWindow().setAttributes(lp);
+//                WindowManager.LayoutParams lp = LSBaseActivity.activity
+//                        .getWindow().getAttributes();
+//                lp.alpha = 1.0f;
+//                LSBaseActivity.activity.getWindow().setAttributes(lp);
+                if ( callBack != null )
+                {
+                    callBack.handler(null);
+                }
             }
         });
 
-        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
-                .getAttributes();
-        lp.alpha = 0.5f;
-        LSBaseActivity.activity.getWindow().setAttributes(lp);
+//        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
+//                .getAttributes();
+//        lp.alpha = 0.5f;
+//        LSBaseActivity.activity.getWindow().setAttributes(lp);
+        return pop;
 
+    }
+    private static int position = 0;
+    private static HashMap<String, String> currentMap;
+    private static void setMap ( HashMap<String, String> map )
+    {
+        if ( map == currentMap ) return;
+        currentMap.put("select", "0");
+        currentMap = map;
+        currentMap.put("select", "1");
     }
 
     static class ActiveAllTimesAdapter extends MyBaseAdapter
@@ -131,6 +158,7 @@ public class PopWindowUtil {
                 holder = new Holder();
                 holder.tv_all = (TextView) view.findViewById(R.id.tv_all);
                 holder.tv_select = (ImageView) view.findViewById(R.id.tv_select);
+                holder.iv_line = view.findViewById(iv_line);
 
                 view.setTag(holder);
             }
@@ -150,6 +178,16 @@ public class PopWindowUtil {
                 holder.tv_select.setVisibility(View.GONE);
             }
 
+            if ( i == getCount() - 1 )
+            {
+                holder.iv_line.setVisibility(View.GONE);
+            }
+            else
+            {
+                holder.iv_line.setVisibility(View.VISIBLE);
+            }
+
+
             holder.tv_all.setText(map.get("name"));
 
             return view;
@@ -159,8 +197,16 @@ public class PopWindowUtil {
         {
             TextView tv_all;
             ImageView tv_select;
+            View iv_line;
         }
 
+    }
+
+    public static void closePop ()
+    {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+        }
     }
 
 }

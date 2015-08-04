@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by yy on 15/7/27.
  */
-public class ActiveAll extends BaseModel {
+public class ActiveAllModel extends BaseModel {
 
     public int totalpage;
     public int total;

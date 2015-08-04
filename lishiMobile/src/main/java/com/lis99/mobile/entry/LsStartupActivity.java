@@ -110,7 +110,6 @@ public class LsStartupActivity extends ActivityPattern {
         //＝＝＝＝＝＝＝＝＝＝＝启动Icon ＝＝＝＝＝＝＝＝＝＝＝
         StartLogoOption.showStartLogoOption(iv_channel);
 
-
         iv_img.setVisibility(View.INVISIBLE);
         iv_info.setVisibility(View.INVISIBLE);
 

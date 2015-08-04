@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -26,11 +27,11 @@ public class Common {
     private static String TAG = "MYUTIL";
 
     public static void log(String str) {
-//        Log.w(TAG, str);
+        Log.w(TAG, str);
     }
 
     public static void log1(String str) {
-//        Log.w(TAG + "1", str);
+        Log.w(TAG + "1", str);
     }
 
     // 获取俱乐部最后一位ID，匹配本地图片

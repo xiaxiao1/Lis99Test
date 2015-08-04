@@ -73,8 +73,8 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 			{
 				// TODO Auto-generated method stub
 				if ( adapter == null ) return;
-//				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2 - 1);
-				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2);
+				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2 - 1);
+//				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2);
 				if ( item == null ) return;
 				Intent intent = null;
 				if ( item.type == 1 || item.type == 2 || item.type == 5 || item.type == 6 )
@@ -120,17 +120,17 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 
 		layout_search.setOnClickListener(this);
 
-		//==3.3====
+		//==3.4====
 
-//		headView = View.inflate(getActivity(), R.layout.choiceness_head, null);
-//
-//		iv_subject = (ImageView) headView.findViewById(R.id.iv_subject);
-//		iv_active = (ImageView) headView.findViewById(R.id.iv_active);
-//
-//		iv_subject.setOnClickListener(this);
-//		iv_active.setOnClickListener(this);
-//
-//		list.addHeaderView(headView);
+		headView = View.inflate(getActivity(), R.layout.choiceness_head, null);
+
+		iv_subject = (ImageView) headView.findViewById(R.id.iv_subject);
+		iv_active = (ImageView) headView.findViewById(R.id.iv_active);
+
+		iv_subject.setOnClickListener(this);
+		iv_active.setOnClickListener(this);
+
+		list.addHeaderView(headView);
 	}
 	
 	private void cleanList ()
@@ -161,6 +161,7 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
 				break;
 			case R.id.iv_active:
+				startActivity(new Intent (getActivity(), ActiveAllActivity.class));
 				break;
 		}
 	}
