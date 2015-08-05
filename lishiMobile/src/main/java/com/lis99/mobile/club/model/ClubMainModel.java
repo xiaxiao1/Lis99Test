@@ -10,8 +10,8 @@ public class ClubMainModel extends BaseModel {
 
     public ArrayList<LSClubBannerItem> banners;
 
-    public ArrayList<LSClub> tops;
+    public ArrayList<ClubMainListModel> joinclub;
 
-    public ArrayList<LSClubGroup> clubtyperank;
+    public LSClubGroup clubtyperank;
 
 }

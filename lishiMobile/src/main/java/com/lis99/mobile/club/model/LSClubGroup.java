@@ -1,12 +1,12 @@
 package com.lis99.mobile.club.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class LSClubGroup {
 
-	int typeid;
-	String typename;
-	List<LSClub> typeranks;
+	public int typeid;
+	public String typename;
+	public ArrayList<ClubMainListModel> typeranks;
 
 	public int getTypeid() {
 		return typeid;
@@ -24,11 +24,11 @@ public class LSClubGroup {
 		this.typename = typename;
 	}
 
-	public List<LSClub> getTyperanks() {
+	public ArrayList<ClubMainListModel> getTyperanks() {
 		return typeranks;
 	}
 
-	public void setTyperanks(List<LSClub> typeranks) {
+	public void setTyperanks(ArrayList<ClubMainListModel> typeranks) {
 		this.typeranks = typeranks;
 	}
 
