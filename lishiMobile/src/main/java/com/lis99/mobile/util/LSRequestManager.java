@@ -384,5 +384,18 @@ public class LSRequestManager
 		}
 
 	}
+/**加入俱乐部*/
+	public void addClub ( String clubID, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		BaseModel model = new BaseModel();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("club_id", clubID);
+		map.put("user_id", userID);
+
+		MyRequestManager.getInstance().requestPost(C.CLUB_JOIN, map, model, call);
+
+	}
 	
 }

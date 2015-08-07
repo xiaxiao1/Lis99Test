@@ -5,6 +5,9 @@ package com.lis99.mobile.club.model;
  */
 public class ClubMainListModel extends BaseModel {
 
+    //状态标识
+    public int type;
+
     public int id;
 
     public String image;

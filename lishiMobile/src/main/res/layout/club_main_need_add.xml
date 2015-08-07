@@ -1,59 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
                 android:background="@color/white"
     >
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="120dp"
+
         >
 
         <View
+            android:background="@color/color_1px_stroke"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/color_1px_stroke"
             />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical"
+            android:gravity="center"
             >
 
             <Button
-                android:layout_width="110dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/club_main_join_btn"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/club_main_login_btn"
-                android:text="登录"
-                android:textColor="#ac9f92"
-                android:textSize="15sp"
                 android:id="@+id/btn"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="登录后查看加入的俱乐部"
                 android:textColor="@color/color_nine"
+                android:gravity="center"
+                android:text="还没有加入俱乐部\n快来找到自己喜欢的俱乐部吧"
+                android:lineSpacingExtra="5dp"
                 />
 
         </LinearLayout>
 
 
         <View
+            android:background="@color/color_1px_stroke"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
-            android:background="@color/color_1px_stroke"
             />
 
     </RelativeLayout>
+
 
 
 </RelativeLayout>

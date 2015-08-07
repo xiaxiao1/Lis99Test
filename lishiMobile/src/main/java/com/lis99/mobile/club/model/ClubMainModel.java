@@ -12,6 +12,6 @@ public class ClubMainModel extends BaseModel {
 
     public ArrayList<ClubMainListModel> joinclub;
 
-    public LSClubGroup clubtyperank;
+    public ArrayList<LSClubGroup> clubtyperank;
 
 }

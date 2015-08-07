@@ -779,7 +779,7 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         //打开帖子
         if (model.type == 2) {
             Intent i = new Intent(this, LSClubTopicActivity.class);
-            i.putExtra("topicID", model.topid_ic);
+            i.putExtra("topicID", model.topic_id);
             startActivity(i);
         }
 //				个人中心报名通知

@@ -491,7 +491,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	/** 获取帖子信息 */
 	private void getTopicHead()
 	{
-		String url = C.CLUB_TOPIC_DETAIL_HEAD + topicID;
+		String url = C.CLUB_TOPIC_DETAIL_HEAD_3 + topicID;
 		String userID = DataManager.getInstance().getUser().getUser_id();
 		if (!TextUtils.isEmpty(userID))
 		{

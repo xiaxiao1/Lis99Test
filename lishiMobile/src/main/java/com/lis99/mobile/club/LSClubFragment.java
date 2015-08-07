@@ -2,21 +2,21 @@ package com.lis99.mobile.club;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.adapter.LSClubGridViewAdapter;
+import com.lis99.mobile.club.model.ClubMainListModel;
 import com.lis99.mobile.club.model.ClubMainModel;
 import com.lis99.mobile.club.model.LSClubBannerItem;
 import com.lis99.mobile.club.widget.BannerView;
@@ -39,12 +39,14 @@ import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.LocationUtil.getLocation;
+import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class LSClubFragment extends LSFragment implements
@@ -61,7 +63,7 @@ public class LSClubFragment extends LSFragment implements
 	
 	PullToRefreshView refreshView;
 
-	ImageView titleRightImage;
+	ImageView titleRightImage, titleLeftImage;
 
 	View head;
 
@@ -75,11 +77,11 @@ public class LSClubFragment extends LSFragment implements
 	
 	//===============新版本==================
 	private ListView my_club_listview;
-	private Button btn_club_level, btn_leader_level;
 	private LocationUtil location;
 
 	//====3.4======
 
+	private LinearLayout layout_club_level, layout_leader_level, layout_hot_topic, layout_lis_special;
 	private ClubMainModel model;
 	
 	private void buildOptions() {
@@ -103,6 +105,12 @@ public class LSClubFragment extends LSFragment implements
 	}
 
 	@Override
+	public void onResume() {
+		super.onResume();
+
+	}
+
+	@Override
 	protected void initViews(ViewGroup container) {
 		super.initViews(container);
 
@@ -113,14 +121,24 @@ public class LSClubFragment extends LSFragment implements
 
 		//搜索按钮
 		titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
-		titleRightImage.setImageResource(R.drawable.club_search_title_right);
+		titleRightImage.setImageResource(R.drawable.club_search_title_left);
 		titleRightImage.setOnClickListener(this);
 
+		titleLeftImage = (ImageView) findViewById(R.id.titleLeftImage);
+		titleLeftImage.setImageResource(R.drawable.club_search_title_right);
+		titleLeftImage.setOnClickListener(this);
+
 //		按钮
-		btn_club_level = (Button) head.findViewById(R.id.btn_club_level);
-		btn_leader_level = (Button) head.findViewById(R.id.btn_leader_level);
-		btn_leader_level.setOnClickListener(this);
-		btn_club_level.setOnClickListener(this);
+		layout_club_level = (LinearLayout) head.findViewById(R.id.layout_club_level);
+		layout_leader_level = (LinearLayout) head.findViewById(R.id.layout_leader_level);
+		layout_hot_topic = (LinearLayout) head.findViewById(R.id.layout_hot_topic);
+		layout_lis_special = (LinearLayout) head.findViewById(R.id.layout_lis_special);
+
+		layout_lis_special.setOnClickListener(this);
+		layout_hot_topic.setOnClickListener(this);
+		layout_leader_level.setOnClickListener(this);
+		layout_club_level.setOnClickListener(this);
+
 //
 		bannerView = (BannerView) head.findViewById(R.id.viewBanner);
 
@@ -158,30 +176,16 @@ public class LSClubFragment extends LSFragment implements
 		refreshView.setOnHeaderRefreshListener(this);
 		refreshView.setOnFooterRefreshListener(this);
 		
-		my_club_listview.setOnItemClickListener( new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				// TODO Auto-generated method stub
-//				if (position < topClubs.size()) {
-//					MobclickAgent.onEvent(getActivity(), "Stickie_Club_Clicked");
-//					LSClub club = topClubs.get(position);
-//					Intent intent = new Intent(getActivity(), LSClubDetailActivity.class);
-//					intent.putExtra("clubID", club.getId());
-//					startActivity(intent);
-//				} else {
-//					Intent intent = new Intent(getActivity(), LSClubListActivity.class);
-//					startActivity(intent);
-//				}
-			}
-		});
-		
 		setTitle("聚乐部");
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+
+		// /注册通知
+		LoginCallBackManager.getInstance().addCallBack(LoginState);
+
 		getLocation();
 		buildOptions();
 	}
@@ -189,6 +193,9 @@ public class LSClubFragment extends LSFragment implements
 	public void getLocation ()
 	{
 		if (location != null ) return;
+
+		cleanList();
+
 		DialogManager.getInstance().startWaiting(getActivity(), null, "定位中...");
 		location = LocationUtil.getinstance();
 		location.setGlocation(new getLocation() {
@@ -209,11 +216,12 @@ public class LSClubFragment extends LSFragment implements
 
 	private void getClubHomePageList ( double latitude, double longitude )
 	{
+
 		model = new ClubMainModel();
 
 		String userID = DataManager.getInstance().getUser().getUser_id();
 
-		String url = C.CLUB_HOMEPAGE;
+		String url = C.CLUB_MAIN_INFO;
 		if (userID != null && !"".equals(userID)) {
 			url += "?user_id=" + userID;
 			url += "&latitude="+latitude + "&longitude=" + longitude;
@@ -236,64 +244,57 @@ public class LSClubFragment extends LSFragment implements
 					bannerView.startAutoScroll();
 				}
 
+				if ( model.joinclub == null || model.joinclub.size() == 0 )
+				{
+					String userId = DataManager.getInstance().getUser().getUser_id();
+					//没有登录
+					if (TextUtils.isEmpty(userId))
+					{
+						model.joinclub = new ArrayList<ClubMainListModel>();
+						ClubMainListModel item = new ClubMainListModel();
+						item.type = LSClubGridViewAdapter.NEEDLOGIN;
+						model.joinclub.add(item);
+					}
+					else
+					{
+						model.joinclub = new ArrayList<ClubMainListModel>();
+						ClubMainListModel item = new ClubMainListModel();
+						item.type = LSClubGridViewAdapter.NOJOINCLUB;
+						model.joinclub.add(item);
+					}
+				}
+				else
+				{
+					for ( ClubMainListModel item : model.joinclub )
+					{
+						item.type = LSClubGridViewAdapter.JOINEDCLUB;
+					}
+				}
 
+				ArrayList<ClubMainListModel> recommend = null;
+//				排重， 设置类型
+				if ( model.clubtyperank != null && model.clubtyperank.get(0).getTyperanks() != null )
+				{
+					recommend = model.clubtyperank.get(0).getTyperanks();
+					Iterator<ClubMainListModel> iterator = recommend.iterator();
 
-				gridViewAdapter = new LSClubGridViewAdapter(model.tops, getActivity());
+					for ( ClubMainListModel mine : model.joinclub )
+					{
+						while ( iterator.hasNext() )
+						{
+							ClubMainListModel item = iterator.next();
+							if ( mine.id == item.id )
+							{
+								iterator.remove();
+								continue;
+							}
+							item.type = LSClubGridViewAdapter.RECOMMENDCLUB;
+						}
+					}
+				}
+
+				gridViewAdapter = new LSClubGridViewAdapter(model.joinclub, recommend, getActivity());
 				my_club_listview.setAdapter(gridViewAdapter);
-
-//			LayoutInflater inflater = LayoutInflater.from(getActivity());
-
-//			int len = groups == null ? 0 : groups.size();
-
-//			for (View v : plusViews) {
-//				bodyView.removeView(v);
-//
-//			}
-//
-//			plusViews.clear();
-//
-//			for (int i = 0; i < len; i++) {
-//				LSClubGroup group = groups.get(i);
-//				View titleView = inflater.inflate(R.layout.club_list_title_view, bodyView, false);
-//				bodyView.addView(titleView);
-////				TextView titleTextView = (TextView) titleView.findViewById(R.id.clubListTitleView);
-////				titleTextView.setText(group.getTypename());
-//
-//				plusViews.add(titleView);
-//
-//				final ListView listView = (ListView) inflater.inflate(R.layout.club_list_view, bodyView, false);
-//				bodyView.addView(listView);
-//				final LSClubRecommendAdapter adapter = new LSClubRecommendAdapter(getActivity(), group.getTyperanks());
-//				listView.setAdapter(adapter);
-//				listView.setOnItemClickListener(new OnItemClickListener() {
-//
-//					@Override
-//					public void onItemClick(AdapterView<?> parent, View view,
-//							int position, long id) {
-//						if ( position < (parent.getCount() - 1) )
-//						{
-//							MobclickAgent.onEvent(getActivity(), "Ranking_Club_Clicked");
-//							LSClub club = (LSClub) adapter.getItem(position);
-//							Intent intent = new Intent(getActivity(), LSClubDetailActivity.class);
-//							intent.putExtra("clubID", club.getId());
-//							startActivity(intent);
-//						}
-//						else
-//						{
-//							Intent intent = new Intent(getActivity(), LSClubListActivity.class);
-//							startActivity(intent);
-//						}
-//					}
-//				});
-//
-//				plusViews.add(listView);
-//			}
-//
-//			View v = new View(getActivity());
-//			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,50);
-//			v.setLayoutParams(lp);
-//			bodyView.addView(v);
-//			plusViews.add(v);
 
 			}
 		});
@@ -311,23 +312,26 @@ public class LSClubFragment extends LSFragment implements
 		Intent intent = new Intent();
 		switch ( v.getId() )
 		{
-		case R.id.btn_club_level:
+		case R.id.layout_club_level:
 			intent.setClass(getActivity(), LSClubLevelActivity.class);
 			intent.putExtra("CLUB_LEVEL", 0);
 			startActivity(intent);
-			
-//			intent.setClass(getActivity(), MyActivityWebView.class);
-//			intent.putExtra("TITLE", "TEST");
-//			intent.putExtra("URL", "http://m.lis99.com/club/run/applyinfo");
-//			startActivity(intent);
-			
 			break;
-		case R.id.btn_leader_level:
+		case R.id.layout_leader_level:
 			intent.setClass(getActivity(), LSClubLevelActivity.class);
 			intent.putExtra("CLUB_LEVEL", 1);
 			startActivity(intent);
 			break;
+			case R.id.layout_hot_topic:
+				startActivity( new Intent(getActivity(), ClubHotTopicActivity.class));
+				break;
+			case R.id.layout_lis_special:
+				startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
+				break;
 			case R.id.titleRightImage:
+				startActivity(new Intent(getActivity(), LSClubListActivity.class));
+				break;
+			case R.id.titleLeftImage:
 				startActivity( new Intent(getActivity(), SearchActivity.class));
 				break;
 		}
@@ -340,7 +344,7 @@ public class LSClubFragment extends LSFragment implements
 			return;
 		}
 		LSClubBannerItem bannerItem = model.banners.get(position);
-		imageLoader.displayImage(bannerItem.getImages(), banner, options, ImageUtil.getImageLoading(iv_load, banner) );
+		imageLoader.displayImage(bannerItem.getImages(), banner, options, ImageUtil.getImageLoading(iv_load, banner));
 	}
 
 	@Override
@@ -386,6 +390,42 @@ public class LSClubFragment extends LSFragment implements
 		location.stopLocation();
 		// TODO Auto-generated method stub
 		super.onDestroy();
+	}
+
+	private CallBack LoginState = new CallBack() {
+		@Override
+		public void handler(MyTask mTask) {
+			if ( model == null ) return;
+
+			cleanList();
+
+			//登陆状态
+			model.joinclub = new ArrayList<ClubMainListModel>();
+			ClubMainListModel item = new ClubMainListModel();
+			item.type = LSClubGridViewAdapter.NEEDLOGIN;
+			model.joinclub.add(item);
+
+			ArrayList<ClubMainListModel> recommend = null;
+
+			if ( model.clubtyperank != null && model.clubtyperank.get(0).getTyperanks() != null )
+			{
+				recommend = model.clubtyperank.get(0).getTyperanks();
+				for ( ClubMainListModel item1 : recommend )
+				{
+					item1.type = LSClubGridViewAdapter.RECOMMENDCLUB;
+				}
+			}
+
+			gridViewAdapter = new LSClubGridViewAdapter(model.joinclub, recommend, getActivity());
+			my_club_listview.setAdapter(gridViewAdapter);
+
+		}
+	};
+
+	private void cleanList ()
+	{
+		my_club_listview.setAdapter(null);
+		gridViewAdapter = null;
 	}
 
 }

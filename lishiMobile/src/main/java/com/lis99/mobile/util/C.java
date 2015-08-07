@@ -295,6 +295,8 @@ public class C {
 	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v2/club/topiclist/";
 	/**帖子详情（HEAD）*/
 	public static final String CLUB_TOPIC_DETAIL_HEAD = DOMAIN + "/v2/club/topic/";
+
+	public static final String CLUB_TOPIC_DETAIL_HEAD_3 = DOMAIN + "/v3/club/topic/";
 	/**帖子详情回复列表*/
 	public static final String CLUB_T0PIC_DETAIL_REPLY = DOMAIN + "/v2/club/replylist/";
 	/**帖子详情其他信息*/
@@ -374,5 +376,15 @@ public class C {
 	public static final String ACTIVE_ALL = DOMAIN + "/v3/club/clubtopics/";
 	/**线路活动， 城市选择*/
 	public static final String ACTIVE_ALL_CITY = DOMAIN + "/v3/club/getAreaListInfo";
+
+	//=====3.5======
+	/**俱乐部首页*/
+	public static final String CLUB_MAIN_INFO = DOMAIN + "/v3/club/index";
+/**砾石专栏*/
+	public static final String CLBU_MIAN_SPECIAL = DOMAIN + "/v3/club/taglist/";
+
+	public static final String CLBU_SPECIAL_LIST_INFO = DOMAIN + "/v3/club/tagTopic/";
+
+	public static final String CLUB_HOT_TOPIC = DOMAIN + "/v3/club/hottopics/";
 
 }

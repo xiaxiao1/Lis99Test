@@ -70,7 +70,7 @@
 	<dimen name="club_banner_indicate_height">2dp</dimen>
 	<dimen name="club_banner_indicate_margin">2.5dp</dimen>
 	
-	<dimen name="reply_height">26dip</dimen>
+	<dimen name="reply_height">28dip</dimen>
 	
 	<dimen name="tab_height">60dip</dimen>
 	

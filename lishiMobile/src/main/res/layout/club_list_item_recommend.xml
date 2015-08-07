@@ -43,48 +43,63 @@
             app:border_color="#e8e8e8"
             app:border_width="1px" />
 
-        <ImageView
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/club_same_city"
-            android:layout_marginTop="13dip"
-            android:visibility="visible" />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dip"
             android:id="@+id/layout"
-            style="@style/fill_wrap"
+            android:layout_width="wrap_content"
             android:orientation="vertical"
             android:gravity="center_vertical"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/roundedImageView1"
-            android:layout_toLeftOf="@+id/addButton"
             >
 
             <TextView
                 android:id="@+id/nameView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
-                android:text=""
+                android:text="@string/temp_string"
                 android:singleLine="true"
                 android:textColor="#666"
                 android:layout_marginBottom="5dip"
                 />
 
             <TextView
+                android:layout_below="@id/nameView"
                 android:id="@+id/recentView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#999"
                 android:singleLine="true"
                 android:textSize="14sp"
-                android:text="" />
+                android:text="@string/temp_string" />
 
-        </LinearLayout>
+
+            <ImageView
+                android:layout_marginLeft="5dip"
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/club_same_city"
+                android:visibility="visible"
+                android:layout_toRightOf="@id/nameView"
+                android:layout_alignTop="@id/nameView"
+                android:layout_marginTop="3dip"
+                />
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/club_main_item_join_btn"
+                />
+
+
+        </RelativeLayout>
 
         <View
             android:id="@+id/sepHalf"

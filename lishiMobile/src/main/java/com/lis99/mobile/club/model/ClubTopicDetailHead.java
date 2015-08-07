@@ -116,11 +116,19 @@ public class ClubTopicDetailHead implements Serializable{
 	public String reportInfo;
 	public String baomingNum;
 	public String passNum;
-	
+
+	//===3.5====
+	public ArrayList<Taglist> taglist;
 	
 	public class Topic_image
 	{
 		public String image;
 	}
-	
+
+	public class Taglist
+	{
+		public int id;
+		public String name;
+	}
+
 }

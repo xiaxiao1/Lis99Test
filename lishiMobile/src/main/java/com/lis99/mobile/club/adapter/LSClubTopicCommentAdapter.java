@@ -202,16 +202,21 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 			holder.iv_load = (ImageView) convertView.findViewById(R.id.iv_load);
 
+			holder.layout_tag = (LinearLayout) convertView.findViewById(R.id.layout_tag);
+
 			convertView.setTag(holder);
 
 			convertView.setLayoutParams(new ListView.LayoutParams(
 					ListView.LayoutParams.MATCH_PARENT,
 					ListView.LayoutParams.WRAP_CONTENT));
 
+
 		} else
 		{
 			holder = (ViewHolder) convertView.getTag();
 		}
+
+		holder.layout_tag.setVisibility(View.INVISIBLE);
 
 		// LSClubTopicComment item = data.get(position);
 		Topiclist item = (Topiclist) getItem(position);
@@ -227,7 +232,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		if ("1".equals(item.is_vip))
 		{
 			holder.vipStar.setVisibility(View.VISIBLE);
-		} else
+		}
+		else
 		{
 			holder.vipStar.setVisibility(View.GONE);
 		}
@@ -324,6 +330,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		TextView tv_reply_body, tv_reply_floor, tv_reply_content;
 
 		ImageView iv_load;
+		//===3.5===
+		LinearLayout layout_tag;
 	}
 
 	private void replyNow(Topiclist comment)

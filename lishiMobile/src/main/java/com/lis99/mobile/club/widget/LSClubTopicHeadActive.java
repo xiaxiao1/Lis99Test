@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubApplyActivity;
 import com.lis99.mobile.club.LSClubApplyListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
@@ -67,6 +68,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	private ImageView iv_like;
 
 	private ImageView iv_load;
+
+	//======3.5=====
+	private LinearLayout layout_tag;
+	private TextView tv_tag1, tv_tag2, tv_tag3;
 
 	public void setTopic(LSClubTopicActivity lsTopic)
 	{
@@ -151,6 +156,13 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		iv_like = (ImageView) findViewById(R.id.iv_like);
 
 		iv_load = (ImageView) findViewById(R.id.iv_load);
+
+		//====3.5======
+		layout_tag = (LinearLayout) v.findViewById(R.id.layout_tag);
+		tv_tag1 = (TextView) v.findViewById(R.id.tv_tag1);
+		tv_tag2 = (TextView) v.findViewById(R.id.tv_tag2);
+		tv_tag3 = (TextView) v.findViewById(R.id.tv_tag3);
+
 	}
 
 	@Override
@@ -265,7 +277,7 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		});
 	}
 
-	public void setModel(ClubTopicDetailHead clubhead)
+	public void setModel(final ClubTopicDetailHead clubhead)
 	{
 		this.clubhead = clubhead;
 
@@ -290,14 +302,6 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		{
 			ImageLoader.getInstance().displayImage(
 					clubhead.topic_image.get(0).image, iv_head, options);
-		}
-		// 权限1创始人，2管理员，4成员,8网站编辑
-		if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
-		{
-		} else
-		{
-			// actionButton.setBackgroundResource(R.drawable.club_topic_checkapply_bg);
-			actionButton.setText("查看已报名用户");
 		}
 		//帖子属性
 		tv_active_style.setText(clubhead.catename + " " + clubhead.hardDegree);
@@ -339,21 +343,87 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		}
 		
 		iv_like.setImageResource("1".equals(clubhead.LikeStatus) ? R.drawable.like_button_press : R.drawable.like_button);
-		
-		//已报名
-		if (  clubhead.applyStauts == 1 )
+
+		// 权限1创始人，2管理员，4成员,8网站编辑
+		if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
 		{
-			applyOK();
+			//已报名
+			if (  clubhead.applyStauts == 1 )
+			{
+				applyOK();
+			}
+			else
+			{
+				//报名已结束
+				if ( clubhead.applyTimeStatus == 1 )
+				{
+					applyPast();
+				}
+			}
 		}
 		else
 		{
-			//报名已结束
-			if ( clubhead.applyTimeStatus == 1 )
+			// actionButton.setBackgroundResource(R.drawable.club_topic_checkapply_bg);
+			actionButton.setText("查看已报名用户");
+		}
+
+
+
+		//====3.5======
+		if ( clubhead.taglist != null && clubhead.taglist.size() != 0 )
+		{
+			tv_tag1.setVisibility(INVISIBLE);
+			tv_tag2.setVisibility(INVISIBLE);
+			tv_tag3.setVisibility(INVISIBLE);
+			int num = clubhead.taglist.size();
+			if ( num >0 )
 			{
-				applyPast();
+				tv_tag1.setText("#"+clubhead.taglist.get(0).name);
+				tv_tag1.setVisibility(VISIBLE);
+				tv_tag1.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(c, ClubSpecialListActivity.class);
+						intent.putExtra("tagid", clubhead.taglist.get(0).id);
+						c.startActivity(intent);
+					}
+				});
+			}
+			if ( num > 1)
+			{
+				tv_tag2.setText("#"+clubhead.taglist.get(1).name);
+				tv_tag2.setVisibility(VISIBLE);
+				tv_tag2.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(c, ClubSpecialListActivity.class);
+						intent.putExtra("tagid", clubhead.taglist.get(1).id);
+						c.startActivity(intent);
+					}
+				});
+			}
+			if ( num > 2 )
+			{
+				tv_tag3.setText("#"+clubhead.taglist.get(2).name);
+				tv_tag3.setVisibility(VISIBLE);
+				tv_tag3.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(c, ClubSpecialListActivity.class);
+						intent.putExtra("tagid", clubhead.taglist.get(2).id);
+						c.startActivity(intent);
+					}
+				});
 			}
 		}
+		else {
+			layout_tag.setVisibility(View.INVISIBLE);
+		}
+
+
 		getHeight(iv_head);
+
+
 	}
 	
 	public void doAction()

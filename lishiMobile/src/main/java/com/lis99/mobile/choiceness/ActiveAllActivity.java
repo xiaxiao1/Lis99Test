@@ -303,6 +303,18 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //城市列表重置
+        if ( currentMap != null )
+        {
+            currentMap.put("select", "0");
+            cityMap.get(0).put("select", "1");
+        }
+
+    }
+
     private void setCurrentMap ( HashMap<String, String> map )
     {
         if ( currentMap == map )

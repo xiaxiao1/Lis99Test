@@ -1,17 +1,26 @@
 package com.lis99.mobile.club.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSClubDetailActivity;
+import com.lis99.mobile.club.LSClubListActivity;
 import com.lis99.mobile.club.model.ClubMainListModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.LSRequestManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
@@ -55,7 +64,10 @@ public class LSClubGridViewAdapter extends BaseAdapter {
         this.recommend = recommend;
 
         this.clubs.addAll(mine);
-        this.clubs.addAll(recommend);
+        if ( recommend != null )
+        {
+            this.clubs.addAll(recommend);
+        }
 
         this.context = context;
         inflater = (LayoutInflater) context
@@ -69,33 +81,18 @@ public class LSClubGridViewAdapter extends BaseAdapter {
                 .displayer(new SimpleBitmapDisplayer()).build();
     }
 
-    public boolean isEditable() {
-        return editable;
-    }
-
-    public void setEditable(boolean editable) {
-        if (this.editable ^ editable) {
-            this.editable = editable;
-            this.notifyDataSetChanged();
-        }
-    }
-
     @Override
     public int getCount() {
-        return clubs == null ? 1 : clubs.size() + 1;
+        int rnum = (recommend == null ) ? 0 : recommend.size();
+        int i = rnum > 5 ? 5 : rnum;
+        int num = mine.size() + i;
+        return num;
     }
 
     @Override
     public Object getItem(int position) {
-        if (outRange(position))
-            return null;
-        return clubs.get(position);
-    }
 
-    private boolean outRange(int position) {
-        if (clubs == null)
-            return true;
-        return !(position >= 0 && position < clubs.size());
+        return clubs.get(position);
     }
 
     @Override
@@ -104,13 +101,37 @@ public class LSClubGridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public int getViewTypeCount() {
+        return count;
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        ClubMainListModel item = (ClubMainListModel) getItem(position);
+        int state = item.type;
+        return state;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        int type = getItemViewType(position);
+        switch (type)
+        {
+            case NEEDLOGIN:
+                return getneedLogin(position, convertView);
+            case NOJOINCLUB:
+                return getneedAdd(position, convertView);
+            case JOINEDCLUB:
+                return getMineClub(position, convertView);
+            case RECOMMENDCLUB:
+                return getRecommendClub(position, convertView);
+
+        }
 
         return convertView;
     }
 
-    private View getMineClub(int position, View convertView) {
+    private View getMineClub(int position, View convertView ) {
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.club_grid_item, null);
@@ -123,52 +144,47 @@ public class LSClubGridViewAdapter extends BaseAdapter {
             viewHolder.tv_all = (TextView) convertView.findViewById(R.id.tv_all);
             viewHolder.sepAll = convertView.findViewById(R.id.sepAll);
             viewHolder.sepHalf = convertView.findViewById(R.id.sepHalf);
+
+            viewHolder.layout_all = (RelativeLayout) convertView.findViewById(R.id.layout_all);
+
+            viewHolder.layout_club = (RelativeLayout) convertView.findViewById(R.id.layout_club);
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        if (outRange(position)) {
-//			viewHolder.imageView.setImageBitmap(null);
-//			viewHolder.imageView.setImageResource(R.drawable.club_icon_grid_add);
-//			imageLoader.displayImage("drawable://" + R.drawable.club_icon_grid_add,
-//					viewHolder.imageView, options);
-//			viewHolder.nameView.setText("添加俱乐部");
-            viewHolder.imageView.setVisibility(View.INVISIBLE);
-            viewHolder.nameView.setVisibility(View.INVISIBLE);
-            viewHolder.recentView.setVisibility(View.INVISIBLE);
-            viewHolder.tv_all.setVisibility(View.VISIBLE);
-            viewHolder.sepHalf.setVisibility(View.GONE);
-            viewHolder.sepAll.setVisibility(View.VISIBLE);
-        } else {
-            //线的显示
-            if (position == clubs.size() - 1) {
-                viewHolder.sepHalf.setVisibility(View.GONE);
-                viewHolder.sepAll.setVisibility(View.VISIBLE);
-            } else {
-                viewHolder.sepHalf.setVisibility(View.VISIBLE);
-                viewHolder.sepAll.setVisibility(View.GONE);
+//        if ( getCount() == mine.size() - 1 ) {
+//            viewHolder.sepAll.setVisibility(View.VISIBLE);
+//            viewHolder.layout_all.setVisibility(View.VISIBLE);
+//        } else {
+            viewHolder.sepAll.setVisibility(View.GONE);
+            viewHolder.layout_all.setVisibility(View.GONE);
+//        }
+
+        final ClubMainListModel item = (ClubMainListModel) getItem(position);
+
+        if ( item == null ) return convertView;
+
+        viewHolder.layout_club.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, LSClubDetailActivity.class);
+                intent.putExtra("clubID", item.id);
+                context.startActivity(intent);
             }
-            viewHolder.imageView.setVisibility(View.VISIBLE);
-            viewHolder.nameView.setVisibility(View.VISIBLE);
-            viewHolder.recentView.setVisibility(View.VISIBLE);
-            viewHolder.tv_all.setVisibility(View.GONE);
-            imageLoader.displayImage(clubs.get(position).image,
-                    viewHolder.imageView, options);
-            viewHolder.nameView.setText(clubs.get(position).title);
-            //描述
-            viewHolder.recentView.setText(clubs.get(position).topic_title);
-        }
+        });
+
+        //线的显示
+        imageLoader.displayImage(item.image,
+                viewHolder.imageView, options);
+        viewHolder.nameView.setText(item.title);
+        //描述
+        viewHolder.recentView.setText(item.topic_title);
+
         return convertView;
     }
 
-    private View needLogin(int position, View convertView) {
-        if (convertView == null) {
-            convertView = View.inflate(context, R.layout.club_list_title_view, null);
-        }
-        return convertView;
-    }
-
-    private View getRecommendClub(int position, View convertView) {
+    private View getRecommendClub(final int position, View convertView ) {
         ViewHolder holder = null;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.club_list_item_recommend, null);
@@ -191,6 +207,8 @@ public class LSClubGridViewAdapter extends BaseAdapter {
 
             holder.layout_title = (RelativeLayout) convertView.findViewById(R.id.layout_title);
 
+            holder.btn_join = (Button) convertView.findViewById(R.id.btn_join);
+
             convertView.setTag(holder);
 
             convertView.setLayoutParams(new ListView.LayoutParams(
@@ -200,6 +218,19 @@ public class LSClubGridViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+        final ClubMainListModel item = (ClubMainListModel) getItem(position);
+
+        if ( item == null ) return convertView;
+
+        holder.btn_join.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Common.isLogin((Activity) context)) {
+                    addClub(item);
+                }
+            }
+        });
 
         //推荐第一个, 标题
         if (position == mine.size()) {
@@ -213,13 +244,30 @@ public class LSClubGridViewAdapter extends BaseAdapter {
             holder.sepAll.setVisibility(View.VISIBLE);
             holder.layout_all.setVisibility(View.VISIBLE);
         }
+        else
+        {
+            holder.sepAll.setVisibility(View.INVISIBLE);
+            holder.layout_all.setVisibility(View.GONE);
+        }
 
-        holder.sepAll.setVisibility(View.INVISIBLE);
-        holder.layout_all.setVisibility(View.GONE);
+        holder.layout_club.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+					Intent intent = new Intent(context, LSClubDetailActivity.class);
+					intent.putExtra("clubID", item.id);
+                context.startActivity(intent);
+            }
+        });
 
-        ClubMainListModel item = (ClubMainListModel) getItem(position);
 
-        if (item == null) return convertView;
+        holder.layout_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, LSClubListActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
 
         //是否显示同城标签
         if (item.is_samecity == 1) {
@@ -237,6 +285,89 @@ public class LSClubGridViewAdapter extends BaseAdapter {
         return convertView;
 
     }
+//需要登陆
+    private View getneedLogin ( int position, View convertView  )
+    {
+        if ( convertView == null )
+        {
+            convertView = View.inflate(context, R.layout.club_main_need_login, null);
+        }
+
+        convertView.findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Common.isLogin((Activity) context);
+            }
+        });
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Common.isLogin((Activity)context);
+            }
+        });
+
+        return convertView;
+    }
+//没有加入俱乐部
+    private View getneedAdd ( int position, View convertView  )
+    {
+        if ( convertView == null )
+        {
+            convertView = View.inflate(context, R.layout.club_main_need_add, null);
+        }
+
+        convertView.findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, LSClubListActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, LSClubListActivity.class);
+					context.startActivity(intent);
+            }
+        });
+
+        return  convertView;
+    }
+
+    private void addClub ( final ClubMainListModel item )
+    {
+        LSRequestManager.getInstance().addClub("" + item.id, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                setRecommendclub2Mine(item);
+            }
+        });
+    }
+
+    private void setRecommendclub2Mine ( ClubMainListModel item )
+    {
+        //去掉未添加俱乐部显示
+        if ( mine.size() == 1 )
+        {
+            ClubMainListModel info = mine.get(0);
+            if ( info.type == NOJOINCLUB )
+            {
+                mine.remove(0);
+            }
+        }
+
+        if ( recommend.remove(item) )
+        {
+            item.type = JOINEDCLUB;
+            mine.add(item);
+            clubs.clear();
+            clubs.addAll(mine);
+            clubs.addAll(recommend);
+        }
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder {
         RelativeLayout layout_all, layout_club, layout_title;
@@ -244,6 +375,7 @@ public class LSClubGridViewAdapter extends BaseAdapter {
         public TextView nameView, recentView, tv_all;
         public View sepAll, sepHalf;
         public View addButton;
+        Button btn_join;
 
     }
 }

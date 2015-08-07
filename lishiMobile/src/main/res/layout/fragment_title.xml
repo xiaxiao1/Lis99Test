@@ -20,9 +20,8 @@
             android:id="@+id/titleLeftImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="center" />
+            android:scaleType="fitCenter"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -40,8 +39,6 @@
             android:id="@+id/titleRightImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:scaleType="fitCenter"
             />
     </RelativeLayout>

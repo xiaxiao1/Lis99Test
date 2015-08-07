@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
-    android:versionCode="340"
-    android:versionName="3.4.0" >
+    android:versionCode="350"
+    android:versionName="3.5.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -869,6 +869,22 @@
             />
 
         <activity android:name=".choiceness.ActiveAllActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+<!-- 砾石专栏 -->
+        <activity android:name="com.lis99.mobile.club.LSCLubSpecialMain"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+    <!--专栏帖子列表-->
+        <activity android:name=".club.ClubSpecialListActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  />
+
+        <!--热帖-->
+        <activity android:name=".club.ClubHotTopicActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
