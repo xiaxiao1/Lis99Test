@@ -42,6 +42,8 @@ public class ClubSpecialListItemAdapter extends MyBaseAdapter {
             holder.iv_img2 = (RoundedImageView) view.findViewById(R.id.iv_img2);
             holder.iv_img3 = (RoundedImageView) view.findViewById(R.id.iv_img3);
 
+            holder.iv_hot = (ImageView) view.findViewById(R.id.iv_hot);
+
             view.setTag(holder);
 
         }

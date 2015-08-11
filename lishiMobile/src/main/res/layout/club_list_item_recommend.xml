@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="45dp"
+        android:layout_height="34dp"
         android:background="@color/pull_bg"
         android:id="@+id/layout_title"
         >
@@ -17,6 +17,19 @@
             android:background="@drawable/recommend_club"
             android:layout_margin="8dip"
             android:layout_centerInParent="true"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke"
+            android:layout_alignParentBottom="true"
             />
 
     </RelativeLayout>
@@ -54,6 +67,16 @@
             android:layout_toRightOf="@+id/roundedImageView1"
             >
 
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/club_main_item_join_btn"
+                />
+
             <TextView
                 android:id="@+id/nameView"
                 android:layout_width="wrap_content"
@@ -68,12 +91,14 @@
             <TextView
                 android:layout_below="@id/nameView"
                 android:id="@+id/recentView"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#999"
                 android:singleLine="true"
                 android:textSize="14sp"
-                android:text="@string/temp_string" />
+                android:text="@string/temp_string_long"
+                android:layout_toLeftOf="@id/btn_join"
+                />
 
 
             <ImageView
@@ -88,15 +113,7 @@
                 android:layout_marginTop="3dip"
                 />
 
-            <Button
-                android:id="@+id/btn_join"
-                android:layout_marginRight="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/club_main_item_join_btn"
-                />
+
 
 
         </RelativeLayout>
@@ -114,14 +131,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
         android:id="@+id/layout_all"
+        android:padding="10dp"
         android:layout_below="@id/layout_club"
         >
 
         <TextView
             style="@style/wrap_wrap"
+            android:gravity="center"
+            android:layout_height="40dp"
             android:drawableTop="@drawable/club_icon_grid_add"
             android:text="全部俱乐部"
             android:textColor="#ff7800"

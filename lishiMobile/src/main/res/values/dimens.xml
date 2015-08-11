@@ -92,7 +92,7 @@
 	
 	<dimen name="appraice_size">160dip</dimen>
 	
-	<dimen name="choiceness_height">170dip</dimen>
+	<dimen name="choiceness_height">200dip</dimen>
 	<dimen name="choiceness_height_bg">171dip</dimen>
 	
 </resources>

@@ -22,6 +22,7 @@ import com.lis99.mobile.entry.LsImproveInfoActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.ThirdLogin;
@@ -534,6 +535,13 @@ public class LSLoginActivity extends LSBaseActivity {
         thirdLogin.SinaLogin(true);
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        String userId = DataManager.getInstance().getUser().getUser_id();
+        if ( !TextUtils.isEmpty(userId))
+        {
+            LoginCallBackManager.getInstance().handler();
+        }
+        super.onDestroy();
+    }
 }

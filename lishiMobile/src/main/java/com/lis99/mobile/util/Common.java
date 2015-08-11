@@ -185,9 +185,9 @@ public class Common {
 
     public static String getLikeNum(String num) {
         if (TextUtils.isEmpty(num))
-            return "";
+            return "赞";
         if ("0".equals(num))
-            return "";
+            return "赞";
         else
             return num;
     }

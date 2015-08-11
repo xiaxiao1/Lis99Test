@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.model.ChoicenessModel.Omnibuslist;
@@ -111,6 +112,12 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 					intent.putExtra("ID", item.id);
 					Common.log("item.id="+item.id);
 					startActivity(intent);
+				}
+				else if ( item.type == 7 )
+				{
+					intent = new Intent(getActivity(), ClubSpecialListActivity.class);
+					intent.putExtra("tagid", item.tag_id);
+					startActivity( intent );
 				}
 				
 			}

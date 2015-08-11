@@ -11,13 +11,14 @@
         android:layout_height="@dimen/reply_height">
 
         <LinearLayout
+
             android:layout_centerVertical="true"
             style="@style/wrap_wrap"
             android:orientation="horizontal"
             android:gravity="center"
             android:id="@+id/layout_club_detail_reply"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             >
 
             <TextView
@@ -60,6 +61,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -80,6 +82,7 @@
                 android:textColor="#ff7800"
                 android:text="#游记"
                 android:padding="3dp"
+                android:textSize="12sp"
                 />
 
             <TextView
@@ -94,6 +97,7 @@
                 android:textColor="#b59477"
                 android:text="#游记"
                 android:padding="3dp"
+                android:textSize="12sp"
                 />
 
             <TextView
@@ -107,6 +111,7 @@
                 android:textColor="#ff7800"
                 android:text="#游记游记游记游记游记游记游记"
                 android:padding="3dp"
+                android:textSize="12sp"
                 />
 
         </LinearLayout>

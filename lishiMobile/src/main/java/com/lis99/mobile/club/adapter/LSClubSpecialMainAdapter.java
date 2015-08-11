@@ -48,7 +48,9 @@ public class LSClubSpecialMainAdapter extends MyBaseAdapter {
 
         if ( item == null ) return view;
 
-        holder.tv_title.setText("#"+item.name);
+//        String str = StringUtil.StringWithSpeace(item.name);
+        holder.tv_title.setText(item.name);
+//        holder.tv_title.setText(str);
 
         if (!TextUtils.isEmpty(item.images))
         {

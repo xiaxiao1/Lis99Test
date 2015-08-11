@@ -224,6 +224,7 @@ public class LSClubTopicHead extends LinearLayout implements
 		//====3.5======
 		if ( clubhead.taglist != null && clubhead.taglist.size() != 0 )
 		{
+			layout_tag.setVisibility(View.VISIBLE);
 			tv_tag1.setVisibility(INVISIBLE);
 			tv_tag2.setVisibility(INVISIBLE);
 			tv_tag3.setVisibility(INVISIBLE);

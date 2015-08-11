@@ -28,11 +28,13 @@
             >
 
             <ImageView
+                android:layout_marginLeft="4dp"
                 style="@style/wrap_wrap"
                 android:background="@drawable/banner1"
                 />
 
             <TextView
+                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -85,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="热帖排行"
+                android:text="最新热贴"
                 android:textColor="@color/color_six"
                 />
 
@@ -109,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="砾石专栏"
+                android:text="金牌专栏"
                 android:textColor="@color/color_six"
                 />
 
@@ -125,10 +127,15 @@
 
     <ImageView
         style="@style/wrap_wrap"
-        android:layout_height="26dip"
+        android:layout_height="34dip"
         android:layout_gravity="center"
-        android:layout_marginBottom="8dip"
         android:src="@drawable/myaddclub"
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
         />
 
 </LinearLayout>

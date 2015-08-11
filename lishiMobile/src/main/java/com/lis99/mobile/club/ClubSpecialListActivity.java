@@ -65,6 +65,8 @@ public class ClubSpecialListActivity extends LSBaseActivity implements
 
         initViews();
 
+        setLeftView(R.drawable.ls_page_back_icon_bg);
+
         page = new Page();
 
         tagid = getIntent().getIntExtra("tagid", -1);
@@ -174,8 +176,8 @@ public class ClubSpecialListActivity extends LSBaseActivity implements
                     if (!TextUtils.isEmpty(model.taginfo.tag_images)) {
                         ImageLoader.getInstance().displayImage(model.taginfo.tag_images, iv_bg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(iv_load, iv_bg));
                     }
-                    tv_title.setText("#" + model.taginfo.name);
-                    setTitle("#" + model.taginfo.name);
+                    tv_title.setText(model.taginfo.name);
+                    setTitle(model.taginfo.name);
 
                     adapter = new ClubSpecialListItemAdapter(activity, model.topiclist);
 

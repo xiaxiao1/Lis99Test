@@ -189,10 +189,11 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //		title.setAlpha(0f);
 //		titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
 		setRightView(R.drawable.club_join);
+		setLeftView(R.drawable.ls_club_back_icon_bg);
 		titleRightImage.setOnClickListener(this);
 		
 		listView = (ListView) findViewById(R.id.listView);
-		
+
 		refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
 		refreshView.setOnHeaderRefreshListener(this);
 		refreshView.setOnFooterRefreshListener(this);
@@ -574,11 +575,12 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		} else if (msg.what == NO_MORE_TOPIC){
 			
 		} else if (msg.what == SHOW_ADDBUTTON) {
-			if ("-1".equals(clubHead.is_jion)) {
-				setRightView(R.drawable.club_join);
-			} else{
-				setRightView(R.drawable.club_joined);
-			}
+			setTitleRight(isBg);
+//			if ("-1".equals(clubHead.is_jion)) {
+//				setRightView(R.drawable.club_join);
+//			} else{
+//				setRightView(R.drawable.club_joined);
+//			}
 			return true;
 		}
 		return super.handleMessage(msg);
@@ -732,6 +734,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		int titleHeight = iv_title_bg.getHeight();
 		HeadAdHeight = headerView.getHeight() - titleHeight;
 	}
+	private boolean isBg = false;
 	/**
 	 * 设置标题栏透明度
 	 * @param num
@@ -741,6 +744,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		if ( num >= HeadAdHeight )
 		{
 			num = HeadAdHeight;
+			isBg = false;
 			setTitleRight(false);
 			setBack(false);
 		}
@@ -750,6 +754,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		}
 		if ( num < HeadAdHeight && num >= 0 )
 		{
+			isBg = true;
 			setTitleRight(true);
 			setBack(true);
 		}
@@ -807,7 +812,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	{
 		if ( isBg )
 		{
-			setLeftView(R.drawable.ls_page_back_icon_bg);
+			setLeftView(R.drawable.ls_club_back_icon_bg);
 		}
 		else
 		{

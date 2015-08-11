@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -35,6 +36,7 @@ import com.lis99.mobile.newhome.LSSelectItem;
 import com.lis99.mobile.newhome.LSWebActivity;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LocationUtil;
@@ -64,6 +66,8 @@ public class LSClubFragment extends LSFragment implements
 	PullToRefreshView refreshView;
 
 	ImageView titleRightImage, titleLeftImage;
+
+	RelativeLayout titleLeft, titleRight;
 
 	View head;
 
@@ -127,6 +131,11 @@ public class LSClubFragment extends LSFragment implements
 		titleLeftImage = (ImageView) findViewById(R.id.titleLeftImage);
 		titleLeftImage.setImageResource(R.drawable.club_search_title_right);
 		titleLeftImage.setOnClickListener(this);
+
+		titleLeft = (RelativeLayout) findViewById(R.id.titleLeft);
+		titleRight = (RelativeLayout) findViewById(R.id.titleRight);
+		titleRight.setOnClickListener(this);
+		titleLeft.setOnClickListener(this);
 
 //		按钮
 		layout_club_level = (LinearLayout) head.findViewById(R.id.layout_club_level);
@@ -196,7 +205,7 @@ public class LSClubFragment extends LSFragment implements
 
 		cleanList();
 
-		DialogManager.getInstance().startWaiting(getActivity(), null, "定位中...");
+		DialogManager.getInstance().startWaiting(getActivity(), null, "数据加载中...");
 		location = LocationUtil.getinstance();
 		location.setGlocation(new getLocation() {
 
@@ -278,19 +287,28 @@ public class LSClubFragment extends LSFragment implements
 					recommend = model.clubtyperank.get(0).getTyperanks();
 					Iterator<ClubMainListModel> iterator = recommend.iterator();
 
-					for ( ClubMainListModel mine : model.joinclub )
+					while ( iterator.hasNext() )
 					{
-						while ( iterator.hasNext() )
+						ClubMainListModel item = iterator.next();
+						for ( ClubMainListModel mine : model.joinclub )
 						{
-							ClubMainListModel item = iterator.next();
+							Common.log("mine.id="+mine.id);
+
 							if ( mine.id == item.id )
 							{
 								iterator.remove();
-								continue;
+								break;
 							}
 							item.type = LSClubGridViewAdapter.RECOMMENDCLUB;
 						}
 					}
+				}
+			//用来显示全部
+				if ( recommend == null || recommend.size() == 0 )
+				{
+					ClubMainListModel item = new ClubMainListModel();
+					item.type = LSClubGridViewAdapter.ALL_CLUB;
+					recommend.add(item);
 				}
 
 				gridViewAdapter = new LSClubGridViewAdapter(model.joinclub, recommend, getActivity());
@@ -329,9 +347,11 @@ public class LSClubFragment extends LSFragment implements
 				startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
 				break;
 			case R.id.titleRightImage:
+			case R.id.titleRight:
 				startActivity(new Intent(getActivity(), LSClubListActivity.class));
 				break;
 			case R.id.titleLeftImage:
+			case R.id.titleLeft:
 				startActivity( new Intent(getActivity(), SearchActivity.class));
 				break;
 		}
@@ -395,30 +415,7 @@ public class LSClubFragment extends LSFragment implements
 	private CallBack LoginState = new CallBack() {
 		@Override
 		public void handler(MyTask mTask) {
-			if ( model == null ) return;
-
-			cleanList();
-
-			//登陆状态
-			model.joinclub = new ArrayList<ClubMainListModel>();
-			ClubMainListModel item = new ClubMainListModel();
-			item.type = LSClubGridViewAdapter.NEEDLOGIN;
-			model.joinclub.add(item);
-
-			ArrayList<ClubMainListModel> recommend = null;
-
-			if ( model.clubtyperank != null && model.clubtyperank.get(0).getTyperanks() != null )
-			{
-				recommend = model.clubtyperank.get(0).getTyperanks();
-				for ( ClubMainListModel item1 : recommend )
-				{
-					item1.type = LSClubGridViewAdapter.RECOMMENDCLUB;
-				}
-			}
-
-			gridViewAdapter = new LSClubGridViewAdapter(model.joinclub, recommend, getActivity());
-			my_club_listview.setAdapter(gridViewAdapter);
-
+			getLocation();
 		}
 	};
 

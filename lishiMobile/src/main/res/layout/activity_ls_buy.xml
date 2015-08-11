@@ -85,7 +85,9 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/iv_list"
-            android:background="@drawable/hwd_search" />
+            android:src="@drawable/hwd_search"
+
+            />
 
         <ImageView
             android:id="@+id/iv_list"
@@ -94,7 +96,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:background="@drawable/hwd_map" />
+            android:src="@drawable/hwd_map" />
     </RelativeLayout>
 
     <LinearLayout

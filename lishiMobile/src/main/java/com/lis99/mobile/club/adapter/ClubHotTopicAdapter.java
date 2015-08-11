@@ -42,6 +42,8 @@ public class ClubHotTopicAdapter extends MyBaseAdapter {
             holder.iv_img2 = (RoundedImageView) view.findViewById(R.id.iv_img2);
             holder.iv_img3 = (RoundedImageView) view.findViewById(R.id.iv_img3);
 
+            holder.iv_hot = (ImageView) view.findViewById(R.id.iv_hot);
+
             view.setTag(holder);
 
         }
@@ -61,7 +63,7 @@ public class ClubHotTopicAdapter extends MyBaseAdapter {
 
         holder.tv_title.setText(item.topic_title);
         holder.tv_name.setText(item.nickname);
-        holder.tv_reply.setText(item.replytotal == 0 ? "1" : ""+item.replytotal);
+        holder.tv_reply.setText(item.replytotal == 0 ? "1" : "" + item.replytotal);
 
         holder.iv_img1.setVisibility(View.INVISIBLE);
         holder.iv_img2.setVisibility(View.INVISIBLE);

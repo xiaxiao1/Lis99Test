@@ -12,13 +12,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/club_special_list_item_bg"
-        android:layout_marginTop="5dip"
+        android:layout_marginTop="6dp"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:padding="6dip"
         >
 
         <ImageView
+            android:layout_marginTop="2dp"
             android:id="@+id/iv_hot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,9 +34,8 @@
             android:textColor="@color/color_six"
             android:textSize="16sp"
             android:text="@string/temp_string_long"
-            android:maxLines="2"
+            android:singleLine="true"
             android:ellipsize="end"
-            android:lineSpacingExtra="5dp"
             android:id="@+id/tv_title"
             />
 
@@ -101,8 +101,8 @@
 
             <com.lis99.mobile.club.widget.RoundedImageView
                 android:id="@+id/iv_head"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 app:border_width="1px"

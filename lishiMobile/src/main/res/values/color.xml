@@ -82,5 +82,7 @@
     
     <color name="color_shadow">#6036322a</color>
     <color name="color_tab_unselect">#ac9f92</color>
+
+	<color name="club_login_color">#ac9f92</color>
     
 </resources>
