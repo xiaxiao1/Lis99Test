@@ -45,7 +45,7 @@ public class LSCLubSpecialMain extends LSBaseActivity implements
 
         initViews();
 
-        setTitle("砾石专栏");
+        setTitle("金牌专栏");
 
         page = new Page();
 

@@ -40,7 +40,7 @@ public class ClubHotTopicActivity extends LSBaseActivity implements
 
         setContentView(R.layout.clbu_hot_topic_main);
         initViews();
-        setTitle("热帖排行");
+        setTitle("最新热贴");
 
         onHeaderRefresh(pull_refresh_view);
     }
