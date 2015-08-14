@@ -888,6 +888,17 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
+        <!-- 我的好友 3.6.0 -->
+        <activity android:name="com.lis99.mobile.newhome.MyFriendsActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+        <!-- 动态 3.6.0 -->
+        <activity android:name="com.lis99.mobile.newhome.DynamicActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+
 
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"

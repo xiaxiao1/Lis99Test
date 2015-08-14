@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -70,6 +72,13 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 
 	LSTab tab;
 
+//	=====3.6.0======
+
+	private RelativeLayout layout_user;
+	private LinearLayout layout_friends;
+	private ImageView titleRightImage, titleLeftImage;
+
+
 	public void setTab(LSTab tab)
 	{
 		this.tab = tab;
@@ -105,8 +114,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			header.setImageResource(R.drawable.ls_nologin_header_icon);
 			vipView.setVisibility(View.GONE);
 			nameView.setText("登录");
-			tags.clear();
-			setTags();
+//			tags.clear();
+//			setTags();
 
 			haveApplyInfo = false;
 			haveApply = false;
@@ -128,8 +137,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		body = inflater.inflate(R.layout.fragment_mine, container, false);
 
-		View v = findViewById(R.id.settingButton);
-		v.setOnClickListener(this);
+		View v = null;
 
 		v = findViewById(R.id.likePanel);
 		v.setOnClickListener(this);
@@ -164,7 +172,6 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		managePanel = findViewById(R.id.managePanel);
 
 		header = (ImageView) findViewById(R.id.roundedImageView1);
-		header.setOnClickListener(this);
 		nameView = (TextView) findViewById(R.id.nameView);
 
 		vipView = findViewById(R.id.vipStar);
@@ -173,18 +180,31 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		applyManageDot = findViewById(R.id.applyManageDot);
 		replyDot = findViewById(R.id.replyDot);
 
-		TextView tagView = (TextView) findViewById(R.id.tagTextView1);
-		tagViews.add(tagView);
-		tagView = (TextView) findViewById(R.id.tagTextView2);
-		tagViews.add(tagView);
-		tagView = (TextView) findViewById(R.id.tagTextView3);
-		tagViews.add(tagView);
-		tagView = (TextView) findViewById(R.id.tagTextView4);
-		tagViews.add(tagView);
-		tagView = (TextView) findViewById(R.id.tagTextView5);
-		tagViews.add(tagView);
-		tagView = (TextView) findViewById(R.id.tagTextView6);
-		tagViews.add(tagView);
+//		TextView tagView = (TextView) findViewById(R.id.tagTextView1);
+//		tagViews.add(tagView);
+//		tagView = (TextView) findViewById(R.id.tagTextView2);
+//		tagViews.add(tagView);
+//		tagView = (TextView) findViewById(R.id.tagTextView3);
+//		tagViews.add(tagView);
+//		tagView = (TextView) findViewById(R.id.tagTextView4);
+//		tagViews.add(tagView);
+//		tagView = (TextView) findViewById(R.id.tagTextView5);
+//		tagViews.add(tagView);
+//		tagView = (TextView) findViewById(R.id.tagTextView6);
+//		tagViews.add(tagView);
+
+//		=====3.6.0====
+
+		layout_user = (RelativeLayout) findViewById(R.id.layout_user);
+		layout_user.setOnClickListener(this);
+
+		layout_friends = (LinearLayout) findViewById(R.id.layout_friends);
+		layout_friends.setOnClickListener(this);
+
+		//设置按钮
+		titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
+		titleRightImage.setImageResource(R.drawable.mine_icon_setting);
+		titleRightImage.setOnClickListener(this);
 
 	}
 
@@ -323,21 +343,21 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		refreshUser();
 	}
 
-	private void setTags()
-	{
-		for (int i = 0; i < tagViews.size(); ++i)
-		{
-			TextView tagView = tagViews.get(i);
-			if (tags.size() > i)
-			{
-				tagView.setVisibility(View.VISIBLE);
-				tagView.setText(tags.get(i));
-			} else
-			{
-				tagView.setVisibility(View.GONE);
-			}
-		}
-	}
+//	private void setTags()
+//	{
+//		for (int i = 0; i < tagViews.size(); ++i)
+//		{
+//			TextView tagView = tagViews.get(i);
+//			if (tags.size() > i)
+//			{
+//				tagView.setVisibility(View.VISIBLE);
+//				tagView.setText(tags.get(i));
+//			} else
+//			{
+//				tagView.setVisibility(View.GONE);
+//			}
+//		}
+//	}
 
 	void showOrHideViews()
 	{
@@ -361,7 +381,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 				vipView.setVisibility(View.GONE);
 			}
 
-			setTags();
+//			setTags();
 
 			return true;
 		} else if (msg.what == SHOW_NOTICE)
@@ -403,7 +423,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 				Intent intent = new Intent(getActivity(),
 						LsUserDraftActivity.class);
 				startActivity(intent);
-			} else if (v.getId() == R.id.settingButton)
+				//设置
+			} else if (v.getId() == R.id.titleRightImage  )
 			{
 				Intent intent = new Intent(getActivity(),
 						LsSettingActivity.class);
@@ -432,13 +453,21 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 						LSMineApplyManageActivity.class);
 				startActivity(intent);
 			}
-		} else
+			else if (v.getId() == R.id.layout_friends )
+			{
+				Intent intent = new Intent(getActivity(),
+						MyFriendsActivity.class);
+				startActivity(intent);
+			}
+		}
+		else
 		{
-			if (v.getId() != R.id.settingButton)
+			if (v.getId() == R.id.layout_user )
 			{
 				Intent intent = new Intent(getActivity(), LSLoginActivity.class);
 				startActivity(intent);
-			} else
+			}
+			else if ( v.getId() == R.id.titleRightImage )
 			{
 				Intent intent = new Intent(getActivity(),
 						LsSettingActivity.class);
