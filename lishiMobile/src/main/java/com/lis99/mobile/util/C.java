@@ -387,4 +387,18 @@ public class C {
 
 	public static final String CLUB_HOT_TOPIC = DOMAIN + "/v3/club/hottopics/";
 
+	//=======3.6.0============
+//	动态
+	public static final String DYNAMIC_LIST = DOMAIN + "/v3/user/dynamic/";
+//关注， 推荐
+	public static final String MYFRIENDS_RECOMMED = DOMAIN + "/v3/user/recommendUser/";
+//关注我的粉丝
+	public static final String MYFRIENDS_FANS = DOMAIN + "/v3/user/myFans/";
+//关注
+	public static final String MYFRIENDS_ATTENTION = DOMAIN + "/v3/user/myFollow/";
+//取消关注
+	public static final String CANCEL_ATTENTION = DOMAIN + "/v3/user/cancelFollow";
+//添加关注
+	public static final String ADD_ATTENTION = DOMAIN + "/v3/user/addFollow";
+
 }

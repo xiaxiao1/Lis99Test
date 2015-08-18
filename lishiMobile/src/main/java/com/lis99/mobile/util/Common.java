@@ -8,8 +8,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.mine.LSLoginActivity;
@@ -265,5 +267,22 @@ public class Common {
         result = m.replaceAll("").trim();
         return result;
     }
+/**获取用户Id*/
+    public static String getUserId ()
+    {
+        String userId = DataManager.getInstance().getUser().getUser_id();
+        return userId;
+    }
+/**关注按钮*/
+    public static void setBtnAttention ( Button btn )
+    {
+        btn.setBackgroundResource(R.drawable.friends_attention);
+    }
+    /**未关注*/
+    public static void setBtnNoAttention ( Button btn )
+    {
+        btn.setBackgroundResource(R.drawable.friends_no_attention);
+    }
+
 
 }

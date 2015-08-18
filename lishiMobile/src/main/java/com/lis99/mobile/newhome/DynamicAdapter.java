@@ -8,8 +8,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.DynamicListModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,8 @@ public class DynamicAdapter extends MyBaseAdapter {
             holder.tv_club = (TextView) view.findViewById(R.id.tv_club);
             holder.tv_reply = (TextView) view.findViewById(R.id.tv_reply);
             holder.tv_style = (TextView) view.findViewById(R.id.tv_style);
+            holder.dynamic_item_title = (TextView) view.findViewById(R.id.dynamic_item_title);
+            holder.dynamic_item_title1 = (TextView) view.findViewById(R.id.dynamic_item_title1);
 
             view.setTag(holder);
         }
@@ -48,7 +53,45 @@ public class DynamicAdapter extends MyBaseAdapter {
             holder = (Holder) view.getTag();
         }
 
+        DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) getItem(i);
 
+        if ( item == null ) return view;
+
+        if ( item.category == 0 )
+        {
+            holder.iv_active.setVisibility(View.GONE);
+            holder.dynamic_item_title.setVisibility(View.VISIBLE);
+            holder.dynamic_item_title1.setVisibility(View.INVISIBLE);
+            holder.dynamic_item_title.setText(item.replycontent);
+            holder.dynamic_item_title1.setText(item.replycontent);
+        }
+        else
+        {
+            holder.iv_active.setVisibility(View.VISIBLE);
+            holder.dynamic_item_title.setVisibility(View.GONE);
+            holder.dynamic_item_title1.setVisibility(View.GONE);
+        }
+
+        if ( item.is_vip == 0 )
+        {
+            holder.vipStar.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.vipStar.setVisibility(View.VISIBLE);
+        }
+
+        ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView, ImageUtil.getclub_topic_headImageOptions());
+
+        ImageLoader.getInstance().displayImage(item.image, holder.iv_info, ImageUtil.getclub_topic_imageOptions());
+
+        holder.tv_name.setText(item.nickname);
+        holder.tv_time.setText(item.createtime);
+        holder.tv_info.setText(item.topic_title);
+
+        holder.tv_club.setText(item.club_title);
+        holder.tv_reply.setText(item.replytot);
+        holder.tv_style.setText(item.catename);
 
 
         return view;
@@ -62,6 +105,6 @@ public class DynamicAdapter extends MyBaseAdapter {
         RelativeLayout layout_info_img;
         RoundedImageView iv_info;
         ImageView iv_active;
-        TextView tv_club, tv_reply, tv_style;
+        TextView tv_club, tv_reply, tv_style, dynamic_item_title, dynamic_item_title1;
     }
 }

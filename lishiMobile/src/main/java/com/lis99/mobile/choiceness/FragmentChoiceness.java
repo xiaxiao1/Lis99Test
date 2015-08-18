@@ -21,8 +21,8 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
+import com.lis99.mobile.newhome.DynamicActivity;
 import com.lis99.mobile.newhome.LSFragment;
-import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
@@ -161,8 +161,10 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 		// TODO Auto-generated method stub
 		switch ( arg0.getId() )
 		{
+
 			case R.id.layout_search:
-				startActivity(new Intent(getActivity(), SearchActivity.class));
+//				startActivity(new Intent(getActivity(), SearchActivity.class));
+				startActivity(new Intent(getActivity(), DynamicActivity.class));
 				break;
 			case R.id.iv_subject:
 				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));

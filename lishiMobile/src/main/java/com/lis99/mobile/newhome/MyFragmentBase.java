@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.util.Page;
 
 /**
  * Created by yy on 15/8/13.
@@ -19,6 +20,9 @@ public abstract class MyFragmentBase extends Fragment implements
     protected View v;
     protected ListView list;
     protected PullToRefreshView pull_refresh_view;
+    protected boolean initState;
+
+    protected Page page;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public abstract class MyFragmentBase extends Fragment implements
         pull_refresh_view.setOnHeaderRefreshListener(this);
         pull_refresh_view.setOnFooterRefreshListener(this);
 
+        page = new Page();
 
         return v;
     }
@@ -36,13 +41,15 @@ public abstract class MyFragmentBase extends Fragment implements
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        onHeaderRefresh(null);
+//        onHeaderRefresh(null);
     }
 
 
 //    public abstract void onHeadRefresh();
 //
 //    public abstract void onFootRefresh();
+
+    public abstract boolean getInitState();
 
     public abstract void cleanList();
 

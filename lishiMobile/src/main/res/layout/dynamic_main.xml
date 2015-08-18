@@ -20,7 +20,7 @@
         android:layout_height="fill_parent"
         android:id="@+id/layout_dynamic"
         android:visibility="gone"
-        android:background="@color/white"
+        android:background="@color/pull_bg"
         >
 
         <com.lis99.mobile.entry.view.PullToRefreshView

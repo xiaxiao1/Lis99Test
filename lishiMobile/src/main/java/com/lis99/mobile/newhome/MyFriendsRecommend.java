@@ -1,5 +1,11 @@
 package com.lis99.mobile.newhome;
 
+import android.view.View;
+
+import com.lis99.mobile.club.model.MyFriendsRecommendModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.Page;
 
 /**
@@ -10,8 +16,12 @@ public class MyFriendsRecommend extends MyFragmentBase {
 
     private RecommendAdapter adapter;
 
-    private Page page;
+    private View view;
 
+    @Override
+    public boolean getInitState() {
+        return initState;
+    }
 
     @Override
     public void cleanList() {
@@ -22,7 +32,27 @@ public class MyFriendsRecommend extends MyFragmentBase {
 
     @Override
     public void getList() {
-
+        if ( page.isLastPage() )
+        {
+            return;
+        }
+        LSRequestManager.getInstance().getFriendsAttentionRecommend(page.getPageNo(), new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                MyFriendsRecommendModel model = (MyFriendsRecommendModel) mTask.getResultModel();
+                page.nextPage();
+                if (adapter == null)
+                {
+                    page.setPageSize(model.totPage);
+                    adapter = new RecommendAdapter(getActivity(), model.lists);
+                    list.setAdapter(adapter);
+                }
+                else
+                {
+                    adapter.addList(model.lists);
+                }
+            }
+        });
     }
 
 }
