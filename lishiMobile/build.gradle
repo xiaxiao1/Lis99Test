@@ -9,8 +9,8 @@ android {
         zhuzhan {}
         tuiguang1 {}
 //        baidu {}
-//        pp{}
-        oppo {}
+        pp{}
+//        oppo {}
     }
 
     productFlavors.all {
