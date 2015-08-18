@@ -41,6 +41,7 @@ public class MyFriendsRecommend extends MyFragmentBase {
             public void handler(MyTask mTask) {
                 MyFriendsRecommendModel model = (MyFriendsRecommendModel) mTask.getResultModel();
                 page.nextPage();
+                initState = true;
                 if (adapter == null)
                 {
                     page.setPageSize(model.totPage);

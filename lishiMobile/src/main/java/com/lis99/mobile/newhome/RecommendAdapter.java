@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.newhome.click.FriendsItemOnClick;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
@@ -76,7 +77,7 @@ public class RecommendAdapter extends MyBaseAdapter {
             ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView, ImageUtil.getclub_topic_headImageOptions());
         }
 
-
+        holder.btn_attention.setOnClickListener( new FriendsItemOnClick(holder.btn_attention, item));
 
         return view;
     }

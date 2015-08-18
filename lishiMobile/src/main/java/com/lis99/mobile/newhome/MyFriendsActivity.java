@@ -79,7 +79,6 @@ public class MyFriendsActivity extends ActivityPattern1 implements ViewPager.OnP
         btn_recommend.setOnClickListener(this);
 
 
-        viewPager.setCurrentItem(3);
 
         attentionFragment = new MyFriendsAttention();
         fList.add(attentionFragment);
@@ -90,10 +89,13 @@ public class MyFriendsActivity extends ActivityPattern1 implements ViewPager.OnP
 
         adapter = new LSClubFragmentAdapter(getSupportFragmentManager(), fList);
 
+        viewPager.setOffscreenPageLimit(3);
+
         viewPager.setAdapter(adapter);
 
         viewPager.setOnPageChangeListener(this);
 
+        viewPager.setCurrentItem(1);
     }
 
 
@@ -182,12 +184,24 @@ public class MyFriendsActivity extends ActivityPattern1 implements ViewPager.OnP
         {
             case 0:
                 clickAttention();
+//                if ( !attentionFragment.getInitState() )
+//                {
+//                    attentionFragment.getList();
+//                }
                 break;
             case 1:
                 clickFans();
+//                if ( !fansFragment.getInitState() )
+//                {
+//                    fansFragment.getList();
+//                }
                 break;
             case 2:
                 clickRecommend();
+//                if ( !recommendFragment.getInitState() )
+//                {
+//                    recommendFragment.getList();
+//                }
                 break;
         }
 

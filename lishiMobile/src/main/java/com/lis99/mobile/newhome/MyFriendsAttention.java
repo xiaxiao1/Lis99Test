@@ -1,12 +1,14 @@
 package com.lis99.mobile.newhome;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.lis99.mobile.util.Common;
+import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.club.model.MyFriendsAttentionModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
+
+import java.util.HashMap;
 
 /**
  * Created by yy on 15/8/13.
@@ -16,21 +18,7 @@ public class MyFriendsAttention extends MyFragmentBase {
 
     private AttentionAdapter adapter;
 
-    private Page page;
-
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Common.log("Attention onCreateView");
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Common.log("Attention onActivityCreated");
-    }
+    private MyFriendsAttentionModel model;
 
     @Override
     public boolean getInitState() {
@@ -46,6 +34,35 @@ public class MyFriendsAttention extends MyFragmentBase {
 
     @Override
     public void getList() {
+        if ( page.isLastPage() )
+        {
+            return;
+        }
+
+        String userID = DataManager.getInstance().getUser().getUser_id();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("uid", userID);
+
+        model = new MyFriendsAttentionModel();
+
+        String url = C.MYFRIENDS_FANS + page.pageNo;
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                model = (MyFriendsAttentionModel) mTask.getResultModel();
+                page.nextPage();
+                initState = true;
+                if (adapter == null) {
+                    page.setPageSize(model.totPage);
+                    adapter = new AttentionAdapter(getActivity(), model.lists);
+                    list.setAdapter(adapter);
+                } else {
+                    adapter.addList(model.lists);
+                }
+            }
+        });
 
     }
 }
