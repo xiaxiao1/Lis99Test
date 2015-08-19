@@ -21,6 +21,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
@@ -46,9 +47,12 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     LSUserHomeAdapter adapter;
 
     String userID;
-    View headerView, view_line_head;
+    View headerView;
+//    View view_line_head;
     RoundedImageView headerImageView;
     TextView nameView;
+    TextView fansView;
+    TextView noteView;
 
     boolean needRefresh = true;
     boolean loginBeforePause = false;
@@ -117,17 +121,21 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         setRightView(R.drawable.club_join);
         titleRightImage.setOnClickListener(this);
 
+
+
+        titleLeftImage.setOnClickListener(this);
+
         listView = (ListView) findViewById(R.id.listView);
 
         refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
         refreshView.setOnHeaderRefreshListener(this);
         refreshView.setOnFooterRefreshListener(this);
 
-        headViewMain = View.inflate(activity, R.layout.club_header_view, null);
+        headViewMain = View.inflate(activity, R.layout.user_page_top, null);
 
         headerView = headViewMain.findViewById(R.id.headView);
 
-        view_line_head = headViewMain.findViewById(R.id.view_line_head);
+//        view_line_head = headViewMain.findViewById(R.id.view_line_head);
 
         ViewTreeObserver vto1 = headerView.getViewTreeObserver();
         vto1.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -146,12 +154,23 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+
+                LSBaseTopicModel item = topics.get(position);
+                if ( item == null ) return;
+                Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity.class);
+                intent.putExtra("topicID", Integer.parseInt(item.topic_id));
+                startActivity(intent);
+
+
             }
         });
 
         headerImageView = (RoundedImageView)headViewMain.findViewById(R.id.roundedImageView1);
 
         nameView = (TextView) headViewMain.findViewById(R.id.nameView);
+        fansView = (TextView) headViewMain.findViewById(R.id.fansView);
+        noteView = (TextView) headViewMain.findViewById(R.id.noteView);
 
 
 
@@ -253,10 +272,12 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         if (user == null) {
             return;
         }
+        setTitle(user.getNickname());
         headerView.setBackgroundResource(R.drawable.club_0);
-        nameView.setText("阿道夫分手");
+        nameView.setText(user.getNickname());
 
-
+        noteView.setText(user.getNote());
+        fansView.setText(user.getFollows() + "位粉丝");
 
         if (user.isIs_follows()) {
             setRightView(R.drawable.bg_button_follow);
@@ -306,6 +327,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             }
             postMessage(ActivityPattern1.POPUP_TOAST, "已关注");
             user.setIsFollowed(true);
+            user.setFollows(user.getFollows()+1);
             postMessage(SHOW_ADDBUTTON);
         } catch (Exception e) {
             e.printStackTrace();
@@ -324,6 +346,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             }
             postMessage(ActivityPattern1.POPUP_TOAST, "已取消关注");
             user.setIsFollowed(false);
+            user.setFollows(user.getFollows() - 1);
             postMessage(SHOW_ADDBUTTON);
         } catch (Exception e) {
             e.printStackTrace();
@@ -416,8 +439,13 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         if (msg.what == SHOW_CLUB) {
             configTopView();
 
-			adapter = new LSUserHomeAdapter(this, topics);
-			listView.setAdapter(adapter);
+            if (adapter == null) {
+                adapter = new LSUserHomeAdapter(this, topics);
+                listView.setAdapter(adapter);
+            } else {
+                adapter.setData(topics);
+            }
+
 
             return true;
         } else if (msg.what == SHOW_MORE_TOPIC) {
@@ -426,6 +454,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         } else if (msg.what == NO_MORE_TOPIC){
 
         } else if (msg.what == SHOW_ADDBUTTON) {
+            fansView.setText(user.getFollows()+"位粉丝");
             if (user.isIs_follows()) {
                 setRightView(R.drawable.bg_button_follow);
             } else{
@@ -473,6 +502,10 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     @Override
     public void onClick(View view) {
+        if (view.getId() == R.id.titleLeftImage) {
+            finish();
+            return;
+        }
        if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
 
             String userID = DataManager.getInstance().getUser().getUser_id();
@@ -504,6 +537,12 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     @Override
     public void onFooterRefresh(PullToRefreshView view) {
         refreshView.onFooterRefreshComplete();
+        if ( page.pageNo >= page.pageSize )
+        {
+            Common.toast("没有更多帖子");
+            return;
+        }
+        loadClubInfo();
     }
 
     @Override
@@ -544,7 +583,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         }
         float alpha = num / HeadAdHeight;
 //			iv_title_bg.setAlpha(alpha);
-//			title.setAlpha(alpha);
+//        title.setAlpha(alpha);
         setTitleBarAlpha(alpha);
     }
 
@@ -556,7 +595,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     //	设置返回按钮
     private void setBack ( boolean isBg)
     {
-        /*
+
         if ( isBg )
         {
             setLeftView(R.drawable.ls_page_back_icon_bg);
@@ -565,7 +604,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         {
             setLeftView(R.drawable.ls_page_back_icon);
         }
-        */
+
     }
 
 
@@ -574,6 +613,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     {
         page = new Page();
         adapter = null;
+        topics.clear();
         listView.setAdapter(null);
     }
 
