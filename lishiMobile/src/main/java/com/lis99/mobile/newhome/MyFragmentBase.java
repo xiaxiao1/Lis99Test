@@ -24,6 +24,11 @@ public abstract class MyFragmentBase extends Fragment implements
 
     protected Page page;
 
+    public MyFragmentBase ()
+    {
+        page = new Page();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.club_level_list, null);
@@ -32,8 +37,6 @@ public abstract class MyFragmentBase extends Fragment implements
 
         pull_refresh_view.setOnHeaderRefreshListener(this);
         pull_refresh_view.setOnFooterRefreshListener(this);
-
-        page = new Page();
 
         return v;
     }

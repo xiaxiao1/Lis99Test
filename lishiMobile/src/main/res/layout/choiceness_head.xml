@@ -12,25 +12,101 @@
         android:layout_marginLeft="5dip"
         android:layout_marginRight="5dip"
         android:layout_marginTop="8dip"
+        android:padding="10dp"
+        android:background="@drawable/choiceness_tab_bg"
         >
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/choiceness_head_subject"
+            android:orientation="vertical"
             android:layout_weight="1"
             android:id="@+id/iv_subject"
-            android:layout_marginRight="3dip"
+            >
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/choiceness_head_subject"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#bc9153"
+                android:text="专题"
+                android:layout_marginTop="5dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_width="1px"
+            android:layout_height="40dp"
+            android:background="#f0efee"
             />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/choiceness_head_active"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:id="@+id/iv_dynamic"
+            >
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/choiceness_head_dynamic"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#bc9153"
+                android:text="关注动态"
+                android:layout_marginTop="5dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_width="1px"
+            android:layout_height="40dp"
+            android:background="#f0efee"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_weight="1"
             android:id="@+id/iv_active"
-            android:layout_marginLeft="3dip"
-            />
+            >
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/choiceness_head_active"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#bc9153"
+                android:text="线路活动"
+                android:layout_marginTop="5dp"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 

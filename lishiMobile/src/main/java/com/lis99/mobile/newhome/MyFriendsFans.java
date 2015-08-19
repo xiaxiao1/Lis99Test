@@ -25,6 +25,8 @@ public class MyFriendsFans extends MyFragmentBase {
 
     private MyFriendsRecommendModel model;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

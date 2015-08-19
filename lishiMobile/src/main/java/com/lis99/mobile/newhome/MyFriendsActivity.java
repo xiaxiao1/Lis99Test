@@ -184,24 +184,24 @@ public class MyFriendsActivity extends ActivityPattern1 implements ViewPager.OnP
         {
             case 0:
                 clickAttention();
-//                if ( !attentionFragment.getInitState() )
-//                {
-//                    attentionFragment.getList();
-//                }
+                if ( !attentionFragment.getInitState() )
+                {
+                    attentionFragment.getList();
+                }
                 break;
             case 1:
                 clickFans();
-//                if ( !fansFragment.getInitState() )
-//                {
-//                    fansFragment.getList();
-//                }
+                if ( !fansFragment.getInitState() )
+                {
+                    fansFragment.getList();
+                }
                 break;
             case 2:
                 clickRecommend();
-//                if ( !recommendFragment.getInitState() )
-//                {
-//                    recommendFragment.getList();
-//                }
+                if ( !recommendFragment.getInitState() )
+                {
+                    recommendFragment.getList();
+                }
                 break;
         }
 

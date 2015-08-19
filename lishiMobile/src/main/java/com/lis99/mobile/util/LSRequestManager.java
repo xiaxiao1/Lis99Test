@@ -230,7 +230,8 @@ public class LSRequestManager
 			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
 				RedDotModel model = (RedDotModel) mTask.getResultModel();
-				int num = model.is_baoming + model.is_reply + model.manage_baoming;
+//				相加为0没有通知
+				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow;
 				Common.log("b================" + num);
 				Common.log("model.is_reply" + model.is_reply);
 

@@ -168,7 +168,7 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
                         mineFragment.refreshUser();
                     }
                     //获取红点
-                    mineFragment.getNoticeDot();
+//                    mineFragment.getNoticeDot();
                     tab.visibleRedDot(false);
                     switchContent(mineFragment);
                     break;

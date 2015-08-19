@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,10 +22,7 @@ import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LSCollectionActivity;
 import com.lis99.mobile.entry.LsSettingActivity;
-import com.lis99.mobile.entry.LsUserDraftActivity;
 import com.lis99.mobile.entry.LsUserLikeActivity;
-import com.lis99.mobile.entry.LsUserMsgActivity;
-import com.lis99.mobile.entry.LsUserOrderActivity;
 import com.lis99.mobile.mine.ActivityReplyMine;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSMineApplyActivity;
@@ -75,9 +71,11 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 //	=====3.6.0======
 
 	private RelativeLayout layout_user;
-	private LinearLayout layout_friends;
+	private RelativeLayout layout_friends;
 	private ImageView titleRightImage, titleLeftImage;
+	private boolean isAttention;
 
+	private View v_friend_arrow, v_applyinfo_arrow, v_reply_arrow, v_applymanager_arrow, iv_friendDot;
 
 	public void setTab(LSTab tab)
 	{
@@ -124,6 +122,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 
 			isFounder = false;
 			isAdministrator = false;
+
+			isAttention = false;
+
 			showOrHideViews();
 		}
 		getNoticeDot();
@@ -145,18 +146,6 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v = findViewById(R.id.collectionPanel);
 		v.setOnClickListener(this);
 
-		v = findViewById(R.id.storePanel);
-		v.setOnClickListener(this);
-
-		v = findViewById(R.id.orderPanel);
-		v.setOnClickListener(this);
-
-		v = findViewById(R.id.messagePanel);
-		v.setOnClickListener(this);
-
-		v = findViewById(R.id.draftPanel);
-		v.setOnClickListener(this);
-
 		v = findViewById(R.id.topicPanel);
 		v.setOnClickListener(this);
 
@@ -170,6 +159,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v.setOnClickListener(this);
 
 		managePanel = findViewById(R.id.managePanel);
+		managePanel.setVisibility(View.GONE);
 
 		header = (ImageView) findViewById(R.id.roundedImageView1);
 		nameView = (TextView) findViewById(R.id.nameView);
@@ -193,18 +183,26 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 //		tagView = (TextView) findViewById(R.id.tagTextView6);
 //		tagViews.add(tagView);
 
+
 //		=====3.6.0====
 
 		layout_user = (RelativeLayout) findViewById(R.id.layout_user);
 		layout_user.setOnClickListener(this);
 
-		layout_friends = (LinearLayout) findViewById(R.id.layout_friends);
+		layout_friends = (RelativeLayout) findViewById(R.id.layout_friends);
 		layout_friends.setOnClickListener(this);
 
 		//设置按钮
 		titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
 		titleRightImage.setImageResource(R.drawable.mine_icon_setting);
 		titleRightImage.setOnClickListener(this);
+
+		iv_friendDot = findViewById(R.id.iv_friendDot);
+
+		v_friend_arrow = findViewById(R.id.v_friend_arrow);
+		v_applyinfo_arrow = findViewById(R.id.v_applyinfo_arrow);
+		v_applymanager_arrow = findViewById(R.id.v_applymanager_arrow);
+		v_reply_arrow = findViewById(R.id.v_reply_arrow);
 
 	}
 
@@ -283,6 +281,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			haveApply = data.get("manage_baoming").asBoolean();
 			haveReply = data.get("is_reply").asBoolean();
 			isFounder = data.get("is_creater").asBoolean();
+			//关注
+			isAttention = data.get("is_follow").asBoolean();
 			isAdministrator = data.get("is_admin").asBoolean();
 			postMessage(SHOW_NOTICE);
 		} catch (Exception e)
@@ -361,6 +361,14 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 
 	void showOrHideViews()
 	{
+		//箭头
+		v_friend_arrow.setVisibility(isAttention ? View.GONE : View.VISIBLE);
+		v_reply_arrow.setVisibility(haveReply ? View.GONE : View.VISIBLE);
+		v_applyinfo_arrow.setVisibility(haveApplyInfo ? View.GONE : View.VISIBLE);
+		v_applymanager_arrow.setVisibility(haveApply ? View.GONE : View.VISIBLE);
+
+		//红点
+		iv_friendDot.setVisibility(isAttention ? View.VISIBLE : View.GONE);
 		applyInfoDot.setVisibility(haveApplyInfo ? View.VISIBLE : View.GONE);
 		applyManageDot.setVisibility(haveApply ? View.VISIBLE : View.GONE);
 		replyDot.setVisibility(haveReply ? View.VISIBLE : View.GONE);
@@ -408,23 +416,25 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 				Intent intent = new Intent(getActivity(),
 						LSCollectionActivity.class);
 				startActivity(intent);
-			} else if (v.getId() == R.id.orderPanel)
-			{
-				Intent intent = new Intent(getActivity(),
-						LsUserOrderActivity.class);
-				startActivity(intent);
-			} else if (v.getId() == R.id.messagePanel)
-			{
-				Intent intent = new Intent(getActivity(),
-						LsUserMsgActivity.class);
-				startActivity(intent);
-			} else if (v.getId() == R.id.draftPanel)
-			{
-				Intent intent = new Intent(getActivity(),
-						LsUserDraftActivity.class);
-				startActivity(intent);
-				//设置
-			} else if (v.getId() == R.id.titleRightImage  )
+			}
+//			else if (v.getId() == R.id.orderPanel)
+//			{
+//				Intent intent = new Intent(getActivity(),
+//						LsUserOrderActivity.class);
+//				startActivity(intent);
+//			} else if (v.getId() == R.id.messagePanel)
+//			{
+//				Intent intent = new Intent(getActivity(),
+//						LsUserMsgActivity.class);
+//				startActivity(intent);
+//			} else if (v.getId() == R.id.draftPanel)
+//			{
+//				Intent intent = new Intent(getActivity(),
+//						LsUserDraftActivity.class);
+//				startActivity(intent);
+//				//设置
+//			}
+			else if (v.getId() == R.id.titleRightImage  )
 			{
 				Intent intent = new Intent(getActivity(),
 						LsSettingActivity.class);
