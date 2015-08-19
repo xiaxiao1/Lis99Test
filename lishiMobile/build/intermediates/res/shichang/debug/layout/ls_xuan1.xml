@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ls_color_F7F6F6"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ls_page_title_height"
+        android:background="@color/text_color_blue" >
+
+        <RelativeLayout
+            android:id="@+id/iv_home"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp" >
+
+            <ImageView
+                android:id="@+id/titleLeftImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/ls_page_back_icon"
+                android:scaleType="center" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="选装备"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/filter"
+            android:layout_width="@dimen/ls_page_home_width"
+            android:layout_height="@dimen/ls_page_home_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:src="@drawable/icon_filter" />
+    </RelativeLayout>
+
+   
+     <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/include1"
+        android:background="#fff"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/allPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/allView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="当季流行"
+                android:textColor="@color/text_color_blue"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/allLine"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/allView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/allView"
+                android:background="@color/text_color_blue" />
+        </RelativeLayout>
+        
+        
+        <RelativeLayout
+            android:id="@+id/eventPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/eventView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="热门专辑"
+                android:textColor="#666"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/eventLine"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/eventView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/eventView"
+                android:background="@color/text_color_blue" />
+        </RelativeLayout>
+
+       
+    </LinearLayout>
+    
+      <View
+        android:id="@+id/sepView"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/topPanel"
+        android:background="#e8e8e8" />
+
+    <com.lis99.mobile.entry.view.LazyScrollView
+        android:id="@+id/waterfall_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@+id/waterfall_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            tools:ignore="Orientation" >
+        </LinearLayout>
+    </com.lis99.mobile.entry.view.LazyScrollView>
+
+    <com.lis99.mobile.entry.view.LazyScrollView
+        android:id="@+id/waterfall_scroll1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/waterfall_container1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            tools:ignore="Orientation" >
+        </LinearLayout>
+    </com.lis99.mobile.entry.view.LazyScrollView>
+
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/ls_xuan1.xml -->

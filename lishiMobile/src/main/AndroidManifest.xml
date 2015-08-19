@@ -78,6 +78,7 @@
     <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
     <uses-feature android:name="android.hardware.sensor.accelerometer" />
 
     <supports-screens
@@ -94,7 +95,6 @@
     </meta-data>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
 
     <application
         android:name=".entry.application.DemoApplication"
@@ -807,7 +807,6 @@
             android:name=".newhome.LSEquiFragment"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
-
         <activity
             android:name=".mine.LSMineApplyManageActivity"
             android:screenOrientation="portrait"
@@ -829,36 +828,30 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
 
-        <!--搜索 -->
+        <!-- 搜索 -->
         <activity
             android:name=".search.SearchActivity"
             android:label="@string/title_activity_search"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
-
         <activity
             android:name=".search.SearchInfoClub"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-
         <activity
             android:name=".search.SearchInfoTopic"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:windowSoftInputMode="stateHidden" >
         </activity>
-
         <activity
             android:name=".search.SearchInfoActive"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:windowSoftInputMode="stateHidden" >
         </activity>
 
         <receiver
@@ -952,8 +945,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
-
-
+        <activity
+            android:name=".mine.LSUserHomeActivity"
+            android:label="@string/title_activity_lsuser_home"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

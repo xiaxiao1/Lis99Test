@@ -15,7 +15,7 @@ public abstract class LSBaseActivity extends ActivityPattern {
 	protected final static int SHOW_UI = 2001;
 	ImageView iv_title_bg;
 	ImageView titleLeftImage;
-	TextView titleRightImage;
+	protected TextView titleRightImage;
 	TextView title;
 	RelativeLayout titleRight;
 

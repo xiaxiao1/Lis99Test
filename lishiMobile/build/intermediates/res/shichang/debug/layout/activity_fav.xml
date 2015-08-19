@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FavActivity" >
+
+	<RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ls_page_title_height"
+        android:background="@color/text_color_blue" >
+
+        <ImageView
+            android:id="@+id/iv_home"
+            android:layout_width="20dip"
+            android:layout_height="30dip"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dip"
+            android:background="@drawable/ls_page_back_icon" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="收藏的店铺" />
+
+    </RelativeLayout>
+
+	<ListView
+	    android:id="@+id/listView1"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	</ListView>
+
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/activity_fav.xml -->

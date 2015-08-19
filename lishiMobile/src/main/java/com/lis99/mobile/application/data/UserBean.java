@@ -31,6 +31,16 @@ public class UserBean {
 	private String vtitle;
 	private String mobile;
 
+	private boolean is_follows;
+
+	public boolean isIs_follows() {
+		return is_follows;
+	}
+
+	public void setIsFollowed(boolean isFollowed) {
+		this.is_follows = isFollowed;
+	}
+
 	public String getMobile() {
 		return mobile;
 	}

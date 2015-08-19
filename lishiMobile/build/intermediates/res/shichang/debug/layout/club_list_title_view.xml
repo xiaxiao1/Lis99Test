@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="45dp" 
+    android:gravity="center"
+    android:background="@color/pull_bg">
+    
+    <!-- <View android:background="@color/text_color_blue"
+        android:layout_width="3dp"
+        android:layout_height="14dp"/>
+
+    <TextView
+        android:id="@+id/clubListTitleView"
+        android:layout_marginLeft="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#666"
+        android:singleLine="true"
+        android:textSize="17sp"
+        android:text="人气最旺TOP5" /> -->
+        
+        <ImageView 
+            style="@style/wrap_wrap"
+            android:background="@drawable/recommend_club"
+            android:layout_margin="8dip"
+            />
+
+</LinearLayout>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/club_list_title_view.xml -->

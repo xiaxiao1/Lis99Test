@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <solid android:color="@color/text_color_blue"/>
+    
+    <corners 
+        android:radius="5dp"
+        />
+
+</shape>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable/club_chose_city_text_bg.xml -->

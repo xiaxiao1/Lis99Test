@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:state_selected="true" >
+        <shape >
+            <gradient android:startColor="#ffffff" android:endColor="#ffffff"></gradient>
+            <corners android:radius="15dip"></corners>
+        </shape>
+    </item>
+	
+    <item android:state_selected="false">
+         <shape >
+            <gradient android:startColor="#aaaaaa" android:endColor="#cccccc"></gradient>
+            <corners android:radius="15dip" ></corners>
+            
+        </shape>
+    </item>
+</selector><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable-hdpi/sildeshow_title_point.xml -->

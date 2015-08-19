@@ -1,0 +1,342 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pull_bg"
+    tools:context="${relativePackage}.${activityClass}" >
+
+
+    <ScrollView
+        android:background="@color/title_bar_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:id="@+id/scroll"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dip"
+                 >
+                
+                <LinearLayout 
+                    style="@style/fill_fill"
+                    android:orientation="vertical"
+                    >
+                    
+                    <View 
+                        style="@style/fill_fill"
+                        android:layout_weight="1"
+                        android:background="@color/title_bar_bg"
+                        />
+                    
+                    <View 
+                        style="@style/fill_fill"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        />
+                    
+                </LinearLayout>
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+                    android:id="@+id/roundedImageView1"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/club_icon_header_default"
+                    app:corner_radius="37dp"
+                    app:border_color="#e8e8e8"
+        			app:border_width="1px" 
+        			android:layout_centerInParent="true"
+        			/>
+
+                <TextView
+                    android:id="@+id/nameView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/roundedImageView1"
+                    android:layout_centerHorizontal="true"
+                    android:singleLine="true"
+                    android:text="硬汉连"
+                    android:textColor="#666"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="18dp" >
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="所在地区"
+                        android:textColor="@color/text_color_blue" />
+
+                    <LinearLayout 
+                        style="@style/fill_wrap"
+                        android:orientation="vertical"
+                         android:layout_marginLeft="27dp"
+                        >
+                        
+                        <TextView
+                        android:id="@+id/addressView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/temp_string"
+                        android:textColor="#666" />
+                        
+                        <View
+                            android:layout_marginTop="3dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e8e8e8" />
+                        
+                    </LinearLayout>
+                    
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="18dp" >
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="运动"
+                        android:textColor="@color/text_color_blue" />
+
+                    <LinearLayout 
+                        style="@style/fill_wrap"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="27dp"
+                        >
+                        
+                        <TextView
+                        android:id="@+id/sportView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/temp_string"
+                        android:textColor="#666" />
+                        
+                        <View
+                            android:layout_marginTop="3dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e8e8e8" />
+                        
+                    </LinearLayout>
+                    
+                    
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="18dp" >
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="创立时间"
+                        android:textColor="@color/text_color_blue" />
+
+                    <LinearLayout 
+                        style="@style/fill_wrap"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="27dp"
+                        >
+                        
+                        <TextView
+                        android:id="@+id/timeView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@string/temp_string"
+                        android:textColor="#666" />
+                        
+                        <View
+                            android:layout_marginTop="3dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e8e8e8" />
+                        
+                    </LinearLayout>
+                    
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="112dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="创始人"
+                        android:textColor="@color/text_color_blue"
+                         />
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="27dp"
+                        android:orientation="vertical" >
+
+                        <com.lis99.mobile.club.widget.RoundedImageView
+                            android:id="@+id/founderImageView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ls_nologin_header_icon"
+                            app:corner_radius="@dimen/user_header_corner_radius" 
+                            app:border_color="#e8e8e8"
+        					app:border_width="1px" />
+                        
+                        
+                        <ImageView
+					        android:id="@+id/vipStar"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_alignRight="@id/founderImageView"
+					        android:layout_alignBottom="@id/founderImageView"
+					        android:layout_marginLeft="-8dp"
+					        android:src="@drawable/club_icon_v" />
+
+                        <TextView
+                            android:layout_below="@id/founderImageView"
+                            android:id="@+id/founderView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_horizontal"
+                            android:maxLines="2"
+                            android:text="@string/temp_string"
+                            android:textColor="#666"
+                            android:textSize="12sp" 
+                            android:layout_alignRight="@id/founderImageView"
+                            />
+                        <View
+                            android:layout_below="@id/founderView"
+                            android:layout_alignLeft="@id/founderImageView"
+                            android:layout_marginTop="3dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e8e8e8" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="领队"
+                        android:textColor="@color/text_color_blue" 
+                        android:id="@+id/tv_leader"
+                        />
+
+                    <com.lis99.mobile.view.MyListView
+                        android:layout_toRightOf="@id/tv_leader"
+                        android:id="@+id/listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="27dp"
+                        android:background="#fff"
+                        android:cacheColorHint="#00000000"
+                        android:listSelector="#00000000"
+						style="@style/listViewStyle"
+                         >
+                    </com.lis99.mobile.view.MyListView>
+                    
+                    <View
+                        android:layout_below="@id/listView"
+                        android:layout_alignLeft="@id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e8e8e8" />
+                    
+                </RelativeLayout>
+
+                
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="简介"
+                        android:textColor="@color/text_color_blue"
+                         />
+
+                    <TextView
+                        android:id="@+id/descView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="27dp"
+                        android:text="@string/temp_string_long"
+                        android:lineSpacingExtra="5dip"
+                        android:textColor="#666"
+                         />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e8e8e8" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title" />
+
+</RelativeLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/activity_club_brief.xml -->

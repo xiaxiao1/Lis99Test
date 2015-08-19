@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+ 
+
+    <item android:drawable="@drawable/pinglun_qian" android:state_pressed="false"/>
+    <item android:drawable="@drawable/pinglun_hou" android:state_pressed="true"/>
+
+</selector><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable/button_selector_pl.xml -->

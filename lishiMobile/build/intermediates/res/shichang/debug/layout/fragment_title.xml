@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/titlehead"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="@color/text_color_blue" >
+
+    <RelativeLayout
+        android:id="@+id/titleLeft"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp" >
+
+        <ImageView
+            android:id="@+id/titleLeftImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="center" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/titleRight"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp" >
+
+        <ImageView
+            android:id="@+id/titleRightImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitCenter" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/titleRight"
+        android:layout_toRightOf="@+id/titleLeft"
+        android:gravity="center"
+        android:textColor="#FFF"
+        android:textSize="@dimen/title_text_height" />
+
+</RelativeLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/fragment_title.xml -->

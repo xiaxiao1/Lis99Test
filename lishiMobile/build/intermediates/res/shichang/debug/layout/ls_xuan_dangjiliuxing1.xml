@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lis99.mobile.entry.view.MyLinerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ls_dangji_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+   <com.huewu.pla.lib.MultiColumnListView
+        xmlns:pla="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent" 
+        pla:plaColumnNumber="2"
+        >
+    </com.huewu.pla.lib.MultiColumnListView> 
+    <com.lis99.mobile.entry.view.AutoResizeListView
+            android:id="@+id/ls_remen_lv"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="#00000000"
+            android:dividerHeight="20dp"
+            android:scrollbars="none"
+            android:visibility="gone" >
+        </com.lis99.mobile.entry.view.AutoResizeListView>
+        
+    <!-- <Button 
+        android:id="@+id/ls_more"
+       android:layout_width="fill_parent"
+        android:layout_height="40dp" 
+        android:text="加载更多"
+        android:textColor="@color/black"
+        android:textSize="16sp" /> -->
+
+</com.lis99.mobile.entry.view.MyLinerLayout>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/ls_xuan_dangjiliuxing1.xml -->

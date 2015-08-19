@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="5dip"
+    android:paddingTop="3dip"
+    android:paddingBottom="3dip"
+     >
+
+    <TextView
+        style="@style/fill_wrap"
+        android:layout_weight="3.4" 
+        android:id="@+id/name"
+        android:text="@string/temp_string"
+        android:textColor="@color/color_text"
+        />
+
+    <TextView
+        style="@style/fill_wrap"
+        android:layout_weight="1" 
+        android:id="@+id/value"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="@string/temp_string_long"
+        android:textColor="@color/color_text"
+        />
+    
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/lsclub_apply_info_item.xml -->

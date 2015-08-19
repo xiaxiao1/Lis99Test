@@ -19,6 +19,7 @@ import com.lis99.mobile.club.model.ClubLevelModel;
 import com.lis99.mobile.club.model.ClubLevelModel.Hotclublist;
 import com.lis99.mobile.club.model.LeaderLevelModel;
 import com.lis99.mobile.club.model.LeaderLevelModel.Leaderlist;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 
 public class FragmentLevel extends Fragment{
 
@@ -75,8 +76,12 @@ public class FragmentLevel extends Fragment{
 					if ( leaderAdapter == null ) return;
 					Leaderlist item = (Leaderlist) leaderAdapter.getItem(arg2);
 					clubId = Integer.parseInt(item.club_id);
-					intent = new Intent(getActivity(), LSClubDetailActivity.class);
-					intent.putExtra("clubID", clubId);
+
+
+
+
+					intent = new Intent(getActivity(), LSUserHomeActivity.class);
+					intent.putExtra("userID", item.user_id);
 					startActivity(intent);
 					
 				}

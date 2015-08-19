@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:padding="5dip"
+        android:background="@drawable/normal_bg"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dip"
+             >
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/roundedImageView1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                android:layout_marginLeft="5dip"
+                app:corner_radius="14dp" />
+
+            <ImageView
+                android:id="@+id/vipStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/roundedImageView1"
+                android:layout_alignRight="@id/roundedImageView1"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+            <ImageView
+                android:id="@+id/iv_apply_state"
+                style="@style/wrap_wrap"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="0dip"
+                android:src="@drawable/club_apply_state_wait" />
+
+            <TextView
+                android:id="@+id/nickNameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:layout_toRightOf="@id/roundedImageView1"
+                android:singleLine="true"
+                android:textSize="12sp"
+                android:layout_marginTop="3dip"
+                android:text="@string/temp_string"
+                android:textColor="@color/color_text"
+                 />
+
+            <TextView
+                android:id="@+id/dateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/nickNameView"
+                android:layout_below="@+id/nickNameView"
+                android:layout_toLeftOf="@id/iv_apply_state"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="@string/temp_string"
+                android:textColor="#999"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_marginTop="8dip"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#e8e8e8" />
+        
+        <com.lis99.mobile.view.MyListView 
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip"
+            style="@style/listViewStyle"
+            android:background="@color/white"
+            android:divider="@null"
+            android:id="@+id/list_apply_info"
+            ></com.lis99.mobile.view.MyListView>
+        
+        
+        <RelativeLayout 
+            style="@style/fill_wrap"
+            android:layout_margin="10dip"
+            >
+            
+            <Button 
+                style="@style/wrap_wrap"
+                android:background="@drawable/club_apply_manager_decline"
+                android:id="@+id/btn_decline"
+                android:layout_alignParentRight="true"
+                />
+            
+            <Button 
+                style="@style/wrap_wrap"
+                android:background="@drawable/club_apply_manager_confirm"
+                android:id="@+id/btn_confirm"
+                android:layout_toLeftOf="@id/btn_decline"
+                android:layout_marginRight="15dip"
+                />
+            
+            
+            
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/club_apply_item.xml -->

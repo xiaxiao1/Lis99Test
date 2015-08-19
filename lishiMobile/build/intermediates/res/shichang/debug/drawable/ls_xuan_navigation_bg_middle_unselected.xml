@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <solid android:color="#e9fbfa" />
+
+    <stroke
+        android:width="0.5dp"
+        android:color="@color/text_color_blue" />
+
+    <corners
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
+
+</shape><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable/ls_xuan_navigation_bg_middle_unselected.xml -->

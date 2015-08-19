@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/reply_height"
+    android:orientation="horizontal"
+    android:background="@color/white"
+     >
+    
+    <LinearLayout 
+        style="@style/fill_fill"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+    android:id="@+id/layout_club_detail_like"
+        >
+        
+        <ImageView 
+            style="@style/wrap_wrap"
+            android:src="@drawable/like_button"
+            android:id="@+id/iv_like"
+            />
+        
+        <TextView 
+            android:layout_marginLeft="6dip"
+            style="@style/wrap_wrap"
+            android:id="@+id/tv_like"
+            android:text="1"
+            android:drawablePadding="6dip"
+            android:textColor="#999"
+            android:textSize="12sp"
+            />
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_gravity="center_vertical"
+        android:layout_width="1px"
+        android:layout_height="15dip"
+        android:background="@color/color_1px_stroke"
+        />
+    
+    <LinearLayout 
+        style="@style/fill_fill"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+    android:id="@+id/layout_club_detail_reply"
+        >
+        
+         <TextView 
+            style="@style/wrap_wrap"
+            android:drawableLeft="@drawable/club_detail_reply"
+            android:text="回复"
+            android:drawablePadding="6dip"
+            android:textColor="#999"
+            android:textSize="12sp"
+            />
+        
+    </LinearLayout>
+
+</LinearLayout>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/club_topic_reply.xml -->

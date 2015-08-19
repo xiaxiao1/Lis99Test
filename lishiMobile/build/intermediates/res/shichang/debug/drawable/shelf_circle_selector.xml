@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:state_selected="true" 
+        android:drawable="@drawable/shelf_circle_selected" />
+    <item
+        android:drawable="@drawable/shelf_circle_normal" />
+</selector><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable/shelf_circle_selector.xml -->

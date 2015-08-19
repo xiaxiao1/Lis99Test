@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/BaiduLBS_Android.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3b6762c12e021e9d299bcf0c5cc5c6b76530e2c3">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/BaiduLBS_Android-8e87e586f47c09f287d2ff082766fc8641f4cb43.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/com.haarman.listviewanimations-2.6.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="59351ccb0a1631d30358f6a92749a072f2df7602">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/com.haarman.listviewanimations-2.6.0-9b5efe50c59669e0a8f03c25d16e5ead0520c2d3.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/androidSDKComponent/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0f3fd7d787416c476b01a3672f3a99fb37e5873d">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/classes-2edb8acea3f42fae2d3c27d453c62042ec789450.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/systembartintlibrary.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="386c5164a6b44805156e3e06ee553104016546d0">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/systembartintlibrary-84dc9debdabddffee835ae1fd554835d446ddf68.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/universal-image-loader-1.9.3-with-sources.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="03e3948d42b8d78961a092a184af66bd86da42e6">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/universal-image-loader-1.9.3-with-sources-198fefc3678e7b7c3b962e33ce7145c8af3ef786.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/weiboSDK/unspecified/jars/libs/weibosdkcore.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="bd767db6c90e98697ee1ca76372b806828c6ff50">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/weibosdkcore-5d31150244004b4ac90d77b6df557ddbbecaec8d.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/com.umeng.message.lib_v2.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ed3b01ac86b8ef6ef5f49268ab2638bc63b64dd7">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/com.umeng.message.lib_v2.2.0-3fdc0121d202a93fcaf6d42716c24d508ddbda69.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/smart-view.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8097f570c19fefa37ee3fa236d699bea0606e3c4">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/smart-view-1415b10d5b134f3e970e5da365fd02fa1da0c9f2.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/weiboSDK/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="35e98c120d6390634907e790190e25a36b3f12cc">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/classes-e9c3cda0b05f4ad8f8e64043357e28c79de23397.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/umeng_sdk.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f215292edd3cea48bea39811c7bc814a09d4481a">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/umeng_sdk-79fbb9866d3df576e112b25b6d323e9db1b610a8.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/nineoldandroids.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="302641a4becc017c01e83308ee17a484d6f371cd">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/nineoldandroids-ef6fb5564dddbee43395f2b5cb315124b2233c76.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/libammsdk.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="db6144f812752e2f62b8811c8b9d5e4346fff151">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/libammsdk-3e6d8a9634df9509d8e199c0202fb6f523a314c8.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/alibaba-fastjson-1.1.40.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cf8b196dea0f5efa96adc81c047adf7b3d4633ed">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/alibaba-fastjson-1.1.40-a9e8e59783cbf61da3777b02794e7dbc399fcb03.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/android-async-http-1.4.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/android-async-http-1.4.6-f972fa81f88e31d32ffda278b03a2fbc0487080d.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/commons-lang-2.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0eecdac8c86bc84b4bdfc24371ba8c785a1fc552">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/commons-lang-2.3-08461b289ef335d9f0af6e089684da51f79c7bcd.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/open_sdk_r3922.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="13a285c4f1d9008a90c2f55cf083de391c5dd7ef">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/open_sdk_r3922-346d51a3b8ae66e41a16d09f13850e02ef2b1fd3.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/httpmime-4.1.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e70d34d98f7f7f3b2b92105b9f2fe2a7a7184461">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/httpmime-4.1.3-e57606d7f226ea9e54ff6a18deb3288327ac4a39.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Android-sdks/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/support-v4-19.1.0-d99b0c858e385a51f62996ac21f0e5a004ca94ee.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/commons-io.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5e986a7e4b0472aebe121154178dab2da26a8bf5">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/commons-io-32cfab570244c4df64e4f5f8a1fe26a868fd1c77.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/jackson-core-2.5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b2ece1bd57ac7b4c315b7505b65ac79cb1da4270">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/jackson-core-2.5.0-b382b7adce66803f8ba42f4dae368d13e69ffa09.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/androidSDK/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fdb7c908cac2811769d8a736df0f656e258811b8">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/classes-55a7a1291903b79669d5d43d4782299c6522c63a.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/pinyin4j-2.5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ae353005f973da1cd8545b54354504c2503f6865">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/pinyin4j-2.5.0-5aa8af64f44df495637c112890f4df6c5f4c8b54.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/gson-2.2.4-88978bfa1df1b3b66c17a0d042cfcaea2b2a7270.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/umeng_social_sdk.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d8647fc93fec3ed36c32933348e2d01cfa695be1">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/umeng_social_sdk-a7ddb9131d9ecba39154cc9e74c7a8a558b37672.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/mta-sdk-1.6.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c184c69f43b1fe46390f7123717c65bd844bccb6">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/mta-sdk-1.6.2-39d076da07cc7c306cd37b4d5bb0ee1fed2a8d39.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/jackson-databind-2.5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="489b7552dd3322b63f694122d16ce62c21c303b5">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/jackson-databind-2.5.0-33167c075e6d514dd450c89d24857e349335831f.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/androidSDK/unspecified/jars/libs/commons-httpclient-3.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d6364bcc1b2b2aa69d008602d36a700453648560">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/commons-httpclient-3.0.1-e79314e226f4813ed2d8fe932885f208555b6a0e.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/mUList/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3812b56fe29dd77a479cfa3a275cc34780846a52">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/classes-082ff27be875b4607df47a45192de6db70582af5.jar" />
+    </item>
+    <item
+        jar="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/libs/jackson-annotations-2.5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a2a55a3375bc1cef830ca426d68d2ea22961190e">
+        <dex dex="/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/pre-dexed/shichang/debug/jackson-annotations-2.5.0-c8df37ee023a18ca34f4afb537d33200eed059eb.jar" />
+    </item>
+
+</items>

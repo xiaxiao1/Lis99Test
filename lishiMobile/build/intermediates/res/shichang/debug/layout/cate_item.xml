@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="10dp"
+    android:textSize="16sp" >
+    
+
+</TextView>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/cate_item.xml -->

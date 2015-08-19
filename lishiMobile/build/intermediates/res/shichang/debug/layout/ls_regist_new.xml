@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_height"
+         >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/blue_break"
+            android:scaleType="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="注册"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_text_height" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/login_title"
+        android:layout_marginTop="20dip"
+        />
+    
+     <LinearLayout
+        style="@style/fill_wrap"
+        android:layout_marginLeft="@dimen/login_margin"
+        android:layout_marginRight="@dimen/login_margin"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/login_edit_bg"
+        android:orientation="vertical" >
+
+        <com.lis99.mobile.util.ClearEditText
+            android:id="@+id/ls_regist_email"
+            android:layout_width="fill_parent"
+            android:layout_height="60dip"
+            android:background="@null"
+            android:hint="邮箱"
+            android:textColor="@color/color_six"
+            android:textSize="16sp" 
+            android:singleLine="true"
+            />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="#c5c5c5" />
+
+        <com.lis99.mobile.util.ClearEditText
+            android:id="@+id/ls_regist_password"
+            android:layout_width="fill_parent"
+            android:layout_height="60dip"
+            android:background="@null"
+            android:hint="密码"
+            android:password="true"
+            android:textColor="@color/color_six"
+            android:textSize="16sp" 
+            android:singleLine="true"
+            />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="#c5c5c5" />
+
+        <com.lis99.mobile.util.ClearEditText
+            android:id="@+id/ls_regist_nickname"
+            android:layout_width="fill_parent"
+            android:layout_height="60dip"
+            android:background="@null"
+            android:hint="昵称"
+            android:textColor="@color/color_six"
+            android:textSize="16sp" 
+            android:singleLine="true"
+            />
+    </LinearLayout>
+	
+     <Button 
+         android:id="@+id/ls_regist_bt"
+         android:layout_width="fill_parent"
+                android:layout_height="@dimen/ls_regist_bt_height"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/login_margin"
+                android:layout_marginRight="@dimen/login_margin"
+                android:background="@drawable/ls_login_bt"
+                android:textSize="16sp" />
+     
+     <RelativeLayout 
+         style="@style/fill_wrap"
+         android:layout_height="match_parent"
+         >
+         
+         <TextView 
+             android:visibility="gone"
+             style="@style/wrap_wrap"
+             android:text="注册协议"
+             android:textColor="@color/white"
+             android:layout_centerHorizontal="true"
+             android:layout_alignParentBottom="true"
+             android:layout_marginBottom="20dip"
+             android:id="@+id/tv_regist_deal"
+             />
+         
+     </RelativeLayout>
+
+</LinearLayout>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/ls_regist_new.xml -->
