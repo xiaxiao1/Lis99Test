@@ -112,6 +112,10 @@ public class DynamicActivity extends LSBaseActivity implements
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if ( attentionAdapter == null ) return;
+                MyFriendsRecommendModel.Lists item = (MyFriendsRecommendModel.Lists) attentionAdapter.getItem(i);
+                if ( item == null ) return;
+                Common.goUserHomeActivit(activity, ""+item.user_id);
 
             }
         });

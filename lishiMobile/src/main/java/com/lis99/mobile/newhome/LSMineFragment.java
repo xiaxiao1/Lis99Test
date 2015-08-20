@@ -404,15 +404,21 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	@Override
 	public void onClick(View v)
 	{
-		if (DataManager.getInstance().getUser().getUser_id() != null
-				&& !"".equals(DataManager.getInstance().getUser().getUser_id()))
+		String UserId = DataManager.getInstance().getUser().getUser_id();
+		if ( UserId != null
+				&& !"".equals(UserId))
 		{
 			if (v.getId() == R.id.likePanel)
 			{
 				Intent intent = new Intent(getActivity(),
 						LsUserLikeActivity.class);
 				startActivity(intent);
-			} else if (v.getId() == R.id.collectionPanel)
+			}
+			else if (v.getId() == R.id.layout_user )
+			{
+				Common.goUserHomeActivit(getActivity(), UserId);
+			}
+			else if (v.getId() == R.id.collectionPanel)
 			{
 				Intent intent = new Intent(getActivity(),
 						LSCollectionActivity.class);

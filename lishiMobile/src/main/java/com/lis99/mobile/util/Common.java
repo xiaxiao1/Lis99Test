@@ -15,6 +15,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -282,6 +283,13 @@ public class Common {
     public static void setBtnNoAttention ( Button btn )
     {
         btn.setBackgroundResource(R.drawable.friends_no_attention);
+    }
+/**跳转到个人主页*/
+    public static void goUserHomeActivit ( Activity c, String userId )
+    {
+        Intent intent2 = new Intent(c, LSUserHomeActivity.class);
+        intent2.putExtra("userID", userId);
+        c.startActivity(intent2);
     }
 
 
