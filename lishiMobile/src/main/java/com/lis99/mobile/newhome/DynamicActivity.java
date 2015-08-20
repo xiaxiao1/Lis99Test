@@ -1,8 +1,10 @@
 package com.lis99.mobile.newhome;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -12,6 +14,7 @@ import android.widget.RelativeLayout;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.DynamicListModel;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -106,6 +109,28 @@ public class DynamicActivity extends LSBaseActivity implements
 
         btn_login.setOnClickListener(this);
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+
+        list_dynamic.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if ( adapter == null ) return;
+                DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) adapter.getItem(i);
+                if ( item == null ) return;
+
+                Intent intent = new Intent(activity, LSClubTopicActivity.class);
+                intent.putExtra("topicID", item.topic_id);
+                startActivity(intent);
+
+            }
+        });
+
+
     }
     //动态
     private void getDynamicList ()
@@ -154,12 +179,12 @@ public class DynamicActivity extends LSBaseActivity implements
                 if ( adapter == null )
                 {
                     dPage.setPageSize(model.totalpage);
-                    adapter = new DynamicAdapter(activity, model.topicslist);
+                    adapter = new DynamicAdapter(activity, model.topiclist);
                     list_dynamic.setAdapter(adapter);
                 }
                 else
                 {
-                    adapter.addList(model.topicslist);
+                    adapter.addList(model.topiclist);
                 }
             }
         });

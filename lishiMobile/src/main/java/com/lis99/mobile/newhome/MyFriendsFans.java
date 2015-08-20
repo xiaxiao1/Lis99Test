@@ -59,6 +59,7 @@ public class MyFriendsFans extends MyFragmentBase {
 
         MyFriendsRecommendModel model = new MyFriendsRecommendModel();
 
+//        String url = C.MYFRIENDS_RECOMMED + page.pageNo;
         String url = C.MYFRIENDS_FANS + page.pageNo;
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {

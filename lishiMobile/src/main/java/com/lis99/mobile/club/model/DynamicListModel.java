@@ -11,8 +11,8 @@ public class DynamicListModel extends BaseModel {
     public int total;
     //是否有关注， 0 是没有， 1是有
     public int nofans;
-
-    public ArrayList<Topicslist> topicslist;
+//                              topiclist
+    public ArrayList<Topicslist> topiclist;
 
     public class Topicslist
     {

@@ -90,7 +90,7 @@ public class DynamicAdapter extends MyBaseAdapter {
         holder.tv_info.setText(item.topic_title);
 
         holder.tv_club.setText(item.club_title);
-        holder.tv_reply.setText(item.replytot);
+        holder.tv_reply.setText(""+item.replytot);
         holder.tv_style.setText(item.catename);
 
 

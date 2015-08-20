@@ -2,15 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+        android:background="@color/white"
+    >
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp"
         >
 
     <RelativeLayout
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -42,6 +45,7 @@
     </RelativeLayout>
 
         <RelativeLayout
+            android:layout_marginTop="12dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/layout_user"
@@ -67,6 +71,7 @@
                 />
 
             <TextView
+                android:layout_marginRight="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -78,6 +83,7 @@
                 />
 
             <TextView
+                android:layout_marginRight="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -91,6 +97,7 @@
                 />
 
             <RelativeLayout
+                android:layout_marginRight="12dp"
                 android:layout_marginLeft="12dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -103,13 +110,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/dynamic_item_title"
-                    android:maxLines="2"
-                    android:ellipsize="end"
+                    android:textSize="10sp"
                     android:textColor="#a99c7d"
                     android:text="@string/temp_string_long"
                     android:id="@+id/dynamic_item_title1"
-                    android:layout_marginBottom="-3dp"
-                    android:visibility="invisible"
+                    android:lineSpacingExtra="3dp"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     />
 
                 <com.lis99.mobile.club.widget.RoundedImageView
@@ -117,7 +125,7 @@
                     android:id="@+id/iv_info"
                     android:layout_width="fill_parent"
                     android:layout_height="140dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/ls_nologin_header_icon"
                     app:corner_radius="3dp"
                     app:border_color="#e8e8e8"
@@ -125,15 +133,17 @@
                     />
 
                 <TextView
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/dynamic_item_title"
+                    android:textSize="12sp"
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:textColor="#a99c7d"
                     android:text="@string/temp_string_long"
                     android:id="@+id/dynamic_item_title"
-                    android:layout_marginBottom="-3dp"
                     />
 
 
@@ -151,6 +161,8 @@
                 />
 
             <RelativeLayout
+                android:layout_marginRight="12dp"
+                android:id="@+id/layout_bottom"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="12dp"
                 android:layout_width="fill_parent"
@@ -198,6 +210,14 @@
 
             </RelativeLayout>
 
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/layout_bottom"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_alignLeft="@id/layout_bottom"
+                android:background="#eee"
+                />
 
         </RelativeLayout>
 

@@ -46,7 +46,7 @@ public class MyFriendsAttention extends MyFragmentBase {
 
         model = new MyFriendsAttentionModel();
 
-        String url = C.MYFRIENDS_FANS + page.pageNo;
+        String url = C.MYFRIENDS_ATTENTION + page.pageNo;
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override

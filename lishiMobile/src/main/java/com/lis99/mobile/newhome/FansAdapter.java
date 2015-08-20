@@ -71,7 +71,9 @@ public class FansAdapter extends MyBaseAdapter {
         {
             Common.setBtnAttention(holder.btn_attention);
         }
-        if (!TextUtils.isEmpty(item.headicon) && !holder.roundedImageView.getTag().equals(item.headicon))
+
+        String url = (String) holder.roundedImageView.getTag();
+        if (!TextUtils.isEmpty(item.headicon) && !item.headicon.equals(url))
         {
             holder.roundedImageView.setTag(item.headicon);
             ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView, ImageUtil.getclub_topic_headImageOptions());

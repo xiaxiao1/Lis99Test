@@ -54,6 +54,7 @@ public class AttentionAdapter extends MyBaseAdapter {
 
         holder.btn_attention.setVisibility(View.GONE);
 
+
         holder.tv_name.setText(item.nickname);
         holder.tv_info.setText(item.topic_title);
         if ( item.is_vip == 0 )
@@ -64,7 +65,8 @@ public class AttentionAdapter extends MyBaseAdapter {
             holder.vipStar.setVisibility(View.VISIBLE);
         }
 
-        if (!TextUtils.isEmpty(item.headicon) && !holder.roundedImageView.getTag().equals(item.headicon))
+        String url = (String) holder.roundedImageView.getTag();
+        if (!TextUtils.isEmpty(item.headicon) && !item.headicon.equals(url))
         {
             holder.roundedImageView.setTag(item.headicon);
             ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView, ImageUtil.getclub_topic_headImageOptions());

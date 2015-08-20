@@ -22,4 +22,4 @@
           android:drawable="@drawable/ic_com_sina_weibo_sdk_button_grey_focused" />
     <item android:drawable="@drawable/ic_com_sina_weibo_sdk_button_grey_normal" />
 </selector>
-<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/weiboSDK/src/main/res/drawable/com_sina_weibo_sdk_button_grey.xml -->
+<!-- From: file:/Users/yy/Documents/workspace/lis99/Git/AndroidStudio/weiboSDK/src/main/res/drawable/com_sina_weibo_sdk_button_grey.xml -->
