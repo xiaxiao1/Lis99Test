@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb"
+    android:paddingLeft="5dip"
+    android:paddingRight="5dip"
+    android:paddingTop="5dip"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="@style/fill_wrap"
+        android:background="@drawable/normal_bg"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            style="@style/fill_wrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip" >
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/roundedImageView1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="1px"
+                app:corner_radius="@dimen/user_header_corner_radius" />
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/roundedImageView1"
+                android:ellipsize="middle"
+                android:maxLines="2"
+                android:text="@string/temp_string_long"
+                android:textColor="#666"
+                android:lineSpacingExtra="5dip"
+                />
+
+            <TextView
+                android:id="@+id/dateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/nameView"
+                android:layout_below="@+id/nameView"
+                android:layout_marginTop="0dp"
+                android:singleLine="true"
+                android:text="@string/temp_string"
+                android:textColor="#999"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/vipStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/roundedImageView1"
+                android:layout_alignRight="@id/roundedImageView1"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+            <TextView
+                android:id="@+id/tv_floor"
+                style="@style/wrap_wrap"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/dateView"
+                android:text="2楼"
+                android:textSize="12sp"
+                android:textColor="#999" />
+
+            <TextView
+                android:id="@+id/tv_floor_delete"
+                style="@style/wrap_wrap"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/nameView"
+                android:text="删除"
+                android:textColor="#fe7a60"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line"
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_eee" />
+
+        <LinearLayout
+            android:id="@+id/layoutmore"
+            style="@style/fill_wrap"
+            android:orientation="vertical" 
+            >
+
+            <TextView
+                android:id="@+id/tv_info"
+                style="@style/wrap_wrap"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:drawableRight="@drawable/dot_down"
+                android:textColor="@color/color_nine"
+                android:drawablePadding="5dip"
+                android:text="查看内容" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone" 
+            android:id="@+id/layout1"
+            style="@style/fill_wrap"
+            android:orientation="vertical"
+            >
+
+            <include
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/reply_view"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/mine_reply_view" />
+
+            <TextView
+                android:id="@+id/contentView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/temp_string_long"
+                android:textColor="#666"
+                android:textIsSelectable="true"
+				android:lineSpacingExtra="5dip"                
+                />
+
+            <ImageView
+                android:id="@+id/contentImageView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/club_topic_default" />
+
+            <include
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/reply_height"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                layout="@layout/club_topic_reply" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dip"
+                android:background="#e8e8e8" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/activity_mine_reply_item.xml -->

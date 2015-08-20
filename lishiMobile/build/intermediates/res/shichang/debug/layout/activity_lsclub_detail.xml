@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}"
+    android:background="@color/pull_bg" >
+    
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:orientation="vertical" >
+        
+    
+    <ListView
+        android:background="@color/pull_bg"
+            android:id="@+id/listView"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:listSelector="#00000000" >
+        </ListView>
+                
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+    <Button
+        android:id="@+id/publishButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/club_icon_publish"
+        android:onClick="onClick" />
+    
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/activity_title" />
+    
+    <LinearLayout
+        android:id="@+id/topPanel1"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:layout_below="@id/include1"
+         >
+
+        <RelativeLayout
+            android:id="@+id/allPanel1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/allView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="讨论区"
+                android:textColor="@color/title_bar_bg"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/allLine1"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/title_bar_bg" />
+        </RelativeLayout>
+        
+        
+        <RelativeLayout
+            android:id="@+id/eventPanel1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/eventView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="线路活动"
+                android:textColor="#666"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/eventLine1"
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/title_bar_bg" />
+        </RelativeLayout>
+
+       
+    </LinearLayout>
+	<View
+	    android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/topPanel1"
+        android:background="@color/color_1px_stroke" />
+    
+    
+
+</RelativeLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/activity_lsclub_detail.xml -->

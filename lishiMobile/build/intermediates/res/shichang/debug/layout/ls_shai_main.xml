@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:orientation="horizontal" >
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white" />
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:scaleType="fitXY" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white" />
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:orientation="horizontal" >
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white" />
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white" />
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:orientation="horizontal" >
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv7"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white" />
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv8"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white" />
+
+            <com.lis99.mobile.entry.view.AsyncLoadImageView
+                android:id="@+id/ls_shaitu_iv9"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/ls_shai_main.xml -->

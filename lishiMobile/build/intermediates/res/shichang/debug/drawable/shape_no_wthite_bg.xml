@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid android:color="@color/color_1px_stroke"/>
+    <corners android:radius="@dimen/five"/>
+	<stroke android:width="1px" android:color="@color/color_1px_stroke"/>
+    
+    
+</shape>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable/shape_no_wthite_bg.xml -->

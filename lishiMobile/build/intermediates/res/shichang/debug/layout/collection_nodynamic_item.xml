@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="67dp">
+
+        <ImageView
+            android:id="@+id/headerView"
+            android:layout_marginTop="16dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/normal_plain_bg"
+            android:padding="1px"
+            android:scaleType="fitXY"
+            android:src="@drawable/collection_list_default" />
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/headerView"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/headerView"
+            android:layout_marginTop="-2dp"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#666"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/infoView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/headerView"
+            android:layout_alignLeft="@+id/nameView"
+            android:text="还没有任何动态"
+            android:textColor="#999"
+            android:layout_marginBottom="-2dp"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/collection_nodynamic_item.xml -->

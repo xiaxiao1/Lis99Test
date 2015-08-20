@@ -130,5 +130,6 @@
     <string name="title_activity_search">SearchActivity</string>
 
     <string name="search_hint">搜索俱乐部、话题、线路活动</string>
+    <string name="title_activity_lsuser_home">LSUserHomeActivity</string>
 
 </resources>

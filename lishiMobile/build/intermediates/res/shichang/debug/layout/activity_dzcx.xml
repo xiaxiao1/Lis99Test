@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".DZCXActivity" >
+
+<RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/ls_page_title_height"
+        android:background="@color/text_color_blue" >
+		<LinearLayout 
+		    android:id="@+id/ll_home"
+		    android:layout_height="fill_parent"
+		    android:layout_width="50dip"
+		    android:gravity="center"
+		    android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+        <ImageView
+            
+            android:layout_width="15dip"
+            android:layout_height="25dip"
+            
+            android:layout_marginLeft="15dip"
+            android:background="@drawable/ls_page_back_icon" />
+		</LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="220dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="打折促销"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="220dip"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_height="wrap_content"
+                android:text="南京市白下区中山"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+<ListView
+    android:id="@+id/listView1"
+    android:divider="@null"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+</ListView>
+
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/activity_dzcx.xml -->

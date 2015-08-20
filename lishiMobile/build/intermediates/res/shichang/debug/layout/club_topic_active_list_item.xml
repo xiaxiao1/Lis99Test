@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/pull_bg" >
+
+    <RelativeLayout
+        style="@style/fill_wrap"
+        android:padding="5dip" >
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="120dip"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:border_width="0px"
+            app:corner_radius="5dip" />
+        
+        <com.lis99.mobile.club.widget.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="60dip"
+                android:src="@drawable/shadow_top" 
+                android:scaleType="fitXY"
+                app:corner_radius="5dip"
+                />
+
+        <ImageView
+            android:id="@+id/iv_load"
+            android:layout_marginTop="60dip"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/load_image_temp_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/fill_wrap"
+            android:layout_below="@id/iv_bg"
+            android:layout_marginTop="-4dip"
+            android:background="@drawable/club_active_list_bg"
+            android:ellipsize="end"
+            android:paddingBottom="10dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="13dip"
+            android:singleLine="true"
+            android:text="@string/temp_string_long"
+            android:textColor="#666666"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            style="@style/fill_wrap"
+            android:layout_height="60dip" >
+
+            <TextView
+                android:id="@+id/tv_data"
+                style="@style/wrap_wrap"
+                android:layout_margin="8dip"
+                android:drawableLeft="@drawable/club_active_date"
+                android:drawablePadding="4dip"
+                android:text="@string/temp_string"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_type"
+                style="@style/wrap_wrap"
+                android:layout_below="@id/tv_data"
+                android:layout_marginLeft="8dip"
+                android:drawableLeft="@drawable/club_active_type"
+                android:drawablePadding="4dip"
+                android:text="@string/temp_string"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/club_topic_active_list_item.xml -->

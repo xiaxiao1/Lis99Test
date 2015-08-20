@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                  
+                    android:padding="10dip" >
+
+                    <ImageView
+                        android:id="@+id/iv_user"
+                        android:layout_width="25dip"
+                        android:layout_height="25dip"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/menu_head"
+                        android:layout_marginRight="10dip" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dip"
+                        
+                        android:layout_toRightOf="@+id/iv_user"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/tv_user"
+                                android:layout_width="100dip"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp" 
+                                android:textColor="@color/blue"/>
+
+                            <ImageView
+                                android:id="@+id/iv_star11"
+                                android:layout_width="12dip"
+                                android:layout_height="12dip"
+                                android:layout_marginLeft="10dip"
+                                android:layout_marginRight="2dip"
+                                android:src="@drawable/hwd_large_star_k" />
+
+                            <ImageView
+                                android:id="@+id/iv_star12"
+                                android:layout_width="12dip"
+                                android:layout_height="12dip"
+                                android:layout_marginLeft="3dip"
+                                android:layout_marginRight="2dip"
+                                android:src="@drawable/hwd_large_star_k" />
+
+                            <ImageView
+                                android:id="@+id/iv_star13"
+                               android:layout_width="12dip"
+                                android:layout_height="12dip"
+                                android:layout_marginLeft="3dip"
+                                android:layout_marginRight="2dip"
+                                android:src="@drawable/hwd_large_star_k" />
+
+                            <ImageView
+                                android:id="@+id/iv_star14"
+                               android:layout_width="12dip"
+                                android:layout_height="12dip"
+                                android:layout_marginLeft="3dip"
+                                android:layout_marginRight="2dip"
+                                android:src="@drawable/hwd_large_star_k" />
+
+                            <ImageView
+                                android:id="@+id/iv_star15"
+                              android:layout_width="12dip"
+                                android:layout_height="12dip"
+                                android:layout_marginLeft="3dip"
+                                android:layout_marginRight="2dip"
+                                android:src="@drawable/hwd_large_star_k" />
+
+                            <TextView
+                                android:id="@+id/tv_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dip"
+                                android:maxLines="1" 
+                                android:maxLength="10"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/data_pinglun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    
+                </RelativeLayout>
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/dis_list.xml -->

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+ 
+
+    <item android:drawable="@android:color/transparent" android:state_pressed="false"/>
+
+    <item android:drawable="@color/black" android:state_pressed="true"/>
+
+ 
+
+</selector>
+<!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable/ls_main_bg_item.xml -->

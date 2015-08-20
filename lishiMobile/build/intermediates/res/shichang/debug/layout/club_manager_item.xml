@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:gravity="left" >
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:id="@+id/managerImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ls_nologin_header_icon"
+        app:corner_radius="@dimen/user_header_corner_radius"
+        app:border_color="#e8e8e8"
+        app:border_width="1px" />
+
+    <TextView
+        android:id="@+id/managerView"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:text=""
+        android:textColor="#666"
+        android:textSize="12sp" />
+
+</LinearLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/club_manager_item.xml -->

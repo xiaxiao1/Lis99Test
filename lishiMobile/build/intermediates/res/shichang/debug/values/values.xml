@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/arrays.xml -->
+    <eat-comment/>
+    <string-array name="array_cpt_slide_name">
+        <item>初入紫霞宗</item>
+        <item>举重剑无锋</item>
+        <item>会当凌绝顶</item>
+        <item>一览众山小</item>
+        <item>五行生灭道</item>
+        <item>雷池炼天途</item>
+        <item>金天百战榜</item>
+        <item>白灵生死门</item>
+        <item>诸天气荡荡</item>
+        <item>百阵凌九霄</item>
+        <item>神魔逆大道</item>
+        <item>混沌万世空</item>
+    </string-array>
+    <string-array name="array_explist_child_shu_name">
+        <item>刘备</item>
+        <item>诸葛亮</item>
+        <item>关羽</item>
+        <item>张飞</item>
+        <item>庞统</item>
+        <item>赵云</item>
+        <item>马超</item>
+        <item>黄忠</item>
+        <item>魏延</item>
+        <item>刘禅</item>
+        <item>姜维</item>
+        <item>王平</item>
+        <item>马良</item>
+        <item>蒋琬</item>
+    </string-array>
+    <string-array name="array_explist_child_wei_name">
+        <item>曹操</item>
+        <item>郭嘉</item>
+        <item>张辽</item>
+        <item>司马懿</item>
+        <item>荀彧</item>
+    </string-array>
+    <string-array name="array_explist_child_wu_name">
+        <item>孙坚</item>
+        <item>孙策</item>
+        <item>孙权</item>
+        <item>周瑜</item>
+        <item>鲁肃</item>
+        <item>甘宁</item>
+        <item>太史慈</item>
+    </string-array>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string-array name="cate_items">
+        <item>跑步装备</item>
+        <item>徒步装备</item>
+        <item>登山装备</item>
+        <item>滑雪装备</item>
+        <item>攀岩装备</item>
+        <item>骑行装备</item>
+        <item>自驾露营装备</item>
+        <item>其他装备</item>
+    </string-array>
+    <string-array name="draft_items">
+        <item>保存到草稿箱</item>
+        <item>不保存</item>
+    </string-array>
+    <string-array name="select_head_items">
+        <item>拍摄</item>
+        <item>相册</item>
+    </string-array>
+    <string-array name="share_items">
+        <item>新浪微博</item>
+        <item>微信好友</item>
+        <item>微信朋友圈</item>
+        <item>QQ空间</item>
+        <!--
+        <item>腾讯微博</item> 
+
+
+        -->
+    </string-array>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/mUList/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <attr format="reference" name="absListViewStyle"/>
+    <attr format="reference" name="listViewStyle"/>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/color.xml -->
+    <eat-comment/>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="background_gray_color">#f0f2f1</color>
+    <color name="bantouming">#99999999</color>
+    <color name="black">#000000</color>
+    <color name="blue">@color/text_color_blue</color>
+    <color name="club_active_info_btn_bg">#f4f4f4</color>
+    <color name="color_1px_stroke">#e3dbd0</color>
+    <color name="color_btm_navi_txt_checked">@color/color_white</color>
+    <color name="color_btm_navi_txt_normal">#ffb1c3e7</color>
+    <color name="color_btm_navi_txt_pressed">@color/color_white</color>
+    <color name="color_eee">#eeeeee</color>
+    <color name="color_like_press_red">#fe7a60</color>
+    <color name="color_list_double_list_select_bkg">#ffebebeb</color>
+    <color name="color_list_item_bk_disable">@color/color_white</color>
+    <color name="color_list_item_bk_normal">@color/color_white</color>
+    <color name="color_list_item_bk_pressed">#ffeeeeee</color>
+    <color name="color_list_item_bk_selected">#ffeeeeee</color>
+    <color name="color_nine">#999999</color>
+    <color name="color_shadow">#6036322a</color>
+    <color name="color_six">#73706e</color>
+    <color name="color_tab_unselect">#ac9f92</color>
+    <color name="color_text">#666666</color>
+    <color name="color_touming">#e0ffffff</color>
+    <color name="color_translucence">#a07789ae</color>
+    <color name="color_translucencer">#307789ae</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="color_txt_dark_gray">#ff333333</color>
+    <color name="color_txt_disable">#ff86d1ff</color>
+    <color name="color_txt_gray">#ff666666</color>
+    <color name="color_txt_light_gray">#ff999999</color>
+    <color name="color_view_bkg">#fff5f5f5</color>
+    <color name="color_white">#ffffffff</color>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/weiboSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <color name="com_sina_weibo_sdk_blue">#3B5998</color>
+    <color name="com_sina_weibo_sdk_loginview_text_color">#FFFFFF</color>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/color.xml -->
+    <eat-comment/>
+    <color name="common_black">#4b4b4b</color>
+    <color name="crystal">#00000000</color>
+    <color name="dark_gray">#3a3a3a</color>
+    <color name="dialog_title_blue">#9CCCF7</color>
+    <color name="gray2">#787878</color>
+    <color name="light_gray">#868686</color>
+    <color name="ls_color_2acbc2">@color/text_color_blue</color>
+    <color name="ls_color_DEDEDE">#bcbcbc</color>
+    <color name="ls_color_F7F6F6">#DEDEDE</color>
+    <color name="more_light_gray">#e3e3e3</color>
+    <color name="more_light_gray_tm">#88e3e3e3</color>
+    <color name="most_light_gray">#f0f0f0</color>
+    <color name="normal_gray">#565656</color>
+    <color name="pull_bg">#f7f3ec</color>
+    <color name="pull_text_color">#999999</color>
+    <color name="text_color_blue">#49a34b</color>
+    <color name="text_num_gray">#333</color>
+    <color name="title_bar_bg">#49a34b</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent66">#66000000</color>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_colors.xml -->
+    <eat-comment/>
+    <color name="umeng_socialize_color_group">#2c3035</color>
+    <color name="umeng_socialize_comments_bg">#F4F4F4</color>
+    <color name="umeng_socialize_divider">#E6E6E6</color>
+    <color name="umeng_socialize_edit_bg">#C4C4C4</color>
+    <color name="umeng_socialize_grid_divider_line">#f7f3ec</color>
+    <color name="umeng_socialize_list_item_bgcolor">#FFFFFF</color>
+    <color name="umeng_socialize_list_item_textcolor">#333333</color>
+    <color name="umeng_socialize_text_friends_list">#959696</color>
+    <color name="umeng_socialize_text_share_content">#666666</color>
+    <color name="umeng_socialize_text_time">#999999</color>
+    <color name="umeng_socialize_text_title">#464f61</color>
+    <color name="umeng_socialize_text_ucenter">#595959</color>
+    <color name="umeng_socialize_ucenter_bg">#EEEEEE</color>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/color.xml -->
+    <eat-comment/>
+    <color name="white">#ffffff</color>
+    <declare-styleable name="AbsListView"><attr format="color|reference" name="listSelector"/><attr format="boolean" name="drawSelectorOnTop"/><attr format="boolean" name="stackFromBottom"/><attr format="boolean" name="scrollingCache"/><attr format="boolean" name="textFilterEnabled"/><attr name="transcriptMode"><enum name="disabled" value="0"/><enum name="normal" value="1"/><enum name="alwaysScroll" value="2"/></attr><attr format="color" name="cacheColorHint"/><attr format="boolean" name="fastScrollEnabled"/><attr format="boolean" name="smoothScrollbar"/><attr name="choiceMode"><enum name="none" value="0"/><enum name="singleChoice" value="1"/><enum name="multipleChoice" value="2"/><enum name="multipleChoiceModal" value="3"/></attr><attr format="boolean" name="fastScrollAlwaysVisible"/></declare-styleable>
+    <declare-styleable name="ListView"><attr format="dimension" name="dividerHeight"/><attr format="boolean" name="headerDividersEnabled"/><attr format="boolean" name="footerDividersEnabled"/><attr format="reference|color" name="overScrollHeader"/><attr format="reference|color" name="overScrollFooter"/></declare-styleable>
+    <declare-styleable name="MultiColumnListView"><attr format="integer" name="plaColumnNumber"/><attr format="integer" name="plaLandscapeColumnNumber"/><attr format="dimension" name="plaColumnPaddingLeft"/><attr format="dimension" name="plaColumnPaddingRight"/></declare-styleable>
+    <declare-styleable name="PullToRefreshView"><attr format="dimension" name="ptrHeight"/><attr format="dimension" name="ptrSpinnerMarginRight"/><attr format="dimension" name="ptrArrowMarginRight"/><attr format="dimension" name="ptrTextSize"/><attr format="dimension" name="ptrLastUpdateTextSize"/></declare-styleable>
+    <declare-styleable name="RoundedImageView"><attr format="dimension" name="corner_radius"/><attr format="dimension" name="border_width"/><attr format="color" name="border_color"/><attr format="boolean" name="round_background"/><attr format="boolean" name="is_oval"/><attr name="android:scaleType"/></declare-styleable>
+    <declare-styleable name="View"><attr format="reference" name="id"/><attr format="string" name="tag"/><attr format="dimension" name="scrollX"/><attr format="dimension" name="scrollY"/><attr format="dimension" name="padding"/><attr format="dimension" name="paddingLeft"/><attr format="dimension" name="paddingTop"/><attr format="dimension" name="paddingRight"/><attr format="dimension" name="paddingBottom"/><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr format="boolean" name="focusable"/><attr format="boolean" name="focusableInTouchMode"/><attr name="visibility"><enum name="visible" value="0"/><enum name="invisible" value="1"/><enum name="gone" value="2"/></attr><attr format="boolean" name="fitsSystemWindows"/><attr name="scrollbars"><flag name="none" value="0x00000000"/><flag name="horizontal" value="0x00000100"/><flag name="vertical" value="0x00000200"/></attr><attr name="scrollbarStyle"><enum name="insideOverlay" value="0x0"/><enum name="insideInset" value="0x01000000"/><enum name="outsideOverlay" value="0x02000000"/><enum name="outsideInset" value="0x03000000"/></attr><attr format="boolean" name="isScrollContainer"/><attr format="boolean" name="fadeScrollbars"/><attr format="integer" name="scrollbarFadeDuration"/><attr format="integer" name="scrollbarDefaultDelayBeforeFade"/><attr format="dimension" name="scrollbarSize"/><attr format="reference" name="scrollbarThumbHorizontal"/><attr format="reference" name="scrollbarThumbVertical"/><attr format="reference" name="scrollbarTrackHorizontal"/><attr format="reference" name="scrollbarTrackVertical"/><attr format="boolean" name="scrollbarAlwaysDrawHorizontalTrack"/><attr format="boolean" name="scrollbarAlwaysDrawVerticalTrack"/><attr name="fadingEdge"><flag name="none" value="0x00000000"/><flag name="horizontal" value="0x00001000"/><flag name="vertical" value="0x00002000"/></attr><attr name="requiresFadingEdge"><flag name="none" value="0x00000000"/><flag name="horizontal" value="0x00001000"/><flag name="vertical" value="0x00002000"/></attr><attr format="dimension" name="fadingEdgeLength"/><attr format="reference" name="nextFocusLeft"/><attr format="reference" name="nextFocusRight"/><attr format="reference" name="nextFocusUp"/><attr format="reference" name="nextFocusDown"/><attr format="reference" name="nextFocusForward"/><attr format="boolean" name="clickable"/><attr format="boolean" name="longClickable"/><attr format="boolean" name="saveEnabled"/><attr format="boolean" name="filterTouchesWhenObscured"/><attr name="drawingCacheQuality"><enum name="auto" value="0"/><enum name="low" value="1"/><enum name="high" value="2"/></attr><attr format="boolean" name="keepScreenOn"/><attr format="boolean" name="duplicateParentState"/><attr format="dimension" name="minHeight"/><attr format="dimension" name="minWidth"/><attr format="boolean" name="soundEffectsEnabled"/><attr format="boolean" name="hapticFeedbackEnabled"/><attr format="string" localization="suggested" name="contentDescription"/><attr format="string" name="onClick"/><attr name="overScrollMode"><enum name="always" value="0"/><enum name="ifContentScrolls" value="1"/><enum name="never" value="2"/></attr><attr format="float" name="alpha"/><attr format="dimension" name="translationX"/><attr format="dimension" name="translationY"/><attr format="dimension" name="transformPivotX"/><attr format="dimension" name="transformPivotY"/><attr format="float" name="rotation"/><attr format="float" name="rotationX"/><attr format="float" name="rotationY"/><attr format="float" name="scaleX"/><attr format="float" name="scaleY"/><attr name="verticalScrollbarPosition"><enum name="defaultPosition" value="0"/><enum name="left" value="1"/><enum name="right" value="2"/></attr><attr name="layerType"><enum name="none" value="0"/><enum name="software" value="1"/><enum name="hardware" value="2"/></attr><attr name="layoutDirection"><enum name="ltr" value="0"/><enum name="rtl" value="1"/><enum name="inherit" value="2"/><enum name="locale" value="3"/></attr><attr format="integer" name="textDirection"><enum name="inherit" value="0"/><enum name="firstStrong" value="1"/><enum name="anyRtl" value="2"/><enum name="ltr" value="3"/><enum name="rtl" value="4"/><enum name="locale" value="5"/></attr><attr format="integer" name="textAlignment"><enum name="inherit" value="0"/><enum name="gravity" value="1"/><enum name="textStart" value="2"/><enum name="textEnd" value="3"/><enum name="center" value="4"/><enum name="viewStart" value="5"/><enum name="viewEnd" value="6"/></attr><attr format="integer" name="importantForAccessibility"><enum name="auto" value="0"/><enum name="yes" value="1"/><enum name="no" value="2"/></attr><attr format="integer" name="accessibilityFocusable"><enum name="auto" value="0"/><enum name="yes" value="1"/><enum name="no" value="2"/></attr></declare-styleable>
+    <declare-styleable name="ViewGroup"><attr format="boolean" name="animateLayoutChanges"/><attr format="boolean" name="clipChildren"/><attr format="boolean" name="clipToPadding"/><attr format="reference" name="layoutAnimation"/><attr format="boolean" name="animationCache"/><attr name="persistentDrawingCache"><flag name="none" value="0x0"/><flag name="animation" value="0x1"/><flag name="scrolling" value="0x2"/><flag name="all" value="0x3"/></attr><attr format="boolean" name="alwaysDrawnWithCache"/><attr format="boolean" name="addStatesFromChildren"/><attr name="descendantFocusability"><enum name="beforeDescendants" value="0"/><enum name="afterDescendants" value="1"/><enum name="blocksDescendants" value="2"/></attr><attr format="boolean" name="splitMotionEvents"/></declare-styleable>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_strings.xml -->
+    <eat-comment/>
+    <dimen name="alphabet_size">12dip</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="appraice_size">160dip</dimen>
+    <dimen name="bottom_bar_height">50dp</dimen>
+    <dimen name="choiceness_height">170dip</dimen>
+    <dimen name="choiceness_height_bg">171dip</dimen>
+    <dimen name="club_banner_indicate_height">2dp</dimen>
+    <dimen name="club_banner_indicate_margin">2.5dp</dimen>
+    <dimen name="club_banner_indicate_width">10dp</dimen>
+    <dimen name="club_detail_head_height">160dip</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/weiboSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="com_sina_weibo_sdk_loginview_compound_drawable_padding">12dp</dimen>
+    <dimen name="com_sina_weibo_sdk_loginview_padding">12dip</dimen>
+    <dimen name="com_sina_weibo_sdk_loginview_padding_bottom">6dp</dimen>
+    <dimen name="com_sina_weibo_sdk_loginview_padding_left">12dip</dimen>
+    <dimen name="com_sina_weibo_sdk_loginview_padding_right">16dp</dimen>
+    <dimen name="com_sina_weibo_sdk_loginview_padding_top">6dp</dimen>
+    <dimen name="com_sina_weibo_sdk_loginview_text_size">16.0sp</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="common_big_margin">11dp</dimen>
+    <dimen name="common_margin">9dp</dimen>
+    <dimen name="five">5dip</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/mUList/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="login_edit_height">50dip</dimen>
+    <dimen name="login_margin">40dip</dimen>
+    <dimen name="ls_like_share_height">70dp</dimen>
+    <dimen name="ls_login_qq_height">45dp</dimen>
+    <dimen name="ls_login_qq_width">45dp</dimen>
+    <dimen name="ls_main_item_height">65dp</dimen>
+    <dimen name="ls_menu_item_tv_sp">18sp</dimen>
+    <dimen name="ls_nologin_bar_height">55dp</dimen>
+    <dimen name="ls_nologin_header_height">45dp</dimen>
+    <dimen name="ls_nologin_header_width">45dp</dimen>
+    <dimen name="ls_page_home_height">50dp</dimen>
+    <dimen name="ls_page_home_width">50dp</dimen>
+    <dimen name="ls_page_title_height">60dp</dimen>
+    <dimen name="ls_regist_bg_height">150dp</dimen>
+    <dimen name="ls_regist_bg_height1">50dp</dimen>
+    <dimen name="ls_regist_bt_height">50dp</dimen>
+    <dimen name="ls_setting_bt_height">35dp</dimen>
+    <dimen name="ls_setting_bt_radius">15dp</dimen>
+    <dimen name="ls_setting_bt_top">20dp</dimen>
+    <dimen name="ls_setting_bt_width">120dp</dimen>
+    <dimen name="ls_shai_marginleft">30dp</dimen>
+    <dimen name="ls_shai_marginright1">60dp</dimen>
+    <dimen name="ls_shai_marginright2">8dp</dimen>
+    <dimen name="ls_shai_margintop">150dp</dimen>
+    <dimen name="ls_shai_text1">32sp</dimen>
+    <dimen name="ls_shai_text2">16sp</dimen>
+    <dimen name="ls_sildeshow_point_height">20dp</dimen>
+    <dimen name="ls_startup_ad_heigt">50dp</dimen>
+    <dimen name="ls_startup_ad_width">240dp</dimen>
+    <dimen name="ls_startup_bt_bottom">50dp</dimen>
+    <dimen name="ls_startup_bt_height">44dp</dimen>
+    <dimen name="ls_startup_bt_size">16sp</dimen>
+    <dimen name="ls_startup_bt_width">120dp</dimen>
+    <dimen name="ls_startup_logo_height">70dp</dimen>
+    <dimen name="ls_startup_logo_top">100dp</dimen>
+    <dimen name="ls_startup_logo_width">240dp</dimen>
+    <dimen name="ls_text_14sp">14sp</dimen>
+    <dimen name="ls_text_16sp">16sp</dimen>
+    <dimen name="ls_text_18sp">18sp</dimen>
+    <dimen name="ls_title_bar_height">60dp</dimen>
+    <dimen name="ls_title_header_height">45dp</dimen>
+    <dimen name="ls_title_header_width">45dp</dimen>
+    <dimen name="ls_title_logo_height">35dp</dimen>
+    <dimen name="ls_title_logo_width">160dp</dimen>
+    <dimen name="ls_wen_cate_item_height">100dp</dimen>
+    <dimen name="ls_wen_cate_item_textsize">18sp</dimen>
+    <dimen name="ls_wen_tiwen_bottom">60dp</dimen>
+    <dimen name="ls_wen_tiwen_height">40dp</dimen>
+    <dimen name="ls_xuan_menu_height">35dp</dimen>
+    <dimen name="ls_xuan_navigation_height">45dp</dimen>
+    <dimen name="pull_down_img_size">16dip</dimen>
+    <dimen name="reply_height">26dip</dimen>
+    <dimen name="service_icon_higth">50dp</dimen>
+    <dimen name="service_icon_width">50dp</dimen>
+    <dimen name="tab_height">60dip</dimen>
+    <dimen name="ten">10dip</dimen>
+    <dimen name="text_large">16sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="title_height">50dip</dimen>
+    <dimen name="title_text_height">18sp</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_strings.xml -->
+    <eat-comment/>
+    <dimen name="umeng_socialize_pad_window_height">350dip</dimen>
+    <dimen name="umeng_socialize_pad_window_width">580dip</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="user_header_corner_radius">10dp</dimen>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/ids.xml -->
+    <eat-comment/>
+    <item name="scrapped_view" type="id"/>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_settings">Settings</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/androidSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <string name="add">发表</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">砾石</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/androidSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <string name="authorize">授权</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="club_detail_like_num">0</string>
+    <string name="club_detail_title">帖子详情</string>
+    <string name="club_detail_title_click">双击此处回到1楼</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_strings.xml -->
+    <eat-comment/>
+    <string name="com_facebook_loading">Loading...</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/weiboSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <string name="com_sina_weibo_sdk_login">登录</string>
+    <string name="com_sina_weibo_sdk_login_with_weibo_account">用微博登录</string>
+    <string name="com_sina_weibo_sdk_logout">注销</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/androidSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <string name="common">常用接口</string>
+    <string name="delauthorize">注销</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="dianpu">全部店铺</string>
+    <string name="diqu">全部地区</string>
+    <string name="discount">打折促销</string>
+    <string name="feedback1">详细描述您的问题，我们会尽快解决</string>
+    <string name="feedback2">填写您的QQ或是手机号，方便我们联系您</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="huwai">户外店</string>
+    <string name="isLast">已经是最后一页</string>
+    <string name="juli">距离最近</string>
+    <string name="lasttime_refresh">上次更新：</string>
+    <string name="lj_false">网络不给力啊！</string>
+    <string name="moren">默认排序</string>
+    <string name="network_error">网络好像有问题</string>
+    <string name="paixu">默认排序</string>
+    <string name="password_yes">yes</string>
+    <string name="pingjia">总体评价</string>
+    <string name="ptr_last_updated">Updated: %1$s</string>
+    <string name="ptr_loading">Loading</string>
+    <string name="ptr_pull_to_refresh">Pull to refresh</string>
+    <string name="ptr_release_to_refresh">Release to refresh</string>
+    <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
+    <string name="pull_to_refresh_footer_refreshing_label">加载中\u2026</string>
+    <string name="pull_to_refresh_footer_release_label">松开后加载</string>
+    <string name="pull_to_refresh_pull_label">下拉以更新...</string>
+    <string name="pull_to_refresh_refreshing_label">正在更新...</string>
+    <string name="pull_to_refresh_release_label">释放以更新...</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_strings.xml -->
+    <eat-comment/>
+    <string name="pull_to_refresh_tap_label" translatable="false">点击刷新</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="qita">其他</string>
+    <string name="quxiao">取消</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/androidSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <string name="readd">一键转播</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="renqi">人气高低</string>
+    <string name="search_hint">搜索俱乐部、话题、线路活动</string>
+    <string name="search_label">xxxs</string>
+    <string name="sending">数据加载中...</string>
+    <string name="shangchang">商场店</string>
+    <string name="str_toast_click_anzai">去首页“关于作者及源码下载”下载源码吧！</string>
+    <string name="temp_string">砾石俱乐部</string>
+    <string name="temp_string_long">砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部</string>
+    <string name="title_activity_baidu_map">BaiduMapActivity</string>
+    <string name="title_activity_city_list">CityListActivity</string>
+    <string name="title_activity_club_brief">ClubBriefActivity</string>
+    <string name="title_activity_club_my_topic">ClubMyTopicActivity</string>
+    <string name="title_activity_dis">DisActivity</string>
+    <string name="title_activity_dpcw">DPCWActivity</string>
+    <string name="title_activity_dzcx">DZCXActivity</string>
+    <string name="title_activity_fav">FavActivity</string>
+    <string name="title_activity_goods_detail">GoodsDetailActivity</string>
+    <string name="title_activity_loc">LocActivity</string>
+    <string name="title_activity_ls">LsActivity</string>
+    <string name="title_activity_ls_activity_detail">LsActivityDetail</string>
+    <string name="title_activity_ls_activity_equip">LsActivityEquip</string>
+    <string name="title_activity_ls_buy">LsBuyActivity</string>
+    <string name="title_activity_ls_equi_cate">LsEquiCateActivity</string>
+    <string name="title_activity_ls_equi_filter">LsEquiFilterActivity</string>
+    <string name="title_activity_ls_line_big_image">LsLineBigImageActivity</string>
+    <string name="title_activity_ls_line_gallery">LsLineGalleryActivity</string>
+    <string name="title_activity_lsclub_apply">LSClubApplyActivity</string>
+    <string name="title_activity_lsclub_apply_list">LSClubApplyListActivity</string>
+    <string name="title_activity_lsclub_city_list_activity">LSClubCityListActivityActivity</string>
+    <string name="title_activity_lsclub_detail">LSClubDetailActivity</string>
+    <string name="title_activity_lsclub_level">LSClubActivityLevel</string>
+    <string name="title_activity_lsclub_list">LSClubListActivity</string>
+    <string name="title_activity_lsclub_publish">LSClubPublishActivity</string>
+    <string name="title_activity_lsclub_publish2">LSClubPublish2Activity</string>
+    <string name="title_activity_lsclub_topic">LSClubTopicActivity</string>
+    <string name="title_activity_lsclub_topic_reply">LSClubTopicReplyActivity</string>
+    <string name="title_activity_lscollection">LSCollectionActivity</string>
+    <string name="title_activity_lsskiing_park">LSSkiingParkActivity</string>
+    <string name="title_activity_lsuser_home">LSUserHomeActivity</string>
+    <string name="title_activity_lsweb">LSWebActivity</string>
+    <string name="title_activity_lsweixin_login">LSWeixinLoginActivity</string>
+    <string name="title_activity_new_home">NewHomeActivity</string>
+    <string name="title_activity_pj">PJActivity</string>
+    <string name="title_activity_qiang">QiangActivity</string>
+    <string name="title_activity_qt">QTActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_shop_detail">ShopDetailActivity</string>
+    <string name="title_activity_shop_detail_map">ShopDetailMapActivity</string>
+    <string name="title_activity_shop_detail_type">ShopDetailTYPEActivity</string>
+    <string name="tv_chanping">主营产品</string>
+    <string name="tv_pingpai">主营品牌</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_strings.xml -->
+    <eat-comment/>
+    <string name="umeng_example_home_btn_plus">社交分享</string>
+    <string name="umeng_socialize_back" translatable="false">返回</string>
+    <string name="umeng_socialize_cancel_btn_str">取消</string>
+    <string name="umeng_socialize_comment" translatable="false">评论</string>
+    <string name="umeng_socialize_comment_detail" translatable="false">评论详情</string>
+    <string name="umeng_socialize_content_hint">说点啥…</string>
+    <string name="umeng_socialize_friends" translatable="false">关注的好友</string>
+    <string name="umeng_socialize_img_des"/>
+    <string name="umeng_socialize_login">登录</string>
+    <string name="umeng_socialize_login_qq">QQ空间</string>
+    <string name="umeng_socialize_msg_hor" translatable="false">小时前</string>
+    <string name="umeng_socialize_msg_min" translatable="false">分钟前</string>
+    <string name="umeng_socialize_msg_sec" translatable="false">秒前</string>
+    <string name="umeng_socialize_near_At" translatable="false">最近\@的好友</string>
+    <string name="umeng_socialize_network_break_alert" translatable="false">请连接网络后再尝试！</string>
+    <string name="umeng_socialize_send" translatable="false">发布</string>
+    <string name="umeng_socialize_send_btn_str">发送</string>
+    <string name="umeng_socialize_share">分享</string>
+    <string name="umeng_socialize_share_content">友盟社会化组件（SDK）让移动应用快速整合社交分享功能，我们简化了社交平台的接入，为开发者提供坚实的基础服务。（一）支持各大主流社交平台， 
+												（二）支持图片、文字、gif动图、音频、视频；@好友，关注官方微博等功能。
+												（三）提供详尽的后台用户社交行为分析。www.umeng.com/social</string>
+    <string name="umeng_socialize_text_add_custom_platform">请配置用户平台</string>
+    <string name="umeng_socialize_text_authorize">授权</string>
+    <string name="umeng_socialize_text_choose_account">选择已有帐号登录</string>
+    <string name="umeng_socialize_text_comment_hint">说点什么吧…</string>
+    <string name="umeng_socialize_text_douban_key">豆瓣网</string>
+    <string name="umeng_socialize_text_friend_list">好友列表</string>
+    <string name="umeng_socialize_text_loading_message">载入中,请稍候...</string>
+    <string name="umeng_socialize_text_login_fail">登录失败了，请重试</string>
+    <string name="umeng_socialize_text_qq_key">QQ</string>
+    <string name="umeng_socialize_text_qq_zone_key">QQ空间</string>
+    <string name="umeng_socialize_text_renren_key">人人网</string>
+    <string name="umeng_socialize_text_sina_key">新浪微博</string>
+    <string name="umeng_socialize_text_tencent_key">腾讯微博</string>
+    <string name="umeng_socialize_text_tencent_no_connection">无法连接到腾讯微博客户端</string>
+    <string name="umeng_socialize_text_tencent_no_install">未安装腾讯微博客户端</string>
+    <string name="umeng_socialize_text_tencent_oauth_login_fail">授权登录失败</string>
+    <string name="umeng_socialize_text_tencent_version_no_match">版本不匹配，SSO只对微博客户端V3.8.1及以上的版本提供支持</string>
+    <string name="umeng_socialize_text_ucenter">个人中心</string>
+    <string name="umeng_socialize_text_unauthorize">未授权</string>
+    <string name="umeng_socialize_text_visitor">游客</string>
+    <string name="umeng_socialize_text_waitting">请稍候...</string>
+    <string name="umeng_socialize_text_waitting_message">,请稍候...</string>
+    <string name="umeng_socialize_text_waitting_qq">跳转QQ中，请稍候...</string>
+    <string name="umeng_socialize_text_waitting_redirect">跳转</string>
+    <string name="umeng_socialize_text_waitting_share">分享中…</string>
+    <string name="umeng_socialize_text_waitting_weixin">跳转微信中，请稍候...</string>
+    <string name="umeng_socialize_text_waitting_weixin_circle">跳转朋友圈中，请稍候...</string>
+    <string name="umeng_socialize_text_waitting_yixin">跳转易信中，请稍候...</string>
+    <string name="umeng_socialize_text_waitting_yixin_circle">跳转易信朋友圈中，请稍候...</string>
+    <string name="umeng_socialize_text_weixin_circle_key">微信朋友圈</string>
+    <string name="umeng_socialize_text_weixin_key">微信</string>
+    <string name="umeng_socialize_tip_blacklist" translatable="false">对不起，因为违反了用户协议您已被禁言.</string>
+    <string name="umeng_socialize_tip_loginfailed" translatable="false">登录失败…</string>
+    <string name="umeng_socialize_ucenter_login_title_guide" translatable="false">游客登录</string>
+    <string name="umeng_socialize_ucenter_login_title_platform" translatable="false">登录帐号</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="weizhi">地理位置错误</string>
+    <string name="wusuju">无数据</string>
+    <string name="xinxi">店铺信息错误</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xujudian">雪具店</string>
+    <string name="yiguan">店铺已关</string>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="MMFontTitleInList">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#ff595c61</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="MMListCatalog">
+        <item name="android:textSize">14.0dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/text_color_blue</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="MMListItem">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">4.0dip</item>
+        <item name="android:paddingTop">4.0dip</item>
+        <item name="android:paddingRight">4.0dip</item>
+        <item name="android:paddingBottom">4.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="PopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_style.xml -->
+    <eat-comment/>
+    <style name="Theme.UMDefault" parent="android:style/Theme.NoTitleBar"/>
+    <style name="Theme.UMDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/build/intermediates/exploded-aar/lishi_android_studio/weiboSDK/unspecified/res/values/values.xml -->
+    <eat-comment/>
+    <style name="com_sina_weibo_sdk_loginview_default_style" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/com_sina_weibo_sdk_loginview_padding_left</item>
+        <item name="android:paddingTop">@dimen/com_sina_weibo_sdk_loginview_padding_top</item>
+        <item name="android:paddingRight">@dimen/com_sina_weibo_sdk_loginview_padding_right</item>
+        <item name="android:paddingBottom">@dimen/com_sina_weibo_sdk_loginview_padding_bottom</item>
+        <item name="android:drawableLeft">@drawable/ic_com_sina_weibo_sdk_logo</item>
+        <item name="android:drawablePadding">@dimen/com_sina_weibo_sdk_loginview_compound_drawable_padding</item>
+        <item name="android:background">@drawable/com_sina_weibo_sdk_button_blue</item>
+        <item name="android:textColor">@color/com_sina_weibo_sdk_loginview_text_color</item>
+        <item name="android:textSize">@dimen/com_sina_weibo_sdk_loginview_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/com_sina_weibo_sdk_login_with_weibo_account</item>
+    </style>
+    <style name="com_sina_weibo_sdk_loginview_silver_style" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/com_sina_weibo_sdk_loginview_padding_left</item>
+        <item name="android:paddingTop">@dimen/com_sina_weibo_sdk_loginview_padding_top</item>
+        <item name="android:paddingRight">@dimen/com_sina_weibo_sdk_loginview_padding_right</item>
+        <item name="android:paddingBottom">@dimen/com_sina_weibo_sdk_loginview_padding_bottom</item>
+        <item name="android:drawableLeft">@drawable/ic_com_sina_weibo_sdk_logo</item>
+        <item name="android:drawablePadding">@dimen/com_sina_weibo_sdk_loginview_compound_drawable_padding</item>
+        <item name="android:background">@drawable/com_sina_weibo_sdk_button_grey</item>
+        <item name="android:textColor">#4B5164</item>
+        <item name="android:textSize">@dimen/com_sina_weibo_sdk_loginview_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/com_sina_weibo_sdk_login_with_weibo_account</item>
+    </style>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="common_big_black_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/common_black</item>
+    </style>
+    <style name="common_big_blue_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+    <style name="common_big_gray_text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/gray2</item>
+    </style>
+    <style name="common_black_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/common_black</item>
+    </style>
+    <style name="common_blue_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+    <style name="common_gray_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray2</item>
+    </style>
+    <style name="fill_fill">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="fill_wrap">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="item_body">
+        <item name="android:textColor">#000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="listViewStyle" parent="@fill_wrap">
+        <item name="android:listSelector">#00000000</item>
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+    <style name="scroll" parent="@fill_fill">
+        <item name="android:scrollbars">none</item>
+    </style>
+    <style name="server_dialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/crystal</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="text_large" parent="@fill_wrap">
+        <item name="android:textColor">@color/color_six</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+    <style name="text_small" parent="@fill_wrap">
+        <item name="android:textColor">@color/color_nine</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+    <style name="theme_dialog_alert" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/umeng_socialize_style.xml -->
+    <eat-comment/>
+    <style name="umeng_socialize_action_bar_item_im">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="umeng_socialize_action_bar_item_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:text">999</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="umeng_socialize_action_bar_itemlayout">
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="umeng_socialize_dialog_anim_fade">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_fade_out</item>
+    </style>
+    <style name="umeng_socialize_dialog_animations">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_slide_out_from_bottom</item>
+    </style>
+    <style name="umeng_socialize_divider">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/umeng_socialize_divider</item>
+    </style>
+    <style name="umeng_socialize_edit_padding">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@color/umeng_socialize_list_item_bgcolor</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_marginRight">6dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+    <style name="umeng_socialize_list_item">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:background">@color/umeng_socialize_list_item_bgcolor</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+    </style>
+    <style name="umeng_socialize_popup_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+    <style name="umeng_socialize_popup_dialog_anim" parent="@style/umeng_socialize_popup_dialog">
+        <item name="android:windowAnimationStyle">@style/umeng_socialize_dialog_animations</item>
+    </style>
+    <style name="umeng_socialize_shareboard_animation">
+        <item name="android:windowEnterAnimation">@anim/umeng_socialize_shareboard_animation_in</item>
+        <item name="android:windowExitAnimation">@anim/umeng_socialize_shareboard_animation_out</item>
+    </style>
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="wrap_fill">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="wrap_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>

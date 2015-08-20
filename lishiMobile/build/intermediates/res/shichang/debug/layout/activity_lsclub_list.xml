@@ -1,0 +1,196 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout 
+    android:id="@+id/titlehead"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="@color/text_color_blue" >
+
+    <RelativeLayout
+        android:id="@+id/titleLeft"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/titleLeftImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ls_page_back_icon" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/titleRight"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        
+        
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_text_height" />
+    
+
+</RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/titlehead"
+        android:background="#fff"
+        android:orientation="horizontal" >
+    
+         <RelativeLayout
+            android:id="@+id/cityPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/cityView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="同城俱乐部"
+                android:textColor="@color/text_color_blue"
+                 />
+
+            <View
+                android:id="@+id/cityLine"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/cityView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/cityView"
+                android:background="@color/text_color_blue" />
+        </RelativeLayout>
+        
+          <RelativeLayout
+            android:id="@+id/allPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/allView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="砾石俱乐部"
+                android:textColor="#666"
+                 />
+
+            <View
+                android:id="@+id/allLine"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/allView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/allView"
+                android:background="@color/text_color_blue" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/brandPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/brandView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="品牌俱乐部"
+                android:textColor="#666"
+                 />
+
+            <View
+                android:id="@+id/brandLine"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/brandView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/brandView"
+                android:background="@color/text_color_blue" />
+        </RelativeLayout>
+        
+        
+       
+
+       
+    </LinearLayout>
+
+    <View
+        android:id="@+id/sepView"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/topPanel"
+        android:background="#e8e8e8" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sepView"
+        android:cacheColorHint="#00000000"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:dividerHeight="0dp"
+        android:listSelector="#00000000" >
+    </ListView>
+    
+    <TextView
+            android:id="@+id/locView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topPanel"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/club_chose_city_text_bg"
+            android:textColor="#fff"
+            android:drawableRight="@drawable/icon_city_right_arrow"
+            android:drawablePadding="5dp"
+            android:layout_centerVertical="true" />
+    
+    <TextView android:id="@+id/noClubView"
+        android:textSize="15sp"
+        android:textColor="#999"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="抱歉，当前城市没有俱乐部，您可以尝试切换到附近的城市"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+</RelativeLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/activity_lsclub_list.xml -->

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/normal_bg" >
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/roundedImageView1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/club_icon_header_default"
+            app:border_color="#e8e8e8"
+            app:border_width="1px"
+            app:corner_radius="20dp" />
+
+        <TextView
+            android:id="@+id/infoPreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/roundedImageView1"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/roundedImageView1"
+            android:text="活动领队"
+            android:textColor="#666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/timeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/roundedImageView1"
+            android:layout_alignLeft="@+id/infoPreView"
+            android:text="报名时间：2014-11-12 12:30"
+            android:textColor="#999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/infoView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/infoPreView"
+            android:layout_toRightOf="@+id/infoPreView"
+            android:text="不建议您参加"
+            android:textColor="#fe2a00"
+            android:textSize="14sp" />
+        
+        
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/roundedImageView1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" 
+        android:background="@drawable/mine_apply_message_bg"
+        android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="渡水复渡水，看花还看花，春风江上路，不觉太君假"
+                android:maxLines="2"
+                android:textColor="#999"
+                android:textSize="12sp"
+                android:gravity="center_vertical" 
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="10dp"/>
+            
+    </LinearLayout>
+        
+        
+        <View android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:layout_below="@+id/linearLayout1"/>
+        
+    </RelativeLayout>
+
+    
+
+</RelativeLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/ls_mine_apply_item.xml -->

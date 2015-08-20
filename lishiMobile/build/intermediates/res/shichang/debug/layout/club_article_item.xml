@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:background="#fff">
+
+    <LinearLayout
+        android:id="@+id/titleLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/eventImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/club_icon_eventarticle"
+            android:paddingLeft="0dp"
+            android:paddingRight="6dp" />
+
+        <ImageView
+            android:id="@+id/newImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:paddingRight="6dp"
+            android:src="@drawable/club_icon_newarticle" />
+
+        <ImageView
+            android:id="@+id/climbImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:paddingRight="6dp"
+            android:src="@drawable/club_icon_climbarticle" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/temp_string"
+            android:textColor="#666"
+            android:textSize="15sp" />
+    </LinearLayout>
+    
+    <TextView
+            android:id="@+id/infoView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleLinearLayout"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:text="@string/temp_string"
+            android:textColor="#bbb"
+            android:textSize="13sp" />
+    
+    <TextView
+            android:id="@+id/replyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignTop="@+id/infoView"
+            android:singleLine="true"
+            android:text="0条"
+            android:textColor="@color/text_color_blue"
+            android:drawableLeft="@drawable/club_icon_reply"
+            android:drawablePadding="5dp"
+            android:textSize="13sp" />
+    
+    <TextView 
+        style="@style/wrap_wrap"
+            android:textColor="#bbb"
+            android:textSize="13sp"
+            android:id="@+id/tv_time"
+            android:text=""
+            android:layout_toLeftOf="@id/replyView"
+            android:layout_marginRight="10dip"
+            android:layout_alignTop="@id/replyView"
+        />
+    
+    
+    <View android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/infoView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#e8e8e8"/>
+    
+
+</RelativeLayout><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/layout/club_article_item.xml -->

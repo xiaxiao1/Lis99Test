@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape>
+            <solid android:color="#d0cfce" />
+        </shape>
+    </item>
+    <item
+        android:bottom="1px"
+        android:top="1px">
+        <shape>
+            <solid android:color="#fff" />
+        </shape>
+    </item>
+
+</layer-list><!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/lishiMobile/src/main/res/drawable/stepper_text_bg.xml -->
