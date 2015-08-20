@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.lis99.mobile.util.Common;
 
 import java.net.URLDecoder;
+import java.util.List;
 
 public class UserBean {
 
@@ -13,6 +14,8 @@ public class UserBean {
 		return "UserBean [nickname=" + nickname + ", email=" + email
 				+ ", user_id=" + user_id + "]";
 	}
+
+	private List<String> tags;
 
 	private String nickname;
 	private String email;
@@ -33,6 +36,13 @@ public class UserBean {
 
 	private int follows;
 
+	public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
 
 	public int getFollows() {
 		return follows;

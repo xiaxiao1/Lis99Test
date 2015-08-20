@@ -28,6 +28,7 @@ import com.lis99.mobile.mine.ActivityReplyMine;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSMineApplyActivity;
 import com.lis99.mobile.mine.LSMineApplyManageActivity;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -424,6 +425,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 				// applyManageDot.setVisibility(View.GONE);
 				Intent intent = new Intent(getActivity(),
 						LSMineApplyManageActivity.class);
+				startActivity(intent);
+			} else if (v.getId() == R.id.roundedImageView1) {
+				Intent intent = new Intent(getActivity(), LSUserHomeActivity.class);
+				intent.putExtra("userID", DataManager.getInstance().getUser().getUser_id());
 				startActivity(intent);
 			}
 		} else

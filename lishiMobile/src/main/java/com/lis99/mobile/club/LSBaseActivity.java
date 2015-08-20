@@ -17,7 +17,7 @@ public abstract class LSBaseActivity extends ActivityPattern {
 	protected ImageView titleLeftImage;
 	protected TextView titleRightImage;
 	TextView title;
-	RelativeLayout titleRight;
+	protected RelativeLayout titleRight;
 
 	protected void initViews(){
 		StatusUtil.setStatusBar(this);

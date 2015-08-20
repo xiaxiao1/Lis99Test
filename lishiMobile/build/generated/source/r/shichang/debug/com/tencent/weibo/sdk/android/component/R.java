@@ -8,7 +8,7 @@ package com.tencent.weibo.sdk.android.component;
 
 public final class R {
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f0200f0;
+		public static final int ic_launcher = 0x7f0200f1;
 	}
 	public static final class id {
 		public static final int add = 0x7f0b02fc;

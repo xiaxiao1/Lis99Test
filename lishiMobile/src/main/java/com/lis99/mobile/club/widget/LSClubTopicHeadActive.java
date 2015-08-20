@@ -24,6 +24,7 @@ import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
@@ -116,6 +117,7 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 
 		roundedImageView1 = (RoundedImageView) v
 				.findViewById(R.id.roundedImageView1);
+		roundedImageView1.setOnClickListener(this);
 
 		titleView = (TextView) v.findViewById(R.id.titleView);
 		nameView = (TextView) v.findViewById(R.id.nameView);
@@ -203,6 +205,13 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 				lsTopic.showReplyPanel();
 				break;
 			// 活动详情
+			case R.id.roundedImageView1:
+			{
+				Intent intent2 = new Intent(c, LSUserHomeActivity.class);
+				intent2.putExtra("userID", clubhead.user_id);
+				c.startActivity(intent2);
+			}
+			break;
 			case R.id.layout_detail:
 				Intent i = new Intent(c, LSClubActiveDetail.class);
 				i.putExtra("topic_id", clubhead.topic_id);

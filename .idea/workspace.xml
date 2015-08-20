@@ -21,13 +21,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="912ca511-18b9-4612-8598-2c5eb52b658a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/bg_user_home_top.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/ActivityPattern1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/ActivityPattern1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/equip/ActivityTest.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/equip/ActivityTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/AdapterMineReplyItem$ItemOnclick$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/AdapterMineReplyItem$ItemOnclick$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/AdapterMineReplyItem.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/AdapterMineReplyItem.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/BannerView.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/BannerView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/engine/base/BaseActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/engine/base/BaseActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/DialogManager$CountryAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/DialogManager$CountryAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/DialogManager.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/DialogManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/BigImageAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/BigImageAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/mypic/ChildAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/mypic/ChildAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ClearEditText.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ClearEditText.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/CollectionAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/CollectionAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/DisAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/DisAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/FavAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/FavAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/GalleryAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/GalleryAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/mypic/GroupAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/mypic/GroupAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/ImageAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/ImageAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ImageUtil.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ImageUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSBaseActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSBaseActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubActiveDetail.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubActiveDetail.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubDetailActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubDetailActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubEventApplyerAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubEventApplyerAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubGridViewAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubGridViewAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubLevelAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubLevelAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubLevelLeaderAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubLevelLeaderAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubManagerGridViewAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubManagerGridViewAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubPublish2Activity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubPublish2Activity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubRecommendAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubRecommendAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubTopicActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubTopicActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$3$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$3$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$4.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$CommentOnClickListener.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$CommentOnClickListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter$ViewHolder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead$1$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHead.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHeadActive$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHeadActive$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHeadActive$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHeadActive$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHeadActive.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSClubTopicHeadActive.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubTopicInfoLocation.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubTopicInfoLocation.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubTopicReplyActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/LSClubTopicReplyActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSEditTextWithClearButton.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LSEditTextWithClearButton.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSEquiFragment$ZhuangbeiAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSEquiFragment$ZhuangbeiAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSEquiFragment.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSEquiFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSFragment.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/LSMineApplyAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/LSMineApplyAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/LSMineApplyManageAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/LSMineApplyManageAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSMineFragment$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSMineFragment$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSMineFragment.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSMineFragment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSMyTopicAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/adapter/LSMyTopicAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShakeFragment$5.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShakeFragment$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShakeFragment$6.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShakeFragment$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$10.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$7.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$8.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$9.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSShopFragment$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSSkiingParkAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSSkiingParkAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSTab.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/LSTab.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$3.class" />
@@ -35,20 +91,75 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$5.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$6.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSUserHomeActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityElect$IineInfoAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityElect$IineInfoAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityElect.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityElect.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityEquip.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityEquip.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityInfo.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityItem$ItemInfoAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityItem$ItemInfoAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/LSUserHomeAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/adapter/LSUserHomeAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSWeixinLoginActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/mine/LSWeixinLoginActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LevelTabs.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/LevelTabs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/scroll/LoadingLayout.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/scroll/LoadingLayout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$5.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$6.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$7.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$8.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LocActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsActivityDetail$4.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsActivityDetail$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityElect$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityElect$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityItem$5.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityItem$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityItem.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityItem.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityLines$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityLines$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityLines.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityLines.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityPlan.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityPlan.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityResult$ItemInfoAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityResult$ItemInfoAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityResult$PhaseInfoAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityResult$PhaseInfoAdapter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityResult.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityResult.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityRs.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityRs.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/QiangActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/QiangActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityRules$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsActivityRules$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAnswerDetailActivity$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAnswerDetailActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAnswerDetailActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAnswerDetailActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAskDetailActivity$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAskDetailActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAskDetailActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsAskDetailActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$10.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$7.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$8.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$9.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsBuyActivity$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/LsBuyAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/adapter/LsBuyAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsDarenTiwenActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsDarenTiwenActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsEquiCateActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/LsEquiCateActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsEquiFilterActivity$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsEquiFilterActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsEquiFilterActivity$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsEquiFilterActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsSettingPushActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsSettingPushActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsSettingShareActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsSettingShareActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsShakesActivity$5.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsShakesActivity$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsShakesActivity$6.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsShakesActivity$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsTiwenActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsTiwenActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsUserLikeActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsUserLikeActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsUserMsgActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsUserMsgActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsUserOrderActivity$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsUserOrderActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/weibo/LsWeiboWeixin$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/weibo/LsWeiboWeixin$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/weibo/LsWeiboWeixin.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/weibo/LsWeiboWeixin.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsWenActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsWenActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity$ZhuangbeiAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity$ZhuangbeiAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity1$ZhuangbeiAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity1$ZhuangbeiAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsXuanActivity1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsZhuanjiDetail$CateAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsZhuanjiDetail$CateAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsZhuanjiDetail.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/LsZhuanjiDetail.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/MainActivity$MenuAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/MainActivity$MenuAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/MainActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/webview/MyActivityWebView.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/webview/MyActivityWebView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/view/MyIcon.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/view/MyIcon.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/NewHomeActivity$MenuAdapter.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/NewHomeActivity$MenuAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/NewHomeActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/newhome/NewHomeActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$1.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$4.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$5.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/PJActivity$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/PullDownToRefreshView.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/PullDownToRefreshView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/PullToRefreshView.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/PullToRefreshView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/scroll/PullToRefreshView.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/entry/view/scroll/PullToRefreshView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/QiangActivity$5.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/QiangActivity$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/QiangActivity$6.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/QiangActivity$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/huewu/pla/R$drawable.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/huewu/pla/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$drawable.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/sina/weibo/sdk/R$drawable.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/sina/weibo/sdk/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/tencent/weibo/sdk/android/component/R$drawable.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/tencent/weibo/sdk/android/component/R$drawable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/tencent/weibo/sdk/androidd/R$drawable.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/tencent/weibo/sdk/androidd/R$drawable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$id.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$id.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$layout.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$layout.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$menu.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$menu.class" />
@@ -58,8 +169,20 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$styleable.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$styleable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$xml.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R$xml.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ShareManager$4$2.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ShareManager$4$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ShareManager$4$3.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ShareManager$4$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ShareManager.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/util/ShareManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$18.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$18.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$19.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$19.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$20.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$20.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$24.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$24.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$25.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailActivity$25.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailMapActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailMapActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailTYPEActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/ShopDetailTYPEActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/Stepper.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/Stepper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/choiceness/SubjectActivity.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/choiceness/SubjectActivity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/application/data/UserBean.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/application/data/UserBean.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/ioscitychoose/WheelView.class" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/classes/shichang/debug/com/lis99/mobile/club/widget/ioscitychoose/WheelView.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/dex/shichang/debug/classes.dex" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/dex/shichang/debug/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
@@ -67,17 +190,21 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/outputs/apk/lishiMobile-shichang-debug-unaligned.apk" afterPath="$PROJECT_DIR$/lishiMobile/build/outputs/apk/lishiMobile-shichang-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/resources/resources-shichang-debug.ap_" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/resources/resources-shichang-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSBaseActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSBaseActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSMineFragment.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSMineFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSUserHomeActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSUserHomeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/huewu/pla/R.java" afterPath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/huewu/pla/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/lis99/mobile/R.java" afterPath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/lis99/mobile/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/sina/weibo/sdk/R.java" afterPath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/sina/weibo/sdk/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/tencent/weibo/sdk/android/component/R.java" afterPath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/tencent/weibo/sdk/android/component/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/tencent/weibo/sdk/androidd/R.java" afterPath="$PROJECT_DIR$/lishiMobile/build/generated/source/r/shichang/debug/com/tencent/weibo/sdk/androidd/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/symbols/shichang/debug/R.txt" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/symbols/shichang/debug/R.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/application/data/UserBean.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/application/data/UserBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/res/shichang/debug/layout/activity_lsuser_home.xml" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/res/shichang/debug/layout/activity_lsuser_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/res/shichang/debug/layout/ls_user_home_topic_item.xml" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/res/shichang/debug/layout/ls_user_home_topic_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_user_home_topic_item.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_user_home_topic_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build/intermediates/incremental/mergeResources/shichang/debug/merger.xml" afterPath="$PROJECT_DIR$/lishiMobile/build/intermediates/incremental/mergeResources/shichang/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lishi_android_studio.iws" />
@@ -107,114 +234,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LSClubDetailActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubDetailActivity.java">
+      <file leaf-file-name="LSClubTopicActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubTopicActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.814815">
-              <caret line="237" column="16" selection-start-line="237" selection-start-column="16" selection-end-line="240" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-10.222222">
+              <caret line="541" column="9" selection-start-line="541" selection-start-column="9" selection-end-line="541" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LSUserHomeAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/adapter/LSUserHomeAdapter.java">
+      <file leaf-file-name="LSClubTopicHeadActive.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.555555">
+              <caret line="215" column="67" selection-start-line="215" selection-start-column="67" selection-end-line="215" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LSClubTopicHead.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="10.407408">
+              <caret line="307" column="46" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClubTopicDetailHead.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubTopicDetailHead.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="82" selection-start-line="66" selection-start-column="82" selection-end-line="66" selection-end-column="82" />
+              <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/application/data/UserBean.java">
+      <file leaf-file-name="LSClubTopicCommentAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.444445">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state vertical-scroll-proportion="114.96296">
+              <caret line="233" column="62" selection-start-line="233" selection-start-column="62" selection-end-line="233" selection-end-column="62" />
               <folding>
-                <element signature="e#900#901#0" expanded="true" />
-                <element signature="e#924#925#0" expanded="true" />
-                <element signature="e#974#975#0" expanded="true" />
-                <element signature="e#1009#1010#0" expanded="true" />
+                <element signature="e#10033#10532#0" expanded="true" />
+                <element signature="e#10531#10532#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ls_user_home_topic_item.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_user_home_topic_item.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.172414">
-              <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_page_top.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.0689654">
-              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LSBaseActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSBaseActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33259913">
-              <caret line="86" column="17" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="17" />
-              <folding>
-                <element signature="e#2023#2024#0" expanded="true" />
-                <element signature="e#2038#2039#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_lsuser_home.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.275862">
-              <caret line="88" column="53" selection-start-line="88" selection-start-column="53" selection-end-line="88" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LSUserHomeActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LSUserHomeActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSUserHomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.037037">
-              <caret line="161" column="74" selection-start-line="161" selection-start-column="74" selection-end-line="161" selection-end-column="74" />
+            <state vertical-scroll-proportion="0.33264032">
+              <caret line="314" column="0" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4285#4823#0" expanded="true" />
-                <element signature="e#4822#4823#0" expanded="true" />
+                <element signature="e#7350#7351#0" expanded="true" />
+                <element signature="e#7383#7384#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivityReplyMine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/ActivityReplyMine.java">
+      <file leaf-file-name="LSMineFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSMineFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state vertical-scroll-proportion="-63.37037">
+              <caret line="432" column="13" selection-start-line="432" selection-start-column="13" selection-end-line="432" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -6224,11 +6315,15 @@
         <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/adapter/LSUserHomeAdapter.java" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/C.java" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/FragmentLevel.java" />
-        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSBaseActivity.java" />
-        <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml" />
-        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/application/data/UserBean.java" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_user_home_topic_item.xml" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/application/data/UserBean.java" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.java" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSMineFragment.java" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSBaseActivity.java" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSUserHomeActivity.java" />
       </list>
     </option>
@@ -6272,7 +6367,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -6323,24 +6419,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishi_android_studio" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishiMobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -6439,11 +6517,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adapter" />
+              <option name="myItemId" value="club" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -6481,8 +6555,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -6723,8 +6796,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -6732,7 +6805,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28417265" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33021584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -6748,68 +6821,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/androidSDKComponent/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSLoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="729" column="45" selection-start-line="726" selection-start-column="43" selection-end-line="729" selection-end-column="45" />
-          <folding>
-            <element signature="e#16034#16050#0" expanded="false" />
-            <element signature="e#25736#25752#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSPhoneRegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSWeixinLoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="4" selection-start-line="83" selection-start-column="4" selection-end-line="100" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/androidSDKComponent/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSLoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="500" column="59" selection-start-line="500" selection-start-column="54" selection-end-line="500" selection-end-column="59" />
-          <folding>
-            <element signature="e#16034#16050#0" expanded="false" />
-            <element signature="e#25736#25752#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSPhoneRegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSWeixinLoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -6867,14 +6883,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.96036583">
           <caret line="42" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="117" selection-end-column="17" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/AndroidManifest.xml">
@@ -6886,14 +6902,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_user_home_topic_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/drawable/bg_user_topic_item.xml">
@@ -6949,13 +6965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSMineFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08759124">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSLoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.518248">
@@ -6988,7 +6997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="79" column="5" selection-start-line="20" selection-start-column="4" selection-end-line="79" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -7006,30 +7014,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/fragment_club.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="412" column="62" selection-start-line="412" selection-start-column="43" selection-end-line="412" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3219#3220#0" expanded="false" />
-            <element signature="e#3266#3267#0" expanded="false" />
-            <element signature="e#3585#3586#0" expanded="false" />
-            <element signature="e#3635#3636#0" expanded="false" />
-            <element signature="e#14848#14849#0" expanded="false" />
-            <element signature="e#14885#14886#0" expanded="false" />
-          </folding>
-        </state>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubFragmentAdapter.java">
@@ -7065,99 +7057,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/NewHomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="23" selection-start-line="123" selection-start-column="23" selection-end-line="123" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#21392#21393#0" expanded="false" />
-            <element signature="e#21468#21469#0" expanded="false" />
-            <element signature="e#21519#21520#0" expanded="false" />
-            <element signature="e#21551#21552#0" expanded="false" />
-            <element signature="e#21616#21617#0" expanded="false" />
-            <element signature="e#21655#21656#0" expanded="false" />
-            <element signature="e#21720#21721#0" expanded="false" />
-            <element signature="e#21752#21753#0" expanded="false" />
-            <element signature="e#27628#27629#0" expanded="false" />
-            <element signature="e#27660#27661#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_title.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7574124">
           <caret line="65" column="17" selection-start-line="1" selection-start-column="0" selection-end-line="65" selection-end-column="17" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_header_view.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_header_view.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3638814">
           <caret line="9" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="197" selection-end-column="19" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/application/data/UserBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.444445">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="e#900#901#0" expanded="true" />
-            <element signature="e#924#925#0" expanded="true" />
-            <element signature="e#974#975#0" expanded="true" />
-            <element signature="e#1009#1010#0" expanded="true" />
-          </folding>
-        </state>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lishiMobile/libs/universal-image-loader-1.9.3-with-sources.jar!/com/nostra13/universalimageloader/core/ImageLoader.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41463414">
           <caret line="165" column="16" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0689654">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_user_home_topic_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.172414">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.275862">
-          <caret line="88" column="53" selection-start-line="88" selection-start-column="53" selection-end-line="88" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -7181,16 +7106,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2554#2570#0" expanded="false" />
+            <element signature="e#2862#3396#0" expanded="false" />
+            <element signature="e#3395#3396#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.814815">
+        <state vertical-scroll-proportion="0.0">
           <caret line="237" column="16" selection-start-line="237" selection-start-column="16" selection-end-line="240" selection-end-column="52" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#4085#4086#0" expanded="false" />
+            <element signature="e#4136#4137#0" expanded="false" />
+            <element signature="e#9835#9836#0" expanded="false" />
+            <element signature="e#9862#9863#0" expanded="false" />
+            <element signature="e#17742#17743#0" expanded="false" />
+            <element signature="e#17771#17772#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15328467">
+          <caret line="110" column="40" selection-start-line="110" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/NewHomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/fragment_mine.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3887195">
+          <caret line="169" column="31" selection-start-line="60" selection-start-column="15" selection-end-line="169" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54268295">
+          <caret line="88" column="53" selection-start-line="88" selection-start-column="53" selection-end-line="88" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/application/data/UserBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42043796">
+          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+          <folding>
+            <element signature="e#803#804#0" expanded="false" />
+            <element signature="e#821#822#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -7198,38 +7182,119 @@
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/adapter/LSUserHomeAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="82" selection-start-line="66" selection-start-column="82" selection-end-line="66" selection-end-column="82" />
+          <caret line="47" column="84" selection-start-line="47" selection-start-column="84" selection-end-line="47" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/user_page_top.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.840708">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_user_home_topic_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0689654">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubTopicReplyList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55093557">
+          <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubTopicActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5592515">
-          <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+        <state vertical-scroll-proportion="-10.222222">
+          <caret line="541" column="9" selection-start-line="541" selection-start-column="9" selection-end-line="541" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.555555">
+          <caret line="215" column="67" selection-start-line="215" selection-start-column="67" selection-end-line="215" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Android-sdks/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0-sources.jar!/android/support/v4/app/Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33264032">
+          <caret line="1127" column="16" selection-start-line="1127" selection-start-column="16" selection-end-line="1127" selection-end-column="16" />
+          <folding>
+            <element signature="e#41895#41896#0" expanded="false" />
+            <element signature="e#41925#41926#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSMineFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-63.37037">
+          <caret line="432" column="13" selection-start-line="432" selection-start-column="13" selection-end-line="432" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSBaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4054054">
+          <caret line="44" column="18" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="114.96296">
+          <caret line="233" column="62" selection-start-line="233" selection-start-column="62" selection-end-line="233" selection-end-column="62" />
+          <folding>
+            <element signature="e#10033#10532#0" expanded="true" />
+            <element signature="e#10531#10532#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubTopicDetailHead.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="10.407408">
+          <caret line="307" column="46" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/mine/LSUserHomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.037037">
-          <caret line="161" column="74" selection-start-line="161" selection-start-column="74" selection-end-line="161" selection-end-column="74" />
+        <state vertical-scroll-proportion="0.33264032">
+          <caret line="314" column="0" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4285#4823#0" expanded="true" />
-            <element signature="e#4822#4823#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSBaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33259913">
-          <caret line="86" column="17" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="17" />
-          <folding>
-            <element signature="e#2023#2024#0" expanded="true" />
-            <element signature="e#2038#2039#0" expanded="true" />
+            <element signature="e#7350#7351#0" expanded="true" />
+            <element signature="e#7383#7384#0" expanded="true" />
           </folding>
         </state>
       </provider>

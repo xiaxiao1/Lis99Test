@@ -123,9 +123,9 @@ public final class R {
 	public static final class drawable {
 		public static final int ad_button_015_refresh_down_arrow = 0x7f020005;
 		public static final int arrow = 0x7f02000c;
-		public static final int ic_launcher = 0x7f0200f0;
-		public static final int updating = 0x7f0202a1;
-		public static final int updating_spinner = 0x7f0202a2;
+		public static final int ic_launcher = 0x7f0200f1;
+		public static final int updating = 0x7f0202a2;
+		public static final int updating_spinner = 0x7f0202a3;
 	}
 	public static final class id {
 		public static final int afterDescendants = 0x7f0b002d;

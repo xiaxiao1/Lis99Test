@@ -87,6 +87,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     private UserBean user;
 
+    List<TextView> tagViews = new ArrayList<TextView>();
+
     private void buildOptions() {
         options = ImageUtil.getImageOptionClubIcon();
     }
@@ -173,6 +175,20 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         noteView = (TextView) headViewMain.findViewById(R.id.noteView);
 
 
+        TextView tagView = (TextView) headViewMain.findViewById(R.id.tagTextView1);
+        tagViews.add(tagView);
+        tagView = (TextView) headViewMain.findViewById(R.id.tagTextView2);
+        tagViews.add(tagView);
+        tagView = (TextView) headViewMain.findViewById(R.id.tagTextView3);
+        tagViews.add(tagView);
+        tagView = (TextView) headViewMain.findViewById(R.id.tagTextView4);
+        tagViews.add(tagView);
+        tagView = (TextView) headViewMain.findViewById(R.id.tagTextView5);
+        tagViews.add(tagView);
+        tagView = (TextView) headViewMain.findViewById(R.id.tagTextView6);
+        tagViews.add(tagView);
+
+
 
         listView.addHeaderView(headViewMain);
 
@@ -203,6 +219,27 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         });
 
     }
+
+
+    private void setTags(List<String> tags)
+    {
+        if (tags == null) {
+            tags = new ArrayList<String>();
+        }
+        for (int i = 0; i < tagViews.size(); ++i)
+        {
+            TextView tagView = tagViews.get(i);
+            if (tags.size() > i)
+            {
+                tagView.setVisibility(View.VISIBLE);
+                tagView.setText(tags.get(i));
+            } else
+            {
+                tagView.setVisibility(View.GONE);
+            }
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -273,16 +310,33 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             return;
         }
         setTitle(user.getNickname());
+
+
+        String loginedID = DataManager.getInstance().getUser().getUser_id();
+
+        if (this.userID.equals(loginedID)) {
+            titleRight.setVisibility(View.GONE);
+        } else {
+            titleRight.setVisibility(View.VISIBLE);
+        }
+
         headerView.setBackgroundResource(R.drawable.club_0);
         nameView.setText(user.getNickname());
 
-        noteView.setText(user.getNote());
+        if (user.getNote() == null || user.getNote().length() == 0) {
+            noteView.setText("暂无介绍");
+        } else {
+            noteView.setText(user.getNote());
+        }
+
         fansView.setText(user.getFollows() + "位粉丝");
 
+        setTags(user.getTags());
+
         if (user.isIs_follows()) {
-            setRightView(R.drawable.bg_button_follow);
-        } else{
             setRightView(R.drawable.bg_button_followed);
+        } else{
+            setRightView(R.drawable.bg_button_follow);
         }
 
         if ( !TextUtils.isEmpty(user.getHeadicon()))
@@ -475,7 +529,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         publishTask(task, IEvent.IO);
     }
 
-    private void quitClub(final String userID) {
+    private void quitClub2(final String userID) {
 
         postMessage(POPUP_ALERT, null, "确定要退出俱乐部吗？", true, "确定",
                 new DialogInterface.OnClickListener() {
@@ -518,7 +572,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             if (!user.isIs_follows()) {
                 joinClub(userID);
             } else {
-                quitClub(userID);
+                doQuit(userID);
             }
             return;
         }
