@@ -40,7 +40,14 @@ public class DemoApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
-		SDKInitializer.initialize(this);
+		try
+		{
+			SDKInitializer.initialize(this);
+		}
+		catch (Exception e)
+		{
+
+		}
 		MobclickAgent.openActivityDurationTrack(true);
 		getPackageIngo();
 		BaseConfig.init(this);

@@ -20,7 +20,7 @@ public class PushModel implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	public int type = -1;
-	public int topid_ic = -1;
+	public int topic_id = -1;
 	public int category = -1;
 	
 	

@@ -52,6 +52,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
+		if ( topiclist.size() <= position || position < 0 ) return null;
 		return topiclist.get(position);
 	}
 
@@ -197,12 +198,19 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			} else {
 				holder.climbImageView.setVisibility(View.GONE);
 			}
-			//热贴回复数> 10
-			int hot = Integer.parseInt(item.replytot);
-			if ( hot > 10 ) {
-				holder.newImageView.setVisibility(View.VISIBLE);
-			} else {
+//			//热贴回复数> 10
+//			int hot = Integer.parseInt(item.replytot);
+//			if ( hot > 10 ) {
+//				holder.newImageView.setVisibility(View.VISIBLE);
+//			} else {
+//				holder.newImageView.setVisibility(View.GONE);
+//			}
+			if ( item.is_hot == 0 )
+			{
 				holder.newImageView.setVisibility(View.GONE);
+			}
+			else {
+				holder.newImageView.setVisibility(View.VISIBLE);
 			}
 			
 			return convertView;

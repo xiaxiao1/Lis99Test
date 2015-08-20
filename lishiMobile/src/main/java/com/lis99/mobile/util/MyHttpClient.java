@@ -1,5 +1,7 @@
 package com.lis99.mobile.util;
 
+import android.text.TextUtils;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.HttpVersion;
@@ -15,6 +17,10 @@ import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
@@ -27,7 +33,6 @@ import org.apache.http.util.EntityUtils;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +50,64 @@ public class MyHttpClient {
 	{
 		mClient = getHttpClient();
 	}
-	
+
+	public String HttpImage (String url, Map<String, Object> map )
+	{
+		String result = null;
+
+		try {
+
+			if (TextUtils.isEmpty(url) || map == null || map.isEmpty() )
+			{
+				return null;
+			}
+			mHttpPost = new HttpPost(url);
+			MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+			Set<Entry<String, Object>> set = map.entrySet();
+			for ( Entry<String, Object> entry : set )
+			{
+				if ( "photo".equals(entry.getKey()))
+				{
+					entity.addPart(entry.getKey(), new ByteArrayBody((byte[])entry.getValue(), "image.jpg"));
+					continue;
+				}
+				entity.addPart(entry.getKey(), new StringBody((String)entry.getValue()));
+			}
+			mHttpPost.setEntity(entity);
+
+			HttpResponse response = mClient.execute(mHttpPost);
+
+			int status = response.getStatusLine().getStatusCode();
+
+			if ( status == HttpStatus.SC_OK )
+			{
+				result = EntityUtils.toString(response.getEntity(), "UTF-8");
+			}
+
+		}
+		catch ( ConnectException e )
+		{
+			Common.log("ConnectException get="+e.getMessage());
+		}
+		catch (ConnectTimeoutException e)
+		{
+			// 捕获ConnectionTimeout
+			Common.log("ConnectTimout Get="+e.getMessage());
+		}
+		catch (SocketTimeoutException e)
+		{
+			// 捕获SocketTimeout
+			Common.log("SocketTimout Get="+e.getMessage());
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Common.log("MyHttpClient Get Error="+e.getMessage());
+		}
+
+		return result;
+	}
+
 	public String HttpPost (String str, Map<String, Object> values)
 	{
 		String result = null;
@@ -98,7 +160,6 @@ public class MyHttpClient {
 	{
 		String result = null;
 		try {
-			URL url = new URL(str);
 			mHttpGet = new HttpGet(str);
 			HttpResponse response = mClient.execute(mHttpGet);
 			int responceCode = response.getStatusLine().getStatusCode();
@@ -134,11 +195,7 @@ public class MyHttpClient {
 		return result;
 	}
 	
-	public String HttpImage ()
-	{
-		return "";
-	}
-	
+
 	/**
 	 * 创建httpClient实例
 	 * 

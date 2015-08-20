@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+            android:background="@color/pull_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/club_special_list_item_bg"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:padding="6dip"
+        >
+
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:id="@+id/iv_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:paddingRight="6dp"
+            android:src="@drawable/club_icon_newarticle" />
+
+        <TextView
+            android:layout_toRightOf="@id/iv_hot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_six"
+            android:textSize="16sp"
+            android:text="@string/temp_string_long"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:id="@+id/tv_title"
+            />
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:id="@+id/layout_img"
+            >
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/iv_img1"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:border_width="1px"
+                app:border_color="#eee"
+                app:corner_radius="3dip"
+                android:src="@drawable/club_0"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                />
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/iv_img2"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:border_width="1px"
+                app:border_color="#eee"
+                app:corner_radius="3dip"
+                android:src="@drawable/club_0"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                />
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/iv_img3"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:border_width="1px"
+                app:border_color="#eee"
+                app:corner_radius="3dip"
+                android:src="@drawable/club_0"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_below="@id/layout_img"
+            android:layout_marginTop="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/iv_head"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:border_width="1px"
+                app:border_color="#eee"
+                app:corner_radius="3dip"
+                android:src="@drawable/club_0"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_blue"
+                android:textSize="12sp"
+                android:text="@string/temp_string"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_head"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/tv_name"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_nine"
+                android:textSize="12sp"
+                android:layout_centerVertical="true"
+                android:text="9999"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_reply"
+                android:layout_marginLeft="5dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/club_special_comment"
+                android:layout_toLeftOf="@id/tv_reply"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

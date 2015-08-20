@@ -3,8 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/star_bg"
-    android:paddingBottom="15dip">
 
+>
     <ImageView
         android:id="@+id/topImage"
         android:layout_width="wrap_content"
@@ -15,18 +15,26 @@
 
 
     <ImageView
-        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/iv_channel"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dip"
+        />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:src="@drawable/star_img"
-        android:layout_alignParentBottom="true"
         android:id="@+id/iv_img"
+        android:layout_above="@id/iv_channel"
+        android:layout_marginBottom="10dip"
         />
 
 
     <ImageView
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

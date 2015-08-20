@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:layout_marginRight="10dip"
+            android:layout_marginRight="18dip"
             android:text="注册"
             android:textSize="@dimen/text_large"
             android:textColor="@color/text_color_blue" />

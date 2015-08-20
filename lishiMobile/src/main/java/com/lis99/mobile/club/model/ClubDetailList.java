@@ -41,6 +41,7 @@ public class ClubDetailList implements Serializable{
 		public String replytot;
 		public String catename;
 		public String times;
+		public int is_hot;
 		public ClubActiveImages image;
 		
 	}

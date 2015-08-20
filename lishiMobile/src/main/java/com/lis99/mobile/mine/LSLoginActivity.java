@@ -1,6 +1,5 @@
 package com.lis99.mobile.mine;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,43 +13,27 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
-import com.lis99.mobile.entry.AccessTokenKeeper;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LsImproveInfoActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
-import com.lis99.mobile.weibo.LsWeiboSina;
+import com.lis99.mobile.util.ThirdLogin;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WeiboAuth;
-import com.sina.weibo.sdk.auth.WeiboAuthListener;
-import com.sina.weibo.sdk.constant.WBConstants;
-import com.sina.weibo.sdk.exception.WeiboException;
-import com.sina.weibo.sdk.net.AsyncWeiboRunner;
-import com.sina.weibo.sdk.net.RequestListener;
-import com.sina.weibo.sdk.net.WeiboParameters;
-import com.sina.weibo.sdk.utils.UIUtils;
-import com.tencent.connect.UserInfo;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 
 import org.apache.http.Header;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.security.KeyStore;
 import java.util.HashMap;
 
 
@@ -65,40 +48,12 @@ public class LSLoginActivity extends LSBaseActivity {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-
-    /**
-     * WeiboSDKDemo 程序的 APP_SECRET。 请注意：请务必妥善保管好自己的
-     * APP_SECRET，不要直接暴露在程序中，此处仅作为一个DEMO来演示。
-     */
-    private static final String WEIBO_DEMO_APP_SECRET = C.SINA_APP_SERCET;
-
-    /**
-     * 通过 code 获取 Token 的 URL
-     */
-    private static final String OAUTH2_ACCESS_TOKEN_URL = "https://open.weibo.cn/oauth2/access_token";
-
     /**
      * 获取 Token 成功或失败的消息
      */
     private static final int MSG_FETCH_TOKEN_SUCCESS = 1;
     private static final int MSG_FETCH_TOKEN_FAILED = 2;
 
-    /**
-     * 获取到的 Code
-     */
-    private String mCode;
-    /**
-     * 获取到的 Token
-     */
-    private Oauth2AccessToken mAccessToken;
-    String unlogin;
-    String account1;
-    String password1;
-    String token1;
-    String tokenaccount1;
-    String tokenpassword1;
-
-    String access_token;
 
     String api_type, api_uid, api_token, api_nickname;
     String screen_name;
@@ -108,30 +63,6 @@ public class LSLoginActivity extends LSBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mTencent = Tencent.createInstance(C.TENCENT_APP_ID,
-                this.getApplicationContext());
-        mTencent.setOpenId(SharedPreferencesHelper.getValue(this,
-                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_OPEN_ID));
-        String expire = SharedPreferencesHelper.getValue(this,
-                C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.TENCENT_EXPIRES_IN);
-        if (expire == null || "".equals(expire)) {
-            expire = "0";
-        }
-        mTencent.setAccessToken(SharedPreferencesHelper
-                .getValue(this, C.CONFIG_FILENAME, Context.MODE_PRIVATE,
-                        C.TENCENT_ACCESS_TOKEN), expire);
-
-
-        try {
-            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            trustStore.load(null, null);
-            SSLSocketFactory sf = new MySSLSocketFactory(trustStore);
-            sf.setHostnameVerifier(MySSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
-            client.setSSLSocketFactory(sf);
-        }
-        catch (Exception e) {
-        }
 
         setContentView(R.layout.activity_ls_login);
         initViews();
@@ -204,110 +135,11 @@ public class LSLoginActivity extends LSBaseActivity {
             }
             return;
             case R.id.ls_ll_sina_login: {
-
-                // 取本地token
-                api_type = "sina";
-                mAccessToken = AccessTokenKeeper.readAccessToken(this);
-                mCode = SharedPreferencesHelper.getValue(LSLoginActivity.this,
-                        C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.SINA_CODE);
-                if (mAccessToken.isSessionValid()) {
-                    postMessage(POPUP_PROGRESS, getString(R.string.sending));
-                    doGetSinaWeiboNicknameTask();
-                } else {
-                    // 微博登陆
-                    LsWeiboSina
-                            .getInstance(this)
-                            .getWeiboAuth()
-                            .authorize(new AuthListener(),
-                                    WeiboAuth.OBTAIN_AUTH_CODE);
-                }
-
-
+                SinaLogin();
             }
             break;
             case R.id.ls_ll_qq_login: {
-
-                api_type = "qq";
-
-                postMessage(POPUP_PROGRESS);
-
-                if (mTencent.isSessionValid()) {
-                    UserInfo info = new UserInfo(LSLoginActivity.this,
-                            mTencent.getQQToken());
-                    info.getUserInfo(new IUiListener() {
-
-                        @Override
-                        public void onError(UiError arg0) {
-                            postMessage(DISMISS_PROGRESS);
-                        }
-
-                        @Override
-                        public void onComplete(Object res) {
-                            JSONObject json = (JSONObject) res;
-                            api_nickname = json.optString("nickname", "");
-                            doThirdLoginTask(api_type);
-                        }
-
-                        @Override
-                        public void onCancel() {
-                            postMessage(DISMISS_PROGRESS);
-                        }
-                    });
-                } else {
-                    mTencent.login(this, "all", new IUiListener() {
-
-                        @Override
-                        public void onError(UiError arg0) {
-                            Toast.makeText(LSLoginActivity.this, arg0.errorMessage,
-                                    Toast.LENGTH_SHORT).show();
-                            postMessage(DISMISS_PROGRESS);
-                        }
-
-                        @Override
-                        public void onComplete(Object res) {
-                            JSONObject json = (JSONObject) res;
-                            postMessage(POPUP_PROGRESS, getString(R.string.sending));
-                            System.out.println(json);
-                            api_uid = json.optString("openid");
-                            api_token = json.optString("access_token");
-                            final String expires_in = json.optString("expires_in");
-
-                            SharedPreferencesHelper.saveapi_uid(api_uid);
-                            SharedPreferencesHelper.saveLSToken(api_token);
-                            SharedPreferencesHelper.saveexpires_in(expires_in);
-                            SharedPreferencesHelper.saveapi_token(api_token);
-
-                            UserInfo info = new UserInfo(LSLoginActivity.this,
-                                    mTencent.getQQToken());
-                            info.getUserInfo(new IUiListener() {
-
-                                @Override
-                                public void onError(UiError arg0) {
-                                    postMessage(DISMISS_PROGRESS);
-                                }
-
-                                @Override
-                                public void onComplete(Object res) {
-                                    JSONObject json = (JSONObject) res;
-                                    api_nickname = json.optString("nickname", "");
-                                    doThirdLoginTask(api_type);
-                                }
-
-                                @Override
-                                public void onCancel() {
-                                    postMessage(DISMISS_PROGRESS);
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onCancel() {
-                            postMessage(DISMISS_PROGRESS);
-                            Toast.makeText(LSLoginActivity.this, "登录取消", 0).show();
-                        }
-                    });
-                }
-
+                QQLogin();
             }
             break;
 
@@ -315,100 +147,6 @@ public class LSLoginActivity extends LSBaseActivity {
                 break;
         }
         super.onClick(v);
-    }
-
-
-    /**
-     * 微博认证授权回调类。
-     */
-    class AuthListener implements WeiboAuthListener {
-
-        @Override
-        public void onComplete(Bundle values) {
-            if (null == values) {
-                Toast.makeText(LSLoginActivity.this, "授权失败", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
-
-            String code = values.getString("code");
-            if (TextUtils.isEmpty(code)) {
-                Toast.makeText(LSLoginActivity.this, "授权失败", Toast.LENGTH_SHORT)
-                        .show();
-                return;
-            }
-            mCode = code;
-            SharedPreferencesHelper.saveSinaCode(code);
-            // SharedPreferencesHelper
-            // .putValue(LSLoginActivity.this, C.CONFIG_FILENAME,
-            // Context.MODE_PRIVATE, C.SINA_CODE, mCode);
-            fetchTokenAsync(mCode, WEIBO_DEMO_APP_SECRET);
-        }
-
-        @Override
-        public void onCancel() {
-            Toast.makeText(LSLoginActivity.this, "登录取消", Toast.LENGTH_LONG)
-                    .show();
-        }
-
-        @Override
-        public void onWeiboException(WeiboException e) {
-            UIUtils.showToast(LSLoginActivity.this,
-                    "Auth exception : " + e.getMessage(), Toast.LENGTH_LONG);
-        }
-    }
-
-    /**
-     * 异步获取 Token。
-     *
-     * @param authCode  授权 Code，该 Code 是一次性的，只能被获取一次 Token
-     * @param appSecret 应用程序的 APP_SECRET，请务必妥善保管好自己的 APP_SECRET，
-     *                  不要直接暴露在程序中，此处仅作为一个DEMO来演示。
-     */
-    public void fetchTokenAsync(String authCode, String appSecret) {
-        WeiboParameters requestParams = new WeiboParameters();
-        requestParams.add(WBConstants.AUTH_PARAMS_CLIENT_ID, C.SINA_APP_KEY);
-        requestParams.add(WBConstants.AUTH_PARAMS_CLIENT_SECRET, appSecret);
-        requestParams.add(WBConstants.AUTH_PARAMS_GRANT_TYPE,
-                "authorization_code");
-        requestParams.add(WBConstants.AUTH_PARAMS_CODE, authCode);
-        requestParams.add(WBConstants.AUTH_PARAMS_REDIRECT_URL,
-                C.SINA_REDIRECT_URL);
-
-        /**
-         * 请注意： {@link RequestListener} 对应的回调是运行在后台线程中的， 因此，需要使用 Handler 来配合更新
-         * UI。
-         */
-        AsyncWeiboRunner.requestAsync(OAUTH2_ACCESS_TOKEN_URL, requestParams,
-                "POST", new RequestListener() {
-                    @Override
-                    public void onComplete(String response) {
-
-                        // 获取 Token 成功
-                        Oauth2AccessToken token = Oauth2AccessToken
-                                .parseAccessToken(response);
-                        // 保存 Token 到 SharedPreferences
-
-                        if (token != null && token.isSessionValid()) {
-                            postMessage(POPUP_PROGRESS,
-                                    getString(R.string.sending));
-                            AccessTokenKeeper.writeAccessToken(
-                                    LSLoginActivity.this, token);
-                            mAccessToken = token;
-                            doGetSinaWeiboNicknameTask();
-                        } else {
-
-                        }
-                    }
-
-                    @Override
-                    public void onWeiboException(WeiboException arg0) {
-                        // TODO Auto-generated method stub
-                        mHandler1.obtainMessage(MSG_FETCH_TOKEN_FAILED)
-                                .sendToTarget();
-                    }
-
-                });
     }
 
     private Handler mHandler1 = new Handler() {
@@ -440,62 +178,28 @@ public class LSLoginActivity extends LSBaseActivity {
         ;
     };
 
-    private void doThirdLoginTask(String type) {
-        postMessage(POPUP_PROGRESS);
-        Task task = new Task(null, C.USER_THIRDSIGN_URL, null,
-                "USER_THIRDSIGN_URL", this);
-        task.setPostData(getThirdLoginParams(type).getBytes());
-        publishTask(task, IEvent.IO);
-    }
-
-    private String getThirdLoginParams(String type) {
-        HashMap<String, Object> params = new HashMap<String, Object>();
-        try {
-            params.put("api_type", type);
-            params.put("api_uid", api_uid);
-            params.put("access_token", api_token);
-            params.put("third_nick", screen_name);
-            params.put("oauth_token_secret", C.SINA_APP_SERCET);
-            params.put("oauth_token", mCode);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return RequestParamUtil.getInstance(this).getRequestParams(params);
-    }
-
-    private void doGetSinaWeiboNicknameTask() {
-        WeiboParameters requestParams = new WeiboParameters();
-        requestParams.add("source", C.SINA_APP_KEY);
-        requestParams.add("access_token", mAccessToken.getToken());
-        api_token = mAccessToken.getToken();
-        requestParams.add("uid", mAccessToken.getUid());
-        api_uid = mAccessToken.getUid();
-        AsyncWeiboRunner.requestAsync(
-                "https://api.weibo.com/2/users/show.json", requestParams,
-                "GET", new RequestListener() {
-                    @Override
-                    public void onComplete(String response) {
-                        System.out.println(response);
-                        try {
-                            JSONObject js = new JSONObject(response);
-                            screen_name = js.optString("screen_name");
-                            api_nickname = screen_name;
-                            doThirdLoginTask("sina");
-                        } catch (JSONException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onWeiboException(WeiboException arg0) {
-                        // TODO Auto-generated method stub
-                        postMessage(DISMISS_PROGRESS);
-                    }
-
-                });
-    }
+//    private void doThirdLoginTask(String type) {
+//        postMessage(POPUP_PROGRESS);
+//        Task task = new Task(null, C.USER_THIRDSIGN_URL, null,
+//                "USER_THIRDSIGN_URL", this);
+//        task.setPostData(getThirdLoginParams(type).getBytes());
+//        publishTask(task, IEvent.IO);
+//    }
+//
+//    private String getThirdLoginParams(String type) {
+//        HashMap<String, Object> params = new HashMap<String, Object>();
+//        try {
+//            params.put("api_type", type);
+//            params.put("api_uid", api_uid);
+//            params.put("access_token", api_token);
+//            params.put("third_nick", screen_name);
+//            params.put("oauth_token_secret", C.SINA_APP_SERCET);
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return RequestParamUtil.getInstance(this).getRequestParams(params);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -689,7 +393,7 @@ public class LSLoginActivity extends LSBaseActivity {
 
             case THIRDLOGIN_SUCCESS:
                 LSRequestManager.getInstance().upDataInfo();
-                Toast.makeText(this, "登录成功", 0).show();
+                Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                 saveThirdUserMeg(DataManager.getInstance().getUser());
 
                 finish();
@@ -730,6 +434,7 @@ public class LSLoginActivity extends LSBaseActivity {
                 params.put("nickname", weixinNickName);
                 params.put("sex", weixinSex);
                 params.put("headimgurl", weixinHeader);
+                params.put("unionid", TextUtils.isEmpty(unionid) ? "0" : unionid);
                 Task task = new Task(null, C.WEIXIN_LOGIN, C.HTTP_POST, C.WEIXIN_LOGIN,
                         this);
                 task.setPostData(RequestParamUtil.getInstance(this)
@@ -755,6 +460,7 @@ public class LSLoginActivity extends LSBaseActivity {
             String errCode = root.get("status").asText("");
             JsonNode data = root.get("data");
             if (!"OK".equals(errCode)) {
+                String error = data.get("error").asText();
                 postMessage(WEIXIN_LOGIN_FAIL);
                 return;
             }
@@ -764,12 +470,24 @@ public class LSLoginActivity extends LSBaseActivity {
             String nickName = data.get("nickname").asText();
 
 
+            String headicon = data.get("headicon").asText();
+
             u.setUser_id(data.get("user_id").asText());
+
             u.setHeadicon(weixinHeader);
 
             u.setNickname(nickName);
+
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
+
+            SharedPreferencesHelper.saveWeixinOpenID(openid);
+            SharedPreferencesHelper.saveWeixinHeader(weixinHeader);
+            SharedPreferencesHelper.saveWeixinNickName(weixinNickName);
+            SharedPreferencesHelper.saveWeixinSex(weixinSex + "");
+            SharedPreferencesHelper.saveWeiXinUnionid(unionid);
+
+            SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.WEIXINLOGIN);
 
             postMessage(LOGIN_SUCCESS);
 
@@ -787,8 +505,44 @@ public class LSLoginActivity extends LSBaseActivity {
         SharedPreferencesHelper.savenickname(user.getNickname());
         SharedPreferencesHelper.saveuser_id(user.getUser_id());
         SharedPreferencesHelper.saveheadicon(user.getHeadicon());
-        SharedPreferencesHelper.saveSn(user.getSn());
 
     }
 
+    private void QQLogin ()
+    {
+        CallBack callBack = new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                finish();
+            }
+        };
+
+        ThirdLogin thirdLogin = ThirdLogin.getInstance();
+        thirdLogin.setCallBack(callBack);
+        thirdLogin.QQLogin(true);
+
+    }
+
+    private void SinaLogin ()
+    {
+        CallBack call = new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                finish();
+            }
+        };
+        ThirdLogin thirdLogin = ThirdLogin.getInstance();
+        thirdLogin.setCallBack(call);
+        thirdLogin.SinaLogin(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        String userId = DataManager.getInstance().getUser().getUser_id();
+        if ( !TextUtils.isEmpty(userId))
+        {
+            LoginCallBackManager.getInstance().handler();
+        }
+        super.onDestroy();
+    }
 }

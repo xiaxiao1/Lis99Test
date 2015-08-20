@@ -172,6 +172,7 @@ public class LSPhoneLoginActivity extends LSBaseActivity {
 	
     public boolean handleMessage(Message msg) {
     	if (msg.what == LOGIN_SUCCESS) {
+			SharedPreferencesHelper.saveaccounttype("phone");
 			SharedPreferencesHelper.saveUserPass(pwd);
 			SharedPreferencesHelper.saveUserPhone(userName);
 			Toast.makeText(this, "登录成功", Toast.LENGTH_LONG).show();

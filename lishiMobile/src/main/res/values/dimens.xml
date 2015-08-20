@@ -70,7 +70,7 @@
 	<dimen name="club_banner_indicate_height">2dp</dimen>
 	<dimen name="club_banner_indicate_margin">2.5dp</dimen>
 	
-	<dimen name="reply_height">26dip</dimen>
+	<dimen name="reply_height">28dip</dimen>
 	
 	<dimen name="tab_height">60dip</dimen>
 	
@@ -92,7 +92,7 @@
 	
 	<dimen name="appraice_size">160dip</dimen>
 	
-	<dimen name="choiceness_height">170dip</dimen>
+	<dimen name="choiceness_height">200dip</dimen>
 	<dimen name="choiceness_height_bg">171dip</dimen>
 	
 </resources>

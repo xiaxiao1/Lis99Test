@@ -50,7 +50,8 @@ public class BannerView extends RelativeLayout {
 		mContext = context;
 		initView(context);
 	}
-//	private float c_x;
+
+	//	private float c_x;
 //	@Override
 //	public boolean onTouchEvent(MotionEvent event) {
 //		if ( event.getAction() == MotionEvent.ACTION_DOWN )
@@ -68,7 +69,7 @@ public class BannerView extends RelativeLayout {
 //		{
 //			mViewPager.getParent().requestDisallowInterceptTouchEvent(false);
 //		}
-//		
+//
 //		// TODO Auto-generated method stub
 //		return super.onTouchEvent(event);
 //	}

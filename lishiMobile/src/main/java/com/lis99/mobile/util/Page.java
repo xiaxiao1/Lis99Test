@@ -25,7 +25,7 @@ public class Page {
 	
 	public void nextPage ()
 	{
-		pageNo += pageItemSize;
+		pageNo += 1;
 	}
 	
 	public int getCount() {

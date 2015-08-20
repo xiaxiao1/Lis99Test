@@ -135,7 +135,7 @@ public class SharedPreferencesHelper {
 		return getBase("LIS99TOKEN", "");
 	}
 	
-	private static void saveBase ( String key, String value )
+	synchronized private static void saveBase ( String key, String value )
 	{
 		SharedPreferences.Editor editor = DemoApplication.getInstance().getSharedPreferences(
 				C.CONFIG_FILENAME, DemoApplication.getInstance().MODE_PRIVATE).edit();
@@ -143,7 +143,7 @@ public class SharedPreferencesHelper {
 		editor.commit();
 	}
 
-	private static void removeBase ( String key )
+	synchronized private static void removeBase ( String key )
 	{
 		SharedPreferences.Editor editor = DemoApplication.getInstance().getSharedPreferences(
 				C.CONFIG_FILENAME, DemoApplication.getInstance().MODE_PRIVATE).edit();
@@ -151,7 +151,7 @@ public class SharedPreferencesHelper {
 		editor.commit();
 	}
 	
-	private static String getBase ( String key, String value )
+	synchronized private static String getBase ( String key, String value )
 	{
 		String str = DemoApplication.getInstance().getSharedPreferences(C.CONFIG_FILENAME, DemoApplication.getInstance().MODE_PRIVATE).getString(key, value);
 		return str;
@@ -162,25 +162,49 @@ public class SharedPreferencesHelper {
 		removeName();
 		removeUserPass();
 		removeLSToken();
+
+
 		//==QQ===
-		removeapi_token();
-		removeapi_uid();
-		removeexpires_in();
-		removeLSToken();
+		removQQOpenId();
+		removeQQSex();
+		removeQQNickName();
+		removeQQHeadIcon();
+
 		//===sina-----
 		removeSinaCode();
+		removeSinaNickName();
+		removeSinaHeadIcon();
+		removeSinaSex();
+		removeSinaUid();
 		
-		removeSn();
+
+		//用户
 		removeaccounttype();
 		
 		removenickname();
 		removeuser_id();
 		removeheadicon();
 		removeIsVip();
+
+
+		removeTOKEN();
 		
 		//===push token===
-		removePushToken();
+//		removePushToken();
+
+		//=====weixin====
+		removeWeixinCode();
+		removeWeixinToken();
+		removeWeixinOpenID();
+		removeWeixinNickName();
+		removeWeixinSex();
+		removeWeixinHeader();
+		removeWeiXinUnionid();
+
+		//==========手机号=========
+		removePhone();
 	}
+
 
 	public static void saveUserPhone(String phone) {
 		saveBase(C.ACCOUNT_PHONE, phone);
@@ -199,7 +223,7 @@ public class SharedPreferencesHelper {
 	}
 
 	public static void saveWeixinToken(String s) {
-		saveBase(C.WEIXIN_TOKEN,s);
+		saveBase(C.WEIXIN_TOKEN, s);
 	}
 
 	public static void removeWeixinToken() {
@@ -207,46 +231,103 @@ public class SharedPreferencesHelper {
 	}
 
 	public static void saveWeixinOpenID(String s) {
-		saveBase(C.WEIXIN_OPENID,s);
+		saveBase(C.WEIXIN_OPENID, s);
 	}
 
 	public static void removeWeixinOpenID() {
 		removeBase(C.WEIXIN_OPENID);
 	}
 
+
+
+	public static void saveWeixinNickName(String s) {
+		saveBase("weixin_nickName", s);
+	}
+
+	public static void removeWeixinNickName() {
+		removeBase("weixin_nickName");
+	}
+
+	public static void saveWeixinSex(String s) {
+		saveBase("weixin_sex", s);
+	}
+
+	public static void removeWeixinSex() {
+		removeBase("weixin_sex");
+	}
+
+	public static void saveWeixinHeader(String s) {
+		saveBase("weixin_header", s);
+	}
+
+	public static void removeWeixinHeader() {
+		removeBase("weixin_header");
+	}
+
+	public static void saveWeiXinUnionid ( String unionid )
+	{
+		saveBase("WEIXINUNIONID", unionid);
+	}
+
+	public static String getWeiXinUnionid ()
+	{
+		return getBase("WEIXINUNIONID", "");
+	}
+
+	private static void removeWeiXinUnionid ()
+	{
+		removeBase("WEIXINUNIONID");
+	}
+
+
+
 	public static void removePhone() {
 		removeBase(C.ACCOUNT_PHONE);
 	}
 	
-	public static void saveapi_uid ( String str )
+	public static void saveQQOpenId(String str)
 	{
 		saveBase(C.TENCENT_OPEN_ID, str);
 	}
-	
-	public static void removeapi_uid ()
+
+	public static void removQQOpenId()
 	{
 		removeBase(C.TENCENT_OPEN_ID);
 	}
-	
-	public static void saveapi_token ( String str )
+
+	public static String getQQOpenId ()
 	{
-		saveBase(C.TENCENT_ACCESS_TOKEN, str);
+		return getBase(C.TENCENT_OPEN_ID, "");
 	}
+
+//	public static void saveQQToken(String str)
+//	{
+//		saveBase(C.TENCENT_ACCESS_TOKEN, str);
+//	}
+//	public static void removeQQToken()
+//	{
+//		removeBase(C.TENCENT_ACCESS_TOKEN);
+//	}
+//
+//	public static String getQQToken ()
+//	{
+//		return  getBase(C.TENCENT_ACCESS_TOKEN, "");
+//	}
 	
-	public static void removeapi_token ()
-	{
-		removeBase(C.TENCENT_ACCESS_TOKEN);
-	}
-	
-	public static void saveexpires_in ( String str )
-	{
-		saveBase(C.TENCENT_EXPIRES_IN, str);
-	}
-	
-	public static void removeexpires_in ()
-	{
-		removeBase(C.TENCENT_EXPIRES_IN);
-	}
+//	public static void saveexpires_in ( String str )
+//	{
+//		saveBase(C.TENCENT_EXPIRES_IN, str);
+//	}
+//
+//	public static void removeexpires_in ()
+//	{
+//		removeBase(C.TENCENT_EXPIRES_IN);
+//	}
+//
+//	public static String getExpires_in ()
+//	{
+//		return getBase(C.TENCENT_EXPIRES_IN, "");
+//	}
 	
 	public static void saveTOKEN ( String str )
 	{
@@ -267,25 +348,33 @@ public class SharedPreferencesHelper {
 	{
 		removeBase(C.SINA_CODE);
 	}
+
+	public static String getSinaCode ()
+	{
+		return getBase(C.SINA_CODE, "");
+	}
 	
 	public static void saveaccounttype ( String str )
 	{
 		saveBase("accounttype", str);
 	}
-	
+	public static String getaccounttype ()
+	{
+		return getBase("accounttype", "");
+	}
 	public static void removeaccounttype ()
 	{
 		removeBase("accounttype");
 	}
-	public static void saveSn ( String str )
-	{
-		saveBase("sn", str);
-	}
-	
-	public static void removeSn ()
-	{
-		removeBase("sn");
-	}
+//	public static void saveSn ( String str )
+//	{
+//		saveBase("sn", str);
+//	}
+//
+//	public static void removeSn ()
+//	{
+//		removeBase("sn");
+//	}
 	
 	public static void savenickname ( String str )
 	{
@@ -336,7 +425,6 @@ public class SharedPreferencesHelper {
 		String Token = getBase("PUSHTOKEN", "");
 		if ( TextUtils.isEmpty(Token))
 		{
-//			Common.log("pushToken=====null");
 			Token = PushManager.getInstance().Token;
 		}
 		return Token;
@@ -344,8 +432,126 @@ public class SharedPreferencesHelper {
 	
 	public static void removePushToken ()
 	{
-//		removeBase("PUSHTOKEN");
+		removeBase("PUSHTOKEN");
 	}
+
+	public static void saveQQSex ( String sex )
+	{
+		saveBase("QQSEX", sex);
+	}
+
+	public static String getQQSex ()
+	{
+		return getBase("QQSEX", "");
+	}
+
+	private static void removeQQSex ()
+	{
+		removeBase("QQSEX");
+	}
+
+	public static void saveQQNickName ( String nickname )
+	{
+		saveBase("QQNICKNAME", nickname);
+	}
+
+	public static String getQQNickName ()
+	{
+		return getBase("QQNICKNAME", "");
+	}
+
+	private  static void removeQQNickName ()
+	{
+		removeBase("QQNICKNAME");
+	}
+
+	private static void removeQQHeadIcon ()
+	{
+		removeBase("QQHEADICON");
+	}
+
+	public static void saveQQHeadIcon ( String headIcon )
+	{
+		saveBase("QQHEADICON", headIcon);
+	}
+
+	public static String getQQHeadIcon ()
+	{
+		return getBase("QQHEADICON", "");
+	}
+
+	public static void saveSinaSex ( String sex )
+	{
+		saveBase("SINASEX", sex);
+	}
+
+	public static String getSinaSex ()
+	{
+		return getBase("SINASEX", "");
+	}
+
+	private static void removeSinaSex ()
+	{
+		removeBase("SINASEX");
+	}
+
+	public static void saveSinaNickName (String nickName )
+	{
+		saveBase("SINANICKNAME", nickName);
+	}
+
+	public static String getSinaNickName ()
+	{
+		return getBase("SINANICKNAME", "");
+	}
+
+	private static void removeSinaNickName ()
+	{
+		removeBase("SINANICKNAME");
+	}
+
+	public static void saveSinaHeadIcon ( String headIcon )
+	{
+		saveBase("SINAHEADICON", headIcon);
+	}
+
+	public static String getSinaHeadIcon ()
+	{
+		return getBase("SINAHEADICON", "");
+	}
+
+	private static void removeSinaHeadIcon ()
+	{
+		removeBase("SINAHEADICON");
+	}
+
+	public static void saveSinaUid ( String uid )
+	{
+		saveBase("SINAUID", uid);
+	}
+
+	public static String getSinaUid ()
+	{
+		return getBase("SINAUID", "");
+	}
+
+	private static void removeSinaUid ()
+	{
+		removeBase("SINAUID");
+	}
+
+
+
+	//登陆类型
+	public static String QQLOGIN = "QQLOGIN";
+	public static String WEIXINLOGIN = "wechat";
+	public static String SINALOGIN = "SINALOGIN";
+	public static String THIRD = "third";
+	public static String EMAIL = "email";
+	public static String PHONE = "phone";
+
+
+
 
 //	@SuppressLint("NewApi")
 //	public static void saveSearchHistory ( Set<String> set )

@@ -60,6 +60,7 @@ abstract public class SearchInfoBase extends LSBaseActivity{
                         Common.toast("不能为空");
                         return true;
                     }
+                    search = Common.getSearchText(search);
                     Common.hideSoftInput(activity);
                     searchNew(search);
                     return true;

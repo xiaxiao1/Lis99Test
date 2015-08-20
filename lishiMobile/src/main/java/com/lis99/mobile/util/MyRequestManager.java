@@ -37,7 +37,7 @@ public class MyRequestManager {
 	/**
 	 * 			post请求
 	 * @param url
-	 * @param postEntity
+	 * @param map
 	 * @param resultModel
 	 * @param callBack
 	 */
@@ -90,15 +90,25 @@ public class MyRequestManager {
 		mRequest = new MyRequest(mTask);
 		mRequest.start();
 	}
-	
-//	public void requestImage ()
-//	{
-//		mTask = new MyTask();
-//		mTask.setUrl(url);
-//		mTask.setResultModel(resultModel);
-//		mTask.setCallBack(callBack);
-//		mRequest = new MyRequest(mTask);
-//		mRequest.start();
-//	}
+
+	/***
+	 * 				上传图片
+	 * @param url
+	 * @param map
+	 * @param resultModel
+	 * @param callBack
+	 */
+	public void requestImage ( String url, Map<String, Object> map, Object resultModel, CallBack callBack )
+	{
+		mTask = new MyTask();
+		mTask.setRequestState(mTask.IMAGE);
+		mTask.setUrl(url);
+		mTask.setResultModel(resultModel);
+		mTask.setCallBack(callBack);
+		mTask.setMap(map);
+		mTask.setShowDialog(true);
+		mRequest = new MyRequest(mTask);
+		mRequest.start();
+	}
 
 }

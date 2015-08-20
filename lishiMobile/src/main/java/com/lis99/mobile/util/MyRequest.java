@@ -52,7 +52,7 @@ public class MyRequest{
 			if ( result == null )
 			{
 //				Common.toast("拉取失败");
-				Common.log("result==null");
+//				Common.log("result==null");
 				return;
 			}
 			String res = result.toString();
@@ -101,7 +101,7 @@ public class MyRequest{
 				Result = http.HttpGet(mTask.getUrl());
 				break;
 			case MyTask.IMAGE:
-				Result = http.HttpImage();
+				Result = http.HttpImage(mTask.getUrl(), mTask.getMap());
 				break;
 			}
 			Common.log("Httpresult="+Result);

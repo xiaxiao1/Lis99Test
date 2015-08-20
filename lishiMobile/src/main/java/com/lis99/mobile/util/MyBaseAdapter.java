@@ -34,6 +34,14 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void clean ()
+    {
+        if ( listItem == null )
+        return;
+        listItem.clear();
+        listItem = null;
+    }
+
     @Override
     public int getCount() {
         return  (listItem == null ) ? 0 : listItem.size();

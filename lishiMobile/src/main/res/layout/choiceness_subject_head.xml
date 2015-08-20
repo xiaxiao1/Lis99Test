@@ -18,6 +18,16 @@
             app:border_width="0px"
             app:corner_radius="0dip" />
 
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dip"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:border_width="0px"
+            app:corner_radius="0dip"
+            android:background="@drawable/choiceness_subject_forground"
+            />
+
         <LinearLayout
             style="@style/fill_wrap"
             android:layout_centerInParent="true"

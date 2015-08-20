@@ -17,16 +17,17 @@
 		    android:id="@+id/ll_home"
 		    android:layout_height="fill_parent"
 		    android:layout_width="50dip"
-		    android:gravity="center"
 		    android:layout_alignParentLeft="true"
             android:layout_centerVertical="true">
         <ImageView
             
-            android:layout_width="15dip"
-            android:layout_height="25dip"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             
-            android:layout_marginLeft="15dip"
-            android:background="@drawable/ls_page_back_icon" />
+            android:layout_marginLeft="10dip"
+            android:src="@drawable/ls_page_back_icon"
+            android:scaleType="center"
+            />
 		</LinearLayout>
 
         <TextView
@@ -36,7 +37,7 @@
             android:layout_centerVertical="true"
             android:text="店铺详情"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/iv_serch"
@@ -45,7 +46,9 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="25dp"
             android:layout_toLeftOf="@+id/iv_list"
-            android:background="@drawable/detail_favorite" />
+            android:src="@drawable/detail_favorite"
+            android:scaleType="centerInside"
+            />
 
         <ImageView
             android:id="@+id/iv_list"
@@ -54,7 +57,9 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:background="@drawable/share" />
+            android:src="@drawable/share"
+            android:scaleType="centerInside"
+            />
     </RelativeLayout>
 
     <com.lis99.mobile.entry.view.scroll.PullToRefreshView

@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:text="俱乐部"
         android:textColor="@color/text_color_blue"
-        android:layout_marginTop="10dip"
-        android:layout_marginBottom="20dip"
+        android:layout_marginBottom="10dip"
         />
 
 
@@ -46,9 +45,9 @@
                 android:layout_height="56dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginBottom="20dip"
+                android:layout_marginBottom="10dip"
                 android:layout_marginRight="15dip"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="10dip"
                 android:scaleType="fitXY"
                 android:src="@drawable/club_icon_header_default"
                 app:border_color="#eeeeee"
@@ -69,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@string/temp_string_long"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/color_six"
                     />
 
@@ -88,6 +87,7 @@
                         android:drawablePadding="5dip"
                         android:text="@string/temp_string"
                         android:textColor="@color/color_nine"
+                        android:textSize="12sp"
                         />
 
                     <TextView
@@ -99,6 +99,7 @@
                         android:drawablePadding="5dip"
                         android:text="@string/temp_string"
                         android:textColor="@color/color_nine"
+                        android:textSize="12sp"
                         />
 
                 </LinearLayout>
@@ -134,9 +135,9 @@
                 android:layout_height="56dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginBottom="20dip"
+                android:layout_marginBottom="10dip"
                 android:layout_marginRight="15dip"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="10dip"
                 android:scaleType="fitXY"
                 android:src="@drawable/club_icon_header_default"
                 app:border_color="#eeeeee"
@@ -157,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@string/temp_string_long"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/color_six"
                     />
 
@@ -176,6 +177,7 @@
                         android:drawablePadding="5dip"
                         android:text="@string/temp_string"
                         android:textColor="@color/color_nine"
+                        android:textSize="12sp"
                         />
 
                     <TextView
@@ -187,6 +189,7 @@
                         android:drawablePadding="5dip"
                         android:text="@string/temp_string"
                         android:textColor="@color/color_nine"
+                        android:textSize="12sp"
                         />
 
                 </LinearLayout>
@@ -223,9 +226,9 @@
                 android:layout_height="56dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginBottom="20dip"
+                android:layout_marginBottom="10dip"
                 android:layout_marginRight="15dip"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="10dip"
                 android:scaleType="fitXY"
                 android:src="@drawable/club_icon_header_default"
                 app:border_color="#eeeeee"
@@ -246,7 +249,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="@string/temp_string_long"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/color_six"
                     />
 
@@ -265,6 +268,7 @@
                         android:drawablePadding="5dip"
                         android:text="@string/temp_string"
                         android:textColor="@color/color_nine"
+                        android:textSize="12sp"
                         />
 
                     <TextView
@@ -276,6 +280,7 @@
                         android:drawablePadding="5dip"
                         android:text="@string/temp_string"
                         android:textColor="@color/color_nine"
+                        android:textSize="12sp"
                         />
 
                 </LinearLayout>
@@ -305,9 +310,10 @@
             android:layout_gravity="center"
             android:drawableLeft="@drawable/search_icon_more"
             android:drawablePadding="5dip"
-            android:padding="15dip"
+            android:padding="5dip"
             android:text="搜索更多俱乐部"
             android:textColor="@color/color_six"
+            android:layout_marginTop="10dip"
             />
 
     </LinearLayout>
@@ -333,6 +339,7 @@
             android:padding="15dip"
             android:text="没有“砾石”相关的俱乐部"
             android:textColor="@color/color_six"
+            android:layout_marginTop="10dip"
             />
 
     </LinearLayout>

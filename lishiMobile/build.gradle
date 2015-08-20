@@ -2,12 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.0 rc2"
     //多渠道
     productFlavors {
         shichang {}
         zhuzhan {}
-        tuiguang1{}
+        tuiguang1 {}
+//        baidu {}
+//        pp{}
+        oppo {}
     }
 
     productFlavors.all {
@@ -39,7 +42,7 @@ android {
 //                def releaseApkName = 'yjf-android-v' + getVersionNameFromManifest() + '-' + variant.productFlavors[0].name + '-sign-42.apk'
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-3.2.1.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-3.5.0.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('beta')){

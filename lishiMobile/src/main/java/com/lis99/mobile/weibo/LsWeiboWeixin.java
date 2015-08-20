@@ -63,6 +63,11 @@ public class LsWeiboWeixin {
 //		shareBitmap = bitmap;
         //WXTextObject textObj = new WXTextObject();
         //textObj.text = shareText;
+        if ( !api.isWXAppInstalled() )
+        {
+            Common.toast("请先安装微信");
+            return;
+        }
         WXWebpageObject webo = new WXWebpageObject();
         webo.webpageUrl = shareText;
         //WXImageObject imgObj = new WXImageObject(bitmap);

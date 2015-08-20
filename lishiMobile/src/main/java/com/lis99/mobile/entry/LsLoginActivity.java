@@ -264,10 +264,10 @@ public class LsLoginActivity extends ActivityPattern
 						// SharedPreferencesHelper.putValue(LSLoginActivity.this,
 						// C.CONFIG_FILENAME, Context.MODE_PRIVATE,
 						// C.TOKEN, api_token);
-						SharedPreferencesHelper.saveapi_uid(api_uid);
+						SharedPreferencesHelper.saveQQOpenId(api_uid);
 						SharedPreferencesHelper.saveLSToken(api_token);
-						SharedPreferencesHelper.saveexpires_in(expires_in);
-						SharedPreferencesHelper.saveapi_token(api_token);
+//						SharedPreferencesHelper.saveexpires_in(expires_in);
+//						SharedPreferencesHelper.saveQQToken(api_token);
 
 						UserInfo info = new UserInfo(LsLoginActivity.this,
 								mTencent.getQQToken());
@@ -762,8 +762,7 @@ public class LsLoginActivity extends ActivityPattern
 		SharedPreferencesHelper.savenickname(user.getNickname());
 		SharedPreferencesHelper.saveuser_id(user.getUser_id());
 		SharedPreferencesHelper.saveheadicon(user.getHeadicon());
-		SharedPreferencesHelper.saveSn(user.getSn());
-		
+
 	}
 
 	private LSRegistModel model;

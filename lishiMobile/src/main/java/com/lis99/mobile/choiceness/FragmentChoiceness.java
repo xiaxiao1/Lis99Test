@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.model.ChoicenessModel.Omnibuslist;
@@ -19,6 +20,7 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
+import com.lis99.mobile.newhome.DynamicActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
@@ -40,7 +42,11 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 	private ChoicenessModel model;
 
 	private LinearLayout layout_search;
-	
+
+	private View headView;
+
+	private View iv_subject, iv_active, iv_dynamic;
+
 	@Override
 	protected void initViews(ViewGroup container)
 	{
@@ -68,9 +74,11 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 			{
 				// TODO Auto-generated method stub
 				if ( adapter == null ) return;
-				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2);
+				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2 - 1);
+//				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2);
+				if ( item == null ) return;
 				Intent intent = null;
-				if ( item.type == 1 || item.type == 2 )
+				if ( item.type == 1 || item.type == 2 || item.type == 5 || item.type == 6 )
 				{
 					intent = new Intent(FragmentChoiceness.this.getActivity(), LSClubTopicActivity.class);
 					intent.putExtra("topicID", item.topic_id);
@@ -105,6 +113,12 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 					Common.log("item.id="+item.id);
 					startActivity(intent);
 				}
+				else if ( item.type == 7 )
+				{
+					intent = new Intent(getActivity(), ClubSpecialListActivity.class);
+					intent.putExtra("tagid", item.tag_id);
+					startActivity( intent );
+				}
 				
 			}
 		});
@@ -112,7 +126,20 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 		layout_search = (LinearLayout) findViewById(R.id.layout_search);
 
 		layout_search.setOnClickListener(this);
-		
+
+		//==3.4====
+
+		headView = View.inflate(getActivity(), R.layout.choiceness_head, null);
+
+		iv_subject = headView.findViewById(R.id.iv_subject);
+		iv_active = headView.findViewById(R.id.iv_active);
+		iv_dynamic = headView.findViewById(R.id.iv_dynamic);
+
+		iv_subject.setOnClickListener(this);
+		iv_active.setOnClickListener(this);
+		iv_dynamic.setOnClickListener(this);
+
+		list.addHeaderView(headView);
 	}
 	
 	private void cleanList ()
@@ -136,8 +163,17 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 		// TODO Auto-generated method stub
 		switch ( arg0.getId() )
 		{
+			case R.id.iv_dynamic:
+				startActivity(new Intent(getActivity(), DynamicActivity.class));
+				break;
 			case R.id.layout_search:
 				startActivity(new Intent(getActivity(), SearchActivity.class));
+				break;
+			case R.id.iv_subject:
+				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
+				break;
+			case R.id.iv_active:
+				startActivity(new Intent (getActivity(), ActiveAllActivity.class));
 				break;
 		}
 	}

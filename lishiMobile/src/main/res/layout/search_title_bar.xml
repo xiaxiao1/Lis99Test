@@ -26,11 +26,12 @@
         android:hint="@string/search_hint"
         android:drawableLeft="@drawable/search_icon_more"
         android:drawablePadding="10dip"
-        android:textSize="12sp"
+        android:textSize="13sp"
         android:background="@drawable/search_white_bar"
         android:layout_marginBottom="8dip"
         android:layout_marginTop="8dip"
         android:singleLine="true"
+        android:textColor="@color/color_six"
         />
 
 </RelativeLayout>

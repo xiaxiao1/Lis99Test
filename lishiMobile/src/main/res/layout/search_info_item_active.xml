@@ -16,8 +16,8 @@
         android:text="线路活动"
         android:textColor="@color/text_color_blue"
         android:id="@+id/tv_active_title"
-        android:layout_marginTop="20dip"
-        android:layout_marginBottom="20dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
         />
 
 
@@ -84,10 +84,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/temp_string_long"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/color_six"
                     android:maxLines="2"
                     android:ellipsize="end"
+                    android:lineSpacingExtra="3dip"
                     />
 
                 <TextView
@@ -99,6 +100,7 @@
                     android:drawablePadding="5dip"
                     android:text="@string/temp_string"
                     android:textColor="@color/color_nine"
+                    android:textSize="12sp"
                     />
 
 

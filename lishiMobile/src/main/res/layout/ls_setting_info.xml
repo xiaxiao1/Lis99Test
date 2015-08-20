@@ -1,8 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#eeeeee"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#eeeeee"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -11,11 +12,13 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="@dimen/ls_page_home_width"
+            android:layout_width="30dp"
             android:layout_height="@dimen/ls_page_home_height"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/ls_page_back_icon" />
+            android:src="@drawable/ls_page_back_icon"
+            android:scaleType="center"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,6 +27,19 @@
             android:text="个人资料"
             android:textColor="@color/white"
             android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="10dip"
+            android:id="@+id/tv_save"
+            />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -33,10 +49,15 @@
         android:layout_marginTop="20dp"
         android:gravity="center" >
 
-        <com.lis99.mobile.entry.view.AsyncLoadImageView
-            android:id="@+id/user_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/roundedImageView1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ls_nologin_header_icon"
+            app:corner_radius="8dp" />
+
     </RelativeLayout>
    
  <LinearLayout
@@ -57,7 +78,9 @@
             android:orientation="horizontal"
             android:layout_marginLeft="15dp"
             android:paddingBottom="15dp"
-            android:paddingTop="15dp" >
+            android:paddingTop="15dp"
+            android:visibility="gone"
+            >
 
             <TextView
                 android:layout_width="80dp"
@@ -71,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:text="15026222@qq.com"
+                android:text="@string/temp_string"
                 android:textColor="@color/ls_color_2acbc2" />
         </LinearLayout>
 
@@ -96,20 +119,27 @@
                 android:text="昵称"
                 android:textColor="@color/ls_color_DEDEDE" />
 
-            <TextView
+            <EditText
+                android:background="@null"
                 android:id="@+id/tv_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
                 android:textSize="14sp"
-                android:text="大师RAIN"
-                android:textColor="@color/black" />
+                android:text="@string/temp_string"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:maxLength="16"
+                />
         </LinearLayout>
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
-            android:background="#dedede" />
+            android:background="#dedede"
+            android:visibility="gone"
+            />
          <LinearLayout
+             android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"

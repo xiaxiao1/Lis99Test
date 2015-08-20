@@ -491,7 +491,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	/** 获取帖子信息 */
 	private void getTopicHead()
 	{
-		String url = C.CLUB_TOPIC_DETAIL_HEAD + topicID;
+		String url = C.CLUB_TOPIC_DETAIL_HEAD_3 + topicID;
 		String userID = DataManager.getInstance().getUser().getUser_id();
 		if (!TextUtils.isEmpty(userID))
 		{
@@ -681,6 +681,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	{
 		page = new Page();
 		adapter = null;
+		listView.setAdapter(null);
 	}
 
 	public void cleanListUp()
@@ -714,14 +715,8 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		{
 			imgUrl = clubhead.topic_image.get(0).image;
 		}
-		boolean viewManager = false;
-		if ("-1".equals(clubhead.is_jion) || "4".equals(clubhead.is_jion))
-		{
-			viewManager = false;
-		} else
-		{
-			viewManager = true;
-		}
+		boolean viewManager = Common.clubDelete(clubhead.is_jion);
+
 		ShareManager.getInstance().showPopWindowInShare(clubhead, "" + clubID,
 				imgUrl, clubhead.title, clubhead.shareTxt,
 				"" + clubhead.topic_id, viewManager, layoutMain, new CallBack()

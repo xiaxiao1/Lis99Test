@@ -101,11 +101,14 @@ public class SearchActivity extends LSBaseActivity implements PullToRefreshView.
 
     private void getSearchList() {
         searchText = et_search.getText().toString().trim();
+//        String text = searchText;
         if (TextUtils.isEmpty(searchText)) {
             Common.toast("不能为空");
             return;
         }
         model = new SearchMainListModel();
+
+        searchText = Common.getSearchText(searchText);
 
         String url = C.SEARCH_MAIN + searchText;
 

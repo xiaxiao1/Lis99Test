@@ -12,7 +12,9 @@ import com.lis99.mobile.club.model.ClubTopicInfoLike;
 import com.lis99.mobile.club.model.EquipAppraiseModel;
 import com.lis99.mobile.club.model.EquipRecommendModel;
 import com.lis99.mobile.club.model.EquipTypeModel;
+import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.club.model.NearbyModel;
+import com.lis99.mobile.club.model.QQLoginModel;
 import com.lis99.mobile.club.model.RedDotModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -77,7 +79,7 @@ public class LSRequestManager
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("user_id", userid);
 		String url = C.CLUB_TOPIC_INFO_LIKE + topicId;
-		MyRequestManager.getInstance().requestPost(url, map, model, call );
+		MyRequestManager.getInstance().requestPost(url, map, model, call);
 	}
 	
 	/**上传用户信息*/
@@ -85,9 +87,13 @@ public class LSRequestManager
 	{
 		String Token = SharedPreferencesHelper.getPushToken();
 		if ( TextUtils.isEmpty(Token)) return;
+		String userid = DataManager.getInstance().getUser().getUser_id();
+		if ( TextUtils.isEmpty(userid))
+		{
+			return;
+		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		BaseModel model = new BaseModel();
-		String userid = DataManager.getInstance().getUser().getUser_id();
 		map.put("os_version", DeviceInfo.SDKVERSIONCODE);
 		map.put("os_name", "Android");
 		map.put("channel_number", DeviceInfo.CHANNELVERSION);
@@ -218,30 +224,26 @@ public class LSRequestManager
 		
 		RedDotModel model = new RedDotModel();
 		
-		MyRequestManager.getInstance().requestGetNoDialog(url, model, new CallBack()
-		{
-			
+		MyRequestManager.getInstance().requestGetNoDialog(url, model, new CallBack() {
+
 			@Override
-			public void handler(MyTask mTask)
-			{
+			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
 				RedDotModel model = (RedDotModel) mTask.getResultModel();
-				int num = model.is_baoming + model.is_reply + model.manage_baoming;
-				Common.log("b================"+num);
-				Common.log("model.is_reply"+model.is_reply);
-				
+//				相加为0没有通知
+				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow;
+				Common.log("b================" + num);
+				Common.log("model.is_reply" + model.is_reply);
+
 				// Tab红点
-				if ( tab.mTabCur != LSTab.EVENT && num > 0 )
-				{
+				if (tab.mTabCur != LSTab.EVENT && num > 0) {
 					Common.log("Visible tab");
 					tab.visibleRedDot(true);
-				}
-				else
-				{
+				} else {
 					Common.log("gone tab");
 					tab.visibleRedDot(false);
 				}
-				
+
 			}
 		});
 		
@@ -286,7 +288,159 @@ public class LSRequestManager
 		String url = C.EQUIPAPPRAISE;
 		MyRequestManager.getInstance().requestGet(url, model, callBack);
 	}
-	
-	
+
+	/**
+	 *
+	 * @param openid
+	 * @param nickname
+	 * @param gender
+	 * @param figureurl
+	 * @param callBack
+	 * @param showDialog		是否显示Dialog
+	 */
+	public void QQLogin ( String openid, String nickname, String gender, String figureurl, final CallBack callBack, boolean showDialog )
+	{
+		CallBack call = new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				QQLoginModel model = (QQLoginModel) mTask.getResultModel();
+				UserBean u = new UserBean();
+				u.setHeadicon(model.headicon);
+				u.setNickname(model.nickname);
+				u.setUser_id(model.user_id);
+
+				DataManager.getInstance().setUser(u);
+				DataManager.getInstance().setLogin_flag(true);
+
+				SharedPreferencesHelper.saveheadicon(model.headicon);
+				SharedPreferencesHelper.savenickname(model.nickname);
+				SharedPreferencesHelper.saveuser_id(model.user_id);
+
+				SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.QQLOGIN);
+				if ( callBack != null )
+				{
+					callBack.handler(null);
+				}
+			}
+		};
+
+
+		QQLoginModel model = new QQLoginModel();
+		String Url = C.QQLOGINURL;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("openid", openid);
+		map.put("nickname", nickname);
+		map.put("gender", gender);
+		map.put("figureurl", figureurl);
+		if ( !showDialog )
+		{
+			MyRequestManager.getInstance().requestPost(Url, map, model, call);
+		}
+		else
+		{
+			MyRequestManager.getInstance().requestPostNoDialog(Url, map, model, call);
+		}
+	}
+
+	public void SinaLogin (String uid, String screen_name, String gender, String avatar_large, final CallBack callBack, boolean showDialog)
+	{
+		CallBack call = new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				QQLoginModel model = (QQLoginModel) mTask.getResultModel();
+				UserBean u = new UserBean();
+				u.setHeadicon(model.headicon);
+				u.setNickname(model.nickname);
+				u.setUser_id(model.user_id);
+
+				DataManager.getInstance().setUser(u);
+				DataManager.getInstance().setLogin_flag(true);
+
+				SharedPreferencesHelper.saveheadicon(model.headicon);
+				SharedPreferencesHelper.savenickname(model.nickname);
+				SharedPreferencesHelper.saveuser_id(model.user_id);
+
+				SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.SINALOGIN);
+				if ( callBack != null )
+				{
+					callBack.handler(null);
+				}
+			}
+		};
+
+		QQLoginModel model = new QQLoginModel();
+		String url = C.SINALOGINURL;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", uid);
+		map.put("screen_name", screen_name);
+		map.put("gender", gender);
+		map.put("avatar_large", avatar_large);
+
+		if ( showDialog )
+		{
+			MyRequestManager.getInstance().requestPost(url, map, model, call);
+		}
+		else
+		{
+			MyRequestManager.getInstance().requestPostNoDialog(url, map, model, call);
+		}
+
+	}
+/**加入俱乐部*/
+	public void addClub ( String clubID, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		BaseModel model = new BaseModel();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("club_id", clubID);
+		map.put("user_id", userID);
+
+		MyRequestManager.getInstance().requestPost(C.CLUB_JOIN, map, model, call);
+
+	}
+/**关注， 推荐关注， 动态， 我-》好友-》推荐关注*/
+	public void getFriendsAttentionRecommend ( int page, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", userID);
+
+		MyFriendsRecommendModel model = new MyFriendsRecommendModel();
+
+		String url = C.MYFRIENDS_RECOMMED + page;
+
+		MyRequestManager.getInstance().requestPost(url, map, model, call);
+
+	}
+	/**取消关注*/
+	public void getFriendsCancelAttention ( int AttentionId, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("fromuid", userID);
+		map.put("touid", AttentionId);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(C.CANCEL_ATTENTION, map, model, call);
+
+	}
+	/**添加关注*/
+	public void getFriendsAddAttention ( int AttentionId, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("fromuid", userID);
+		map.put("touid", AttentionId);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(C.ADD_ATTENTION, map, model, call);
+
+	}
 	
 }
