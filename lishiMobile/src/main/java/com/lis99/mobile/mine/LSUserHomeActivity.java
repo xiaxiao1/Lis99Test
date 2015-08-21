@@ -107,7 +107,9 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
         page = new Page();
 
-        loadClubInfo();
+//        loadClubInfo();
+
+
 
     }
 
@@ -120,6 +122,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
 
         setTitleBarAlpha(0f);
+        setLeftView(R.drawable.ls_club_back_icon_bg);
         setRightView(R.drawable.club_join);
         titleRightImage.setOnClickListener(this);
 
@@ -157,8 +160,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-
-                LSBaseTopicModel item = topics.get(position);
+                if ( position == 0 ) return;
+                LSBaseTopicModel item = topics.get(position - 1);
                 if ( item == null ) return;
                 Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity.class);
                 intent.putExtra("topicID", Integer.parseInt(item.topic_id));
@@ -510,9 +513,9 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         } else if (msg.what == SHOW_ADDBUTTON) {
             fansView.setText(user.getFollows()+"位粉丝");
             if (user.isIs_follows()) {
-                setRightView(R.drawable.bg_button_follow);
-            } else{
                 setRightView(R.drawable.bg_button_followed);
+            } else{
+                setRightView(R.drawable.bg_button_follow);
             }
             return true;
         }
@@ -652,7 +655,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
         if ( isBg )
         {
-            setLeftView(R.drawable.ls_page_back_icon_bg);
+            setLeftView(R.drawable.ls_club_back_icon_bg);
         }
         else
         {

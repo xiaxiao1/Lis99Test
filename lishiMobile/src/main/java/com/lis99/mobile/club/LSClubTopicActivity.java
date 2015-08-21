@@ -135,6 +135,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		setTitle("帖子详情");
 		// setTitleRight(true);
 		// setBack(true);
+
 		title.setOnClickListener(this);
 
 		clubhead = new ClubTopicDetailHead();
@@ -547,6 +548,8 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			// view_reference.setVisibility(View.GONE);
 			// 标题透明
 			setTitleBarAlpha(0);
+			setTitleRight(true);
+			setBack(true);
 			if (headViewActive == null)
 			{
 				headViewActive = new LSClubTopicHeadActive(activity);
@@ -719,20 +722,16 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 		ShareManager.getInstance().showPopWindowInShare(clubhead, "" + clubID,
 				imgUrl, clubhead.title, clubhead.shareTxt,
-				"" + clubhead.topic_id, viewManager, layoutMain, new CallBack()
-				{
+				"" + clubhead.topic_id, viewManager, layoutMain, new CallBack() {
 
 					@Override
-					public void handler(MyTask mTask)
-					{
+					public void handler(MyTask mTask) {
 						// TODO Auto-generated method stub
-						if ("deleteOk".equals(mTask.result))
-						{
+						if ("deleteOk".equals(mTask.result)) {
 							deleteThis();
 						}
 						// 置顶
-						else if ("topTopic".equals(mTask.result))
-						{
+						else if ("topTopic".equals(mTask.result)) {
 							topTopic();
 						}
 					}

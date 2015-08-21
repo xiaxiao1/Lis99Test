@@ -42,6 +42,7 @@
             android:adjustViewBounds="true"
             app:border_width="0px"
             android:background="@drawable/choiceness_subject_forground"
+            android:id="@+id/choiceness_subject_forground"
             />
 
         <ImageView

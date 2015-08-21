@@ -483,15 +483,21 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		}
 		else
 		{
-			if (v.getId() == R.id.layout_user )
-			{
-				Intent intent = new Intent(getActivity(), LSLoginActivity.class);
-				startActivity(intent);
-			}
-			else if ( v.getId() == R.id.titleRightImage )
+//			if (v.getId() == R.id.layout_user )
+//			{
+//				Intent intent = new Intent(getActivity(), LSLoginActivity.class);
+//				startActivity(intent);
+//			}
+//			else
+			if ( v.getId() == R.id.titleRightImage )
 			{
 				Intent intent = new Intent(getActivity(),
 						LsSettingActivity.class);
+				startActivity(intent);
+			}
+			else
+			{
+				Intent intent = new Intent(getActivity(), LSLoginActivity.class);
 				startActivity(intent);
 			}
 

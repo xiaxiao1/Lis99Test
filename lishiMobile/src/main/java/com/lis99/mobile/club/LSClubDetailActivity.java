@@ -161,7 +161,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //		pageactive = new Page();
 ////		加载俱乐部head
 //		loadClubInfo();
-		
+
+		setBack(true);
+
 		getAllList();
 	}
 	
