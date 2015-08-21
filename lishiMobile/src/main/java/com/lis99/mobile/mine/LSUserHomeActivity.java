@@ -160,9 +160,9 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                if ( position == 0 ) return;
+                if (position == 0) return;
                 LSBaseTopicModel item = topics.get(position - 1);
-                if ( item == null ) return;
+                if (item == null) return;
                 Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity.class);
                 intent.putExtra("topicID", Integer.parseInt(item.topic_id));
                 startActivity(intent);
@@ -176,6 +176,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         nameView = (TextView) headViewMain.findViewById(R.id.nameView);
         fansView = (TextView) headViewMain.findViewById(R.id.fansView);
         noteView = (TextView) headViewMain.findViewById(R.id.noteView);
+
+        noteView.setOnClickListener(this);
 
 
         TextView tagView = (TextView) headViewMain.findViewById(R.id.tagTextView1);
@@ -561,6 +563,16 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     public void onClick(View view) {
         if (view.getId() == R.id.titleLeftImage) {
             finish();
+            return;
+        }
+        if (view.getId() == R.id.noteView) {
+
+            if (noteView.getMaxLines() < 1000) {
+                noteView.setMaxLines(1000);
+            } else {
+                noteView.setMaxLines(2);
+            }
+
             return;
         }
        if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {

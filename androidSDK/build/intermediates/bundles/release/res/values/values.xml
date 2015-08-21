@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/yy/Documents/workspace/lis99/Git/AndroidStudio/androidSDK/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/androidSDK/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="add">发表</string>
     <string name="app_name">AndroidSDKDemo</string>
@@ -8,7 +8,7 @@
     <string name="common">常用接口</string>
     <string name="delauthorize">注销</string>
     <string name="readd">一键转播</string>
-    <!-- From: file:/Users/yy/Documents/workspace/lis99/Git/AndroidStudio/androidSDK/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/zhangjie/Work/lishi/Studio/lishi_android_studio/androidSDK/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="android:Theme.Light"/>
 </resources>
