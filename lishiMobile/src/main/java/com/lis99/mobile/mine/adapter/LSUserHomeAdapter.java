@@ -1,7 +1,6 @@
 package com.lis99.mobile.mine.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,8 +9,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.BaseListAdapter;
 import com.lis99.mobile.mine.LSBaseTopicModel;
-import com.lis99.mobile.mine.LSMineApplyInfo;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.lis99.mobile.util.ImageUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -22,15 +20,6 @@ import java.util.List;
 public class LSUserHomeAdapter extends BaseListAdapter<LSBaseTopicModel> {
 
     ImageLoader imageLoader = ImageLoader.getInstance();
-    DisplayImageOptions options;
-
-    private void buildOptions() {
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.club_icon_header_default)
-                .showImageForEmptyUri(R.drawable.club_icon_header_default)
-                .showImageOnFail(R.drawable.club_icon_header_default)
-                .cacheInMemory(false).cacheOnDisk(true).build();
-    }
 
     public LSUserHomeAdapter(Context context) {
         super(context);
@@ -38,7 +27,6 @@ public class LSUserHomeAdapter extends BaseListAdapter<LSBaseTopicModel> {
 
     public LSUserHomeAdapter(Context context, List<LSBaseTopicModel> data) {
         super(context, data);
-        buildOptions();
     }
 
     @Override
@@ -58,7 +46,7 @@ public class LSUserHomeAdapter extends BaseListAdapter<LSBaseTopicModel> {
         }
 
         LSBaseTopicModel info = getItem(position);
-        imageLoader.displayImage(info.getImage(), holder.roundedImageView1);
+        imageLoader.displayImage(info.getImage(), holder.roundedImageView1, ImageUtil.getImageOptionsMyPageItem());
         holder.timeView.setText(info.getCreatedate());
         holder.nameView.setText(info.getTopic_title());
         holder.infoView.setText("发布于 " + info.getClub_title());
