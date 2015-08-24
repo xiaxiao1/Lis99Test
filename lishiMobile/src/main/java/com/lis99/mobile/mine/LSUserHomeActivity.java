@@ -86,14 +86,17 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     //ListView 第一个可见item
     private int visibleFirst;
 
-
     private UserBean user;
 
+
     List<TextView> tagViews = new ArrayList<TextView>();
-//没有动态小人
+
+    //没有动态小人
     private View layout_no_item;
-//    动态数量
+    //    动态数量
     private TextView tv_num_reply;
+    //数量
+    int replyNum;
 
     private void buildOptions() {
         options = ImageUtil.getclub_topic_headImageOptions();
@@ -207,32 +210,6 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
         listView.addHeaderView(headViewMain);
 
-        listView.setOnScrollListener( new AbsListView.OnScrollListener() {
-
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-                // TODO Auto-generated method stub
-                visibleFirst = firstVisibleItem;
-                View v = listView.getChildAt(0);
-                if ( v == null ) return;
-                float alpha = v.getTop();
-                if ( visibleFirst > 0 )
-                {
-                    setTitleAlpha(HeadAdHeight);
-                }
-                else
-                {
-                    setTitleAlpha(-alpha);
-                }
-            }
-        });
-
     }
 
 
@@ -330,7 +307,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         String loginedID = DataManager.getInstance().getUser().getUser_id();
 
         if (this.userID.equals(loginedID)) {
-            titleRight.setVisibility(View.GONE);
+            titleRight.setVisibility(View.INVISIBLE);
         } else {
             titleRight.setVisibility(View.VISIBLE);
         }
@@ -353,6 +330,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         } else{
             setRightView(R.drawable.bg_button_follow);
         }
+
+        tv_num_reply.setText("Ta的发帖（"+replyNum+"）");
 
         if ( !TextUtils.isEmpty(user.getHeadicon()))
             ImageLoader.getInstance().displayImage(user.getHeadicon(),
@@ -460,9 +439,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             page.pageSize = data.get("totalpage").asInt();
             page.pageNo++;
 
-            int replyNum = data.get("total").asInt();
-
-            tv_num_reply.setText("Ta的发帖（"+replyNum+"）");
+            replyNum = data.get("total").asInt();
 
             List<LSBaseTopicModel> temp = LSFragment.mapper.readValue(data.get("topiclist").traverse(), new TypeReference<List<LSBaseTopicModel>>() {
             });
@@ -526,6 +503,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             if (adapter == null) {
                 adapter = new LSUserHomeAdapter(this, topics);
                 listView.setAdapter(adapter);
+                listView.setOnScrollListener( listScroll );
             } else {
                 adapter.setData(topics);
             }
@@ -685,7 +663,22 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     //设置title右边按钮
     private void setTitleRight ( boolean isBg )
     {
-
+        if ( isBg )
+        {
+            if (user.isIs_follows()) {
+                setRightView(R.drawable.bg_button_followed);
+            } else{
+                setRightView(R.drawable.bg_button_follow);
+            }
+        }
+        else
+        {
+            if (user.isIs_follows()) {
+                setRightView(R.drawable.bg_button_followed_none);
+            } else{
+                setRightView(R.drawable.bg_button_follow_none);
+            }
+        }
     }
     //	设置返回按钮
     private void setBack ( boolean isBg)
@@ -712,5 +705,30 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         listView.setAdapter(null);
     }
 
+    AbsListView.OnScrollListener listScroll = new AbsListView.OnScrollListener() {
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+            // TODO Auto-generated method stub
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem,
+        int visibleItemCount, int totalItemCount) {
+            // TODO Auto-generated method stub
+            visibleFirst = firstVisibleItem;
+            View v = listView.getChildAt(0);
+            if ( v == null ) return;
+            float alpha = v.getTop();
+            if ( visibleFirst > 0 )
+            {
+                setTitleAlpha(HeadAdHeight);
+            }
+            else
+            {
+                setTitleAlpha(-alpha);
+            }
+        }
+    };
 
 }
