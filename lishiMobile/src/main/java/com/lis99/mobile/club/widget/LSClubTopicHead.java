@@ -21,6 +21,7 @@ import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
@@ -323,6 +324,7 @@ public class LSClubTopicHead extends LinearLayout implements
 		vipStar = v.findViewById(R.id.vipStar);
 
 		imageView = (ImageView) v.findViewById(R.id.roundedImageView1);
+		imageView.setOnClickListener(this);
 		contentImageView = (ImageView) v.findViewById(R.id.contentImageView);
 
 		titleView = (TextView) v.findViewById(R.id.titleView);
@@ -397,6 +399,13 @@ public class LSClubTopicHead extends LinearLayout implements
 			case R.id.tv_floor_delete:
 				lsTopic.delTopic();
 				break;
+			case R.id.roundedImageView1:
+			{
+				Intent intent = new Intent(c, LSUserHomeActivity.class);
+				intent.putExtra("userID", clubhead.user_id);
+				c.startActivity(intent);
+			}
+		break;
 			case R.id.clubButton:
 			{
 				Intent intent = new Intent(c, LSClubDetailActivity.class);

@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="最新热贴"
+                android:text="最新热帖"
                 android:textColor="@color/color_six"
                 />
 

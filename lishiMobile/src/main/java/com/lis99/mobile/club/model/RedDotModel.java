@@ -13,4 +13,5 @@ public class RedDotModel extends BaseModel
 	public int is_reply;
 	public int is_creater;
 	public int is_admin;
+	public int is_follow;
 }

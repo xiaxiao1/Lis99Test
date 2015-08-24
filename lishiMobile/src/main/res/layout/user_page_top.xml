@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="210dp"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:id="@+id/headView"
+        >
+
+        <ImageView
+            style="@style/fill_fill"
+            android:background="@drawable/bg_user_home_top"
+            />
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/roundedImageView1"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/club_icon_header_default"
+            app:border_color="#fff"
+            app:border_width="1dp"
+            app:corner_radius="10dp"
+            android:background="@drawable/club_detail_head_bg"
+            />
+
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text=""
+            android:textSize="16sp"
+            android:layout_below="@id/roundedImageView1"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dip"
+            />
+
+        <TextView
+            android:id="@+id/fansView"
+            android:layout_below="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/icon_fans"
+            android:drawablePadding="5dp"
+            android:singleLine="true"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/tagPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fansView"
+            android:layout_marginTop="7dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tagTextView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/user_tag_bg"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:text="户外达人"
+                    android:textColor="#fff"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tagTextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/user_tag_bg"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:text="户外达人"
+                    android:textColor="#fff"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tagTextView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/user_tag_bg"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:text="户外达人"
+                    android:textColor="#fff"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tagTextView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/user_tag_bg"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:text="户外达人"
+                    android:textColor="#fff"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tagTextView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/user_tag_bg"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:text="户外达人"
+                    android:textColor="#fff"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tagTextView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/user_tag_bg"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:text="户外达人"
+                    android:textColor="#fff"
+                    android:textSize="8sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+       </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/noteView"
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#999"
+        android:lineSpacingExtra="5dp"/>
+
+
+    <View
+        android:id="@+id/sepView"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e3dbd0" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/pull_bg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/bg_title_user_activity"/>
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

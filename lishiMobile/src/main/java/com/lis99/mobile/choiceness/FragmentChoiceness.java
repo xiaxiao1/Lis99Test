@@ -7,7 +7,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -21,6 +20,7 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
+import com.lis99.mobile.newhome.DynamicActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
@@ -45,8 +45,8 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 
 	private View headView;
 
-	private ImageView iv_subject, iv_active;
-	
+	private View iv_subject, iv_active, iv_dynamic;
+
 	@Override
 	protected void initViews(ViewGroup container)
 	{
@@ -131,11 +131,13 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 
 		headView = View.inflate(getActivity(), R.layout.choiceness_head, null);
 
-		iv_subject = (ImageView) headView.findViewById(R.id.iv_subject);
-		iv_active = (ImageView) headView.findViewById(R.id.iv_active);
+		iv_subject = headView.findViewById(R.id.iv_subject);
+		iv_active = headView.findViewById(R.id.iv_active);
+		iv_dynamic = headView.findViewById(R.id.iv_dynamic);
 
 		iv_subject.setOnClickListener(this);
 		iv_active.setOnClickListener(this);
+		iv_dynamic.setOnClickListener(this);
 
 		list.addHeaderView(headView);
 	}
@@ -161,6 +163,9 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 		// TODO Auto-generated method stub
 		switch ( arg0.getId() )
 		{
+			case R.id.iv_dynamic:
+				startActivity(new Intent(getActivity(), DynamicActivity.class));
+				break;
 			case R.id.layout_search:
 				startActivity(new Intent(getActivity(), SearchActivity.class));
 				break;

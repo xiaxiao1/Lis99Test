@@ -461,7 +461,7 @@ public class LSLoginActivity extends LSBaseActivity {
             JsonNode data = root.get("data");
             if (!"OK".equals(errCode)) {
                 String error = data.get("error").asText();
-                postMessage(ActivityPattern1.POPUP_TOAST, error);
+                postMessage(WEIXIN_LOGIN_FAIL);
                 return;
             }
 
@@ -469,11 +469,12 @@ public class LSLoginActivity extends LSBaseActivity {
 
             String nickName = data.get("nickname").asText();
 
+
             String headicon = data.get("headicon").asText();
 
             u.setUser_id(data.get("user_id").asText());
 
-            u.setHeadicon(headicon);
+            u.setHeadicon(weixinHeader);
 
             u.setNickname(nickName);
 

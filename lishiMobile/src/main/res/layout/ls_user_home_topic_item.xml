@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res/com.lis99.mobile"
+    android:padding="3dp">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_user_topic_item">
+
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="13dp"
+            android:scaleType="fitXY"
+            app:corner_radius="5px"
+            app:border_color="#e8e8e8"
+            app:border_width="1px"
+
+            android:id="@+id/imageVew"
+            android:background="#f6f4f4"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:textColor="#73706e"
+                android:textSize="16sp"
+                android:text="那些不可小瞧的，户外新驴们快来看啊"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/clubView"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#999"
+                    android:text="发布于 逍遥户外"/>
+
+                <TextView
+                    android:id="@+id/timeView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#999"
+                    android:text="2015 08-10"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/categoryView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_user_home_topic"
+        android:layout_marginTop="13dp"/>
+
+
+</RelativeLayout>

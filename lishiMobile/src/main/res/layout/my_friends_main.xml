@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+                android:background="@color/white"
+    >
+
+    <include
+        android:id="@+id/include"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+
+        <Button
+            android:padding="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_attention"
+            android:text="关注"
+            android:textColor="@color/text_color_blue"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/friends_title_left_unselect"
+            />
+
+        <Button
+            android:padding="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_fans"
+            android:text="粉丝"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@color/text_color_blue"
+            />
+
+        <Button
+            android:padding="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_recommend"
+            android:text="推荐用户"
+            android:textColor="@color/text_color_blue"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/friends_title_right_unselect"
+            />
+
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:background="@color/pull_bg"
+        style="@style/fill_fill"
+        android:id="@+id/viewPager"
+        />
+
+</LinearLayout>

@@ -24,6 +24,7 @@ import com.lis99.mobile.club.LSClubTopicReplyActivity;
 import com.lis99.mobile.club.model.ClubTopicReplyList.Topiclist;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
@@ -90,6 +91,13 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			else if (v.getId() == R.id.layout_club_detail_like)
 			{
 				likeNow(comment, img, tvreply);
+			}
+
+			else if (v.getId() == R.id.roundedImageView1)
+			{
+				Intent intent = new Intent(main, LSUserHomeActivity.class);
+				intent.putExtra("userID", comment.user_id);
+				main.startActivity(intent);
 			}
 		}
 
@@ -244,6 +252,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		l.setImageView(holder.iv_like);
 		holder.layout_club_detail_reply.setOnClickListener(l);
 		holder.tv_floor_delete.setOnClickListener(l);
+		holder.imageView.setOnClickListener(l);
 
 		if (item.topic_image != null && item.topic_image.size() > 0)
 		{
