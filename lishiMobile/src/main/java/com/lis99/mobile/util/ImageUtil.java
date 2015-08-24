@@ -1255,6 +1255,21 @@ public class ImageUtil
 				.build();
 	}
 
+	// 个人页， 动态列表默认图标
+	public static DisplayImageOptions getImageOptionsMyPageItem()
+	{
+		return new DisplayImageOptions.Builder()
+				.showImageForEmptyUri(R.drawable.my_page_item_img_none)
+				.showImageOnFail(R.drawable.my_page_item_img_none)
+				.cacheInMemory(true)
+				.considerExifParams(true)
+				.cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中
+				.resetViewBeforeLoading(true)//设置图片在下载前是否重置，复位
+//				.displayer(new FadeInBitmapDisplayer(200))//是否图片加载好后渐入的动画时间
+				.bitmapConfig(Bitmap.Config.RGB_565)
+				.build();
+	}
+
 	/**
 	 * 俱乐部Icon图标
 	 * 

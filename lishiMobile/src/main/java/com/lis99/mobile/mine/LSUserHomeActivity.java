@@ -1,10 +1,12 @@
 package com.lis99.mobile.mine;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -88,9 +90,13 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     private UserBean user;
 
     List<TextView> tagViews = new ArrayList<TextView>();
+//没有动态小人
+    private View layout_no_item;
+//    动态数量
+    private TextView tv_num_reply;
 
     private void buildOptions() {
-        options = ImageUtil.getImageOptionClubIcon();
+        options = ImageUtil.getclub_topic_headImageOptions();
     }
 
     private PullToRefreshView refreshView;
@@ -123,7 +129,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
         setTitleBarAlpha(0f);
         setLeftView(R.drawable.ls_club_back_icon_bg);
-        setRightView(R.drawable.club_join);
+        setRightView(R.drawable.bg_button_follow);
         titleRightImage.setOnClickListener(this);
 
 
@@ -139,6 +145,10 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         headViewMain = View.inflate(activity, R.layout.user_page_top, null);
 
         headerView = headViewMain.findViewById(R.id.headView);
+
+        layout_no_item = headViewMain.findViewById(R.id.layout_no_item);
+
+        tv_num_reply = (TextView) headViewMain.findViewById(R.id.tv_num_reply);
 
 //        view_line_head = headViewMain.findViewById(R.id.view_line_head);
 
@@ -160,9 +170,9 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                if ( position == 0 ) return;
+                if (position == 0) return;
                 LSBaseTopicModel item = topics.get(position - 1);
-                if ( item == null ) return;
+                if (item == null) return;
                 Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity.class);
                 intent.putExtra("topicID", Integer.parseInt(item.topic_id));
                 startActivity(intent);
@@ -176,6 +186,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         nameView = (TextView) headViewMain.findViewById(R.id.nameView);
         fansView = (TextView) headViewMain.findViewById(R.id.fansView);
         noteView = (TextView) headViewMain.findViewById(R.id.noteView);
+
+        noteView.setOnClickListener(this);
 
 
         TextView tagView = (TextView) headViewMain.findViewById(R.id.tagTextView1);
@@ -327,7 +339,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         nameView.setText(user.getNickname());
 
         if (user.getNote() == null || user.getNote().length() == 0) {
-            noteView.setText("暂无介绍");
+            noteView.setText("哎吆，简介没写哦...");
         } else {
             noteView.setText(user.getNote());
         }
@@ -448,11 +460,26 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             page.pageSize = data.get("totalpage").asInt();
             page.pageNo++;
 
+            int replyNum = data.get("total").asInt();
+
+            tv_num_reply.setText("Ta的发帖（"+replyNum+"）");
 
             List<LSBaseTopicModel> temp = LSFragment.mapper.readValue(data.get("topiclist").traverse(), new TypeReference<List<LSBaseTopicModel>>() {
             });
 
             topics.addAll(temp);
+
+            if ( adapter == null )
+            {
+                if ( topics.size() == 0 )
+                {
+                    //没有数据
+                    layout_no_item.setVisibility(View.VISIBLE);
+                }
+                else {
+                    layout_no_item.setVisibility(View.GONE);
+                }
+            }
 
 
 			postMessage(SHOW_CLUB);
@@ -557,10 +584,21 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         publishTask(task, IEvent.IO);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.titleLeftImage) {
             finish();
+            return;
+        }
+        if (view.getId() == R.id.noteView) {
+
+            if (noteView.getMaxLines() < 1000) {
+                noteView.setMaxLines(1000);
+            } else {
+                noteView.setMaxLines(2);
+            }
+
             return;
         }
        if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
