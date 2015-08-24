@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
@@ -23,6 +24,9 @@ import java.util.ArrayList;
  * Created by yy on 15/8/13.
  */
 public class NeedAttentionAdapter extends MyBaseAdapter {
+
+    private String UserId;
+
     public NeedAttentionAdapter(Context c, ArrayList listItem) {
         super(c, listItem);
     }
@@ -33,6 +37,7 @@ public class NeedAttentionAdapter extends MyBaseAdapter {
 
         if ( view == null )
         {
+            UserId = DataManager.getInstance().getUser().getUser_id();
             view = View.inflate(mContext, R.layout.friends_attention_item, null);
             holder = new Holder();
             holder.roundedImageView = (RoundedImageView) view.findViewById(R.id.roundedImageView);
@@ -50,6 +55,15 @@ public class NeedAttentionAdapter extends MyBaseAdapter {
         }
 
         final MyFriendsRecommendModel.Lists item = (MyFriendsRecommendModel.Lists) getItem(i);
+
+        if ( UserId.equals(""+item.user_id))
+        {
+            holder.btn_attention.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.btn_attention.setVisibility(View.VISIBLE);
+        }
 
         if ( item.is_vip == 0 )
         {
@@ -74,6 +88,8 @@ public class NeedAttentionAdapter extends MyBaseAdapter {
         holder.tv_name.setText(item.nickname);
 
         holder.tv_info.setText(item.topic_title);
+
+
 
 
         holder.btn_attention.setOnClickListener(new View.OnClickListener() {

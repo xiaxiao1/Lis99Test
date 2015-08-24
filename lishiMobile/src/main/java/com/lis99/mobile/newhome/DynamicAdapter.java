@@ -1,5 +1,6 @@
 package com.lis99.mobile.newhome;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.model.DynamicListModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -49,6 +51,8 @@ public class DynamicAdapter extends MyBaseAdapter {
 
             holder.tv_actve = (TextView) view.findViewById(R.id.tv_actve);
 
+            holder.layout_user = view.findViewById(R.id.layout_user);
+
             view.setTag(holder);
         }
         else
@@ -56,7 +60,7 @@ public class DynamicAdapter extends MyBaseAdapter {
             holder = (Holder) view.getTag();
         }
 
-        DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) getItem(i);
+        final DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) getItem(i);
 
         if ( item == null ) return view;
 
@@ -116,6 +120,12 @@ public class DynamicAdapter extends MyBaseAdapter {
             holder.tv_style.setVisibility(View.INVISIBLE);
         }
 
+        holder.layout_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Common.goUserHomeActivit((Activity)mContext, ""+item.user_id);
+            }
+        });
 
 
         return view;
@@ -130,5 +140,6 @@ public class DynamicAdapter extends MyBaseAdapter {
         RoundedImageView iv_info;
         ImageView iv_active;
         TextView tv_club, tv_reply, tv_style, dynamic_item_title, dynamic_item_title1, tv_actve;
+        View layout_user;
     }
 }

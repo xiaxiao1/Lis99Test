@@ -188,56 +188,6 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		b = (Button) replyPanel.findViewById(R.id.addImage);
 		// ===========2.3====================
 
-		listView.setOnScrollListener(new OnScrollListener()
-		{
-
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState)
-			{
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount)
-			{
-				// TODO Auto-generated method stub
-				visibleFirst = firstVisibleItem;
-				int num = firstVisibleItem + visibleItemCount;
-				if (num > pageCount
-						&& title.getText().toString().equals("帖子详情"))
-				{
-					title.setText("双击此处回到1楼");
-				} else if (num < pageCount
-						&& !title.getText().toString().equals("帖子详情"))
-				{
-					title.setText("帖子详情");
-				}
-				// 获取头的高度
-				if (headHeight == 0)
-				{
-					// 获取AD高度
-					getHeadAdHeight();
-				}
-				View v = listView.getChildAt(0);
-				if (v == null)
-					return;
-				float alpha = v.getTop();
-				// 只有活动页才做处理
-				if (!needup && clubhead != null
-						&& "1".equals(clubhead.category))
-				{
-					if (visibleFirst > 0)
-					{
-						setTitleAlpha(headHeight);
-					} else
-					{
-						setTitleAlpha(-alpha);
-					}
-				}
-			}
-		});
-
 		view_reference = findViewById(R.id.view_reference);
 	}
 
@@ -621,6 +571,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 							title.setText("双击此处回到1楼");
 							setNoTitleAlpha();
 							visibleTitleReference(true);
+							listView.setOnScrollListener(listScroll);
 							return;
 						}
 						adapter.addListUp(clubreply.topiclist);
@@ -802,11 +753,61 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	{
 		if (isBg)
 		{
-			setLeftView(R.drawable.ls_page_back_icon_bg);
+			setLeftView(R.drawable.ls_club_back_icon_bg);
 		} else
 		{
 			setLeftView(R.drawable.ls_page_back_icon);
 		}
 	}
+
+	OnScrollListener listScroll = new OnScrollListener()
+{
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState)
+	{
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+	int visibleItemCount, int totalItemCount)
+	{
+		// TODO Auto-generated method stub
+		visibleFirst = firstVisibleItem;
+		int num = firstVisibleItem + visibleItemCount;
+		if (num > pageCount
+				&& title.getText().toString().equals("帖子详情"))
+		{
+			title.setText("双击此处回到1楼");
+		} else if (num < pageCount
+				&& !title.getText().toString().equals("帖子详情"))
+		{
+			title.setText("帖子详情");
+		}
+		// 获取头的高度
+		if (headHeight == 0)
+		{
+			// 获取AD高度
+			getHeadAdHeight();
+		}
+		View v = listView.getChildAt(0);
+		if (v == null)
+			return;
+		float alpha = v.getTop();
+		// 只有活动页才做处理
+		if (!needup && clubhead != null
+				&& "1".equals(clubhead.category))
+		{
+			if (visibleFirst > 0)
+			{
+				setTitleAlpha(headHeight);
+			} else
+			{
+				setTitleAlpha(-alpha);
+			}
+		}
+	}
+};
 
 }
