@@ -49,7 +49,7 @@
                 android:layout_alignParentRight="true"
                 android:drawableLeft="@drawable/club_detail_reply_number"
                 android:drawablePadding="8dip"
-                android:text=""
+                android:text="@string/temp_string"
                 android:textColor="#999"
                 android:textSize="12sp"
                 />

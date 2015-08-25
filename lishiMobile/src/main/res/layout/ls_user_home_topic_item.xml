@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res/com.lis99.mobile"
-    android:padding="3dp">
+    android:paddingBottom="5dp"
+    android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+    >
 
 
     <LinearLayout
@@ -43,9 +46,10 @@
                 android:id="@+id/nameView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="8dp"
                 android:textColor="#73706e"
                 android:textSize="16sp"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:text="那些不可小瞧的，户外新驴们快来看啊"/>
 
 
@@ -53,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="6dp">
 
                 <TextView
                     android:id="@+id/clubView"

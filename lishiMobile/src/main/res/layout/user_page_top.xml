@@ -8,7 +8,7 @@
     >
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="210dp"
+        android:layout_height="190dp"
         android:orientation="vertical"
         android:background="#fff"
         android:id="@+id/headView"
@@ -24,13 +24,12 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="70dip"
+            android:layout_marginTop="50dip"
             android:scaleType="fitXY"
             android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#fff"
-            app:border_width="1dp"
+            app:border_color="#ffffff"
+            app:border_width="2px"
             app:corner_radius="10dp"
-            android:background="@drawable/club_detail_head_bg"
             />
 
 
@@ -39,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text=""
+            android:text="@string/temp_string"
             android:textSize="16sp"
             android:layout_below="@id/roundedImageView1"
             android:layout_centerHorizontal="true"
@@ -52,7 +51,7 @@
             android:layout_below="@+id/nameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:drawableLeft="@drawable/icon_fans"
             android:drawablePadding="5dp"
             android:singleLine="true"

@@ -89,7 +89,7 @@ public class LSClubFragment extends LSFragment implements
 	private ClubMainModel model;
 	
 	private void buildOptions() {
-		options = ImageUtil.getImageOptionsClubAD();
+		options = ImageUtil.getDefultImageOptions();
 	}
 	
 	@Override

@@ -66,11 +66,19 @@ public class AttentionAdapter extends MyBaseAdapter {
         }
 
         String url = (String) holder.roundedImageView.getTag();
-        if (!TextUtils.isEmpty(item.headicon) && !item.headicon.equals(url))
+
+        if (!TextUtils.isEmpty(item.headicon))
         {
-            holder.roundedImageView.setTag(item.headicon);
-            ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView, ImageUtil.getclub_topic_headImageOptions());
+            if ( !item.headicon.equals(url) )
+            {
+                holder.roundedImageView.setTag(item.headicon);
+                ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView, ImageUtil.getclub_topic_headImageOptions());
+            }
         }
+        else {
+            holder.roundedImageView.setImageResource(R.drawable.ls_nologin_header_icon);
+        }
+
 
 
         return view;

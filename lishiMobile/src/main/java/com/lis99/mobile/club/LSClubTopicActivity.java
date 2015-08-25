@@ -1,6 +1,7 @@
 package com.lis99.mobile.club;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -121,6 +122,16 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 					}
 
 				});
+	}
+
+	@Override
+	public void setIntent(Intent newIntent) {
+		super.setIntent(newIntent);
+	}
+
+	@Override
+	public Context getBaseContext() {
+		return super.getBaseContext();
 	}
 
 	@Override

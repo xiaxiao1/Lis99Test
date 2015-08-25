@@ -229,6 +229,7 @@ public class ShareManager
 
 	/** http://club.lis99.com/actives/detail/帖子id */
 	private static String shareUrl = "http://club.lis99.com/actives/detail/";
+	private static String shareText = "砾石，最好玩儿的户外运动社区，我的户外大本营";
 	private static PopupWindow pop;
 
 	public PopupWindow showPopWindowInShare(
@@ -267,6 +268,8 @@ public class ShareManager
 		{
 			sharedUrl = shareUrl;
 		}
+
+
 
 		Common.log("activity=" + LSBaseActivity.activity.getClass().getName());
 
@@ -335,7 +338,7 @@ public class ShareManager
 						break;
 					case R.id.iv_sina:
 						String shareSinaText = title + finalSharedUrl + "" + topicId
-								+ shareTxt;
+								+ shareText;
 						Bitmap bitmap = ImageLoader.getInstance().loadImageSync(Image_Url);
 //						if ( bitmap == null ) Common.log("=====bitmap ==== null ==========");
 //						else Common.log("=====bitmap ！！！！=== null ==========");
@@ -373,8 +376,8 @@ public class ShareManager
 						break;
 					case R.id.iv_qzone:
 
-						String shareWx4Text = shareTxt +" "+ finalSharedUrl + ""
-								+ topicId;
+						String shareWx4Text = shareText; //+" "+ finalSharedUrl + ""
+//								+ topicId;
 						// LsWeiboTencent.getInstance(LSBaseActivity.activity)
 						// .share(shareWx4Text, bitmap);
 						QQZoneUtil.getInstance().sendQQZone(
@@ -384,7 +387,7 @@ public class ShareManager
 					case R.id.iv_wechat:
 						String shareWx1Text = finalSharedUrl + topicId;
 						String title1 = title;
-						String desc1 = shareTxt + finalSharedUrl + "" + topicId;
+						String desc1 = shareText;// + finalSharedUrl + "" + topicId;
 //						Bitmap bmp1 = ImageCacheManager.getInstance()
 //								.getBitmapFromCache(Image_Url);
 //						Bitmap bmp1 = ImageUtil.drawableToBitmap(LSBaseActivity.activity.getResources().getDrawable(R.drawable.logo100));
@@ -402,7 +405,7 @@ public class ShareManager
 					case R.id.iv_friend:
 						String shareWx2Text = finalSharedUrl + topicId;
 						String title2 = title;
-						String desc2 = shareTxt + finalSharedUrl + "" + topicId;
+						String desc2 = shareText;// + finalSharedUrl + "" + topicId;
 //						Bitmap bmp2 = ImageCacheManager.getInstance()
 //								.getBitmapFromCache(Image_Url);
 //						Bitmap bmp2 = ImageUtil.drawableToBitmap(LSBaseActivity.activity.getResources().getDrawable(R.drawable.logo100));

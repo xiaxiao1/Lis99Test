@@ -5,6 +5,6 @@
 
     <stroke
         android:width="3dp"
-        android:color="#dedede" />
+        android:color="@color/pull_bg" />
 
 </shape>
