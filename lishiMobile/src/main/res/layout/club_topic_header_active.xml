@@ -222,7 +222,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -256,7 +256,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -290,7 +290,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -325,7 +325,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
