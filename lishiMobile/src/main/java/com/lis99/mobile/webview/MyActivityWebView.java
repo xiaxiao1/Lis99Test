@@ -65,7 +65,11 @@ public class MyActivityWebView extends LSBaseActivity
 	@Override
 	protected void rightAction() {
 		super.rightAction();
-
+		//如果没有title 默认添加一个， 朋友圈没有title不能分享
+		if ( TextUtils.isEmpty(title) )
+		{
+			title = "砾石 心户外，新生活";
+		}
 		pop = ShareManager.getInstance().showPopWindowInShare(null, "",
 				image_url, title, "",
 				"", false, layout_main, null, url);
@@ -140,7 +144,7 @@ public class MyActivityWebView extends LSBaseActivity
         {
 //        	Toast.makeText(WebViewDemo.this, "test = ", Toast.LENGTH_LONG).show();
         }
-        
+//        精选黄崖关登录
         @JavascriptInterface
         public String getUserId ()
         {

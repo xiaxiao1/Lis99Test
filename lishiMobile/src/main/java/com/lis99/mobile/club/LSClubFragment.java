@@ -33,7 +33,6 @@ import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.LSSelectAdapter.OnSelectItemClickListener;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
-import com.lis99.mobile.newhome.LSWebActivity;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -43,6 +42,7 @@ import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.LocationUtil.getLocation;
 import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
@@ -376,9 +376,19 @@ public class LSClubFragment extends LSFragment implements
 		}
 		LSClubBannerItem item = model.banners.get(index);
 		if (item.getType() == 1){
-			Intent intent = new Intent(getActivity(),LSWebActivity.class);
-			intent.putExtra("url", item.getContents());
+//			Intent intent = new Intent(getActivity(),LSWebActivity.class);
+//			intent.putExtra("url", item.getContents());
+//			startActivity(intent);
+
+			Intent intent = new Intent(getActivity(), MyActivityWebView.class);
+			Bundle bundle = new Bundle();
+			bundle.putString("URL", item.getContents());
+			bundle.putString("TITLE", "");
+			bundle.putString("IMAGE_URL", item.getImages());
+			bundle.putInt("TOPIC_ID", 0);
+			intent.putExtras(bundle);
 			startActivity(intent);
+
 		} else if (item.getType() == 2){
 			Intent intent = new Intent(getActivity(), LSClubTopicActivity.class);
 			intent.putExtra("topicID", Integer.parseInt(item.getContents()));

@@ -520,7 +520,6 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             //设置按钮
             setTitleRight(isRightBg);
 //            if (user.isIs_follows()) {
-//
 //              setRightView(R.drawable.bg_button_followed);
 //            } else{
 //                setRightView(R.drawable.bg_button_follow);
