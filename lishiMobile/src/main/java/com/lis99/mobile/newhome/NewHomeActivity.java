@@ -168,7 +168,7 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
                         mineFragment.refreshUser();
                     }
                     //获取红点
-                    mineFragment.getNoticeDot();
+//                    mineFragment.getNoticeDot();
                     tab.visibleRedDot(false);
                     switchContent(mineFragment);
                     break;
@@ -778,8 +778,9 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
     private void sendPush(PushModel model) {
         //打开帖子
         if (model.type == 2) {
+            tab.onTabClick(tab.CHOICENESS);
             Intent i = new Intent(this, LSClubTopicActivity.class);
-            i.putExtra("topicID", model.topid_ic);
+            i.putExtra("topicID", model.topic_id);
             startActivity(i);
         }
 //				个人中心报名通知

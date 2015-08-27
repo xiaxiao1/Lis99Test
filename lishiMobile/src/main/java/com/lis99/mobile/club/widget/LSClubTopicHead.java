@@ -15,11 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
@@ -81,6 +83,10 @@ public class LSClubTopicHead extends LinearLayout implements
 	private ImageView iv_load;
 
 	private AnimationDrawable animationDrawable;
+
+	//======3.5=====
+	private LinearLayout layout_tag;
+	private TextView tv_tag1, tv_tag2, tv_tag3;
 
 	public void setHead(final ClubTopicDetailHead clubhead)
 	{
@@ -215,6 +221,60 @@ public class LSClubTopicHead extends LinearLayout implements
 		
 		iv_like.setImageResource("1".equals(clubhead.LikeStatus) ? R.drawable.like_button_press
 				: R.drawable.like_button);
+
+		//====3.5======
+		if ( clubhead.taglist != null && clubhead.taglist.size() != 0 )
+		{
+			layout_tag.setVisibility(View.VISIBLE);
+			tv_tag1.setVisibility(INVISIBLE);
+			tv_tag2.setVisibility(INVISIBLE);
+			tv_tag3.setVisibility(INVISIBLE);
+			int num = clubhead.taglist.size();
+			if ( num >0 )
+			{
+				tv_tag1.setText("#"+clubhead.taglist.get(0).name);
+				tv_tag1.setVisibility(VISIBLE);
+				tv_tag1.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(c, ClubSpecialListActivity.class);
+						intent.putExtra("tagid", clubhead.taglist.get(0).id);
+						c.startActivity(intent);
+					}
+				});
+			}
+			if ( num > 1)
+			{
+				tv_tag2.setText("#"+clubhead.taglist.get(1).name);
+				tv_tag2.setVisibility(VISIBLE);
+				tv_tag2.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(c, ClubSpecialListActivity.class);
+						intent.putExtra("tagid", clubhead.taglist.get(1).id);
+						c.startActivity(intent);
+					}
+				});
+			}
+			if ( num > 2 )
+			{
+				tv_tag3.setText("#"+clubhead.taglist.get(2).name);
+				tv_tag3.setVisibility(VISIBLE);
+				tv_tag3.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						Intent intent = new Intent(c, ClubSpecialListActivity.class);
+						intent.putExtra("tagid", clubhead.taglist.get(2).id);
+						c.startActivity(intent);
+					}
+				});
+			}
+		}
+		else {
+			layout_tag.setVisibility(View.INVISIBLE);
+		}
+
+
 	}
 
 	public void setTopic(LSClubTopicActivity lsTopic)
@@ -264,6 +324,7 @@ public class LSClubTopicHead extends LinearLayout implements
 		vipStar = v.findViewById(R.id.vipStar);
 
 		imageView = (ImageView) v.findViewById(R.id.roundedImageView1);
+		imageView.setOnClickListener(this);
 		contentImageView = (ImageView) v.findViewById(R.id.contentImageView);
 
 		titleView = (TextView) v.findViewById(R.id.titleView);
@@ -292,7 +353,11 @@ public class LSClubTopicHead extends LinearLayout implements
 
 		iv_load= (ImageView) findViewById(R.id.iv_load);
 
-
+//====3.5======
+		layout_tag = (LinearLayout) v.findViewById(R.id.layout_tag);
+		tv_tag1 = (TextView) v.findViewById(R.id.tv_tag1);
+		tv_tag2 = (TextView) v.findViewById(R.id.tv_tag2);
+		tv_tag3 = (TextView) v.findViewById(R.id.tv_tag3);
 
 	}
 
@@ -334,6 +399,13 @@ public class LSClubTopicHead extends LinearLayout implements
 			case R.id.tv_floor_delete:
 				lsTopic.delTopic();
 				break;
+			case R.id.roundedImageView1:
+			{
+				Intent intent = new Intent(c, LSUserHomeActivity.class);
+				intent.putExtra("userID", clubhead.user_id);
+				c.startActivity(intent);
+			}
+		break;
 			case R.id.clubButton:
 			{
 				Intent intent = new Intent(c, LSClubDetailActivity.class);

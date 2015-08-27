@@ -15,7 +15,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="172dip"
+            android:layout_height="202dip"
             android:background="@drawable/choiceness_image_bg" />
 
         <com.lis99.mobile.club.widget.RoundedImageView
@@ -27,19 +27,18 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:border_width="0px"
-            app:corner_radius="3dip" 
+            app:corner_radius="3dip"
             />
         
         <com.lis99.mobile.club.widget.RoundedImageView
             android:layout_marginLeft="1px"
             android:layout_marginRight="1px"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/choiceness_height"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/choiceness_shape_foreground"
+            android:layout_height="80dp"
+            android:src="@drawable/choiseness_subject_title_forground"
             app:border_width="0px"
             app:corner_radius="3dip"
+            android:scaleType="fitXY"
             />
 
         <ImageView
@@ -71,7 +70,7 @@
             android:layout_below="@id/tv_title"
             android:layout_marginLeft="@dimen/ten"
             android:layout_marginRight="@dimen/ten"
-            android:layout_marginTop="4dip"
+            android:layout_marginTop="2dip"
             android:shadowColor="@color/color_shadow"
             android:shadowDx="2"
             android:shadowDy="2"
@@ -86,8 +85,8 @@
             style="@style/wrap_wrap"
             android:layout_below="@id/tv_info"
             android:layout_marginLeft="@dimen/ten"
-            android:layout_marginTop="6dip"
-            android:drawableLeft="@drawable/choiceness_location"
+            android:layout_marginTop="4dip"
+            android:drawableLeft="@drawable/choiseness_icon_club_selct_location"
             android:drawablePadding="3dip"
             android:gravity="center_vertical"
             android:shadowColor="@color/color_shadow"
@@ -103,9 +102,9 @@
             style="@style/wrap_wrap"
             android:layout_below="@id/tv_info"
             android:layout_marginLeft="@dimen/ten"
-            android:layout_marginTop="6dip"
+            android:layout_marginTop="4dip"
             android:layout_toRightOf="@id/tv_location"
-            android:drawableLeft="@drawable/choiceness_comment"
+            android:drawableLeft="@drawable/choiseness_icon_club_selct_comment"
             android:drawablePadding="3dip"
             android:gravity="center_vertical"
             android:shadowColor="@color/color_shadow"

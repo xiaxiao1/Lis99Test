@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StatusUtil;
 
@@ -134,6 +135,9 @@ public class LsSettingActivity extends ActivityPattern {
 			Intent intent = new Intent(this, LsSettingRecommendActivity.class);
 			startActivity(intent);
 		} else if (v.getId() == bt_tuichu.getId()) {
+//通知接口， 退出登陆
+			LoginCallBackManager.getInstance().handler();
+
 			//调用退出登陆接口
 			LSRequestManager.getInstance().Logout();
 			

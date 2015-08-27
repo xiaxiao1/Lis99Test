@@ -45,6 +45,7 @@ public class ChoicenessModel extends BaseModel
 		public String position;
 		public String club_logo;
 		public String club_title;
+		public int tag_id;
 	}
 		
 }

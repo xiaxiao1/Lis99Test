@@ -206,7 +206,7 @@ public class C {
 	public static final String USER_ANSWER_URL = DOMAIN + "/user/answer/";
 	public static final String USER_INFO_URL = DOMAIN + "/user/info/";
 	
-	public static final String USER_NOTICE_TIPS_URL = DOMAIN + "/v2/user/noticetips/";
+	public static final String USER_NOTICE_TIPS_URL = DOMAIN + "/v3/user/noticetips/";
 	
 	/** 用户-问答提醒 */
 	public static final String USER_COMMENTS_URL = DOMAIN + "/user/comments/";
@@ -257,6 +257,11 @@ public class C {
 	public static final String LS_MINE_APPLY_INFO = DOMAIN + "/v2/user/applynotice/";
 	public static final String LS_MINE_APPLY_MANAGE = DOMAIN + "/v2/user/myTopic/";
 	public static final String LS_MINE_APPLY_INFO_CLEAR = DOMAIN + "/v2/user/clearnotice/";
+
+	public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v3/user/uinfo/";
+	public static final String LS_USER_ADD_FOLLOW  =     DOMAIN + "/v3/user/addFollow/";
+	public static final String LS_USER_CANCEL_FOLLOW =      DOMAIN +  "/v3/user/cancelFollow/";
+
 	
 	
 	public static final String COLLECTION_GET_LIST = DOMAIN + "/shop/shopDynamicInfo/";
@@ -295,6 +300,8 @@ public class C {
 	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v2/club/topiclist/";
 	/**帖子详情（HEAD）*/
 	public static final String CLUB_TOPIC_DETAIL_HEAD = DOMAIN + "/v2/club/topic/";
+
+	public static final String CLUB_TOPIC_DETAIL_HEAD_3 = DOMAIN + "/v3/club/topic/";
 	/**帖子详情回复列表*/
 	public static final String CLUB_T0PIC_DETAIL_REPLY = DOMAIN + "/v2/club/replylist/";
 	/**帖子详情其他信息*/
@@ -374,5 +381,29 @@ public class C {
 	public static final String ACTIVE_ALL = DOMAIN + "/v3/club/clubtopics/";
 	/**线路活动， 城市选择*/
 	public static final String ACTIVE_ALL_CITY = DOMAIN + "/v3/club/getAreaListInfo";
+
+	//=====3.5======
+	/**俱乐部首页*/
+	public static final String CLUB_MAIN_INFO = DOMAIN + "/v3/club/index";
+/**砾石专栏*/
+	public static final String CLBU_MIAN_SPECIAL = DOMAIN + "/v3/club/taglist/";
+
+	public static final String CLBU_SPECIAL_LIST_INFO = DOMAIN + "/v3/club/tagTopic/";
+
+	public static final String CLUB_HOT_TOPIC = DOMAIN + "/v3/club/hottopics/";
+
+	//=======3.6.0============
+//	动态
+	public static final String DYNAMIC_LIST = DOMAIN + "/v3/user/dynamic/";
+//关注， 推荐
+	public static final String MYFRIENDS_RECOMMED = DOMAIN + "/v3/user/recommendUser/";
+//关注我的粉丝
+	public static final String MYFRIENDS_FANS = DOMAIN + "/v3/user/myFans/";
+//关注
+	public static final String MYFRIENDS_ATTENTION = DOMAIN + "/v3/user/myFollow/";
+//取消关注
+	public static final String CANCEL_ATTENTION = DOMAIN + "/v3/user/cancelFollow";
+//添加关注
+	public static final String ADD_ATTENTION = DOMAIN + "/v3/user/addFollow";
 
 }

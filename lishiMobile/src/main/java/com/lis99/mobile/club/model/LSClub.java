@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LSClub {
+//我加入的俱乐部
+	public static final int Mine = 0;
+//推荐俱乐部
+	public static final int Recommend = 1;
+
+	int type = Mine;
 
 	int id;
 	String title;

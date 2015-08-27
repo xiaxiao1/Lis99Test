@@ -42,9 +42,9 @@
             <com.lis99.mobile.club.widget.RoundedImageView
                 android:layout_marginBottom="8dip"
             android:id="@+id/roundedImageView1"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_alignParentBottom="true"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+                android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dip"
             android:scaleType="fitXY"
@@ -60,7 +60,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/roundedImageView1"
-            android:layout_marginTop="3dip"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/roundedImageView1"
             android:drawablePadding="4dip"
@@ -223,7 +222,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -257,7 +256,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -291,7 +290,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -326,7 +325,7 @@
                     style="@style/fill_wrap"
                     android:layout_height="1px"
                     android:layout_alignParentBottom="true"
-                    android:background="#d9eceb" />
+                    android:background="#eee" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -351,6 +350,8 @@
             android:textColor="#999" />
 
         <include
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/reply_height"
             android:layout_marginTop="10dip"

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -107,34 +106,6 @@ public class SubjectActivity extends LSBaseActivity implements
 			}
 		});
 
-		list.setOnScrollListener(new OnScrollListener()
-		{
-
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState)
-			{
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount)
-			{
-				// TODO Auto-generated method stub
-				View v = list.getChildAt(0);
-				if (v == null)
-					return;
-				float alpha = v.getTop();
-				if (firstVisibleItem > 0)
-				{
-					setTitleAlpha(headHeight);
-				} else
-				{
-					setTitleAlpha(-alpha);
-				}
-			}
-		});
-
 		page = new Page();
 		getList();
 	}
@@ -190,7 +161,7 @@ public class SubjectActivity extends LSBaseActivity implements
 		if (isBg)
 		{
 			view_reference.setVisibility(View.GONE);
-			setLeftView(R.drawable.ls_page_back_icon_bg);
+			setLeftView(R.drawable.ls_club_back_icon_bg);
 		} else
 		{
 			view_reference.setVisibility(View.VISIBLE);
@@ -237,6 +208,29 @@ public class SubjectActivity extends LSBaseActivity implements
 						AnimationAdapter animationAdapter = new CardsAnimationAdapter(adapter);
 						animationAdapter.setAbsListView(list);
 						list.setAdapter(animationAdapter);
+
+						list.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+							@Override
+							public void onScrollStateChanged(AbsListView view, int scrollState) {
+								// TODO Auto-generated method stub
+							}
+
+							@Override
+							public void onScroll(AbsListView view, int firstVisibleItem,
+												 int visibleItemCount, int totalItemCount) {
+								// TODO Auto-generated method stub
+								View v = list.getChildAt(0);
+								if (v == null)
+									return;
+								float alpha = v.getTop();
+								if (firstVisibleItem > 0) {
+									setTitleAlpha(headHeight);
+								} else {
+									setTitleAlpha(-alpha);
+								}
+							}
+						});
 
 					}
 				} else

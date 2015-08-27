@@ -49,6 +49,7 @@
             android:paddingLeft="9dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
+            android:singleLine="true"
             />
 
         <EditText
@@ -64,6 +65,7 @@
             android:paddingLeft="9dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
+            android:singleLine="true"
             />
         
         <Button

@@ -5,85 +5,156 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fff">
 
-    <TextView 
-        style="@style/wrap_wrap"
-        android:drawableTop="@drawable/club_icon_grid_add"
-        android:text="全部俱乐部"
-        android:textColor="#ff7800"
-        android:drawablePadding="4dip"
-        android:layout_centerInParent="true"
-        android:textSize="12sp"
-        android:id="@+id/tv_all"
-        />
-    
-    <com.lis99.mobile.club.widget.RoundedImageView
-        android:id="@+id/roundedImageView1"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-         android:layout_marginLeft="10dip"
-        android:layout_marginTop="20dip"
-        android:layout_marginBottom="20dip"
-        android:scaleType="fitXY"
-        android:src="@drawable/club_icon_header_default"
-        app:corner_radius="28dp"
-        app:border_color="#e8e8e8"
-        app:border_width="1px" />
-
-    <ImageView
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/club_same_city"
-        android:layout_marginTop="13dip"
-        android:visibility="visible" />
-
-    <LinearLayout 
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dip"
-        android:id="@+id/layout"
-        style="@style/fill_wrap"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/roundedImageView1"
-        android:layout_toLeftOf="@+id/addButton"
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="34dp"
+        android:background="@color/pull_bg"
+        android:id="@+id/layout_title"
         >
-    
-    <TextView
-        android:id="@+id/nameView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:text=""
-        android:singleLine="true"
-        android:textColor="#666" 
-        android:layout_marginBottom="5dip"
-        />
 
-    <TextView
-        android:id="@+id/recentView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#999"
-        android:singleLine="true"
-        android:textSize="14sp"
-        android:text="" />
-    
-    </LinearLayout>
-    
-    <View 
-        android:id="@+id/sepHalf"
-        android:background="#e8e8e8"
+        <ImageView
+            style="@style/wrap_wrap"
+            android:background="@drawable/recommend_club"
+            android:layout_margin="8dip"
+            android:layout_centerInParent="true"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke"
+            />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_club"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:layout_alignLeft="@+id/layout"/>
-    
-    <View 
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_title"
+        >
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/roundedImageView1"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="20dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/club_icon_header_default"
+            app:corner_radius="28dp"
+            app:border_color="#e8e8e8"
+            app:border_width="1px" />
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/roundedImageView1"
+            >
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/club_main_item_join_btn"
+                />
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:text="@string/temp_string"
+                android:singleLine="true"
+                android:textColor="#666"
+                android:layout_marginBottom="5dip"
+                />
+
+            <TextView
+                android:layout_below="@id/nameView"
+                android:id="@+id/recentView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#999"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:text="@string/temp_string_long"
+                android:layout_toLeftOf="@id/btn_join"
+                />
+
+
+            <ImageView
+                android:layout_marginLeft="5dip"
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/club_same_city"
+                android:visibility="visible"
+                android:layout_toRightOf="@id/nameView"
+                android:layout_alignTop="@id/nameView"
+                android:layout_marginTop="3dip"
+                />
+
+
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/sepHalf"
+            android:background="#e8e8e8"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/layout"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_all"
+        android:padding="10dp"
+        android:layout_below="@id/layout_club"
+        >
+
+        <TextView
+            style="@style/wrap_wrap"
+            android:gravity="center"
+            android:layout_height="40dp"
+            android:drawableTop="@drawable/club_icon_grid_add"
+            android:text="全部俱乐部"
+            android:textColor="#ff7800"
+            android:drawablePadding="4dip"
+            android:layout_centerInParent="true"
+            android:textSize="12sp"
+            android:id="@+id/tv_all"
+            />
+
+    </RelativeLayout>
+
+
+
+    <View
         android:id="@+id/sepAll"
         android:background="#e8e8e8"
         android:layout_width="match_parent"

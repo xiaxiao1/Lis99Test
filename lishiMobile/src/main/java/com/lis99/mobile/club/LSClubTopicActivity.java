@@ -1,6 +1,7 @@
 package com.lis99.mobile.club;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -124,6 +125,16 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	}
 
 	@Override
+	public void setIntent(Intent newIntent) {
+		super.setIntent(newIntent);
+	}
+
+	@Override
+	public Context getBaseContext() {
+		return super.getBaseContext();
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -135,6 +146,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		setTitle("帖子详情");
 		// setTitleRight(true);
 		// setBack(true);
+
 		title.setOnClickListener(this);
 
 		clubhead = new ClubTopicDetailHead();
@@ -186,56 +198,6 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 		b = (Button) replyPanel.findViewById(R.id.addImage);
 		// ===========2.3====================
-
-		listView.setOnScrollListener(new OnScrollListener()
-		{
-
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState)
-			{
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount)
-			{
-				// TODO Auto-generated method stub
-				visibleFirst = firstVisibleItem;
-				int num = firstVisibleItem + visibleItemCount;
-				if (num > pageCount
-						&& title.getText().toString().equals("帖子详情"))
-				{
-					title.setText("双击此处回到1楼");
-				} else if (num < pageCount
-						&& !title.getText().toString().equals("帖子详情"))
-				{
-					title.setText("帖子详情");
-				}
-				// 获取头的高度
-				if (headHeight == 0)
-				{
-					// 获取AD高度
-					getHeadAdHeight();
-				}
-				View v = listView.getChildAt(0);
-				if (v == null)
-					return;
-				float alpha = v.getTop();
-				// 只有活动页才做处理
-				if (!needup && clubhead != null
-						&& "1".equals(clubhead.category))
-				{
-					if (visibleFirst > 0)
-					{
-						setTitleAlpha(headHeight);
-					} else
-					{
-						setTitleAlpha(-alpha);
-					}
-				}
-			}
-		});
 
 		view_reference = findViewById(R.id.view_reference);
 	}
@@ -491,7 +453,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	/** 获取帖子信息 */
 	private void getTopicHead()
 	{
-		String url = C.CLUB_TOPIC_DETAIL_HEAD + topicID;
+		String url = C.CLUB_TOPIC_DETAIL_HEAD_3 + topicID;
 		String userID = DataManager.getInstance().getUser().getUser_id();
 		if (!TextUtils.isEmpty(userID))
 		{
@@ -547,6 +509,8 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			// view_reference.setVisibility(View.GONE);
 			// 标题透明
 			setTitleBarAlpha(0);
+			setTitleRight(true);
+			setBack(true);
 			if (headViewActive == null)
 			{
 				headViewActive = new LSClubTopicHeadActive(activity);
@@ -618,6 +582,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 							title.setText("双击此处回到1楼");
 							setNoTitleAlpha();
 							visibleTitleReference(true);
+							listView.setOnScrollListener(listScroll);
 							return;
 						}
 						adapter.addListUp(clubreply.topiclist);
@@ -719,20 +684,16 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 		ShareManager.getInstance().showPopWindowInShare(clubhead, "" + clubID,
 				imgUrl, clubhead.title, clubhead.shareTxt,
-				"" + clubhead.topic_id, viewManager, layoutMain, new CallBack()
-				{
+				"" + clubhead.topic_id, viewManager, layoutMain, new CallBack() {
 
 					@Override
-					public void handler(MyTask mTask)
-					{
+					public void handler(MyTask mTask) {
 						// TODO Auto-generated method stub
-						if ("deleteOk".equals(mTask.result))
-						{
+						if ("deleteOk".equals(mTask.result)) {
 							deleteThis();
 						}
 						// 置顶
-						else if ("topTopic".equals(mTask.result))
-						{
+						else if ("topTopic".equals(mTask.result)) {
 							topTopic();
 						}
 					}
@@ -803,11 +764,61 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	{
 		if (isBg)
 		{
-			setLeftView(R.drawable.ls_page_back_icon_bg);
+			setLeftView(R.drawable.ls_club_back_icon_bg);
 		} else
 		{
 			setLeftView(R.drawable.ls_page_back_icon);
 		}
 	}
+
+	OnScrollListener listScroll = new OnScrollListener()
+{
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState)
+	{
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+	int visibleItemCount, int totalItemCount)
+	{
+		// TODO Auto-generated method stub
+		visibleFirst = firstVisibleItem;
+		int num = firstVisibleItem + visibleItemCount;
+		if (num > pageCount
+				&& title.getText().toString().equals("帖子详情"))
+		{
+			title.setText("双击此处回到1楼");
+		} else if (num < pageCount
+				&& !title.getText().toString().equals("帖子详情"))
+		{
+			title.setText("帖子详情");
+		}
+		// 获取头的高度
+		if (headHeight == 0)
+		{
+			// 获取AD高度
+			getHeadAdHeight();
+		}
+		View v = listView.getChildAt(0);
+		if (v == null)
+			return;
+		float alpha = v.getTop();
+		// 只有活动页才做处理
+		if (!needup && clubhead != null
+				&& "1".equals(clubhead.category))
+		{
+			if (visibleFirst > 0)
+			{
+				setTitleAlpha(headHeight);
+			} else
+			{
+				setTitleAlpha(-alpha);
+			}
+		}
+	}
+};
 
 }

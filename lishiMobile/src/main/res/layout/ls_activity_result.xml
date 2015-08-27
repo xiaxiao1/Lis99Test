@@ -12,11 +12,13 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="@dimen/ls_page_home_width"
+            android:layout_width="30dp"
             android:layout_height="@dimen/ls_page_home_height"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/ls_page_back_icon" />
+            android:src="@drawable/ls_page_back_icon"
+            android:scaleType="center"
+            />
 
         <TextView
             android:id="@+id/tv_title"

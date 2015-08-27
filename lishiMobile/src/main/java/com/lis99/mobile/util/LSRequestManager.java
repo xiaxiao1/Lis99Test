@@ -12,6 +12,7 @@ import com.lis99.mobile.club.model.ClubTopicInfoLike;
 import com.lis99.mobile.club.model.EquipAppraiseModel;
 import com.lis99.mobile.club.model.EquipRecommendModel;
 import com.lis99.mobile.club.model.EquipTypeModel;
+import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.club.model.NearbyModel;
 import com.lis99.mobile.club.model.QQLoginModel;
 import com.lis99.mobile.club.model.RedDotModel;
@@ -229,7 +230,8 @@ public class LSRequestManager
 			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
 				RedDotModel model = (RedDotModel) mTask.getResultModel();
-				int num = model.is_baoming + model.is_reply + model.manage_baoming;
+//				相加为0没有通知
+				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow;
 				Common.log("b================" + num);
 				Common.log("model.is_reply" + model.is_reply);
 
@@ -382,6 +384,62 @@ public class LSRequestManager
 		{
 			MyRequestManager.getInstance().requestPostNoDialog(url, map, model, call);
 		}
+
+	}
+/**加入俱乐部*/
+	public void addClub ( String clubID, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		BaseModel model = new BaseModel();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("club_id", clubID);
+		map.put("user_id", userID);
+
+		MyRequestManager.getInstance().requestPost(C.CLUB_JOIN, map, model, call);
+
+	}
+/**关注， 推荐关注， 动态， 我-》好友-》推荐关注*/
+	public void getFriendsAttentionRecommend ( int page, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", userID);
+
+		MyFriendsRecommendModel model = new MyFriendsRecommendModel();
+
+		String url = C.MYFRIENDS_RECOMMED + page;
+
+		MyRequestManager.getInstance().requestPost(url, map, model, call);
+
+	}
+	/**取消关注*/
+	public void getFriendsCancelAttention ( int AttentionId, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("fromuid", userID);
+		map.put("touid", AttentionId);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(C.CANCEL_ATTENTION, map, model, call);
+
+	}
+	/**添加关注*/
+	public void getFriendsAddAttention ( int AttentionId, CallBack call )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("fromuid", userID);
+		map.put("touid", AttentionId);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(C.ADD_ATTENTION, map, model, call);
 
 	}
 	

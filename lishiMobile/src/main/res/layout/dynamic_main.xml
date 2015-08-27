@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/pull_bg"
+    >
+
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/activity_title" />
+
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/layout_dynamic"
+        android:visibility="gone"
+        android:background="@color/pull_bg"
+        >
+
+        <com.lis99.mobile.entry.view.PullToRefreshView
+            android:id="@+id/pull_refresh_dynamic"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:orientation="vertical"
+            >
+
+            <ListView
+                style="@style/listViewStyle"
+                android:background="@color/pull_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:dividerHeight="0px"
+                android:divider="@null"
+                android:id="@+id/list_dynamic"
+                ></ListView>
+
+        </com.lis99.mobile.entry.view.PullToRefreshView>
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:id="@+id/layout_need_add_attention"
+        android:visibility="gone"
+        >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dynamic_need_attention_title"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@drawable/dynamic_title_flag"
+                android:drawablePadding="6dp"
+                android:id="@+id/tv_need_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="您还没有关注其它好友。"
+
+                />
+
+
+            <TextView
+                android:gravity="center"
+                android:layout_below="@id/tv_need_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_blue"
+                android:textSize="10sp"
+                android:text="在砾石，很多户外达人。您可以关注他们，参与更多户外话题和活动。"
+                />
+
+        </RelativeLayout>
+
+        <com.lis99.mobile.entry.view.PullToRefreshView
+            android:id="@+id/pull_refresh_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:orientation="vertical"
+            >
+
+            <ListView
+                style="@style/listViewStyle"
+                android:background="@color/pull_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:dividerHeight="0px"
+                android:divider="@null"
+                android:id="@+id/list"
+                ></ListView>
+
+        </com.lis99.mobile.entry.view.PullToRefreshView>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/layout_login"
+        android:visibility="gone"
+        >
+
+
+    <TextView
+        android:layout_marginTop="100dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#666"
+        android:text="登录后你可以查看好友发表的话题、参与\n的线路活动等丰富内容。"
+        android:id="@+id/tv_info"
+        android:gravity="center"
+        />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:id="@+id/btn_login"
+        android:background="@drawable/dynamic_login_btn"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white"
+        />
+
+    </RelativeLayout>
+
+</LinearLayout>

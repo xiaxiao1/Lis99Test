@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pull_bg"
+              android:descendantFocusability="blocksDescendants"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        android:padding="10dp"
+        android:background="@drawable/friends_item_bg"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:id="@+id/layout_user"
+            android:layout_marginRight="10dp"
+            >
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/roundedImageView"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:corner_radius="8dp"
+                app:border_color="#e8e8e8"
+                app:border_width="1px"
+                />
+
+            <ImageView
+                android:id="@+id/vipStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/roundedImageView"
+                android:layout_marginLeft="-8dp"
+                android:layout_toRightOf="@+id/roundedImageView"
+                android:src="@drawable/club_icon_v"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/friends_no_attention"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_attention"
+            android:layout_marginLeft="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/layout_user"
+            android:layout_toLeftOf="@id/btn_attention"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_blue"
+                android:text="@string/temp_string"
+                android:id="@+id/tv_name"
+                />
+
+
+            <TextView
+                android:layout_marginTop="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666"
+                android:text="@string/temp_string_long"
+                android:id="@+id/tv_info"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

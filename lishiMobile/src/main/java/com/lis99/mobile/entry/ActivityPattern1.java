@@ -109,6 +109,7 @@ public class ActivityPattern1 extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		LSBaseActivity.activity = this;
 		if (!weiboFlag) {
 			initWeibo(savedInstanceState);
 			weiboFlag = true;

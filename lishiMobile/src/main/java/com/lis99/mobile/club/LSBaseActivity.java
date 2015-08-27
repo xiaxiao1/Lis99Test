@@ -14,10 +14,10 @@ public abstract class LSBaseActivity extends ActivityPattern {
 	
 	protected final static int SHOW_UI = 2001;
 	ImageView iv_title_bg;
-	ImageView titleLeftImage;
-	TextView titleRightImage;
+	protected ImageView titleLeftImage;
+	protected TextView titleRightImage;
 	TextView title;
-	RelativeLayout titleRight;
+	protected RelativeLayout titleRight;
 
 	protected void initViews(){
 		StatusUtil.setStatusBar(this);

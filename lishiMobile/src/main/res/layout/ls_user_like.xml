@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#dedede"
+    android:background="@color/pull_bg"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -12,12 +12,13 @@
         android:background="@color/text_color_blue" >
 
         <ImageView
+            android:layout_marginLeft="10dp"
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/ls_page_back_icon" />
+            android:src="@drawable/ls_page_back_icon" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +38,6 @@
             android:id="@+id/waterfall_container"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#dedede"
             tools:ignore="Orientation" >
         </LinearLayout>
     </com.lis99.mobile.entry.view.LazyScrollView>

@@ -30,12 +30,14 @@ public class ChoicenessAdapter extends BaseAdapter
 	private final int URLITEM = 3;
 	//新的话题样式
 	private final int IMGTOPIC = 4;
-
+//只有一张图片
 	private final int IMGACTIVE = 5;
+//标签列表
+	private final int TAG = 6;
 
 	//	private final int CLUB = 0;
 	//	总数
-	private final int conut = 6;
+	private final int conut = 7;
 
 
 	public ArrayList<Omnibuslist> list;
@@ -112,6 +114,9 @@ public class ChoicenessAdapter extends BaseAdapter
 			case 6:
 				num = IMGTOPIC;
 				break;
+			case 7:
+				num = TAG;
+			break;
 		}
 		
 		return num;
@@ -139,8 +144,11 @@ public class ChoicenessAdapter extends BaseAdapter
 			case URLITEM:
 				return getSubject(position, arg1, num);
 			case IMGACTIVE:
+				return getSubjectTopic(position, arg1, num, false);
 			case IMGTOPIC:
-				return getSubjectTopic(position, arg1, num);
+				return getSubjectTopic(position, arg1, num, true);
+			case TAG:
+				return getTag(position, arg1, num);
 		}
 		
 		return arg1;
@@ -253,7 +261,48 @@ public class ChoicenessAdapter extends BaseAdapter
 		return view;
 	}
 
-	private View getSubjectTopic ( int position, View view, int num )
+	private View getTag ( int position, View view, int num )
+	{
+		SubjectHolder holder = null;
+		if ( view == null )
+		{
+			holder = new SubjectHolder();
+			view = View.inflate(a, R.layout.choiceness_item_subject, null);
+
+			holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+			holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
+			holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
+			holder.iv_subject = (ImageView) view.findViewById(R.id.iv_subject);
+			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
+			view.setTag(holder);
+		}
+		else
+		{
+			holder = (SubjectHolder) view.getTag();
+		}
+
+		Omnibuslist item = (Omnibuslist) getItem(position);
+		if ( item == null ) return view;
+
+		if ( num == URLITEM )
+		{
+			holder.iv_subject.setVisibility(View.GONE);
+		}
+		else
+		{
+			holder.iv_subject.setVisibility(View.VISIBLE);
+		}
+
+		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+
+		holder.tv_title.setText(item.title);
+		holder.tv_info.setText(item.subhead);
+
+
+		return view;
+	}
+//是否添加渐变层
+	private View getSubjectTopic ( int position, View view, int num, boolean b )
 	{
 		SubjectHolder holder = null;
 		if ( view == null )
@@ -266,12 +315,23 @@ public class ChoicenessAdapter extends BaseAdapter
 			holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
 			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
 			holder.iv_subject = (ImageView) view.findViewById(R.id.iv_subject);
+			holder.choiceness_subject_forground = (RoundedImageView) view.findViewById(R.id.choiceness_subject_forground);
 			view.setTag(holder);
 		}
 		else
 		{
 			holder = (SubjectHolder) view.getTag();
 		}
+
+		if ( b )
+		{
+			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			holder.choiceness_subject_forground.setVisibility(View.GONE);
+		}
+
 		holder.iv_subject.setVisibility(View.GONE);
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
@@ -296,7 +356,7 @@ public class ChoicenessAdapter extends BaseAdapter
 	class SubjectHolder
 	{
 		ImageView iv_load;
-		RoundedImageView iv_bg;
+		RoundedImageView iv_bg, choiceness_subject_forground;
 		TextView tv_title, tv_info;
 		ImageView iv_subject;
 	}

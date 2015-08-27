@@ -124,8 +124,8 @@
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="#fff"
         android:orientation="horizontal"
+        android:background="#fff"
          >
 
         <RelativeLayout
@@ -133,7 +133,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onClick" >
+            android:onClick="onClick"
+            android:background="@drawable/club_panel_tab"
+            >
 
             <TextView
                 android:id="@+id/allView"
@@ -158,7 +160,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onClick" >
+            android:onClick="onClick"
+            android:background="@drawable/club_panel_tab"
+            >
 
             <TextView
                 android:id="@+id/eventView"
@@ -180,12 +184,6 @@
 
        
     </LinearLayout>
-    
-    <View
-        android:id="@+id/sepView"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#e8e8e8" />
     
     <View 
         android:id="@+id/view_line_head"

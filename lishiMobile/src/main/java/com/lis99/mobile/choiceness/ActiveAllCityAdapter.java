@@ -97,10 +97,12 @@ public class ActiveAllCityAdapter extends MyBaseAdapter {
         if ( "1".equals(map.get("select")))
         {
             holder.tv_select.setVisibility(View.VISIBLE);
+            holder.text.setTextColor(mContext.getResources().getColor(R.color.text_color_blue));
         }
         else
         {
             holder.tv_select.setVisibility(View.GONE);
+            holder.text.setTextColor(mContext.getResources().getColor(R.color.color_six));
         }
 
         holder.text.setText(map.get("name"));

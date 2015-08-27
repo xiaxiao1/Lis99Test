@@ -272,4 +272,16 @@ public class StringUtil {
 			return false;
 		}
 	}
+
+	public static String StringWithSpeace ( String str )
+	{
+		String temp = "";
+		for ( int i = 0; i < str.length(); i++ )
+		{
+			char a = str.charAt(i);
+			temp = temp + a + " ";
+		}
+		return temp;
+	}
+
 }

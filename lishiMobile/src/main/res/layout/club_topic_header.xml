@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:background="#eee"
+              android:background="@color/pull_bg"
               android:orientation="vertical"
     >
 
@@ -49,7 +49,7 @@
                 android:layout_alignParentRight="true"
                 android:drawableLeft="@drawable/club_detail_reply_number"
                 android:drawablePadding="8dip"
-                android:text=""
+                android:text="@string/temp_string"
                 android:textColor="#999"
                 android:textSize="12sp"
                 />

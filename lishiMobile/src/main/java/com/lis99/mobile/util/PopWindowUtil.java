@@ -27,7 +27,7 @@ public class PopWindowUtil {
 
     private static PopupWindow pop;
 
-    public static PopupWindow showActiveAllTimes ( View parent, final CallBack callBack )
+    public static PopupWindow showActiveAllTimes ( int position, View parent, final CallBack callBack )
     {
         if (pop != null && pop.isShowing()) {
             pop.dismiss();
@@ -43,7 +43,7 @@ public class PopWindowUtil {
         HashMap<String, String> map = new HashMap<String, String>();
 
         map.put("select", "1");
-        map.put("name", "全部");
+        map.put("name", "全部开始日期");
         map.put("value", "0");
         alist.add(map);
 
@@ -52,28 +52,28 @@ public class PopWindowUtil {
         map = new HashMap<String, String>();
 
         map.put("select", "0");
-        map.put("name", "一周内");
+        map.put("name", "1周内开始");
         map.put("value", "1");
         alist.add(map);
 
         map = new HashMap<String, String>();
 
         map.put("select", "0");
-        map.put("name", "1-2周内");
+        map.put("name", "1-2周内开始");
         map.put("value", "2");
         alist.add(map);
 
         map = new HashMap<String, String>();
 
         map.put("select", "0");
-        map.put("name", "2周-1个月内");
+        map.put("name", "2周-1个月内开始");
         map.put("value", "3");
         alist.add(map);
 
         map = new HashMap<String, String>();
 
         map.put("select", "0");
-        map.put("name", "1个月以上");
+        map.put("name", "1个月以后开始");
         map.put("value", "4");
         alist.add(map);
 
@@ -90,12 +90,12 @@ public class PopWindowUtil {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (callBack != null) {
-                    position = i;
                     HashMap<String, String> map = (HashMap<String, String>) adapter.getItem(i);
                     setMap(map);
                     String value = alist.get(i).get("value");
                     MyTask task = new MyTask();
                     task.setresult(value);
+                    task.setResultModel(i);
                     callBack.handler(task);
                     closePop();
                 }
@@ -107,8 +107,8 @@ public class PopWindowUtil {
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
         pop.setFocusable(true);
-        pop.showAsDropDown(parent);
-
+//        pop.showAsDropDown(parent);
+        pop.showAsDropDown(parent, 0, Common.dip2px(3));
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
@@ -132,7 +132,7 @@ public class PopWindowUtil {
         return pop;
 
     }
-    private static int position = 0;
+//    private static int position = 0;
     private static HashMap<String, String> currentMap;
     private static void setMap ( HashMap<String, String> map )
     {
@@ -172,10 +172,12 @@ public class PopWindowUtil {
             if ( "1".equals(map.get("select")) )
             {
                 holder.tv_select.setVisibility(View.VISIBLE);
+                holder.tv_all.setTextColor(mContext.getResources().getColor(R.color.text_color_blue));
             }
             else
             {
                 holder.tv_select.setVisibility(View.GONE);
+                holder.tv_all.setTextColor(mContext.getResources().getColor(R.color.color_six));
             }
 
             if ( i == getCount() - 1 )

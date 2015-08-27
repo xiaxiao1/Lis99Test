@@ -24,6 +24,7 @@ import com.lis99.mobile.club.LSClubTopicReplyActivity;
 import com.lis99.mobile.club.model.ClubTopicReplyList.Topiclist;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
@@ -90,6 +91,13 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			else if (v.getId() == R.id.layout_club_detail_like)
 			{
 				likeNow(comment, img, tvreply);
+			}
+
+			else if (v.getId() == R.id.roundedImageView1)
+			{
+				Intent intent = new Intent(main, LSUserHomeActivity.class);
+				intent.putExtra("userID", comment.user_id);
+				main.startActivity(intent);
 			}
 		}
 
@@ -202,16 +210,21 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 			holder.iv_load = (ImageView) convertView.findViewById(R.id.iv_load);
 
+			holder.layout_tag = (LinearLayout) convertView.findViewById(R.id.layout_tag);
+
 			convertView.setTag(holder);
 
 			convertView.setLayoutParams(new ListView.LayoutParams(
 					ListView.LayoutParams.MATCH_PARENT,
 					ListView.LayoutParams.WRAP_CONTENT));
 
+
 		} else
 		{
 			holder = (ViewHolder) convertView.getTag();
 		}
+
+		holder.layout_tag.setVisibility(View.INVISIBLE);
 
 		// LSClubTopicComment item = data.get(position);
 		Topiclist item = (Topiclist) getItem(position);
@@ -227,7 +240,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		if ("1".equals(item.is_vip))
 		{
 			holder.vipStar.setVisibility(View.VISIBLE);
-		} else
+		}
+		else
 		{
 			holder.vipStar.setVisibility(View.GONE);
 		}
@@ -238,6 +252,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		l.setImageView(holder.iv_like);
 		holder.layout_club_detail_reply.setOnClickListener(l);
 		holder.tv_floor_delete.setOnClickListener(l);
+		holder.imageView.setOnClickListener(l);
 
 		if (item.topic_image != null && item.topic_image.size() > 0)
 		{
@@ -324,6 +339,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		TextView tv_reply_body, tv_reply_floor, tv_reply_content;
 
 		ImageView iv_load;
+		//===3.5===
+		LinearLayout layout_tag;
 	}
 
 	private void replyNow(Topiclist comment)
