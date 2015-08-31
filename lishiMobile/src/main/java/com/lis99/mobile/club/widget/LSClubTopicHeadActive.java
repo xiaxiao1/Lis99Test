@@ -74,6 +74,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	private LinearLayout layout_tag;
 	private TextView tv_tag1, tv_tag2, tv_tag3;
 
+	//=====3.5.3====
+//	精
+	private ImageView iv_best;
+
 	public void setTopic(LSClubTopicActivity lsTopic)
 	{
 		this.lsTopic = lsTopic;
@@ -164,6 +168,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		tv_tag1 = (TextView) v.findViewById(R.id.tv_tag1);
 		tv_tag2 = (TextView) v.findViewById(R.id.tv_tag2);
 		tv_tag3 = (TextView) v.findViewById(R.id.tv_tag3);
+
+		//=====3.5.3====
+		iv_best = (ImageView) findViewById(R.id.iv_best);
+		iv_best.setVisibility(GONE);
 
 	}
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSMineApplyActivity;
 import com.lis99.mobile.mine.LSMineApplyManageActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
+import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -77,6 +79,24 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	private boolean isAttention;
 
 	private View v_friend_arrow, v_applyinfo_arrow, v_reply_arrow, v_applymanager_arrow, iv_friendDot;
+
+	//=====3.5.2=======
+//	签到
+	private Button btn_check_in;
+	private View layout_market, layout_sys;
+	private View iv_sysDot, v_sys_arrow, v_market_arrow;
+	//商城积分
+	private TextView tv_score;
+
+	private final int[] level_icon = new int[]{
+	R.drawable.level_1,R.drawable.level_2,R.drawable.level_3, R.drawable.level_4, R.drawable.level_5,
+			R.drawable.level_6,R.drawable.level_7,R.drawable.level_8, R.drawable.level_9, R.drawable.level_10,
+			R.drawable.level_11,R.drawable.level_12,R.drawable.level_13, R.drawable.level_14, R.drawable.level_15,
+			R.drawable.level_16,R.drawable.level_17,R.drawable.level_18, R.drawable.level_19, R.drawable.level_20,
+			R.drawable.level_21,R.drawable.level_22,R.drawable.level_23, R.drawable.level_24, R.drawable.level_25,
+			R.drawable.level_26,R.drawable.level_27,R.drawable.level_28, R.drawable.level_29, R.drawable.level_30,
+};
+
 
 	public void setTab(LSTab tab)
 	{
@@ -205,6 +225,20 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v_applymanager_arrow = findViewById(R.id.v_applymanager_arrow);
 		v_reply_arrow = findViewById(R.id.v_reply_arrow);
 
+		//===3.5.3===
+		btn_check_in = (Button) findViewById(R.id.btn_check_in);
+		btn_check_in.setOnClickListener(this);
+
+		layout_market = findViewById(R.id.layout_market);
+		layout_sys = findViewById(R.id.layout_sys);
+		iv_sysDot = findViewById(R.id.iv_sysDot);
+		v_sys_arrow = findViewById(R.id.v_sys_arrow);
+		v_market_arrow = findViewById(R.id.v_market_arrow);
+
+		tv_score = (TextView) findViewById(R.id.tv_score);
+
+		layout_market.setOnClickListener(this);
+		layout_sys.setOnClickListener(this);
 	}
 
 	private void getUserInfoTask()
@@ -424,6 +458,19 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 						LSCollectionActivity.class);
 				startActivity(intent);
 			}
+			else if ( v.getId() == R.id.btn_check_in )
+			{
+//				签到
+			}
+			else if ( v.getId() == R.id.layout_market )
+			{
+//				商城
+			}
+			else if ( v.getId() == R.id.layout_sys )
+			{
+//				系统消息
+				startActivity(new Intent(getActivity(), SysMassageActivity.class));
+			}
 //			else if (v.getId() == R.id.orderPanel)
 //			{
 //				Intent intent = new Intent(getActivity(),
@@ -494,6 +541,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 				Intent intent = new Intent(getActivity(),
 						LsSettingActivity.class);
 				startActivity(intent);
+			}
+			else if ( v.getId() == R.id.layout_market )
+			{
+//				商城
 			}
 			else
 			{

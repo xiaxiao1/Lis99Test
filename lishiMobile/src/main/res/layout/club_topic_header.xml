@@ -56,18 +56,37 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#e8e8e8"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#e8e8e8"
+                android:id="@+id/view_line"
+                />
 
-        <include
-            android:id="@+id/include1"
-            layout="@layout/club_topic_topview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            <include
+                android:layout_below="@id/view_line"
+                android:id="@+id/include1"
+                layout="@layout/club_topic_topview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/club_topic_best_icon"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:id="@+id/iv_best"
+                />
+
+        </RelativeLayout>
+
+
 
         <TextView
             android:id="@+id/contentView"
