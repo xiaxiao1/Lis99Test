@@ -205,7 +205,7 @@ public class LsStartupActivity extends ActivityPattern {
             }
         }
 
-        startAD();
+        startInfoAnimation();
 
 //    new Handler().postDelayed(new Runnable() {
 //
@@ -227,22 +227,26 @@ public class LsStartupActivity extends ActivityPattern {
 
     private void startAD ()
     {
+
         //获取本地图片
         Bitmap b = FullScreenADImage.getInstance().getbAD();
         //获取更新
         FullScreenADImage.getInstance().getUpdata();
         if ( b == null )
         {
-            startInfoAnimation();
+//            startInfoAnimation();
+            goNext();
         }
         else {
+            iv_ad.setVisibility(View.VISIBLE);
             iv_ad.setImageBitmap(b);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startInfoAnimation();
+//                    startInfoAnimation();
+                    goNext();
                 }
-            }, 3000);
+            }, 2800);
         }
     }
 
@@ -282,7 +286,8 @@ public class LsStartupActivity extends ActivityPattern {
             @Override
             public void onAnimationEnd(Animation animation) {
                 animation.setFillAfter(true);
-                goNext();
+//                goNext();
+                startAD();
             }
 
             @Override

@@ -593,6 +593,19 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			else if ( v.getId() == R.id.layout_market )
 			{
 //				商城
+				int id = 0;
+				String Userid = DataManager.getInstance().getUser().getUser_id();
+				if (!TextUtils.isEmpty(Userid))
+				{
+					id = Integer.parseInt(Userid);
+				}
+//				商城
+				Intent intent = new Intent(getActivity(), MyActivityWebView.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("URL", "http://m.lis99.com/club/integralshop/goodList/"+id);
+				bundle.putString("TITLE", "积分商城");
+				intent.putExtras(bundle);
+				startActivity(intent);
 			}
 			else
 			{
