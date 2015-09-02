@@ -2,6 +2,7 @@ package com.lis99.mobile.entry;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,8 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -26,11 +29,11 @@ import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
+import com.lis99.mobile.util.FullScreenADImage;
 import com.lis99.mobile.util.PushManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StartLogoOption;
-import com.lis99.mobile.util.StatusUtil;
 import com.lis99.mobile.util.ThirdLogin;
 import com.umeng.analytics.MobclickAgent;
 
@@ -62,6 +65,8 @@ public class LsStartupActivity extends ActivityPattern {
 
     private Animation animation_img, animation_info;
 
+    private ImageView iv_ad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,9 +89,14 @@ public class LsStartupActivity extends ActivityPattern {
         }
         MobclickAgent.setDebugMode(true);
         MobclickAgent.updateOnlineConfig(this);
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息
+
         setContentView(R.layout.ls_startup);
 
-        StatusUtil.setStatusBar(this);
+//        StatusUtil.setStatusBar(this);
 
         Display mDisplay = getWindowManager().getDefaultDisplay();
         Common.WIDTH = mDisplay.getWidth();
@@ -117,6 +127,7 @@ public class LsStartupActivity extends ActivityPattern {
         animation_info = AnimationUtils.loadAnimation(this, R.anim.star_info_time);
 
 
+        iv_ad = (ImageView) findViewById(R.id.iv_ad);
 
         account = SharedPreferencesHelper.getValue(this, C.CONFIG_FILENAME,
                 Context.MODE_PRIVATE, C.ACCOUNT);
@@ -177,38 +188,66 @@ public class LsStartupActivity extends ActivityPattern {
         {
             SinaLogin();
         }
-        else {
-            if (account != null && !"".equals(account)) {
+        else
+        {
+            if (account != null && !"".equals(account))
+            {
                 postMessage(POPUP_PROGRESS, getString(R.string.sending));
                 doLoginTask(account, password);
-            } else {
-                if (token != null && !"".equals(token)) {
+            }
+            else
+            {
+                if (token != null && !"".equals(token))
+                {
                     postMessage(POPUP_PROGRESS, getString(R.string.sending));
                     doLoginTask(tokenaccount, tokenpassword);
                 }
             }
         }
 
+        startAD();
 
-    new Handler().postDelayed(new Runnable() {
-
-        @Override
-        public void run() {
-//				Intent intent = new Intent(LsStartupActivity.this,
-//						NewHomeActivity.class);
-//				//传送push信息
-//				intent.putExtra(PushManager.TAG, PushManager.getInstance().getPushModel(LsStartupActivity.this.getIntent()));
-//				startActivity(intent);
-//				finish();
-            startInfoAnimation();
-        }
-    }, 600);
+//    new Handler().postDelayed(new Runnable() {
+//
+//        @Override
+//        public void run() {
+////				Intent intent = new Intent(LsStartupActivity.this,
+////						NewHomeActivity.class);
+////				//传送push信息
+////				intent.putExtra(PushManager.TAG, PushManager.getInstance().getPushModel(LsStartupActivity.this.getIntent()));
+////				startActivity(intent);
+////				finish();
+////            startInfoAnimation();
+//            startAD();
+//        }
+//    }, 600);
 
 }
 
 
-    private void startInfoAnimation() {
+    private void startAD ()
+    {
+        //获取本地图片
+        Bitmap b = FullScreenADImage.getInstance().getbAD();
+        //获取更新
+        FullScreenADImage.getInstance().getUpdata();
+        if ( b == null )
+        {
+            startInfoAnimation();
+        }
+        else {
+            iv_ad.setImageBitmap(b);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startInfoAnimation();
+                }
+            }, 3000);
+        }
+    }
 
+    private void startInfoAnimation() {
+        iv_ad.setVisibility(View.GONE);
         iv_info.startAnimation(animation_info);
 
         animation_info.setAnimationListener(new Animation.AnimationListener() {

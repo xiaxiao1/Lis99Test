@@ -18,6 +18,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.LSScoreManager;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -126,6 +127,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 
 	private void setresult ()
 	{
+		LSScoreManager.getInstance().sendScore(LSScoreManager.pubtalktopic);
 		setResult(RESULT_OK);
 	}
 

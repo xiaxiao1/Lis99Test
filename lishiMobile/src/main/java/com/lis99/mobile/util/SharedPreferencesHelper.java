@@ -550,6 +550,21 @@ public class SharedPreferencesHelper {
 	public static String EMAIL = "email";
 	public static String PHONE = "phone";
 
+	//全屏广告
+	public static void saveAD ( String ad )
+	{
+		saveBase("ADINFO", ad );
+	}
+
+	public static String getAD ()
+	{
+		return getBase("ADINFO", "");
+	}
+
+	public static void cleanAD ()
+	{
+		removeBase("ADINFO");
+	}
 
 
 

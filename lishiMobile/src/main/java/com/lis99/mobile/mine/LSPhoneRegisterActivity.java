@@ -19,6 +19,7 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 
@@ -69,6 +70,7 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 	private String nickName;
 	private String code;
 	private String pwd;
+	private String userId;
 	
 	private int second = 60;
 	
@@ -155,9 +157,9 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 				postMessage(ActivityPattern1.POPUP_TOAST, error);
 				return;
 			}
-			
+			userId = data.get("user_id").asText();
 			UserBean u = new UserBean();
-			u.setUser_id(data.get("user_id").asText());
+			u.setUser_id(userId);
 			nickName = data.get("nickname").asText();
 			u.setNickname(nickName);
 			u.setMobile(userName);
@@ -241,6 +243,10 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
             }
     		return true;
     	} else if (msg.what == REGIST_SUCCESS) {
+
+			LSScoreManager.getInstance().sendScore(userId, LSScoreManager.register);
+
+			SharedPreferencesHelper.saveuser_id(userId);
 			SharedPreferencesHelper.saveaccounttype("phone");
 			SharedPreferencesHelper.saveUserPass(pwd);
 			SharedPreferencesHelper.saveUserPhone(userName);

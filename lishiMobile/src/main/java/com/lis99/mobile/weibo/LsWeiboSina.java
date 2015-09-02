@@ -10,6 +10,7 @@ import com.lis99.mobile.entry.AccessTokenKeeper;
 import com.lis99.mobile.entry.LsShakesActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.LSScoreManager;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -93,6 +94,9 @@ public class LsWeiboSina{
 		@Override
 		public void onComplete(String arg0) {
 			Toast.makeText(activity, "分享成功", Toast.LENGTH_LONG).show();
+
+			LSScoreManager.getInstance().sendScore(LSScoreManager.shareweibo);
+
 			if(page==1){
 				LsShakesActivity.webview.loadUrl("javascript:shareCallback('weibo')");
 			}

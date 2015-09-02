@@ -52,6 +52,12 @@ import java.util.HashMap;
  */
 public class ShareManager
 {
+//	朋友
+	public static final int wechat = 0;
+//	朋友圈
+	public static final int wechat_friends = 1;
+
+	public static int state = wechat;
 
 	private static ShareManager Instance;
 
@@ -281,13 +287,13 @@ public class ShareManager
 			@Override
 			public void onResp(BaseResp arg0) {
 				// TODO Auto-generated method stub
-
+				Common.log("BaseResp = "+arg0.transaction);
 			}
 
 			@Override
 			public void onReq(BaseReq arg0) {
 				// TODO Auto-generated method stub
-
+				Common.log("BaseReq = "+arg0.getType());
 			}
 		};
 
@@ -385,6 +391,7 @@ public class ShareManager
 								finalSharedUrl + topicId, Image_Url);
 						break;
 					case R.id.iv_wechat:
+						state = wechat;
 						String shareWx1Text = finalSharedUrl + topicId;
 						String title1 = title;
 						String desc1 = shareText;// + finalSharedUrl + "" + topicId;
@@ -392,17 +399,18 @@ public class ShareManager
 //								.getBitmapFromCache(Image_Url);
 //						Bitmap bmp1 = ImageUtil.drawableToBitmap(LSBaseActivity.activity.getResources().getDrawable(R.drawable.logo100));
 						
-						LsWeiboWeixin
-								.getInstance(LSBaseActivity.activity)
-								.getApi()
-								.handleIntent(
-										LSBaseActivity.activity.getIntent(),
-										handler);
+//						LsWeiboWeixin
+//								.getInstance(LSBaseActivity.activity)
+//								.getApi()
+//								.handleIntent(
+//										LSBaseActivity.activity.getIntent(),
+//										handler);
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
 								.share1(shareWx1Text, title1, desc1, Image_Url,
 										SendMessageToWX.Req.WXSceneSession);
 						break;
 					case R.id.iv_friend:
+						state = wechat_friends;
 						String shareWx2Text = finalSharedUrl + topicId;
 						String title2 = title;
 						String desc2 = shareText;// + finalSharedUrl + "" + topicId;
@@ -410,12 +418,12 @@ public class ShareManager
 //								.getBitmapFromCache(Image_Url);
 //						Bitmap bmp2 = ImageUtil.drawableToBitmap(LSBaseActivity.activity.getResources().getDrawable(R.drawable.logo100));
 						
-						LsWeiboWeixin
-								.getInstance(LSBaseActivity.activity)
-								.getApi()
-								.handleIntent(
-										LSBaseActivity.activity.getIntent(),
-										handler);
+//						LsWeiboWeixin
+//								.getInstance(LSBaseActivity.activity)
+//								.getApi()
+//								.handleIntent(
+//										LSBaseActivity.activity.getIntent(),
+//										handler);
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
 								.share1(shareWx2Text, title2, desc2, Image_Url,
 										SendMessageToWX.Req.WXSceneTimeline);

@@ -18,7 +18,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubMyTopicActivity;
+import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LSCollectionActivity;
@@ -32,6 +34,8 @@ import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -95,8 +99,16 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			R.drawable.level_16,R.drawable.level_17,R.drawable.level_18, R.drawable.level_19, R.drawable.level_20,
 			R.drawable.level_21,R.drawable.level_22,R.drawable.level_23, R.drawable.level_24, R.drawable.level_25,
 			R.drawable.level_26,R.drawable.level_27,R.drawable.level_28, R.drawable.level_29, R.drawable.level_30,
-};
+	};
 
+	private ImageView user_level;
+
+	/**
+	 * 	points 积分
+	 	rank 等级
+	 * @param tab
+	 */
+	private int points, rank;
 
 	public void setTab(LSTab tab)
 	{
@@ -135,6 +147,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			nameView.setText("登录");
 //			tags.clear();
 //			setTags();
+
+			user_level.setVisibility(View.GONE);
+			tv_score.setText("");
 
 			haveApplyInfo = false;
 			haveApply = false;
@@ -236,6 +251,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v_market_arrow = findViewById(R.id.v_market_arrow);
 
 		tv_score = (TextView) findViewById(R.id.tv_score);
+		user_level = (ImageView) findViewById(R.id.user_level);
 
 		layout_market.setOnClickListener(this);
 		layout_sys.setOnClickListener(this);
@@ -344,6 +360,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			}
 			JsonNode data = root.get("data").get("user");
 			String vip = data.get("is_vip").asText();
+
+			points = data.get("points").asInt();
+			rank = data.get("rank").asInt();
+
 			if ("1".equals(vip))
 			{
 				isVip = true;
@@ -416,6 +436,11 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	{
 		if (msg.what == SHOW_USER_INFO)
 		{
+			//
+			int num = rank - 1;
+			user_level.setVisibility(View.VISIBLE);
+			user_level.setImageResource( (num < 0 || num > 29) ? level_icon[0] : level_icon[num] );
+			tv_score.setText(points + "积分");
 			if (isVip)
 			{
 				vipView.setVisibility(View.VISIBLE);
@@ -460,11 +485,34 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			}
 			else if ( v.getId() == R.id.btn_check_in )
 			{
-//				签到
+				//				签到
+				LSScoreManager instance = LSScoreManager.getInstance();
+				instance.setCallBack(new CallBack() {
+					@Override
+					public void handler(MyTask mTask) {
+				//签到成功后的操作
+						Common.toast("今日签到成功");
+					}
+				});
+
+				instance.sendScore(LSScoreManager.sign);
+
 			}
 			else if ( v.getId() == R.id.layout_market )
 			{
+				int id = 0;
+				String Userid = DataManager.getInstance().getUser().getUser_id();
+				if (!TextUtils.isEmpty(Userid))
+				{
+					id = Integer.parseInt(Userid);
+				}
 //				商城
+				Intent intent = new Intent(getActivity(), MyActivityWebView.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("URL", "http://m.lis99.com/club/integralshop/goodList/"+id);
+				bundle.putString("TITLE", "积分商城");
+				intent.putExtras(bundle);
+				startActivity(intent);
 			}
 			else if ( v.getId() == R.id.layout_sys )
 			{

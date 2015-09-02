@@ -22,6 +22,7 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.LSScoreManager;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -215,6 +216,16 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 //					closeReplyPanel();
 //					offset = 0;
 //					loadTopicInfo2(true);
+
+					if ( bitmap == null )
+					{
+						LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbynoimg);
+					}
+					else
+					{
+						LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbyimg);
+					}
+
 					Intent intent = new Intent();
 					intent.putExtra("lastPage", pageNo);
 					setResult(RESULT_OK, intent);

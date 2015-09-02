@@ -24,6 +24,7 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -310,6 +311,9 @@ public class LSClubEventApplyerAdapter extends BaseAdapter {
 //				holder.btn_confirm.setVisibility(View.GONE);
 				item.flag = "1";
 				LSClubEventApplyerAdapter.this.notifyDataSetChanged();
+
+				LSScoreManager.getInstance().sendScore(item.applyid, LSScoreManager.enroll);
+
 			}
 		});
 		

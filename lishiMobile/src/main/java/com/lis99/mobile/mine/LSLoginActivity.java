@@ -22,6 +22,7 @@ import com.lis99.mobile.entry.LsImproveInfoActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
@@ -392,10 +393,11 @@ public class LSLoginActivity extends LSBaseActivity {
         switch (msg.what) {
 
             case THIRDLOGIN_SUCCESS:
+
                 LSRequestManager.getInstance().upDataInfo();
                 Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                 saveThirdUserMeg(DataManager.getInstance().getUser());
-
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
                 break;
             case THIRDLOGIN_SUCCESS1: {
@@ -444,6 +446,7 @@ public class LSLoginActivity extends LSBaseActivity {
             break;
             case LOGIN_SUCCESS:
             {
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
 
             }
@@ -513,6 +516,7 @@ public class LSLoginActivity extends LSBaseActivity {
         CallBack callBack = new CallBack() {
             @Override
             public void handler(MyTask mTask) {
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
             }
         };
@@ -528,6 +532,7 @@ public class LSLoginActivity extends LSBaseActivity {
         CallBack call = new CallBack() {
             @Override
             public void handler(MyTask mTask) {
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
             }
         };

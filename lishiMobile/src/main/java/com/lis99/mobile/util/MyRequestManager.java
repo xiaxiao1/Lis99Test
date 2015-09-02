@@ -74,7 +74,6 @@ public class MyRequestManager {
 	/**
 	 * 			post请求
 	 * @param url
-	 * @param postEntity
 	 * @param resultModel
 	 * @param callBack
 	 */

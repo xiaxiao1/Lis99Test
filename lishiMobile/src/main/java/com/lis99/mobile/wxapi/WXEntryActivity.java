@@ -1,20 +1,18 @@
 package com.lis99.mobile.wxapi;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
-import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
-import com.lis99.mobile.util.RequestParamUtil;
+import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.ShareManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -22,8 +20,6 @@ import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-
-import java.util.HashMap;
 
 public class WXEntryActivity extends LSBaseActivity implements IWXAPIEventHandler {
 
@@ -121,7 +117,20 @@ public class WXEntryActivity extends LSBaseActivity implements IWXAPIEventHandle
                     String code = res.code;
 
                     SharedPreferencesHelper.saveWeixinCode(code);
-
+                }
+                //分享
+                else
+                {
+                    //朋友
+                    if (ShareManager.state == ShareManager.wechat)
+                    {
+                        LSScoreManager.getInstance().sendScore(LSScoreManager.sharewechatfriends);
+                    }
+//                    朋友圈
+                    else if (ShareManager.state == ShareManager.wechat_friends)
+                    {
+                        LSScoreManager.getInstance().sendScore(LSScoreManager.sharewechatfriendscircle);
+                    }
                 }
 
 

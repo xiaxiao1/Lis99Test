@@ -28,6 +28,7 @@ import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -393,7 +394,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 				});
 	}
 
-	private void deleteNow(Topiclist comment, final int position )
+	private void deleteNow(final Topiclist comment, final int position )
 	{
 		LSRequestManager.getInstance().mClubTopicReplyDelete("" + clubId,
 				"" + comment.replytopic_id, new CallBack()
@@ -405,6 +406,16 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 						// TODO Auto-generated method stub
 //						main.refrenshReply();
 						remove(position);
+
+						if ( comment.topic_image != null && comment.topic_image.size() > 0 )
+						{
+							LSScoreManager.getInstance().sendScore(LSScoreManager.delreplytopicbyimg);
+						}
+						else
+						{
+							LSScoreManager.getInstance().sendScore(LSScoreManager.delreplytopicbynoimg);
+						}
+
 					}
 
 				});
