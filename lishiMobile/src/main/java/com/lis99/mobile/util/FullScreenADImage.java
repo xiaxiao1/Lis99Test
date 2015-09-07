@@ -3,6 +3,7 @@ package com.lis99.mobile.util;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.ADModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -39,8 +40,9 @@ public class FullScreenADImage  {
     {
         platform = "2";
         version = "0";
-//        channel = DeviceInfo.CHANNELVERSION;
-        channel = "zhuzhan";
+        channel = DeviceInfo.CHANNELVERSION;
+//        测试用
+//        channel = "zhuzhan";
         model = new ADModel();
         String JsonInfo = SharedPreferencesHelper.getAD();
         if (!TextUtils.isEmpty(JsonInfo))
@@ -56,7 +58,7 @@ public class FullScreenADImage  {
                 //没有广告 ==0
                 if ( model.lists.flag != 0 )
                 {
-                    bAD = ImageUtil.getAD();
+                    bAD = ImageUtil.getAD(LSBaseActivity.activity);
                 }
             }
         }
@@ -83,7 +85,12 @@ public class FullScreenADImage  {
                 //有新广告
                 if ( model.lists.flag == 2 )
                 {
-                    ImageUtil.saveAD(model.lists.images);
+                    ImageUtil.saveAD(LSBaseActivity.activity, model.lists.images);
+                }
+                //本地广告被删除了， 从新下载
+                if (  model.lists.flag == 1 && bAD == null )
+                {
+                    ImageUtil.saveAD(LSBaseActivity.activity, model.lists.images);
                 }
             }
         });

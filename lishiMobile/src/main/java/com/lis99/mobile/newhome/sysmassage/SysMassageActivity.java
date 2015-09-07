@@ -51,6 +51,13 @@ public class SysMassageActivity extends LSBaseActivity implements
 
     }
 
+    @Override
+    protected void rightAction() {
+        super.rightAction();
+
+
+    }
+
     private void cleanList ()
     {
         page = new Page();

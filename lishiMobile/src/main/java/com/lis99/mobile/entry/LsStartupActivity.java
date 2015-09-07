@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.equip.ActivityTest;
@@ -70,7 +71,7 @@ public class LsStartupActivity extends ActivityPattern {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        LSBaseActivity.activity = this;
         if (test) {
             Intent intent = new Intent(LsStartupActivity.this,
                     ActivityTest.class);

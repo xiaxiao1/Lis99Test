@@ -3,6 +3,7 @@ package com.lis99.mobile.newhome.sysmassage;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -33,6 +34,8 @@ public class SysMassageAdapter extends MyBaseAdapter{
             holder.tv_data = (TextView) view.findViewById(R.id.tv_data);
             holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
             holder.layout = view.findViewById(R.id.layout);
+            holder.tv_info_title = (TextView) view.findViewById(R.id.tv_info_title);
+            holder.iv_info_dot = (ImageView) view.findViewById(R.id.iv_info_dot);
 
             view.setTag(holder);
         }
@@ -41,7 +44,9 @@ public class SysMassageAdapter extends MyBaseAdapter{
             holder = (Holder) view.getTag();
         }
 
-        
+//        holder.tv_info.setMaxLines(Integer.MAX_VALUE);
+
+
 
         return view;
     }
@@ -53,6 +58,8 @@ public class SysMassageAdapter extends MyBaseAdapter{
         RoundedImageView roundedImageView1;
         TextView tv_club_title,tv_data, tv_info;
         View layout;
+        TextView tv_info_title;
+        ImageView iv_info_dot;
 
     }
 }

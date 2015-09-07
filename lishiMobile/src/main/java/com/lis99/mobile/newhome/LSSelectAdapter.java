@@ -359,7 +359,7 @@ public class LSSelectAdapter extends BaseAdapter {
 
 		holder.layout1.setOnClickListener( new AppraiseClick(item.get(0)));
 		
-		if ( item.size() > 1 )
+		if ( item.size() >= 1 )
 		{
 			holder.layout2.setVisibility(View.VISIBLE);
 			holder.layout2.setOnClickListener(new AppraiseClick(item.get(1)));
@@ -374,11 +374,11 @@ public class LSSelectAdapter extends BaseAdapter {
 				holder.view_line.setVisibility(View.GONE);
 			}
 			
+		}
+		if ( item.size() >= 2 )
+		{
 			holder.tv_title2.setText(item.get(1).title);
 			ImageLoader.getInstance().displayImage(item.get(1).image, holder.iv_icon2, ImageUtil.getImageLoading(holder.iv_load1, holder.iv_icon2));
-			
-			
-			
 		}
 		else
 		{

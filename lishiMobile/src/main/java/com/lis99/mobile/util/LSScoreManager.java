@@ -19,7 +19,7 @@ public class LSScoreManager {
 
     private static final String URL = C.DOMAIN + "/v3/user/incrUserPoints";
 
-    private static String action, user_id, version, platform, channel;
+    private static String /*action,*/ user_id, version, platform, channel;
 
     private CallBack callBack;
     //注册信息
@@ -28,7 +28,7 @@ public class LSScoreManager {
     public static final String sign = "sign";
     //发话题贴
     public static final String pubtalktopic = "pubtalktopic";
-    //发活动贴
+    //发活动贴（没有）
     public static final String pubactivetopic = "pubactivetopic";
     //回帖带图
     public static final String replytopicbyimg = "replytopicbyimg";
@@ -52,7 +52,7 @@ public class LSScoreManager {
     public static final String delreplytopicbyimg = "delreplytopicbyimg";
     //无图回帖被删
     public static final String delreplytopicbynoimg = "delreplytopicbynoimg";
-    //活动贴被删报名获得的积分需要扣除
+    //活动贴被删报名获得的积分需要扣除(取消)
     public static final String delactivetopicenrollpoints = "delactivetopicenrollpoints";
 
 
@@ -85,7 +85,7 @@ public class LSScoreManager {
         return true;
     }
 //action, user_id, version, platform, channel;
-    private void setMap ( HashMap<String, Object> map )
+    private void setMap ( HashMap<String, Object> map, String action )
     {
         map.put("action", action);
         map.put("user_id", user_id);
@@ -103,7 +103,7 @@ public class LSScoreManager {
         BaseModel model = new BaseModel();
         HashMap<String, Object> map = new HashMap<String, Object>();
 
-        setMap(map);
+        setMap(map, action);
 
         MyRequestManager.getInstance().requestPostNoDialog(URL, map, model, new CallBack() {
             @Override
@@ -121,7 +121,7 @@ public class LSScoreManager {
         BaseModel model = new BaseModel();
         HashMap<String, Object> map = new HashMap<String, Object>();
 
-        setMap(map);
+        setMap(map, action);
 
         MyRequestManager.getInstance().requestPostNoDialog(URL, map, model, new CallBack() {
             @Override

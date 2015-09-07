@@ -1527,12 +1527,12 @@ public class ImageUtil
 	 * 		保存图片到本地
 	 * @param name
 	 */
-	public static void mySaveBitmap2SD ( final String name, String imgUrl )
+	public static void mySaveBitmap2SD ( final Context c, final String name, String imgUrl )
 	{
-		if ( !Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-		{
-			return;
-		}
+//		if ( !Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+//		{
+//			return;
+//		}
 		ImageLoader.getInstance().loadImage(imgUrl, new ImageLoadingListener() {
 			@Override
 			public void onLoadingStarted(String s, View view) {
@@ -1550,7 +1550,7 @@ public class ImageUtil
 
 
 				try {
-					File f = getImageFile(name);
+					File f = getImageFileNative(c, name);
 					if ( f == null ) return;
 					FileOutputStream foutp = new FileOutputStream(f);
 					bitmap.compress(Bitmap.CompressFormat.JPEG, 100, foutp);
@@ -1594,10 +1594,33 @@ public class ImageUtil
 		return ff;
 	}
 
-	public static Bitmap myGetBitmap2SD ( String name )
+	//获取对应地址的FILE
+	private static File getImageFileNative ( Context c, String name )
+	{
+//		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/lis99/";
+		String path = c.getFilesDir() + "/lis99/";
+		File f = new File(path);
+		if ( !f.exists() )
+		{
+			f.mkdirs();
+		}
+		File ff = new File(f, name);
+		if ( !ff.exists())
+		{
+			try {
+				ff.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return ff;
+	}
+
+	public static Bitmap myGetBitmap2SD ( Context c, String name )
 	{
 		Bitmap b = null;
-		File f = getImageFile(name);
+		File f = getImageFileNative(c, name);
 		if ( f != null )
 		{
 			try {
@@ -1617,18 +1640,18 @@ public class ImageUtil
 	 * 		保存广告
 	 * @param imgUrl
 	 */
-	public static void saveAD ( String imgUrl )
+	public static void saveAD ( Context c, String imgUrl )
 	{
-		mySaveBitmap2SD("LIS99.AD", imgUrl);
+		mySaveBitmap2SD(c, "LIS99.AD", imgUrl);
 	}
 
 	/**
 	 * 		读取广告
 	 * @return
 	 */
-	public static Bitmap getAD ()
+	public static Bitmap getAD (Context c )
 	{
-		return myGetBitmap2SD("LIS99.AD");
+		return myGetBitmap2SD(c, "LIS99.AD");
 	}
 
 }

@@ -106,6 +106,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
             >
 
             <ImageView
@@ -113,16 +115,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/iv_best"
                 android:src="@drawable/club_topic_best_icon"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="9dp"
                 />
 
             <TextView
                 android:id="@+id/titleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_marginRight="20dip"
                 android:ellipsize="end"
                 android:lineSpacingExtra="2dip"
                 android:maxLines="2"
