@@ -63,7 +63,7 @@ public class LSMineApplyManageAdapter extends BaseListAdapter<LSMineApplyManageI
 		
 		LSMineApplyManageInfo info = getItem(position);
 		imageLoader.displayImage(info.getClub_img(), holder.roundedImageView1, options);
-		holder.timeView.setText("报名时间：" + info.getCreatedate());
+		holder.timeView.setText("发布时间：" + info.getCreatedate());
 		holder.nameView.setText(info.getTopic_title());
 		holder.newsDot.setVisibility(info.isIs_baoming() == 1 ? View.VISIBLE : View.GONE);
 		

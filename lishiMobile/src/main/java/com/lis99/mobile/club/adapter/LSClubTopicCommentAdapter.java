@@ -409,11 +409,11 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 						if ( comment.topic_image != null && comment.topic_image.size() > 0 )
 						{
-							LSScoreManager.getInstance().sendScore(LSScoreManager.delreplytopicbyimg);
+							LSScoreManager.getInstance().sendScore(comment.user_id, LSScoreManager.delreplytopicbyimg);
 						}
 						else
 						{
-							LSScoreManager.getInstance().sendScore(LSScoreManager.delreplytopicbynoimg);
+							LSScoreManager.getInstance().sendScore(comment.user_id, LSScoreManager.delreplytopicbynoimg);
 						}
 
 					}

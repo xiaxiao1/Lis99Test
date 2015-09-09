@@ -67,6 +67,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 
 	boolean isFounder;
 	boolean isAdministrator;
+//系统消息
+	boolean isSysMassage;
 
 	private final static int SHOW_USER_INFO = 2001;
 	private final static int SHOW_NOTICE = 2002;
@@ -160,6 +162,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			isAdministrator = false;
 
 			isAttention = false;
+
+			isSysMassage = false;
 
 			showOrHideViews();
 		}
@@ -335,6 +339,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			//关注
 			isAttention = data.get("is_follow").asBoolean();
 			isAdministrator = data.get("is_admin").asBoolean();
+
+			isSysMassage = data.get("notice").asBoolean();
+
 			postMessage(SHOW_NOTICE);
 		} catch (Exception e)
 		{
@@ -421,6 +428,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v_reply_arrow.setVisibility(haveReply ? View.GONE : View.VISIBLE);
 		v_applyinfo_arrow.setVisibility(haveApplyInfo ? View.GONE : View.VISIBLE);
 		v_applymanager_arrow.setVisibility(haveApply ? View.GONE : View.VISIBLE);
+		v_sys_arrow.setVisibility( isSysMassage ? View.GONE : View.VISIBLE);
 
 		//红点
 		iv_friendDot.setVisibility(isAttention ? View.VISIBLE : View.GONE);
@@ -429,6 +437,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		replyDot.setVisibility(haveReply ? View.VISIBLE : View.GONE);
 		managePanel.setVisibility((isFounder || isAdministrator) ? View.VISIBLE
 				: View.GONE);
+		iv_sysDot.setVisibility(isSysMassage ? View.VISIBLE : View.GONE);
 	}
 
 	@Override
@@ -490,8 +499,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 				instance.setCallBack(new CallBack() {
 					@Override
 					public void handler(MyTask mTask) {
-				//签到成功后的操作
-						Common.toast("今日签到成功");
+					//签到成功后的操作
+					Common.toast("今日签到成功");
 					}
 				});
 

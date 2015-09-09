@@ -1,11 +1,8 @@
 package com.lis99.mobile.mine;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,8 +19,8 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.RequestParamUtil;
-import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -141,6 +138,13 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
             u.setNickname(nickName);
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
+
+            String is_new = data.get("is_new").asText();
+//            微信登陆
+            if ( "1".equals(is_new))
+            {
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+            }
 
             postMessage(LOGIN_SUCCESS);
 

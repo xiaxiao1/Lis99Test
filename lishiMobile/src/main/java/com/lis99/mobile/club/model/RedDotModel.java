@@ -14,4 +14,6 @@ public class RedDotModel extends BaseModel
 	public int is_creater;
 	public int is_admin;
 	public int is_follow;
+	//系统消息
+	public int notice;
 }

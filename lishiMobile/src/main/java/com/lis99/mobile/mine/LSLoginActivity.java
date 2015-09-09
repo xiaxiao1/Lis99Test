@@ -397,7 +397,6 @@ public class LSLoginActivity extends LSBaseActivity {
                 LSRequestManager.getInstance().upDataInfo();
                 Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                 saveThirdUserMeg(DataManager.getInstance().getUser());
-                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
                 break;
             case THIRDLOGIN_SUCCESS1: {
@@ -446,7 +445,6 @@ public class LSLoginActivity extends LSBaseActivity {
             break;
             case LOGIN_SUCCESS:
             {
-                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
 
             }
@@ -472,17 +470,26 @@ public class LSLoginActivity extends LSBaseActivity {
 
             String nickName = data.get("nickname").asText();
 
-
             String headicon = data.get("headicon").asText();
 
             u.setUser_id(data.get("user_id").asText());
 
-            u.setHeadicon(weixinHeader);
+            u.setHeadicon(headicon);
 
             u.setNickname(nickName);
 
+            String is_new = data.get("is_new").asText();
+
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
+        //保存到本地
+            saveThirdUserMeg(DataManager.getInstance().getUser());
+
+            //            微信登陆
+            if ( "1".equals(is_new))
+            {
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+            }
 
             SharedPreferencesHelper.saveWeixinOpenID(openid);
             SharedPreferencesHelper.saveWeixinHeader(weixinHeader);
@@ -516,7 +523,6 @@ public class LSLoginActivity extends LSBaseActivity {
         CallBack callBack = new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
             }
         };
@@ -532,7 +538,6 @@ public class LSLoginActivity extends LSBaseActivity {
         CallBack call = new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
                 finish();
             }
         };

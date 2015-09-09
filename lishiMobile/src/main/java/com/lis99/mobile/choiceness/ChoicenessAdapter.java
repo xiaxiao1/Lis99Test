@@ -32,7 +32,7 @@ public class ChoicenessAdapter extends BaseAdapter
 	private final int IMGTOPIC = 4;
 //只有一张图片
 	private final int IMGACTIVE = 5;
-//标签列表
+	//标签列表
 	private final int TAG = 6;
 
 	//	private final int CLUB = 0;

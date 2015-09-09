@@ -438,6 +438,16 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 			layout_tag.setVisibility(View.INVISIBLE);
 		}
 
+		//精华
+		for ( int i = 0; clubhead.topicpoints != null && i < clubhead.topicpoints.size(); i++ )
+		{
+			//0 精华
+			if ( clubhead.topicpoints.get(i).reason == 0 )
+			{
+				iv_best.setVisibility(VISIBLE);
+				break;
+			}
+		}
 
 		getHeight(iv_head);
 

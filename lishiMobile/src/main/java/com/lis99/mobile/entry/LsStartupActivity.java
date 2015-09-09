@@ -420,14 +420,17 @@ public class LsStartupActivity extends ActivityPattern {
 
 
             u.setUser_id(data.get("user_id").asText());
-            u.setHeadicon(weixinHeader);
+
+            String headicon = data.get("headicon").asText();
+
+            u.setHeadicon(headicon);
 
             u.setNickname(nickName);
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
 
             SharedPreferencesHelper.saveWeixinOpenID(openid);
-            SharedPreferencesHelper.saveWeixinHeader(weixinHeader);
+//            SharedPreferencesHelper.saveWeixinHeader(weixinHeader);
             SharedPreferencesHelper.saveWeixinNickName(weixinNickName);
             SharedPreferencesHelper.saveWeixinSex(weixinSex + "");
 

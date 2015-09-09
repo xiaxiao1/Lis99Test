@@ -1,12 +1,24 @@
 package com.lis99.mobile.newhome.sysmassage;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.BaseModel;
+import com.lis99.mobile.club.model.SysMassageModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
+import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
+
+import java.util.HashMap;
 
 /**
  * Created by yy on 15/8/28.
@@ -18,6 +30,8 @@ public class SysMassageActivity extends LSBaseActivity implements
     private PullToRefreshView pull_refresh_view;
     private Page page;
     private SysMassageAdapter adapter;
+
+    private SysMassageModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +68,12 @@ public class SysMassageActivity extends LSBaseActivity implements
     @Override
     protected void rightAction() {
         super.rightAction();
-
+        DialogManager.getInstance().startAlert(activity, "清空消息", "确认清空所有消息？", true, "取消", null, true, "清空", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                cleanAll();
+            }
+        });
 
     }
 
@@ -65,8 +84,69 @@ public class SysMassageActivity extends LSBaseActivity implements
         adapter = null;
     }
 
+    private void cleanAll ()
+    {
+        String url = C.SYS_MASSAGE_CLEANALL;
+
+        BaseModel model = new BaseModel();
+
+        String userId = DataManager.getInstance().getUser().getUser_id();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("user_id", userId);
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                Common.toast("清空成功");
+                cleanList();
+            }
+        });
+
+    }
+
     private void getList ()
     {
+        if ( page.isLastPage())
+        {
+            return;
+        }
+
+        model = new SysMassageModel();
+
+        String url = C.SYS_MASSAGE_LIST + page.pageNo;
+
+        String userId = DataManager.getInstance().getUser().getUser_id();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("user_id", userId);
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                model = (SysMassageModel) mTask.getResultModel();
+
+                page.nextPage();
+
+                if ( adapter == null )
+                {
+                    page.setPageSize(model.totPage);
+
+                    adapter = new SysMassageAdapter(activity, model.lists);
+
+                    list.setAdapter(adapter);
+
+                }
+                else
+                {
+                    adapter.addList(model.lists);
+                }
+
+            }
+        });
+
 
     }
 

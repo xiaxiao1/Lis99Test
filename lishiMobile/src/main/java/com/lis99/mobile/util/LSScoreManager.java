@@ -105,7 +105,7 @@ public class LSScoreManager {
 
         setMap(map, action);
 
-        MyRequestManager.getInstance().requestPostNoDialog(URL, map, model, new CallBack() {
+        MyRequestManager.getInstance().requestPost(URL, map, model, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 if ( callBack == null ) return;

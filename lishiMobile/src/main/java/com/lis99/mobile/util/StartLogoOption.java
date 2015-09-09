@@ -28,6 +28,11 @@ public class StartLogoOption {
             iv_channel.setVisibility(View.VISIBLE);
             iv_channel.setImageResource(R.drawable.start_logo_jifeng);
         }
+        else if ( "zs360".equals(DeviceInfo.CHANNELVERSION))
+        {
+            iv_channel.setVisibility(View.VISIBLE);
+            iv_channel.setImageResource(R.drawable.star_logo_360);
+        }
         else
         {
             iv_channel.setVisibility(View.INVISIBLE);

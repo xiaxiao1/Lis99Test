@@ -3,12 +3,14 @@ package com.lis99.mobile.newhome.sysmassage;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,6 @@ public class SysMassageAdapter extends MyBaseAdapter{
             holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
             holder.layout = view.findViewById(R.id.layout);
             holder.tv_info_title = (TextView) view.findViewById(R.id.tv_info_title);
-            holder.iv_info_dot = (ImageView) view.findViewById(R.id.iv_info_dot);
 
             view.setTag(holder);
         }
@@ -44,7 +45,33 @@ public class SysMassageAdapter extends MyBaseAdapter{
             holder = (Holder) view.getTag();
         }
 
-//        holder.tv_info.setMaxLines(Integer.MAX_VALUE);
+        final SysMassageModel.Lists item = (SysMassageModel.Lists) getItem(i);
+
+        if ( item == null ) return view;
+
+        if ( item.state == 0 )
+        {
+            holder.tv_info.setMaxLines(2);
+        }
+        else
+        {
+            holder.tv_info.setMaxLines(Integer.MAX_VALUE);
+        }
+
+        ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, ImageUtil.getImageOptionClubIcon());
+
+        holder.tv_club_title.setText(item.nickname);
+        holder.tv_info.setText(item.content);
+        holder.tv_data.setText(item.createtime);
+        holder.tv_info_title.setText(item.title);
+
+        holder.tv_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item.state = 1;
+                notifyDataSetChanged();
+            }
+        });
 
 
 
@@ -59,7 +86,5 @@ public class SysMassageAdapter extends MyBaseAdapter{
         TextView tv_club_title,tv_data, tv_info;
         View layout;
         TextView tv_info_title;
-        ImageView iv_info_dot;
-
     }
 }
