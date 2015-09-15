@@ -451,10 +451,17 @@ public class LSSelectFragment extends LSFragment implements
 	public void onHeaderRefresh(PullToRefreshView view) {
 //		refresh();
 		refreshView.onHeaderRefreshComplete();
+//		listView.setAdapter(null);
+//		adapter = null;
+//		loaedContents.clear();
+		getLocation();
+	}
+
+	private void cleanList ()
+	{
 		listView.setAdapter(null);
 		adapter = null;
 		loaedContents.clear();
-		getLocation();
 	}
 
 	@Override
@@ -542,6 +549,7 @@ public class LSSelectFragment extends LSFragment implements
 	
 	private void getEquipRecommend ()
 	{
+		cleanList();
 		LSRequestManager.getInstance().getEquipRecommend(new CallBack()
 		{
 			

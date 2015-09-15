@@ -93,6 +93,8 @@ public class ClubApplyManagerListModel implements Serializable
 		public String flag;
 		//申请人ID
 		public String applyid;
+//申请人UserId
+		public int applyuserid;
 	}
 	
 	

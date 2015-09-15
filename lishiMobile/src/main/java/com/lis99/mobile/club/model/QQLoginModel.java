@@ -10,6 +10,6 @@ public class QQLoginModel extends BaseModel{
     public String headicon;
     public String width;
     public String height;
-    public String is_join;
+    public String is_new;
 
 }

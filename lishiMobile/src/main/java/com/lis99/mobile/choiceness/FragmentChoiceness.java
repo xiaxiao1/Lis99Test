@@ -34,7 +34,6 @@ import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 public class FragmentChoiceness extends LSFragment implements
 OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 {
-	
 	private ChoicenessAdapter adapter;
 	private ListView list;
 	private PullToRefreshView pull_refresh_view;

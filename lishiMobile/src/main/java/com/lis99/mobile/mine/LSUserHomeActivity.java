@@ -517,11 +517,13 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
         } else if (msg.what == SHOW_ADDBUTTON) {
             fansView.setText(user.getFollows()+"位粉丝");
-            if (user.isIs_follows()) {
-                setRightView(R.drawable.bg_button_followed);
-            } else{
-                setRightView(R.drawable.bg_button_follow);
-            }
+            //设置按钮
+            setTitleRight(isRightBg);
+//            if (user.isIs_follows()) {
+//              setRightView(R.drawable.bg_button_followed);
+//            } else{
+//                setRightView(R.drawable.bg_button_follow);
+//            }
             return true;
         }
         return super.handleMessage(msg);
@@ -659,10 +661,11 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 //        title.setAlpha(alpha);
         setTitleBarAlpha(alpha);
     }
-
+    private boolean isRightBg;
     //设置title右边按钮
     private void setTitleRight ( boolean isBg )
     {
+        isRightBg = isBg;
         if ( isBg )
         {
             if (user.isIs_follows()) {

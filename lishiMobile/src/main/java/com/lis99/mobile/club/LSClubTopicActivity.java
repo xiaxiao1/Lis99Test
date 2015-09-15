@@ -36,6 +36,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.ShareManager;
@@ -541,33 +542,27 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 					+ page.pageNo;
 		}
 		MyRequestManager.getInstance().requestGet(url, clubreply,
-				new CallBack()
-				{
+				new CallBack() {
 
 					@Override
-					public void handler(MyTask mTask)
-					{
+					public void handler(MyTask mTask) {
 						// TODO Auto-generated method stub
 						clubreply = (ClubTopicReplyList) mTask.getResultModel();
-						if (clubreply.topiclist == null)
-						{
+						if (clubreply.topiclist == null) {
 							return;
 						}
 						page.pageNo -= 1;
 						// 最上面一页了
-						if (page.pageNo == -1)
-						{
+						if (page.pageNo == -1) {
 							needup = false;
 							refreshView.setHeadText(null, null);
 							// 显示帖子内容
 							addHead();
 							visibleTitleReference(false);
 						}
-						if (adapter == null)
-						{
+						if (adapter == null) {
 							// 如果最后一条在第一页， 不隐藏内容
-							if (needup)
-							{
+							if (needup) {
 								// 隐藏帖子内容
 								removeHead();
 								refreshView.setHeadText("上一页", "松开加载上一页");
@@ -713,6 +708,14 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	/** 删除本贴 */
 	private void deleteThis()
 	{
+		if ( clubhead != null && "0".equals(clubhead.category) )
+		{
+			LSScoreManager.getInstance().sendScore(clubhead.user_id, LSScoreManager.delpubtalktopic);
+		}
+		else
+		{
+			LSScoreManager.getInstance().sendScore(clubhead.user_id, LSScoreManager.delpubactivetopic);
+		}
 		setResult(RESULT_OK);
 		finish();
 	}

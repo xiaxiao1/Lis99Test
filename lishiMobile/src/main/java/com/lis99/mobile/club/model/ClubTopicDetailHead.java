@@ -119,6 +119,8 @@ public class ClubTopicDetailHead implements Serializable{
 
 	//===3.5====
 	public ArrayList<Taglist> taglist;
+	//积分
+	public ArrayList<Topicpoints> topicpoints;
 	
 	public class Topic_image
 	{
@@ -129,6 +131,14 @@ public class ClubTopicDetailHead implements Serializable{
 	{
 		public int id;
 		public String name;
+	}
+
+	public class Topicpoints
+	{
+		public int points;
+		public int reason;
+		public String content;
+		public String createtime;
 	}
 
 }

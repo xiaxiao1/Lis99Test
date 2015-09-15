@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
@@ -57,8 +58,6 @@ public class MyActivityWebView extends LSBaseActivity
 		initViews();
 		setTitle(title);
 
-		setRightView(R.drawable.club_share_nul);
-
 		init();
 	}
 
@@ -66,6 +65,17 @@ public class MyActivityWebView extends LSBaseActivity
 	protected void rightAction() {
 		super.rightAction();
 
+		if ( "积分商城".equals(title))
+		{
+			finish();
+			return;
+		}
+
+		//如果没有title 默认添加一个， 朋友圈没有title不能分享
+		if ( TextUtils.isEmpty(title) )
+		{
+			title = "砾石 心户外，新生活";
+		}
 		pop = ShareManager.getInstance().showPopWindowInShare(null, "",
 				image_url, title, "",
 				"", false, layout_main, null, url);
@@ -74,6 +84,20 @@ public class MyActivityWebView extends LSBaseActivity
 
 	private void init()
 	{
+
+		if ( "积分商城".equals(title))
+		{
+			setLeftView(-1);
+			ViewGroup.LayoutParams lp = titleRightImage.getLayoutParams();// new RelativeLayout.LayoutParams(Common.px2dip(30), Common.px2dip(30));
+			lp.height = Common.dip2px(16);
+			lp.width = Common.dip2px(16);
+			titleRightImage.setLayoutParams(lp);
+			setRightView(R.drawable.mywebview_delete);
+		}
+		else
+		{
+			setRightView(R.drawable.club_share_nul);
+		}
 
 		layout_main = (RelativeLayout) findViewById(R.id.layout_main);
 
@@ -140,7 +164,7 @@ public class MyActivityWebView extends LSBaseActivity
         {
 //        	Toast.makeText(WebViewDemo.this, "test = ", Toast.LENGTH_LONG).show();
         }
-        
+//        精选黄崖关登录
         @JavascriptInterface
         public String getUserId ()
         {
@@ -248,10 +272,31 @@ public class MyActivityWebView extends LSBaseActivity
 	{
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack())
 		{
+			if ( "积分商城".equals(title) )
+			{
+				if ( !isMain(webView.getUrl()) )
+				{
+					webView.loadUrl(url);
+					return true;
+				}
+				else
+				{
+					return super.onKeyDown(keyCode, event);
+				}
+			}
 			webView.goBack();
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	private boolean isMain ( String url )
+	{
+		if (this.url.equals(url))
+		{
+			return true;
+		}
+		return false;
 	}
 
 }

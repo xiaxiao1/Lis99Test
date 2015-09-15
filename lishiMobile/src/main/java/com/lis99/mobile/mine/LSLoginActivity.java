@@ -22,6 +22,7 @@ import com.lis99.mobile.entry.LsImproveInfoActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
@@ -392,10 +393,10 @@ public class LSLoginActivity extends LSBaseActivity {
         switch (msg.what) {
 
             case THIRDLOGIN_SUCCESS:
+
                 LSRequestManager.getInstance().upDataInfo();
                 Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                 saveThirdUserMeg(DataManager.getInstance().getUser());
-
                 finish();
                 break;
             case THIRDLOGIN_SUCCESS1: {
@@ -469,17 +470,26 @@ public class LSLoginActivity extends LSBaseActivity {
 
             String nickName = data.get("nickname").asText();
 
-
             String headicon = data.get("headicon").asText();
 
             u.setUser_id(data.get("user_id").asText());
 
-            u.setHeadicon(weixinHeader);
+            u.setHeadicon(headicon);
 
             u.setNickname(nickName);
 
+            String is_new = data.get("is_new").asText();
+
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
+        //保存到本地
+            saveThirdUserMeg(DataManager.getInstance().getUser());
+
+            //            微信登陆
+            if ( "1".equals(is_new))
+            {
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+            }
 
             SharedPreferencesHelper.saveWeixinOpenID(openid);
             SharedPreferencesHelper.saveWeixinHeader(weixinHeader);

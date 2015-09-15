@@ -67,26 +67,25 @@
                     android:singleLine="true"
                     />
 
-
                 <ImageView
+                    android:layout_toRightOf="@id/nameView"
+                    android:layout_marginLeft="8dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/level_1"
+                    android:id="@+id/user_level"
+                    />
+
+
+                <Button
                     android:layout_marginRight="20dp"
-                    android:id="@+id/iv_myhead_right"
+                    android:id="@+id/btn_check_in"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/mine_icon_right_arrow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="个人主页"
-                    android:textSize="12sp"
-                    android:textColor="@color/color_nine"
-                    android:layout_toLeftOf="@id/iv_myhead_right"
-                    android:layout_marginRight="10dp"
-                    android:layout_centerVertical="true"
-                    />
+                    android:background="@drawable/my_check_in" />
 
 
             </RelativeLayout>
@@ -105,6 +104,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/color_1px_stroke" />
+
+
+            <RelativeLayout
+                android:id="@+id/layout_market"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/my_market"
+                    android:id="@+id/iv_market"
+                    android:layout_marginRight="13dp"
+                    />
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_market"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="积分商城"
+                    android:textColor="#666"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_market"
+                    />
+
+                <ImageView
+                    android:id="@+id/v_market_arrow"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@id/tv_market"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/v_market_arrow"
+                    android:id="@+id/tv_score"
+                    android:textColor="@color/color_nine"
+                    android:textSize="12sp"
+                    android:text="@string/temp_string"
+                    android:layout_marginRight="8dp"
+                    android:layout_centerVertical="true"
+                    />
+
+            </RelativeLayout>
 
 
             <RelativeLayout
@@ -137,6 +196,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/v_friend_arrow"
                     android:layout_marginRight="20dp"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
@@ -155,7 +215,6 @@
                     />
 
                 <View
-                    android:id="@+id/v_friend_arrow"
                     android:layout_alignParentBottom="true"
                     android:layout_alignLeft="@id/tv_friends"
                     android:layout_width="fill_parent"
@@ -409,6 +468,62 @@
                 <ImageView
                     android:layout_marginRight="20dp"
                     android:id="@+id/v_reply_arrow"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+
+                <View
+                    android:layout_alignLeft="@id/tv_reply"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_sys"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_system_massage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="13dp"
+                    android:src="@drawable/my_system_massage_icon" />
+
+                <TextView
+                    android:id="@+id/tv_system_massage"
+                    android:layout_toRightOf="@+id/iv_system_massage"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="系统消息"
+                    android:textColor="#666"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_sysDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_reddot"
+                    />
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/v_sys_arrow"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"

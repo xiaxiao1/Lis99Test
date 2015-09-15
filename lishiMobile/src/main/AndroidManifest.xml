@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="360"
-    android:versionName="3.6.0" >
+    android:versionCode="353"
+    android:versionName="3.5.3" >
 
 
 
@@ -891,6 +891,11 @@
             />
         <!-- 动态 3.6.0 -->
         <activity android:name="com.lis99.mobile.newhome.DynamicActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+        <!-- 系统消息-->
+        <activity android:name="com.lis99.mobile.newhome.sysmassage.SysMassageActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />

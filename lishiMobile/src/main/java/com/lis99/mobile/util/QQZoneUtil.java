@@ -66,6 +66,7 @@ public class QQZoneUtil {
         public void onComplete(Object response) {
             // TODO Auto-generated method stub
 //				 Util.toastMessage(QZoneShareActivity.this, "onComplete: " + response.toString());
+            LSScoreManager.getInstance().sendScore(LSScoreManager.shareqzone);
         }
 
     };

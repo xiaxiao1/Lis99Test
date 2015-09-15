@@ -405,5 +405,9 @@ public class C {
 	public static final String CANCEL_ATTENTION = DOMAIN + "/v3/user/cancelFollow";
 //添加关注
 	public static final String ADD_ATTENTION = DOMAIN + "/v3/user/addFollow";
+//  系统消息
+	public static final String SYS_MASSAGE_LIST = DOMAIN + "/v3/user/stationMessage/";
+//清空系统消息
+	public static final String SYS_MASSAGE_CLEANALL = DOMAIN + "/v3/user/clearNotice";
 
 }

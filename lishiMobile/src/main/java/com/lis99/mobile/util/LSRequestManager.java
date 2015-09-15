@@ -45,12 +45,10 @@ public class LSRequestManager
 	 */
 	public void mClubTopicReplyDelete ( final String clubId,final String topicId, final CallBack call )
 	{
-		DialogManager.getInstance().startAlert(LSBaseActivity.activity, "提示", "确定要删除吗？", true, "确定", new OnClickListener()
-		{
-			
+		DialogManager.getInstance().startAlert(LSBaseActivity.activity, "提示", "确定要删除吗？", true, "确定", new OnClickListener() {
+
 			@Override
-			public void onClick(DialogInterface dialog, int which)
-			{
+			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
 				BaseModel model = new BaseModel();
 				HashMap<String, Object> map = new HashMap<String, Object>();
@@ -167,34 +165,34 @@ public class LSRequestManager
 		map.put("email", email);
 		map.put("pwd", password);
 		map.put("nickname", nickname);
-		MyRequestManager.getInstance().requestPost(C.LS_REGIST, map, model, new CallBack()
-		{
-			
+		MyRequestManager.getInstance().requestPost(C.LS_REGIST, map, model, new CallBack() {
+
 			@Override
-			public void handler(MyTask mTask)
-			{
+			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
 				LSRegistModel model = (LSRegistModel) mTask.getResultModel();
-				if ( model == null ) return;
+				if (model == null) return;
 				SharedPreferencesHelper.saveUserName(email);
 				SharedPreferencesHelper.saveUserPass(password);
 				SharedPreferencesHelper.saveLSToken(model.token);
 				SharedPreferencesHelper.saveIsVip(model.is_vip);
-				
+
 				UserBean u1 = new UserBean();
 				u1.setUser_id(model.user_id);
 				u1.setEmail(email);
 				u1.setNickname(model.nickname);
 				u1.setHeadicon(model.headicon);
-				
+
 				u1.setSex("");
 				u1.setPoint("");
 				DataManager.getInstance().setUser(u1);
 				DataManager.getInstance().setLogin_flag(true);
 				//上传设备信息
 				LSRequestManager.getInstance().upDataInfo();
-				if ( call != null )
-				{
+//注册
+				LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+
+				if (call != null) {
 					call.handler(mTask);
 				}
 			}
@@ -231,7 +229,7 @@ public class LSRequestManager
 				// TODO Auto-generated method stub
 				RedDotModel model = (RedDotModel) mTask.getResultModel();
 //				相加为0没有通知
-				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow;
+				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow + model.notice;
 				Common.log("b================" + num);
 				Common.log("model.is_reply" + model.is_reply);
 
@@ -317,6 +315,12 @@ public class LSRequestManager
 				SharedPreferencesHelper.saveuser_id(model.user_id);
 
 				SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.QQLOGIN);
+				//QQ注册
+				if ( "1".equals(model.is_new))
+				{
+					LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+				}
+
 				if ( callBack != null )
 				{
 					callBack.handler(null);
@@ -361,6 +365,12 @@ public class LSRequestManager
 				SharedPreferencesHelper.saveuser_id(model.user_id);
 
 				SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.SINALOGIN);
+//新浪注册
+				if ( "1".equals(model.is_new))
+				{
+					LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+				}
+
 				if ( callBack != null )
 				{
 					callBack.handler(null);
@@ -386,7 +396,7 @@ public class LSRequestManager
 		}
 
 	}
-/**加入俱乐部*/
+	/**加入俱乐部*/
 	public void addClub ( String clubID, CallBack call )
 	{
 		String userID = DataManager.getInstance().getUser().getUser_id();
@@ -399,7 +409,7 @@ public class LSRequestManager
 		MyRequestManager.getInstance().requestPost(C.CLUB_JOIN, map, model, call);
 
 	}
-/**关注， 推荐关注， 动态， 我-》好友-》推荐关注*/
+	/**关注， 推荐关注， 动态， 我-》好友-》推荐关注*/
 	public void getFriendsAttentionRecommend ( int page, CallBack call )
 	{
 		String userID = DataManager.getInstance().getUser().getUser_id();

@@ -74,6 +74,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	private LinearLayout layout_tag;
 	private TextView tv_tag1, tv_tag2, tv_tag3;
 
+	//=====3.5.3====
+//	精
+	private ImageView iv_best;
+
 	public void setTopic(LSClubTopicActivity lsTopic)
 	{
 		this.lsTopic = lsTopic;
@@ -140,7 +144,8 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		layout_club_detail_reply = (LinearLayout) findViewById(R.id.layout_club_detail_reply);
 		layout_club_detail_like = (LinearLayout) findViewById(R.id.layout_club_detail_like);
 
-		layout_club_detail_like.setOnClickListener(this);
+		layout_club_detail_like.setVisibility(INVISIBLE);
+//		layout_club_detail_like.setOnClickListener(this);
 		layout_club_detail_reply.setOnClickListener(this);
 
 		tv_active_style = (TextView) v.findViewById(R.id.tv_active_style);
@@ -164,6 +169,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		tv_tag1 = (TextView) v.findViewById(R.id.tv_tag1);
 		tv_tag2 = (TextView) v.findViewById(R.id.tv_tag2);
 		tv_tag3 = (TextView) v.findViewById(R.id.tv_tag3);
+
+		//=====3.5.3====
+		iv_best = (ImageView) findViewById(R.id.iv_best);
+		iv_best.setVisibility(GONE);
 
 	}
 
@@ -430,6 +439,16 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 			layout_tag.setVisibility(View.INVISIBLE);
 		}
 
+		//精华
+		for ( int i = 0; clubhead.topicpoints != null && i < clubhead.topicpoints.size(); i++ )
+		{
+			//0 精华
+			if ( clubhead.topicpoints.get(i).reason == 0 )
+			{
+				iv_best.setVisibility(VISIBLE);
+				break;
+			}
+		}
 
 		getHeight(iv_head);
 

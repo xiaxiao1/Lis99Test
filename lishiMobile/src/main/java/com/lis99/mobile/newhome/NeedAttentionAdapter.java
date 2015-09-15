@@ -27,6 +27,8 @@ public class NeedAttentionAdapter extends MyBaseAdapter {
 
     private String UserId;
 
+
+
     public NeedAttentionAdapter(Context c, ArrayList listItem) {
         super(c, listItem);
     }

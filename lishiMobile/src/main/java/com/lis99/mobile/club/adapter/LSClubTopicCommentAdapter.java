@@ -28,6 +28,7 @@ import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -190,10 +191,10 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 					.findViewById(R.id.contentView);
 			holder.vipStar = convertView.findViewById(R.id.vipStar);
 			// 2.3
-			holder.layout_club_detail_like = (LinearLayout) convertView
-					.findViewById(R.id.layout_club_detail_like);
-			holder.layout_club_detail_reply = (LinearLayout) convertView
-					.findViewById(R.id.layout_club_detail_reply);
+//			holder.layout_club_detail_like = (LinearLayout) convertView
+//					.findViewById(R.id.layout_club_detail_like);
+//			holder.layout_club_detail_reply = (LinearLayout) convertView
+//					.findViewById(R.id.layout_club_detail_reply);
 			holder.tv_like = (TextView) convertView.findViewById(R.id.tv_like);
 			holder.tv_floor_delete = (TextView) convertView
 					.findViewById(R.id.tv_floor_delete);
@@ -247,10 +248,10 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		}
 
 		CommentOnClickListener l = new CommentOnClickListener(item, position);
-		holder.layout_club_detail_like.setOnClickListener(l);
-		l.setReply(holder.tv_like);
-		l.setImageView(holder.iv_like);
-		holder.layout_club_detail_reply.setOnClickListener(l);
+//		holder.layout_club_detail_like.setOnClickListener(l);
+//		l.setReply(holder.tv_like);
+//		l.setImageView(holder.iv_like);
+//		holder.layout_club_detail_reply.setOnClickListener(l);
 		holder.tv_floor_delete.setOnClickListener(l);
 		holder.imageView.setOnClickListener(l);
 
@@ -324,7 +325,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		TextView contentView;
 		View vipStar;
 		// 点赞， 回复
-		LinearLayout layout_club_detail_like, layout_club_detail_reply;
+//		LinearLayout layout_club_detail_like, layout_club_detail_reply;
 		// 点赞的图片
 		ImageView iv_like;
 		// 点赞的数量
@@ -393,7 +394,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 				});
 	}
 
-	private void deleteNow(Topiclist comment, final int position )
+	private void deleteNow(final Topiclist comment, final int position )
 	{
 		LSRequestManager.getInstance().mClubTopicReplyDelete("" + clubId,
 				"" + comment.replytopic_id, new CallBack()
@@ -405,6 +406,16 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 						// TODO Auto-generated method stub
 //						main.refrenshReply();
 						remove(position);
+
+						if ( comment.topic_image != null && comment.topic_image.size() > 0 )
+						{
+							LSScoreManager.getInstance().sendScore(comment.user_id, LSScoreManager.delreplytopicbyimg);
+						}
+						else
+						{
+							LSScoreManager.getInstance().sendScore(comment.user_id, LSScoreManager.delreplytopicbynoimg);
+						}
+
 					}
 
 				});

@@ -38,6 +38,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -214,7 +215,6 @@ public class ImageUtil
 	 * 
 	 * @param bm
 	 * @param newWidth
-	 * @param newHeight
 	 * @return
 	 */
 	public static Bitmap zoomImgWith(Bitmap bm, int newWidth)
@@ -1480,7 +1480,7 @@ public class ImageUtil
 	{
 		if ( !Common.hasSDCard() ) return null;
 		File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "lsShare.png");
-		ImageUtil.savePic(file.getAbsolutePath(), b,80);
+		ImageUtil.savePic(file.getAbsolutePath(), b, 80);
 		return file;
 	}
 
@@ -1521,6 +1521,137 @@ public class ImageUtil
 		@Override
 		public void onLoadingCancelled(String s, View view) {
 		}
+	}
+
+	/**
+	 * 		保存图片到本地
+	 * @param name
+	 */
+	public static void mySaveBitmap2SD ( final Context c, final String name, String imgUrl )
+	{
+//		if ( !Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+//		{
+//			return;
+//		}
+		ImageLoader.getInstance().loadImage(imgUrl, new ImageLoadingListener() {
+			@Override
+			public void onLoadingStarted(String s, View view) {
+
+			}
+
+			@Override
+			public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+			}
+
+			@Override
+			public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+
+
+
+				try {
+					File f = getImageFileNative(c, name);
+					if ( f == null ) return;
+					FileOutputStream foutp = new FileOutputStream(f);
+					bitmap.compress(Bitmap.CompressFormat.JPEG, 100, foutp);
+					foutp.flush();
+					foutp.close();
+					bitmap = null;
+
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+
+			@Override
+			public void onLoadingCancelled(String s, View view) {
+
+			}
+		});
+	}
+//获取对应地址的FILE
+	private static File getImageFile ( String name )
+	{
+		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/lis99/";
+		File f = new File(path);
+		if ( !f.exists() )
+		{
+			f.mkdirs();
+		}
+		File ff = new File(f, name);
+		if ( !ff.exists())
+		{
+			try {
+				ff.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return ff;
+	}
+
+	//获取对应地址的FILE
+	private static File getImageFileNative ( Context c, String name )
+	{
+//		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/lis99/";
+		String path = c.getFilesDir() + "/lis99/";
+		File f = new File(path);
+		if ( !f.exists() )
+		{
+			f.mkdirs();
+		}
+		File ff = new File(f, name);
+		if ( !ff.exists())
+		{
+			try {
+				ff.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return ff;
+	}
+
+	public static Bitmap myGetBitmap2SD ( Context c, String name )
+	{
+		Bitmap b = null;
+		File f = getImageFileNative(c, name);
+		if ( f != null )
+		{
+			try {
+				InputStream in = new FileInputStream(f);
+				b = BitmapFactory.decodeStream(in);
+				in.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return b;
+	}
+
+	/**
+	 * 		保存广告
+	 * @param imgUrl
+	 */
+	public static void saveAD ( Context c, String imgUrl )
+	{
+		mySaveBitmap2SD(c, "LIS99.AD", imgUrl);
+	}
+
+	/**
+	 * 		读取广告
+	 * @return
+	 */
+	public static Bitmap getAD (Context c )
+	{
+		return myGetBitmap2SD(c, "LIS99.AD");
 	}
 
 }
