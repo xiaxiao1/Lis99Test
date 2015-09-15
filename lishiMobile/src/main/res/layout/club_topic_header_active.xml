@@ -373,6 +373,15 @@
             android:layout_height="@dimen/reply_height"
             android:layout_marginTop="10dip"
             layout="@layout/club_topic_reply" />
+
+        <include
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            layout="@layout/club_topic_like"
+            />
+
+
     </LinearLayout>
 
     <View

@@ -70,6 +70,7 @@
     </RelativeLayout>
 
     <include
+        android:visibility = "gone"
         layout="@layout/club_topic_reply"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/reply_height"

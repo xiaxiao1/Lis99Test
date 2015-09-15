@@ -315,7 +315,7 @@ public class LSRequestManager
 				SharedPreferencesHelper.saveuser_id(model.user_id);
 
 				SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.QQLOGIN);
-//QQ注册
+				//QQ注册
 				if ( "1".equals(model.is_new))
 				{
 					LSScoreManager.getInstance().sendScore(LSScoreManager.register);

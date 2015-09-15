@@ -144,7 +144,8 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		layout_club_detail_reply = (LinearLayout) findViewById(R.id.layout_club_detail_reply);
 		layout_club_detail_like = (LinearLayout) findViewById(R.id.layout_club_detail_like);
 
-		layout_club_detail_like.setOnClickListener(this);
+		layout_club_detail_like.setVisibility(INVISIBLE);
+//		layout_club_detail_like.setOnClickListener(this);
 		layout_club_detail_reply.setOnClickListener(this);
 
 		tv_active_style = (TextView) v.findViewById(R.id.tv_active_style);

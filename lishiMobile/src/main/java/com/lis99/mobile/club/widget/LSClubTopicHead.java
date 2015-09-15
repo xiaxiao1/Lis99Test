@@ -358,7 +358,8 @@ public class LSClubTopicHead extends LinearLayout implements
 		layout_club_detail_like = (LinearLayout) findViewById(R.id.layout_club_detail_like);
 
 		tv_floor_delete.setOnClickListener(this);
-		layout_club_detail_like.setOnClickListener(this);
+		layout_club_detail_like.setVisibility(INVISIBLE);
+//		layout_club_detail_like.setOnClickListener(this);
 		layout_club_detail_reply.setOnClickListener(this);
 
 		iv_like = (ImageView) findViewById(R.id.iv_like);
