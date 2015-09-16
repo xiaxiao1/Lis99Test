@@ -39,156 +39,311 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         >
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_weight="1"
-            android:id="@+id/iv_like_0"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="50dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:id="@+id/iv_like_0"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="1px"
+                app:corner_radius="50dp"
+                />
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+            <ImageView
+                android:layout_centerInParent="true"
+                style="@style/wrap_wrap"
+                android:src="@drawable/like_button"
+                android:id="@+id/iv_like"
+                />
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_1"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+                android:id="@+id/iv_like_1"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_1"
+                android:layout_alignRight="@id/iv_like_1"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_2"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+                android:id="@+id/iv_like_2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_2"
+                android:layout_alignRight="@id/iv_like_2"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_3"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+                android:id="@+id/iv_like_3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_3"
+                android:layout_alignRight="@id/iv_like_3"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_4"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+                android:id="@+id/iv_like_4"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_4"
+                android:layout_alignRight="@id/iv_like_4"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_5"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+                android:id="@+id/iv_like_5"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_5"
+                android:layout_alignRight="@id/iv_like_5"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_6"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+                android:id="@+id/iv_like_6"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_6"
+                android:layout_alignRight="@id/iv_like_6"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_7"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginRight="5dp"
+                android:id="@+id/iv_like_7"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_7"
+                android:layout_alignRight="@id/iv_like_7"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_8"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
 
-        <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/iv_like_8"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+            <ImageView
+                android:id="@+id/vipStar_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_like_8"
+                android:layout_alignRight="@id/iv_like_8"
+                android:layout_marginLeft="-8dp"
+                android:src="@drawable/club_icon_v" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@id/iv_head"
             android:layout_weight="1"
-            android:id="@+id/iv_like_9"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_centerVertical="true"
+            android:gravity="center"
+            >
 
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="1px"
-            app:corner_radius="8dp"
-            />
+            <com.lis99.mobile.club.widget.RoundedImageView
+
+                android:id="@+id/iv_like_9"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ls_nologin_header_icon"
+                app:border_color="#e8e8e8"
+                app:border_width="0px"
+                app:corner_radius="8dip"
+
+                />
+
+        </RelativeLayout>
+
 
 
 

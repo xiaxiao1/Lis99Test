@@ -311,7 +311,7 @@ public class C {
 	/**登陆*/
 	public static final String LS_SIGNIN = DOMAIN + "/v2/user/signin";
 	/**点赞*/
-	public static final String CLUBTIPIC_LIKE = DOMAIN + "/v2/club/addLike/";
+//	public static final String CLUBTIPIC_LIKE = DOMAIN + "/v2/club/addLike/";
 	/**获取报名填写选项*/
 	public static final String CLUB_TOPIC_APPLY_LIST = DOMAIN + "/v2/apply/applyEnroll/";
 	/**报名信息上传*/
@@ -409,5 +409,7 @@ public class C {
 	public static final String SYS_MASSAGE_LIST = DOMAIN + "/v3/user/stationMessage/";
 //清空系统消息
 	public static final String SYS_MASSAGE_CLEANALL = DOMAIN + "/v3/user/clearNotice";
+//	新的点赞
+	public static final String CLUB_TOPIC_LIKE = DOMAIN + "/v2/club/addLike/";
 
 }

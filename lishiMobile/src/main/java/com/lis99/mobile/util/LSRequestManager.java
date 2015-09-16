@@ -12,6 +12,7 @@ import com.lis99.mobile.club.model.ClubTopicInfoLike;
 import com.lis99.mobile.club.model.EquipAppraiseModel;
 import com.lis99.mobile.club.model.EquipRecommendModel;
 import com.lis99.mobile.club.model.EquipTypeModel;
+import com.lis99.mobile.club.model.LikeModel;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.club.model.NearbyModel;
 import com.lis99.mobile.club.model.QQLoginModel;
@@ -450,6 +451,21 @@ public class LSRequestManager
 		BaseModel model = new BaseModel();
 
 		MyRequestManager.getInstance().requestPost(C.ADD_ATTENTION, map, model, call);
+
+	}
+/**点赞*/
+	public void clubTopicLike ( int topicid, CallBack callBack )
+	{
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", userID);
+
+		String url = C.CLUB_TOPIC_LIKE + topicid;
+
+		LikeModel model = new LikeModel();
+
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
 
 	}
 	
