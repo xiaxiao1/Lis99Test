@@ -184,8 +184,11 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	{
 		super.initViews(container);
 
+
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		body = inflater.inflate(R.layout.fragment_mine, container, false);
+
+		setTitle("我");
 
 		View v = null;
 

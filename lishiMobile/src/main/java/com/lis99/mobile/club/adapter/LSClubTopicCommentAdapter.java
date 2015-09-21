@@ -191,10 +191,10 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 					.findViewById(R.id.contentView);
 			holder.vipStar = convertView.findViewById(R.id.vipStar);
 			// 2.3
-//			holder.layout_club_detail_like = (LinearLayout) convertView
-//					.findViewById(R.id.layout_club_detail_like);
-//			holder.layout_club_detail_reply = (LinearLayout) convertView
-//					.findViewById(R.id.layout_club_detail_reply);
+			holder.layout_club_detail_like = (LinearLayout) convertView
+					.findViewById(R.id.layout_club_detail_like);
+			holder.layout_club_detail_reply = (LinearLayout) convertView
+					.findViewById(R.id.layout_club_detail_reply);
 			holder.tv_like = (TextView) convertView.findViewById(R.id.tv_like);
 			holder.tv_floor_delete = (TextView) convertView
 					.findViewById(R.id.tv_floor_delete);
@@ -246,12 +246,14 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		{
 			holder.vipStar.setVisibility(View.GONE);
 		}
+//隐藏回复前面的赞
+		holder.layout_club_detail_like.setVisibility(View.GONE);
 
 		CommentOnClickListener l = new CommentOnClickListener(item, position);
 //		holder.layout_club_detail_like.setOnClickListener(l);
 //		l.setReply(holder.tv_like);
 //		l.setImageView(holder.iv_like);
-//		holder.layout_club_detail_reply.setOnClickListener(l);
+		holder.layout_club_detail_reply.setOnClickListener(l);
 		holder.tv_floor_delete.setOnClickListener(l);
 		holder.imageView.setOnClickListener(l);
 
@@ -325,7 +327,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		TextView contentView;
 		View vipStar;
 		// 点赞， 回复
-//		LinearLayout layout_club_detail_like, layout_club_detail_reply;
+		LinearLayout layout_club_detail_like, layout_club_detail_reply;
 		// 点赞的图片
 		ImageView iv_like;
 		// 点赞的数量

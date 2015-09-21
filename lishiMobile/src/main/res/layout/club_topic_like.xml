@@ -87,14 +87,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_1"
                 android:layout_alignRight="@id/iv_like_1"
                 android:layout_marginLeft="-8dp"
@@ -118,14 +118,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_2"
                 android:layout_alignRight="@id/iv_like_2"
                 android:layout_marginLeft="-8dp"
@@ -149,14 +149,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_3"
                 android:layout_alignRight="@id/iv_like_3"
                 android:layout_marginLeft="-8dp"
@@ -180,14 +180,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_4"
                 android:layout_alignRight="@id/iv_like_4"
                 android:layout_marginLeft="-8dp"
@@ -211,14 +211,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_5"
                 android:layout_alignRight="@id/iv_like_5"
                 android:layout_marginLeft="-8dp"
@@ -242,14 +242,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_6"
                 android:layout_alignRight="@id/iv_like_6"
                 android:layout_marginLeft="-8dp"
@@ -273,14 +273,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_7"
                 android:layout_alignRight="@id/iv_like_7"
                 android:layout_marginLeft="-8dp"
@@ -304,14 +304,14 @@
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
-                app:corner_radius="8dip"
+                app:corner_radius="5dip"
 
                 />
 
             <ImageView
                 android:id="@+id/vipStar_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
                 android:layout_alignBottom="@id/iv_like_8"
                 android:layout_alignRight="@id/iv_like_8"
                 android:layout_marginLeft="-8dp"

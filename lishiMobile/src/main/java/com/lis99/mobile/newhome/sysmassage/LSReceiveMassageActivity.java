@@ -72,17 +72,22 @@ public class LSReceiveMassageActivity extends LSBaseActivity implements
                 if (adapter == null) return;
                 SysMassageModel.Lists item = (SysMassageModel.Lists) adapter.getItem(i);
                 if (item == null) return;
-                Intent intent = null;
-                switch (item.skip_type) {
-                    case 0:
-                        break;
-//                    帖子
-                    case 1:
-                        intent = new Intent(activity, LSClubTopicActivity.class);
-                        intent.putExtra("topicID", item.topicid);
-                        startActivity(intent);
-                        break;
-                }
+
+                Intent intent = new Intent(activity, LSClubTopicActivity.class);
+                intent.putExtra("topicID", item.topicid);
+                startActivity(intent);
+
+//                Intent intent = null;
+//                switch (item.skip_type) {
+//                    case 0:
+//                        break;
+////                    帖子
+//                    case 1:
+//                        intent = new Intent(activity, LSClubTopicActivity.class);
+//                        intent.putExtra("topicID", item.topicid);
+//                        startActivity(intent);
+//                        break;
+//                }
 
 
             }

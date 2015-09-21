@@ -1,12 +1,16 @@
 package com.lis99.mobile.newhome.sysmassage;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -62,27 +66,27 @@ public class SysMassageActivity extends LSBaseActivity implements
         pull_refresh_view.setOnHeaderRefreshListener(this);
         pull_refresh_view.setOnFooterRefreshListener(this);
 
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                if (adapter == null) return;
-//                SysMassageModel.Lists item = (SysMassageModel.Lists) adapter.getItem(i);
-//                if (item == null) return;
-//                Intent intent = null;
-//                switch (item.skip_type) {
-//                    case 0:
-//                        break;
-////                    帖子
-//                    case 1:
-//                        intent = new Intent(activity, LSClubTopicActivity.class);
-//                        intent.putExtra("topicID", item.topicid);
-//                        startActivity(intent);
-//                        break;
-//                }
-//
-//
-//            }
-//        });
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapter == null) return;
+                SysMassageModel.Lists item = (SysMassageModel.Lists) adapter.getItem(i);
+                if (item == null) return;
+                Intent intent = null;
+                switch (item.skip_type) {
+                    case 0:
+                        break;
+//                    帖子
+                    case 1:
+                        intent = new Intent(activity, LSClubTopicActivity.class);
+                        intent.putExtra("topicID", item.topicid);
+                        startActivity(intent);
+                        break;
+                }
+
+
+            }
+        });
 
 
     }

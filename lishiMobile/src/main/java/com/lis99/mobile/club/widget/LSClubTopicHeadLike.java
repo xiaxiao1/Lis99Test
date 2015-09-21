@@ -80,43 +80,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
 
         //没有赞
         if ( list == null || list.size() == 0 ) return;
-//更多
-        if ( list.size() == 1 )
-        {
-            iv_like_2.setVisibility(View.VISIBLE);
-            iv_like_2.setImageResource(R.drawable.topic_like_more);
-        }
-        if ( list.size() == 2 )
-        {
-            iv_like_3.setVisibility(View.VISIBLE);
-            iv_like_3.setImageResource(R.drawable.topic_like_more);
-        }
-        if ( list.size() == 3 )
-        {
-            iv_like_4.setVisibility(View.VISIBLE);
-            iv_like_4.setImageResource(R.drawable.topic_like_more);
-        }
-        if ( list.size() == 4 )
-        {
-            iv_like_5.setVisibility(View.VISIBLE);
-            iv_like_5.setImageResource(R.drawable.topic_like_more);
-        }
-        if ( list.size() == 5 )
-        {
-            iv_like_6.setVisibility(View.VISIBLE);
-            iv_like_6.setImageResource(R.drawable.topic_like_more);
-        }
-        if ( list.size() == 6 )
-        {
-            iv_like_7.setVisibility(View.VISIBLE);
-            iv_like_7.setImageResource(R.drawable.topic_like_more);
-        }
-        if ( list.size() == 7 )
-        {
-            iv_like_8.setVisibility(View.VISIBLE);
-            iv_like_8.setImageResource(R.drawable.topic_like_more);
-        }
-        if ( list.size() == 8 )
+        //更多
+        if ( like_num > 8 )
         {
             iv_like_9.setVisibility(View.VISIBLE);
         }
