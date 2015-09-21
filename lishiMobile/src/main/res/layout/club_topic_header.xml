@@ -67,6 +67,8 @@
                 android:layout_height="1px"
                 android:background="#e8e8e8"
                 android:id="@+id/view_line"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 />
 
             <include

@@ -40,7 +40,7 @@ public class LSClubMyTopicActivity extends LSBaseActivity implements OnHeaderRef
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lsclub_my_topic);
 		initViews();
-		setTitle("我的帖子");
+		setTitle("我的发帖");
 		loadTopicList();
 	}
 	

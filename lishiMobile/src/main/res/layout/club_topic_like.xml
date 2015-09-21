@@ -25,7 +25,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:textColor="@color/color_six"
+        android:textColor="@color/color_nine"
         android:text="人赞过"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
@@ -63,7 +63,7 @@
             <ImageView
                 android:layout_centerInParent="true"
                 style="@style/wrap_wrap"
-                android:src="@drawable/like_button"
+                android:src="@drawable/topic_like_hand"
                 android:id="@+id/iv_like_new"
                 />
 

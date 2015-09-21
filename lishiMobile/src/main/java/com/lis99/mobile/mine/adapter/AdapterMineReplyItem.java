@@ -113,7 +113,10 @@ public class AdapterMineReplyItem extends BaseAdapter
 		//点击进入帖子详情
 		holder.nameView.setOnClickListener(itemOnclick);
 		holder.layoutmore.setOnClickListener(itemOnclick);
-		holder.layout_club_detail_like.setOnClickListener(itemOnclick);
+//		holder.layout_club_detail_like.setOnClickListener(itemOnclick);
+
+		holder.layout_club_detail_like.setVisibility(View.GONE);
+
 		holder.layout_club_detail_reply.setOnClickListener(itemOnclick);
 		holder.roundedImageView1.setOnClickListener(itemOnclick);
 

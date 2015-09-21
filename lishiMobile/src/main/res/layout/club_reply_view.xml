@@ -8,7 +8,7 @@
     
     <TextView 
         style="@style/wrap_wrap"
-        android:textColor="#999"
+        android:textColor="#c6b6a7"
         android:text="回复@ 小春春"
         android:singleLine="true"
         android:ellipsize="end"
@@ -18,7 +18,7 @@
     
     <TextView 
         style="@style/wrap_wrap"
-        android:textColor="#999"
+        android:textColor="#c6b6a7"
         android:text="3楼"
         android:id="@+id/tv_reply_floor"
         android:layout_alignParentRight="true"
@@ -28,7 +28,7 @@
     <TextView 
         android:layout_marginTop="5dip"
         style="@style/fill_wrap"
-        android:textColor="#999"
+        android:textColor="#c6b6a7"
         android:text="对对对， 大家约起来吧， 我们在哪里集合啊！！！"
         android:id="@+id/tv_reply_content"
         android:layout_below="@id/tv_reply_body"

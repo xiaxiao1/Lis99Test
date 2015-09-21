@@ -73,7 +73,7 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
         }
         else
         {
-            iv_like.setImageResource(R.drawable.like_button);
+            iv_like.setImageResource(R.drawable.topic_like_hand);
         }
 
         tv_like.setText(like_num + "人赞过");

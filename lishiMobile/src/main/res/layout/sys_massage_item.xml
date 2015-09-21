@@ -83,7 +83,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/sys_massage_info_bg"
                 android:textSize="12sp"
-                android:paddingTop="14dp"
+                android:paddingTop="16dp"
                 android:id="@+id/tv_info"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
