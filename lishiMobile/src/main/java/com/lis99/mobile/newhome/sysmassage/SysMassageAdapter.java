@@ -1,6 +1,7 @@
 package com.lis99.mobile.newhome.sysmassage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -64,6 +66,15 @@ public class SysMassageAdapter extends MyBaseAdapter{
         holder.tv_info.setText(item.content);
         holder.tv_data.setText(item.createtime);
         holder.tv_info_title.setText(item.title);
+        //跳转个人主页
+        holder.roundedImageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, LSUserHomeActivity.class);
+                intent.putExtra("userID", ""+item.uid);
+                mContext.startActivity(intent);
+            }
+        });
 
         holder.tv_info.setOnClickListener(new View.OnClickListener() {
             @Override

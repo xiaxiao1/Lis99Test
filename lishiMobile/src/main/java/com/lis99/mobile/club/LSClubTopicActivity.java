@@ -7,11 +7,14 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +38,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.MyRequestManager;
@@ -101,6 +105,15 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	private Page page;
 
 	private RelativeLayout layoutMain;
+
+//	＝＝＝＝3.5.5＝＝＝＝＝＝＝
+	private HandlerList likeCall;
+
+	private LinearLayout layout_like;
+	private ImageView iv_like;
+	private TextView tv_like;
+	private Animation animation;
+
 	//分享的图片
 //	public Bitmap shareBit;
 
@@ -123,6 +136,13 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 					}
 
 				});
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		likeCall.clean();
+		likeCall = null;
 	}
 
 	@Override
@@ -152,9 +172,17 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 		clubhead = new ClubTopicDetailHead();
 		clubreply = new ClubTopicReplyList();
+
+		addCallLike();
+
+//		animation = AnimationUtils.loadAnimation(this, R.anim.welcome_loading);
+		animation = AnimationUtils.loadAnimation(this, R.anim.like_anim);
+
 		page = new Page();
 		getTopicHead();
 		// loadTopicInfo2(true);
+
+
 	}
 
 	@SuppressLint("CutPasteId")
@@ -201,6 +229,14 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		// ===========2.3====================
 
 		view_reference = findViewById(R.id.view_reference);
+
+//		=====3.5.5=====
+		layout_like = (LinearLayout) findViewById(R.id.layout_like);
+		iv_like = (ImageView) findViewById(R.id.iv_like);
+		tv_like = (TextView) findViewById(R.id.tv_like);
+
+		layout_like.setOnClickListener(this);
+
 	}
 
 	private void loadTopicInfoNoUse()
@@ -321,6 +357,30 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 				break;
 			case R.id.makeTopButton:
 				// topTopic();
+				break;
+			case R.id.layout_like:
+				if ( "1".equals(clubhead.LikeStatus) )
+				{
+					return;
+				}
+				if ( Common.isLogin(activity) )
+				{
+					iv_like.setImageResource(R.drawable.like_button_press);
+					tv_like.setText("已赞");
+					tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
+
+					iv_like.startAnimation(animation);
+
+					likeCall.handlerAall();
+
+					LSRequestManager.getInstance().clubTopicLike(topicID, new CallBack() {
+						@Override
+						public void handler(MyTask mTask) {
+							//点赞成功
+//							likeCall.handlerAall();
+						}
+					});
+				}
 				break;
 			default:
 				super.onClick(v);
@@ -484,6 +544,19 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 	private void setHeadView()
 	{
+		if ( "1".equals(clubhead.LikeStatus) )
+		{
+			iv_like.setImageResource(R.drawable.like_button_press);
+			tv_like.setText("已赞");
+			tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
+		}
+		else
+		{
+			iv_like.setImageResource(R.drawable.like_button);
+			tv_like.setText("赞");
+			tv_like.setTextColor(getResources().getColor(R.color.color_nine));
+		}
+
 		// 话题帖
 		if ("0".equals(clubhead.category))
 		{
@@ -501,6 +574,8 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			}
 			// headView.setModel(topic);
 			headView.setHead(clubhead);
+			//
+			headView.setLikeHandler(likeCall);
 			CurrentHeader = headView;
 		}
 		// 活动帖
@@ -520,6 +595,8 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 				headViewActive.setClubName(clubName, clubID);
 			}
 			// headViewActive.setModel(topic);
+
+			headViewActive.setLikeHandler(likeCall);
 			headViewActive.setModel(clubhead);
 			CurrentHeader = headViewActive;
 			// 获取AD高度
@@ -823,5 +900,20 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		}
 	}
 };
+
+	public void addCallLike ()
+	{
+		likeCall = new HandlerList();
+		likeCall.addItem(new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				clubhead.LikeStatus = "1";
+				iv_like.setImageResource(R.drawable.like_button_press);
+				tv_like.setText("已赞");
+				tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
+			}
+		});
+	}
+
 
 }

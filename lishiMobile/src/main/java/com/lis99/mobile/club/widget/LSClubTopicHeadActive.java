@@ -27,6 +27,7 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -78,6 +79,9 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 //	精
 	private ImageView iv_best;
 
+//	====3.5.5====
+	private LSClubTopicHeadLike like;
+
 	public void setTopic(LSClubTopicActivity lsTopic)
 	{
 		this.lsTopic = lsTopic;
@@ -120,6 +124,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		LayoutParams lp = new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.WRAP_CONTENT);
 		addView(v, lp);
+
+//		=======3.5.5=======赞
+		like = new LSClubTopicHeadLike(c);
+		like.InitView(v);
 
 		iv_head = (ImageView) v.findViewById(R.id.iv_head);
 		vipStar = (ImageView) v.findViewById(R.id.vipStar);
@@ -298,6 +306,8 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	public void setModel(final ClubTopicDetailHead clubhead)
 	{
 		this.clubhead = clubhead;
+//赞
+		like.setInfo(clubhead);
 
 		titleView.setText(clubhead.title);
 
@@ -498,6 +508,11 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		actionButton.setClickable(false);
 		actionButton.setEnabled(false);
 	}
-	
+
+	public void setLikeHandler (HandlerList likeCall)
+	{
+		like.setLikeCall(likeCall);
+	}
+
 	
 }

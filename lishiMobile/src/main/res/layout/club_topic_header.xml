@@ -11,8 +11,6 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="10dip"
         >
 
@@ -26,12 +24,16 @@
             android:text="@string/temp_string_long"
             android:textColor="@color/text_color_blue"
             android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
 
         <RelativeLayout
             style="@style/fill_wrap"
             android:paddingBottom="10dp"
             android:paddingTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             >
 
             <TextView
@@ -68,6 +70,8 @@
                 />
 
             <include
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_below="@id/view_line"
                 android:id="@+id/include1"
                 layout="@layout/club_topic_topview"
@@ -89,6 +93,8 @@
 
 
         <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/contentView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,6 +106,8 @@
             android:textSize="15sp"/>
 
         <RelativeLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -133,6 +141,8 @@
             android:visibility="gone"/>
 
         <include
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             layout="@layout/club_topic_reply"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/reply_height"

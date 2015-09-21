@@ -16,18 +16,11 @@ import java.util.ArrayList;
 
  *
  */
-public class LikeModel extends BaseModel {
+public class LikeModelNew extends BaseModel {
 
     public int likeNum;
 
-    public ArrayList<Lists> lists;
+    public ArrayList<LikeListModel> lists;
 
-
-    public class Lists
-    {
-        public int id;
-        public String headicon;
-        public int is_vip;
-    }
 
 }

@@ -300,8 +300,9 @@ public class C {
 	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v2/club/topiclist/";
 	/**帖子详情（HEAD）*/
 	public static final String CLUB_TOPIC_DETAIL_HEAD = DOMAIN + "/v2/club/topic/";
-
-	public static final String CLUB_TOPIC_DETAIL_HEAD_3 = DOMAIN + "/v3/club/topic/";
+//＝＝＝＝帖子详情＝＝＝＝＝＝
+//	public static final String CLUB_TOPIC_DETAIL_HEAD_3 = DOMAIN + "/v3/club/topic/";
+	public static final String CLUB_TOPIC_DETAIL_HEAD_3 = DOMAIN + "/v3/club/topics/";
 	/**帖子详情回复列表*/
 	public static final String CLUB_T0PIC_DETAIL_REPLY = DOMAIN + "/v2/club/replylist/";
 	/**帖子详情其他信息*/
@@ -410,6 +411,8 @@ public class C {
 //清空系统消息
 	public static final String SYS_MASSAGE_CLEANALL = DOMAIN + "/v3/user/clearNotice";
 //	新的点赞
-	public static final String CLUB_TOPIC_LIKE = DOMAIN + "/v2/club/addLike/";
+	public static final String CLUB_TOPIC_LIKE = DOMAIN + "/v3/topics/addLike/";
+//  收到的赞
+	public static final String SYS_LIKE_LIST = DOMAIN + "/v3/user/likeTopic/";
 
 }

@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.adapter;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.lis99.mobile.club.model.ClubApplyManagerListModel.ApplyList;
 import com.lis99.mobile.club.model.ClubTopicApplyPass;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -146,8 +148,8 @@ public class LSClubEventApplyerAdapter extends BaseAdapter {
 		LSClubapplyerInfoItemAdapter itemAdapter = new LSClubapplyerInfoItemAdapter(activity, alist);
 		holder.list_apply_info.setAdapter(itemAdapter);
 		
-		holder.btn_confirm.setOnClickListener( new OnClickListener() {
-			
+		holder.btn_confirm.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -161,7 +163,7 @@ public class LSClubEventApplyerAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				DialogManager.getInstance().startAlert(activity, "提示", "拒绝报名的操作不可撤销。确定要拒绝这个报名信息吗？", true, "拒绝报名", new DialogInterface.OnClickListener(){
+				DialogManager.getInstance().startAlert(activity, "提示", "拒绝报名的操作不可撤销。确定要拒绝这个报名信息吗？", true, "拒绝报名", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -169,10 +171,21 @@ public class LSClubEventApplyerAdapter extends BaseAdapter {
 						//拒绝请求
 						applyReject(item);
 //						activity.applyReject();
-						
-					}} , true, "取消", null);
+
+					}
+				}, true, "取消", null);
 			}
 		});
+
+		holder.imageView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(activity, LSUserHomeActivity.class);
+				intent.putExtra("userID", ""+item.applyuserid);
+				activity.startActivity(intent);
+			}
+		});
+
 		
 		
 		return convertView;

@@ -31,10 +31,12 @@ import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSMineApplyActivity;
 import com.lis99.mobile.mine.LSMineApplyManageActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
+import com.lis99.mobile.newhome.sysmassage.LSReceiveMassageActivity;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -69,6 +71,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	boolean isAdministrator;
 //系统消息
 	boolean isSysMassage;
+//	我赞过的
+	boolean likeStatus;
 
 	private final static int SHOW_USER_INFO = 2001;
 	private final static int SHOW_NOTICE = 2002;
@@ -93,6 +97,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	private View iv_sysDot, v_sys_arrow, v_market_arrow;
 	//商城积分
 	private TextView tv_score;
+
+//	收到的赞
+	private ImageView likeDot, v_like_arrow;
 
 	private final int[] level_icon = new int[]{
 	R.drawable.level_1,R.drawable.level_2,R.drawable.level_3, R.drawable.level_4, R.drawable.level_5,
@@ -164,6 +171,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			isAttention = false;
 
 			isSysMassage = false;
+//赞
+			likeStatus = false;
 
 			showOrHideViews();
 		}
@@ -196,6 +205,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v.setOnClickListener(this);
 
 		v = findViewById(R.id.applyManagePanel);
+		v.setOnClickListener(this);
+//		收到的赞
+		v = findViewById(R.id.receivelike);
 		v.setOnClickListener(this);
 
 		managePanel = findViewById(R.id.managePanel);
@@ -253,6 +265,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		iv_sysDot = findViewById(R.id.iv_sysDot);
 		v_sys_arrow = findViewById(R.id.v_sys_arrow);
 		v_market_arrow = findViewById(R.id.v_market_arrow);
+
+//		收到的赞
+		likeDot = (ImageView) findViewById(R.id.likeDot);
+		v_like_arrow = (ImageView) findViewById(R.id.v_like_arrow);
 
 		tv_score = (TextView) findViewById(R.id.tv_score);
 		user_level = (ImageView) findViewById(R.id.user_level);
@@ -339,8 +355,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			//关注
 			isAttention = data.get("is_follow").asBoolean();
 			isAdministrator = data.get("is_admin").asBoolean();
-
+//系统消息
 			isSysMassage = data.get("notice").asBoolean();
+//我赞过的
+			likeStatus = data.get("likeStatus").asBoolean();
 
 			postMessage(SHOW_NOTICE);
 		} catch (Exception e)
@@ -367,6 +385,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			}
 			JsonNode data = root.get("data").get("user");
 			String vip = data.get("is_vip").asText();
+			//保存用户VIP状态
+			DataManager.getInstance().getUser().setIs_vip(vip);
+			SharedPreferencesHelper.saveIsVip(vip);
 
 			points = data.get("points").asInt();
 			rank = data.get("rank").asInt();
@@ -429,6 +450,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v_applyinfo_arrow.setVisibility(haveApplyInfo ? View.GONE : View.VISIBLE);
 		v_applymanager_arrow.setVisibility(haveApply ? View.GONE : View.VISIBLE);
 		v_sys_arrow.setVisibility( isSysMassage ? View.GONE : View.VISIBLE);
+		v_like_arrow.setVisibility( likeStatus ? View.GONE : View.VISIBLE);
 
 		//红点
 		iv_friendDot.setVisibility(isAttention ? View.VISIBLE : View.GONE);
@@ -438,6 +460,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		managePanel.setVisibility((isFounder || isAdministrator) ? View.VISIBLE
 				: View.GONE);
 		iv_sysDot.setVisibility(isSysMassage ? View.VISIBLE : View.GONE);
+		likeDot.setVisibility( likeStatus ? View.VISIBLE : View.GONE);
 	}
 
 	@Override
@@ -582,6 +605,13 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			{
 				Intent intent = new Intent(getActivity(),
 						MyFriendsActivity.class);
+				startActivity(intent);
+			}
+			//收到的赞
+			else if ( v.getId() == R.id.receivelike )
+			{
+				Intent intent = new Intent(getActivity(),
+						LSReceiveMassageActivity.class);
 				startActivity(intent);
 			}
 		}

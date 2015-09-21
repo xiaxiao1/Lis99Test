@@ -84,5 +84,7 @@
     <color name="color_tab_unselect">#ac9f92</color>
 
 	<color name="club_login_color">#ac9f92</color>
+	
+	<color name="topic_like_color">#fb502e</color>
     
 </resources>

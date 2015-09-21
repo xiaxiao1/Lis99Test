@@ -291,7 +291,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		}
 
 		holder.tv_floor.setText(item.floor + "楼");
-		if (Common.clubDelete(item.is_jion))
+		if (Common.replyDelete(item.is_jion))
 		{
 			holder.tv_floor_delete.setVisibility(View.VISIBLE);
 		} else

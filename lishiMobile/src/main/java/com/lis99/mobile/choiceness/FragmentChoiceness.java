@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.ClubSpecialListActivity;
+import com.lis99.mobile.club.LSCLubSpecialMain;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.model.ChoicenessModel.Omnibuslist;
@@ -169,7 +170,8 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 				startActivity(new Intent(getActivity(), SearchActivity.class));
 				break;
 			case R.id.iv_subject:
-				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
+//				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
+				startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
 				break;
 			case R.id.iv_active:
 				startActivity(new Intent (getActivity(), ActiveAllActivity.class));

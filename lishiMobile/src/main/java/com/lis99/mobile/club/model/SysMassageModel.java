@@ -36,6 +36,12 @@ public class SysMassageModel extends BaseModel {
         public String url;
         //默认没有展开
         public int state = 0;
+//      跳转类型（系统消息跳转类型0：不跳转 1：帖子 2：ulr 3:装备 4：俱乐部 5： 个人主页）
+        public int skip_type;
+
+        public int category;
+//用户ID
+        public int uid;
     }
 
 }

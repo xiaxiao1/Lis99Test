@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="353"
-    android:versionName="3.5.3" >
+    android:versionCode="355"
+    android:versionName="3.5.5" >
 
 
 
@@ -896,6 +896,13 @@
             />
         <!-- 系统消息-->
         <activity android:name="com.lis99.mobile.newhome.sysmassage.SysMassageActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+
+
+        <!-- 我收到的赞-->
+        <activity android:name="com.lis99.mobile.newhome.sysmassage.LSReceiveMassageActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
