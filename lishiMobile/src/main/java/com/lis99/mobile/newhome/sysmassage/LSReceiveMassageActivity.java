@@ -1,12 +1,16 @@
 package com.lis99.mobile.newhome.sysmassage;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -23,7 +27,7 @@ import java.util.HashMap;
 /**
  * Created by yy on 15/8/28.
  */
-public class SysMassageActivity extends LSBaseActivity implements
+public class LSReceiveMassageActivity extends LSBaseActivity implements
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener{
 
     private ListView list;
@@ -41,7 +45,7 @@ public class SysMassageActivity extends LSBaseActivity implements
 
         initViews();
 
-        setTitle("系统消息");
+        setTitle("收到的赞");
 
         setRightView("清空");
 
@@ -62,27 +66,27 @@ public class SysMassageActivity extends LSBaseActivity implements
         pull_refresh_view.setOnHeaderRefreshListener(this);
         pull_refresh_view.setOnFooterRefreshListener(this);
 
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                if (adapter == null) return;
-//                SysMassageModel.Lists item = (SysMassageModel.Lists) adapter.getItem(i);
-//                if (item == null) return;
-//                Intent intent = null;
-//                switch (item.skip_type) {
-//                    case 0:
-//                        break;
-////                    帖子
-//                    case 1:
-//                        intent = new Intent(activity, LSClubTopicActivity.class);
-//                        intent.putExtra("topicID", item.topicid);
-//                        startActivity(intent);
-//                        break;
-//                }
-//
-//
-//            }
-//        });
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapter == null) return;
+                SysMassageModel.Lists item = (SysMassageModel.Lists) adapter.getItem(i);
+                if (item == null) return;
+                Intent intent = null;
+                switch (item.skip_type) {
+                    case 0:
+                        break;
+//                    帖子
+                    case 1:
+                        intent = new Intent(activity, LSClubTopicActivity.class);
+                        intent.putExtra("topicID", item.topicid);
+                        startActivity(intent);
+                        break;
+                }
+
+
+            }
+        });
 
 
     }
@@ -117,6 +121,7 @@ public class SysMassageActivity extends LSBaseActivity implements
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("user_id", userId);
+        map.put("type_id", "103");
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
@@ -137,7 +142,7 @@ public class SysMassageActivity extends LSBaseActivity implements
 
         model = new SysMassageModel();
 
-        String url = C.SYS_MASSAGE_LIST + page.pageNo;
+        String url = C.SYS_LIKE_LIST + page.pageNo;
 
         String userId = DataManager.getInstance().getUser().getUser_id();
 

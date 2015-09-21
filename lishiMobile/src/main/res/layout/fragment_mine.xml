@@ -486,6 +486,62 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/receivelike"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="13dp"
+                    android:src="@drawable/sys_receive_like" />
+
+                <TextView
+                    android:id="@+id/tv_likes"
+                    android:layout_toRightOf="@+id/iv_like"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收到的赞"
+                    android:textColor="#666"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/likeDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_reddot"
+                    />
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/v_like_arrow"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+
+                <View
+                    android:layout_alignLeft="@id/tv_likes"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/layout_sys"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

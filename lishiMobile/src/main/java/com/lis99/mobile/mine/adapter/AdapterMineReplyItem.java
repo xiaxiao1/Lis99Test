@@ -21,6 +21,7 @@ import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.ActivityReplyMine;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
@@ -114,6 +115,7 @@ public class AdapterMineReplyItem extends BaseAdapter
 		holder.layoutmore.setOnClickListener(itemOnclick);
 		holder.layout_club_detail_like.setOnClickListener(itemOnclick);
 		holder.layout_club_detail_reply.setOnClickListener(itemOnclick);
+		holder.roundedImageView1.setOnClickListener(itemOnclick);
 
 		ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, options);
 		String nikename = item.nickname + "在 ";
@@ -168,7 +170,8 @@ public class AdapterMineReplyItem extends BaseAdapter
 		}
 			
 		holder.tv_like.setText(Common.getLikeNum(""+item.likeNum));
-		
+
+
 		
 		return convertView;
 	}
@@ -231,6 +234,11 @@ public class AdapterMineReplyItem extends BaseAdapter
 					intent.putExtra("clubId", ""+item.club_id);
 					intent.putExtra("topicId", ""+item.topic_id);
 //					startActivityForResult(intent, 999);
+					main.startActivity(intent);
+					break;
+				case R.id.roundedImageView1:
+					intent = new Intent(main, LSUserHomeActivity.class);
+					intent.putExtra("userID", ""+item.fromuser_id);
 					main.startActivity(intent);
 					break;
 			}

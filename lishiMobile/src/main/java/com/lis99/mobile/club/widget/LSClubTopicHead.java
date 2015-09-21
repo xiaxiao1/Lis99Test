@@ -23,6 +23,7 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -91,10 +92,16 @@ public class LSClubTopicHead extends LinearLayout implements
 	//======3.5.3=====
 	private ImageView iv_best;
 
+//	＝＝＝＝＝＝3.5.5=＝＝＝＝＝
+	private LSClubTopicHeadLike like;
+
 	public void setHead(final ClubTopicDetailHead clubhead)
 	{
 		this.clubhead = clubhead;
 		titleView.setText(clubhead.title);
+
+		//赞
+		like.setInfo(clubhead);
 
 		if ("1".equals(clubhead.is_vip))
 		{
@@ -335,6 +342,11 @@ public class LSClubTopicHead extends LinearLayout implements
 
 		buildOptions();
 
+		//		=======3.5.5=======赞
+		like = new LSClubTopicHeadLike(c);
+		like.InitView(v);
+
+
 		vipStar = v.findViewById(R.id.vipStar);
 
 		imageView = (ImageView) v.findViewById(R.id.roundedImageView1);
@@ -434,6 +446,11 @@ public class LSClubTopicHead extends LinearLayout implements
 			}
 				break;
 		}
+	}
+
+	public void setLikeHandler (HandlerList likeCall)
+	{
+		like.setLikeCall(likeCall);
 	}
 
 }

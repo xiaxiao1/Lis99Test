@@ -26,10 +26,10 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="@color/color_six"
-        android:text="12人赞过"
+        android:text="人赞过"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
-        android:id="@+id/tv_like"
+        android:id="@+id/tv_like_new"
         />
 
     <LinearLayout
@@ -49,25 +49,22 @@
             android:layout_weight="1"
             >
 
-            <com.lis99.mobile.club.widget.RoundedImageView
+            <ImageView
+                android:layout_centerInParent="true"
                 android:layout_marginRight="5dp"
-                android:layout_weight="1"
                 android:id="@+id/iv_like_0"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_centerVertical="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/ls_nologin_header_icon"
-                app:border_color="#e8e8e8"
-                app:border_width="1px"
-                app:corner_radius="50dp"
+                android:src="@drawable/topic_like_bg"
                 />
 
             <ImageView
                 android:layout_centerInParent="true"
                 style="@style/wrap_wrap"
                 android:src="@drawable/like_button"
-                android:id="@+id/iv_like"
+                android:id="@+id/iv_like_new"
                 />
 
         </RelativeLayout>
@@ -89,7 +86,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -120,7 +117,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -151,7 +148,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -182,7 +179,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -213,7 +210,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -244,7 +241,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -275,7 +272,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -306,7 +303,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ls_nologin_header_icon"
                 app:border_color="#e8e8e8"
-                app:border_width="0px"
+                app:border_width="1px"
                 app:corner_radius="8dip"
 
                 />
@@ -329,16 +326,13 @@
             android:gravity="center"
             >
 
-            <com.lis99.mobile.club.widget.RoundedImageView
+            <ImageView
 
                 android:id="@+id/iv_like_9"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ls_nologin_header_icon"
-                app:border_color="#e8e8e8"
-                app:border_width="0px"
-                app:corner_radius="8dip"
+                android:src="@drawable/topic_like_more"
 
                 />
 

@@ -16,4 +16,6 @@ public class RedDotModel extends BaseModel
 	public int is_follow;
 	//系统消息
 	public int notice;
+//	我赞过的
+	public int likeStatus;
 }

@@ -121,6 +121,11 @@ public class ClubTopicDetailHead implements Serializable{
 	public ArrayList<Taglist> taglist;
 	//积分
 	public ArrayList<Topicpoints> topicpoints;
+
+
+//	====3.5.5=======赞列表=====
+	public ArrayList<LikeListModel> lists;
+
 	
 	public class Topic_image
 	{

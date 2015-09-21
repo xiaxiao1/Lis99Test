@@ -12,7 +12,7 @@ import com.lis99.mobile.club.model.ClubTopicInfoLike;
 import com.lis99.mobile.club.model.EquipAppraiseModel;
 import com.lis99.mobile.club.model.EquipRecommendModel;
 import com.lis99.mobile.club.model.EquipTypeModel;
-import com.lis99.mobile.club.model.LikeModel;
+import com.lis99.mobile.club.model.LikeModelNew;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.club.model.NearbyModel;
 import com.lis99.mobile.club.model.QQLoginModel;
@@ -137,6 +137,7 @@ public class LSRequestManager
 						u1.setEmail(email);
 						u1.setNickname(model.nickname);
 						u1.setHeadicon(model.headicon);
+						u1.setIs_vip(model.is_vip);
 						u1.setSex("");
 						u1.setPoint("");
 						DataManager.getInstance().setUser(u1);
@@ -183,6 +184,7 @@ public class LSRequestManager
 				u1.setEmail(email);
 				u1.setNickname(model.nickname);
 				u1.setHeadicon(model.headicon);
+				u1.setIs_vip(model.is_vip);
 
 				u1.setSex("");
 				u1.setPoint("");
@@ -230,7 +232,7 @@ public class LSRequestManager
 				// TODO Auto-generated method stub
 				RedDotModel model = (RedDotModel) mTask.getResultModel();
 //				相加为0没有通知
-				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow + model.notice;
+				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow + model.notice + model.likeStatus;
 				Common.log("b================" + num);
 				Common.log("model.is_reply" + model.is_reply);
 
@@ -307,6 +309,7 @@ public class LSRequestManager
 				u.setHeadicon(model.headicon);
 				u.setNickname(model.nickname);
 				u.setUser_id(model.user_id);
+//				u.setIs_vip(model.is_vip);
 
 				DataManager.getInstance().setUser(u);
 				DataManager.getInstance().setLogin_flag(true);
@@ -357,6 +360,7 @@ public class LSRequestManager
 				u.setHeadicon(model.headicon);
 				u.setNickname(model.nickname);
 				u.setUser_id(model.user_id);
+//				u.setIs_vip(model.is_vip);
 
 				DataManager.getInstance().setUser(u);
 				DataManager.getInstance().setLogin_flag(true);
@@ -463,9 +467,9 @@ public class LSRequestManager
 
 		String url = C.CLUB_TOPIC_LIKE + topicid;
 
-		LikeModel model = new LikeModel();
+		LikeModelNew model = new LikeModelNew();
 
-		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
+		MyRequestManager.getInstance().requestPostNoDialog(url, map, model, callBack);
 
 	}
 	

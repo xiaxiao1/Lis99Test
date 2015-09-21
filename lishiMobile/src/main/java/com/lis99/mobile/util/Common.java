@@ -151,6 +151,20 @@ public class Common {
         return false;
     }
 
+    /**
+     * 1创始人，2管理员，4成员,8网站编辑，-1无权限信息
+     *
+     * @param isJoin
+     * @return
+     */
+    public static boolean replyDelete(String isJoin) {
+        if ( "1".equals(isJoin) || "8".equals(isJoin) || "2".equals(isJoin) )
+        {
+            return true;
+        }
+        return false;
+    }
+
     public static Double string2Double(String str) {
         Double d = -1d;
 

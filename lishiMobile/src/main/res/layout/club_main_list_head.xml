@@ -104,14 +104,14 @@
 
             <ImageView
                 style="@style/wrap_wrap"
-                android:background="@drawable/banner4"
+                android:background="@drawable/choiceness_head_subject"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="金牌专栏"
+                android:layout_marginTop="4dp"
+                android:text="专题"
                 android:textColor="@color/color_six"
                 />
 
