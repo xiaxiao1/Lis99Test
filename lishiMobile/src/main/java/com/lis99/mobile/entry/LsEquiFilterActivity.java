@@ -30,13 +30,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class LsEquiFilterActivity extends ActivityPattern1 {
 	
 	private TextView leftBtn;
@@ -123,7 +116,7 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 				leftBtn.setBackgroundResource(R.drawable.activity_leftbtn_sel);
 				leftBtn.setTextColor(Color.WHITE);
 				rightBtn.setBackgroundResource(R.drawable.activity_rightbtn);
-				rightBtn.setTextColor(Color.rgb(0x2a, 0xcb, 0xc2));
+				rightBtn.setTextColor(getResources().getColor(R.color.text_color_blue));
 				selectedBtn = leftBtn;
 				currentCates = typeCates;
 				
@@ -138,7 +131,7 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 		case R.id.lineBtn:
 			if (selectedBtn != rightBtn) {
 				leftBtn.setBackgroundResource(R.drawable.activity_leftbtn);
-				leftBtn.setTextColor(Color.rgb(0x2a, 0xcb, 0xc2));
+				leftBtn.setTextColor(getResources().getColor(R.color.text_color_blue));
 				rightBtn.setBackgroundResource(R.drawable.activity_rightbtn_sel);
 				rightBtn.setTextColor(Color.WHITE);
 				selectedBtn = rightBtn;
@@ -303,9 +296,9 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
             nameView.setText(cate.getName());
             ImageView iconView = (ImageView) convertView.findViewById(R.id.iv_icon);
             if(isExpanded){
-            	iconView.setImageResource(R.drawable.icon_collapse);
+            	iconView.setImageResource(R.drawable.active_all_dot_default);
             }else{
-            	iconView.setImageResource(R.drawable.icon_expand);
+            	iconView.setImageResource(R.drawable.active_all_dot_select);
             }
             return convertView;
         }

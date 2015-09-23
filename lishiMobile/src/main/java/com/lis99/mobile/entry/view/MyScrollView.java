@@ -114,6 +114,8 @@ public class MyScrollView extends ScrollView{
 
 	};
 
+
+
 	/**
 	 * 获得参考的View，主要是为了获得它的MeasuredHeight，然后和滚动条的ScrollY+getHeight作比较。
 	 */

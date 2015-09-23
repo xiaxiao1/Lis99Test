@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
+
+
+        <RelativeLayout
+            android:id="@+id/welfarePanel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="76dp"
+            android:background="@drawable/ls_equip_welfare_shop">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/ls_equip_welfare_shop_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18dp"
+                android:text="大牌装备送不停！"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="1dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:background="@drawable/ls_equi_baner_text_bg"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/evalPanel"
+            android:layout_width="0dp"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"
+            android:layout_height="76dp"
+            android:background="@drawable/ls_equip_eval">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/ls_equip_eval_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18dp"
+                android:text="专业、内涵、有深度"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="1dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:background="@drawable/ls_equi_baner_text_bg"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
+
+
+        <RelativeLayout
+            android:id="@+id/worthPanel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="76dp"
+            android:background="@drawable/ls_equip_worth">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/ls_equip_worth_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18dp"
+                android:text="性价比最高的装备推荐"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="1dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:background="@drawable/ls_equi_baner_text_bg"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/outdoorPanel"
+            android:layout_width="0dp"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"
+            android:layout_height="76dp"
+            android:background="@drawable/ls_equip_outdoor_shop">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/ls_equip_outdoor_shop_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="18dp"
+                android:text="你身边的户外店"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="1dp"
+                android:paddingBottom="2dp"
+                android:gravity="center"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:background="@drawable/ls_equi_baner_text_bg"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/morePanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/shape_white_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ls_equip_hot_header"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="冲锋衣"
+                android:background="@drawable/ls_equip_category_left_bg" />
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_weight="1"
+                android:text="冲锋裤"
+                android:layout_width="0dp" />
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="速干⾐"/>
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_weight="1"
+                android:text="速干裤"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="抓绒衣"
+                android:background="@drawable/ls_equip_category_left_bg"/>
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_weight="1"
+                android:text="软壳⾐"
+                android:layout_width="0dp" />
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="高山鞋"/>
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_weight="1"
+                android:text="徒步鞋"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="越野跑鞋"
+                android:background="@drawable/ls_equip_category_left_bg"/>
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_weight="1"
+                android:text="攀岩鞋"
+                android:layout_width="0dp" />
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="中型背包"/>
+
+            <TextView
+                android:background="@drawable/ls_equip_category_normal_bg"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_weight="1"
+                android:text="三季帐"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="登⼭"
+                android:background="#fff"/>
+
+            <TextView
+                android:background="@drawable/ls_equip_category_bottom_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_weight="1"
+                android:text="徒步"
+                android:layout_width="0dp" />
+
+            <TextView
+                android:background="@drawable/ls_equip_category_bottom_bg"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/ls_equip_even"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="越野跑"/>
+
+            <TextView
+                android:background="@drawable/ls_equip_category_bottom_bg"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:gravity="center"
+                style="@style/ls_equip_odd"
+                android:layout_weight="1"
+                android:text="⽇常"/>
+
+        </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:background="#eee"/>
+
+        <TextView
+            android:layout_height="45dp"
+            android:gravity="center"
+            style="@style/ls_equip_even"
+            android:layout_width="match_parent"
+            android:text="更多装备"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

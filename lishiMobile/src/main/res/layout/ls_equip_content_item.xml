@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ls_equip_content_item_bg"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+
+        >
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:background="#f7f3ec"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imageView"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:textColor="#73706e"
+                android:text="免费包送你了"
+                android:layout_marginTop="7dp"
+                />
+
+            <TextView
+                android:id="@+id/descView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:lines="2"
+                android:textColor="#999"
+                android:layout_marginTop="6dp"
+                android:text="免费包27升，免费包27升，免费包27升，免费包27升，免费包27升"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="0dp">
+
+                <TextView
+                    android:id="@+id/priceView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ls_equip_price_bg"
+                    android:text="市场价：2000元"
+                    android:textSize="10sp"
+                    android:textColor="#ff7800"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:layout_centerVertical="true"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/actionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ls_equip_free_btn"
+                    android:layout_alignParentRight="true"
+                    android:focusable="false"
+                    />
+
+
+            </RelativeLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1px"
+            android:layout_marginTop="15dp"
+            android:background="#eee"
+            android:layout_below="@+id/imageView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

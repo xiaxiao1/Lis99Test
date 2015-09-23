@@ -207,7 +207,8 @@ public class C {
 	public static final String USER_INFO_URL = DOMAIN + "/user/info/";
 	
 	public static final String USER_NOTICE_TIPS_URL = DOMAIN + "/v3/user/noticetips/";
-	
+	public static final String EQUIP_CONTENTS = DOMAIN + "/v3/zhuangbei";
+
 	/** 用户-问答提醒 */
 	public static final String USER_COMMENTS_URL = DOMAIN + "/user/comments/";
 	/** 用户-评论/回复提醒 */

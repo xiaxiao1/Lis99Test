@@ -51,6 +51,7 @@ public class MyActivityWebView extends LSBaseActivity
 
 		url = getIntent().getStringExtra("URL");
 
+		//帖子
 		image_url = getIntent().getStringExtra("IMAGE_URL");
 
 		topic_id = getIntent().getIntExtra("TOPIC_ID", 0);

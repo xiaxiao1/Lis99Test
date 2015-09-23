@@ -138,10 +138,10 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case LSTab.SELECT:
-                    if (selectFragment == null) {
-                        selectFragment = new LSSelectFragment();
+                    if (equiFragment == null) {
+                        equiFragment = new LSEquipFragment();
                     }
-                    switchContent(selectFragment);
+                    switchContent(equiFragment);
                     break;
                 case LSTab.EQUI:
                     if (equiFragment == null)
@@ -153,6 +153,11 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
                         clubFragment = new LSClubFragment();
                     }
                     switchContent(clubFragment);
+//                    if ( selectFragment == null )
+//                    {
+//                        selectFragment = new LSSelectFragment();
+//                    }
+//                    switchContent(selectFragment);
                     break;
                 case LSTab.CHOICENESS:
                     if (choicenessFragment == null) {

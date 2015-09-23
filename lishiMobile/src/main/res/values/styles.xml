@@ -2,13 +2,17 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
+
+
         -->
     </style>
 
@@ -128,6 +132,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
+
+    <style name="zero_fill">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
     
     <style name="listViewStyle" parent="@fill_wrap" >
         <item name="android:listSelector">#00000000</item>
@@ -159,7 +169,33 @@
         <item name="android:textColor">@color/color_six</item>
         <item name="android:textSize">@dimen/text_large</item>
     </style>
-    
+
+
+    <style name="ls_equip_odd">
+        <item name="android:textColor">#73706e</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ls_equip_even">
+        <item name="android:textColor">#ff7800</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ls_equip_star_big" parent="@android:style/widget.RatingBar">
+
+        <item name="android:progressDrawable">@drawable/ls_equip_star</item>
+        <item name="android:minHeight">15dp</item>
+        <item name="android:maxHeight">15dp</item>
+
+    </style>
+
+    <style name="ls_equip_star_reply" parent="@android:style/widget.RatingBar">
+
+        <item name="android:progressDrawable">@drawable/ls_equip_star_reply</item>
+        <item name="android:minHeight">8dp</item>
+        <item name="android:maxHeight">8dp</item>
+
+    </style>
     
     
 </resources>
