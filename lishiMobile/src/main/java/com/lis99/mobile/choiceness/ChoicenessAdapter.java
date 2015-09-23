@@ -244,7 +244,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
 		
-		if (TextUtils.isEmpty(item.title))
+		if (!TextUtils.isEmpty(item.title))
 		{
 			holder.iv_subject.setVisibility(View.GONE);
 		}
@@ -285,7 +285,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
 
-		if ( TextUtils.isEmpty(item.title) )
+		if ( !TextUtils.isEmpty(item.title) )
 		{
 			holder.iv_subject.setVisibility(View.GONE);
 		}
@@ -328,7 +328,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
 
-		if ( TextUtils.isEmpty(item.title) )
+		if ( !TextUtils.isEmpty(item.title) )
 		{
 			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
 		}
