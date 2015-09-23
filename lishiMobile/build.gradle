@@ -8,12 +8,12 @@ android {
         shichang {}
         zhuzhan {}
         tuiguang1 {}
-//        baidu {}
+        baidu {}
 //        pp{}
 //        oppo {}
 //        gfan {}
-        zs360 {}
-        lis99test {}
+//        zs360 {}
+//        lis99test {}
     }
 
     productFlavors.all {
