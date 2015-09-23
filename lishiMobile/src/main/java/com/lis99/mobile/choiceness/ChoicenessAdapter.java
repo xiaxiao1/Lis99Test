@@ -1,6 +1,7 @@
 package com.lis99.mobile.choiceness;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -243,7 +244,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
 		
-		if ( num == URLITEM )
+		if (TextUtils.isEmpty(item.title))
 		{
 			holder.iv_subject.setVisibility(View.GONE);
 		}
@@ -284,7 +285,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
 
-		if ( num == URLITEM )
+		if ( TextUtils.isEmpty(item.title) )
 		{
 			holder.iv_subject.setVisibility(View.GONE);
 		}
@@ -323,7 +324,11 @@ public class ChoicenessAdapter extends BaseAdapter
 			holder = (SubjectHolder) view.getTag();
 		}
 
-		if ( b )
+		holder.iv_subject.setVisibility(View.GONE);
+		Omnibuslist item = (Omnibuslist) getItem(position);
+		if ( item == null ) return view;
+
+		if ( TextUtils.isEmpty(item.title) )
 		{
 			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
 		}
@@ -331,10 +336,6 @@ public class ChoicenessAdapter extends BaseAdapter
 		{
 			holder.choiceness_subject_forground.setVisibility(View.GONE);
 		}
-
-		holder.iv_subject.setVisibility(View.GONE);
-		Omnibuslist item = (Omnibuslist) getItem(position);
-		if ( item == null ) return view;
 
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
 

@@ -32,6 +32,10 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 
     private RatingBar ratingBar;
 
+    private ReplayAdapter rAdapter;
+
+    private PropertyAdapter pAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
