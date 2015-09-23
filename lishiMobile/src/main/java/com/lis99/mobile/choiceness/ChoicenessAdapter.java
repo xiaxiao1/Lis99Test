@@ -146,7 +146,7 @@ public class ChoicenessAdapter extends BaseAdapter
 			case IMGACTIVE:
 				return getSubjectTopic(position, arg1, num, false);
 			case IMGTOPIC:
-				return getSubjectTopic(position, arg1, num, true);
+				return getSubjectTopic(position, arg1, num, false);
 			case TAG:
 				return getTag(position, arg1, num);
 		}
