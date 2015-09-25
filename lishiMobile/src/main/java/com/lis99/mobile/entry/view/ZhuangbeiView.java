@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.cache.ImageCacheManager;
-import com.lis99.mobile.entry.LsZhuangbeiDetail;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.StringUtil;
 
 public class ZhuangbeiView extends LinearLayout implements View.OnClickListener{
@@ -164,8 +164,8 @@ public class ZhuangbeiView extends LinearLayout implements View.OnClickListener{
 	@Override
 	public void onClick(View arg0) {
 		Log.d("zhuangbei", "Click");
-		Intent intent = new Intent(context,LsZhuangbeiDetail.class);
-//		Intent intent = new Intent(context,LSEquipInfoActivity.class);
+//		Intent intent = new Intent(context,LsZhuangbeiDetail.class);
+		Intent intent = new Intent(context,LSEquipInfoActivity.class);
 		intent.putExtra("id", String.valueOf(flowTag.getFlowId()));
 		context.startActivity(intent);
 	}

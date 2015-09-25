@@ -1,7 +1,6 @@
 package com.lis99.mobile.newhome.equip;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -10,7 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.model.EquipInfoModel;
+import com.lis99.mobile.club.model.EquipReplyList;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
@@ -20,20 +19,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 
 /**
- * Created by yy on 15/9/23.
+ * Created by yy on 15/9/25.
  */
-public class ReplayAdapter extends MyBaseAdapter {
+public class ReplayListItem extends MyBaseAdapter {
 
-    private boolean haveMore;
-
-    public ReplayAdapter(Context c, ArrayList listItem) {
+    public ReplayListItem(Context c, ArrayList listItem) {
         super(c, listItem);
-    }
-
-
-
-    public void setHaveMore(boolean haveMore) {
-        this.haveMore = haveMore;
     }
 
     @Override
@@ -61,26 +52,11 @@ public class ReplayAdapter extends MyBaseAdapter {
         }
 
 
-        EquipInfoModel.Commenlist item = (EquipInfoModel.Commenlist) getItem(i);
+        EquipReplyList.Commentlist item = (EquipReplyList.Commentlist) getItem(i);
 
         if ( item == null ) return view;
 
-        if ( i == getCount() - 1 && haveMore )
-        {
-            holder.btn.setVisibility(View.VISIBLE);
-            holder.btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // 跳转评论列表
-                    Intent i = new Intent(mContext, LSEquipReplyActivity.class);
-                    mContext.startActivity(i);
-                }
-            });
-        }
-        else
-        {
-            holder.btn.setVisibility(View.GONE);
-        }
+        holder.btn.setVisibility(View.GONE);
 
         ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
 
@@ -103,5 +79,4 @@ public class ReplayAdapter extends MyBaseAdapter {
         RatingBar ratingBar;
         Button btn;
     }
-
 }

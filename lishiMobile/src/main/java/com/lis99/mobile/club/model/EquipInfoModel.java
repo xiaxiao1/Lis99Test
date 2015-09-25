@@ -51,15 +51,15 @@ public class EquipInfoModel extends BaseModel {
 
     public class Info
     {
-        public int id;
+        public String id;
         public String title;
         public String thumb;
         public String market_price;
         public String model;
         public String description;
-        public int country_id;
+        public String country_id;
         public String country_title;
-        public int brand_id;
+        public String brand_id;
         public String brand_title;
 
         public int totcomment;

@@ -19,13 +19,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@null"
-        android:layout_above="@id/bottomlayout"
         >
 
         <ListView
             android:background="#fff"
             style="@style/listViewStyle"
-            android:id="@+id/list_info"
+            android:id="@+id/list"
             android:divider="@null"
             android:dividerHeight="0px"
             />

@@ -417,6 +417,8 @@ public class C {
 	public static final String SYS_LIKE_LIST = DOMAIN + "/v3/user/likeTopic/";
 //  装备详情
 	public static final String EQUIP_INFO_LIST = DOMAIN + "/v3/zhuangbei/detail/";
+//  装备评论列表
+	public static final String EQUIP_REPLY_LIST = DOMAIN + "/v3/zhuangbei/comment/";
 
 
 }

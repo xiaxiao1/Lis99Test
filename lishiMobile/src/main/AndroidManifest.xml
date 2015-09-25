@@ -912,6 +912,12 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   />
 
+        <!-- 装备详情评论-->
+        <activity android:name="com.lis99.mobile.newhome.equip.LSEquipReplyActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+
 
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
