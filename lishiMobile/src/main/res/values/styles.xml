@@ -192,8 +192,8 @@
     <style name="ls_equip_star_reply" parent="@android:style/Widget.RatingBar">
 
         <item name="android:progressDrawable">@drawable/ls_equip_star_reply</item>
-        <item name="android:minHeight">8dp</item>
-        <item name="android:maxHeight">8dp</item>
+        <item name="android:minHeight">10dp</item>
+        <item name="android:maxHeight">10dp</item>
 
     </style>
     

@@ -472,5 +472,33 @@ public class LSRequestManager
 		MyRequestManager.getInstance().requestPostNoDialog(url, map, model, callBack);
 
 	}
+
+	/**
+	 * 		喜欢的装备
+	 * 	@param  id 装备id
+	 */
+	public void equipLike ( int id, CallBack callBack )
+	{
+		String userId = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("id", id);
+		map.put("module", "zhuangbei");
+		map.put("user_id", userId);
+
+		String url = C.MAIN_ADDLIKE_URL;
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack );
+
+
+
+	}
+
+
+
+
 	
 }

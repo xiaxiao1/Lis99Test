@@ -28,11 +28,11 @@ import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
-import com.lis99.mobile.entry.LsZhuangbeiDetail;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.newhome.LSSelectAdapter.OnSelectItemClickListener;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LocationUtil;
@@ -472,7 +472,8 @@ public class LSSelectFragment extends LSFragment implements
 			intent.putExtra("title", item.name);
 			startActivity(intent);
 	    }else if(content.template_id == 2 || content.template_id == 5){
-	    	Intent intent = new Intent(getActivity(),LsZhuangbeiDetail.class);
+//	    	Intent intent = new Intent(getActivity(),LsZhuangbeiDetail.class);
+			Intent intent = new Intent(getActivity(),LSEquipInfoActivity.class);
 			intent.putExtra("id", item.itemID+"");
 			startActivity(intent);
 	    }else if(content.template_id == 3){

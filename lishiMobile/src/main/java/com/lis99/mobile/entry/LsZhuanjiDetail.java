@@ -34,6 +34,7 @@ import com.lis99.mobile.entry.view.AsyncLoadImageView;
 import com.lis99.mobile.entry.view.AutoResizeListView;
 import com.lis99.mobile.entry.view.MyLinerLayout;
 import com.lis99.mobile.newhome.NewHomeActivity;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StatusUtil;
@@ -498,8 +499,10 @@ public class LsZhuanjiDetail extends ActivityPattern implements
 
 				@Override
 				public void onClick(View v) {
+//					Intent intent = new Intent(LsZhuanjiDetail.this,
+//							LsZhuangbeiDetail.class);
 					Intent intent = new Intent(LsZhuanjiDetail.this,
-							LsZhuangbeiDetail.class);
+							LSEquipInfoActivity.class);
 					intent.putExtra("id", id);
 					LsZhuanjiDetail.this.startActivity(intent);
 				}

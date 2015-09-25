@@ -20,12 +20,10 @@ import com.lis99.mobile.application.data.UserMsgBean;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.view.AsyncLoadImageView;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.StatusUtil;
-
-import java.util.HashMap;
-import java.util.List;
 
 import java.util.HashMap;
 import java.util.List;
@@ -193,7 +191,8 @@ private class DarenListAdapter extends BaseAdapter {
 							intent.putExtra("id", oid);
 							LsUserMsgActivity.this.startActivity(intent);
 						}else if("6".equals(typeid)){
-							Intent intent = new Intent(LsUserMsgActivity.this,LsZhuangbeiDetail.class);
+//							Intent intent = new Intent(LsUserMsgActivity.this,LsZhuangbeiDetail.class);
+							Intent intent = new Intent(LsUserMsgActivity.this,LSEquipInfoActivity.class);
 							intent.putExtra("id", oid);
 							LsUserMsgActivity.this.startActivity(intent);
 						}else if("2".equals(typeid)||"8".equals(typeid)){

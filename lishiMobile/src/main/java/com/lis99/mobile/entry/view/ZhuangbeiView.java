@@ -165,6 +165,7 @@ public class ZhuangbeiView extends LinearLayout implements View.OnClickListener{
 	public void onClick(View arg0) {
 		Log.d("zhuangbei", "Click");
 		Intent intent = new Intent(context,LsZhuangbeiDetail.class);
+//		Intent intent = new Intent(context,LSEquipInfoActivity.class);
 		intent.putExtra("id", String.valueOf(flowTag.getFlowId()));
 		context.startActivity(intent);
 	}

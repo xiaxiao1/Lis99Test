@@ -1300,7 +1300,7 @@ public class ImageUtil
 	}
 
 	/**
-	 * 帖子详情大图
+	 * 帖子详情大图, 白色占位图
 	 * 
 	 * @return
 	 */

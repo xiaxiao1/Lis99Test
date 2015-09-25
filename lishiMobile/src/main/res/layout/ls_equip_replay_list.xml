@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pull_bg"
+    >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/activity_title" />
+
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@null"
+        android:layout_above="@id/bottomlayout"
+        >
+
+        <ListView
+            android:background="#fff"
+            style="@style/listViewStyle"
+            android:id="@+id/list_info"
+            android:divider="@null"
+            android:dividerHeight="0px"
+            />
+
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+
+</LinearLayout>

@@ -415,5 +415,8 @@ public class C {
 	public static final String CLUB_TOPIC_LIKE = DOMAIN + "/v3/topics/addLike/";
 //  收到的赞
 	public static final String SYS_LIKE_LIST = DOMAIN + "/v3/user/likeTopic/";
+//  装备详情
+	public static final String EQUIP_INFO_LIST = DOMAIN + "/v3/zhuangbei/detail/";
+
 
 }

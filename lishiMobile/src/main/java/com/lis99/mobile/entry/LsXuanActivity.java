@@ -33,6 +33,7 @@ import com.lis99.mobile.entry.view.LazyScrollView;
 import com.lis99.mobile.entry.view.MyLinerLayout;
 import com.lis99.mobile.entry.view.scroll.PullToRefreshBase.OnRefreshListener;
 import com.lis99.mobile.entry.view.scroll.PullToRefreshScrollView;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.StatusUtil;
 import com.lis99.mobile.util.StringUtil;
@@ -254,7 +255,8 @@ public class LsXuanActivity extends ActivityPattern  implements OnRefreshListene
 			@Override
 			public void onItemClick(PLA_AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent intent = new Intent(LsXuanActivity.this,LsZhuangbeiDetail.class);
+//				Intent intent = new Intent(LsXuanActivity.this,LsZhuangbeiDetail.class);
+				Intent intent = new Intent(LsXuanActivity.this,LSEquipInfoActivity.class);
 				intent.putExtra("id", dangji_lists.get(position).getId());
 				startActivity(intent);
 			}
