@@ -17,17 +17,21 @@
         android:id="@+id/pull_refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@null"
+        android:orientation="vertical"
         >
 
         <ListView
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:background="#fff"
             style="@style/listViewStyle"
-            android:id="@+id/list"
-            android:divider="@null"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:dividerHeight="0px"
-            />
+            android:divider="@null"
+            android:id="@+id/list"
+            ></ListView>
 
     </com.lis99.mobile.entry.view.PullToRefreshView>
 

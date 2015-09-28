@@ -51,12 +51,12 @@ public class ReplayListItem extends MyBaseAdapter {
             holder = (Holder) view.getTag();
         }
 
+        holder.btn.setVisibility(View.GONE);
 
         EquipReplyList.Commentlist item = (EquipReplyList.Commentlist) getItem(i);
 
         if ( item == null ) return view;
 
-        holder.btn.setVisibility(View.GONE);
 
         ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
 

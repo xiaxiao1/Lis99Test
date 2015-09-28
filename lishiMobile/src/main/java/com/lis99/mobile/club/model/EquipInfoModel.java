@@ -88,27 +88,27 @@ public class EquipInfoModel extends BaseModel {
 
     public class Cate
     {
-        public int id;
-        public int parentid;
+        public String id;
+        public String parentid;
         public String catname;
     }
 
     public class Texture
     {
-        public int sid;
+        public String sid;
         public String name;
         public String describe;
         public String path;
-        public int weight;
+        public String weight;
         public boolean isLast;
     }
 
     public class Commenlist
     {
-        public int commentid;
+        public String commentid;
         public String comment;
         public String star;
-        public int user_id;
+        public String user_id;
         public String headicon;
         public String nickname;
     }

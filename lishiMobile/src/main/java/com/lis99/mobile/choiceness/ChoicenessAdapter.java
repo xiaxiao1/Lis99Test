@@ -246,11 +246,11 @@ public class ChoicenessAdapter extends BaseAdapter
 		
 		if (!TextUtils.isEmpty(item.title))
 		{
-			holder.iv_subject.setVisibility(View.GONE);
+			holder.iv_subject.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			holder.iv_subject.setVisibility(View.VISIBLE);
+			holder.iv_subject.setVisibility(View.GONE);
 		}
 		
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
@@ -287,11 +287,11 @@ public class ChoicenessAdapter extends BaseAdapter
 
 		if ( !TextUtils.isEmpty(item.title) )
 		{
-			holder.iv_subject.setVisibility(View.GONE);
+			holder.iv_subject.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			holder.iv_subject.setVisibility(View.VISIBLE);
+			holder.iv_subject.setVisibility(View.GONE);
 		}
 
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));

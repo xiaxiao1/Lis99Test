@@ -26,6 +26,13 @@ public class ReplayAdapter extends MyBaseAdapter {
 
     private boolean haveMore;
 
+    private String id;
+
+    public void setId ( String id )
+    {
+        this.id = id;
+    }
+
     public ReplayAdapter(Context c, ArrayList listItem) {
         super(c, listItem);
     }
@@ -73,6 +80,7 @@ public class ReplayAdapter extends MyBaseAdapter {
                 public void onClick(View view) {
                     // 跳转评论列表
                     Intent i = new Intent(mContext, LSEquipReplyActivity.class);
+                    i.putExtra("id", id);
                     mContext.startActivity(i);
                 }
             });

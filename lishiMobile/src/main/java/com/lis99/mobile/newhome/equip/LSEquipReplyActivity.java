@@ -12,6 +12,7 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 
@@ -41,7 +42,12 @@ public class LSEquipReplyActivity extends LSBaseActivity  implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        id = getIntent().getIntExtra("id", 0);
+        id = Common.string2int(getIntent().getStringExtra("id"));
+
+        if ( id == -1 )
+        {
+            id = getIntent().getIntExtra("id", 0);
+        }
 
         setContentView(R.layout.ls_equip_replay_list);
 
@@ -52,6 +58,8 @@ public class LSEquipReplyActivity extends LSBaseActivity  implements
         page = new Page();
 
         setRightView("发表");
+
+        getList();
 
 
     }
@@ -83,7 +91,7 @@ public class LSEquipReplyActivity extends LSBaseActivity  implements
 
                 if ( adapter == null )
                 {
-                    page.setPageItemSize(model.totalpage);
+                    page.setPageSize(model.totalpage);
                     adapter = new ReplayListItem(activity, model.commentlist);
                     list.setAdapter(adapter);
 

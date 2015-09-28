@@ -78,7 +78,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
             id = getIntent().getIntExtra("id", 0);
         }
 
-        id = 8407;
+//        id = 8407;
 
         initViews();
 
@@ -133,6 +133,10 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 
         layoutMain = findViewById(R.id.layoutMain);
 
+        iv_shop = (ImageView) findViewById(R.id.iv_shop);
+
+        iv_like = (ImageView) findViewById(R.id.iv_like);
+
 
         tv_info.setOnClickListener( this );
 
@@ -172,6 +176,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 
                 break;
             case R.id.layout_like:
+                if ( model == null || model.info == null || model.info.likestatus == 1 ) return;
                 if ( !Common.isLogin(activity) )
                 {
                     return;
@@ -329,6 +334,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
             {
 
                 rAdapter = new ReplayAdapter(activity, model.info.commenlist);
+                rAdapter.setId(""+id);
                 rAdapter.setHaveMore(model.info.totcomment > 3);
 
                 list_reply.setAdapter(rAdapter);
