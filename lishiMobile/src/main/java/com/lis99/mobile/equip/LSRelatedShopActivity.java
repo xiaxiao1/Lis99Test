@@ -78,12 +78,18 @@ public class LSRelatedShopActivity extends LSBaseActivity implements View.OnClic
         initViews();
         setTitle("相关店铺");
 
+
+        postMessage(ActivityPattern1.POPUP_PROGRESS,
+                getString(R.string.sending));
+
         startService(new Intent("com.lis99.mobile.service.LocService"));
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.lis99.mobile.loc");
         myReciever = new MyReciever();
         registerReceiver(myReciever, intentFilter);
+
+
     }
 
     @Override

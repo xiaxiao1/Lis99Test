@@ -44,7 +44,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="3dip"
-            android:layout_marginRight="10dip">
+            android:layout_marginRight="10dip"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/titleRightImage"

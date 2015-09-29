@@ -20,7 +20,7 @@ import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
-import com.lis99.mobile.entry.LsXuanActivity1;
+import com.lis99.mobile.entry.LsEquiFilterActivity;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -88,7 +88,7 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
             if (categories.containsKey(name)) {
                 id = categories.get(name);
                 if (id[0] == 0) {
-                    Intent intent = new Intent(getActivity(), LsXuanActivity1.class);
+                    Intent intent = new Intent(getActivity(), LsEquiFilterActivity.class);
 //                    Intent intent = new Intent(getActivity(), LsXuanActivity.class);
                     startActivity(intent);
                 } else {
