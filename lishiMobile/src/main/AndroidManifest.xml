@@ -1028,6 +1028,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
+
+        <activity android:name=".newhome.equip.MyTest"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  />
+
     </application>
 
 </manifest>

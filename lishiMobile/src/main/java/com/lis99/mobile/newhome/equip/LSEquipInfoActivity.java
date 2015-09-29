@@ -15,6 +15,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.EquipInfoModel;
+import com.lis99.mobile.club.model.KeyValueModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -349,12 +350,51 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
             if ( pAdapter == null )
             {
                 ArrayList<Object> info = new ArrayList<Object>();
-
-                if ( model.info.texture != null && model.info.texture.size() > 0 )
+                KeyValueModel kv = null;
+                if ( model.info.texture != null )
                 {
-                    model.info.texture.get(model.info.texture.size() -1 ).isLast = true;
-                    info.addAll(model.info.texture);
+                    if ( !TextUtils.isEmpty(model.info.texture.model) )
+                    {
+                        kv = new KeyValueModel();
+                        kv.key = "型号";
+                        kv.valule = model.info.texture.model;
+                        info.add(kv);
+                    }
+                    if ( !TextUtils.isEmpty(model.info.texture.country_title) )
+                    {
+                        kv = new KeyValueModel();
+                        kv.key = "产地";
+                        kv.valule = model.info.texture.country_title;
+                        info.add(kv);
+                    }
+                    if ( !TextUtils.isEmpty(model.info.texture.textturename) )
+                    {
+                        kv = new KeyValueModel();
+                        kv.key = "品牌名称";
+                        kv.valule = model.info.texture.textturename;
+                        info.add(kv);
+                    }
+                    if ( !TextUtils.isEmpty(model.info.texture.textturedescribe) )
+                    {
+                        kv = new KeyValueModel();
+                        kv.key = "品牌描述";
+                        kv.valule = model.info.texture.textturedescribe;
+                        info.add(kv);
+                    }
+                    if ( !TextUtils.isEmpty(model.info.texture.weight) )
+                    {
+                        kv = new KeyValueModel();
+                        kv.key = "重量";
+                        kv.valule = model.info.texture.weight;
+                        info.add(kv);
+                    }
+
+                    kv = (KeyValueModel) info.get(info.size() - 1);
+                    kv.isLast = true;
+
                 }
+
+
 
                 if ( model.info.zhuangbeiimg != null )
                 {

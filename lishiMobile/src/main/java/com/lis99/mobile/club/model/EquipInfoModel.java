@@ -73,13 +73,14 @@ public class EquipInfoModel extends BaseModel {
 
         public Cate cate;
 
-        public ArrayList<Texture> texture;
+        public Texture texture;
 
         public ArrayList<Commenlist> commenlist;
 
         public ArrayList<Zhuangbeiimg> zhuangbeiimg;
 
     }
+
 
     public class Zhuangbeiimg
     {
@@ -95,12 +96,12 @@ public class EquipInfoModel extends BaseModel {
 
     public class Texture
     {
-        public String sid;
-        public String name;
-        public String describe;
-        public String path;
+        public String model;
+        public String country_id;
+        public String country_title;
+        public String textturename;
+        public String textturedescribe;
         public String weight;
-        public boolean isLast;
     }
 
     public class Commenlist
