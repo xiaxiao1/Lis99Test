@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.model.EquipInfoModel;
+import com.lis99.mobile.club.model.KeyValueModel;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -35,7 +36,7 @@ public class PropertyAdapter extends MyBaseAdapter{
     @Override
     public int getItemViewType(int position) {
         Object o = getItem(position);
-        if ( o instanceof EquipInfoModel.Texture )
+        if ( o instanceof KeyValueModel )
         {
             return property;
         }
@@ -88,7 +89,7 @@ public class PropertyAdapter extends MyBaseAdapter{
             holder = (Holder) view.getTag();
         }
 
-        EquipInfoModel.Texture item = (EquipInfoModel.Texture) getItem(i);
+        KeyValueModel item = (KeyValueModel) getItem(i);
 
         if ( item == null ) return view;
 
@@ -103,8 +104,8 @@ public class PropertyAdapter extends MyBaseAdapter{
             holder.layout_value.setBackgroundResource(R.drawable.equip_property_top_right);
         }
 
-        holder.tv_key.setText(item.name);
-        holder.tv_value.setText(item.describe);
+        holder.tv_key.setText(item.key);
+        holder.tv_value.setText(item.valule);
 
 
 
