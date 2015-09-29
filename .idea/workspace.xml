@@ -21,9 +21,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="MYUTIL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a03b44e-36f7-4409-be8b-3e34d68bd55e" name="Default" comment="3.5.6 封包">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="8a03b44e-36f7-4409-be8b-3e34d68bd55e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lishi-Android-Studio.iws" />
@@ -120,8 +118,8 @@
       <file leaf-file-name="LSEquipInfoActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/equip/LSEquipInfoActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.9309211">
-              <caret line="310" column="37" selection-start-line="310" selection-start-column="37" selection-end-line="310" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.20394737">
+              <caret line="273" column="9" selection-start-line="273" selection-start-column="9" selection-end-line="273" selection-end-column="9" />
               <folding>
                 <element signature="e#9801#9809#0" expanded="true" />
               </folding>
@@ -172,7 +170,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="3.5.6finished" />
       </map>
     </option>
     <option name="WARN_ABOUT_DETACHED_HEAD" value="false" />
@@ -7407,7 +7405,13 @@
       <option name="project" value="LOCAL" />
       <updated>1443524699170</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="3.5.6 封包">
+      <created>1443525821693</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1443525821693</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -7950,8 +7954,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/equip/LSEquipInfoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9309211">
-          <caret line="310" column="37" selection-start-line="310" selection-start-column="37" selection-end-line="310" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.20394737">
+          <caret line="273" column="9" selection-start-line="273" selection-start-column="9" selection-end-line="273" selection-end-column="9" />
           <folding>
             <element signature="e#9801#9809#0" expanded="true" />
           </folding>
