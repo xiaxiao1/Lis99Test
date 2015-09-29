@@ -381,16 +381,18 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 //                        kv.valule = model.info.texture.textturedescribe;
 //                        info.add(kv);
 //                    }
-                    if ( !TextUtils.isEmpty(model.info.texture.weight) )
+                    if ( !TextUtils.isEmpty(model.info.texture.weight) && Common.string2int(model.info.texture.weight) > 0 )
                     {
                         kv = new KeyValueModel();
                         kv.key = "重量";
-                        kv.valule = model.info.texture.weight;
+                        kv.valule = model.info.texture.weight + "克";
                         info.add(kv);
                     }
-                    if ( info.size() > 0 )
+
+                    int num = info.size();
+                    if ( num > 0 )
                     {
-                        kv = (KeyValueModel) info.get(info.size() - 1);
+                        kv = (KeyValueModel) info.get(num - 1);
                         kv.isLast = true;
                     }
 
