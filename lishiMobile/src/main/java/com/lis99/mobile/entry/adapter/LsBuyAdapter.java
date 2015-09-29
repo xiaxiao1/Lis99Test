@@ -75,41 +75,44 @@ public class LsBuyAdapter<T> extends AdapterBase<T> {
 			}
 			imageLoader.displayImage(shop.getImg(), iv_shop, options);
 			String s = (String) shop.getStar();
-			float f = Float.parseFloat(s);
-			if (f >= 3) {
-				iv_star1.setImageResource(R.drawable.hwd_large_star_s);
-				iv_star2.setImageResource(R.drawable.hwd_large_star_s);
-				iv_star3.setImageResource(R.drawable.hwd_large_star_s);
-				if (f == 3.5) {
-					iv_star4.setImageResource(R.drawable.hwd_large_star_b);
-				}
-				if (f == 4) {
-					iv_star4.setImageResource(R.drawable.hwd_large_star_s);
-				}
-				if (f == 4.5) {
-					iv_star4.setImageResource(R.drawable.hwd_large_star_s);
-					iv_star5.setImageResource(R.drawable.hwd_large_star_b);
-				}
-				if (f == 5) {
-					iv_star4.setImageResource(R.drawable.hwd_large_star_s);
-					iv_star5.setImageResource(R.drawable.hwd_large_star_s);
-				}
-
-			} else if (f >= 2) {
-				iv_star1.setImageResource(R.drawable.hwd_large_star_s);
-				iv_star2.setImageResource(R.drawable.hwd_large_star_s);
-				if (f == 2.5) {
-					iv_star3.setImageResource(R.drawable.hwd_large_star_b);
-				} else if (f >= 1) {
+			if (s != null && !s.equals("")) {
+				float f = Float.parseFloat(s);
+				if (f >= 3) {
 					iv_star1.setImageResource(R.drawable.hwd_large_star_s);
-					if (f == 1.5) {
-						iv_star2.setImageResource(R.drawable.hwd_large_star_b);
+					iv_star2.setImageResource(R.drawable.hwd_large_star_s);
+					iv_star3.setImageResource(R.drawable.hwd_large_star_s);
+					if (f == 3.5) {
+						iv_star4.setImageResource(R.drawable.hwd_large_star_b);
 					}
-				} else if (f == 0.5) {
-					iv_star1.setImageResource(R.drawable.hwd_large_star_b);
+					if (f == 4) {
+						iv_star4.setImageResource(R.drawable.hwd_large_star_s);
+					}
+					if (f == 4.5) {
+						iv_star4.setImageResource(R.drawable.hwd_large_star_s);
+						iv_star5.setImageResource(R.drawable.hwd_large_star_b);
+					}
+					if (f == 5) {
+						iv_star4.setImageResource(R.drawable.hwd_large_star_s);
+						iv_star5.setImageResource(R.drawable.hwd_large_star_s);
+					}
+
+				} else if (f >= 2) {
+					iv_star1.setImageResource(R.drawable.hwd_large_star_s);
+					iv_star2.setImageResource(R.drawable.hwd_large_star_s);
+					if (f == 2.5) {
+						iv_star3.setImageResource(R.drawable.hwd_large_star_b);
+					} else if (f >= 1) {
+						iv_star1.setImageResource(R.drawable.hwd_large_star_s);
+						if (f == 1.5) {
+							iv_star2.setImageResource(R.drawable.hwd_large_star_b);
+						}
+					} else if (f == 0.5) {
+						iv_star1.setImageResource(R.drawable.hwd_large_star_b);
+					}
 				}
 			}
-		}
+			}
+
 		return convertView;
 	}
 

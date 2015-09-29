@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -46,7 +47,7 @@ import java.util.Random;
 public class LsXuanActivity1 extends ActivityPattern  implements OnRefreshListener{
 
 	View iv_home;
-	View bt_dangjiliuxing,bt_remenzhuanji;
+	Button bt_dangjiliuxing,bt_remenzhuanji;
 	int offset = 0;
 	int limits = 20;
 	int zhuanji_offset = 0;
@@ -117,12 +118,6 @@ public class LsXuanActivity1 extends ActivityPattern  implements OnRefreshListen
 	
 	private int item_width;
 	private int item_width1;
-
-
-	private TextView allView, eventView;
-
-	private View allLine, eventLine;
-
 	private void showPic() {
 		display = this.getWindowManager().getDefaultDisplay();
 		item_width = display.getWidth() / column_count;// 根据屏幕大小计算每列大小
@@ -909,19 +904,9 @@ private void AddImage1(ZhuanjiBean picture, int rowIndex, int id) {
 	View view;
 	private void setView() {
 		iv_home = findViewById(R.id.iv_home);
-//		bt_dangjiliuxing = (Button) findViewById(R.id.bt_dangjiliuxing);
-//		bt_remenzhuanji = (Button) findViewById(R.id.bt_remenzhuanji);
-
-		bt_dangjiliuxing = findViewById(R.id.allPanel);
-		bt_remenzhuanji = findViewById(R.id.eventPanel);
-
+		bt_dangjiliuxing = (Button) findViewById(R.id.bt_dangjiliuxing);
+		bt_remenzhuanji = (Button) findViewById(R.id.bt_remenzhuanji);
 		filterButton = findViewById(R.id.filter);
-
-		allView = (TextView) findViewById(R.id.allView);
-		eventView = (TextView) findViewById(R.id.eventView);
-		allLine = findViewById(R.id.allLine);
-		eventLine = findViewById(R.id.eventLine);
-
 		/*refreshContainer = (PullToRefreshScrollView) this.findViewById(R.id.refreshContainer);
 		refreshContainer.setMinimumHeight(StringUtil.getXY(this)[1]);
 		refreshScrollView = refreshContainer.getRefreshableView();
@@ -1006,15 +991,25 @@ private void AddImage1(ZhuanjiBean picture, int rowIndex, int id) {
 			}
 		}*/else if(v.getId() == bt_dangjiliuxing.getId()){
 			type = "1";
-
+			//ls_remen_lv.setVisibility(View.GONE);
+			//mAdapterView.setVisibility(View.VISIBLE);
+			/*offset = 0;
+			limits = 40;
+			dangji_lists.clear();
+			if(!danji_flag){
+				postMessage(POPUP_PROGRESS,getString(R.string.sending));
+				getZhuangbeiList(offset,limits);
+				danji_flag = true;
+			}*/
 			waterfall_scroll1.setVisibility(View.GONE);
 			waterfall_scroll.setVisibility(View.VISIBLE);
-
-			allLine.setVisibility(View.VISIBLE);
-			eventLine.setVisibility(View.GONE);
-			allView.setTextColor(getResources().getColor(R.color.text_color_blue));
-			eventView.setTextColor(getResources().getColor(R.color.color_six));
-
+			/*for(int i=0;i<zhuanji_lists.size();i++){
+				ImageCacheManager.getInstance().removeBitmapFromCache(zhuanji_lists.get(i).getThumb());
+			}*/
+			bt_dangjiliuxing.setBackgroundResource(R.drawable.ls_xuan_navigation_bg_left_selected);
+			bt_dangjiliuxing.setTextColor(0xffffffff);
+			bt_remenzhuanji.setBackgroundResource(R.drawable.ls_xuan_navigation_bg_right_unselected);
+			bt_remenzhuanji.setTextColor(0xff2acbc2);
 		}else if(v.getId() == bt_remenzhuanji.getId()){
 			type = "2";
 			if(!remen_flag){
@@ -1027,11 +1022,15 @@ private void AddImage1(ZhuanjiBean picture, int rowIndex, int id) {
 			}
 			waterfall_scroll.setVisibility(View.GONE);
 			waterfall_scroll1.setVisibility(View.VISIBLE);
-
-			allLine.setVisibility(View.GONE);
-			eventLine.setVisibility(View.VISIBLE);
-			allView.setTextColor(getResources().getColor(R.color.color_six));
-			eventView.setTextColor(getResources().getColor(R.color.text_color_blue));
+			/*for(int i=0;i<dangji_lists.size();i++){
+				ImageCacheManager.getInstance().removeBitmapFromCache(dangji_lists.get(i).getThumb());
+			}*/
+			//ls_remen_lv.setVisibility(View.VISIBLE);
+			//mAdapterView.setVisibility(View.GONE);
+			bt_dangjiliuxing.setBackgroundResource(R.drawable.ls_xuan_navigation_bg_left_unselected);
+			bt_dangjiliuxing.setTextColor(0xff2acbc2);
+			bt_remenzhuanji.setBackgroundResource(R.drawable.ls_xuan_navigation_bg_right_selected);
+			bt_remenzhuanji.setTextColor(0xffffffff);
 		}else if(v.getId() == R.id.filter){
 			Intent intent = new Intent(this,LsEquiFilterActivity.class);
 			startActivity(intent);

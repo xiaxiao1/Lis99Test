@@ -189,6 +189,14 @@
 
     </style>
 
+    <style name="cwRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_drawable</item>
+        <item name="android:minHeight">15dip</item>
+        <item name="android:maxHeight">15dip</item>
+
+    </style>
+
+
     <style name="ls_equip_star_reply" parent="@android:style/Widget.RatingBar">
 
         <item name="android:progressDrawable">@drawable/ls_equip_star_reply</item>
@@ -196,6 +204,5 @@
         <item name="android:maxHeight">9dp</item>
 
     </style>
-    
     
 </resources>

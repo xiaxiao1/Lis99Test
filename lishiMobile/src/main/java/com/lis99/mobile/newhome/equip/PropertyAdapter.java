@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -77,6 +78,8 @@ public class PropertyAdapter extends MyBaseAdapter{
 
             holder.tv_key = (TextView) view.findViewById(R.id.tv_key);
             holder.tv_value = (TextView) view.findViewById(R.id.tv_value);
+            holder.layout_value = (LinearLayout) view.findViewById(R.id.layout_value);
+            holder.layout_name = (LinearLayout) view.findViewById(R.id.layout_name);
 
             view.setTag(holder);
         }
@@ -91,13 +94,13 @@ public class PropertyAdapter extends MyBaseAdapter{
 
         if ( item.isLast )
         {
-            holder.tv_key.setBackgroundResource(R.drawable.equip_property_bottom_left);
-            holder.tv_value.setBackgroundResource(R.color.white);
+            holder.layout_name.setBackgroundResource(R.drawable.equip_property_bottom_left);
+            holder.layout_value.setBackgroundResource(R.color.white);
         }
         else
         {
-            holder.tv_key.setBackgroundResource(R.drawable.equip_property_top_left);
-            holder.tv_value.setBackgroundResource(R.drawable.equip_property_top_right);
+            holder.layout_name.setBackgroundResource(R.drawable.equip_property_top_left);
+            holder.layout_value.setBackgroundResource(R.drawable.equip_property_top_right);
         }
 
         holder.tv_key.setText(item.name);
@@ -138,6 +141,7 @@ public class PropertyAdapter extends MyBaseAdapter{
 
     class Holder
     {
+        LinearLayout layout_value, layout_name;
         TextView tv_key, tv_value;
         ImageView img, iv_load;
     }

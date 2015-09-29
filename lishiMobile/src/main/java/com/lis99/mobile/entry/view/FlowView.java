@@ -13,6 +13,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.lis99.mobile.R;
 import com.lis99.mobile.application.cache.ImageCacheManager;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.IEventHandler;
@@ -305,15 +306,24 @@ public class FlowView extends ImageView implements View.OnClickListener,
 	
 			int layoutHeight = (height * flowTag.getItemWidth())
 					/ width;// 调整高度
+
+
+			width = (int)getResources().getDimension(R.dimen.ls_equip_item_size);
+			height = width;
+
 			if (lp == null) {
-				lp = new LayoutParams(flowTag.getItemWidth(),
-						layoutHeight);
+				lp = new LayoutParams(width,
+						height);
+			} else {
+				lp.width = width;
+				lp.height = height;
 			}
+
 			setLayoutParams(lp);
 			super.setImageBitmap(bm);
 			Handler h = getViewHandler();
 			Message m = h.obtainMessage(flowTag.what, width,
-					layoutHeight, view);
+					height, view);
 			h.sendMessage(m);
 		}else{
 			super.setImageBitmap(bm);

@@ -343,6 +343,8 @@ public class C {
 	//====3.1======
 	/**精选*/
 	public static final String CHOICENESS = DOMAIN + "/v2/club/omnibusList/";
+	public static final String BRAND_SHOP = DOMAIN + "/v3/zhuangbei/brandshop/";
+	public static final String ADD_COMMENT = DOMAIN + "/v3/zhuangbei/addComment/";
 	/**精选-专题*/
 	public static final String CHOIECNESS_SUBJECT = DOMAIN + "/v2/club/topicSpecialList/";
 	

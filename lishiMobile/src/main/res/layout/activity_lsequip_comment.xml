@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/pull_bg"
+    tools:context="com.lis99.mobile.equip.LSEquipCommentActivity">
+
+    <RelativeLayout
+        android:id="@+id/titlehead"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <ImageView
+            android:id="@+id/iv_title_bg"
+            style="@style/fill_fill"
+            android:background="@color/title_bar_bg" />
+
+        <RelativeLayout
+            android:id="@+id/titleLeft"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dip">
+
+            <ImageView
+                android:id="@+id/titleLeftImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ls_page_back_icon"
+
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/titleRight"
+            android:layout_width="60dip"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="10dip">
+
+            <TextView
+                android:id="@+id/titleRightImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="发表"
+                android:textColor="@color/white"
+
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:text="点评"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_text_height" />
+
+
+    </RelativeLayout>
+
+
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        style="@style/cwRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titlehead"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="1" />
+
+    <LinearLayout
+        android:id="@+id/commentPanel"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:layout_below="@+id/titlehead"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/ls_equip_item_bg">
+
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="11dp"
+            android:background="#fff"
+            android:gravity="top"
+            android:hint="您的评论"
+            android:textColor="#666"
+            android:textColorHint="#999"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/commentPanel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="onClick"
+        android:id="@+id/addCommentButton"
+        android:background="@drawable/ls_equip_comment_publish_bg" />
+
+
+</RelativeLayout>

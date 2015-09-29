@@ -7,12 +7,8 @@ import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lis99.mobile.LsEquiCateActivity;
@@ -20,6 +16,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entity.bean.LSCate;
+import com.lis99.mobile.entry.adapter.LSEquipFilterAdapter;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.StatusUtil;
 
@@ -32,16 +29,24 @@ import java.util.List;
 
 public class LsEquiFilterActivity extends ActivityPattern1 {
 	
-	private TextView leftBtn;
-	private TextView rightBtn;
-	private View selectedBtn;
-	
-	
+
 	List<LSCate> typeCates = new ArrayList<LSCate>();
 	List<LSCate> sportCates = new ArrayList<LSCate>();
 	List<LSCate> currentCates = typeCates;
 	
-	ExpandableListView listView ;
+	ListView listView ;
+
+
+	TextView categoryView;
+	TextView sportView;
+
+	View categoryLine;
+	View sportLine;
+
+	LSEquipFilterAdapter adapter;
+
+
+	TextView selectView;
 	
 	private final static int SHOW_CATES = 111;
 	
@@ -56,25 +61,35 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 		
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
-		leftBtn = (TextView) findViewById(R.id.lsBtn);
-		rightBtn = (TextView) findViewById(R.id.lineBtn);
+		categoryView = (TextView) findViewById(R.id.categoryView);
+		sportView = (TextView) findViewById(R.id.sportView);
+		categoryLine = findViewById(R.id.categoryLine);
+		sportLine = findViewById(R.id.sportLine);
 
-		selectedBtn = leftBtn;
+		selectView = categoryView;
 
-		leftBtn.setOnClickListener(this);
-		rightBtn.setOnClickListener(this);
+
 		
-		View backBtn = findViewById(R.id.iv_back);
-		backBtn.setOnClickListener(this);
+		View view = findViewById(R.id.iv_back);
+		view.setOnClickListener(this);
+
+		view = findViewById(R.id.categoryPanel);
+		view.setOnClickListener(this);
+
+		view = findViewById(R.id.sportPanel);
+		view.setOnClickListener(this);
 		
-		listView = (ExpandableListView) findViewById(R.id.expandableListView);
+		listView = (ListView) findViewById(R.id.listView);
+		adapter = new LSEquipFilterAdapter(this, currentCates);
 		listView.setAdapter(adapter);
 		
-		listView.setOnChildClickListener(new OnChildClickListener() {
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public boolean onChildClick(ExpandableListView parent, View v,
-					int groupPosition, int childPosition, long id) {
-				LSCate cate = (LSCate) adapter.getChild(groupPosition, childPosition);
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				LSCate cate = adapter.getItem(position);
+				if (cate.getType() == LSCate.LSCATE_VIRTUAL) {
+					return;
+				}
 				Intent intent = new Intent(LsEquiFilterActivity.this,LsEquiCateActivity.class);
 				if(currentCates == typeCates){
 					intent.putExtra("cate", cate.getID());
@@ -83,66 +98,62 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 				}
 				intent.putExtra("title", cate.getName());
 				startActivity(intent);
-				return false;
 			}
 		});
 		
-		listView.setOnGroupClickListener(new OnGroupClickListener() {
-		    @Override
-		    public boolean onGroupClick(ExpandableListView parent, View clickedView, int groupPosition, long rowId) {
-		        ImageView groupIndicator = (ImageView) clickedView.findViewById(R.id.iv_icon);
-		        if (parent.isGroupExpanded(groupPosition)) {
-		            parent.collapseGroup(groupPosition);
-		            groupIndicator.setImageResource(R.drawable.icon_expand);
-		        } else {
-		            parent.expandGroup(groupPosition);
-		            groupIndicator.setImageResource(R.drawable.icon_collapse);
-		        }
-		        return true;
-		    }
-		});
-		
+
 		getLsCate();
 	}
 	
 	@Override
 	public void onClick(View view) {
+		if (view.getId() == R.id.categoryPanel) {
+			if (selectView == categoryView)
+				return;
+			selectView = categoryView;
+			categoryView.setTextColor(getResources().getColor(R.color.text_color_blue));
+			categoryLine.setVisibility(View.VISIBLE);
+
+			sportLine.setVisibility(View.GONE);
+			sportView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
+
+			adapter.setData(typeCates);
+
+//			if (clubs.size() == 0) {
+//				loadClubList();
+//			} else {
+//				postMessage(SHOW_CLUB);
+//			}
+			return;
+		} else if (view.getId() == R.id.sportPanel) {
+			if (selectView == sportView)
+				return;
+
+			selectView = sportView;
+			sportView.setTextColor(getResources().getColor(R.color.text_color_blue));
+			categoryLine.setVisibility(View.GONE);
+			sportLine.setVisibility(View.VISIBLE);
+			categoryView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
+
+			currentCates = sportCates;
+
+			adapter.setData(sportCates);
+
+
+//			if (allClubs.size() == 0) {
+//				loadLishiClubList();
+//			} else {
+//				postMessage(SHOW_LISH_CLUB);
+//			}
+			return;
+		}
+
+
 		switch (view.getId()) {
 		case R.id.iv_back:
 			finish();
 			break;
-		case R.id.lsBtn:
-			if (selectedBtn != leftBtn) {
-				leftBtn.setBackgroundResource(R.drawable.activity_leftbtn_sel);
-				leftBtn.setTextColor(Color.WHITE);
-				rightBtn.setBackgroundResource(R.drawable.activity_rightbtn);
-				rightBtn.setTextColor(getResources().getColor(R.color.text_color_blue));
-				selectedBtn = leftBtn;
-				currentCates = typeCates;
-				
-				int groupCount = adapter.getGroupCount();  
-				 for (int i=0; i<groupCount; i++){   
-					 listView.collapseGroup(i);  
-				  }
-				 adapter.notifyDataSetChanged();
-			}
-			break;
 
-		case R.id.lineBtn:
-			if (selectedBtn != rightBtn) {
-				leftBtn.setBackgroundResource(R.drawable.activity_leftbtn);
-				leftBtn.setTextColor(getResources().getColor(R.color.text_color_blue));
-				rightBtn.setBackgroundResource(R.drawable.activity_rightbtn_sel);
-				rightBtn.setTextColor(Color.WHITE);
-				selectedBtn = rightBtn;
-				currentCates = sportCates;
-				adapter.notifyDataSetChanged();
-				int groupCount = adapter.getGroupCount();  
-				 for (int i=0; i<groupCount; i++){   
-					 listView.collapseGroup(i);  
-				  }
-			}
-			break;
 
 		default:
 			break;
@@ -186,19 +197,22 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 				LSCate cate = new LSCate();
 				cate.setName(obj.optString("catname",""));
 				cate.setID(obj.optInt("id", 0));
+				cate.setType(LSCate.LSCATE_VIRTUAL);
 				cate.setParentID(obj.optInt("parentid", 0));
+				typeCates.add(cate);
 				JSONArray subArray = obj.optJSONArray("list");
 				if(subArray != null){
 					for (int j = 0; j < subArray.length(); j++) {
 						JSONObject subObj = subArray.getJSONObject(j);
 						LSCate subCate = new LSCate();
-						subCate.setName(subObj.optString("catname",""));
+						subCate.setName(subObj.optString("catname", ""));
 						subCate.setID(subObj.optInt("id", 0));
 						subCate.setParentID(subObj.optInt("parentid", 0));
-						cate.addSubCate(subCate);
+						typeCates.add(subCate);
+//						cate.addSubCate(subCate);
 					}
 				}
-				typeCates.add(cate);
+//				typeCates.add(cate);
 			}
 			
 			JSONArray sportArray = info.getJSONObject("data").getJSONArray("sports_cates");
@@ -208,6 +222,8 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 				cate.setName(obj.optString("title",""));
 				cate.setID(obj.optInt("id", 0));
 				cate.setParentID(obj.optInt("parentid", 0));
+				cate.setType(LSCate.LSCATE_VIRTUAL);
+				sportCates.add(cate);
 				JSONArray subArray = obj.optJSONArray("list");
 				if(subArray != null){
 					for (int j = 0; j < subArray.length(); j++) {
@@ -216,10 +232,11 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 						subCate.setName(subObj.optString("title",""));
 						subCate.setID(subObj.optInt("id", 0));
 						subCate.setParentID(subObj.optInt("parentid", 0));
-						cate.addSubCate(subCate);
+						sportCates.add(subCate);
+//						cate.addSubCate(subCate);
 					}
 				}
-				sportCates.add(cate);
+//				sportCates.add(cate);
 			}
 			postMessage(SHOW_CATES);
 			
@@ -234,93 +251,14 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 			return true;
 		switch (msg.what) {
 		case SHOW_CATES:
-			adapter.notifyDataSetChanged();
+			adapter.setData(currentCates);
+//			adapter.notifyDataSetChanged();
 			break;
 		}
 		return true;
 	}
 	
 	
-	final BaseExpandableListAdapter adapter = new BaseExpandableListAdapter() {
-        
-
-        
-        //重写ExpandableListAdapter中的各个方法
-        @Override
-        public int getGroupCount() {
-            return currentCates.size();
-        }
-
-        @Override
-        public Object getGroup(int groupPosition) {
-            return currentCates.get(groupPosition);
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            return groupPosition;
-        }
-
-        @Override
-        public int getChildrenCount(int groupPosition) {
-        	LSCate cate = (LSCate) getGroup(groupPosition);
-            return cate.getSubCates() == null ? 0 : cate.getSubCates().size();
-        }
-
-        @Override
-        public Object getChild(int groupPosition, int childPosition) {
-        	LSCate cate = (LSCate) getGroup(groupPosition);
-            return cate.getSubCates().get(childPosition);
-        }
-
-        @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            return childPosition;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded,
-                View convertView, ViewGroup parent) {
-            if(convertView == null){
-            	//TextView textView = getTextView();
-                //convertView = textView;
-            	convertView = inflater.inflate(R.layout.cate_group_item, null);
-            }
-            LSCate cate = (LSCate) getGroup(groupPosition);
-            TextView nameView = (TextView) convertView.findViewById(R.id.tv_cateName);
-            nameView.setText(cate.getName());
-            ImageView iconView = (ImageView) convertView.findViewById(R.id.iv_icon);
-            if(isExpanded){
-            	iconView.setImageResource(R.drawable.active_all_dot_default);
-            }else{
-            	iconView.setImageResource(R.drawable.active_all_dot_select);
-            }
-            return convertView;
-        }
-
-        @Override
-        public View getChildView(int groupPosition, int childPosition,
-                boolean isLastChild, View convertView, ViewGroup parent) {
-        	 if(convertView == null){
-        		 convertView = inflater.inflate(R.layout.cate_item, null);
-             }
-             LSCate cate = (LSCate) getChild(groupPosition, childPosition);
-             ((TextView)convertView).setText(cate.getName());
-             return convertView;
-        }
-
-        @Override
-        public boolean isChildSelectable(int groupPosition,
-                int childPosition) {
-            return true;
-        }
-
-    };
 
 	
 }

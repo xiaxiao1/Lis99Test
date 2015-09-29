@@ -1016,6 +1016,18 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
+        <activity
+            android:name=".equip.LSEquipCommentActivity"
+            android:label="@string/title_activity_lsequip_comment"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity>
+        <activity
+            android:name=".equip.LSRelatedShopActivity"
+            android:label="@string/title_activity_lsrelated_shop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity>
     </application>
 
 </manifest>

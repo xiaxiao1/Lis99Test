@@ -150,7 +150,7 @@ public class ZhuangbeiView extends LinearLayout implements View.OnClickListener{
 		ls_zhuangbei_item_pic.setZhuangbeiView(this);
 		ls_zhuangbei_item_pic.setContext(context);
 		LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		ll.width = StringUtil.getXY((Activity)context)[0]/2;
+		ll.width = ( StringUtil.getXY((Activity)context)[0] - (int)getResources().getDimension(R.dimen.ls_equip_item_right_margin) ) /2;
 		convertView.setLayoutParams(ll);
 		addView(convertView);
 	}

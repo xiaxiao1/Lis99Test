@@ -36,6 +36,7 @@
         android:id="@+id/waterfall_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:padding="2.5dp"
         android:layout_below="@+id/relativeLayout1"
 
         >

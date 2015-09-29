@@ -1,5 +1,6 @@
 package com.lis99.mobile.newhome.equip;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -11,6 +12,7 @@ import com.lis99.mobile.club.model.EquipReplyList;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.equip.LSEquipCommentActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
@@ -67,6 +69,9 @@ public class LSEquipReplyActivity extends LSBaseActivity  implements
     @Override
     protected void rightAction() {
         super.rightAction();
+        Intent i = new Intent(this, LSEquipCommentActivity.class);
+        i.putExtra("equipID", id);
+        startActivity(i);
     }
 
     private void getList ()

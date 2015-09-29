@@ -18,6 +18,16 @@ public class MyTask{
 	public Map<String, Object> map;
 	
 	public boolean showDialog;
+
+	public boolean isShowErrorTost() {
+		return showErrorTost;
+	}
+
+	public void setShowErrorTost(boolean showErrorTost) {
+		this.showErrorTost = showErrorTost;
+	}
+	//显示错误信息文本提示， 默认显示
+	public boolean showErrorTost = true;
 	
 	public boolean isShowDialog()
 	{

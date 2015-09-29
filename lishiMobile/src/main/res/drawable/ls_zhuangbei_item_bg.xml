@@ -4,6 +4,7 @@
     <solid android:color="#ffffff" />
 
     <stroke
+
         android:width="3dp"
         android:color="@color/pull_bg" />
 

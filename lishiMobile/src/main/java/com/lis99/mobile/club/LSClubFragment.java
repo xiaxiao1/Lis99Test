@@ -346,8 +346,7 @@ public class LSClubFragment extends LSFragment implements
 				startActivity( new Intent(getActivity(), ClubHotTopicActivity.class));
 				break;
 			case R.id.layout_lis_special:
-//				startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
-				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
+				startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
 				break;
 			case R.id.titleRightImage:
 			case R.id.titleRight:

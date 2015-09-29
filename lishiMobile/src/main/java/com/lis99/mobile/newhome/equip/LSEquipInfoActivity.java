@@ -1,5 +1,6 @@
 package com.lis99.mobile.newhome.equip;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.lis99.mobile.club.model.EquipInfoModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.equip.LSEquipCommentActivity;
+import com.lis99.mobile.equip.LSRelatedShopActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
@@ -159,7 +162,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 
     @Override
     public void onClick(View arg0) {
-
+        Intent i = null;
         switch ( arg0.getId())
         {
             case R.id.tv_info:
@@ -167,12 +170,16 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
                 tv_info.setMaxLines(Integer.MAX_VALUE);
                 break;
             case R.id.layout_reply:
-
+                i = new Intent(this, LSEquipCommentActivity.class);
+                i.putExtra("equipID", id);
+                startActivity(i);
                 break;
             case R.id.layout_shop:
 //                跳转店铺
                 if ( model == null || model.info == null || model.info.is_buy == 0 ) return;
-
+                i = new Intent(this, LSRelatedShopActivity.class);
+                i.putExtra("brandID", Common.string2int(model.info.brand_id));
+                startActivity(i);
 
                 break;
             case R.id.layout_like:

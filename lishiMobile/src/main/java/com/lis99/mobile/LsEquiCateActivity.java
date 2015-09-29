@@ -167,7 +167,7 @@ public class LsEquiCateActivity extends ActivityPattern1 {
 
 	private void showPic() {
 		display = this.getWindowManager().getDefaultDisplay();
-		item_width = display.getWidth() / column_count;// 根据屏幕大小计算每列大小
+		item_width = (display.getWidth() - (int)getResources().getDimension(R.dimen.ls_equip_item_right_margin) )/ column_count;// 根据屏幕大小计算每列大小
 
 		column_height = new int[column_count];
 		context = this;
@@ -214,7 +214,7 @@ public class LsEquiCateActivity extends ActivityPattern1 {
 		item.setViewHandler(this.handler1);
 		LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(
 				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		ll.width = StringUtil.getXY(this)[0] / 2;
+		ll.width = (StringUtil.getXY(this)[0] - (int)getResources().getDimension(R.dimen.ls_equip_item_right_margin) ) / 2;
 		item.setLayoutParams(ll);
 
 		item.getLs_zhuangbei_item_title().setText(picture.getTitle());

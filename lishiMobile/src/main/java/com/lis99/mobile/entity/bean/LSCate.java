@@ -4,11 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LSCate {
-	
+
+	public final static int LSCATE_NORMAL = 0;
+	public final static int LSCATE_VIRTUAL = 1;
+
 	private String name;
 	private int ID;
 	private int parentID;
-	
+
+	private int type;
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	List<LSCate> subCates;
 	
 	public List<LSCate> getSubCates() {

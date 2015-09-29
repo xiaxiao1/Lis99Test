@@ -169,8 +169,8 @@
                     android:layout_marginBottom="1px"
                     android:layout_marginTop="1px"
                     android:textSize="16sp"/>
-                
-                <TextView 
+
+                <TextView
                     android:background="@drawable/shape_equip_btn_top_bottom_right"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -180,7 +180,7 @@
                     android:id="@+id/tv_9"
                     android:layout_margin="1px"
                     android:textSize="16sp"/>
-                
+
             </LinearLayout>
             
         </LinearLayout>
