@@ -370,17 +370,17 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
                     if ( !TextUtils.isEmpty(model.info.texture.textturename) )
                     {
                         kv = new KeyValueModel();
-                        kv.key = "品牌名称";
+                        kv.key = "面料";
                         kv.valule = model.info.texture.textturename;
                         info.add(kv);
                     }
-                    if ( !TextUtils.isEmpty(model.info.texture.textturedescribe) )
-                    {
-                        kv = new KeyValueModel();
-                        kv.key = "品牌描述";
-                        kv.valule = model.info.texture.textturedescribe;
-                        info.add(kv);
-                    }
+//                    if ( !TextUtils.isEmpty(model.info.texture.textturedescribe) )
+//                    {
+//                        kv = new KeyValueModel();
+//                        kv.key = "品牌描述";
+//                        kv.valule = model.info.texture.textturedescribe;
+//                        info.add(kv);
+//                    }
                     if ( !TextUtils.isEmpty(model.info.texture.weight) )
                     {
                         kv = new KeyValueModel();
@@ -388,9 +388,11 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
                         kv.valule = model.info.texture.weight;
                         info.add(kv);
                     }
-
-                    kv = (KeyValueModel) info.get(info.size() - 1);
-                    kv.isLast = true;
+                    if ( info.size() > 0 )
+                    {
+                        kv = (KeyValueModel) info.get(info.size() - 1);
+                        kv.isLast = true;
+                    }
 
                 }
 
