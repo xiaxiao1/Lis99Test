@@ -275,7 +275,7 @@
                 style="@style/ls_equip_even"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:text="高山鞋"/>
+                android:text="高山靴"/>
 
             <TextView
                 android:background="@drawable/ls_equip_category_normal_bg"

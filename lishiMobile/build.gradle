@@ -8,8 +8,8 @@ android {
         shichang {}
         zhuzhan {}
         tuiguang1 {}
-        baidu {}
-//        pp{}
+//        baidu {}
+        pp{}
 //        oppo {}
 //        gfan {}
 //        zs360 {}

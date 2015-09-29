@@ -363,7 +363,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
                     if ( !TextUtils.isEmpty(model.info.texture.country_title) )
                     {
                         kv = new KeyValueModel();
-                        kv.key = "产地";
+                        kv.key = "品牌国家";
                         kv.valule = model.info.texture.country_title;
                         info.add(kv);
                     }
