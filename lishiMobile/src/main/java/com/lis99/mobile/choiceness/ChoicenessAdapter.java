@@ -330,11 +330,11 @@ public class ChoicenessAdapter extends BaseAdapter
 
 		if ( !TextUtils.isEmpty(item.title) )
 		{
-			holder.choiceness_subject_forground.setVisibility(View.GONE);
+			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
+			holder.choiceness_subject_forground.setVisibility(View.GONE);
 		}
 
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
