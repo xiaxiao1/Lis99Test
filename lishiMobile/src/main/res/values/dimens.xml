@@ -96,5 +96,7 @@
 	
 	<dimen name="choiceness_height">200dip</dimen>
 	<dimen name="choiceness_height_bg">171dip</dimen>
+
+    <dimen name="keyboard_height">230dip</dimen>
 	
 </resources>

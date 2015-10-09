@@ -26,6 +26,7 @@ import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -115,7 +116,8 @@ public class LSClubTopicHead extends LinearLayout implements
 
 		nameView.setText(clubhead.nickname);
 		dateView.setText(clubhead.createdate);
-		contentView.setText(clubhead.content);
+		//====emotion====
+		contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(c, clubhead.content));
 		// 头像
 		ImageLoader.getInstance().displayImage(clubhead.headicon, imageView,
 				headerOptions);

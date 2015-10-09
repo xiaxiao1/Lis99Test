@@ -307,5 +307,15 @@ public class Common {
         c.startActivity(intent2);
     }
 
+    // 隐藏软键盘
+    public void hideInputManager(Activity activity) {
+        try {
+            ((InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((activity)
+                    .getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        } catch (Exception e) {
+            Log.e(TAG, "hideInputManager Catch error,skip it!", e);
+        }
+    }
+
 
 }

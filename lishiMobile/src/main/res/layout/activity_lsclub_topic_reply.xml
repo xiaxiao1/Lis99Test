@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}"
+    android:id="@+id/list_parent"
+    >
 
     <RelativeLayout
         android:id="@+id/titlehead"
@@ -86,7 +88,14 @@
                 android:id="@+id/include"
                 layout="@layout/club_reply_view" />
 
+            <include
+                android:id="@+id/footer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/footer" />
+
             <EditText
+                android:visibility="gone"
                 android:id="@+id/bodyView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -98,6 +107,7 @@
                 android:textColor="#666"
                 android:textSize="15sp" >
             </EditText>
+
         </LinearLayout>
 
         <RelativeLayout
@@ -150,6 +160,15 @@
                 android:onClick="onClick" />
             
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/footer_for_emoticons"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/keyboard_height"
+            android:background="@android:color/transparent"
+            android:visibility="gone" />
+
     </LinearLayout>
 
 </RelativeLayout>

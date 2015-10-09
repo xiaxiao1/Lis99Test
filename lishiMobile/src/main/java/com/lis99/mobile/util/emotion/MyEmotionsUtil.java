@@ -4,18 +4,18 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextUtils;
+import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,13 +53,15 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 
     private ArrayList<ArrayList<Object>> emotionList;
 
-    private final int COUNT = 5;
+    private final String[] NAME = {"[[大笑]]", "[[得意]]", "[[点赞]]", "[[感动]]", "[[好色]]",
+                                    "[[流泪]]", "[[难过]]", "[[生气]]", "[[失落]]", "[[微笑]]",
+                                    "[[享受]]", "[[愉快]]",// "[[点赞]]", "[[感动]]", "[[好色]]",
+//            "[[金盾宇]]",
+    };
 
-    private final String[] NAME = {"[[大笑]]", "[[大哭]]", "[[呵呵]]", "[[好的]]", "[[开心]]", };
+    private final int COUNT = NAME.length;
 
     private EditText edit;
-
-    private TextView text;
 
     private PopupWindow popupWindow;
 
@@ -70,14 +72,20 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
     private View popUpView;
 
     private ImageView emoticonsButton;
-//父view, 输入框表情
-    private LinearLayout parentLayout, emoticonsCover;
+// 输入框表情
+    private LinearLayout emoticonsCover;
+//父view
+    private View parentLayout;
 
     private Context c;
+
+
+    private int emotionBound = Common.dip2px(20);
 
     //初始化表情
     public void initBitmap ()
     {
+        if ( emotionList != null && emotionList.size() != 0 ) return;
         emotionMap = new HashMap<String, Bitmap>();
         emotionList = new ArrayList<ArrayList<Object>>();
 
@@ -91,6 +99,8 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
             emotionList.add(item);
         }
 
+        emotionMap.put("[[金盾宇]]", getImage((COUNT) + ".png"));
+
         keyboardHeight = Common.dip2px(230);
 
     }
@@ -103,8 +113,10 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
      * @param emoticonsCovers   表情选择9宫格
      * @param parentLayoutp     父View
      */
-    public void initView ( Context c, EditText edit, ImageView emoticonsButton, LinearLayout emoticonsCovers, LinearLayout parentLayoutp )
+    public void initView ( Context c, final EditText edit, ImageView emoticonsButton, LinearLayout emoticonsCovers, View parentLayoutp )
     {
+        initBitmap();
+
         popUpView = View.inflate(c, R.layout.emoticons_popup, null);
 
         this.c = c;
@@ -141,9 +153,69 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
         });
 
         enablePopUpView();
+        checkKeyboardHeight(parentLayout);
+        enableFooterView();
 
     }
 
+    /**
+     *      表情解析
+     * @param cs
+     * @param mContext
+     * @return
+     */
+    public String convertToMsg(CharSequence cs, Context mContext) {
+        SpannableStringBuilder ssb = new SpannableStringBuilder(cs);
+        ImageSpan[] spans = ssb.getSpans(0, cs.length(), ImageSpan.class);
+        for (int i = 0; i < spans.length; i++) {
+            ImageSpan span = spans[i];
+            String c = span.getSource();
+            int a = ssb.getSpanStart(span);
+            int b = ssb.getSpanEnd(span);
+        }
+        ssb.clearSpans();
+        return ssb.toString();
+    }
+
+
+    /**
+     * Enabling all content in footer i.e. post window
+     */
+    private void enableFooterView() {
+
+        edit.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if (popupWindow.isShowing()) {
+
+                    popupWindow.dismiss();
+
+                }
+
+            }
+        });
+//        final Button postButton = (Button) findViewById(R.id.post_button);
+//
+//        postButton.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (content.getText().toString().length() > 0) {
+//
+//                    Spanned sp = content.getText();
+//                    chats.add(sp);
+//                    Log.i("keyBoard", sp.toString());
+//                    content.setText("");
+//                    mAdapter.notifyDataSetChanged();
+//
+//                }
+//
+//            }
+//        });
+    }
 
     /**
      * Defining all components of emoticons keyboard
@@ -181,29 +253,117 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
         });
     }
 
+    /**
+     * Checking keyboard height and keyboard visibility
+     */
+    int previousHeightDiffrence = 0;
+    private void checkKeyboardHeight(final View parentLayout) {
+
+        parentLayout.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+
+                    @Override
+                    public void onGlobalLayout() {
+
+                        Rect r = new Rect();
+                        parentLayout.getWindowVisibleDisplayFrame(r);
+
+                        int screenHeight = parentLayout.getRootView()
+                                .getHeight();
+                        int heightDifference = screenHeight - (r.bottom);
+
+                        if (previousHeightDiffrence - heightDifference > 50) {
+                            popupWindow.dismiss();
+                        }
+
+                        previousHeightDiffrence = heightDifference;
+                        if (heightDifference > 100) {
+
+                            isKeyBoardVisible = true;
+                            changeKeyboardHeight(heightDifference);
+
+                        } else {
+
+                            isKeyBoardVisible = false;
+
+                        }
+
+                    }
+                });
+
+    }
+
+    /**
+     * change height of emoticons keyboard according to height of actual
+     * keyboard
+     *
+     * @param height
+     *            minimum height by which we can make sure actual keyboard is
+     *            open or not
+     */
+    private void changeKeyboardHeight(int height) {
+
+        if (height > 100) {
+            keyboardHeight = height;
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, keyboardHeight);
+            emoticonsCover.setLayoutParams(params);
+        }
+
+    }
+
+
+
+
+
+
 
     public void keyClickedIndex(final String index) {
 
-        Html.ImageGetter imageGetter = new Html.ImageGetter() {
-            public Drawable getDrawable(String source) {
-                Drawable d = new BitmapDrawable(LSBaseActivity.activity.getResources(),emotionMap.get(index));
-                d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
-                return d;
-            }
-        };
+//        Html.ImageGetter imageGetter = new Html.ImageGetter() {
+//            public Drawable getDrawable(String source) {
+//                Drawable d = new BitmapDrawable(LSBaseActivity.activity.getResources(),emotionMap.get(index));
+//                d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+//                return d;
+//            }
+//        };
+//
+//        Spanned cs = Html.fromHtml("<img src ='" + index + "'/>", imageGetter, null);
 
-        Spanned cs = Html.fromHtml("<img src ='" + index + "'/>", imageGetter, null);
+        Drawable d = new BitmapDrawable(emotionMap.get(index));
+        d.setBounds(0,0, emotionBound, emotionBound);
+        ImageSpan imageSpan = new ImageSpan(d);
+        SpannableString spannable = new SpannableString(index);
+        spannable.setSpan(imageSpan, 0, index.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         int cursorPosition = edit.getSelectionStart();
-        edit.getText().insert(cursorPosition, cs);
+        edit.getText().insert(cursorPosition, spannable);
+
     }
 
     private String zhengze = "\\[\\[[^\\]]+\\]\\]";
 
-    public Spanned getTextWithEmotion ( String str )
+    /**
+     *          TextView 转换表情
+     * @param context
+     * @param str       内容
+     * @return
+     */
+    public SpannableString getTextWithEmotion ( Context context, String str )
     {
+        initBitmap();
+
+        this.c = context;
+
         Pattern pattern = Pattern.compile(zhengze, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(str);
+
+        SpannableString spannableString = new SpannableString(str);
+        try {
+            dealExpression(context, spannableString, pattern, 0);
+        } catch (Exception e) {
+            Common.log("Emotion dealExpression====" + e.getMessage());
+        }
+        return spannableString;
 
 
     }
@@ -227,21 +387,23 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
             if (matcher.start() < start) {
                 continue;
             }
-            String value = emojiMap.get(key);
-            if (TextUtils.isEmpty(value)) {
+            Bitmap value = emotionMap.get(key);
+            if ( value == null ) {
                 continue;
             }
-            int resId = context.getResources().getIdentifier(value, "drawable",
-                    context.getPackageName());
+//            int resId = context.getResources().getIdentifier(value, "drawable",
+//                    context.getPackageName());
             // 通过上面匹配得到的字符串来生成图片资源id，下边的方法可用，但是你工程混淆的时候就有事了，你懂的。不是我介绍的重点
             // Field field=R.drawable.class.getDeclaredField(value);
             // int resId=Integer.parseInt(field.get(null).toString());
-            if (resId != 0) {
-                Bitmap bitmap = BitmapFactory.decodeResource(
-                        context.getResources(), resId);
-                bitmap = Bitmap.createScaledBitmap(bitmap, 50, 50, true);
+//            if (resId != 0) {
+//                Bitmap bitmap = BitmapFactory.decodeResource(
+//                        context.getResources(), resId);
+//            Bitmap bitmap = Bitmap.createScaledBitmap(value, value.getWidth(), value.getHeight(), true);
+            Drawable d = new BitmapDrawable(value);
+            d.setBounds(0,0, emotionBound, emotionBound);
                 // 通过图片资源id来得到bitmap，用一个ImageSpan来包装
-                ImageSpan imageSpan = new ImageSpan(bitmap);
+                ImageSpan imageSpan = new ImageSpan(d,key);
                 // 计算该图片名字的长度，也就是要替换的字符串的长度
                 int end = matcher.start() + key.length();
                 // 将该图片替换字符串中规定的位置中
@@ -252,7 +414,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
                     dealExpression(context, spannableString, patten, end);
                 }
                 break;
-            }
+//            }
         }
     }
 
@@ -275,7 +437,14 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
         return temp;
     }
 
-
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (popupWindow.isShowing()) {
+            popupWindow.dismiss();
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 
 

@@ -29,6 +29,7 @@ import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -234,7 +235,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 		holder.nameView.setText(item.nickname);
 		holder.dateView.setText(item.createdate);
-		holder.contentView.setText(item.content);
+		//===emotion=====
+		holder.contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
 		imageLoader
 				.displayImage(item.headicon, holder.imageView, headerOptions);
 
@@ -281,7 +283,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			// 回复内容＝＝＝＝＝
 			holder.tv_reply_body.setText("回复@ " + item.reply_nickname);
 			holder.tv_reply_floor.setText(item.reply_floor + "楼");
-			holder.tv_reply_content.setText(item.reply_content);
+			//====emotion====
+			holder.tv_reply_content.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.reply_content));
 		}
 		// 1为楼主， 其他不是
 		if ("1".equals(item.is_lander))

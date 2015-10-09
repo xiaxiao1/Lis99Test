@@ -23,6 +23,7 @@ import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -48,7 +49,7 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 	//回复引用
 	private View  include;
 	
-	private EditText bodyView;
+	private EditText bodyView, content;
 	//删除图片按钮
 	private Button delButton;
 	
@@ -74,6 +75,14 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 	int pageNo = -1;
 	
 	Drawable add, noadd;
+
+	//=============================emotion===========
+
+	private LinearLayout emoticonsCover;
+
+	private RelativeLayout parentLayout;
+
+	private ImageView emoticonsButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +143,18 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 			tv_reply_content.setText(replyedcontent);
 			include.setVisibility(View.VISIBLE);
 		}
-			
+
+		emoticonsCover = (LinearLayout) findViewById(R.id.footer_for_emoticons);
+
+		parentLayout = (RelativeLayout) findViewById(R.id.list_parent);
+
+		emoticonsButton = (ImageView) findViewById(R.id.emoticons_button);
+
+		content = (EditText) findViewById(R.id.chat_content);
+
+
+		MyEmotionsUtil.getInstance().initView(this, content, emoticonsButton, emoticonsCover, parentLayout);
+
 	}
 	
 	@Override
@@ -142,6 +162,7 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 		{
 			// TODO Auto-generated method stub
 			super.rightAction();
+
 			publish();
 //			Intent intent = new Intent();
 //			intent.putExtra("lastPage", pageNo);
@@ -151,7 +172,10 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 	
 	protected void publish()
 	{
-		String body = bodyView.getText().toString();
+
+//		Spannable sp = content.getText();
+
+		String body = content.getText().toString();
 
 		if (TextUtils.isEmpty(body))
 		{
