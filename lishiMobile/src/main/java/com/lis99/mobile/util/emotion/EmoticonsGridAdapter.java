@@ -42,6 +42,25 @@ public class EmoticonsGridAdapter extends BaseAdapter{
 
         ImageView image = (ImageView) v.findViewById(R.id.item);
 
+        //删除按键
+        if ( path.size() == 1 )
+        {
+            if ( path.get(0).equals("back"))
+            {
+                image.setImageResource(R.drawable.emotion_back);
+                image.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        mListener.keyClickedIndex("back");
+                    }
+                });
+                return v;
+            }
+            image.setImageBitmap(null);
+            return v;
+        }
+
         Bitmap b = (Bitmap) path.get(1);
 
         final String s = (String) path.get(0);

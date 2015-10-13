@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
@@ -49,11 +52,11 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 	//回复引用
 	private View  include;
 	
-	private EditText bodyView, content;
+	private EditText bodyView;
 	//删除图片按钮
 	private Button delButton;
 	
-	private LinearLayout bottomBar;
+	private LinearLayout bottomBar_img, bottomBar_emotion;
 	
 //	添加的图片
 	private ImageView replyImageView;
@@ -70,11 +73,11 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 	private String clubId, topicId;
 	private Bitmap bitmap;
 	
-	private Button addImage;
+	private Button addImage, addEmotion;
 	private RelativeLayout titleRight;
 	int pageNo = -1;
 	
-	Drawable add, noadd;
+	Drawable add, noadd, emotionfocuse, emotionnofocuse;
 
 	//=============================emotion===========
 
@@ -82,7 +85,7 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 
 	private RelativeLayout parentLayout;
 
-	private ImageView emoticonsButton;
+//	private ImageView emoticonsButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,13 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 		noadd.setBounds(0, 0, noadd.getIntrinsicWidth(), noadd.getIntrinsicHeight());
 		add = getResources().getDrawable(R.drawable.club_reply_chose_image);
 		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
+
+		emotionfocuse = getResources().getDrawable(R.drawable.emotion_keybody);
+		emotionnofocuse = getResources().getDrawable(R.drawable.emotion_face);
+		emotionfocuse.setBounds(0,0,emotionfocuse.getIntrinsicWidth(), emotionfocuse.getIntrinsicHeight());
+		emotionnofocuse.setBounds(0,0,emotionnofocuse.getIntrinsicWidth(), emotionnofocuse.getIntrinsicHeight());
+
+
 		
 		initViews();
 		
@@ -117,10 +127,11 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 		replyImageView = (ImageView)findViewById(R.id.imageView);
 		delButton = (Button) findViewById(R.id.delButton);
 		delButton.setOnClickListener(this);
-		
-		bottomBar = (LinearLayout) findViewById(R.id.bottomBar);
-		bottomBar.setOnClickListener(this);
-		
+
+		bottomBar_img = (LinearLayout) findViewById(R.id.bottomBar_img);
+		bottomBar_img.setOnClickListener(this);
+		bottomBar_emotion = (LinearLayout) findViewById(R.id.bottomBar_emotion);
+
 		tv_reply_body = (TextView) findViewById(R.id.tv_reply_body);
 		tv_reply_floor = (TextView) findViewById(R.id.tv_reply_floor);
 		tv_reply_content = (TextView) findViewById(R.id.tv_reply_content);
@@ -148,12 +159,13 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 
 		parentLayout = (RelativeLayout) findViewById(R.id.list_parent);
 
-		emoticonsButton = (ImageView) findViewById(R.id.emoticons_button);
+//		emoticonsButton = (ImageView) findViewById(R.id.emoticons_button);
 
-		content = (EditText) findViewById(R.id.chat_content);
+		addEmotion = (Button) findViewById(R.id.addEmotion);
 
 
-		MyEmotionsUtil.getInstance().initView(this, content, emoticonsButton, emoticonsCover, parentLayout);
+		MyEmotionsUtil.getInstance().setVisibleEmotion(callBack);
+		MyEmotionsUtil.getInstance().initView(this, bodyView, bottomBar_emotion, emoticonsCover, parentLayout);
 
 	}
 	
@@ -175,7 +187,7 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 
 //		Spannable sp = content.getText();
 
-		String body = content.getText().toString();
+		String body = bodyView.getText().toString();
 
 		if (TextUtils.isEmpty(body))
 		{
@@ -351,7 +363,7 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 		super.onClick(arg0);
 		switch (arg0.getId())
 		{
-			case R.id.bottomBar:
+			case R.id.bottomBar_img:
 			case R.id.addImage:
 				getImage();
 				break;
@@ -366,6 +378,27 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 				break;
 		}
 	}
-	
-	
+
+
+	private CallBack callBack = new CallBack() {
+		@Override
+		public void handler(MyTask mTask) {
+			if ( "GONE".equals(mTask.getresult()))
+			{
+				addEmotion.setCompoundDrawables(emotionnofocuse, null, null, null);
+			}
+			else {
+				addEmotion.setCompoundDrawables(emotionfocuse, null, null, null);
+			}
+		}
+	};
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ( MyEmotionsUtil.getInstance().onKeyDown(keyCode, event) )
+		{
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

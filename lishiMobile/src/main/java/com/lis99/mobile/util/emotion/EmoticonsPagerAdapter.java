@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class EmoticonsPagerAdapter extends PagerAdapter {
 
     ArrayList<ArrayList<Object>> emoticons;
-    private static final int NO_OF_EMOTICONS_PER_PAGE = 20;
+    private static final int NO_OF_EMOTICONS_PER_PAGE = 13;
     Context mActivity;
     EmoticonsGridAdapter.KeyClickListener mListener;
 
@@ -45,6 +45,25 @@ public class EmoticonsPagerAdapter extends PagerAdapter {
                 + NO_OF_EMOTICONS_PER_PAGE
                 && i < emoticons.size(); i++) {
             emoticonsInAPage.add(emoticons.get(i));
+        }
+
+        //添加到最后一个
+        if ( emoticonsInAPage.size() < (NO_OF_EMOTICONS_PER_PAGE + 1) )
+        {
+            int size = emoticonsInAPage.size();
+            for ( int i = size; i < (NO_OF_EMOTICONS_PER_PAGE + 1); i++ )
+            {
+                if ( i == NO_OF_EMOTICONS_PER_PAGE )
+                {
+                    ArrayList<Object> a = new ArrayList<Object>();
+                    a.add("back");
+                    emoticonsInAPage.add(a);
+                    break;
+                }
+                ArrayList<Object> a = new ArrayList<Object>();
+                a.add("null");
+                emoticonsInAPage.add(a);
+            }
         }
 
         GridView grid = (GridView) layout.findViewById(R.id.emoticons_grid);

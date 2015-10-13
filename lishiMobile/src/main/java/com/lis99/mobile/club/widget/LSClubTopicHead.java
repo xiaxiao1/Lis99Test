@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.widget;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -117,7 +118,7 @@ public class LSClubTopicHead extends LinearLayout implements
 		nameView.setText(clubhead.nickname);
 		dateView.setText(clubhead.createdate);
 		//====emotion====
-		contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(c, clubhead.content));
+		contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity)c, clubhead.content));
 		// 头像
 		ImageLoader.getInstance().displayImage(clubhead.headicon, imageView,
 				headerOptions);

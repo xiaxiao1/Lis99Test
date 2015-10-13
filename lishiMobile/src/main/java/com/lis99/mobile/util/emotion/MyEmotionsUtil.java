@@ -1,5 +1,6 @@
 package com.lis99.mobile.util.emotion;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -17,13 +18,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
 
 import java.io.InputStream;
@@ -71,16 +73,25 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 
     private View popUpView;
 
-    private ImageView emoticonsButton;
+    private View emoticonsButton;
 // 输入框表情
     private LinearLayout emoticonsCover;
 //父view
     private View parentLayout;
 
-    private Context c;
+    private Activity c;
 
 
     private int emotionBound = Common.dip2px(20);
+
+    private CallBack callBack;
+
+    public void setVisibleEmotion (CallBack callBack )
+    {
+        this.callBack = callBack;
+    }
+
+
 
     //初始化表情
     public void initBitmap ()
@@ -99,7 +110,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
             emotionList.add(item);
         }
 
-        emotionMap.put("[[金盾宇]]", getImage((COUNT) + ".png"));
+        emotionMap.put("[[金盾宇]]", getImage("jindunyu.png"));
 
         keyboardHeight = Common.dip2px(230);
 
@@ -113,7 +124,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
      * @param emoticonsCovers   表情选择9宫格
      * @param parentLayoutp     父View
      */
-    public void initView ( Context c, final EditText edit, ImageView emoticonsButton, LinearLayout emoticonsCovers, View parentLayoutp )
+    public void initView ( final Activity c, final EditText edit, View emoticonsButton, LinearLayout emoticonsCovers, View parentLayoutp )
     {
         initBitmap();
 
@@ -138,10 +149,16 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 
                     popupWindow.setHeight((int) (keyboardHeight));
 
-                    if (isKeyBoardVisible) {
-                        emoticonsCover.setVisibility(LinearLayout.GONE);
-                    } else {
-                        emoticonsCover.setVisibility(LinearLayout.VISIBLE);
+//                    if (isKeyBoardVisible) {
+//                        emoticonsCover.setVisibility(LinearLayout.GONE);
+//                    } else {
+                    emoticonsCover.setVisibility(LinearLayout.VISIBLE);
+//                    }
+                    Common.hideSoftInput(c);
+                    if (callBack != null) {
+                        MyTask m = new MyTask();
+                        m.setresult("VISIBLE");
+                        callBack.handler(m);
                     }
                     popupWindow.showAtLocation(parentLayout, Gravity.BOTTOM, 0, 0);
 
@@ -153,9 +170,17 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
         });
 
         enablePopUpView();
-        checkKeyboardHeight(parentLayout);
+//        checkKeyboardHeight(parentLayout);
         enableFooterView();
 
+    }
+
+    public void dismissPopupWindow ()
+    {
+        if ( popupWindow != null && popupWindow.isShowing())
+        {
+            popupWindow.dismiss();
+        }
     }
 
     /**
@@ -249,9 +274,20 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
             @Override
             public void onDismiss() {
                 emoticonsCover.setVisibility(LinearLayout.GONE);
+                edit.setFocusable(true);
+                edit.setFocusableInTouchMode(true);
+                Common.showSoftInput(c, edit);
+                if ( callBack != null )
+                {
+                    MyTask m = new MyTask();
+                    m.setresult("GONE");
+                    callBack.handler(m);
+                }
             }
         });
     }
+
+
 
     /**
      * Checking keyboard height and keyboard visibility
@@ -330,6 +366,14 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 //
 //        Spanned cs = Html.fromHtml("<img src ='" + index + "'/>", imageGetter, null);
 
+//删除
+        if ( index.equals("back"))
+        {
+            KeyEvent event = new KeyEvent(0, 0, 0, KeyEvent.KEYCODE_DEL, 0, 0, 0, 0, KeyEvent.KEYCODE_ENDCALL);
+            edit.dispatchKeyEvent(event);
+            return;
+        }
+
         Drawable d = new BitmapDrawable(emotionMap.get(index));
         d.setBounds(0,0, emotionBound, emotionBound);
         ImageSpan imageSpan = new ImageSpan(d);
@@ -349,7 +393,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
      * @param str       内容
      * @return
      */
-    public SpannableString getTextWithEmotion ( Context context, String str )
+    public SpannableString getTextWithEmotion ( Activity context, String str )
     {
         initBitmap();
 
@@ -440,9 +484,9 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (popupWindow.isShowing()) {
             popupWindow.dismiss();
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 

@@ -98,6 +98,14 @@ public class ReplayAdapter extends MyBaseAdapter {
         int star = Common.string2int(item.star);
         holder.ratingBar.setRating(star == -1 ? 0 : star );
 
+        final Holder finalHolder = holder;
+        holder.tv_reply_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finalHolder.tv_reply_info.setMaxLines(Integer.MAX_VALUE);
+            }
+        });
+
 
 
         return view;

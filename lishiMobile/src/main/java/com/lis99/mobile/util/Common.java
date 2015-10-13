@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lis99.mobile.R;
@@ -263,12 +264,20 @@ public class Common {
      *
      * @param a
      */
-    public static void hideSoftInput(Activity a) {
+    public static void hideSoftInput(Activity a ) {
         View view = a.getWindow().peekDecorView();
-        if (view != null) {
-            InputMethodManager inputmanger = (InputMethodManager) a.getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+            if (view != null) {
+                InputMethodManager inputmanger = (InputMethodManager) a.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+
+    }
+//显示键盘
+    public static void showSoftInput (Activity a, EditText view )
+    {
+        InputMethodManager inputmanger = (InputMethodManager) a.getSystemService(Context.INPUT_METHOD_SERVICE);
+//                inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        inputmanger.showSoftInput(view,InputMethodManager.SHOW_FORCED);
     }
 
 
@@ -305,16 +314,6 @@ public class Common {
         Intent intent2 = new Intent(c, LSUserHomeActivity.class);
         intent2.putExtra("userID", userId);
         c.startActivity(intent2);
-    }
-
-    // 隐藏软键盘
-    public void hideInputManager(Activity activity) {
-        try {
-            ((InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((activity)
-                    .getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        } catch (Exception e) {
-            Log.e(TAG, "hideInputManager Catch error,skip it!", e);
-        }
     }
 
 

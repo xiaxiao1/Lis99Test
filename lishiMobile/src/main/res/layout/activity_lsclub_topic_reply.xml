@@ -88,14 +88,7 @@
                 android:id="@+id/include"
                 layout="@layout/club_reply_view" />
 
-            <include
-                android:id="@+id/footer_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/footer" />
-
             <EditText
-                android:visibility="gone"
                 android:id="@+id/bodyView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -139,25 +132,68 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/club_reply_chose_image_bg"
-            android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/addImage"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:drawableLeft="@drawable/club_reply_chose_image"
-                android:background="@null"
-                android:text="添加图片"
-                android:drawablePadding="5dip"
-                android:textColor="#c1c1c1"
-                android:onClick="onClick" />
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:id="@+id/bottomBar_img"
+                >
+
+                <Button
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:id="@+id/addImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableLeft="@drawable/reply_add_img"
+                    android:background="@null"
+                    android:drawablePadding="5dip"
+                    android:textColor="#c1c1c1"
+                    android:onClick="onClick" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:id="@+id/bottomBar_emotion"
+                >
+
+                <Button
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:id="@+id/addEmotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableLeft="@drawable/emotion_face"
+                    android:background="@null"
+                    android:drawablePadding="5dip"
+                    android:textColor="#c1c1c1"
+                    android:onClick="onClick" />
+
+            </LinearLayout>
+
+
+
+
             
         </LinearLayout>
 
