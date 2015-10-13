@@ -15,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -25,6 +26,7 @@ import com.lis99.mobile.club.model.ClubTopicReplyList.Topiclist;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.LSUserHomeActivity;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
@@ -98,6 +100,10 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			{
 				Intent intent = new Intent(main, LSUserHomeActivity.class);
 				intent.putExtra("userID", comment.user_id);
+				main.startActivity(intent);
+			} else if (v.getId() == R.id.equiPanel) {
+				Intent intent = new Intent(main,LSEquipInfoActivity.class);
+				intent.putExtra("id", comment.zhuangbei_id);
 				main.startActivity(intent);
 			}
 		}
@@ -213,6 +219,14 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 			holder.layout_tag = (LinearLayout) convertView.findViewById(R.id.layout_tag);
 
+
+			holder.equiPanel =  convertView.findViewById(R.id.equiPanel);
+			holder.equiImageView = (ImageView)  convertView.findViewById(R.id.equiImageView);
+			holder.equiPriceView = (TextView)  convertView.findViewById(R.id.equiPriceView);
+			holder.equiNameView = (TextView)  convertView.findViewById(R.id.equiNameView);
+			holder.equiRatingBar = (RatingBar)  convertView.findViewById(R.id.equiRatingBar);
+
+
 			convertView.setTag(holder);
 
 			convertView.setLayoutParams(new ListView.LayoutParams(
@@ -315,6 +329,22 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 		holder.tv_like.setText(Common.getLikeNum(item.likeNum));
 
+
+
+		if (item.zhuangbei_id != 0) {
+			holder.equiPanel.setVisibility(View.VISIBLE);
+			holder.equiRatingBar.setRating(item.zhuangbei_star);
+			ImageLoader.getInstance().displayImage(item.zhuangbei_image, holder.equiImageView);
+			holder.equiNameView.setText(item.zhuangbei_title);
+			holder.equiPriceView.setText("市场价："+item.zhuangbei_price+"元");
+
+
+			holder.equiPanel.setOnClickListener(l);
+
+		} else {
+			holder.equiPanel.setVisibility(View.GONE);
+		}
+
 		return convertView;
 	}
 
@@ -344,6 +374,12 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		ImageView iv_load;
 		//===3.5===
 		LinearLayout layout_tag;
+
+		View equiPanel;
+		ImageView equiImageView;
+		TextView equiPriceView;
+		TextView equiNameView;
+		RatingBar equiRatingBar;
 	}
 
 	private void replyNow(Topiclist comment)

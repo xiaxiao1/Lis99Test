@@ -62,6 +62,12 @@ public class ClubTopicReplyList implements Serializable
 		public String LikeStatus;
 		public String is_lander;
 		public String is_jion;
+
+		public int zhuangbei_id;
+		public String zhuangbei_image;
+		public String zhuangbei_title;
+		public String zhuangbei_price;
+		public int zhuangbei_star;
 		
 		public class Topic_image
 		{
