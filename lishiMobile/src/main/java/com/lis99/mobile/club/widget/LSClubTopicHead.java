@@ -13,6 +13,7 @@ import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -23,6 +24,7 @@ import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.LSUserHomeActivity;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
@@ -54,6 +56,13 @@ public class LSClubTopicHead extends LinearLayout implements
 	TextView clubButton;
 
 	View vipStar;
+
+
+	View equiPanel;
+	ImageView equiImageView;
+	TextView equiPriceView;
+	TextView equiNameView;
+	RatingBar equiRatingBar;
 
 	ImageView imageView;
 	ImageView contentImageView;
@@ -299,6 +308,28 @@ public class LSClubTopicHead extends LinearLayout implements
 		}
 
 
+		if (clubhead.zhuangbei_id != 0) {
+			equiPanel.setVisibility(View.VISIBLE);
+			equiRatingBar.setRating(clubhead.zhuangbei_star);
+			ImageLoader.getInstance().displayImage(clubhead.zhuangbei_image, equiImageView);
+			equiNameView.setText(clubhead.zhuangbei_title);
+			equiPriceView.setText("市场价："+clubhead.zhuangbei_price+"元");
+
+
+			equiPanel.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(c,LSEquipInfoActivity.class);
+					intent.putExtra("id", clubhead.zhuangbei_id);
+					c.startActivity(intent);
+				}
+			});
+
+		} else {
+			equiPanel.setVisibility(View.GONE);
+		}
+
+
 	}
 
 	public void setTopic(LSClubTopicActivity lsTopic)
@@ -393,6 +424,12 @@ public class LSClubTopicHead extends LinearLayout implements
 //		精
 		iv_best = (ImageView) findViewById(R.id.iv_best);
 		iv_best.setVisibility(GONE);
+
+		equiPanel =  v.findViewById(R.id.equiPanel);
+		equiImageView = (ImageView)  v.findViewById(R.id.equiImageView);
+		equiPriceView = (TextView)  v.findViewById(R.id.equiPriceView);
+		equiNameView = (TextView)  v.findViewById(R.id.equiNameView);
+		equiRatingBar = (RatingBar)  v.findViewById(R.id.equiRatingBar);
 
 	}
 

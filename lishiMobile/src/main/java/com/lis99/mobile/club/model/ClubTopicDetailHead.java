@@ -84,7 +84,13 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 	public String is_vip;
 	public String is_jion;
 	public ArrayList<Topic_image> topic_image;
-	
+
+	public int zhuangbei_id;
+	public String zhuangbei_image;
+	public String zhuangbei_title;
+	public String zhuangbei_price;
+	public int zhuangbei_star;
+
 	//=====活动===========
 	public int applyTimeStatus;
 	public int applyStauts;
