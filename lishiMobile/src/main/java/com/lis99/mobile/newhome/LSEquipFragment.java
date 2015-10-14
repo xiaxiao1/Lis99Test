@@ -50,12 +50,12 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
         categories = new HashMap<String, Integer[]>();
         categories.put("冲锋衣", new Integer[]{6, 1});
         categories.put("冲锋裤", new Integer[]{7, 1});
-        categories.put("速干⾐", new Integer[]{12, 1});
+        categories.put("速干衣", new Integer[]{12, 1});
         categories.put("速干裤", new Integer[]{13, 1});
 
         categories.put("抓绒衣", new Integer[]{10, 1});
-        categories.put("软壳⾐", new Integer[]{8, 1});
-        categories.put("高山鞋", new Integer[]{26, 1});
+        categories.put("软壳衣", new Integer[]{8, 1});
+        categories.put("高山靴", new Integer[]{26, 1});
         categories.put("徒步鞋", new Integer[]{28, 1});
 
         categories.put("越野跑鞋", new Integer[]{137, 1});
@@ -63,10 +63,10 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
         categories.put("中型背包", new Integer[]{39, 1});
         categories.put("三季帐", new Integer[]{48, 1});
 
-        categories.put("登⼭", new Integer[]{27, 0});
+        categories.put("登山", new Integer[]{27, 0});
         categories.put("徒步", new Integer[]{18, 0});
         categories.put("越野跑", new Integer[]{24, 0});
-        categories.put("⽇常", new Integer[]{31, 0});
+        categories.put("日常", new Integer[]{31, 0});
 
 
         categories.put("更多装备", new Integer[]{0, 0});

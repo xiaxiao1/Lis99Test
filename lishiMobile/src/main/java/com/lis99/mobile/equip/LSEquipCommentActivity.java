@@ -60,6 +60,11 @@ public class LSEquipCommentActivity extends LSBaseActivity {
     }
 
     private void addComment(){
+        if ( !Common.isLogin(activity) )
+        {
+            return;
+        }
+
         int rate = (int)ratingBar.getRating();
         if (rate == 0) {
             Common.toast("请为装备打个分");

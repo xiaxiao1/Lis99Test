@@ -2,18 +2,18 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
         shichang {}
         zhuzhan {}
         tuiguang1 {}
-        baidu {}
-//        pp{}
+//        baidu {}
+        pp{}
 //        oppo {}
 //        gfan {}
 //        zs360 {}
-//        lis99test {}
+        lis99test {}
     }
 
     productFlavors.all {

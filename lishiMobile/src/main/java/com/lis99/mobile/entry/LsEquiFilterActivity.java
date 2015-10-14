@@ -117,6 +117,8 @@ public class LsEquiFilterActivity extends ActivityPattern1 {
 			sportLine.setVisibility(View.GONE);
 			sportView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 
+			currentCates = typeCates;
+
 			adapter.setData(typeCates);
 
 //			if (clubs.size() == 0) {
