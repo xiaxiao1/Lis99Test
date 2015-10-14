@@ -14,8 +14,8 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSCLubSpecialMain;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ChoicenessModel;
-import com.lis99.mobile.club.model.ChoicenessModel.Omnibuslist;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -73,8 +73,9 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 					long arg3)
 			{
 				// TODO Auto-generated method stub
+
 				if ( adapter == null ) return;
-				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2 - 1);
+				ChoicenessModel.Omnibuslist item = (ChoicenessModel.Omnibuslist) adapter.getItem(arg2 - 1);
 //				Omnibuslist item = (Omnibuslist) adapter.getItem(arg2);
 				if ( item == null ) return;
 				Intent intent = null;
@@ -118,6 +119,12 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 					intent = new Intent(getActivity(), ClubSpecialListActivity.class);
 					intent.putExtra("tagid", item.tag_id);
 					startActivity( intent );
+				}
+				else if ( item.type == 8 )
+				{
+					intent = new Intent(FragmentChoiceness.this.getActivity(), LSClubTopicNewActivity.class);
+					intent.putExtra("topicID", item.topic_id);
+					startActivity(intent);
 				}
 				
 			}

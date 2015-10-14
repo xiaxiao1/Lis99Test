@@ -707,6 +707,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 						LSClubTopicActivity.this, clubreply.topiclist, clubID,
 						topicID);
 				listView.setAdapter(adapter);
+				listView.setOnScrollListener(listScroll);
 				return;
 			}
 			adapter.addList(clubreply.topiclist);

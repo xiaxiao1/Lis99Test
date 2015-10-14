@@ -8,17 +8,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -31,8 +35,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 
 public class LSClubPublish2Activity extends LSBaseActivity {
-	TextView titleView;
-	TextView bodyView;
+	EditText titleView;
+	EditText bodyView;
 	Bitmap bitmap;
 	ImageView imageView;
 	View imagePanel;
@@ -40,8 +44,15 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 	int clubID;
 	
 	Drawable add, noadd;
-	
-	Button b;
+
+	//====
+	ImageView addImage, addEmotion;
+
+	View bottomBar_img, bottomBar_emotion;
+
+	private LinearLayout emoticonsCover;
+
+	private View parentLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +64,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		noadd.setBounds(0, 0, noadd.getIntrinsicWidth(), noadd.getIntrinsicHeight());
 		add = getResources().getDrawable(R.drawable.club_reply_chose_image);
 		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
+
 		initViews();
 		setTitle("发布话题");
 
@@ -121,7 +133,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 			public void onFinish() {
 				postMessage(DISMISS_PROGRESS);
 			}
-			
+
 		});
 	}
 
@@ -133,32 +145,74 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.addImage) {
+		if (v.getId() == R.id.addImage || v.getId() == R.id.bottomBar_img ) {
 			addImage();
 			return;
 		} else if (v.getId() == R.id.delButton) {
 			bitmap = null;
 			imageView.setImageBitmap(null);
 			imagePanel.setVisibility(View.GONE);
-			changeButtonBg();
+//			changeButtonBg();
 			return;
 		}
+
 		super.onClick(v);
 	}
 
 	@Override
 	protected void initViews() {
 		super.initViews();
-		titleView = (TextView) findViewById(R.id.titleView);
-		bodyView = (TextView) findViewById(R.id.bodyView);
+		titleView = (EditText) findViewById(R.id.titleView);
+		bodyView = (EditText) findViewById(R.id.bodyView);
+
+		titleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View view, boolean b) {
+				if ( b )
+				{
+					MyEmotionsUtil.getInstance().dismissPopupWindow();
+					bottomBar_emotion.setVisibility(View.GONE);
+				}
+			}
+		});
+
+		bodyView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View view, boolean b) {
+				if ( b )
+				{
+					bottomBar_emotion.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+
 
 		imageView = (ImageView) findViewById(R.id.imageView);
 		imagePanel = findViewById(R.id.imagePanel);
 		
 		mainView = findViewById(R.id.main);
-		
-		b = (Button) findViewById(R.id.addImage);
-		
+
+		addImage = (ImageView) findViewById(R.id.addImage);
+
+		addEmotion = (ImageView) findViewById(R.id.addEmotion);
+
+		bottomBar_img = findViewById(R.id.bottomBar_img);
+
+		bottomBar_emotion = findViewById(R.id.bottomBar_emotion);
+
+		bottomBar_img.setOnClickListener(this);
+		bottomBar_emotion.setOnClickListener(this);
+
+		emoticonsCover = (LinearLayout) findViewById(R.id.footer_for_emoticons);
+
+		parentLayout = findViewById(R.id.list_parent);
+
+
+		MyEmotionsUtil.getInstance().setVisibleEmotion(callBack);
+		MyEmotionsUtil.getInstance().initView(this, bodyView, bottomBar_emotion, emoticonsCover, parentLayout);
+
+		bottomBar_emotion.setVisibility(View.GONE);
+
 //		mainView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 //
 //            @Override
@@ -195,13 +249,13 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 				});
 	}
 	
-	private void changeButtonBg() {
-		if (bitmap == null) {
-			b.setCompoundDrawables(add, null, null, null);
-		} else {
-			b.setCompoundDrawables(noadd, null, null, null);
-		}
-	}
+//	private void changeButtonBg() {
+//		if (bitmap == null) {
+//			b.setCompoundDrawables(add, null, null, null);
+//		} else {
+//			b.setCompoundDrawables(noadd, null, null, null);
+//		}
+//	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -222,9 +276,33 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 				imageView.setImageBitmap(bitmap);
 				break;
 			}
-			changeButtonBg();
+//			changeButtonBg();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+
+	private CallBack callBack = new CallBack() {
+		@Override
+		public void handler(MyTask mTask) {
+			if ( "GONE".equals(mTask.getresult()))
+			{
+				addEmotion.setImageResource(R.drawable.emotion_face);
+			}
+			else {
+				addEmotion.setImageResource(R.drawable.emotion_keybody);
+			}
+		}
+	};
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ( MyEmotionsUtil.getInstance().onKeyDown(keyCode, event) )
+		{
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
 }

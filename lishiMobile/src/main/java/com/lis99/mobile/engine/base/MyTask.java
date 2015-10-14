@@ -27,7 +27,7 @@ public class MyTask{
 		this.showErrorTost = showErrorTost;
 	}
 	//显示错误信息文本提示， 默认显示
-	public boolean showErrorTost = true;
+	public boolean showErrorTost = false;
 	
 	public boolean isShowDialog()
 	{

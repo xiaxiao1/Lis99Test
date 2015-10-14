@@ -56,7 +56,7 @@ import java.util.ArrayList;
  * @author yy
  *
  */
-public class ClubTopicDetailHead implements Serializable{
+public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Serializable{
 
 	/**
 	 * 
@@ -132,7 +132,47 @@ public class ClubTopicDetailHead implements Serializable{
 //	====3.5.5=======赞列表=====
 	public ArrayList<LikeListModel> lists;
 
-	
+	@Override
+	public String getTopic_id() {
+		return this.topic_id;
+	}
+
+	@Override
+	public String getLikeNum() {
+		return this.likeNum;
+	}
+
+	@Override
+	public String getLikeStatus() {
+		return this.LikeStatus;
+	}
+
+	@Override
+	public void setLikeStatus(String status) {
+		this.LikeStatus = status;
+	}
+
+	@Override
+	public void setLikeNum(String likeNum) {
+		this.likeNum = likeNum;
+	}
+
+	@Override
+	public ArrayList<LikeListModel> getList() {
+		return this.lists;
+	}
+
+	@Override
+	public String getStick() {
+		return this.stick;
+	}
+
+	@Override
+	public void setStick(String s) {
+		this.stick = s;
+	}
+
+
 	public class Topic_image
 	{
 		public String image;

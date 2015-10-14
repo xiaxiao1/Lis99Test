@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.club.model.ClubTopicDetailHead;
+import com.lis99.mobile.club.model.LikeInterface;
 import com.lis99.mobile.club.model.LikeListModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -40,7 +40,7 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
     private int topicid, like_num;
     private ArrayList<LikeListModel> list;
 
-    private ClubTopicDetailHead clubhead;
+    private LikeInterface clubhead;
 
     private HandlerList likeCall;
 
@@ -59,15 +59,15 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
         animation = AnimationUtils.loadAnimation(c, R.anim.like_anim_rotate);
     }
 //  设置数据
-    public  void setInfo ( ClubTopicDetailHead clubhead )
+    public  void setInfo ( LikeInterface clubhead )
     {
         this.clubhead = clubhead;
-        this.topicid = Common.string2int(clubhead.topic_id);
-        this.like_num = Common.string2int(clubhead.likeNum);
+        this.topicid = Common.string2int(clubhead.getTopic_id());
+        this.like_num = Common.string2int(clubhead.getLikeNum());
 
-         list = clubhead.lists;
+         list = clubhead.getList();
 
-        if ( "1".equals(clubhead.LikeStatus))
+        if ( "1".equals(clubhead.getLikeStatus()))
         {
             iv_like.setImageResource(R.drawable.like_button_press);
         }
@@ -276,7 +276,7 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
 
                 if ( Common.isLogin((Activity)c) )
                 {
-                    if ( "1".equals(clubhead.LikeStatus)) return;
+                    if ( "1".equals(clubhead.getLikeStatus())) return;
 
                     iv_like.setImageResource(R.drawable.like_button_press);
 
@@ -358,10 +358,12 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
     private CallBack  callBack = new CallBack() {
         @Override
         public void handler(MyTask mTask) {
-            clubhead.LikeStatus = "1";
+//            clubhead.LikeStatus = "1";
+            clubhead.setLikeStatus("1");
 
             like_num+=1;
-            clubhead.likeNum = ""+like_num;
+//            clubhead.likeNum = ""+like_num;
+            clubhead.setLikeNum(""+like_num);
 
             tv_like.setText(like_num + "人赞过");
             iv_like.setImageResource(R.drawable.like_button_press);

@@ -68,7 +68,7 @@ public class ClubTopicReplyList implements Serializable
 		public String zhuangbei_title;
 		public String zhuangbei_price;
 		public int zhuangbei_star;
-		
+
 		public class Topic_image
 		{
 			public String image;

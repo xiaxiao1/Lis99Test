@@ -421,6 +421,8 @@ public class C {
 	public static final String EQUIP_INFO_LIST = DOMAIN + "/v3/zhuangbei/detail/";
 //  装备评论列表
 	public static final String EQUIP_REPLY_LIST = DOMAIN + "/v3/zhuangbei/comment/";
+//  新版活动贴
+	public static final String CLUB_TOPIC_NEW_ACTIVE = DOMAIN + "/v3/club/lineactivedetail";
 
 
 }

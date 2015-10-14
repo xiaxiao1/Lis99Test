@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
@@ -20,7 +21,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicReplyActivity;
 import com.lis99.mobile.club.model.ClubTopicReplyList.Topiclist;
 import com.lis99.mobile.engine.base.CallBack;
@@ -31,6 +31,7 @@ import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -52,7 +53,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 	Drawable drawable;
 	private int clubId, topicId;
 
-	private LSClubTopicActivity main;
+	private Activity main;
 
 	class CommentOnClickListener implements OnClickListener
 	{
@@ -117,7 +118,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		headerOptions = ImageUtil.getclub_topic_headImageOptions();
 	}
 
-	public LSClubTopicCommentAdapter(LSClubTopicActivity main,
+	public LSClubTopicCommentAdapter(Activity main,
 			ArrayList<Topiclist> topiclist, int clubId, int topicId)
 	{
 		this.main = main;
@@ -248,7 +249,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 		holder.nameView.setText(item.nickname);
 		holder.dateView.setText(item.createdate);
-		holder.contentView.setText(item.content);
+		//===emotion=====
+		holder.contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
 		imageLoader
 				.displayImage(item.headicon, holder.imageView, headerOptions);
 
@@ -295,7 +297,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			// 回复内容＝＝＝＝＝
 			holder.tv_reply_body.setText("回复@ " + item.reply_nickname);
 			holder.tv_reply_floor.setText(item.reply_floor + "楼");
-			holder.tv_reply_content.setText(item.reply_content);
+			//====emotion====
+			holder.tv_reply_content.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.reply_content));
 		}
 		// 1为楼主， 其他不是
 		if ("1".equals(item.is_lander))

@@ -113,6 +113,8 @@ public class ChoicenessAdapter extends BaseAdapter
 				num = IMGACTIVE;
 				break;
 			case 6:
+				//新的活动贴
+			case 8:
 				num = IMGTOPIC;
 				break;
 			case 7:
@@ -330,11 +332,11 @@ public class ChoicenessAdapter extends BaseAdapter
 
 		if ( !TextUtils.isEmpty(item.title) )
 		{
-			holder.choiceness_subject_forground.setVisibility(View.GONE);
+			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
+			holder.choiceness_subject_forground.setVisibility(View.GONE);
 		}
 
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));

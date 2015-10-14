@@ -6,7 +6,9 @@ import android.os.Bundle;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.newhome.LSFragment;
@@ -33,6 +35,8 @@ public class WXEntryActivity extends LSBaseActivity implements IWXAPIEventHandle
     String refresh_token;
     String scope;
     String unionid;
+
+    public static CallBack callBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +125,13 @@ public class WXEntryActivity extends LSBaseActivity implements IWXAPIEventHandle
                 //分享
                 else
                 {
+                    if ( callBack != null )
+                    {
+                        MyTask task = new MyTask();
+                        task.setresult("WECHAT");
+                        callBack.handler(task);
+                    }
+                    callBack = null;
                     //朋友
                     if (ShareManager.state == ShareManager.wechat)
                     {
