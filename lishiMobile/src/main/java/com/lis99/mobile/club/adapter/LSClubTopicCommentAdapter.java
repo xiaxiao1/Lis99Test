@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicReplyActivity;
 import com.lis99.mobile.club.model.ClubTopicReplyList.Topiclist;
 import com.lis99.mobile.engine.base.CallBack;
@@ -51,7 +51,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 	Drawable drawable;
 	private int clubId, topicId;
 
-	private LSClubTopicActivity main;
+	private Activity main;
 
 	class CommentOnClickListener implements OnClickListener
 	{
@@ -112,7 +112,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		headerOptions = ImageUtil.getclub_topic_headImageOptions();
 	}
 
-	public LSClubTopicCommentAdapter(LSClubTopicActivity main,
+	public LSClubTopicCommentAdapter(Activity main,
 			ArrayList<Topiclist> topiclist, int clubId, int topicId)
 	{
 		this.main = main;

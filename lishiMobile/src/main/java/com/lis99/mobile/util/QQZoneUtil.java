@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
@@ -17,9 +19,16 @@ public class QQZoneUtil {
 
     public static Tencent mTencent;
 
+    private CallBack callBack;
+
     public static QQZoneUtil getInstance() {
         if (instance == null) instance = new QQZoneUtil();
         return instance;
+    }
+
+    public void setCallBack (CallBack callBack)
+    {
+        this.callBack = callBack;
     }
 
     public void sendQQZone(Activity activity, String title, String message, String url, String imgUrl) {
@@ -66,7 +75,15 @@ public class QQZoneUtil {
         public void onComplete(Object response) {
             // TODO Auto-generated method stub
 //				 Util.toastMessage(QZoneShareActivity.this, "onComplete: " + response.toString());
+            if ( callBack != null )
+            {
+                MyTask task = new MyTask();
+                task.setresult("QQZONE");
+                callBack.handler(task);
+            }
+            callBack = null;
             LSScoreManager.getInstance().sendScore(LSScoreManager.shareqzone);
+
         }
 
     };

@@ -113,6 +113,8 @@ public class ChoicenessAdapter extends BaseAdapter
 				num = IMGACTIVE;
 				break;
 			case 6:
+				//新的活动贴
+			case 8:
 				num = IMGTOPIC;
 				break;
 			case 7:

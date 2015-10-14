@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="alibaba-fastjson-1.1.40">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lishiMobile/libs/alibaba-fastjson-1.1.40.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
