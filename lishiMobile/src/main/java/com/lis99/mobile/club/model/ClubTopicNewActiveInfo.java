@@ -20,11 +20,11 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     public String club_id;
     public String club_title;
     public String club_images;
-    public int is_jion;
+    public String is_jion;
 
     public ArrayList<Taglist> taglist;
 
-    public ArrayList<LikeListModel> likeuserlist;
+    public ArrayList<LikeListModel> lists;
 
     public int category;
     public String catename;
@@ -73,7 +73,7 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
 
     @Override
     public ArrayList<LikeListModel> getList() {
-        return this.likeuserlist;
+        return this.lists;
     }
 
     @Override

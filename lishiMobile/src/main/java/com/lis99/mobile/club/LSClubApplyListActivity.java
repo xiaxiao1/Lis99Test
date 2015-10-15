@@ -1,6 +1,5 @@
 package com.lis99.mobile.club;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -85,11 +84,11 @@ public class LSClubApplyListActivity extends LSBaseActivity implements OnHeaderR
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(LSClubApplyListActivity.this, LSClubTopicActivity.class);
-				intent.putExtra("clubID", clubID);
-				intent.putExtra("topicID", topicID);
-				intent.putExtra("clubName", clubName);
-				startActivity(intent);
+//				Intent intent = new Intent(LSClubApplyListActivity.this, LSClubTopicActivity.class);
+//				intent.putExtra("clubID", clubID);
+//				intent.putExtra("topicID", topicID);
+//				intent.putExtra("clubName", clubName);
+//				startActivity(intent);
 			}
 		});
 	}

@@ -11,7 +11,7 @@
     <RelativeLayout
         style="@style/fill_wrap"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="@dimen/club_detail_head_height" >
 
     <ImageView
         android:id="@+id/iv_head"
@@ -75,6 +75,7 @@
         >
 
         <LinearLayout
+            android:visibility="gone"
             style="@style/wrap_wrap"
             android:gravity="center"
             android:orientation="horizontal"

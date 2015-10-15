@@ -153,7 +153,19 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
         tv_icon_name.setText(model.club_title);
 
-        tv_time_over.setText("还有" + model.days + "天可以申请");
+        if ( "1".equals(model.days))
+        {
+            tv_time_over.setText("今天" + model.deadline + "截止");
+        }
+        else if ( "0".equals(model.days))
+    {
+        tv_time_over.setText("已截止");
+    }
+        else
+        {
+            tv_time_over.setText("还有" + model.days + "天可以申请");
+        }
+
 
         tv_time.setText(model.times);
 
@@ -239,12 +251,6 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                                         animationDrawable = null;
                                     }
 
-                                    int w = loadedImage.getWidth();
-                                    int h = loadedImage.getHeight();
-                                    int imgh = ImageWidth * h / w;
-                                    android.view.ViewGroup.LayoutParams l = iv_head
-                                            .getLayoutParams();
-                                    l.height = imgh;
                                 }
 
                                 @Override
@@ -429,12 +435,17 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.btn_join:
 
-                if ( !Common.isLogin(main))
+                if (!Common.isLogin(main)) {
+                    return;
+                }
+                //管理员可以直接进入报名管理列表
+                String uid = DataManager.getInstance().getUser().getUser_id();
+                if (Common.replyDelete(model.is_jion, uid))
                 {
+                    doAction();
                     return;
                 }
 

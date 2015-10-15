@@ -221,6 +221,19 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 
             }
         });
+
+        edit.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (popupWindow.isShowing()) {
+
+                    popupWindow.dismiss();
+
+                }
+                return false;
+            }
+        });
+
 //        final Button postButton = (Button) findViewById(R.id.post_button);
 //
 //        postButton.setOnClickListener(new OnClickListener() {
@@ -441,9 +454,11 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
             // Field field=R.drawable.class.getDeclaredField(value);
             // int resId=Integer.parseInt(field.get(null).toString());
 //            if (resId != 0) {
-//                Bitmap bitmap = BitmapFactory.decodeResource(
-//                        context.getResources(), resId);
+//                Bitmap bitmap = BitmapFactory.decodeResource(SPAN_INCLUSIVE_EXCLUSIVE
+//                        context.getResources(), resId);SPAN_EXCLUSIVE_EXCLUSIVE
 //            Bitmap bitmap = Bitmap.createScaledBitmap(value, value.getWidth(), value.getHeight(), true);
+
+
             Drawable d = new BitmapDrawable(value);
             d.setBounds(0,0, emotionBound, emotionBound);
                 // 通过图片资源id来得到bitmap，用一个ImageSpan来包装
@@ -452,7 +467,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
                 int end = matcher.start() + key.length();
                 // 将该图片替换字符串中规定的位置中
                 spannableString.setSpan(imageSpan, matcher.start(), end,
-                        Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 if (end < spannableString.length()) {
                     // 如果整个字符串还未验证完，则继续。。
                     dealExpression(context, spannableString, patten, end);
