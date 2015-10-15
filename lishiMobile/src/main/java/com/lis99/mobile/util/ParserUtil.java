@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.newhome.LSFragment;
 
 import java.io.UnsupportedEncodingException;
@@ -77,7 +78,7 @@ public class ParserUtil {
 	 * @param o			数据实体类
 	 * @return
 	 */
-	public static Object getParserResult ( String result, Object o )
+	public static Object getParserResult ( String result, Object o, MyTask task )
 	{
 		//fastJson
 //		JSONObject json1 = JSONObject.parseObject(result);
@@ -91,7 +92,13 @@ public class ParserUtil {
 			String errorstr = dat.get("error").getAsString();
 			if ( !TextUtils.isEmpty(errorstr) )
 			{
-				Common.toast(errorstr);
+				if ( task != null )
+				{
+					if ( task.isShowErrorTost() )
+					{
+						Common.toast(errorstr);
+					}
+				}
 			}
 //			else
 //			{

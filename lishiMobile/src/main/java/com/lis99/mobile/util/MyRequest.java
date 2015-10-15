@@ -63,7 +63,7 @@ public class MyRequest{
 //				jason解析类
 				if ( mTask.getResultModel() != null )
 				{
-					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel()));
+					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
 				}
 				//没有生成解析类
 				if (mTask.getResultModel() == null )

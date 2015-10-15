@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+                android:id="@+id/list_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
     <RelativeLayout
@@ -168,21 +169,59 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/club_reply_chose_image_bg"
                 android:gravity="center_horizontal"
-                android:orientation="vertical" >
+                android:orientation="horizontal" >
 
-                <Button
-                    android:id="@+id/addImage"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/bottomBar_img"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@null"
-                    android:drawableLeft="@drawable/club_reply_chose_image"
-                    android:drawablePadding="5dip"
-                    android:onClick="onClick"
-                    android:text="添加图片"
-                    android:textColor="#c1c1c1" />
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:id="@+id/addImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/reply_add_img"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bottomBar_emotion"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:id="@+id/addEmotion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/emotion_face"
+                        />
+
+                </LinearLayout>
+
+
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/footer_for_emoticons"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/keyboard_height"
+                android:background="@android:color/transparent"
+                android:visibility="gone" />
+
         </LinearLayout>
     </RelativeLayout>
 

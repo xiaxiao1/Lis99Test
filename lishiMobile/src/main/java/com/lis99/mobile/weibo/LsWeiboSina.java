@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.AccessTokenKeeper;
 import com.lis99.mobile.entry.LsShakesActivity;
 import com.lis99.mobile.util.C;
@@ -38,6 +40,8 @@ public class LsWeiboSina{
     private SsoHandler mSsoHandler;
     
     private static WeiboAuth mWeiboAuth;
+
+	private CallBack callBack;
     
     //静态工厂方法   
     public synchronized  static LsWeiboSina getInstance(Activity ct) {  
@@ -50,10 +54,11 @@ public class LsWeiboSina{
     }
     
     public void share(String shareText){
-    	share(shareText,null);
+    	share(shareText,null, null);
     }
 	
-	public void share(String shareText,Bitmap bitmap){
+	public void share(String shareText,Bitmap bitmap, CallBack callBack ){
+		this.callBack = callBack;
 		shareContent = shareText;
 		shareBitmap = bitmap;
 		Oauth2AccessToken accessToken = AccessTokenKeeper.readAccessToken(activity);
@@ -93,6 +98,13 @@ public class LsWeiboSina{
 
 		@Override
 		public void onComplete(String arg0) {
+			if ( callBack != null )
+			{
+				MyTask task = new MyTask();
+				task.setresult("SINA");
+				callBack.handler(task);
+			}
+			callBack = null;
 			Toast.makeText(activity, "分享成功", Toast.LENGTH_LONG).show();
 
 			LSScoreManager.getInstance().sendScore(LSScoreManager.shareweibo);

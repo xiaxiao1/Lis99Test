@@ -25,12 +25,13 @@ import com.lis99.mobile.application.cache.ImageCacheManager;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.BaseModel;
-import com.lis99.mobile.club.model.ClubTopicDetailHead;
+import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.weibo.LsWeiboSina;
 import com.lis99.mobile.weibo.LsWeiboTencent;
 import com.lis99.mobile.weibo.LsWeiboWeixin;
+import com.lis99.mobile.wxapi.WXEntryActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.mm.sdk.modelbase.BaseReq;
@@ -239,7 +240,7 @@ public class ShareManager
 	private static PopupWindow pop;
 
 	public PopupWindow showPopWindowInShare(
-			final ClubTopicDetailHead clubhead, final String clubId,
+			final ShareInterface clubhead, final String clubId,
 			final String Image_Url, final String title, final String shareTxt,
 			final String topicId, boolean b, View parent,
 			final CallBack listener )
@@ -261,7 +262,7 @@ public class ShareManager
 	 * @param listener			点击监听， 管理时用到, 删除，置顶
 	 */
 	public PopupWindow showPopWindowInShare(
-			final ClubTopicDetailHead clubhead, final String clubId,
+			final ShareInterface clubhead, final String clubId,
 			final String Image_Url, final String title, final String shareTxt,
 			final String topicId, boolean b, View parent,
 			final CallBack listener, String sharedUrl ) {
@@ -309,7 +310,7 @@ public class ShareManager
 		final TextView tv_top = (TextView) view.findViewById(R.id.tv_top);
 		if (clubhead != null)
 		{
-			if ("2".equals(clubhead.stick))
+			if ("2".equals(clubhead.getStick()))
 			{
 				iv_top.setImageResource(R.drawable.top);
 				tv_top.setText("置顶");
@@ -346,84 +347,34 @@ public class ShareManager
 						String shareSinaText = title + finalSharedUrl + "" + topicId
 								+ shareText;
 						Bitmap bitmap = ImageLoader.getInstance().loadImageSync(Image_Url);
-//						if ( bitmap == null ) Common.log("=====bitmap ==== null ==========");
-//						else Common.log("=====bitmap ！！！！=== null ==========");
 						LsWeiboSina.getInstance(LSBaseActivity.activity).share(
-								shareSinaText, bitmap);
+								shareSinaText, bitmap, listener);
 
-//						 File f = null;
-//						 if ( bitmap != null )
-//						 f = ImageUtil.saveImageInSdCard(bitmap);
-//						 try
-//						 {
-//						 // ComponentName cmp = new ComponentName(
-//						 // "com.sina.weibo",
-//						 // "com.sina.weibo.EditActivity");
-//						 Intent intent = new Intent(Intent.ACTION_SEND);
-//						 intent.setPackage("com.sina.weibo");
-//						 intent.setType("image/*");
-//						 if (f != null)
-//						 intent.putExtra(Intent.EXTRA_STREAM,
-//						 Uri.fromFile(f));
-//						 intent.putExtra(Intent.EXTRA_SUBJECT, title);
-//						 intent.putExtra(Intent.EXTRA_TEXT, shareSinaText);
-//						 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//						 // intent.setComponent(cmp);
-//						 LSBaseActivity.activity.startActivity(intent);
-//						 } catch (Exception e)
-//						 {
-//						 // TODO: handle exception
-//						 // Toast.makeText(getApplicationContext(),
-//						 // "123123123231231231", Toast.LENGTH_LONG).show();
-//						 // 如果没有安装客户端， 调用内置SDK分享
-//						 LsWeiboSina.getInstance(LSBaseActivity.activity)
-//						 .share(shareSinaText, bitmap);
-//						 }
 						break;
 					case R.id.iv_qzone:
 
 						String shareWx4Text = shareText; //+" "+ finalSharedUrl + ""
-//								+ topicId;
-						// LsWeiboTencent.getInstance(LSBaseActivity.activity)
-						// .share(shareWx4Text, bitmap);
+						QQZoneUtil.getInstance().setCallBack(listener);
 						QQZoneUtil.getInstance().sendQQZone(
 								LSBaseActivity.activity, title, shareWx4Text,
 								finalSharedUrl + topicId, Image_Url);
 						break;
 					case R.id.iv_wechat:
 						state = wechat;
+						WXEntryActivity.callBack = listener;
 						String shareWx1Text = finalSharedUrl + topicId;
 						String title1 = title;
 						String desc1 = shareText;// + finalSharedUrl + "" + topicId;
-//						Bitmap bmp1 = ImageCacheManager.getInstance()
-//								.getBitmapFromCache(Image_Url);
-//						Bitmap bmp1 = ImageUtil.drawableToBitmap(LSBaseActivity.activity.getResources().getDrawable(R.drawable.logo100));
-						
-//						LsWeiboWeixin
-//								.getInstance(LSBaseActivity.activity)
-//								.getApi()
-//								.handleIntent(
-//										LSBaseActivity.activity.getIntent(),
-//										handler);
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
 								.share1(shareWx1Text, title1, desc1, Image_Url,
 										SendMessageToWX.Req.WXSceneSession);
 						break;
 					case R.id.iv_friend:
+						WXEntryActivity.callBack = listener;
 						state = wechat_friends;
 						String shareWx2Text = finalSharedUrl + topicId;
 						String title2 = title;
 						String desc2 = shareText;// + finalSharedUrl + "" + topicId;
-//						Bitmap bmp2 = ImageCacheManager.getInstance()
-//								.getBitmapFromCache(Image_Url);
-//						Bitmap bmp2 = ImageUtil.drawableToBitmap(LSBaseActivity.activity.getResources().getDrawable(R.drawable.logo100));
-						
-//						LsWeiboWeixin
-//								.getInstance(LSBaseActivity.activity)
-//								.getApi()
-//								.handleIntent(
-//										LSBaseActivity.activity.getIntent(),
-//										handler);
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
 								.share1(shareWx2Text, title2, desc2, Image_Url,
 										SendMessageToWX.Req.WXSceneTimeline);
@@ -445,7 +396,7 @@ public class ShareManager
 								});
 						break;
 					case R.id.iv_top:
-						if ("2".equals(clubhead.stick))
+						if ("2".equals(clubhead.getStick()))
 						{
 							topTopic(clubId, topicId, new CallBack()
 							{
@@ -455,7 +406,8 @@ public class ShareManager
 								{
 									// TODO Auto-generated method stub
 									Common.toast("置顶成功");
-									clubhead.stick = "1";
+//									clubhead.stick = "1";
+									clubhead.setStick("1");
 									mTask.result = "topTopic";
 									listener.handler(mTask);
 									iv_top.setImageResource(R.drawable.remove);
@@ -472,7 +424,8 @@ public class ShareManager
 								{
 									// TODO Auto-generated method stub
 									Common.toast("取消置顶成功");
-									clubhead.stick = "2";
+//									clubhead.stick = "2";
+									clubhead.setStick("2");
 									iv_top.setImageResource(R.drawable.top);
 									tv_top.setText("置顶");
 									mTask.result = "topTopic";

@@ -47,7 +47,7 @@ public class FullScreenADImage  {
         String JsonInfo = SharedPreferencesHelper.getAD();
         if (!TextUtils.isEmpty(JsonInfo))
         {
-            model = (ADModel) ParserUtil.getParserResult(JsonInfo, model);
+            model = (ADModel) ParserUtil.getParserResult(JsonInfo, model, null);
             if ( model == null )
             {
                 model = new ADModel();

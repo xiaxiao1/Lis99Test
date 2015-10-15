@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+            android:background="@color/white"
+    >
+
+
+    <RelativeLayout
+        style="@style/fill_wrap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/iv_head"
+        style="@style/fill_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/club_detail_head_height"
+        android:scaleType="centerCrop"
+        />
+
+    <ImageView
+        android:id="@+id/iv_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/load_image_temp_bg"
+        />
+    </RelativeLayout>
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:id="@+id/roundedImageView1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ls_nologin_header_icon"
+        app:border_color="#fff"
+        app:border_width="1px"
+        app:corner_radius="50dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-26dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_icon_name"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="砾石装备"
+        android:textColor="@color/color_nine"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/titleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lineSpacingExtra="2dip"
+        android:maxLines="2"
+        android:text="@string/temp_string_long"
+        android:textColor="@color/text_color_blue"
+        android:textSize="20sp"
+        />
+
+
+    <LinearLayout
+        style="@style/fill_wrap"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+
+        <LinearLayout
+            style="@style/wrap_wrap"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginRight="10dip"
+            >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:layout_marginRight="10dip"
+                android:src="@drawable/club_topic_active_style" />
+
+            <TextView
+                android:id="@+id/tv_active_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/temp_string"
+                android:textColor="#999"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/wrap_wrap"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:layout_marginRight="10dip"
+                android:src="@drawable/club_detail_reply_number" />
+
+            <TextView
+                android:id="@+id/tv_reply_number"
+                style="@style/wrap_wrap"
+                android:text="@string/temp_string"
+                android:textColor="#999"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_join"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topic_new_active_apply_btn"
+        android:textColor="@color/white"
+        android:text="立即申请"
+        />
+
+    <TextView
+        android:id="@+id/tv_time_over"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_nine"
+        android:text="还有5天可以申请"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:layout_marginTop="10dip"
+        android:background="@color/color_1px_stroke" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="8dip"
+        android:background="@color/pull_bg" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+
+    <LinearLayout
+        style="@style/fill_wrap"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dip"
+        android:gravity="center_vertical"
+        >
+
+        <ImageView
+            style="@style/wrap_wrap"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip"
+            android:src="@drawable/topic_active_time" />
+
+        <RelativeLayout
+            style="@style/fill_wrap"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:textColor="#666666"
+                android:id="@+id/tv_time"
+                style="@style/fill_wrap"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="2015-04-04至2015-05-04" />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#eee" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/fill_wrap"
+        android:layout_marginLeft="10dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            style="@style/wrap_wrap"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip"
+            android:src="@drawable/topic_active_join_type" />
+
+        <RelativeLayout
+            style="@style/fill_wrap"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:textColor="#666666"
+                android:id="@+id/tv_location"
+                style="@style/fill_wrap"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/temp_string"
+                android:gravity="center_horizontal"
+                />
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_location"
+                android:layout_below="@id/tv_location"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/topic_new_active_apply_btn"
+                android:layout_marginBottom="10dp"
+                />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#eee" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/fill_wrap"
+        android:layout_marginLeft="10dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            style="@style/wrap_wrap"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip"
+            android:src="@drawable/topic_active_prize" />
+
+        <RelativeLayout
+            style="@style/fill_wrap"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:textColor="#666666"
+                android:id="@+id/tv_rmb"
+                style="@style/fill_wrap"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="500.00RMB" />
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_prize"
+                android:layout_below="@id/tv_rmb"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/topic_new_active_apply_btn"
+                android:layout_marginBottom="10dp"
+                />
+
+            <View
+                android:visibility="gone"
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#eee" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <include
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/reply_height"
+        android:layout_marginTop="10dip"
+        layout="@layout/club_topic_reply" />
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        layout="@layout/club_topic_like"
+        />
+
+
+</LinearLayout>

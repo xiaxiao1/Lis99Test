@@ -100,12 +100,15 @@ public class AdapterMineReplyItem extends BaseAdapter
 			holder.tv_like = (TextView) convertView.findViewById(R.id.tv_like);
 			holder.reply_view = convertView.findViewById(R.id.reply_view);
 			holder.view_line = convertView.findViewById(R.id.view_line);
+			holder.layout_tag = convertView.findViewById(R.id.layout_tag);
 			convertView.setTag(holder);
 		}
 		else
 		{
 			holder = (Holder) convertView.getTag();
 		}
+
+		holder.layout_tag.setVisibility(View.GONE);
 		
 		Replylist item = (Replylist) getItem(position);
 		if ( item == null ) return convertView;
@@ -270,6 +273,7 @@ public class AdapterMineReplyItem extends BaseAdapter
 		LinearLayout layout_club_detail_reply;
 		View reply_view;
 		View view_line;
+		View layout_tag;
 	}
 	
 }

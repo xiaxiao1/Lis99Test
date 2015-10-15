@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/topic_new_active_apply" />
+
+    <item android:drawable="@drawable/topic_new_active_apply" android:state_pressed="true" />
+
+</selector>
