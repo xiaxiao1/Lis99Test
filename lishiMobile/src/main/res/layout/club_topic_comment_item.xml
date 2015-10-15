@@ -38,13 +38,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingTop="6dip"
-        android:lineSpacingExtra="5dip"
+        android:layout_marginTop="6dip"
         android:text="@string/temp_string_long"
         android:textColor="#666"
         android:textIsSelectable="true"
         android:textSize="15sp"
-
+        android:gravity="top"
         />
 
     <RelativeLayout

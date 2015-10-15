@@ -459,10 +459,10 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 //            Bitmap bitmap = Bitmap.createScaledBitmap(value, value.getWidth(), value.getHeight(), true);
 
 
-            Drawable d = new BitmapDrawable(value);
+            Drawable d = new BitmapDrawable(LSBaseActivity.activity.getResources(),value);
             d.setBounds(0,0, emotionBound, emotionBound);
                 // 通过图片资源id来得到bitmap，用一个ImageSpan来包装
-                ImageSpan imageSpan = new ImageSpan(d,key, ImageSpan.ALIGN_BOTTOM);
+                ImageSpan imageSpan = new ImageSpan(d, key);
                 // 计算该图片名字的长度，也就是要替换的字符串的长度
                 int end = matcher.start() + key.length();
                 // 将该图片替换字符串中规定的位置中
