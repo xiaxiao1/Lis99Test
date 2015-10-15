@@ -17,7 +17,7 @@ public class ClubDetailList implements Serializable{
 		id	int	帖子id
 		title	string	帖子标题
 		stick	tinyint	帖子类型：0全站帖子，1站内置顶帖子，2普通
-		category	tinyint	帖子类型：0话题贴，1线路活动帖
+		category	tinyint	帖子类型：0话题贴，1线路活动帖, 2线路活动
 		is_image	tinyint	是否有图片：0无，1有
 		createdate	string	创建日期
 		user_id	int	用户id

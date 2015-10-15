@@ -454,6 +454,10 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                     main.rightAction();
                     Common.toast("任意一种分享方式成功后，进入报名页面");
                 }
+                else
+                {
+                    doAction();
+                }
 
                 break;
             case R.id.layout_club_detail_reply:

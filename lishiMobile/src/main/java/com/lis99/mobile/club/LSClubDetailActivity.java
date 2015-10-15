@@ -239,6 +239,17 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				Topiclist item = null;
 				item = (Topiclist) adapter.getItem(position - 1);
 				if ( item == null ) return;
+
+				if ( "2".equals(item.category))
+				{
+					Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicNewActivity.class);
+//				intent.putExtra("clubID", clubID);
+					intent.putExtra("topicID", item.id);
+//				intent.putExtra("clubName", item.title);
+					startActivityForResult(intent, 998);
+					return;
+				}
+
 				Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicActivity.class);
 //				intent.putExtra("clubID", clubID);
 				intent.putExtra("topicID", item.id);

@@ -212,8 +212,6 @@
                 android:textColor="#666666"
                 android:id="@+id/tv_location"
                 style="@style/fill_wrap"
-                android:ellipsize="end"
-                android:maxLines="2"
                 android:text="@string/temp_string"
                 android:gravity="center_horizontal"
                 />
@@ -263,8 +261,6 @@
                 android:textColor="#666666"
                 android:id="@+id/tv_rmb"
                 style="@style/fill_wrap"
-                android:ellipsize="end"
-                android:singleLine="true"
                 android:text="500.00RMB" />
 
             <ImageView
