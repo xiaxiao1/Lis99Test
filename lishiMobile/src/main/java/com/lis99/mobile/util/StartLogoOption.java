@@ -33,6 +33,11 @@ public class StartLogoOption {
             iv_channel.setVisibility(View.VISIBLE);
             iv_channel.setImageResource(R.drawable.star_logo_360);
         }
+        else if ("sougou".equals(DeviceInfo.CHANNELVERSION))
+        {
+            iv_channel.setVisibility(View.VISIBLE);
+            iv_channel.setImageResource(R.drawable.star_logo_sougou);
+        }
         else
         {
             iv_channel.setVisibility(View.INVISIBLE);

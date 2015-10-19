@@ -46,6 +46,13 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
 
     public int applyStauts;
 
+//装备
+    public int zhuangbei_id;
+    public String zhuangbei_image;
+    public String zhuangbei_title;
+    public String zhuangbei_price;
+    public int zhuangbei_star;
+
     @Override
     public String getTopic_id() {
         return this.topic_id;

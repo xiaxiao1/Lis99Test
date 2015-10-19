@@ -59,7 +59,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 
     private EquipInfoModel model;
 
-    private ImageView moredot;
+//    private ImageView moredot;
 
     private View head;
 
@@ -127,7 +127,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 
         tv_like = (TextView) findViewById(R.id.tv_like);
 
-        moredot = (ImageView) head.findViewById(R.id.moredot);
+//        moredot = (ImageView) head.findViewById(R.id.moredot);
 
         layout_shop = (LinearLayout) findViewById(R.id.layout_shop);
 
@@ -167,7 +167,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
         switch ( arg0.getId())
         {
             case R.id.tv_info:
-                moredot.setVisibility(View.GONE);
+//                moredot.setVisibility(View.GONE);
                 tv_info.setMaxLines(Integer.MAX_VALUE);
                 break;
             case R.id.layout_reply:

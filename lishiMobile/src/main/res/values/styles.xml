@@ -183,7 +183,7 @@
     @android:style/Animation">
     <style name="ls_equip_star_big" parent="@android:style/Widget.RatingBar">
 
-        <item name="android:progressDrawable">@drawable/ls_equip_star</item>
+        <item name="android:progressDrawable">@drawable/ls_equip_star_score</item>
         <item name="android:minHeight">13dp</item>
         <item name="android:maxHeight">13dp</item>
 
