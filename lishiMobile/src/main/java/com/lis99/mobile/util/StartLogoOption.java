@@ -37,6 +37,10 @@ public class StartLogoOption {
         {
             iv_channel.setVisibility(View.VISIBLE);
             iv_channel.setImageResource(R.drawable.star_logo_sougou);
+        else if ( "oppo".equals(DeviceInfo.CHANNELVERSION))
+        {
+            iv_channel.setVisibility(View.VISIBLE);
+            iv_channel.setImageResource(R.drawable.star_logo_oppo);
         }
         else
         {

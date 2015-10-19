@@ -12,6 +12,7 @@ android {
 //        baidu {}
 //        pp{}
 //        oppo {}
+        oppo {}
 //        gfan {}
 //        zs360 {}
 //        lis99test {}
