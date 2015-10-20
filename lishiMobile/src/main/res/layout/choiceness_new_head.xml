@@ -4,4 +4,135 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+
+    <com.lis99.mobile.club.widget.BannerView
+        android:id="@+id/viewBanner"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"/>
+
+    <LinearLayout
+        style="@style/fill_wrap"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/layout_club_level"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_marginLeft="4dp"
+                style="@style/wrap_wrap"
+                android:background="@drawable/tubu"
+                />
+
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="线路攻略"
+                android:textColor="#73706e"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_leader_level"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:background="@drawable/jingpin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="精品行记"
+                android:textColor="#73706e"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_hot_topic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:background="@drawable/ganhuo"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="干货知识"
+                android:textColor="#73706e"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_lis_special"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:background="@drawable/more_special"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="专题"
+                android:textColor="#73706e"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:layout_marginTop="10dip"
+        android:background="@color/color_1px_stroke" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="8dip"
+        android:background="@color/pull_bg" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+
 </LinearLayout>

@@ -22,6 +22,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubApplyActivity;
 import com.lis99.mobile.club.LSClubApplyListActivity;
+import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ClubTopicNewActiveInfo;
 import com.lis99.mobile.mine.LSLoginActivity;
@@ -124,6 +125,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         iv_load = (ImageView) v.findViewById(R.id.iv_load);
 
         roundedImageView1 = (RoundedImageView) v.findViewById(R.id.roundedImageView1);
+
+        roundedImageView1.setOnClickListener(this);
 
         tv_icon_name = (TextView) v.findViewById(R.id.tv_icon_name);
         titleView = (TextView) v.findViewById(R.id.titleView);
@@ -504,6 +507,11 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                 break;
             case R.id.layout_club_detail_reply:
                 main.showReplyPanel();
+                break;
+            case R.id.roundedImageView1 :
+                Intent intent = new Intent(mContext, LSClubDetailActivity.class);
+                intent.putExtra("clubID", Common.string2int(model.club_id));
+                mContext.startActivity(intent);
                 break;
         }
     }

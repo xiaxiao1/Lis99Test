@@ -3,15 +3,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/white"
               android:id="@+id/main">
-
-    <include
-        android:id="@+id/include"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        layout="@layout/fragment_title" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -19,27 +12,111 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="10dp"
+
         >
 
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="精选"
-            android:id="@+id/tab_choiceness"
-            />
+            android:orientation="vertical"
+            android:layout_marginRight="8dp"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="精选"
+                android:id="@+id/tab_choiceness"
+                android:background="@null"
+                android:textColor="@color/text_color_blue"
+                android:paddingBottom="8dp"
+                />
+
+            <View
+                android:id="@+id/view_choiceness"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/tab_line"
+                />
+
+        </LinearLayout>
+
+
 
         <View
+            android:visibility="gone"
             android:layout_width="1px"
             android:layout_height="fill_parent"
             android:background="@color/text_color_blue"
             />
 
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关注"
-            android:id="@+id/tab_Dynamic"
-            />
+            android:orientation="vertical"
+            android:layout_marginLeft="8dp"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注"
+                android:id="@+id/tab_Dynamic"
+                android:background="@null"
+                android:paddingBottom="8dp"
+                android:textColor="@color/color_nine"
+                />
+
+            <View
+                android:id="@+id/view_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/tab_line"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/view_line"
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+
+    <include
+        android:id="@+id/include_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/choiceness_fragment_title_bar" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/dynamic_line"
+        >
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="8dip"
+            android:background="@color/pull_bg" />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
 
     </LinearLayout>
 

@@ -4,15 +4,21 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.model.ChoicenessModel.Omnibuslist;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSRequestManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -24,26 +30,28 @@ public class ChoicenessAdapter extends BaseAdapter
 	//活动
 	private final int ACTIVE = 0;
 	//话题
-	private final int TOPIC = 1;
+//	private final int TOPIC = 1;
 	//专题
-	private final int SUBJECT = 2;
+	private final int SUBJECT = 1;
 	//URL跳转
-	private final int URLITEM = 3;
+//	private final int URLITEM = 3;
 	//新的话题样式
-	private final int IMGTOPIC = 4;
+//	private final int IMGTOPIC = 4;
 //只有一张图片
-	private final int IMGACTIVE = 5;
+	private final int IMGACTIVE = 2;
 	//标签列表
-	private final int TAG = 6;
+//	private final int TAG = 6;
 
 	//	private final int CLUB = 0;
 	//	总数
-	private final int conut = 7;
+	private final int conut = 3;
 
 
 	public ArrayList<Omnibuslist> list;
 	
 	private DisplayImageOptions optionshead, optionsclub, optionsBg;
+
+	private Animation animation;
 	
 	public ChoicenessAdapter ( Activity a, ArrayList<Omnibuslist> omnibuslist )
 	{
@@ -52,6 +60,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		optionshead = ImageUtil.getclub_topic_headImageOptions();
 		optionsclub = ImageUtil.getImageOptionClubIcon();
 		optionsBg = ImageUtil.getDefultImageOptions();
+		animation = AnimationUtils.loadAnimation(a, R.anim.like_anim_rotate);
 		
 	}
 	
@@ -95,31 +104,21 @@ public class ChoicenessAdapter extends BaseAdapter
 		switch ( state )
 		{
 			case 0:
-				num = ACTIVE;
-				break;
 			case 1:
+			case 2:
+			case 9:
 				num = ACTIVE;
 				break;
-			case 2:
-				num = TOPIC;
-				break;
+			case 5:
+			case 6:
+			case 8:
 			case 3:
-				num = URLITEM;
+			case 7:
+				num = IMGACTIVE;
 				break;
 			case 4:
 				num = SUBJECT;
 				break;
-			case 5:
-				num = IMGACTIVE;
-				break;
-			case 6:
-				//新的活动贴
-			case 8:
-				num = IMGTOPIC;
-				break;
-			case 7:
-				num = TAG;
-			break;
 		}
 		
 		return num;
@@ -141,17 +140,11 @@ public class ChoicenessAdapter extends BaseAdapter
 		switch ( num )
 		{
 			case ACTIVE:
-			case TOPIC:
 				return getClub(position, arg1, num);
 			case SUBJECT:
-			case URLITEM:
 				return getSubject(position, arg1, num);
 			case IMGACTIVE:
-				return getSubjectTopic(position, arg1, num, false);
-			case IMGTOPIC:
-				return getSubjectTopic(position, arg1, num, false);
-			case TAG:
-				return getTag(position, arg1, num);
+				return getSubjectTopic(position, arg1, num);
 		}
 		
 		return arg1;
@@ -162,20 +155,23 @@ public class ChoicenessAdapter extends BaseAdapter
 		ClubHolder holder = null;
 		if ( view == null )
 		{
-			view = View.inflate(a, R.layout.choiceness_item_club, null);
+//			view = View.inflate(a, R.layout.choiceness_item_club, null);
+			view = View.inflate(a, R.layout.choiceness_new_topic, null);
 			holder = new ClubHolder();
 			holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
-			holder.iv_icon_club = (RoundedImageView) view.findViewById(R.id.iv_icon_club);
-			holder.iv_icon_head = (RoundedImageView) view.findViewById(R.id.iv_icon_head);
+			holder.roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
 			holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
-			holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
-			holder.tv_location = (TextView) view.findViewById(R.id.tv_location);
+			holder.tv_like = (TextView) view.findViewById(R.id.tv_like);
 			holder.tv_reply = (TextView) view.findViewById(R.id.tv_reply);
 			holder.tv_name = (TextView) view.findViewById(R.id.tv_name);
 			
-			holder.layout_head = (RelativeLayout) view.findViewById(R.id.layout_head);
+			holder.layout_like =  view.findViewById(R.id.layout_like);
 			holder.vipStar = (ImageView) view.findViewById(R.id.vipStar);
 			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
+
+			holder.iv_like = (ImageView) view.findViewById(R.id.iv_like);
+
+			holder.btn_concern = (Button) view.findViewById(R.id.btn_concern);
 			
 			view.setTag(holder);
 		}
@@ -184,41 +180,88 @@ public class ChoicenessAdapter extends BaseAdapter
 			holder = (ClubHolder) view.getTag();
 		}
 		
-		Omnibuslist item = (Omnibuslist) getItem(position);
+		final Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
 		
-		if ( num == ACTIVE )
+
+
+		if ( item.is_vip == 1 )
 		{
-			holder.iv_icon_club.setVisibility(View.VISIBLE);
-			holder.layout_head.setVisibility(View.GONE);
-			ImageLoader.getInstance().displayImage(item.club_logo, holder.iv_icon_club, optionsclub);
-			holder.tv_name.setText("by "+item.club_title + " ");
+			holder.vipStar.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			holder.iv_icon_club.setVisibility(View.GONE);
-			holder.layout_head.setVisibility(View.VISIBLE);
-			ImageLoader.getInstance().displayImage(item.headicon, holder.iv_icon_head, optionshead);
-			holder.tv_name.setText("by "+item.nickname + " ");
-			if ( item.is_vip == 1 )
-			{
-				holder.vipStar.setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				holder.vipStar.setVisibility(View.GONE);
-			}
-			
+			holder.vipStar.setVisibility(View.GONE);
 		}
 		
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
-		
+
+		ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
+
 		
 		holder.tv_title.setText(item.title);
-		holder.tv_info.setText(item.subhead);
-		holder.tv_location.setText(item.position);
-		holder.tv_reply.setText(item.reply_num + "个回复 " );
-		
+		holder.tv_like.setText(""+item.likeNum);
+		holder.tv_name.setText(item.nickname);
+		holder.tv_reply.setText(item.reply_num + "则评论" );
+
+		if ( item.LikeStatus == 1 )
+		{
+			holder.iv_like.setImageResource(R.drawable.like_button_press);
+		}
+		else
+		{
+			holder.iv_like.setImageResource(R.drawable.topic_like_hand);
+		}
+
+		if ( item.attenStatus == 1 )
+		{
+			holder.btn_concern.setVisibility(View.GONE);
+		}
+		else
+		{
+			holder.btn_concern.setVisibility(View.VISIBLE);
+		}
+
+		final ClubHolder finalHolder = holder;
+
+		holder.btn_concern.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				int id = Common.string2int(item.user_id);
+
+				if ( id == -1 ) return;
+
+				LSRequestManager.getInstance().getFriendsAddAttention(id, new CallBack() {
+					@Override
+					public void handler(MyTask mTask) {
+						finalHolder.btn_concern.setVisibility(View.GONE);
+						item.attenStatus = 1;
+					}
+				});
+
+			}
+		});
+
+
+		holder.layout_like.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if ( item.LikeStatus == 1 ) return;
+
+				item.LikeStatus = 1;
+
+				item.likeNum += 1;
+
+				finalHolder.tv_like.setText(""+item.likeNum);
+
+				finalHolder.iv_like.setImageResource(R.drawable.like_button_press);
+
+				finalHolder.iv_like.startAnimation(animation);
+
+				LSRequestManager.getInstance().clubTopicLike(item.topic_id,null);
+			}
+		});
 		
 		return view;
 	}
@@ -264,48 +307,8 @@ public class ChoicenessAdapter extends BaseAdapter
 		return view;
 	}
 
-	private View getTag ( int position, View view, int num )
-	{
-		SubjectHolder holder = null;
-		if ( view == null )
-		{
-			holder = new SubjectHolder();
-			view = View.inflate(a, R.layout.choiceness_item_subject, null);
-
-			holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
-			holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
-			holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
-			holder.iv_subject = (ImageView) view.findViewById(R.id.iv_subject);
-			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
-			view.setTag(holder);
-		}
-		else
-		{
-			holder = (SubjectHolder) view.getTag();
-		}
-
-		Omnibuslist item = (Omnibuslist) getItem(position);
-		if ( item == null ) return view;
-
-		if ( !TextUtils.isEmpty(item.title) )
-		{
-			holder.iv_subject.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			holder.iv_subject.setVisibility(View.GONE);
-		}
-
-		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
-
-		holder.tv_title.setText(item.title);
-		holder.tv_info.setText(item.subhead);
-
-
-		return view;
-	}
-//是否添加渐变层
-	private View getSubjectTopic ( int position, View view, int num, boolean b )
+	//是否添加渐变层
+	private View getSubjectTopic ( int position, View view, int num )
 	{
 		SubjectHolder holder = null;
 		if ( view == null )
@@ -349,11 +352,18 @@ public class ChoicenessAdapter extends BaseAdapter
 
 	class ClubHolder
 	{
-		RoundedImageView iv_bg, iv_icon_club, iv_icon_head;
-		TextView tv_title, tv_info, tv_location, tv_reply, tv_name;
-		RelativeLayout layout_head;
-		ImageView vipStar;
-		ImageView iv_load;
+//		RoundedImageView iv_bg, iv_icon_club, iv_icon_head;
+//		TextView tv_title, tv_info, tv_location, tv_reply, tv_name;
+//		RelativeLayout layout_head;
+//		ImageView vipStar;
+//		ImageView iv_load;
+		RoundedImageView roundedImageView1;
+		ImageView vipStar, iv_bg, iv_like, iv_load;
+		TextView tv_name, tv_like, tv_title, tv_reply;
+		Button btn_concern;
+		View layout_like;
+
+
 	}
 	
 	class SubjectHolder

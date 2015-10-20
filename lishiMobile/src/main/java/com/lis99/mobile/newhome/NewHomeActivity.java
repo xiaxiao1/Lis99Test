@@ -40,7 +40,7 @@ import com.lis99.mobile.LsBuyActivity;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.VersionBean;
-import com.lis99.mobile.choiceness.FragmentChoiceness;
+import com.lis99.mobile.choiceness.FragmentChoicenessNewMain;
 import com.lis99.mobile.club.LSClubFragment;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.PushModel;
@@ -124,7 +124,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
     private LSClubFragment clubFragment;
     private LSShakeFragment saleFragment;
     private LSMineFragment mineFragment;
-    private FragmentChoiceness choicenessFragment;
+//    private FragmentChoiceness choicenessFragment;
+    private FragmentChoicenessNewMain choicenessNewMain;
 
 
     public void gotoShop(String shopType) {
@@ -160,10 +161,11 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 //                    switchContent(selectFragment);
                     break;
                 case LSTab.CHOICENESS:
-                    if (choicenessFragment == null) {
-                        choicenessFragment = new FragmentChoiceness();
+                    if ( choicenessNewMain == null )
+                    {
+                        choicenessNewMain = new FragmentChoicenessNewMain();
                     }
-                    switchContent(choicenessFragment);
+                    switchContent(choicenessNewMain);
                     break;
                 case LSTab.EVENT:
                     if (mineFragment == null) {

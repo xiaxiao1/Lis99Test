@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:descendantFocusability="blocksDescendants"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        >
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/roundedImageView1"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ls_nologin_header_icon"
+            android:scaleType="fitXY"
+            app:corner_radius="5dp"
+            app:border_color="#e8e8e8"
+            app:border_width="1px"/>
+
+        <ImageView
+            android:id="@+id/vipStar"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_alignRight="@id/roundedImageView1"
+            android:layout_alignBottom="@+id/roundedImageView1"
+            android:layout_marginLeft="-8dp"
+            android:src="@drawable/club_icon_v" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_name"
+            android:text="@string/temp_string"
+            android:layout_toRightOf="@id/roundedImageView1"
+            android:layout_marginLeft="10dp"
+            android:textColor="#73706e"
+            />
+
+        <Button
+            android:focusable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_concern"
+            android:background="@drawable/choiceness_consern"
+            android:textColor="@color/color_nine"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ls_main_xuan_icon"
+            android:id="@+id/iv_bg"
+            app:corner_radius="0px"
+            app:border_width="0px"
+            />
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/iv_load"
+            android:src="@drawable/load_image_temp_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+
+        >
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:id="@+id/layout_like"
+            android:background="@drawable/choiceness_like_bg"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_like"
+                android:src="@drawable/topic_like_hand"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="8668"
+                android:id="@+id/tv_like"
+                android:maxLength="4"
+                android:textColor="#73706e"
+                />
+
+        </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/layout_like"
+        android:textSize="15sp"
+        android:text="@string/temp_string_long"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:id="@+id/tv_title"
+        android:textColor="#73706e"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_reply"
+            android:textSize="12sp"
+            android:text="1688则评论"
+            android:textColor="@color/color_nine"
+            />
+
+
+
+    </RelativeLayout>
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="8dip"
+        android:background="@color/pull_bg" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+
+</LinearLayout>

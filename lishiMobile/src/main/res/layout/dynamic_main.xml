@@ -9,6 +9,7 @@
 
 
     <include
+        android:visibility="gone"
         android:id="@+id/include1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
@@ -33,7 +34,7 @@
 
             <ListView
                 style="@style/listViewStyle"
-                android:background="@color/pull_bg"
+                android:background="@color/white"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:dividerHeight="0px"
@@ -51,20 +52,20 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/layout_need_add_attention"
-        android:visibility="gone"
+        android:visibility="visible"
         >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/dynamic_need_attention_title"
             android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp"
             >
 
             <TextView
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
                 android:drawableLeft="@drawable/dynamic_title_flag"
                 android:drawablePadding="6dp"
                 android:id="@+id/tv_need_title"
@@ -77,8 +78,7 @@
 
 
             <TextView
-                android:gravity="center"
-                android:layout_below="@id/tv_need_title"
+                android:gravity="center_horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_color_blue"
@@ -86,7 +86,15 @@
                 android:text="在砾石，很多户外达人。您可以关注他们，参与更多户外话题和活动。"
                 />
 
-        </RelativeLayout>
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dynamic_btn_next"
+                />
+
+        </LinearLayout>
 
         <com.lis99.mobile.entry.view.PullToRefreshView
             android:id="@+id/pull_refresh_view"
