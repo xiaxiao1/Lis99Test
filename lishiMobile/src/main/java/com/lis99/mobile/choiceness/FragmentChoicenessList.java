@@ -68,6 +68,11 @@ public class FragmentChoicenessList extends Fragment  implements
 
     private ChoicenessModel listModel;
 
+    public FragmentChoicenessList ()
+    {
+        page = new Page();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -96,7 +101,7 @@ public class FragmentChoicenessList extends Fragment  implements
         layout_leader_level.setOnClickListener(this);
         layout_club_level.setOnClickListener(this);
 
-        page = new Page();
+//        page = new Page();
 
         list.addHeaderView(head);
 
@@ -133,13 +138,12 @@ public class FragmentChoicenessList extends Fragment  implements
                     bannerAdapter.addImagePageAdapterListener(FragmentChoicenessList.this);
                     bannerAdapter.setImagePageClickListener(FragmentChoicenessList.this);
                     bannerView.setBannerAdapter(bannerAdapter);
-                    getInfo();
                 }
             });
         }
-        else {
-            getInfo();
-        }
+
+        getInfo();
+
 //        ImagePageAdapter adapter = new ImagePageAdapter(getActivity(), model.banners.size());
 //        adapter.addImagePageAdapterListener(LSClubFragment.this);
 //        adapter.setImagePageClickListener(LSClubFragment.this);
@@ -170,6 +174,19 @@ public class FragmentChoicenessList extends Fragment  implements
                 if ( adapter == null )
                 {
                     page.setPageSize(listModel.totalpage);
+
+                    if (DeviceInfo.CHANNELVERSION.equals("ttest"))
+                    {
+                        ChoicenessModel.Omnibuslist f = new ChoicenessModel().new Omnibuslist();
+                        f.type = 4;
+                        f.id = "846";
+                        f.image = "http://i3.lis99.com/upload/club/6/7/4/677730e984cc53b440dbda459f09f564.jpg";
+                        f.title = "本周天津户外精选";
+                        f.subhead = "砾石在全国--天津站";
+
+                        listModel.omnibuslist.add(0, f);
+                    }
+
                     adapter = new ChoicenessAdapter(getActivity(), listModel.omnibuslist);
 
                     AnimationAdapter animationAdapter = new CardsAnimationAdapter(adapter);

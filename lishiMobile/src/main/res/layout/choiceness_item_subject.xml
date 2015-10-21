@@ -55,13 +55,6 @@
             android:layout_marginRight="@dimen/ten"
             >
 
-            <ImageView
-                android:layout_gravity="center_horizontal"
-                style="@style/wrap_wrap"
-                android:src="@drawable/choiceness_label"
-                android:id="@+id/iv_subject"
-                />
-
             <TextView
                 android:layout_marginTop="6dp"
                 android:id="@+id/tv_title"

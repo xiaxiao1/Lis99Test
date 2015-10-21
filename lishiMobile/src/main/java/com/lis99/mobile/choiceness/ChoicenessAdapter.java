@@ -277,8 +277,9 @@ public class ChoicenessAdapter extends BaseAdapter
 			holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
 			holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
 			holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
-			holder.iv_subject = (ImageView) view.findViewById(R.id.iv_subject);
 			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
+			holder.choiceness_subject_forground = (RoundedImageView) view.findViewById(R.id.choiceness_subject_forground);
+
 			view.setTag(holder);
 		}
 		else
@@ -288,14 +289,14 @@ public class ChoicenessAdapter extends BaseAdapter
 		
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
-		
-		if (!TextUtils.isEmpty(item.title))
+
+		if ( !TextUtils.isEmpty(item.title) )
 		{
-			holder.iv_subject.setVisibility(View.VISIBLE);
+			holder.choiceness_subject_forground.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			holder.iv_subject.setVisibility(View.GONE);
+			holder.choiceness_subject_forground.setVisibility(View.GONE);
 		}
 		
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
@@ -320,7 +321,6 @@ public class ChoicenessAdapter extends BaseAdapter
 			holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
 			holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
 			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
-			holder.iv_subject = (ImageView) view.findViewById(R.id.iv_subject);
 			holder.choiceness_subject_forground = (RoundedImageView) view.findViewById(R.id.choiceness_subject_forground);
 			view.setTag(holder);
 		}
@@ -329,7 +329,6 @@ public class ChoicenessAdapter extends BaseAdapter
 			holder = (SubjectHolder) view.getTag();
 		}
 
-		holder.iv_subject.setVisibility(View.GONE);
 		Omnibuslist item = (Omnibuslist) getItem(position);
 		if ( item == null ) return view;
 

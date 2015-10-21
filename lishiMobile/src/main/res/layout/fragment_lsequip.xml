@@ -8,7 +8,7 @@
         android:layout_height="@dimen/title_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@color/title_bar_bg" >
+        android:background="@drawable/title_bar_bg" >
 
         <RelativeLayout
             android:id="@+id/titleLeft"

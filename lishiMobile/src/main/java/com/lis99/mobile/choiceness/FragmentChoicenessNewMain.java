@@ -36,7 +36,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
     private FragmentDinamicList dinamicList;
 
-    private View view_choiceness, view_dynamic, view_line, include_search, dynamic_line;
+    private View view_choiceness, view_dynamic, include_search, dynamic_line;
 
 
     @Override
@@ -54,8 +54,6 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_choiceness = v.findViewById(R.id.view_choiceness);
 
         view_dynamic = v.findViewById(R.id.view_dynamic);
-
-        view_line = v.findViewById(R.id.view_line);
 
         include_search = v.findViewById(R.id.include_search);
 
@@ -120,7 +118,6 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_dynamic.setVisibility(View.INVISIBLE);
 
         include_search.setVisibility(View.VISIBLE);
-        view_line.setVisibility(View.VISIBLE);
         dynamic_line.setVisibility(View.GONE);
 
         choicenessList.init();
@@ -136,7 +133,6 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_choiceness.setVisibility(View.INVISIBLE);
 
         include_search.setVisibility(View.GONE);
-        view_line.setVisibility(View.GONE);
         dynamic_line.setVisibility(View.VISIBLE);
 
         dinamicList.init();

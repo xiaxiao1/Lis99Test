@@ -56,6 +56,7 @@
 	<!-- 上下拉刷新 -->
 	<color name="pull_text_color">#999999</color>
 	
+	<!--<color name="title_bar_bg">#ffffff</color>-->
 	<color name="title_bar_bg">#ffffff</color>
 	<color name="title_bar_text">#73706e</color>
 	

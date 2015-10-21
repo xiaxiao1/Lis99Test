@@ -63,8 +63,9 @@ public class LsStartupActivity extends ActivityPattern {
     private ImageView iv_img;
     private ImageView iv_info;
     private ImageView iv_channel;
+    private ImageView iv_bg;
 
-    private Animation animation_img, animation_info;
+    private Animation animation_img, animation_info, animation_scale;
 
     private ImageView iv_ad;
 
@@ -127,8 +128,12 @@ public class LsStartupActivity extends ActivityPattern {
         animation_img = AnimationUtils.loadAnimation(this, R.anim.star_img_time);
         animation_info = AnimationUtils.loadAnimation(this, R.anim.star_info_time);
 
+        animation_scale = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_scale_anim);
+
 
         iv_ad = (ImageView) findViewById(R.id.iv_ad);
+
+        iv_bg = (ImageView) findViewById(R.id.iv_bg);
 
         account = SharedPreferencesHelper.getValue(this, C.CONFIG_FILENAME,
                 Context.MODE_PRIVATE, C.ACCOUNT);
@@ -252,6 +257,9 @@ public class LsStartupActivity extends ActivityPattern {
     }
 
     private void startInfoAnimation() {
+
+//        iv_bg.startAnimation(animation_scale);
+
         iv_ad.setVisibility(View.GONE);
         iv_info.startAnimation(animation_info);
 

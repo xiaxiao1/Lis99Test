@@ -66,6 +66,12 @@ public class FragmentDinamicList extends Fragment implements
     private View v;
 
 
+    public FragmentDinamicList ()
+    {
+        dPage = new Page();
+        rPage = new Page();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -130,8 +136,8 @@ public class FragmentDinamicList extends Fragment implements
             }
         });
 
-        dPage = new Page();
-        rPage = new Page();
+//        dPage = new Page();
+//        rPage = new Page();
 
         layout_login.setVisibility(View.GONE);
         layout_need_add_attention.setVisibility(View.GONE);

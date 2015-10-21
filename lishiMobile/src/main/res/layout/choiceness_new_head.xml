@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="专题"
+                android:text="更多专栏"
                 android:textColor="#73706e"
                 />
 
