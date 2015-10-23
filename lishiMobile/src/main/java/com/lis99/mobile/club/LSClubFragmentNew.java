@@ -64,7 +64,7 @@ public class LSClubFragmentNew extends LSFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		body = View.inflate(getActivity(), R.layout.my_webview, null);
+		body = View.inflate(getActivity(), R.layout.my_webview_fragment, null);
 
 
 		//搜索按钮

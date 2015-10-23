@@ -8,7 +8,7 @@
     android:id="@+id/titlehead"
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_height"
-    android:background="@color/text_color_blue" >
+    android:background="@drawable/title_bar_bg" >
 
     <RelativeLayout
         android:id="@+id/titleLeft"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/title_bar_text"
         android:textSize="@dimen/title_text_height" />
     
 
@@ -58,6 +58,32 @@
         android:layout_below="@+id/titlehead"
         android:background="#fff"
         android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/layout_recommend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/tv_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="推荐"
+                android:textColor="@color/text_color_blue"
+                />
+
+            <View
+                android:id="@+id/view_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/tv_recommend"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/tv_recommend"
+                android:background="@color/text_color_blue" />
+        </RelativeLayout>
     
          <RelativeLayout
             android:id="@+id/cityPanel"
@@ -71,11 +97,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="同城俱乐部"
-                android:textColor="@color/text_color_blue"
+                android:text="同城"
+                android:textColor="#666"
                  />
 
             <View
+                android:visibility="gone"
                 android:id="@+id/cityLine"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
@@ -97,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="砾石俱乐部"
+                android:text="砾石官方"
                 android:textColor="#666"
                  />
 
@@ -124,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="品牌俱乐部"
+                android:text="品牌"
                 android:textColor="#666"
                  />
 

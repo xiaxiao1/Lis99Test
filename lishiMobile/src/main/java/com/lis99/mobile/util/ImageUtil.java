@@ -1318,6 +1318,7 @@ public class ImageUtil
 				.bitmapConfig(Bitmap.Config.RGB_565)
 				.build();
 	}
+
 	/**
 	 * 		默认options 什么参数都没有
 	 * @return

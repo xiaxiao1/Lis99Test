@@ -6,8 +6,7 @@
 
 
     -->
-    <style name="AppBaseTheme" parent="android:style/Theme.Black.NoTitleBar.Fullscreen">
-        <item name="android:windowIsTranslucent">true</item>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
     </style>
 
     <style name="Theme.AppStartLoadDrawable" parent="android:Theme">
