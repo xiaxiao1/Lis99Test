@@ -9,7 +9,19 @@
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/viewBanner"
         android:layout_width="match_parent"
-        android:layout_height="135dp"/>
+        android:layout_height="135dp"
+        android:visibility="gone"
+        />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="8dip"
+        android:background="@color/pull_bg" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
 
     <LinearLayout
         style="@style/fill_wrap"
@@ -40,6 +52,7 @@
                 android:layout_marginTop="6dp"
                 android:text="俱乐部排行"
                 android:textColor="@color/color_six"
+                android:textSize="10sp"
                 />
 
         </LinearLayout>
@@ -64,6 +77,7 @@
                 android:layout_marginTop="6dp"
                 android:text="领队排行"
                 android:textColor="@color/color_six"
+                android:textSize="10sp"
                 />
 
         </LinearLayout>
@@ -89,6 +103,7 @@
                 android:layout_marginTop="6dp"
                 android:text="最新热帖"
                 android:textColor="@color/color_six"
+                android:textSize="10sp"
                 />
 
         </LinearLayout>
@@ -113,6 +128,7 @@
                 android:layout_marginTop="4dp"
                 android:text="专题"
                 android:textColor="@color/color_six"
+                android:textSize="10sp"
                 />
 
         </LinearLayout>

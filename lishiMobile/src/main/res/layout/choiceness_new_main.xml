@@ -105,11 +105,6 @@
 
         <View
             style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <View
-            style="@style/fill_wrap"
             android:layout_height="8dip"
             android:background="@color/pull_bg" />
 

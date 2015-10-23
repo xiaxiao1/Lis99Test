@@ -10,7 +10,7 @@
         android:layout_height="@dimen/ls_page_title_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@color/text_color_blue" >
+        android:background="@drawable/title_bar_bg" >
 
         <ImageView
             android:id="@+id/iv_back"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="全部装备"
-            android:textColor="@color/white"
+            android:textColor="@color/title_bar_text"
             android:textSize="18sp" />
 
        

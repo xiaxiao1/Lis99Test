@@ -5,6 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:descendantFocusability="blocksDescendants"
+              android:background="@color/white"
     >
 
     <RelativeLayout
@@ -45,6 +46,8 @@
             />
 
         <Button
+            android:layout_centerVertical="true"
+            android:gravity="center"
             android:focusable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +55,7 @@
             android:id="@+id/btn_concern"
             android:background="@drawable/choiceness_consern"
             android:textColor="@color/color_nine"
+            android:textSize="12sp"
             />
 
 
@@ -89,7 +93,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
+        android:padding="10dp"
 
         >
 
@@ -109,10 +113,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/iv_like"
-                android:src="@drawable/topic_like_hand"
+                android:src="@drawable/like_button"
                 />
 
             <TextView
+                android:layout_marginTop="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
@@ -140,13 +145,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_title"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:id="@+id/tv_reply"
             android:textSize="12sp"
             android:text="1688则评论"
             android:textColor="@color/color_nine"
             />
-
 
 
     </RelativeLayout>

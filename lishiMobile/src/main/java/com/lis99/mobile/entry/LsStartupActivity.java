@@ -61,9 +61,9 @@ public class LsStartupActivity extends ActivityPattern {
     private boolean test = false;
 
     private ImageView iv_img;
-    private ImageView iv_info;
     private ImageView iv_channel;
     private ImageView iv_bg;
+    private ImageView iv_name;
 
     private Animation animation_img, animation_info, animation_scale;
 
@@ -116,19 +116,21 @@ public class LsStartupActivity extends ActivityPattern {
 //		ll_startup = (LinearLayout) findViewById(R.id.ll_startup);
 
         iv_img = (ImageView) findViewById(R.id.iv_img);
-        iv_info = (ImageView) findViewById(R.id.iv_info);
         iv_channel = (ImageView) findViewById(R.id.iv_channel);
+        iv_name = (ImageView) findViewById(R.id.iv_name);
 
         //＝＝＝＝＝＝＝＝＝＝＝启动Icon ＝＝＝＝＝＝＝＝＝＝＝
         StartLogoOption.showStartLogoOption(iv_channel);
 
-        iv_img.setVisibility(View.INVISIBLE);
-        iv_info.setVisibility(View.INVISIBLE);
+//        animation_img = AnimationUtils.loadAnimation(this, R.anim.star_img_time);
+//        animation_info = AnimationUtils.loadAnimation(this, R.anim.star_info_time);
+//
+//        animation_scale = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_scale_anim_in);
 
-        animation_img = AnimationUtils.loadAnimation(this, R.anim.star_img_time);
-        animation_info = AnimationUtils.loadAnimation(this, R.anim.star_info_time);
 
-        animation_scale = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_scale_anim);
+        animation_img = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_forground_in);
+        animation_info = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_new_logo_in);
+        animation_scale = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_scale_anim_in);
 
 
         iv_ad = (ImageView) findViewById(R.id.iv_ad);
@@ -211,7 +213,9 @@ public class LsStartupActivity extends ActivityPattern {
             }
         }
 
-        startInfoAnimation();
+//        startInfoAnimation();
+
+//        goNext();
 
 //    new Handler().postDelayed(new Runnable() {
 //
@@ -228,7 +232,35 @@ public class LsStartupActivity extends ActivityPattern {
 //        }
 //    }, 600);
 
+        iv_name.startAnimation(animation_info);
+        iv_img.startAnimation(animation_img);
+        iv_bg.startAnimation(animation_scale);
+
+        animation_img.setFillAfter(true);
+        animation_info.setFillAfter(true);
+        animation_scale.setFillAfter(true);
+
+        animation_scale.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                animation.setFillAfter(true);
+                startAD();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
 }
+
+
 
 
     private void startAD ()
@@ -256,63 +288,78 @@ public class LsStartupActivity extends ActivityPattern {
         }
     }
 
-    private void startInfoAnimation() {
+//    private void startInfoAnimation() {
+//
+////        iv_bg.startAnimation(animation_scale);
+//
+//        iv_ad.setVisibility(View.GONE);
+//        iv_info.startAnimation(animation_info);
+//
+//        animation_info.setAnimationListener(new Animation.AnimationListener() {
+//            @Override
+//            public void onAnimationStart(Animation animation) {
+//                iv_info.setVisibility(View.VISIBLE);
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//                animation.setFillAfter(true);
+//
+//                startImgAnimation();
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//
+//            }
+//        });
+//    }
 
-//        iv_bg.startAnimation(animation_scale);
-
-        iv_ad.setVisibility(View.GONE);
-        iv_info.startAnimation(animation_info);
-
-        animation_info.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                iv_info.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                animation.setFillAfter(true);
-
-                startImgAnimation();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
-
-    private void startImgAnimation() {
-        iv_img.setVisibility(View.VISIBLE);
-        iv_img.startAnimation(animation_img);
-        animation_img.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                animation.setFillAfter(true);
-//                goNext();
-                startAD();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
+//    private void startImgAnimation() {
+//        iv_img.setVisibility(View.VISIBLE);
+//        iv_img.startAnimation(animation_img);
+//        animation_img.setAnimationListener(new Animation.AnimationListener() {
+//            @Override
+//            public void onAnimationStart(Animation animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//                animation.setFillAfter(true);
+////                goNext();
+//                startAD();
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//
+//            }
+//        });
+//    }
 
     private void goNext() {
+
         Intent intent = new Intent(LsStartupActivity.this,
                 NewHomeActivity.class);
         //传送push信息
         intent.putExtra(PushManager.TAG, PushManager.getInstance().getPushModel(LsStartupActivity.this.getIntent()));
         startActivity(intent);
+
+        overridePendingTransition(R.anim.ls_alpha_in, R.anim.ls_alpha_out);
+
         finish();
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//
+//
+//            }
+//        }, 1000);
+
+
     }
 
     private void doWechatLogin() {

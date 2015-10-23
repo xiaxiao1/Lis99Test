@@ -279,6 +279,10 @@ public class FragmentChoicenessList extends Fragment  implements
                 break;
             case R.id.layout_lis_special:
                 startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
+
+//                intent = new Intent(getActivity(), MyTestActivityWebView.class);
+//                startActivity(intent);
+
                 break;
         }
     }
@@ -302,7 +306,7 @@ public class FragmentChoicenessList extends Fragment  implements
 
         if ( bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() == 0 ) return;
 
-        ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner, ImageUtil.getImageOptionsClubAD(), ImageUtil.getImageLoading(iv_load, banner));
+        ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
 
     }
 
@@ -346,6 +350,7 @@ public class FragmentChoicenessList extends Fragment  implements
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
                 intent.putExtra("clubID", item.id);
                 startActivity(intent);
+
                 break;
         }
 

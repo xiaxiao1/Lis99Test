@@ -404,6 +404,10 @@ public class LSRequestManager
 	/**加入俱乐部*/
 	public void addClub ( String clubID, CallBack call )
 	{
+		if ( !Common.isLogin(LSBaseActivity.activity) )
+		{
+			return;
+		}
 		String userID = DataManager.getInstance().getUser().getUser_id();
 
 		BaseModel model = new BaseModel();
@@ -446,6 +450,11 @@ public class LSRequestManager
 	/**添加关注*/
 	public void getFriendsAddAttention ( int AttentionId, CallBack call )
 	{
+		if ( !Common.isLogin(LSBaseActivity.activity))
+		{
+			return;
+		}
+
 		String userID = DataManager.getInstance().getUser().getUser_id();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -460,6 +469,10 @@ public class LSRequestManager
 /**点赞*/
 	public void clubTopicLike ( int topicid, CallBack callBack )
 	{
+		if ( !Common.isLogin(LSBaseActivity.activity))
+		{
+			return;
+		}
 		String userID = DataManager.getInstance().getUser().getUser_id();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.ChoicenessModel.Omnibuslist;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
@@ -210,7 +211,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		}
 		else
 		{
-			holder.iv_like.setImageResource(R.drawable.topic_like_hand);
+			holder.iv_like.setImageResource(R.drawable.like_button);
 		}
 
 		if ( item.attenStatus == 1 )
@@ -248,6 +249,11 @@ public class ChoicenessAdapter extends BaseAdapter
 			@Override
 			public void onClick(View view) {
 				if ( item.LikeStatus == 1 ) return;
+
+				if ( !Common.isLogin(LSBaseActivity.activity))
+				{
+					return;
+				}
 
 				item.LikeStatus = 1;
 

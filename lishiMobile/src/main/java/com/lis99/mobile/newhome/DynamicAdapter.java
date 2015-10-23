@@ -100,7 +100,7 @@ public class DynamicAdapter extends MyBaseAdapter {
         }
         else
         {
-            holder.iv_like.setImageResource(R.drawable.topic_like_hand);
+            holder.iv_like.setImageResource(R.drawable.like_button);
         }
 
         final Holder finalHolder = holder;

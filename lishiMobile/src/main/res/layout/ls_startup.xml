@@ -7,6 +7,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:background="@color/black"
         >
 
         <ImageView
@@ -16,13 +17,22 @@
             android:id="@+id/iv_bg"
             />
 
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/star_img"
+            android:id="@+id/iv_img"
+            />
+
     <ImageView
-        android:id="@+id/topImage"
+        android:id="@+id/iv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/ls_startup_logo_top"
-        android:background="@drawable/star_name" />
+        android:layout_centerInParent="true"
+        android:src="@drawable/star_name"
+        android:paddingBottom="100dp"
+        />
 
 
     <ImageView
@@ -34,30 +44,13 @@
         android:layout_marginBottom="10dip"
         />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/star_img"
-        android:id="@+id/iv_img"
-        android:layout_above="@id/iv_channel"
-        android:layout_marginBottom="10dip"
-        />
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/star_info"
-        android:layout_above="@id/iv_img"
-        android:layout_marginBottom="10dip"
-        android:id="@+id/iv_info"
-        />
 
     </RelativeLayout>
 
     <ImageView
+        android:visibility="gone"
         android:background="@color/white"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
