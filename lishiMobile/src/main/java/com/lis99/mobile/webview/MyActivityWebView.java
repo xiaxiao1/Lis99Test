@@ -97,7 +97,7 @@ public class MyActivityWebView extends LSBaseActivity
 		}
 		else
 		{
-			setRightView(R.drawable.club_share_nul);
+			setRightView(R.drawable.share);
 		}
 
 		layout_main = (RelativeLayout) findViewById(R.id.layout_main);

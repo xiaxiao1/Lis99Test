@@ -1243,9 +1243,9 @@ public class ImageUtil
 	public static DisplayImageOptions getImageOptionsClubAD()
 	{
 		return new DisplayImageOptions.Builder()
-				.showImageOnLoading(R.drawable.club_banner_default)
-				.showImageForEmptyUri(R.drawable.club_banner_default)
-				.showImageOnFail(R.drawable.club_banner_default)
+				.showImageOnLoading(R.drawable.club_topic_default)
+				.showImageForEmptyUri(R.drawable.club_topic_default)
+				.showImageOnFail(R.drawable.club_topic_default)
 				.cacheInMemory(true)
 				.considerExifParams(true)
 				.cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中

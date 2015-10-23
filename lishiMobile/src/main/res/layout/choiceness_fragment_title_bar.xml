@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="@dimen/title_height"
-              android:background="@color/text_color_blue"
+              android:background="@color/pull_bg"
               android:gravity="center"
               android:orientation="vertical"
     >
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="搜索俱乐部、话题、线路活动"
             android:textSize="13sp"
-            android:textColor="@color/white"
+            android:textColor="#c6b6a7"
             />
 
     </LinearLayout>

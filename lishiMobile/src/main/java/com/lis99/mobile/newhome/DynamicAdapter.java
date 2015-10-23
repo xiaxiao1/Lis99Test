@@ -2,11 +2,12 @@ package com.lis99.mobile.newhome;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -14,6 +15,7 @@ import com.lis99.mobile.club.model.DynamicListModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -23,8 +25,13 @@ import java.util.ArrayList;
  * Created by yy on 15/8/13.
  */
 public class DynamicAdapter extends MyBaseAdapter {
+
+
+    private Animation animation;
+
     public DynamicAdapter(Context c, ArrayList listItem) {
         super(c, listItem);
+        animation = AnimationUtils.loadAnimation(c, R.anim.like_anim_rotate);
     }
 
     @Override
@@ -32,26 +39,27 @@ public class DynamicAdapter extends MyBaseAdapter {
         Holder holder = null;
         if ( view == null )
         {
-            view = View.inflate(mContext, R.layout.dynamic_item, null);
+//            view = View.inflate(mContext, R.layout.dynamic_item, null);
+            view = View.inflate(mContext, R.layout.choiceness_new_topic, null);
             holder = new Holder();
 
-            holder.roundedImageView = (RoundedImageView) view.findViewById(R.id.roundedImageView);
-            holder.vipStar = (ImageView) view.findViewById(R.id.vipStar);
-            holder.tv_name = (TextView) view.findViewById(R.id.tv_name);
-            holder.tv_time = (TextView) view.findViewById(R.id.tv_time);
-            holder.tv_info = (TextView) view.findViewById(R.id.tv_info);
-            holder.layout_info_img = (RelativeLayout) view.findViewById(R.id.layout_info_img);
-            holder.iv_info = (RoundedImageView) view.findViewById(R.id.iv_info);
-            holder.iv_active = (ImageView) view.findViewById(R.id.iv_active);
-            holder.tv_club = (TextView) view.findViewById(R.id.tv_club);
+            holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+            holder.roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
+            holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
+            holder.tv_like = (TextView) view.findViewById(R.id.tv_like);
             holder.tv_reply = (TextView) view.findViewById(R.id.tv_reply);
-            holder.tv_style = (TextView) view.findViewById(R.id.tv_style);
-            holder.dynamic_item_title = (TextView) view.findViewById(R.id.dynamic_item_title);
-            holder.dynamic_item_title1 = (TextView) view.findViewById(R.id.dynamic_item_title1);
+            holder.tv_name = (TextView) view.findViewById(R.id.tv_name);
 
-            holder.tv_actve = (TextView) view.findViewById(R.id.tv_actve);
+            holder.layout_like =  view.findViewById(R.id.layout_like);
+            holder.vipStar = (ImageView) view.findViewById(R.id.vipStar);
+            holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
 
-            holder.layout_user = view.findViewById(R.id.layout_user);
+            holder.iv_like = (ImageView) view.findViewById(R.id.iv_like);
+
+            holder.btn_concern = (Button) view.findViewById(R.id.btn_concern);
+
+            holder.btn_concern.setBackgroundResource(0);
+            holder.btn_concern.setTextColor(mContext.getResources().getColor(R.color.color_nine));
 
             view.setTag(holder);
         }
@@ -64,23 +72,6 @@ public class DynamicAdapter extends MyBaseAdapter {
 
         if ( item == null ) return view;
 
-        if ( item.category == 0 )
-        {
-            holder.iv_active.setVisibility(View.GONE);
-            holder.dynamic_item_title.setVisibility(View.VISIBLE);
-            holder.dynamic_item_title1.setVisibility(View.INVISIBLE);
-            holder.dynamic_item_title.setText(item.replycontent);
-            holder.dynamic_item_title1.setText(item.replycontent);
-            holder.tv_actve.setText("发布了一个话题");
-        }
-        else
-        {
-            holder.iv_active.setVisibility(View.VISIBLE);
-            holder.dynamic_item_title.setVisibility(View.GONE);
-            holder.dynamic_item_title1.setVisibility(View.GONE);
-            holder.tv_actve.setText("发布了一个活动");
-        }
-
         if ( item.is_vip == 0 )
         {
             holder.vipStar.setVisibility(View.GONE);
@@ -90,37 +81,50 @@ public class DynamicAdapter extends MyBaseAdapter {
             holder.vipStar.setVisibility(View.VISIBLE);
         }
 
-        ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView, ImageUtil.getclub_topic_headImageOptions());
+        ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
 
-        if ( TextUtils.isEmpty(item.image) )
-        {
-            holder.layout_info_img.setVisibility(View.GONE);
-            holder.iv_active.setVisibility(View.GONE);
-        }
-        else
-        {
-            holder.layout_info_img.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(item.image, holder.iv_info, ImageUtil.getclub_topic_imageOptions());
-        }
+
+        ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
 
         holder.tv_name.setText(item.nickname);
-        holder.tv_time.setText(item.createtime);
-        holder.tv_info.setText(item.topic_title);
+        holder.tv_reply.setText("" + item.replytot + "则评论");
+        holder.tv_like.setText(""+item.likeNum);
+        holder.tv_title.setText(item.topic_title);
+        holder.btn_concern.setText(item.createtime);
 
-        holder.tv_club.setText(item.club_title);
-        holder.tv_reply.setText(""+item.replytot);
 
-        if ( !TextUtils.isEmpty(item.catename))
+
+        if ( item.likeStatus == 1 )
         {
-            holder.tv_style.setText(item.catename);
-            holder.tv_style.setVisibility(View.VISIBLE);
+            holder.iv_like.setImageResource(R.drawable.like_button_press);
         }
         else
         {
-            holder.tv_style.setVisibility(View.INVISIBLE);
+            holder.iv_like.setImageResource(R.drawable.like_button);
         }
 
-        holder.layout_user.setOnClickListener(new View.OnClickListener() {
+        final Holder finalHolder = holder;
+        holder.layout_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if ( item.likeStatus == 1 ) return;
+
+                item.likeStatus = 1;
+
+                item.likeNum += 1;
+
+                finalHolder.tv_like.setText(""+item.likeNum);
+
+                finalHolder.iv_like.setImageResource(R.drawable.like_button_press);
+
+                finalHolder.iv_like.startAnimation(animation);
+
+                LSRequestManager.getInstance().clubTopicLike(item.topic_id,null);
+            }
+        });
+
+
+        holder.roundedImageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Common.goUserHomeActivit((Activity)mContext, ""+item.user_id);
@@ -133,13 +137,11 @@ public class DynamicAdapter extends MyBaseAdapter {
 
     class Holder
     {
-        RoundedImageView roundedImageView;
-        ImageView vipStar;
-        TextView tv_name, tv_time, tv_info;
-        RelativeLayout layout_info_img;
-        RoundedImageView iv_info;
-        ImageView iv_active;
-        TextView tv_club, tv_reply, tv_style, dynamic_item_title, dynamic_item_title1, tv_actve;
-        View layout_user;
+        RoundedImageView roundedImageView1;
+        ImageView vipStar, iv_bg, iv_like, iv_load;
+        TextView tv_name, tv_like, tv_title, tv_reply;
+        Button btn_concern;
+        View layout_like;
+
     }
 }

@@ -21,9 +21,152 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a03b44e-36f7-4409-be8b-3e34d68bd55e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/attentionNoClick.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/canvasloading.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/choiceness_consern.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/choiceness_like_bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/clubHeaderImg1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/clubHeaderImg1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/clubHeaderImg2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/clubHeaderImg3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/clubHeaderImg4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/clubHeaderImg5.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/clubMenuIcon1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/clubMenuIcon1All.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/clubMenuIcon2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/clubMenuIcon2All.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/clubMenuIcon3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/clubMenuIcon3All.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_search_title_left.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/contentImg.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/detail_favorite.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/detail_favorited.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ganhuo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/img/headerImg.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/hwd_arrow_down.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/hwd_map.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/hwd_search.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/jingpin.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/likeNoClickIcon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/likeNoClickIconActive.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/loading.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/more_special.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/next.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/next_press.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/share.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_bg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_logo_huawei.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_logo_sougou.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/tab_line.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/title1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/img/title2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/title_bar_bg.9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/tubu.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ChoicenessBannerModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/FragmentChoicenessList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/FragmentChoicenessNewMain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/FragmentDinamicList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragmentNew.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/webview/MyTestActivityWebView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable/choiceness_list_divider.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_new_head.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_new_main.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_new_topic.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable/dynamic_btn_next.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/indexAndroid.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/js/jquery-1.11.0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/list_line.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/js/load.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/anim/ls_alpha_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/anim/ls_alpha_out.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/anim/ls_lauch_forground_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/anim/ls_lauch_new_logo_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/anim/ls_lauch_scale_anim_in.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/styleIosAndroid.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/web/css/styleIosAndroid1.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-hdpi/detail_favorite.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-hdpi/detail_favorited.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-hdpi/hwd_arrow_down.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-hdpi/hwd_map.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-hdpi/hwd_search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-hdpi/share.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_bg.jpg" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable/ls_equip_star.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable/ls_equip_star_score.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_banner_dot.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_banner_dot.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_banner_dot_select.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_banner_dot_select.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_reply_chose_image_bg.9.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_reply_chose_image_bg.9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_share_nul.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/club_share_nul.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/assets/emoticons/jindunyu.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/assets/emoticons/jindunyu.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/join_null.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/join_null.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_big_star.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_big_star.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_big_star_none.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_big_star_none.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_little_star.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_little_star.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_little_star_none.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_little_star_none.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_star.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_star.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_star_gray.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_star_gray.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_page_back_icon.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_page_back_icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/mine_icon_setting.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/mine_icon_setting.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/mywebview_delete.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/mywebview_delete.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/search_bar.9.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/search_bar.9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/search_icon.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/search_icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_img.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_img.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_name.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/star_name.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/C.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/C.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/ChoicenessAdapter.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/ChoicenessAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ChoicenessModel.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ChoicenessModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubDetailList.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubDetailList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubTopicNewActiveInfo.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubTopicNewActiveInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/DynamicAdapter.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/DynamicAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/DynamicListModel.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/DynamicListModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/ImageUtil.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/ImageUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubApplyListActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubApplyListActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubDetailActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubDetailActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicNewActive.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicNewActive.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubTopicReplyActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubTopicReplyActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/equip/LSEquipInfoActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/equip/LSEquipInfoActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/LSRequestManager.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/LSRequestManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/LsStartupActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/LsStartupActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/webview/MyActivityWebView.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/webview/MyActivityWebView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/emotion/MyEmotionsUtil.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/emotion/MyEmotionsUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/NewHomeActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/NewHomeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/StartLogoOption.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/util/StartLogoOption.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_club_brief.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_club_brief.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_buy.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_buy.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_equi_cate.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_equi_cate.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_equi_filter.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_equi_filter.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_mine_apply.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_mine_apply.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_mine_apply_manage.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_ls_mine_apply_manage.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_detail.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_publish2.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_publish2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_topic_reply.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_topic_reply.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsequip_comment.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsequip_comment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsuser_home.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_shop_detail.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_shop_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_title.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_title.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build.gradle" afterPath="$PROJECT_DIR$/lishiMobile/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_fragment_title_bar.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_fragment_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_item_subject.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_item_subject.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_banner.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_banner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_level_list.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_level_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_reply_view.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_reply_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_comment_item.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_comment_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header_active.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header_active.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/values/color.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/values/color.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/dynamic_main.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/dynamic_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/emoticons_grid.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/emoticons_grid.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/fragment_lsequip.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/fragment_lsequip.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/fragment_title.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/fragment_title.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_info.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_info.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_info_head.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_info_head.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_startup.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_startup.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/search_title_bar.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/search_title_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/androidSDK/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/androidSDK/src/main/res/values/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/values/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/topic_new_active_info.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/topic_new_active_info.xml" />
     </list>
     <ignored path="lishi-Android-Studio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +194,7 @@
                 <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
               </PATH_ELEMENT>
               <PATH_ELEMENT>
-                <option name="myItemId" value="lishi-Android-Studio" />
+                <option name="myItemId" value="AndroidStudio" />
                 <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
               </PATH_ELEMENT>
             </PATH>
@@ -65,11 +208,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="club_topic_header.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="201" column="0" selection-start-line="135" selection-start-column="8" selection-end-line="201" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="club_topic_header_active.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header_active.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="434" column="25" selection-start-line="434" selection-start-column="25" selection-end-line="434" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LSClubTopicActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubTopicActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="93" column="30" selection-start-line="93" selection-start-column="30" selection-end-line="93" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LSClubTopicHead.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="368" column="23" selection-start-line="368" selection-start-column="23" selection-end-line="368" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -78,40 +257,8 @@
       <file leaf-file-name="LSClubTopicHeadActive.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7037036">
+            <state vertical-scroll-proportion="0.0">
               <caret line="130" column="49" selection-start-line="130" selection-start-column="49" selection-end-line="130" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="club_topic_header_active.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header_active.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="434" column="25" selection-start-line="434" selection-start-column="25" selection-end-line="434" selection-end-column="25" />
-              <folding>
-                <element signature="e#637#669#0" expanded="true" />
-                <element signature="e#2529#2550#0" expanded="true" />
-                <element signature="e#2956#2977#0" expanded="true" />
-                <element signature="e#4684#4710#0" expanded="true" />
-                <element signature="e#6187#6208#0" expanded="true" />
-                <element signature="e#6848#6869#0" expanded="true" />
-                <element signature="e#9754#9780#0" expanded="true" />
-                <element signature="e#16187#16208#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LSClubTopicHead.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="368" column="50" selection-start-line="368" selection-start-column="50" selection-end-line="368" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -127,16 +274,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LsZhuangbeiDetail.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/LsZhuangbeiDetail.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="30" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LsXuanActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/LsXuanActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -147,16 +284,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="club_topic_header.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml">
+      <file leaf-file-name="LsZhuangbeiDetail.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/LsZhuangbeiDetail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.862069">
-              <caret line="201" column="25" selection-start-line="135" selection-start-column="8" selection-end-line="201" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="30" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="30" />
               <folding />
             </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -7726,6 +7860,7 @@
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header_active.xml" />
+        <option value="$PROJECT_DIR$/lishiMobile/build.gradle" />
       </list>
     </option>
   </component>
@@ -7740,10 +7875,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="8" />
     <option name="y" value="23" />
-    <option name="width" value="1432" />
-    <option name="height" value="829" />
+    <option name="width" value="1280" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -7769,9 +7903,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -7779,85 +7910,22 @@
               <option name="myItemId" value="lishi-Android-Studio" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lishi-Android-Studio" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishiMobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="lishi-Android-Studio" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishiMobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishi-Android-Studio" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishiMobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="club" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishi-Android-Studio" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lishiMobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -8064,36 +8132,36 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="8" y="23" width="1432" height="829" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <editor active="false" />
     <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3997195" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26647967" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16720517" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19951534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1676259" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40252453" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3997195" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40252453" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -8122,31 +8190,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubTopicCommentAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/model/ClubTopicReplyList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_comment_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="129" column="42" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
@@ -8182,14 +8241,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubTopicActivity.java">
@@ -8212,19 +8271,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_comment_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="129" column="42" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
@@ -8260,14 +8318,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="191" column="46" selection-start-line="191" selection-start-column="46" selection-end-line="191" selection-end-column="46" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/androidSDK/build.gradle">
@@ -8307,14 +8365,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsequip_comment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSEquipAdapter.java">
@@ -8374,14 +8432,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_topic.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/ActivityPattern.java">
@@ -8392,14 +8450,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_topview.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.586207">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="55" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/equip/LSEquipCommentActivity.java">
@@ -8411,14 +8469,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsequip_comment.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33261803">
           <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="87" selection-end-column="31" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSSelectFragment.java">
@@ -8462,7 +8520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="34" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -8475,14 +8532,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_comment_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="129" column="42" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubTopicActivity.java">
@@ -8496,20 +8553,20 @@
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="368" column="50" selection-start-line="368" selection-start-column="50" selection-end-line="368" selection-end-column="50" />
+          <caret line="368" column="23" selection-start-line="368" selection-start-column="23" selection-end-line="368" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.862069">
-          <caret line="201" column="25" selection-start-line="135" selection-start-column="8" selection-end-line="201" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="201" column="0" selection-start-line="135" selection-start-column="8" selection-end-line="201" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/LsZhuangbeiDetail.java">
@@ -8530,30 +8587,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHeadActive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7037036">
+        <state vertical-scroll-proportion="0.0">
           <caret line="130" column="49" selection-start-line="130" selection-start-column="49" selection-end-line="130" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54404145">
+          <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_topic_header_active.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="434" column="25" selection-start-line="434" selection-start-column="25" selection-end-line="434" selection-end-column="25" />
-          <folding>
-            <element signature="e#637#669#0" expanded="true" />
-            <element signature="e#2529#2550#0" expanded="true" />
-            <element signature="e#2956#2977#0" expanded="true" />
-            <element signature="e#4684#4710#0" expanded="true" />
-            <element signature="e#6187#6208#0" expanded="true" />
-            <element signature="e#6848#6869#0" expanded="true" />
-            <element signature="e#9754#9780#0" expanded="true" />
-            <element signature="e#16187#16208#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
   </component>

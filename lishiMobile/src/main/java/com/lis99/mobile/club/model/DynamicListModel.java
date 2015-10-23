@@ -30,6 +30,10 @@ public class DynamicListModel extends BaseModel {
         public String catename;
         public String image;
         public String replycontent;
+
+        public int likeStatus;
+
+        public int likeNum;
     }
 
 }

@@ -36,6 +36,9 @@ public class ChoicenessModel extends BaseModel
 		public String subhead;
 		public String image;
 		public String url;
+		/**
+		 * 精选类型(1: 线下活动帖有文字，2：话题帖有文字 3：URL 4：专题 5: 线下活动帖无文字  6：话题帖无文字  7：标签 8：线上活动 9:线上活动帖有文字)
+		 */
 		public int type;
 		public String nickname;
 		public String headicon;
@@ -46,6 +49,13 @@ public class ChoicenessModel extends BaseModel
 		public String club_logo;
 		public String club_title;
 		public int tag_id;
+		public int likeNum;
+		//是否关注过（0：未关注 1：已关注）
+		public int LikeStatus;
+//关注状态（0 :没关注 1：已关注）
+		public int attenStatus;
+
+		public String user_id;
 	}
 		
 }

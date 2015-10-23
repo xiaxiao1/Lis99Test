@@ -1,44 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/pull_bg"
-                android:paddingTop="2dip"
-                android:paddingBottom="2dip"
+                android:background="@color/white"
+              android:orientation="vertical"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dip"
+        android:layout_height="220dp"
         >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="202dip"
-            android:background="@drawable/choiceness_image_bg"
-            />
-
         <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginLeft="1px"
-            android:layout_marginRight="1px"
             android:id="@+id/iv_bg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/choiceness_height"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:corner_radius="3dip"
+            app:corner_radius="0px"
             android:adjustViewBounds="true"
             app:border_width="0px"
             />
 
         <com.lis99.mobile.club.widget.RoundedImageView
-            android:layout_marginLeft="1px"
-            android:layout_marginRight="1px"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/choiceness_height"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:corner_radius="3dip"
+            app:corner_radius="0dip"
             android:adjustViewBounds="true"
             app:border_width="0px"
             android:background="@drawable/choiceness_subject_forground"
@@ -62,6 +50,7 @@
             >
 
             <TextView
+                android:layout_marginTop="6dp"
                 android:id="@+id/tv_title"
                 style="@style/fill_wrap"
                 android:gravity="center"
@@ -73,6 +62,7 @@
                 android:text="@string/temp_string"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 />
 
             <TextView
@@ -95,14 +85,12 @@
 
     </RelativeLayout>
 
-    <ImageView
-        style="@style/wrap_wrap"
-        android:src="@drawable/choiceness_label"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dip"
-        android:layout_marginRight="3dip"
-        android:id="@+id/iv_subject"
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/list_line"
+        android:id="@+id/line"
+        android:layout_alignParentBottom="true"
         />
 
-</RelativeLayout>
+</LinearLayout>

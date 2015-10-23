@@ -56,7 +56,9 @@
 	<!-- 上下拉刷新 -->
 	<color name="pull_text_color">#999999</color>
 	
-	<color name="title_bar_bg">#49a34b</color>
+	<!--<color name="title_bar_bg">#ffffff</color>-->
+	<color name="title_bar_bg">#ffffff</color>
+	<color name="title_bar_text">#73706e</color>
 	
 	
 	
@@ -86,5 +88,5 @@
 	<color name="club_login_color">#ac9f92</color>
 	
 	<color name="topic_like_color">#fb502e</color>
-    
+
 </resources>

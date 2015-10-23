@@ -338,7 +338,7 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 					replyImageView.setImageBitmap(bitmap);
 					break;
 			}
-			changeButtonBg();
+//			changeButtonBg();
 		} catch (Exception e)
 		{
 			e.printStackTrace();

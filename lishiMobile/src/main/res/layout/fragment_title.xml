@@ -3,7 +3,7 @@
     android:id="@+id/titlehead"
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_height"
-    android:background="@color/text_color_blue" >
+    android:background="@drawable/title_bar_bg" >
 
     <RelativeLayout
         android:id="@+id/titleLeft"
@@ -50,7 +50,7 @@
         android:layout_toLeftOf="@+id/titleRight"
         android:layout_toRightOf="@+id/titleLeft"
         android:gravity="center"
-        android:textColor="#FFF"
+        android:textColor="@color/title_bar_text"
         android:textSize="@dimen/title_text_height" />
 
 </RelativeLayout>

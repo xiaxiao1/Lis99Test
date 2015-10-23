@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="讨论区"
-                android:textColor="@color/title_bar_bg"
+                android:textColor="@color/text_color_blue"
                 android:textSize="15sp" />
 
             <View
@@ -75,7 +75,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/title_bar_bg" />
+                android:background="@color/text_color_blue" />
         </RelativeLayout>
         
         
@@ -101,7 +101,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/title_bar_bg" />
+                android:background="@drawable/title_bar_bg" />
         </RelativeLayout>
 
        

@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/iv_title_bg"
             style="@style/fill_fill"
-            android:background="@color/title_bar_bg" />
+            android:background="@drawable/title_bar_bg" />
 
         <RelativeLayout
             android:id="@+id/titleLeft"
@@ -68,7 +68,7 @@
             android:layout_centerInParent="true"
             android:singleLine="true"
             android:text="点评"
-            android:textColor="@color/white"
+            android:textColor="@color/title_bar_text"
             android:textSize="@dimen/title_text_height" />
 
 

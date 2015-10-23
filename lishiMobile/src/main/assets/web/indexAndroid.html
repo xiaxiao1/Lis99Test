@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta  name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">	
+		<meta name="format-detection" content="telephone=no">
+		<title>首页</title>
+		<link href="css/styleIosAndroid.css?ver=3" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="js/load.js"></script>
+	</head>
+	<body onload="loading();">
+		
+		<div class="clubMain">
+			<div class="mainContent">
+			    <!--<div class="clubMenu">
+			      <div class="clubMenuItem clubMenu1"></div>
+			      <div class="clubMenuItem clubMenu2"></div>
+			      <div class="clubMenuItem clubMenu3"></div>
+			    </div>-->
+			    
+			    <div class="clubMenu">
+			    	<div class="clubMenuContent">
+			    		<a  onclick="window.LS.ClubTabClick(1);"><img src="css/img/clubMenuIcon1All.png"/></a>
+			    		<a  onclick="window.LS.ClubTabClick(2);"><img src="css/img/clubMenuIcon2All.png"/></a>
+			    		<a  onclick="window.LS.ClubTabClick(3);"><img src="css/img/clubMenuIcon3All.png" class="lastImg"/></a>
+			    	</div>
+			      
+			    </div>
+			
+			
+			    
+				<div class="mainItem" id="clubBox">
+					<div class="mainItemTitle title1"></div>
+					<div class="clubList clubItemBox">
+						
+					</div>
+					
+				</div>
+				
+				
+				
+			</div>
+			
+			
+			<div class="loadingImgClass">
+				<div style="display: none;" id="loadingImgBox">	
+				</div>
+				<span style="display: none;" class="wordClass"></span>
+			</div>
+			
+		</div>
+		
+		<div class="mainLoadingMain">
+		<div class="mainLoadingBox"></div>
+		<div class="mainLoading"></div>
+		</div>
+	</body>
+</html>

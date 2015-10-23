@@ -14,6 +14,7 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -21,9 +22,11 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubApplyActivity;
 import com.lis99.mobile.club.LSClubApplyListActivity;
+import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ClubTopicNewActiveInfo;
 import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
@@ -31,6 +34,7 @@ import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 
 /**
  * Created by yy on 15/10/13.
@@ -73,6 +77,14 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
     private LinearLayout layout_detail, layout_club_detail_like,
             layout_club_detail_reply;
 
+    private View equiPanel;
+    private ImageView equiImageView;
+    private TextView equiPriceView;
+    private TextView equiNameView;
+    private RatingBar equiRatingBar;
+
+
+
     public void setInstance (LSClubTopicNewActivity main)
     {
         this.main = main;
@@ -114,6 +126,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
         roundedImageView1 = (RoundedImageView) v.findViewById(R.id.roundedImageView1);
 
+        roundedImageView1.setOnClickListener(this);
+
         tv_icon_name = (TextView) v.findViewById(R.id.tv_icon_name);
         titleView = (TextView) v.findViewById(R.id.titleView);
 
@@ -143,6 +157,14 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 //		layout_club_detail_like.setOnClickListener(this);
         layout_club_detail_reply.setOnClickListener(this);
 
+        equiPanel =  v.findViewById(R.id.equiPanel);
+        equiImageView = (ImageView)  v.findViewById(R.id.equiImageView);
+        equiPriceView = (TextView)  v.findViewById(R.id.equiPriceView);
+        equiNameView = (TextView)  v.findViewById(R.id.equiNameView);
+        equiRatingBar = (RatingBar)  v.findViewById(R.id.equiRatingBar);
+
+
+
     }
 
 
@@ -153,7 +175,42 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
         tv_icon_name.setText(model.club_title);
 
-        tv_time_over.setText("还有" + model.days + "天可以申请");
+        if ( "1".equals(model.days))
+        {
+            tv_time_over.setText("今天" + model.deadline + "截止");
+        }
+        else if ( "0".equals(model.days))
+    {
+        tv_time_over.setText("已截止");
+    }
+        else
+        {
+            tv_time_over.setText("还有" + model.days + "天可以申请");
+        }
+
+
+        if (model.zhuangbei_id != 0) {
+            equiPanel.setVisibility(View.VISIBLE);
+            equiRatingBar.setRating(model.zhuangbei_star);
+            ImageLoader.getInstance().displayImage(model.zhuangbei_image, equiImageView);
+            equiNameView.setText(model.zhuangbei_title);
+            equiPriceView.setText("市场价："+model.zhuangbei_price+"元");
+
+
+            equiPanel.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, LSEquipInfoActivity.class);
+                    intent.putExtra("id", model.zhuangbei_id);
+                    mContext.startActivity(intent);
+                }
+            });
+
+        } else {
+            equiPanel.setVisibility(View.GONE);
+        }
+
+
 
         tv_time.setText(model.times);
 
@@ -239,12 +296,6 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                                         animationDrawable = null;
                                     }
 
-                                    int w = loadedImage.getWidth();
-                                    int h = loadedImage.getHeight();
-                                    int imgh = ImageWidth * h / w;
-                                    android.view.ViewGroup.LayoutParams l = iv_head
-                                            .getLayoutParams();
-                                    l.height = imgh;
                                 }
 
                                 @Override
@@ -429,12 +480,17 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.btn_join:
 
-                if ( !Common.isLogin(main))
+                if (!Common.isLogin(main)) {
+                    return;
+                }
+                //管理员可以直接进入报名管理列表
+                String uid = DataManager.getInstance().getUser().getUser_id();
+                if (Common.replyDelete(model.is_jion, uid))
                 {
+                    doAction();
                     return;
                 }
 
@@ -443,10 +499,19 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                     main.rightAction();
                     Common.toast("任意一种分享方式成功后，进入报名页面");
                 }
+                else
+                {
+                    doAction();
+                }
 
                 break;
             case R.id.layout_club_detail_reply:
                 main.showReplyPanel();
+                break;
+            case R.id.roundedImageView1 :
+                Intent intent = new Intent(mContext, LSClubDetailActivity.class);
+                intent.putExtra("clubID", Common.string2int(model.club_id));
+                mContext.startActivity(intent);
                 break;
         }
     }

@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+/*@font-face{font-family:'方正兰亭细黑'; src:url(iosFont/FANGZHENGLANTINGXIHEI.TTF)}*/
+*{ margin: 0; padding: 0;outline:none;-webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;-webkit-user-select: none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+/*a:focus{-webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;-webkit-user-select: none;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-user-modify:read-write-plaintext-only;}*/
+/**{-webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;-webkit-user-select: none;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-user-modify:read-write-plaintext-only;}*/
+
+body{ background: #f7f3ec;}
+a{ text-decoration: none;/*-webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;-webkit-user-select: none;*/}
+ul,li{list-style: none;}
+
+.clubMain{width: 100%;}
+.mainContent{ width: 100%;}
+
+.clubMenu{ padding: 7px 7.5px;}
+.clubMenu:after{ content: ".";display: block;height: 0;clear: both; visibility: hidden;}
+/*.clubMenuItem{width: ; height: 150px; background-color:#fff;background-size: 90px 90px; background-position: center center; background-repeat: no-repeat;}
+.clubMenu1{ background-image: url(img/clubMenuIcon1.png) }*/
+.clubMenuContent{ width: 102%;}
+.clubMenu img{ width: 31.8%; margin-right: 1%;}
+.clubMenu img.lastImg{margin-right: 0;}
+
+.mainItem{ background: #fff; border: 1px solid #e3dbd0; margin-bottom: 15px;}
+.mainItemTitle{ width: 100%;margin: 15px 0 5px; height: 11.5px; }
+.title1{ background: url(img/title1.png) no-repeat center center;background-size: 115px 11.5px;}
+.title2{ background: url(img/title2.png) no-repeat center center;background-size:109px 11.5px; display: none;}
+
+.clubItemBox{padding-left: 12px;}
+
+.clubItem{ position: relative;}
+.clubItem:after{ content: ".";display: block;height: 0;clear: both; visibility: hidden;}
+.clubHeaderImg{ width: 45px;height: 45px; padding: 17px 0px; float: left; overflow: hidden; float: left; position: absolute; left: 0; top: 0;} 
+.clubHeaderImg img{ width: 44px; height: 44px; border: 1px solid  #e8e2dc; border-radius: 100%;display: inline-block; float: left;}
+
+.clubInfo{ height:45px; padding: 19px 12px 15px 0; margin-left: 57px; border-bottom: 1px solid #eee;}
+.clubTitle{ width: 100%; height: 25px; line-height: 25px;}
+.clubTitle:after{ content: ".";display: block;height: 0;clear: both; visibility: hidden;}
+.clubTitleWord{ color: #73706e; font-size: 15px; float: left;}
+.clubTitleNum{ float: right; color: #d9cfbf; font-size: 10px;}
+.clubConIngo{ width: 100%; overflow: hidden;text-overflow: ellipsis;white-space: pre; font-size: 12px; color: #999; height: 16px; line-height: 16px;}
+.itemMore{ width: 100%; height: 44px;  border-top:1px solid #eee ; margin-top: -1px;}
+.itemMore a{ display: block; height: 44px; line-height: 44px ; color: #ff7800; font-size: 12px; text-align: center;}
+
+.cardTitle{ height: 25px; padding: 15px 12px  15px 12px;}
+.headerImg{ width: 25px; height: 25px; float: left; margin-right: 7.5px;}
+.headerImg img{ width: 25px; height: 25px; display: inline-block;  border-radius: 5px;}
+.headerName{ height: 25px; line-height: 25px; float: left; color: #73706e; font-size: 11px;}
+.attentionBox{ float: right; padding-left: 21.5px; width: 33.5px; height: 23px; line-height: 23px; margin-top: 1px; border: 1px solid #a4a4a4; border-radius: 5px; text-align: left; color: #73706e; font-size: 11px; background: url(img/attentionNoClick.png) no-repeat 9px 7px; background-size: 9px 9px;}
+.cardImg{ width: 100%; height: 100%;}
+.cardImg img{ width: 100%; height: 100%; display: inline-block;}
+.cardInfo{ padding:17.5px 67px 17.5px 12px; position: relative; }
+
+.cardInfoTitle{ width: 100%;color: #73706e; font-size: 15px; overflow: hidden;text-overflow: ellipsis;white-space: pre; height: 20px; line-height: 20px; margin-bottom: 2px;}
+.reviewNum{ color: #999; font-size: 11px; height: 15px; line-height: 15px;}
+.likeBox{ width: 37px; height: 37px; border: 1px solid #a4a4a4; border-radius: 100%; font-size:9.5px; color: #73706e; position: absolute; right: 12px; top:17.5px; background: url(img/likeNoClickIcon.png) no-repeat center 5px ; background-size: 16.5px 16px;}
+.cardInfo .active{ background-image:url(img/likeNoClickIconActive.png) ; background-size: 17px 16px;}
+.likeBox span{ margin-top: 22px; display: inline-block; width: 100%; text-align: center;}
+
+.postsItemFirst .title2{ display: block;}
+
+
+.loadingImgClass {height: 60px;width: 100%;}
+.loadingImgNoHave {height: 50px;margin-bottom: 10px;padding: 0 5px;width: auto;}
+.loadingImgNoHave span {background: #fff;border: 1px solid #e3dbd0;border-radius: 2.5px;color: #ff7800;display: block;font-size: 11px;height: 50px;line-height: 50px;text-align: center;width: 100%;}
+#loadingImgBox { background:  url("img/loading.gif") no-repeat  center center / 200px 60px;display: none;height: 60px;margin-bottom: 5px;width: 100%;}
+
+.mainLoadingBox{ width: 100%; height: 100%; position: fixed; top:0; left: 0; background: #000; opacity: 0.3;}
+.mainLoading{ width: 100%; height: 90px; background: url(img/canvasloading.gif) no-repeat center center; background-size: 89px 90px; position:absolute ; top:200px}

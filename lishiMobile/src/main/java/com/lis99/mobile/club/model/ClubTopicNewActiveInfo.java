@@ -20,11 +20,11 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     public String club_id;
     public String club_title;
     public String club_images;
-    public int is_jion;
+    public String is_jion;
 
     public ArrayList<Taglist> taglist;
 
-    public ArrayList<LikeListModel> likeuserlist;
+    public ArrayList<LikeListModel> lists;
 
     public int category;
     public String catename;
@@ -45,6 +45,13 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     public String createdate;
 
     public int applyStauts;
+
+//装备
+    public int zhuangbei_id;
+    public String zhuangbei_image;
+    public String zhuangbei_title;
+    public String zhuangbei_price;
+    public int zhuangbei_star;
 
     @Override
     public String getTopic_id() {
@@ -73,7 +80,7 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
 
     @Override
     public ArrayList<LikeListModel> getList() {
-        return this.likeuserlist;
+        return this.lists;
     }
 
     @Override

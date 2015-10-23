@@ -16,8 +16,6 @@ import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.choiceness.ActiveAllActivity;
-import com.lis99.mobile.choiceness.ChoicenessAllActivity;
 import com.lis99.mobile.club.adapter.LSClubGridViewAdapter;
 import com.lis99.mobile.club.model.ClubMainListModel;
 import com.lis99.mobile.club.model.ClubMainModel;
@@ -131,7 +129,7 @@ public class LSClubFragment extends LSFragment implements
 		titleRightImage.setOnClickListener(this);
 
 		titleLeftImage = (ImageView) findViewById(R.id.titleLeftImage);
-		titleLeftImage.setImageResource(R.drawable.club_search_title_right);
+		titleLeftImage.setImageResource(R.drawable.hwd_search);
 		titleLeftImage.setOnClickListener(this);
 
 		titleLeft = (RelativeLayout) findViewById(R.id.titleLeft);

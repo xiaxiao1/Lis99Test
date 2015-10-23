@@ -6,14 +6,18 @@
 
 
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+    <style name="AppBaseTheme" parent="android:style/Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 
+    <style name="Theme.AppStartLoadDrawable" parent="android:Theme">
+        <item name="android:windowBackground">@drawable/star_bg</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
-        -->
+    <style name="Theme.AppStartLoadTranslucent" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <!-- Application theme. -->
@@ -183,7 +187,7 @@
     @android:style/Animation">
     <style name="ls_equip_star_big" parent="@android:style/Widget.RatingBar">
 
-        <item name="android:progressDrawable">@drawable/ls_equip_star</item>
+        <item name="android:progressDrawable">@drawable/ls_equip_star_score</item>
         <item name="android:minHeight">13dp</item>
         <item name="android:maxHeight">13dp</item>
 

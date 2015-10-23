@@ -11,7 +11,7 @@
     <RelativeLayout
         style="@style/fill_wrap"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="@dimen/club_detail_head_height" >
 
     <ImageView
         android:id="@+id/iv_head"
@@ -75,6 +75,7 @@
         >
 
         <LinearLayout
+            android:visibility="gone"
             style="@style/wrap_wrap"
             android:gravity="center"
             android:orientation="horizontal"
@@ -208,11 +209,10 @@
             android:layout_height="wrap_content" >
 
             <TextView
+                android:lineSpacingExtra="5dp"
                 android:textColor="#666666"
                 android:id="@+id/tv_location"
                 style="@style/fill_wrap"
-                android:ellipsize="end"
-                android:maxLines="2"
                 android:text="@string/temp_string"
                 android:gravity="center_horizontal"
                 />
@@ -257,13 +257,12 @@
             android:layout_height="wrap_content" >
 
             <TextView
+                android:lineSpacingExtra="5dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:textColor="#666666"
                 android:id="@+id/tv_rmb"
                 style="@style/fill_wrap"
-                android:ellipsize="end"
-                android:singleLine="true"
                 android:text="500.00RMB" />
 
             <ImageView
@@ -287,6 +286,73 @@
                 android:background="#eee" />
         </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/equiPanel"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#f7f3ec"
+        android:layout_marginTop="15dp">
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/equiImageView"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitXY"
+            app:corner_radius="5px"
+            android:layout_marginLeft="7dp"/>
+
+        <TextView
+            android:id="@+id/equiPriceView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="9dp"
+            android:layout_alignBottom="@+id/equiImageView"
+            android:layout_toRightOf="@+id/equiImageView"
+            android:text="市场价：3000元"
+            android:textSize="12sp"
+            android:textColor="#c6b6a7"
+            android:layout_marginLeft="9dp"/>
+
+        <RatingBar
+            android:id="@+id/equiRatingBar"
+            style="@style/ls_equip_star_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/equiPriceView"
+            android:layout_marginBottom="2dp"
+            android:layout_toRightOf="@+id/equiImageView"
+            android:layout_marginLeft="9dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="1" />
+
+
+
+        <TextView
+            android:id="@+id/equiNameView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_toRightOf="@+id/equiImageView"
+            android:layout_above="@+id/equiRatingBar"
+            android:layout_marginBottom="2dp"
+            android:gravity="center_vertical"
+            android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
+            android:maxLines="2"
+            android:textSize="12sp"
+            android:textColor="#c6b6a7"/>
+
+
+
+
+    </RelativeLayout>
 
     <include
         android:layout_marginLeft="10dp"
