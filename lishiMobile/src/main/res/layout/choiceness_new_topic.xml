@@ -68,10 +68,10 @@
 
         <com.lis99.mobile.club.widget.RoundedImageView
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            android:src="@drawable/ls_main_xuan_icon"
+            android:src="@drawable/icon_discount"
             android:id="@+id/iv_bg"
             app:corner_radius="0px"
             app:border_width="0px"

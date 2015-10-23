@@ -82,7 +82,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
     private Activity c;
 
 
-    private int emotionBound = Common.dip2px(20);
+    private int emotionBound = Common.dip2px(25);
 
     private CallBack callBack;
 
@@ -462,7 +462,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
             Drawable d = new BitmapDrawable(LSBaseActivity.activity.getResources(),value);
             d.setBounds(0,0, emotionBound, emotionBound);
                 // 通过图片资源id来得到bitmap，用一个ImageSpan来包装
-                ImageSpan imageSpan = new ImageSpan(d, key);
+                ImageSpan imageSpan = new ImageSpan(d, key, ImageSpan.ALIGN_BASELINE);
                 // 计算该图片名字的长度，也就是要替换的字符串的长度
                 int end = matcher.start() + key.length();
                 // 将该图片替换字符串中规定的位置中

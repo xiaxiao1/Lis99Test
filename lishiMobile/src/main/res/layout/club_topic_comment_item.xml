@@ -44,6 +44,7 @@
         android:textIsSelectable="true"
         android:textSize="15sp"
         android:gravity="top"
+        android:lineSpacingExtra="5dp"
         />
 
     <RelativeLayout

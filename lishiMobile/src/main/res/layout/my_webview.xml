@@ -8,7 +8,7 @@
         android:id="@+id/include1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        layout="@layout/fragment_title" />
+        layout="@layout/activity_title" />
     
     <LinearLayout
         android:layout_width="match_parent"

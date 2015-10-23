@@ -8,7 +8,7 @@
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/viewBanner"
         android:layout_width="match_parent"
-        android:layout_height="145dp"/>
+        android:layout_height="155dp"/>
 
     <LinearLayout
         android:layout_marginTop="8dp"
@@ -114,7 +114,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="更多专栏"
                 android:textColor="#73706e"
                 android:textSize="10sp"
