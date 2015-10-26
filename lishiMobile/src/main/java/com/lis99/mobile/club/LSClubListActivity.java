@@ -56,14 +56,16 @@ public class LSClubListActivity extends LSBaseActivity {
 	TextView brandView;
 	TextView lishiView;
 	TextView cityView;
+	TextView tv_recommend;
 	
 	View brandLine;
 	View lishiLine;
 	View cityLine;
-	
+	View view_recommend;
 	
 	TextView selectView;
 	TextView locView;
+
 	
 	private SharedPreferences preferences;
 	private String gpsCity = null;
@@ -341,8 +343,18 @@ public class LSClubListActivity extends LSBaseActivity {
 
 	@Override
 	public void onClick(View v) {
-		
-		if (v.getId() == R.id.brandPanel) {
+
+		if ( v.getId() == R.id.layout_recommend )
+		{
+			if ( selectView == tv_recommend ) return;
+
+			locView.setVisibility(View.GONE);
+			noClubView.setVisibility(View.GONE);
+
+
+			selectView = tv_recommend;
+		}
+		else if (v.getId() == R.id.brandPanel) {
 			if (selectView == brandView)
 				return;
 			locView.setVisibility(View.GONE);
@@ -460,8 +472,11 @@ public class LSClubListActivity extends LSBaseActivity {
 		brandLine = findViewById(R.id.brandLine);
 		lishiLine = findViewById(R.id.allLine);
 		cityLine = findViewById(R.id.cityLine);
-		
-		
+
+		tv_recommend = (TextView) findViewById(R.id.tv_recommend);
+		view_recommend = findViewById(R.id.view_recommend);
+
+
 		selectView = cityView;
 	}
 	

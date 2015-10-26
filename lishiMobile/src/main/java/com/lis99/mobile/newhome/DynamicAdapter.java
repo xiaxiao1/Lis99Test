@@ -2,6 +2,7 @@ package com.lis99.mobile.newhome;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -17,6 +18,7 @@ import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -29,9 +31,24 @@ public class DynamicAdapter extends MyBaseAdapter {
 
     private Animation animation;
 
+    private DisplayImageOptions options;
+
     public DynamicAdapter(Context c, ArrayList listItem) {
         super(c, listItem);
         animation = AnimationUtils.loadAnimation(c, R.anim.like_anim_rotate);
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.club_topic_default)
+                .showImageForEmptyUri(R.drawable.dymamic_img_none)
+                .showImageOnFail(R.drawable.dymamic_img_none)
+                .considerExifParams(true)// 图片旋转
+                .cacheInMemory(true)
+                .cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中
+                .resetViewBeforeLoading(true)//设置图片在下载前是否重置，复位
+//				.displayer(new FadeInBitmapDisplayer(200))//是否图片加载好后渐入的动画时间
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+
     }
 
     @Override
@@ -84,7 +101,7 @@ public class DynamicAdapter extends MyBaseAdapter {
         ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
 
 
-        ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+        ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, options, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
 
         holder.tv_name.setText(item.nickname);
         holder.tv_reply.setText("" + item.replytot + "则评论");
