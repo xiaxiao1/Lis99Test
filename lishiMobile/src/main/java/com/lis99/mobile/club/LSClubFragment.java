@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.adapter.LSClubGridViewAdapter;
 import com.lis99.mobile.club.model.ClubMainListModel;
 import com.lis99.mobile.club.model.ClubMainModel;
@@ -345,7 +346,8 @@ public class LSClubFragment extends LSFragment implements
 				break;
 			case R.id.layout_lis_special:
 //				startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
-				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
+//				startActivity(new Intent (getActivity(), ChoicenessAllActivity.class));
+				startActivity(new Intent (getActivity(), ActiveAllActivity.class));
 				break;
 			case R.id.titleRightImage:
 			case R.id.titleRight:

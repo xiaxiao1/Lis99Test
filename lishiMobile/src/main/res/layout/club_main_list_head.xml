@@ -119,14 +119,14 @@
 
             <ImageView
                 style="@style/wrap_wrap"
-                android:background="@drawable/choiceness_head_subject"
+                android:background="@drawable/choiceness_head_active"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="专题"
+                android:text="线路活动"
                 android:textColor="@color/color_six"
                 android:textSize="10sp"
                 />
