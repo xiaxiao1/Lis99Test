@@ -5,25 +5,20 @@
 		<meta  name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">	
 		<meta name="format-detection" content="telephone=no">
 		<title>首页</title>
-		<link href="css/styleIosAndroid.css?ver=3" type="text/css" rel="stylesheet" />
+		<!--<link href="css/styleIos.css?Ver=1" type="text/css" rel="stylesheet" />-->
+		<link rel="stylesheet" href="css/styleIosAndroid.css?ver=2" />
 		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
-		<script type="text/javascript" src="js/load.js"></script>
+		<script type="text/javascript" src="js/load.js?ver=2"></script>
 	</head>
 	<body onload="loading();">
 		
 		<div class="clubMain">
-			<div class="mainContent">
-			    <!--<div class="clubMenu">
-			      <div class="clubMenuItem clubMenu1"></div>
-			      <div class="clubMenuItem clubMenu2"></div>
-			      <div class="clubMenuItem clubMenu3"></div>
-			    </div>-->
-			    
+			<div class="mainContent">	    
 			    <div class="clubMenu">
 			    	<div class="clubMenuContent">
-			    		<a  onclick="window.LS.ClubTabClick(1);"><img src="css/img/clubMenuIcon1All.png"/></a>
-			    		<a  onclick="window.LS.ClubTabClick(2);"><img src="css/img/clubMenuIcon2All.png"/></a>
-			    		<a  onclick="window.LS.ClubTabClick(3);"><img src="css/img/clubMenuIcon3All.png" class="lastImg"/></a>
+			    		<a href="javascript:viod(0);"><img src="css/img/clubMenuIcon1All.png" onclick="window.LS.ClubTabClick(1);"/></a>
+			    		<a href="javascript:viod(0);"><img src="css/img/clubMenuIcon2All.png" onclick="window.LS.ClubTabClick(2);"/></a>
+			    		<a href="javascript:viod(0);"><img src="css/img/clubMenuIcon3All.png" class="lastImg" onclick="window.LS.ClubTabClick(3);"/></a>
 			    	</div>
 			      
 			    </div>
@@ -44,7 +39,7 @@
 			
 			
 			<div class="loadingImgClass">
-				<div style="display: none;" id="loadingImgBox">	
+				<div style="display:none;" id="loadingImgBox">	
 				</div>
 				<span style="display: none;" class="wordClass"></span>
 			</div>

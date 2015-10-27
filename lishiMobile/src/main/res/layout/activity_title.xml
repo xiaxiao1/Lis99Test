@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:id="@+id/titleLeft"
-        android:layout_width="60dp"
+        android:layout_width="70dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" 
@@ -30,7 +30,7 @@
 
     <RelativeLayout
         android:id="@+id/titleRight"
-        android:layout_width="60dip"
+        android:layout_width="70dip"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
 		android:layout_centerVertical="true"

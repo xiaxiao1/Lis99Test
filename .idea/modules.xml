@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidStudio.iml" filepath="$PROJECT_DIR$/AndroidStudio.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidSDK/androidSDK.iml" filepath="$PROJECT_DIR$/androidSDK/androidSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidSDKComponent/androidSDKComponent.iml" filepath="$PROJECT_DIR$/androidSDKComponent/androidSDKComponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lishi-Android-Studio.iml" filepath="$PROJECT_DIR$/lishi-Android-Studio.iml" />
       <module fileurl="file://$PROJECT_DIR$/lishiMobile/lishiMobile.iml" filepath="$PROJECT_DIR$/lishiMobile/lishiMobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/mUList/mUList.iml" filepath="$PROJECT_DIR$/mUList/mUList.iml" />
       <module fileurl="file://$PROJECT_DIR$/weiboSDK/weiboSDK.iml" filepath="$PROJECT_DIR$/weiboSDK/weiboSDK.iml" />

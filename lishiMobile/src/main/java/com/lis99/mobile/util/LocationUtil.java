@@ -49,10 +49,10 @@ public class LocationUtil
 		@Override
 		public void onReceiveLocation(BDLocation location)
 		{
-			stopLocation();
 			// map view 销毁后不在处理新接收的位置
 			if (location == null){
 				Common.toast("定位失败");
+				stopLocation();
 				return;
 			}
 //			Common.log("getLatitude()=="+location.getLatitude()+"=location.getLongitude()=="+location.getLongitude());
@@ -60,6 +60,7 @@ public class LocationUtil
 			{
 				glocation.Location(location.getLatitude(), location.getLongitude());
 			}
+			stopLocation();
 		}
 
 		public void onReceivePoi(BDLocation poiLocation)
@@ -73,7 +74,7 @@ public class LocationUtil
 		{
 			mLocClient.stop();
 		}
-		mLocClient = null;
+		setGlocation(null);
 	}
 	
 	private getLocation glocation;

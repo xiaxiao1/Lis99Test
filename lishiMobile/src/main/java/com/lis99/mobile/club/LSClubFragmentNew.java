@@ -112,7 +112,7 @@ public class LSClubFragmentNew extends LSFragment implements
 		webView.addJavascriptInterface(new LSJavaScriptInterface(), "LS");
 
 //        webView.loadUrl(url);
-		webView.loadUrl("file:///android_asset/web/indexAndroid.html");
+		webView.loadUrl("file:///android_asset/web/index.html");
 	}
 
 	// 这是他定义由 addJavascriptInterface 提供的一个Object
@@ -139,7 +139,12 @@ public class LSClubFragmentNew extends LSFragment implements
 							startActivity(new Intent(getActivity(), ActiveAllActivity.class));
 							break;
 						case 3:
-							startActivity(new Intent(getActivity(), ClubHotTopicActivity.class));
+//							startActivity(new Intent(getActivity(), ClubHotTopicActivity.class));
+							if ( !Common.isLogin(LSBaseActivity.activity))
+							{
+								return;
+							}
+							startActivity(new Intent(getActivity(), MyJoinClubActivity.class));
 							break;
 					}
 				}
@@ -173,7 +178,6 @@ public class LSClubFragmentNew extends LSFragment implements
 		@JavascriptInterface
 		public void JoinClub ( String club_id )
 		{
-			Common.log("JoinClub  id =" + club_id);
 			LSRequestManager.getInstance().addClub(club_id, new CallBack() {
 				@Override
 				public void handler(MyTask mTask) {
@@ -183,23 +187,19 @@ public class LSClubFragmentNew extends LSFragment implements
 
 //赞
 		@JavascriptInterface
-		public void like ( int topic_id )
+		public void like(int topic_id)
 		{
 			LSRequestManager.getInstance().clubTopicLike(topic_id, null);
-			Common.log("like on click id =" + topic_id);
 		}
 //		关注
 		@JavascriptInterface
-		public void attention ( int user_id )
-		{
+		public void attention ( int user_id) {
 			LSRequestManager.getInstance().getFriendsAddAttention(user_id, null);
-			Common.log("attention on click id =" + user_id);
 		}
 //		跳转铁子
 		@JavascriptInterface
 		public void goTopicInfo ( final int topic_id, int type )
 		{
-			Common.log("goTopicInfo topic id =" + topic_id + "＝type＝" + type);
 			final int id = type;
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
@@ -226,6 +226,16 @@ public class LSClubFragmentNew extends LSFragment implements
 		}
 
 		/**
+		 * 			跳转用户主页
+		 * @param userID
+		 */
+		@JavascriptInterface
+		public void goUserHomePage(String userID)
+		{
+			Common.goUserHomeActivit(getActivity(), userID);
+		}
+
+		/**
 		 * This is not called on the UI thread. Post a runnable to invoke
 		 * 这不是呼吁界面线程。发表一个运行调用
 		 * loadUrl on the UI thread.
@@ -237,7 +247,7 @@ public class LSClubFragmentNew extends LSFragment implements
 				public void run() {
 					// 此处调用 HTML 中的javaScript 函数
 //                    webView.loadUrl("javascript:wave()");
-					webView.loadUrl("javascript:sendUserId()");
+//					webView.loadUrl("javascript:sendUserId()");
 				}
 			});
 		}
@@ -252,13 +262,10 @@ public class LSClubFragmentNew extends LSFragment implements
 		{
 
 			String userId = DataManager.getInstance().getUser().getUser_id();
-			Common.log("=================userId==="+userId);
 			if ( TextUtils.isEmpty(userId))
 			{
-				Common.log("=================userId==="+userId);
 				return "";
 			}
-			Common.log("=================userId==="+userId);
 			return userId;
 		}
 

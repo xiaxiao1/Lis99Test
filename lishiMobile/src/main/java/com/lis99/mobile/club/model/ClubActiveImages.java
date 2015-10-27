@@ -13,8 +13,5 @@ public class ClubActiveImages implements Serializable
 	public ClubActiveImages(){}
 	
 	public String image;
-	
-	public String height;
-	public String width;
 
 }

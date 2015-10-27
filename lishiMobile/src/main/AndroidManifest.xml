@@ -1044,6 +1044,9 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
+        <activity android:name="com.lis99.mobile.club.MyJoinClubActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
 
     </application>
 

@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="18dp"
-                android:text="大牌装备送不停！"
+                android:text="大牌装备送不停"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
                 android:layout_centerHorizontal="true"

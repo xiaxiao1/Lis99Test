@@ -124,6 +124,13 @@ public abstract class LSBaseActivity extends ActivityPattern {
 			titleRightImage.setText(str);
 		}
 	}
-	
+
+	protected void setRightViewColor ( int color )
+	{
+		if ( titleRightImage != null )
+		{
+			titleRightImage.setTextColor(color);
+		}
+	}
 	
 }

@@ -29,6 +29,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
+import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
@@ -68,6 +69,8 @@ public class FragmentChoicenessList extends Fragment  implements
 
     private ChoicenessModel listModel;
 
+    private View include_search;
+
     public FragmentChoicenessList ()
     {
         page = new Page();
@@ -95,6 +98,9 @@ public class FragmentChoicenessList extends Fragment  implements
         layout_leader_level = (LinearLayout) head.findViewById(R.id.layout_leader_level);
         layout_hot_topic = (LinearLayout) head.findViewById(R.id.layout_hot_topic);
         layout_lis_special = (LinearLayout) head.findViewById(R.id.layout_lis_special);
+        include_search = head.findViewById(R.id.include_search);
+
+        include_search.setOnClickListener(this);
 
         layout_lis_special.setOnClickListener(this);
         layout_hot_topic.setOnClickListener(this);
@@ -262,6 +268,9 @@ public class FragmentChoicenessList extends Fragment  implements
         Intent intent = null;
         switch (view.getId())
         {
+            case R.id.include_search:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+                break;
             case R.id.layout_club_level:
                 intent = new Intent(getActivity(), ClubSpecialListActivity.class);
                 intent.putExtra("tagid", 12);

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,15 +21,22 @@ import android.widget.TextView;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.adapter.LSClubAdapter;
+import com.lis99.mobile.club.adapter.RecommendClubAdapter;
+import com.lis99.mobile.club.model.ClubMainListModel;
 import com.lis99.mobile.club.model.LSClub;
+import com.lis99.mobile.club.model.RecommendClubModel;
+import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.LocationUtil.getLocation;
+import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.constens;
 import com.umeng.analytics.MobclickAgent;
@@ -81,7 +87,12 @@ public class LSClubListActivity extends LSBaseActivity {
 	View noClubView;
 	//定位
 	private LocationUtil location;
-	
+
+	//===3.6.1===
+
+	private RecommendClubModel recommendModel;
+	private RecommendClubAdapter recommendClubAdapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,26 +103,63 @@ public class LSClubListActivity extends LSBaseActivity {
 		cityid = preferences.getString("clubCityid", "2");
 		city = preferences.getString("clubCity", "北京");
 		
-		myReciever = new MyReciever();
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction("com.lis99.mobile.loc");
-		registerReceiver(myReciever, intentFilter);
+//		myReciever = new MyReciever();
+//		IntentFilter intentFilter = new IntentFilter();
+//		intentFilter.addAction("com.lis99.mobile.loc");
+//		registerReceiver(myReciever, intentFilter);
 		
 //		getLocation();
 		
 		initViews();
 		setTitle("全部俱乐部");
-		loadCityClub();
+//		loadCityClub();
 		HashMap<String,String> map = new HashMap<String,String>();
 		map.put("Tab","Lis99");
 		MobclickAgent.onEvent(this, "Club_All_Exposed", map);
 		
 		
-		if (firstClickCityPanel) {
-			firstClickCityPanel = false;
-			startService(new Intent("com.lis99.mobile.service.LocService"));
-		}
+//		if (firstClickCityPanel) {
+//			firstClickCityPanel = false;
+//			startService(new Intent("com.lis99.mobile.service.LocService"));
+//		}
+
+		locView.setVisibility(View.GONE);
+		noClubView.setVisibility(View.GONE);
+
+		getLocation();
 		
+	}
+
+	private void getRecommendList () {
+		if (recommendModel != null && recommendModel.reccmmendList != null) {
+			if (recommendClubAdapter == null) {
+				recommendClubAdapter = new RecommendClubAdapter(activity, recommendModel.reccmmendList);
+				listView.setAdapter(recommendClubAdapter);
+			} else {
+				listView.setAdapter(recommendClubAdapter);
+			}
+		}
+		recommendModel = new RecommendClubModel();
+
+		String userId = DataManager.getInstance().getUser().getUser_id();
+		if (TextUtils.isEmpty(userId))
+		{
+			userId = "0";
+		}
+
+		String url = C.RECOMMEND_CLUB_LIST + "?user_id="+userId + "&latitude="+Latitude1+"&longitude="+Longtitude1;
+
+		MyRequestManager.getInstance().requestGet(url, recommendModel, new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				recommendModel = (RecommendClubModel) mTask.getResultModel();
+				recommendClubAdapter = new RecommendClubAdapter(activity, recommendModel.reccmmendList);
+				listView.setAdapter(recommendClubAdapter);
+			}
+		});
+
+
+
 	}
 	
 	
@@ -139,8 +187,8 @@ public class LSClubListActivity extends LSBaseActivity {
 	protected void onDestroy() {
 		if ( location != null )
 		location.stopLocation();
-		stopService(new Intent("com.lis99.mobile.service.LocService"));
-		unregisterReceiver(myReciever);
+//		stopService(new Intent("com.lis99.mobile.service.LocService"));
+//		unregisterReceiver(myReciever);
 		super.onDestroy();
 	}
 	
@@ -351,14 +399,33 @@ public class LSClubListActivity extends LSBaseActivity {
 			locView.setVisibility(View.GONE);
 			noClubView.setVisibility(View.GONE);
 
+			cityLine.setVisibility(View.GONE);
+			lishiLine.setVisibility(View.GONE);
+			brandLine.setVisibility(View.GONE);
+
+			view_recommend.setVisibility(View.VISIBLE);
+
+			tv_recommend.setTextColor(getResources().getColor(R.color.text_color_blue));
+
+			lishiView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
+
+			cityView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
+
+			brandView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 
 			selectView = tv_recommend;
+
+			getRecommendList();
+
+
 		}
 		else if (v.getId() == R.id.brandPanel) {
 			if (selectView == brandView)
 				return;
 			locView.setVisibility(View.GONE);
 			noClubView.setVisibility(View.GONE);
+			view_recommend.setVisibility(View.GONE);
+
 			selectView = brandView;
 			brandView.setTextColor(getResources().getColor(R.color.text_color_blue));
 			brandLine.setVisibility(View.VISIBLE);
@@ -366,6 +433,9 @@ public class LSClubListActivity extends LSBaseActivity {
 			lishiView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 			
 			cityView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
+			tv_recommend.setTextColor(Color.rgb(0x66, 0x66, 0x66));
+
+
 			cityLine.setVisibility(View.GONE);
 			
 			if (clubs.size() == 0) {
@@ -381,13 +451,14 @@ public class LSClubListActivity extends LSBaseActivity {
 				return;
 			locView.setVisibility(View.GONE);
 			noClubView.setVisibility(View.GONE);
+			view_recommend.setVisibility(View.GONE);
 			
 			selectView = lishiView;
 			lishiView.setTextColor(getResources().getColor(R.color.text_color_blue));
 			brandLine.setVisibility(View.GONE);
 			lishiLine.setVisibility(View.VISIBLE);
 			brandView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
-			
+			tv_recommend.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 			
 			cityView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 			cityLine.setVisibility(View.GONE);
@@ -398,7 +469,7 @@ public class LSClubListActivity extends LSBaseActivity {
 				postMessage(SHOW_LISH_CLUB);
 			}
 			HashMap<String,String> map = new HashMap<String,String>();
-			map.put("Tab","Region");
+			map.put("Tab", "Region");
 			MobclickAgent.onEvent(this, "Club_All_Exposed", map);
 		} else if (v.getId() == R.id.cityPanel) {
 			if (selectView == cityView) 
@@ -414,9 +485,10 @@ public class LSClubListActivity extends LSBaseActivity {
 			
 			brandView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 			brandLine.setVisibility(View.GONE);
-			
+			tv_recommend.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 			lishiView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
 			lishiLine.setVisibility(View.GONE);
+			view_recommend.setVisibility(View.GONE);
 			
 			if (cityClubs.size() == 0) {
 				loadCityClub();
@@ -447,6 +519,16 @@ public class LSClubListActivity extends LSBaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+
+				if ( listView.getAdapter() instanceof RecommendClubAdapter )
+				{
+					ClubMainListModel item = (ClubMainListModel) recommendClubAdapter.getItem(position);
+					Intent intent = new Intent(LSClubListActivity.this, LSClubDetailActivity.class);
+					intent.putExtra("clubID", item.id);
+					startActivity(intent);
+					return;
+				}
+
 				LSClub club = (LSClub) adapter.getItem(position);
 				if ( club.getId() == 0 )
 				{
@@ -477,7 +559,7 @@ public class LSClubListActivity extends LSBaseActivity {
 		view_recommend = findViewById(R.id.view_recommend);
 
 
-		selectView = cityView;
+		selectView = tv_recommend;
 	}
 	
 	
@@ -573,7 +655,10 @@ public class LSClubListActivity extends LSBaseActivity {
 //			if (!emptyString(city)) {
 //				postMessage(CITY_CHANGE);
 //			}
-			getLocationCity();
+//			getLocationCity();
+
+			getRecommendList();
+
 		} else {
 			cityid = preferences.getString("clubCityid", "");
 			city = preferences.getString("clubCity", "");

@@ -107,21 +107,22 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     private PullToRefreshView refreshView;
 
+    //====3.6.1=====
+    private View allPanel1, allPanel, eventPanel1, eventPanel;
+    private TextView allView1, allView, eventView1, eventView;
+    private View allLine1, allLine, eventLine1, eventLine;
+    private View topPanel1, topPanel, include1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lsuser_home);
         initViews();
         userID = getIntent().getStringExtra("userID");
-        //setTitle("");
 
         buildOptions();
 
         page = new Page();
-
-//        loadClubInfo();
-
-
 
     }
 
@@ -155,6 +156,36 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         layout_no_item = headViewMain.findViewById(R.id.layout_no_item);
 
         tv_num_reply = (TextView) headViewMain.findViewById(R.id.tv_num_reply);
+
+
+        allPanel1 = headViewMain.findViewById(R.id.allPanel1);
+        eventPanel1 = headViewMain.findViewById(R.id.eventPanel1);
+        allView1  = (TextView) headViewMain.findViewById(R.id.allView1);
+        eventView1  = (TextView) headViewMain.findViewById(R.id.eventView1);
+        allLine1  = headViewMain.findViewById(R.id.allLine1);
+        eventLine1  = headViewMain.findViewById(R.id.eventLine1);
+        topPanel1  = headViewMain.findViewById(R.id.topPanel1);
+
+
+        allPanel = findViewById(R.id.allPanel);
+        eventPanel = findViewById(R.id.eventPanel);
+        allView  = (TextView) findViewById(R.id.allView);
+        eventView  = (TextView) findViewById(R.id.eventView);
+        allLine  = findViewById(R.id.allLine);
+        eventLine  =findViewById(R.id.eventLine);
+        topPanel  = findViewById(R.id.topPanel);
+
+        include1 = findViewById(R.id.include1);
+
+        topPanel.setVisibility(View.GONE);
+
+        allPanel1.setOnClickListener(this);
+        eventPanel1.setOnClickListener(this);
+        allPanel.setOnClickListener(this);
+        eventPanel.setOnClickListener(this);
+
+
+
 
 //        view_line_head = headViewMain.findViewById(R.id.view_line_head);
 
@@ -574,7 +605,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             finish();
             return;
         }
-        if (view.getId() == R.id.noteView) {
+        else if (view.getId() == R.id.noteView) {
 
             if (noteView.getMaxLines() < 1000) {
                 noteView.setMaxLines(1000);
@@ -584,7 +615,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
             return;
         }
-       if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
+       else if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
 
             String userID = DataManager.getInstance().getUser().getUser_id();
             if (TextUtils.isEmpty(userID)) {
@@ -599,6 +630,29 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
                 doQuit(userID);
             }
             return;
+        }
+        else if ( view.getId() == R.id.allPanel1 || view.getId() == R.id.allPanel )
+        {
+            allView.setTextColor(getResources().getColor(R.color.text_color_blue));
+            allView1.setTextColor(getResources().getColor(R.color.text_color_blue));
+            eventView.setTextColor(getResources().getColor(R.color.color_six));
+            eventView1.setTextColor(getResources().getColor(R.color.color_six));
+            allLine.setVisibility(View.VISIBLE);
+            allLine1.setVisibility(View.VISIBLE);
+            eventLine1.setVisibility(View.GONE);
+            eventLine.setVisibility(View.GONE);
+        }
+        else if ( view.getId() == R.id.eventPanel || view.getId() == R.id.eventPanel1 )
+        {
+            eventView.setTextColor(getResources().getColor(R.color.text_color_blue));
+            eventView1.setTextColor(getResources().getColor(R.color.text_color_blue));
+            allView.setTextColor(getResources().getColor(R.color.color_six));
+            allView1.setTextColor(getResources().getColor(R.color.color_six));
+            allLine.setVisibility(View.GONE);
+            allLine1.setVisibility(View.GONE);
+            eventLine1.setVisibility(View.VISIBLE);
+            eventLine.setVisibility(View.VISIBLE);
+
         }
         super.onClick(view);
     }
@@ -635,8 +689,10 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     private void getHeadAdHeight ()
     {
-        //int titleHeight = iv_title_bg.getHeight();
-        HeadAdHeight = headerView.getHeight(); //- titleHeight;
+        int titleHeight = include1.getHeight();
+        HeadAdHeight = topPanel1.getTop() - titleHeight;
+        Common.log("topPanel1.getTop==" + topPanel1.getTop());
+        Common.log("include1.getHeight()==" + include1.getHeight());
     }
     /**
      * 设置标题栏透明度
@@ -649,6 +705,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             num = HeadAdHeight;
             setTitleRight(false);
             setBack(false);
+            visibleTab (true);
         }
         else if ( num <= 0 )
         {
@@ -658,12 +715,26 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         {
             setTitleRight(true);
             setBack(true);
+            visibleTab(false);
         }
         float alpha = num / HeadAdHeight;
 //			iv_title_bg.setAlpha(alpha);
 //        title.setAlpha(alpha);
         setTitleBarAlpha(alpha);
     }
+// 展示固定tab
+    private void visibleTab ( boolean b )
+    {
+        if ( b )
+        {
+            topPanel.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            topPanel.setVisibility(View.GONE);
+        }
+    }
+
     private boolean isRightBg;
     //设置title右边按钮
     private void setTitleRight ( boolean isBg )
