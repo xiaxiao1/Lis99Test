@@ -64,7 +64,8 @@ public class FragmentDinamicList extends Fragment implements
     private boolean isInit = false;
 
     private View v;
-
+//  是否登陆
+    private boolean isLogin = false;
 
     public FragmentDinamicList ()
     {
@@ -75,11 +76,18 @@ public class FragmentDinamicList extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
-        if ( needLogin )
+
+        String userId = DataManager.getInstance().getUser().getUser_id();
+        if ( !TextUtils.isEmpty(userId) && isLogin )
         {
             needLogin = false;
             getDynamicList();
         }
+//        if ( needLogin )
+//        {
+//            needLogin = false;
+//            getDynamicList();
+//        }
     }
 
     @Override
@@ -149,7 +157,15 @@ public class FragmentDinamicList extends Fragment implements
 
     public void init ()
     {
-        if ( isInit ) return;
+        if ( isInit )
+        {
+            String userId = DataManager.getInstance().getUser().getUser_id();
+            if ( !TextUtils.isEmpty(userId) && isLogin )
+            {
+                getDynamicList();
+            }
+            return;
+        }
         isInit = true;
         getDynamicList();
 
@@ -166,10 +182,12 @@ public class FragmentDinamicList extends Fragment implements
         String UserId = DataManager.getInstance().getUser().getUser_id();
         if (TextUtils.isEmpty(UserId))
         {
+            isLogin = true;
             layout_login.setVisibility(View.VISIBLE);
             return;
         }
         else {
+            isLogin = false;
             layout_login.setVisibility(View.GONE);
         }
 
@@ -192,6 +210,10 @@ public class FragmentDinamicList extends Fragment implements
                     cleanRecommendList();
                     getRecommendList();
                     return;
+                }
+                else if ( 1 == model.nofans && (model.topiclist == null || model.topiclist.size() == 0))
+                {
+                    Common.toast("您关注的用户,尚未发贴");
                 }
 
                 layout_need_add_attention.setVisibility(View.GONE);

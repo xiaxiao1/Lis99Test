@@ -107,7 +107,7 @@ public class SubjectAdapter extends BaseAdapter
 		holder.tv_title.setText(item.title);
 		holder.tv_name.setText(item.nickname);
 		holder.tv_data.setText(item.createdate);
-		holder.tv_reply.setText(item.reply_num + "个回复");
+		holder.tv_reply.setText(item.reply_num + "则回复");
 		
 		
 		return arg1;

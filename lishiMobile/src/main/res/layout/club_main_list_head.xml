@@ -27,10 +27,11 @@
         style="@style/fill_wrap"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="8dp"
+        android:padding="10dp"
         >
 
         <LinearLayout
+            android:layout_marginTop="2dp"
             android:id="@+id/layout_club_level"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -52,12 +53,13 @@
                 android:layout_marginTop="6dp"
                 android:text="俱乐部排行"
                 android:textColor="@color/color_six"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 />
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="2dp"
             android:id="@+id/layout_leader_level"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -77,13 +79,14 @@
                 android:layout_marginTop="6dp"
                 android:text="领队排行"
                 android:textColor="@color/color_six"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 />
 
         </LinearLayout>
 
 
         <LinearLayout
+            android:layout_marginTop="2dp"
             android:id="@+id/layout_hot_topic"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -103,12 +106,13 @@
                 android:layout_marginTop="6dp"
                 android:text="最新热帖"
                 android:textColor="@color/color_six"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 />
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="2dp"
             android:id="@+id/layout_lis_special"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -125,10 +129,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="线路活动"
                 android:textColor="@color/color_six"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 />
 
         </LinearLayout>

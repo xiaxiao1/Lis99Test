@@ -66,10 +66,10 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	/**类型， （登山）*/
 	TextView labelView;
 	TextView memberNumView;
-	
-	boolean needRefresh = true;
-	boolean loginBeforePause = false;
-	
+
+	boolean needRefresh = false;
+	boolean loginBeforePause = true;
+
 	View allPanel;
 	TextView allView;
 	View allLine;
@@ -864,6 +864,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //					setTabTopVisible(0);
 //					setTitleAlpha(0);
 //					listView.setSelection(0);
+					loadClubInfo();
 					return;
 				}
 				adapter.addList(clubAll.topiclist);

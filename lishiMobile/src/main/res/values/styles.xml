@@ -176,12 +176,12 @@
 
     <style name="ls_equip_odd">
         <item name="android:textColor">#73706e</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="ls_equip_even">
         <item name="android:textColor">#ff7800</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
     @android:style/Animation">
     <style name="ls_equip_star_big" parent="@android:style/Widget.RatingBar">

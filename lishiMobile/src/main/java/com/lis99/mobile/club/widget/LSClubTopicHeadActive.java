@@ -361,7 +361,7 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		{
 			replynum = "1";
 		}
-		tv_reply_number.setText(replynum + "个回复");
+		tv_reply_number.setText(replynum + "则回复");
 //		//删帖
 //		if ( Common.clubDelete(clubhead.is_jion) )
 //		{
