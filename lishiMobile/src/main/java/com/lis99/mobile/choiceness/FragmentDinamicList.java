@@ -59,12 +59,12 @@ public class FragmentDinamicList extends Fragment implements
 
     private DynamicListModel model;
 
-    private boolean needLogin = false;
 //点击TAB第一次加载
     private boolean isInit = false;
 
     private View v;
-
+//  是否登陆
+    private boolean isLogin = false;
 
     public FragmentDinamicList ()
     {
@@ -75,11 +75,17 @@ public class FragmentDinamicList extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
-        if ( needLogin )
+
+        String userId = DataManager.getInstance().getUser().getUser_id();
+        if ( !TextUtils.isEmpty(userId) && isLogin )
         {
-            needLogin = false;
             getDynamicList();
         }
+//        if ( needLogin )
+//        {
+//            needLogin = false;
+//            getDynamicList();
+//        }
     }
 
     @Override
@@ -149,7 +155,15 @@ public class FragmentDinamicList extends Fragment implements
 
     public void init ()
     {
-        if ( isInit ) return;
+        if ( isInit )
+        {
+            String userId = DataManager.getInstance().getUser().getUser_id();
+            if ( !TextUtils.isEmpty(userId) && isLogin )
+            {
+                getDynamicList();
+            }
+            return;
+        }
         isInit = true;
         getDynamicList();
 
@@ -166,10 +180,12 @@ public class FragmentDinamicList extends Fragment implements
         String UserId = DataManager.getInstance().getUser().getUser_id();
         if (TextUtils.isEmpty(UserId))
         {
+            isLogin = true;
             layout_login.setVisibility(View.VISIBLE);
             return;
         }
         else {
+            isLogin = false;
             layout_login.setVisibility(View.GONE);
         }
 
@@ -270,7 +286,6 @@ public class FragmentDinamicList extends Fragment implements
     public void onClick(View arg0) {
         if ( arg0.getId() == R.id.btn_login )
         {
-            needLogin = true;
             Common.isLogin(getActivity());
         }
         else if ( arg0.getId() == R.id.btn_next )

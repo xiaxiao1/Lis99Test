@@ -10,7 +10,7 @@
         android:id="@+id/titlehead"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        android:background="@color/text_color_blue"
+        android:background="@drawable/title_bar_bg"
         android:gravity="center_vertical" >
 
         <RelativeLayout
@@ -47,9 +47,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@color/text_color_blue"
                 android:text="发布"
-                android:textColor="#fff" />
+                android:textColor="@color/title_bar_text"
+                />
         </RelativeLayout>
 
         <TextView
@@ -63,7 +63,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@string/temp_string_long"
-            android:textColor="@color/white"
+            android:textColor="@color/title_bar_text"
             android:textSize="18sp" />
     </RelativeLayout>
 
