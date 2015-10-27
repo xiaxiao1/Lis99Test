@@ -21,12 +21,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a03b44e-36f7-4409-be8b-3e34d68bd55e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_welfare_shop_title.png" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/drawable-xhdpi/ls_equip_welfare_shop_title.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/build.gradle" afterPath="$PROJECT_DIR$/lishiMobile/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_fragment_header.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_fragment_header.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lishi-Android-Studio.iws" />
@@ -82,7 +76,7 @@
       <file leaf-file-name="choiceness_head.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_head.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.9310346">
+            <state vertical-scroll-proportion="0.0">
               <caret line="96" column="61" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="61" />
               <folding />
             </state>
@@ -95,7 +89,7 @@
       <file leaf-file-name="club_main_list_head.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.37931">
+            <state vertical-scroll-proportion="0.0">
               <caret line="111" column="47" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="47" />
               <folding />
             </state>
@@ -108,7 +102,7 @@
       <file leaf-file-name="FragmentChoiceness.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/FragmentChoiceness.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.814815">
+            <state vertical-scroll-proportion="0.0">
               <caret line="183" column="16" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="83" />
               <folding />
             </state>
@@ -128,7 +122,7 @@
       <file leaf-file-name="ls_equip_fragment_header.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_fragment_header.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6141176">
+            <state vertical-scroll-proportion="0.0">
               <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
               <folding />
             </state>
@@ -141,7 +135,7 @@
       <file leaf-file-name="LSClubFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.574074">
+            <state vertical-scroll-proportion="0.0">
               <caret line="350" column="22" selection-start-line="350" selection-start-column="22" selection-end-line="350" selection-end-column="22" />
               <folding />
             </state>
@@ -151,7 +145,7 @@
       <file leaf-file-name="LSEquipFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSEquipFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.259259">
+            <state vertical-scroll-proportion="0.0">
               <caret line="122" column="60" selection-start-line="122" selection-start-column="60" selection-end-line="122" selection-end-column="60" />
               <folding />
             </state>
@@ -7785,6 +7779,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -7847,10 +7842,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -8080,7 +8074,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26636225" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33789954" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16720517" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -8123,17 +8117,18 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/NewHomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="144" column="50" selection-start-line="144" selection-start-column="50" selection-end-line="144" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/widget/LSClubTopicHead.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="106" column="47" selection-start-line="106" selection-start-column="47" selection-end-line="106" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#8907#8908#0" expanded="false" />
-            <element signature="e#8936#8937#0" expanded="false" />
-            <element signature="e#13221#13222#0" expanded="false" />
-            <element signature="e#13254#13255#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8141,15 +8136,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="48" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5615#5983#0" expanded="false" />
-            <element signature="e#5982#5983#0" expanded="false" />
-            <element signature="e#6228#6244#0" expanded="false" />
-            <element signature="e#7683#12854#0" expanded="false" />
-            <element signature="e#9807#9815#0" expanded="false" />
-            <element signature="e#12853#12854#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8157,18 +8143,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="30" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#9684#9685#0" expanded="false" />
-            <element signature="e#9747#9748#0" expanded="false" />
-            <element signature="e#9786#9787#0" expanded="false" />
-            <element signature="e#9816#9817#0" expanded="false" />
-            <element signature="e#9865#9866#0" expanded="false" />
-            <element signature="e#9898#9899#0" expanded="false" />
-            <element signature="e#9951#9952#0" expanded="false" />
-            <element signature="e#9975#9976#0" expanded="false" />
-            <element signature="e#17392#17408#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8176,29 +8150,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="258" column="16" selection-start-line="258" selection-start-column="16" selection-end-line="260" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2009#2024#0" expanded="false" />
-            <element signature="e#2076#2089#0" expanded="false" />
-            <element signature="e#8318#8715#0" expanded="false" />
-            <element signature="e#8714#8715#0" expanded="false" />
-            <element signature="e#8755#9076#0" expanded="false" />
-            <element signature="e#9075#9076#0" expanded="false" />
-            <element signature="e#11338#11339#0" expanded="false" />
-            <element signature="e#11373#11374#0" expanded="false" />
-            <element signature="e#11422#11423#0" expanded="false" />
-            <element signature="e#11460#11461#0" expanded="false" />
-            <element signature="e#11513#11514#0" expanded="false" />
-            <element signature="e#11537#11538#0" expanded="false" />
-            <element signature="e#13602#13603#0" expanded="false" />
-            <element signature="e#13662#13663#0" expanded="false" />
-            <element signature="e#13701#13702#0" expanded="false" />
-            <element signature="e#13737#13738#0" expanded="false" />
-            <element signature="e#13786#13787#0" expanded="false" />
-            <element signature="e#13825#13826#0" expanded="false" />
-            <element signature="e#13878#13879#0" expanded="false" />
-            <element signature="e#13902#13903#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8390,29 +8341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="258" column="16" selection-start-line="258" selection-start-column="16" selection-end-line="260" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2009#2024#0" expanded="false" />
-            <element signature="e#2076#2089#0" expanded="false" />
-            <element signature="e#8318#8715#0" expanded="false" />
-            <element signature="e#8714#8715#0" expanded="false" />
-            <element signature="e#8755#9076#0" expanded="false" />
-            <element signature="e#9075#9076#0" expanded="false" />
-            <element signature="e#11338#11339#0" expanded="false" />
-            <element signature="e#11373#11374#0" expanded="false" />
-            <element signature="e#11422#11423#0" expanded="false" />
-            <element signature="e#11460#11461#0" expanded="false" />
-            <element signature="e#11513#11514#0" expanded="false" />
-            <element signature="e#11537#11538#0" expanded="false" />
-            <element signature="e#13602#13603#0" expanded="false" />
-            <element signature="e#13662#13663#0" expanded="false" />
-            <element signature="e#13701#13702#0" expanded="false" />
-            <element signature="e#13737#13738#0" expanded="false" />
-            <element signature="e#13786#13787#0" expanded="false" />
-            <element signature="e#13825#13826#0" expanded="false" />
-            <element signature="e#13878#13879#0" expanded="false" />
-            <element signature="e#13902#13903#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8453,13 +8381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="368" column="23" selection-start-line="368" selection-start-column="23" selection-end-line="368" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#8907#8908#0" expanded="false" />
-            <element signature="e#8936#8937#0" expanded="false" />
-            <element signature="e#13221#13222#0" expanded="false" />
-            <element signature="e#13254#13255#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8478,18 +8399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="30" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#9684#9685#0" expanded="false" />
-            <element signature="e#9747#9748#0" expanded="false" />
-            <element signature="e#9786#9787#0" expanded="false" />
-            <element signature="e#9816#9817#0" expanded="false" />
-            <element signature="e#9865#9866#0" expanded="false" />
-            <element signature="e#9898#9899#0" expanded="false" />
-            <element signature="e#9951#9952#0" expanded="false" />
-            <element signature="e#9975#9976#0" expanded="false" />
-            <element signature="e#17392#17408#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8497,15 +8406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5615#5983#0" expanded="false" />
-            <element signature="e#5982#5983#0" expanded="false" />
-            <element signature="e#6228#6244#0" expanded="false" />
-            <element signature="e#7683#12854#0" expanded="false" />
-            <element signature="e#9807#9815#0" expanded="false" />
-            <element signature="e#12853#12854#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8513,27 +8413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="130" column="49" selection-start-line="130" selection-start-column="49" selection-end-line="130" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2711#2712#0" expanded="false" />
-            <element signature="e#2740#2741#0" expanded="false" />
-            <element signature="e#6678#7140#0" expanded="false" />
-            <element signature="e#7139#7140#0" expanded="false" />
-            <element signature="e#8605#8606#0" expanded="false" />
-            <element signature="e#8629#8630#0" expanded="false" />
-            <element signature="e#8791#9079#0" expanded="false" />
-            <element signature="e#9078#9079#0" expanded="false" />
-            <element signature="e#11758#12006#0" expanded="false" />
-            <element signature="e#12005#12006#0" expanded="false" />
-            <element signature="e#12158#12406#0" expanded="false" />
-            <element signature="e#12405#12406#0" expanded="false" />
-            <element signature="e#12559#12807#0" expanded="false" />
-            <element signature="e#12806#12807#0" expanded="false" />
-            <element signature="e#13487#13715#0" expanded="false" />
-            <element signature="e#13714#13715#0" expanded="false" />
-            <element signature="e#15136#15137#0" expanded="false" />
-            <element signature="e#15169#15170#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8577,7 +8456,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/FragmentChoiceness.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.814815">
+        <state vertical-scroll-proportion="0.0">
           <caret line="183" column="16" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="83" />
           <folding />
         </state>
@@ -8585,7 +8464,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_head.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.9310346">
+        <state vertical-scroll-proportion="0.0">
           <caret line="96" column="61" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="61" />
           <folding />
         </state>
@@ -8596,7 +8475,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.37931">
+        <state vertical-scroll-proportion="0.0">
           <caret line="111" column="47" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="47" />
           <folding />
         </state>
@@ -8607,7 +8486,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.574074">
+        <state vertical-scroll-proportion="0.0">
           <caret line="350" column="22" selection-start-line="350" selection-start-column="22" selection-end-line="350" selection-end-column="22" />
           <folding />
         </state>
@@ -8639,7 +8518,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/newhome/LSEquipFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.259259">
+        <state vertical-scroll-proportion="0.0">
           <caret line="122" column="60" selection-start-line="122" selection-start-column="60" selection-end-line="122" selection-end-column="60" />
           <folding />
         </state>
@@ -8647,7 +8526,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/ls_equip_fragment_header.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6141176">
+        <state vertical-scroll-proportion="0.0">
           <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
           <folding />
         </state>
