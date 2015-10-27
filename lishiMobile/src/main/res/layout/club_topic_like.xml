@@ -88,7 +88,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
@@ -119,7 +118,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
@@ -150,7 +148,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
@@ -181,7 +178,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
@@ -212,7 +208,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
@@ -243,7 +238,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
@@ -274,7 +268,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
@@ -305,7 +298,6 @@
                 app:border_color="#e8e8e8"
                 app:border_width="1px"
                 app:corner_radius="5dip"
-
                 />
 
             <ImageView
