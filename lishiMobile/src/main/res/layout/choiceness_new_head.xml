@@ -35,7 +35,7 @@
                 />
 
             <TextView
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:layout_marginTop="6dp"
                 android:text="精品行记"
                 android:textColor="#73706e"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 />
 
         </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_marginTop="6dp"
                 android:text="干货知识"
                 android:textColor="#73706e"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 />
 
         </LinearLayout>
@@ -117,7 +117,7 @@
                 android:layout_marginTop="6dp"
                 android:text="更多专栏"
                 android:textColor="#73706e"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 />
 
         </LinearLayout>
