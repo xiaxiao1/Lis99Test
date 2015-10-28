@@ -135,8 +135,10 @@ public class LSClubListActivity extends LSBaseActivity {
 			if (recommendClubAdapter == null) {
 				recommendClubAdapter = new RecommendClubAdapter(activity, recommendModel.reccmmendList);
 				listView.setAdapter(recommendClubAdapter);
+				return;
 			} else {
 				listView.setAdapter(recommendClubAdapter);
+				return;
 			}
 		}
 		recommendModel = new RecommendClubModel();

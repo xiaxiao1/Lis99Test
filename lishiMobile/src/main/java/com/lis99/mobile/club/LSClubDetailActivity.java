@@ -68,7 +68,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	TextView memberNumView;
 
 	boolean needRefresh = false;
-	boolean loginBeforePause = false;
+	boolean loginBeforePause = true;
 
 	View allPanel;
 	TextView allView;
