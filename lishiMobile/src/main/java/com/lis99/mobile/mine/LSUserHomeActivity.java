@@ -113,6 +113,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     private View allLine1, allLine, eventLine1, eventLine;
     private View topPanel1, topPanel, include1;
 
+    private boolean visible = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,6 +185,15 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         eventPanel1.setOnClickListener(this);
         allPanel.setOnClickListener(this);
         eventPanel.setOnClickListener(this);
+
+
+
+        //=====
+        if ( !visible )
+        {
+            topPanel.setVisibility(View.GONE);
+            topPanel1.setVisibility(View.GONE);
+        }
 
 
 
@@ -689,10 +700,13 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     private void getHeadAdHeight ()
     {
+        if ( !visible )
+        {
+            HeadAdHeight = headerView.getHeight();
+            return;
+        }
         int titleHeight = include1.getHeight();
         HeadAdHeight = topPanel1.getTop() - titleHeight;
-        Common.log("topPanel1.getTop==" + topPanel1.getTop());
-        Common.log("include1.getHeight()==" + include1.getHeight());
     }
     /**
      * 设置标题栏透明度
@@ -705,7 +719,10 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             num = HeadAdHeight;
             setTitleRight(false);
             setBack(false);
-            visibleTab (true);
+            if ( visible )
+            {
+                visibleTab (true);
+            }
         }
         else if ( num <= 0 )
         {
