@@ -322,7 +322,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         {
             replynum = "1";
         }
-        tv_reply_number.setText(replynum + "个回复");
+        tv_reply_number.setText(replynum + "则回复");
 
         tv_active_style.setText(model.catename + " " + model.hardDegree);
 

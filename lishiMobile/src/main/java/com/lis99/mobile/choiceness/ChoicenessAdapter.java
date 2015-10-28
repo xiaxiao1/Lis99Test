@@ -203,7 +203,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		holder.tv_title.setText(item.title);
 		holder.tv_like.setText(""+item.likeNum);
 		holder.tv_name.setText(item.nickname);
-		holder.tv_reply.setText(item.reply_num + "则评论" );
+		holder.tv_reply.setText(item.reply_num + "则回复" );
 
 		if ( item.LikeStatus == 1 )
 		{
@@ -224,6 +224,13 @@ public class ChoicenessAdapter extends BaseAdapter
 		}
 
 		final ClubHolder finalHolder = holder;
+
+		holder.roundedImageView1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Common.goUserHomeActivit(a, item.user_id);
+			}
+		});
 
 		holder.btn_concern.setOnClickListener(new View.OnClickListener() {
 			@Override
