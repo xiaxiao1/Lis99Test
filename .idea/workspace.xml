@@ -34,7 +34,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8a03b44e-36f7-4409-be8b-3e34d68bd55e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java" afterPath="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_list.xml" afterPath="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_list.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lishi-Android-Studio.iws" />
@@ -77,111 +76,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="choiceness_new_topic.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_new_topic.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.575">
-              <caret line="153" column="14" selection-start-line="153" selection-start-column="14" selection-end-line="153" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChoicenessAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/ChoicenessAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="330" column="50" selection-start-line="330" selection-start-column="50" selection-end-line="330" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="club_list_item_recommend.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_list_item_recommend.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="club_main_list_head.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5517242">
-              <caret line="89" column="46" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LSClubFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.296296">
-              <caret line="353" column="61" selection-start-line="353" selection-start-column="61" selection-end-line="353" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LSClubGridViewAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/adapter/LSClubGridViewAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="190" column="59" selection-start-line="190" selection-start-column="59" selection-end-line="190" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1144#1163#0" expanded="false" />
-                <element signature="e#3173#3174#0" expanded="false" />
-                <element signature="e#3204#3205#0" expanded="false" />
-                <element signature="e#3255#3256#0" expanded="false" />
-                <element signature="e#3283#3284#0" expanded="false" />
-                <element signature="e#5698#5997#0" expanded="false" />
-                <element signature="e#5996#5997#0" expanded="false" />
-                <element signature="e#8217#8462#0" expanded="false" />
-                <element signature="e#8461#8462#0" expanded="false" />
-                <element signature="e#8657#9071#0" expanded="false" />
-                <element signature="e#9070#9071#0" expanded="false" />
-                <element signature="e#9656#9933#0" expanded="false" />
-                <element signature="e#9932#9933#0" expanded="false" />
-                <element signature="e#10737#10908#0" expanded="false" />
-                <element signature="e#10907#10908#0" expanded="false" />
-                <element signature="e#10951#11122#0" expanded="false" />
-                <element signature="e#11121#11122#0" expanded="false" />
-                <element signature="e#11442#11687#0" expanded="false" />
-                <element signature="e#11686#11687#0" expanded="false" />
-                <element signature="e#11730#11964#0" expanded="false" />
-                <element signature="e#11963#11964#0" expanded="false" />
-                <element signature="e#12129#12284#0" expanded="false" />
-                <element signature="e#12283#12284#0" expanded="false" />
-                <element signature="e#12423#12570#0" expanded="false" />
-                <element signature="e#12569#12570#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LSClubListActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LSClubListActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.5555553">
-              <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.80564785">
+              <caret line="207" column="36" selection-start-line="207" selection-start-column="20" selection-end-line="207" selection-end-column="36" />
               <folding>
                 <element signature="e#1606#1614#0" expanded="true" />
                 <element signature="e#1657#1665#0" expanded="true" />
-                <element signature="e#10583#10598#0" expanded="true" />
+                <element signature="e#2400#2408#0" expanded="true" />
+                <element signature="e#10585#10600#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -7777,8 +7681,8 @@
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_grid_item.xml" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_list_item_recommend.xml" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/club_main_list_head.xml" />
-        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java" />
         <option value="$PROJECT_DIR$/lishiMobile/src/main/res/layout/activity_lsclub_list.xml" />
+        <option value="$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java" />
       </list>
     </option>
   </component>
@@ -7820,6 +7724,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
@@ -7995,7 +7900,6 @@
       </pane>
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -8008,6 +7912,9 @@
     <property name="ExportApk.ApkPath" value="$USER_HOME$/Downloads/li99TestPage" />
     <property name="ExportApk.Flavors" value="zhuzhan" />
     <property name="ExportApk.BuildType" value="release" />
+    <property name="DEBUGGABLE_DEVICE" value="xiaomi-2013022-P7SOSCKJSKJFS4QG" />
+    <property name="DEBUGGABLE_PROCESS" value="com.lis99.mobile" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -8211,7 +8118,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -8228,7 +8135,7 @@
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8782344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16720517" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16720517" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19951534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -8262,19 +8169,24 @@
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java</url>
+          <line>512</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java</url>
+          <line>191</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/choiceness/FragmentChoiceness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="183" column="16" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_head.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -8595,34 +8507,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="190" column="59" selection-start-line="190" selection-start-column="59" selection-end-line="190" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1144#1163#0" expanded="false" />
-            <element signature="e#3173#3174#0" expanded="false" />
-            <element signature="e#3204#3205#0" expanded="false" />
-            <element signature="e#3255#3256#0" expanded="false" />
-            <element signature="e#3283#3284#0" expanded="false" />
-            <element signature="e#5698#5997#0" expanded="false" />
-            <element signature="e#5996#5997#0" expanded="false" />
-            <element signature="e#8217#8462#0" expanded="false" />
-            <element signature="e#8461#8462#0" expanded="false" />
-            <element signature="e#8657#9071#0" expanded="false" />
-            <element signature="e#9070#9071#0" expanded="false" />
-            <element signature="e#9656#9933#0" expanded="false" />
-            <element signature="e#9932#9933#0" expanded="false" />
-            <element signature="e#10737#10908#0" expanded="false" />
-            <element signature="e#10907#10908#0" expanded="false" />
-            <element signature="e#10951#11122#0" expanded="false" />
-            <element signature="e#11121#11122#0" expanded="false" />
-            <element signature="e#11442#11687#0" expanded="false" />
-            <element signature="e#11686#11687#0" expanded="false" />
-            <element signature="e#11730#11964#0" expanded="false" />
-            <element signature="e#11963#11964#0" expanded="false" />
-            <element signature="e#12129#12284#0" expanded="false" />
-            <element signature="e#12283#12284#0" expanded="false" />
-            <element signature="e#12423#12570#0" expanded="false" />
-            <element signature="e#12569#12570#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -8675,7 +8560,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5517242">
+        <state vertical-scroll-proportion="0.0">
           <caret line="89" column="46" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
           <folding />
         </state>
@@ -8683,21 +8568,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.296296">
+        <state vertical-scroll-proportion="0.0">
           <caret line="353" column="61" selection-start-line="353" selection-start-column="61" selection-end-line="353" selection-end-column="61" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5555553">
-          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
-          <folding>
-            <element signature="e#1606#1614#0" expanded="true" />
-            <element signature="e#1657#1665#0" expanded="true" />
-            <element signature="e#10583#10598#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -8731,14 +8604,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/entry/ActivityPattern.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33227345">
+          <caret line="294" column="16" selection-start-line="294" selection-start-column="16" selection-end-line="294" selection-end-column="16" />
+          <folding>
+            <element signature="e#8582#8583#0" expanded="true" />
+            <element signature="e#8617#8618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/res/layout/choiceness_new_topic.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.575">
-          <caret line="153" column="14" selection-start-line="153" selection-start-column="14" selection-end-line="153" selection-end-column="14" />
+        <state vertical-scroll-proportion="-6.206897">
+          <caret line="152" column="49" selection-start-line="152" selection-start-column="49" selection-end-line="152" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lishiMobile/src/main/java/com/lis99/mobile/club/LSClubListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80564785">
+          <caret line="207" column="36" selection-start-line="207" selection-start-column="20" selection-end-line="207" selection-end-column="36" />
+          <folding>
+            <element signature="e#1606#1614#0" expanded="true" />
+            <element signature="e#1657#1665#0" expanded="true" />
+            <element signature="e#2400#2408#0" expanded="true" />
+            <element signature="e#10585#10600#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

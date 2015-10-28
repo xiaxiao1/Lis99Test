@@ -205,7 +205,7 @@ public class LSClubListActivity extends LSBaseActivity {
 		default:
 			break;
 		}
-		postMessage(DISMISS_PROGRESS);
+//		postMessage(DISMISS_PROGRESS);
 	}
 
 	private void parserClubInfo(String result) {
@@ -510,7 +510,7 @@ public class LSClubListActivity extends LSBaseActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			postMessage(ActivityPattern1.DISMISS_PROGRESS);
+//			postMessage(ActivityPattern1.DISMISS_PROGRESS);
 		}
 	}
 	
