@@ -124,7 +124,7 @@
                 android:text="8668"
                 android:id="@+id/tv_like"
                 android:maxLength="4"
-                android:textColor="#73706e"
+                android:textColor="@color/color_nine"
                 />
 
         </LinearLayout>

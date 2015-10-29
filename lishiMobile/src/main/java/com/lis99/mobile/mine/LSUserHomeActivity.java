@@ -24,6 +24,8 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.adapter.MyJoinAdapter;
+import com.lis99.mobile.club.model.MyJoinClubModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
@@ -112,6 +114,12 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     private TextView allView1, allView, eventView1, eventView;
     private View allLine1, allLine, eventLine1, eventLine;
     private View topPanel1, topPanel, include1;
+
+    private MyJoinClubModel model;
+
+    private Page clubPage;
+
+    private MyJoinAdapter clubAdapter;
 
     private boolean visible = false;
 

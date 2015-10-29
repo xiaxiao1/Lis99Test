@@ -14,6 +14,7 @@ import com.lis99.mobile.club.model.EquipRecommendModel;
 import com.lis99.mobile.club.model.EquipTypeModel;
 import com.lis99.mobile.club.model.LikeModelNew;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
+import com.lis99.mobile.club.model.MyJoinClubModel;
 import com.lis99.mobile.club.model.NearbyModel;
 import com.lis99.mobile.club.model.QQLoginModel;
 import com.lis99.mobile.club.model.RedDotModel;
@@ -504,12 +505,30 @@ public class LSRequestManager
 
 		BaseModel model = new BaseModel();
 
-		MyRequestManager.getInstance().requestPost(url, map, model, callBack );
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
 
 
 
 	}
 
+	/**
+	 * 		用户加入的俱乐部
+	 * @param user_id
+	 * @param pageNo
+	 * @param callBack
+	 */
+	public void getMyJoinClub ( int user_id, int pageNo, CallBack callBack )
+	{
+		String url = C.MY_JOIN_CLUB_LIST + pageNo;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("user_id", user_id);
+
+		MyJoinClubModel model = new MyJoinClubModel();
+
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
+	}
 
 
 

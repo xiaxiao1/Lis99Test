@@ -427,7 +427,7 @@ public class C {
 	public static final String CHOICENESS_AD_BANNER = DOMAIN + "/v2/advertise/getOmnibusAdvertise";
 ///v4/club/omnibusList/[page]/[user_id] 新的精选
 	public static final String CHOICENESS_NEW_LIST = DOMAIN + "/v4/club/omnibusList/";
-///v4/user/myJoinClub/[page]
+///v4/user/myJoinClub/[page]			加入的俱乐部
 	public static final String MY_JOIN_CLUB_LIST = DOMAIN + "/v4/user/myJoinClub/";
 //	http://api.lis99.com/v4/club/recommendClubList  推荐俱乐部
 	public static final String RECOMMEND_CLUB_LIST = DOMAIN + "/v4/club/recommendClubList";

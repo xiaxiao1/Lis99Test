@@ -15,9 +15,11 @@ android {
 //        oppo {}
 //        oppo {}
 //        gfan {}
-        zs360 {}
-        huawei {}
+//        zs360 {}
+//        huawei {}
 //        lis99test {}
+        jinli {}
+        xiaomi {}
     }
 
     productFlavors.all {

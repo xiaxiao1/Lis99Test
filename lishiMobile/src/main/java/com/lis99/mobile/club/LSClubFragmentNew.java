@@ -1,6 +1,7 @@
 package com.lis99.mobile.club;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -26,6 +28,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LSRequestManager;
 
 
@@ -69,7 +72,7 @@ public class LSClubFragmentNew extends LSFragment implements
 
 		//搜索按钮
 		titleRightImage = (ImageView) body.findViewById(R.id.titleRightImage);
-		titleRightImage.setImageResource(R.drawable.club_search_title_left);
+		titleRightImage.setImageResource(R.drawable.club_main_refresh);
 		titleRightImage.setOnClickListener(this);
 
 		titleLeftImage = (ImageView) body.findViewById(R.id.titleLeftImage);
@@ -105,7 +108,7 @@ public class LSClubFragmentNew extends LSFragment implements
 
 //		webView.setWebChromeClient(new MyWebChromeClient());
 //
-//		webView.setWebViewClient( new MyWebClinet());
+		webView.setWebViewClient( new MyWebClinet());
 
 		// 看这里用到了 addJavascriptInterface 这就是我们的重点中的重点
 		// 我们再看他的DemoJavaScriptInterface这个类。还要这个类一定要在主线程中
@@ -287,6 +290,45 @@ public class LSClubFragmentNew extends LSFragment implements
 
 	}
 
+	class MyWebClinet extends WebViewClient
+	{
+
+		@Override
+		public void onLoadResource(WebView view, String url) {
+			// TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onLoadResource", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onLoadResource="+url);
+			super.onLoadResource(view, url);
+		}
+
+		@Override
+		public void onPageFinished(WebView view, String url) {
+			// TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onPageFinished", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageFinished=");
+			DialogManager.getInstance().stopWaitting();
+			super.onPageFinished(view, url);
+		}
+
+		@Override
+		public void onPageStarted(WebView view, String url, Bitmap favicon) {
+			// TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onPageStarted", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageStarted=");
+			DialogManager.getInstance().startWaiting(LSBaseActivity.activity, null, "数据加载中...");
+			super.onPageStarted(view, url, favicon);
+		}
+
+		@Override
+		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			// TODO Auto-generated method stub
+			view.loadUrl(url);
+			return super.shouldOverrideUrlLoading(view, url);
+		}
+
+	}
+
+
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack())
@@ -303,7 +345,8 @@ public class LSClubFragmentNew extends LSFragment implements
 		{
 			case R.id.titleRightImage:
 			case R.id.titleRight:
-				startActivity(new Intent(getActivity(), LSClubListActivity.class));
+//				startActivity(new Intent(getActivity(), LSClubListActivity.class));
+				webView.reload();
 				break;
 			case R.id.titleLeftImage:
 			case R.id.titleLeft:

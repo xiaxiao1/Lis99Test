@@ -1334,6 +1334,20 @@ public class ImageUtil
 				.build();
 	}
 
+	public static DisplayImageOptions getDynamicImageOptions ()
+	{
+		return new DisplayImageOptions.Builder()
+				.showImageOnLoading(R.drawable.club_topic_default)
+				.showImageForEmptyUri(R.drawable.dymamic_img_none)
+				.showImageOnFail(R.drawable.dymamic_img_none)
+				.considerExifParams(true)// 图片旋转
+				.cacheInMemory(true)
+				.cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中
+				.resetViewBeforeLoading(true)//设置图片在下载前是否重置，复位
+//				.displayer(new FadeInBitmapDisplayer(200))//是否图片加载好后渐入的动画时间
+				.bitmapConfig(Bitmap.Config.RGB_565)
+				.build();
+	}
 
 	/**
 	 * 帖子详情， 用户头像

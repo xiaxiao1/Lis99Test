@@ -47,6 +47,11 @@ public class StartLogoOption {
             iv_channel.setVisibility(View.VISIBLE);
             iv_channel.setImageResource(R.drawable.star_logo_huawei);
         }
+        else if ( "jinli".equals(DeviceInfo.CHANNELVERSION) )
+        {
+            iv_channel.setVisibility(View.VISIBLE);
+            iv_channel.setImageResource(R.drawable.star_logo_jinli);
+        }
         else
         {
             iv_channel.setVisibility(View.INVISIBLE);

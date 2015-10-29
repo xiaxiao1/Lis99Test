@@ -142,7 +142,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		likeCall.clean();
-		likeCall = null;
+//		likeCall = null;
 	}
 
 	@Override

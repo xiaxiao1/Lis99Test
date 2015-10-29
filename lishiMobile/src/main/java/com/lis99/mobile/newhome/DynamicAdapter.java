@@ -2,7 +2,6 @@ package com.lis99.mobile.newhome;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -37,17 +36,7 @@ public class DynamicAdapter extends MyBaseAdapter {
         super(c, listItem);
         animation = AnimationUtils.loadAnimation(c, R.anim.like_anim_rotate);
 
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.club_topic_default)
-                .showImageForEmptyUri(R.drawable.dymamic_img_none)
-                .showImageOnFail(R.drawable.dymamic_img_none)
-                .considerExifParams(true)// 图片旋转
-                .cacheInMemory(true)
-                .cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中
-                .resetViewBeforeLoading(true)//设置图片在下载前是否重置，复位
-//				.displayer(new FadeInBitmapDisplayer(200))//是否图片加载好后渐入的动画时间
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
+        options = ImageUtil.getDynamicImageOptions();
 
     }
 

@@ -27,7 +27,7 @@
         android:drawableLeft="@drawable/search_icon_more"
         android:drawablePadding="10dip"
         android:textSize="13sp"
-        android:background="@drawable/search_white_bar"
+        android:background="@drawable/search_bar"
         android:layout_marginBottom="8dip"
         android:layout_marginTop="8dip"
         android:singleLine="true"

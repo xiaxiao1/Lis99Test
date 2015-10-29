@@ -181,6 +181,8 @@ public class FragmentDinamicList extends Fragment implements
         if (TextUtils.isEmpty(UserId))
         {
             isLogin = true;
+            layout_need_add_attention.setVisibility(View.GONE);
+            layout_dynamic.setVisibility(View.GONE);
             layout_login.setVisibility(View.VISIBLE);
             return;
         }
