@@ -23,11 +23,14 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.adapter.MyJoinAdapter;
 import com.lis99.mobile.club.model.MyJoinClubModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -36,6 +39,7 @@ import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -85,7 +89,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     private float HeadAdHeight = 1;
 
 
-    private Page page;
+    private Page page, pageclub;
 
     private View headViewMain;
     //ListView 第一个可见item
@@ -121,7 +125,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     private MyJoinAdapter clubAdapter;
 
-    private boolean visible = false;
+    private boolean visible = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +137,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         buildOptions();
 
         page = new Page();
+
+        pageclub = new Page();
 
     }
 
@@ -227,11 +233,25 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
                                     int position, long id) {
 
                 if (position == 0) return;
-                LSBaseTopicModel item = topics.get(position - 1);
-                if (item == null) return;
-                Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity.class);
-                intent.putExtra("topicID", Integer.parseInt(item.topic_id));
-                startActivity(intent);
+                if ( listView.getAdapter() == null ) return;
+                if ( listView.getAdapter() == adapter )
+                {
+                    LSBaseTopicModel item = topics.get(position - 1);
+                    if (item == null) return;
+                    Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity.class);
+                    intent.putExtra("topicID", Integer.parseInt(item.topic_id));
+                    startActivity(intent);
+                }
+                else
+                {
+                    MyJoinClubModel.Clublist item = (MyJoinClubModel.Clublist) clubAdapter.getItem(position - 1);
+                    Intent intent = new Intent(activity, LSClubDetailActivity.class);
+                    intent.putExtra("clubID", item.id);
+                    startActivity(intent);
+
+                }
+
+
 
 
             }
@@ -660,6 +680,19 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             allLine1.setVisibility(View.VISIBLE);
             eventLine1.setVisibility(View.GONE);
             eventLine.setVisibility(View.GONE);
+
+            listView.setAdapter(adapter);
+
+            if ( topics.size() == 0 )
+            {
+                //没有数据
+                layout_no_item.setVisibility(View.VISIBLE);
+            }
+            else {
+                layout_no_item.setVisibility(View.GONE);
+            }
+
+
         }
         else if ( view.getId() == R.id.eventPanel || view.getId() == R.id.eventPanel1 )
         {
@@ -671,6 +704,26 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             allLine1.setVisibility(View.GONE);
             eventLine1.setVisibility(View.VISIBLE);
             eventLine.setVisibility(View.VISIBLE);
+
+            if ( clubAdapter == null )
+            {
+                listView.setAdapter(null);
+                getclublist();
+            }
+            else {
+
+                if ( model.clublist == null || model.clublist.size() == 0 )
+                {
+                    //没有数据
+                    layout_no_item.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    layout_no_item.setVisibility(View.GONE);
+                }
+
+                listView.setAdapter(clubAdapter);
+            }
 
         }
         super.onClick(view);
@@ -688,21 +741,36 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     @Override
     public void onFooterRefresh(PullToRefreshView view) {
         refreshView.onFooterRefreshComplete();
-        if ( page.pageNo >= page.pageSize )
+        if ( allLine.getVisibility() == View.VISIBLE )
         {
-            Common.toast("没有更多帖子");
-            return;
+            if ( page.pageNo >= page.pageSize )
+            {
+                Common.toast("没有更多帖子");
+                return;
+            }
+            loadClubInfo();
         }
-        loadClubInfo();
+        else
+        {
+            getclublist();
+        }
+
     }
 
     @Override
     public void onHeaderRefresh(PullToRefreshView view) {
         refreshView.onHeaderRefreshComplete();
 //		offset = 0;
-
-        cleanList();
-        loadClubInfo();
+        if ( allLine.getVisibility() == View.VISIBLE )
+        {
+            cleanList();
+            loadClubInfo();
+        }
+        else
+        {
+            cleanclublist();
+            getclublist();
+        }
 
     }
 
@@ -832,5 +900,62 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             }
         }
     };
+
+    private void getclublist ()
+    {
+        if ( pageclub.isLastPage())
+        {
+            return;
+        }
+
+        String url = C.MY_JOIN_CLUB_LIST + pageclub.getPageNo();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("user_id", userID);
+
+        model = new MyJoinClubModel();
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                model = (MyJoinClubModel) mTask.getResultModel();
+
+                pageclub.nextPage();
+
+                if ( clubAdapter == null )
+                {
+                    pageclub.setPageSize(model.totalpage);
+
+                    if ( model.clublist == null || model.clublist.size() == 0 )
+                    {
+                        //没有数据
+                        layout_no_item.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        layout_no_item.setVisibility(View.GONE);
+                    }
+
+                    clubAdapter = new MyJoinAdapter(activity, model.clublist);
+                    clubAdapter.setVisibleLine(false);
+                    listView.setAdapter(clubAdapter);
+                }
+                else
+                {
+                    clubAdapter.addList(model.clublist);
+                }
+
+            }
+        });
+
+    }
+
+    private void cleanclublist ()
+    {
+        pageclub = new Page();
+        listView.setAdapter(null);
+        clubAdapter = null;
+    }
 
 }

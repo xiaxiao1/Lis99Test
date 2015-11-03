@@ -19,9 +19,15 @@ import java.util.ArrayList;
  */
 public class MyJoinAdapter extends MyBaseAdapter {
 
+    private boolean visibleLine = true;
 
     public MyJoinAdapter(Context c, ArrayList listItem) {
         super(c, listItem);
+    }
+
+    public void setVisibleLine (boolean visibleLine)
+    {
+        this.visibleLine = visibleLine;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class MyJoinAdapter extends MyBaseAdapter {
             holder = (Holder) view.getTag();
         }
 
-        if ( i == 0 )
+        if ( i == 0 && visibleLine )
         {
             holder.layout_include.setVisibility(View.VISIBLE);
         }

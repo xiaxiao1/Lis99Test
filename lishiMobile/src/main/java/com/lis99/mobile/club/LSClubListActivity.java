@@ -150,7 +150,7 @@ public class LSClubListActivity extends LSBaseActivity {
 			userId = "0";
 		}
 
-		String url = C.RECOMMEND_CLUB_LIST + "?user_id="+userId + "&latitude="+Latitude1+"&longitude="+Longtitude1;
+		String url = C.RECOMMEND_CLUB_LIST + "?user_id="+userId;// + "&latitude="+Latitude1+"&longitude="+Longtitude1;
 
 		MyRequestManager.getInstance().requestGet(url, recommendModel, new CallBack() {
 			@Override
