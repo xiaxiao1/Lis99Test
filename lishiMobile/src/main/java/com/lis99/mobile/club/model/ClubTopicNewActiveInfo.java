@@ -52,6 +52,10 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     public String zhuangbei_title;
     public String zhuangbei_price;
     public int zhuangbei_star;
+//  0：为关注 1已关注
+    public int attenStatus;
+//  发贴人id
+    public int id;
 
     @Override
     public String getTopic_id() {

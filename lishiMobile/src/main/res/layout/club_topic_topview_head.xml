@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/roundedImageView1"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ls_nologin_header_icon"
+        android:scaleType="fitXY"
+        app:corner_radius="5dp"
+        app:border_color="#e8e8e8"
+        app:border_width="1px"/>
+    
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/roundedImageView1"
+            android:layout_marginLeft="10dp"
+        android:id="@+id/nameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="13sp"
+        android:textColor="#666"
+        android:text="@string/temp_string"
+        android:drawablePadding="4dip"
+        android:drawableRight="@drawable/club_tier_master"
+         />
+    
+    <Button
+        style="@style/wrap_wrap"
+        android:layout_alignParentRight="true"
+        android:id="@+id/btn_attention"
+        android:background="@drawable/choiceness_consern"
+        android:layout_centerVertical="true"
+        />
+
+    
+
+    <ImageView
+        android:id="@+id/vipStar"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_alignRight="@id/roundedImageView1"
+        android:layout_alignBottom="@+id/roundedImageView1"
+        android:layout_marginLeft="-8dp"
+        android:src="@drawable/club_icon_v" />
+    
+    
+
+</RelativeLayout>

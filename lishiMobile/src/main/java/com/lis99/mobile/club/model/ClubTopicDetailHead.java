@@ -123,6 +123,10 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 	public String baomingNum;
 	public String passNum;
 
+//	3.6.3===
+//  0：为关注 1已关注
+	public int attenStatus;
+
 	//===3.5====
 	public ArrayList<Taglist> taglist;
 	//积分

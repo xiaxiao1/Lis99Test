@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -103,10 +104,10 @@ public class LSClubListActivity extends LSBaseActivity {
 		cityid = preferences.getString("clubCityid", "2");
 		city = preferences.getString("clubCity", "北京");
 		
-//		myReciever = new MyReciever();
-//		IntentFilter intentFilter = new IntentFilter();
-//		intentFilter.addAction("com.lis99.mobile.loc");
-//		registerReceiver(myReciever, intentFilter);
+		myReciever = new MyReciever();
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction("com.lis99.mobile.loc");
+		registerReceiver(myReciever, intentFilter);
 		
 //		getLocation();
 		
@@ -187,7 +188,7 @@ public class LSClubListActivity extends LSBaseActivity {
 		if ( location != null )
 		location.stopLocation();
 //		stopService(new Intent("com.lis99.mobile.service.LocService"));
-//		unregisterReceiver(myReciever);
+		unregisterReceiver(myReciever);
 		super.onDestroy();
 	}
 	

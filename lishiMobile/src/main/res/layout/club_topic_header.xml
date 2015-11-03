@@ -14,85 +14,52 @@
         android:paddingTop="10dip"
         >
 
-        <TextView
-            android:id="@+id/titleView"
-            android:layout_width="wrap_content"
+        <include
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lineSpacingExtra="3dip"
-            android:maxLines="2"
-            android:text="@string/temp_string_long"
-            android:textColor="@color/text_color_blue"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            layout="@layout/topic_title_line"
             />
 
-        <RelativeLayout
-            style="@style/fill_wrap"
-            android:paddingBottom="10dp"
-            android:paddingTop="8dp"
+        <include
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            >
-
-            <TextView
-                android:id="@+id/clubButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:text="来自【】俱乐部 >"
-                android:textColor="#ff7800"
-                android:textSize="12sp"/>
-
-            <TextView
-                android:id="@+id/tv_reply_number"
-                style="@style/wrap_wrap"
-                android:layout_alignParentRight="true"
-                android:drawableLeft="@drawable/club_detail_reply_number"
-                android:drawablePadding="8dip"
-                android:text="@string/temp_string"
-                android:textColor="#999"
-                android:textSize="12sp"
-                />
-
-        </RelativeLayout>
+            android:layout_below="@id/view_line"
+            android:id="@+id/include1"
+            layout="@layout/club_topic_topview_head"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#e8e8e8"
-                android:id="@+id/view_line"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                />
-
-            <include
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_below="@id/view_line"
-                android:id="@+id/include1"
-                layout="@layout/club_topic_topview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/club_topic_best_icon"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
                 android:id="@+id/iv_best"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:layout_toLeftOf="@id/iv_best"
+                android:id="@+id/titleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lineSpacingExtra="3dip"
+                android:maxLines="2"
+                android:text="@string/temp_string_long"
+                android:textColor="@color/text_color_blue"
+                android:textSize="20sp"
                 />
 
         </RelativeLayout>
-
-
 
         <TextView
             android:lineSpacingExtra="7dp"
@@ -212,12 +179,42 @@
         <include
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            layout="@layout/club_topic_reply"
+            layout="@layout/club_topic_reply_new"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/reply_height"
             android:layout_marginBottom="10dip"
             android:layout_marginTop="10dip"
             />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/topic_create_time"
+                android:textSize="12sp"
+                android:textColor="@color/color_nine"
+                android:text="@string/temp_string"
+                android:drawablePadding="5dp"
+                android:id="@+id/dateView"
+                />
+
+            <TextView
+                style="@style/wrap_wrap"
+                android:drawableLeft="@drawable/club_detail_reply"
+                android:text="回复"
+                android:drawablePadding="6dip"
+                android:textColor="#999"
+                android:textSize="12sp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_click_reply"
+                />
+
+        </RelativeLayout>
 
         <include
             android:layout_width="fill_parent"

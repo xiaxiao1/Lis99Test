@@ -448,7 +448,9 @@ public class LSRequestManager
 		MyRequestManager.getInstance().requestPost(C.CANCEL_ATTENTION, map, model, call);
 
 	}
-	/**添加关注*/
+	/**添加关注
+	 * 			@param AttentionId 被关注的ID
+	 * */
 	public void getFriendsAddAttention ( int AttentionId, CallBack call )
 	{
 		if ( !Common.isLogin(LSBaseActivity.activity))

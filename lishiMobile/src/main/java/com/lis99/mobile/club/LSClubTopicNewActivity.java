@@ -84,12 +84,19 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
     //	＝＝＝＝3.5.5＝＝＝＝＝＝＝
     private HandlerList likeCall;
 
-    private LinearLayout layout_like;
-    private ImageView iv_like;
-    private TextView tv_like;
+//    private LinearLayout layout_like;
+//    private ImageView iv_like;
+//    private TextView tv_like;
     private Animation animation;
 
     public boolean isShared;
+
+    //====3.6.3===
+    private View replyTopicButton, layout_like;
+    private ImageView iv_like, iv_reply;
+    private TextView tv_reply, tv_like;
+
+    private ImageView titleRightImage, iv_weichat, iv_friend;
 
     //分享的图片
 //	public Bitmap shareBit;
@@ -140,7 +147,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
 //        topicID = 555892;
         setContentView(R.layout.activity_lsclub_topic);
         initViews();
-        setTitle("帖子详情");
+//        setTitle("帖子详情");
         // setTitleRight(true);
         // setBack(true);
 
@@ -182,9 +189,6 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
 
         replyPanel = findViewById(R.id.include2);
 
-        View replyTopicButton = findViewById(R.id.replyTopicButton);
-        replyTopicButton.setOnClickListener(this);
-
         b = (Button) replyPanel.findViewById(R.id.addImage);
         // ===========2.3====================
 
@@ -196,6 +200,23 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
         tv_like = (TextView) findViewById(R.id.tv_like);
 
         layout_like.setOnClickListener(this);
+
+        //3.6.3===
+
+        replyTopicButton = findViewById(R.id.replyTopicButton);
+        replyTopicButton.setOnClickListener(this);
+
+        iv_reply = (ImageView) findViewById(R.id.iv_reply);
+        tv_reply = (TextView) findViewById(R.id.tv_reply);
+
+
+        titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
+        iv_weichat = (ImageView) findViewById(R.id.iv_weichat);
+        iv_friend = (ImageView) findViewById(R.id.iv_friend);
+
+        titleRightImage.setOnClickListener(this);
+        iv_weichat.setOnClickListener(this);
+        iv_friend.setOnClickListener(this);
 
     }
 
@@ -307,9 +328,9 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 }
                 if ( Common.isLogin(activity) )
                 {
-                    iv_like.setImageResource(R.drawable.like_button_press);
-                    tv_like.setText("已赞");
-                    tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
+//                    iv_like.setImageResource(R.drawable.like_button_press);
+//                    tv_like.setText("已赞");
+//                    tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
 
                     iv_like.startAnimation(animation);
 
@@ -323,6 +344,13 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                         }
                     });
                 }
+                break;
+            case R.id.titleRightImage:
+                rightAction();
+                break;
+            case R.id.iv_weichat:
+                break;
+            case R.id.iv_friend:
                 break;
             default:
                 super.onClick(v);
@@ -488,22 +516,25 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
     {
         if ( "1".equals(infoModel.LikeStatus) )
         {
-            iv_like.setImageResource(R.drawable.like_button_press);
-            tv_like.setText("已赞");
+            iv_like.setImageResource(R.drawable.topic_bottom_like_select);
             tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
         }
         else
         {
-            iv_like.setImageResource(R.drawable.like_button);
-            tv_like.setText("赞");
+            iv_like.setImageResource(R.drawable.topic_bottom_like);
             tv_like.setTextColor(getResources().getColor(R.color.color_nine));
         }
+
+        tv_like.setText(infoModel.likeNum + "个赞");
+
+        tv_reply.setText(infoModel.replytopic);
+
         //设置head
             visibleTitleReference(false);
             // 标题透明
-            setTitleBarAlpha(0);
-            setTitleRight(true);
-            setBack(true);
+            setTitleBarAlpha(1);
+            setTitleRight(false);
+            setBack(false);
             if (headViewActive == null)
             {
                 headViewActive = new LSClubTopicNewActive(activity);
@@ -647,13 +678,13 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
     // 隐藏的占位view， 用来控制listviewtop位置
     private void visibleTitleReference(boolean b)
     {
-        if (b)
-        {
-            view_reference.setVisibility(View.VISIBLE);
-        } else
-        {
-            view_reference.setVisibility(View.GONE);
-        }
+//        if (b)
+//        {
+//            view_reference.setVisibility(View.VISIBLE);
+//        } else
+//        {
+//            view_reference.setVisibility(View.GONE);
+//        }
     }
 
     @Override
@@ -783,27 +814,27 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             {
                 title.setText("帖子详情");
             }
-            // 获取头的高度
-            if (headHeight == 0)
-            {
-                // 获取AD高度
-                getHeadAdHeight();
-            }
-            View v = listView.getChildAt(0);
-            if (v == null)
-                return;
-            float alpha = v.getTop();
-            // 只有活动页才做处理
-            if (!needup )
-            {
-                if (visibleFirst > 0)
-                {
-                    setTitleAlpha(headHeight);
-                } else
-                {
-                    setTitleAlpha(-alpha);
-                }
-            }
+//            // 获取头的高度
+//            if (headHeight == 0)
+//            {
+//                // 获取AD高度
+//                getHeadAdHeight();
+//            }
+//            View v = listView.getChildAt(0);
+//            if (v == null)
+//                return;
+//            float alpha = v.getTop();
+//            // 只有活动页才做处理
+//            if (!needup )
+//            {
+//                if (visibleFirst > 0)
+//                {
+//                    setTitleAlpha(headHeight);
+//                } else
+//                {
+//                    setTitleAlpha(-alpha);
+//                }
+//            }
         }
     };
 
@@ -814,8 +845,10 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             @Override
             public void handler(MyTask mTask) {
                 infoModel.LikeStatus = "1";
-                iv_like.setImageResource(R.drawable.like_button_press);
-                tv_like.setText("已赞");
+                iv_like.setImageResource(R.drawable.topic_bottom_like_select);
+                int num = Common.string2int(infoModel.likeNum);
+                num += 1;
+                tv_like.setText(num + "个赞");
                 tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
             }
         });

@@ -30,6 +30,7 @@ import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -51,9 +52,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
     private RoundedImageView roundedImageView1;
 
-    private TextView tv_icon_name, titleView;
-
-    private TextView tv_active_style, tv_reply_number;
+    private TextView nameView, titleView;
 
     private Button btn_join;
 
@@ -74,8 +73,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
     private LSClubTopicNewActivity main;
 
-    private LinearLayout layout_detail, layout_club_detail_like,
-            layout_club_detail_reply;
+    private LinearLayout layout_detail;
 
     private View equiPanel;
     private ImageView equiImageView;
@@ -83,6 +81,9 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
     private TextView equiNameView;
     private RatingBar equiRatingBar;
 
+//    3.6.3-＝＝＝＝＝
+    private TextView dateView, tv_click_reply, tv_active_style;
+    private Button btn_attention;
 
 
     public void setInstance (LSClubTopicNewActivity main)
@@ -128,11 +129,10 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
         roundedImageView1.setOnClickListener(this);
 
-        tv_icon_name = (TextView) v.findViewById(R.id.tv_icon_name);
+        nameView = (TextView) v.findViewById(R.id.nameView);
         titleView = (TextView) v.findViewById(R.id.titleView);
 
         tv_active_style = (TextView) v.findViewById(R.id.tv_active_style);
-        tv_reply_number = (TextView) v.findViewById(R.id.tv_reply_number);
         btn_join = (Button) v.findViewById(R.id.btn_join);
 
         tv_time_over = (TextView) v.findViewById(R.id.tv_time_over);
@@ -150,12 +150,6 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         tv_tag2 = (TextView) v.findViewById(R.id.tv_tag2);
         tv_tag3 = (TextView) v.findViewById(R.id.tv_tag3);
 
-        layout_club_detail_reply = (LinearLayout) findViewById(R.id.layout_club_detail_reply);
-        layout_club_detail_like = (LinearLayout) findViewById(R.id.layout_club_detail_like);
-
-        layout_club_detail_like.setVisibility(INVISIBLE);
-//		layout_club_detail_like.setOnClickListener(this);
-        layout_club_detail_reply.setOnClickListener(this);
 
         equiPanel =  v.findViewById(R.id.equiPanel);
         equiImageView = (ImageView)  v.findViewById(R.id.equiImageView);
@@ -163,7 +157,14 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         equiNameView = (TextView)  v.findViewById(R.id.equiNameView);
         equiRatingBar = (RatingBar)  v.findViewById(R.id.equiRatingBar);
 
+//        3.6.3===
+        dateView = (TextView) v.findViewById(R.id.dateView);
 
+        tv_click_reply = (TextView) v.findViewById(R.id.tv_click_reply);
+        tv_click_reply.setOnClickListener(this);
+
+        btn_attention = (Button) v.findViewById(R.id.btn_attention);
+        btn_attention.setOnClickListener(this);
 
     }
 
@@ -173,21 +174,32 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         this.model = model;
         titleView.setText(model.title);
 
-        tv_icon_name.setText(model.club_title);
+        nameView.setText(model.club_title);
 
         if ( "1".equals(model.days))
         {
             tv_time_over.setText("今天" + model.deadline + "截止");
         }
         else if ( "0".equals(model.days))
-    {
-        tv_time_over.setText("已截止");
-    }
+        {
+            tv_time_over.setText("已截止");
+        }
         else
         {
             tv_time_over.setText("还有" + model.days + "天可以申请");
         }
 
+
+//  3.6.3 时间， 关注
+        dateView.setText(model.createdate);
+        if ( model.attenStatus == 0 )
+        {
+            btn_attention.setVisibility(VISIBLE);
+        }
+        else
+        {
+            btn_attention.setVisibility(GONE);
+        }
 
         if (model.zhuangbei_id != 0) {
             equiPanel.setVisibility(View.VISIBLE);
@@ -322,7 +334,6 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         {
             replynum = "1";
         }
-        tv_reply_number.setText(replynum + "则回复");
 
         tv_active_style.setText(model.catename + " " + model.hardDegree);
 
@@ -505,13 +516,18 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                 }
 
                 break;
-            case R.id.layout_club_detail_reply:
+            case R.id.tv_click_reply:
                 main.showReplyPanel();
                 break;
             case R.id.roundedImageView1 :
                 Intent intent = new Intent(mContext, LSClubDetailActivity.class);
                 intent.putExtra("clubID", Common.string2int(model.club_id));
                 mContext.startActivity(intent);
+                break;
+            case R.id.btn_attention:
+                btn_attention.setVisibility(GONE);
+                if ( model == null ) return;
+                LSRequestManager.getInstance().getFriendsAddAttention(model.id, null);
                 break;
         }
     }

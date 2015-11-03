@@ -181,7 +181,7 @@ public class FragmentChoicenessList extends Fragment  implements
                 {
                     page.setPageSize(listModel.totalpage);
 
-                    if (DeviceInfo.CHANNELVERSION.equals("ttest"))
+                    if ("ttest".equals(DeviceInfo.CHANNELVERSION))
                     {
                         ChoicenessModel.Omnibuslist f = new ChoicenessModel().new Omnibuslist();
                         f.type = 4;

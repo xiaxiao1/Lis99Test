@@ -6,6 +6,21 @@
     android:background="#fff"
     android:orientation="vertical" >
 
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/topic_title_line"
+        />
+
+    <include
+        android:layout_margin="10dp"
+        android:layout_below="@id/view_line"
+        android:id="@+id/include1"
+        layout="@layout/club_topic_topview_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+
     <RelativeLayout
         style="@style/fill_wrap"
         android:layout_width="wrap_content"
@@ -26,70 +41,6 @@
             android:layout_centerInParent="true"
             android:src="@drawable/load_image_temp_bg"
             />
-        
-        <RelativeLayout 
-            style="@style/fill_wrap"
-            android:layout_height="55dip"
-            android:layout_alignBottom="@id/iv_head"
-            >
-            
-            <View 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-            android:background="@drawable/club_head_shade"
-                />
-            
-            <com.lis99.mobile.club.widget.RoundedImageView
-                android:layout_marginBottom="8dip"
-            android:id="@+id/roundedImageView1"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-                android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dip"
-            android:scaleType="fitXY"
-            android:src="@drawable/ls_nologin_header_icon"
-            app:border_color="#e8e8e8"
-            app:border_width="0px"
-            app:corner_radius="50dip" 
-            
-            />
-
-        <TextView
-            android:id="@+id/nameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/roundedImageView1"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/roundedImageView1"
-            android:drawablePadding="4dip"
-            android:drawableRight="@drawable/club_tier_master"
-            android:singleLine="true"
-            android:text="@string/temp_string"
-            android:textColor="@color/white"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/dateView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/nameView"
-            android:layout_below="@+id/nameView"
-            android:singleLine="true"
-            android:text="@string/temp_string"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:id="@+id/vipStar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/roundedImageView1"
-            android:layout_alignRight="@id/roundedImageView1"
-            android:layout_marginLeft="-8dp"
-            android:src="@drawable/club_icon_v" />
-            
-        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -101,13 +52,11 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             >
 
             <ImageView
@@ -115,10 +64,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/iv_best"
                 android:src="@drawable/club_topic_best_icon"
-                android:layout_marginRight="9dp"
+                android:layout_alignParentRight="true"
                 />
 
             <TextView
+                android:layout_toLeftOf="@id/iv_best"
                 android:id="@+id/titleView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,35 +80,47 @@
                 android:textSize="20sp"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/clubButton"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"
-            android:text="来自【】俱乐部 >"
-            android:textColor="#ff7800"
-            android:textSize="12sp" />
+            android:layout_margin="10dp"
+            >
 
-        <LinearLayout
-            style="@style/fill_wrap"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-             >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/topic_create_time"
+                android:textSize="12sp"
+                android:textColor="@color/color_nine"
+                android:text="@string/temp_string"
+                android:drawablePadding="6dp"
+                android:id="@+id/dateView"
+                />
+
+            <TextView
+                style="@style/wrap_wrap"
+                android:drawableLeft="@drawable/club_detail_reply"
+                android:text="回复"
+                android:drawablePadding="6dip"
+                android:textColor="#999"
+                android:textSize="12sp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_click_reply"
+                />
 
             <LinearLayout
+                android:layout_toRightOf="@id/dateView"
                 style="@style/wrap_wrap"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginRight="10dip"
-                 >
+                android:layout_marginLeft="10dip"
+                >
 
                 <ImageView
                     style="@style/wrap_wrap"
-                    android:layout_marginRight="10dip"
+                    android:layout_marginRight="6dip"
                     android:src="@drawable/club_topic_active_style" />
 
                 <TextView
@@ -172,24 +134,7 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout
-                style="@style/wrap_wrap"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <ImageView
-                    style="@style/wrap_wrap"
-                    android:layout_marginRight="10dip"
-                    android:src="@drawable/club_detail_reply_number" />
-
-                <TextView
-                    android:id="@+id/tv_reply_number"
-                    style="@style/wrap_wrap"
-                    android:text="@string/temp_string"
-                    android:textColor="#999"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             style="@style/fill_wrap"
@@ -438,10 +383,11 @@
         <include
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            layout="@layout/club_topic_reply_new"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/reply_height"
             android:layout_marginTop="10dip"
-            layout="@layout/club_topic_reply" />
+            />
 
         <include
             android:layout_width="fill_parent"
