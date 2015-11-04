@@ -24,13 +24,12 @@
     <RelativeLayout
         style="@style/fill_wrap"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="220dp" >
 
         <ImageView
             android:id="@+id/iv_head"
-            style="@style/fill_wrap"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/club_detail_head_height"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             />
 
@@ -65,12 +64,13 @@
                 android:id="@+id/iv_best"
                 android:src="@drawable/club_topic_best_icon"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="3dp"
                 />
 
             <TextView
                 android:layout_toLeftOf="@id/iv_best"
                 android:id="@+id/titleView"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lineSpacingExtra="2dip"
@@ -392,7 +392,6 @@
         <include
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
             layout="@layout/club_topic_like"
             />
 

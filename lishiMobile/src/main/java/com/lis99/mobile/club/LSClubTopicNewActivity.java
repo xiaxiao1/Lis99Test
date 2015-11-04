@@ -147,11 +147,14 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
 //        topicID = 555892;
         setContentView(R.layout.activity_lsclub_topic);
         initViews();
-//        setTitle("帖子详情");
+
         // setTitleRight(true);
         // setBack(true);
-
+        iv_title_bg = (ImageView) findViewById(R.id.iv_title_bg);
+        title = (TextView)findViewById(R.id.title);
         title.setOnClickListener(this);
+
+        //        setTitle("帖子详情");
 
         infoModel = new ClubTopicNewActiveInfo();
         clubreply = new ClubTopicReplyList();
@@ -172,7 +175,17 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
     @Override
     protected void initViews()
     {
-        super.initViews();
+//        super.initViews();
+
+        View titleLeft = findViewById(R.id.titleLeft);
+        titleLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         listView = (ListView) findViewById(R.id.listView);
         layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
         // headView = new LSClubTopicHead(activity);
@@ -349,8 +362,23 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 rightAction();
                 break;
             case R.id.iv_weichat:
+                String imgUrl = null;
+                if ( infoModel == null ) return;
+                if (infoModel.topic_image != null && infoModel.topic_image.size() >= 1 )
+                {
+                    imgUrl = infoModel.topic_image.get(0).image;
+                }
+                ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, infoModel.title, shareFandW);
                 break;
             case R.id.iv_friend:
+                String imgUrl1 = null;
+                if ( infoModel == null ) return;
+                if (infoModel.topic_image != null && infoModel.topic_image.size() >= 1 )
+                {
+                    imgUrl1 = infoModel.topic_image.get(0).image;
+                }
+//				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
+                ShareManager.getInstance().share2Friend("" + topicID, imgUrl1, infoModel.title, shareFandW);
                 break;
             default:
                 super.onClick(v);
@@ -527,7 +555,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
 
         tv_like.setText(infoModel.likeNum + "个赞");
 
-        tv_reply.setText(infoModel.replytopic);
+        tv_reply.setText(infoModel.replytopic + "则回复");
 
         //设置head
             visibleTitleReference(false);
@@ -805,14 +833,12 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             // TODO Auto-generated method stub
             visibleFirst = firstVisibleItem;
             int num = firstVisibleItem + visibleItemCount;
-            if (num > pageCount
-                    && title.getText().toString().equals("帖子详情"))
+            if (num > pageCount)
             {
                 title.setText("双击此处回到1楼");
-            } else if (num < pageCount
-                    && !title.getText().toString().equals("帖子详情"))
+            } else if (num < pageCount)
             {
-                title.setText("帖子详情");
+                title.setText("");
             }
 //            // 获取头的高度
 //            if (headHeight == 0)
@@ -854,7 +880,14 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
         });
     }
 
-
+    private CallBack shareFandW = new CallBack() {
+        @Override
+        public void handler(MyTask mTask) {
+            Common.toast("分享成功");
+            isShared = true;
+            headViewActive.doAction();
+        }
+    };
 
 
 

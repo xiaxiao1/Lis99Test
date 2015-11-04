@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -94,6 +95,30 @@ public class FragmentChoicenessList extends Fragment  implements
 
         bannerView = (BannerView) head.findViewById(R.id.viewBanner);
 
+        bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        bannerView.stopAutoScroll();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        bannerView.stopAutoScroll();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        bannerView.startAutoScroll();
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
+
         layout_club_level = (LinearLayout) head.findViewById(R.id.layout_club_level);
         layout_leader_level = (LinearLayout) head.findViewById(R.id.layout_leader_level);
         layout_hot_topic = (LinearLayout) head.findViewById(R.id.layout_hot_topic);
@@ -144,6 +169,7 @@ public class FragmentChoicenessList extends Fragment  implements
                     bannerAdapter.addImagePageAdapterListener(FragmentChoicenessList.this);
                     bannerAdapter.setImagePageClickListener(FragmentChoicenessList.this);
                     bannerView.setBannerAdapter(bannerAdapter);
+                    bannerView.startAutoScroll();
                 }
             });
         }
@@ -249,6 +275,8 @@ public class FragmentChoicenessList extends Fragment  implements
                 {
                     adapter.setList(listModel.omnibuslist);
                 }
+                pull_refresh_view.onFooterRefreshComplete();
+                pull_refresh_view.onHeaderRefreshComplete();
 
             }
         });
@@ -270,6 +298,7 @@ public class FragmentChoicenessList extends Fragment  implements
         {
             case R.id.include_search:
                 startActivity(new Intent(getActivity(), SearchActivity.class));
+//                startActivity(new Intent(getActivity(), MyTest.class));
                 break;
             case R.id.layout_club_level:
                 intent = new Intent(getActivity(), ClubSpecialListActivity.class);
@@ -298,14 +327,14 @@ public class FragmentChoicenessList extends Fragment  implements
 
     @Override
     public void onFooterRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-        view.onFooterRefreshComplete();
+
         getList();
 
     }
 
     @Override
     public void onHeaderRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-        view.onHeaderRefreshComplete();
+
         cleanList();
         getList();
     }

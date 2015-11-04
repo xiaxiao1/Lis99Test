@@ -23,7 +23,7 @@ public class MyTask{
 	public boolean ErrorCallBack = false;
 
 	//显示错误信息文本提示， 默认显示
-	public boolean showErrorTost = false;
+	public boolean showErrorTost = true;
 
 	public String url;
 

@@ -127,6 +127,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     private boolean visible = true;
 
+    private View view_line;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +170,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         headViewMain = View.inflate(activity, R.layout.user_page_top, null);
 
         headerView = headViewMain.findViewById(R.id.headView);
+
+        view_line = headViewMain.findViewById(R.id.view_line);
 
         layout_no_item = headViewMain.findViewById(R.id.layout_no_item);
 
@@ -234,7 +238,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
                 if (position == 0) return;
                 if ( listView.getAdapter() == null ) return;
-                if ( listView.getAdapter() == adapter )
+                if ( allLine.getVisibility() == View.VISIBLE )
                 {
                     LSBaseTopicModel item = topics.get(position - 1);
                     if (item == null) return;
@@ -672,6 +676,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         }
         else if ( view.getId() == R.id.allPanel1 || view.getId() == R.id.allPanel )
         {
+            view_line.setVisibility(View.VISIBLE);
             allView.setTextColor(getResources().getColor(R.color.text_color_blue));
             allView1.setTextColor(getResources().getColor(R.color.text_color_blue));
             eventView.setTextColor(getResources().getColor(R.color.color_six));
@@ -696,6 +701,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         }
         else if ( view.getId() == R.id.eventPanel || view.getId() == R.id.eventPanel1 )
         {
+            view_line.setVisibility(View.GONE);
             eventView.setTextColor(getResources().getColor(R.color.text_color_blue));
             eventView1.setTextColor(getResources().getColor(R.color.text_color_blue));
             allView.setTextColor(getResources().getColor(R.color.color_six));
@@ -938,7 +944,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
                     }
 
                     clubAdapter = new MyJoinAdapter(activity, model.clublist);
-                    clubAdapter.setVisibleLine(false);
+//                    clubAdapter.setVisibleLine(false);
                     listView.setAdapter(clubAdapter);
                 }
                 else

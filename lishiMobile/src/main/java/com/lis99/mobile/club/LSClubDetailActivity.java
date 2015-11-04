@@ -58,7 +58,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	LSClubDitalAdapter adapter;
 
 	int clubID;
-	View headerView, view_line_head;
+	View headerView;
 	RoundedImageView headerImageView;
 //	Button addButton;
 	TextView nameView;
@@ -204,7 +204,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 		headerView = headViewMain.findViewById(R.id.headView);
 
-		view_line_head = headViewMain.findViewById(R.id.view_line_head);
 
 		ViewTreeObserver vto1 = headerView.getViewTreeObserver();
 		vto1.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -642,7 +641,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			type = -1;
 			//这跟线在线路活动 里是没有的
-			view_line_head.setVisibility(View.VISIBLE);
 			allView1.setTextColor(getResources().getColor(R.color.text_color_blue));
 			allView.setTextColor(getResources().getColor(R.color.text_color_blue));
 			allLine1.setVisibility(View.VISIBLE);
@@ -660,7 +658,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			type = 1;
 			//这跟线消失
-			view_line_head.setVisibility(View.GONE);
 			eventView.setTextColor(getResources().getColor(R.color.text_color_blue));
 			eventView1.setTextColor(getResources().getColor(R.color.text_color_blue));
 			eventLine.setVisibility(View.VISIBLE);

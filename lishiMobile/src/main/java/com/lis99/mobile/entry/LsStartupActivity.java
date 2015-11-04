@@ -340,6 +340,12 @@ public class LsStartupActivity extends ActivityPattern {
 
     private void goNext() {
 
+//        if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()))
+//        {
+//            startActivity( new Intent(this, HelpActivity.class));
+//            return;
+//        }
+
         Intent intent = new Intent(LsStartupActivity.this,
                 NewHomeActivity.class);
         //传送push信息

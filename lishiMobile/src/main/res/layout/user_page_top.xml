@@ -306,6 +306,7 @@
         android:layout_width="fill_parent"
         android:layout_height="5dp"
         android:background="@color/pull_bg"
+        android:id="@+id/view_line"
         />
 
     <RelativeLayout

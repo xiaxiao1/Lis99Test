@@ -1,19 +1,16 @@
 package com.lis99.mobile.newhome.equip;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.LSBaseActivity;
 
 /**
  * Created by yy on 15/9/29.
  */
-public class MyTest extends LSBaseActivity {
+public class MyTest extends Activity {
 
 
-    private EditText editText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +23,5 @@ public class MyTest extends LSBaseActivity {
 
     }
 
-    @Override
-    protected void initViews() {
-        super.initViews();
-    }
 
-    @Override
-    public void onClick(View arg0) {
-        super.onClick(arg0);
-    }
 }

@@ -164,7 +164,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         tv_click_reply.setOnClickListener(this);
 
         btn_attention = (Button) v.findViewById(R.id.btn_attention);
-        btn_attention.setOnClickListener(this);
+        btn_attention.setVisibility(GONE);
+//        btn_attention.setOnClickListener(this);
 
     }
 
@@ -192,14 +193,14 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
 //  3.6.3 时间， 关注
         dateView.setText(model.createdate);
-        if ( model.attenStatus == 0 )
-        {
-            btn_attention.setVisibility(VISIBLE);
-        }
-        else
-        {
-            btn_attention.setVisibility(GONE);
-        }
+//        if ( model.attenStatus == 0 )
+//        {
+//            btn_attention.setVisibility(VISIBLE);
+//        }
+//        else
+//        {
+//            btn_attention.setVisibility(GONE);
+//        }
 
         if (model.zhuangbei_id != 0) {
             equiPanel.setVisibility(View.VISIBLE);
@@ -335,7 +336,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
             replynum = "1";
         }
 
-        tv_active_style.setText(model.catename + " " + model.hardDegree);
+        tv_active_style.setText(model.hardDegree);
 
         //====3.5======
         if ( model.taglist != null && model.taglist.size() != 0 )

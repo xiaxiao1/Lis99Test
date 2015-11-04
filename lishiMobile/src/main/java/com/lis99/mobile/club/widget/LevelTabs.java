@@ -63,19 +63,24 @@ public class LevelTabs extends LinearLayout{
 	public void selectClub ()
 	{
 		isLeader = false;
-		btn_level_club.setBackgroundResource(R.drawable.club_level_tab1_left);
-		btn_level_leader.setBackgroundResource(R.drawable.club_level_tab2_right);
-		btn_level_club.setTextColor(getResources().getColor(R.color.text_color_blue));
-		btn_level_leader.setTextColor(getResources().getColor(R.color.white));
+
+		btn_level_club.setBackgroundResource(R.drawable.club_level_tab2_left);
+		btn_level_leader.setBackgroundResource(R.drawable.club_level_tab1_right);
+		btn_level_leader.setTextColor(getResources().getColor(R.color.text_color_blue));
+		btn_level_club.setTextColor(getResources().getColor(R.color.white));
+
+
 	}
 	
 	public void selectLeader ()
 	{
 		isLeader = true;
-		btn_level_club.setBackgroundResource(R.drawable.club_level_tab2_left);
-		btn_level_leader.setBackgroundResource(R.drawable.club_level_tab1_right);
-		btn_level_leader.setTextColor(getResources().getColor(R.color.text_color_blue));
-		btn_level_club.setTextColor(getResources().getColor(R.color.white));
+
+		btn_level_club.setBackgroundResource(R.drawable.club_level_tab1_left);
+		btn_level_leader.setBackgroundResource(R.drawable.club_level_tab2_right);
+		btn_level_club.setTextColor(getResources().getColor(R.color.text_color_blue));
+		btn_level_leader.setTextColor(getResources().getColor(R.color.white));
+
 	}
 	
 	public void setonClick ( onClickBtn onclick )

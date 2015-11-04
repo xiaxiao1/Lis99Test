@@ -463,7 +463,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 	}
 
 //	int ImageWidth = -1;
-int ImageWidth = Common.WIDTH - Common.dip2px(10);
+int ImageWidth = Common.WIDTH;// - Common.dip2px(10);
 	private AnimationDrawable animationDrawable;
 
 	private void getWidth(final ImageView v,final ImageView load, final Topiclist item)

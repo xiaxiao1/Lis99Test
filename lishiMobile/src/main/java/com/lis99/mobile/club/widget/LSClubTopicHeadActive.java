@@ -198,7 +198,8 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		tv_click_reply = (TextView) v.findViewById(R.id.tv_click_reply);
 		tv_click_reply.setOnClickListener(this);
 		btn_attention = (Button) v.findViewById(R.id.btn_attention);
-		btn_attention.setVisibility(GONE);
+		btn_attention.setOnClickListener(this);
+//		btn_attention.setVisibility(GONE);
 
 	}
 
@@ -265,9 +266,9 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 				c.startActivity(i);
 				break;
 			case R.id.btn_attention:
-//				btn_attention.setVisibility(GONE);
-//				if ( clubhead == null ) return;
-//				LSRequestManager.getInstance().getFriendsAddAttention(Common.string2int(clubhead.user_id), null);
+				btn_attention.setVisibility(GONE);
+				if ( clubhead == null ) return;
+				LSRequestManager.getInstance().getFriendsAddAttention(Common.string2int(clubhead.user_id), null);
 				break;
 		}
 	}
@@ -345,6 +346,16 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		//3.6.3===
 
 		tv_club_name.setText("来自 " + clubhead.club_title);
+
+
+		if ( clubhead.attenStatus == 0 )
+		{
+			btn_attention.setVisibility(VISIBLE);
+		}
+		else
+		{
+			btn_attention.setVisibility(GONE);
+		}
 
 		nameView.setText(clubhead.nickname);
 		dateView.setText(clubhead.createdate);

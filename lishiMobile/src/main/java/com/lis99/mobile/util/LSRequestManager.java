@@ -88,10 +88,12 @@ public class LSRequestManager
 		String Token = SharedPreferencesHelper.getPushToken();
 		if ( TextUtils.isEmpty(Token)) return;
 		String userid = DataManager.getInstance().getUser().getUser_id();
+
 		if ( TextUtils.isEmpty(userid))
 		{
 			return;
 		}
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		BaseModel model = new BaseModel();
 		map.put("os_version", DeviceInfo.SDKVERSIONCODE);

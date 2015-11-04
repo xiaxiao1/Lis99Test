@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:orientation="vertical"
-        android:paddingTop="10dip"
         >
 
         <include
@@ -44,12 +43,13 @@
                 android:src="@drawable/club_topic_best_icon"
                 android:id="@+id/iv_best"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="3dp"
                 />
 
             <TextView
                 android:layout_toLeftOf="@id/iv_best"
                 android:id="@+id/titleView"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lineSpacingExtra="3dip"
@@ -75,14 +75,13 @@
             android:textSize="15sp"/>
 
         <RelativeLayout
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/contentImageView"
-                style="@style/fill_wrap"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
@@ -183,13 +182,16 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/reply_height"
             android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="15dip"
             />
 
         <RelativeLayout
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             >
 
             <TextView
@@ -219,7 +221,6 @@
         <include
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
             layout="@layout/club_topic_like"
             />
 

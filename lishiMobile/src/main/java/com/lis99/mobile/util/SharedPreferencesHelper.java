@@ -203,6 +203,8 @@ public class SharedPreferencesHelper {
 
 		//==========手机号=========
 		removePhone();
+//		引导页
+		cleanHelp();
 	}
 
 
@@ -567,6 +569,20 @@ public class SharedPreferencesHelper {
 	}
 
 
+	public static void saveHelp ( String state )
+	{
+		saveBase("SAVEHELP0", state);
+	}
+
+	public static String getHelp ()
+	{
+		return getBase("SAVEHELP0", "");
+	}
+
+	public static void cleanHelp ()
+	{
+		removeBase("SAVEHELP0");
+	}
 
 //	@SuppressLint("NewApi")
 //	public static void saveSearchHistory ( Set<String> set )
