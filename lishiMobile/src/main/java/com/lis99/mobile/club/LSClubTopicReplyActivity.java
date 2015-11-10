@@ -187,14 +187,20 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 
 //		Spannable sp = content.getText();
 
-		String body = bodyView.getText().toString();
+		String body = bodyView.getText().toString().trim();
 
-		if (TextUtils.isEmpty(body))
+		if (TextUtils.isEmpty(body) )
 		{
-			postMessage(POPUP_TOAST, "回复内容不能为空");
-			return;
+			if ( bitmap == null )
+			{
+				postMessage(POPUP_TOAST, "请填写回复内容");
+				return;
+			}
+			else
+			{
+				body = "分享图片";
+			}
 		}
-
 
 		String userID = DataManager.getInstance().getUser().getUser_id();
 

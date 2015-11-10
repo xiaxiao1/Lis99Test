@@ -54,7 +54,6 @@ public class MyJoinClubActivity extends LSBaseActivity implements
 
         getList();
 
-
     }
 
     @Override

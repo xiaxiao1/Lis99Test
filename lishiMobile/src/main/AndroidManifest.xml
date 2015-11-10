@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="363"
-    android:versionName="3.6.3" >
+    android:versionCode="364"
+    android:versionName="3.6.4" >
 
 
 
@@ -1049,6 +1049,10 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
         <activity android:name="com.lis99.mobile.newhome.HelpActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity android:name=".choiceness.MyWebViewTianJin"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 

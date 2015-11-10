@@ -1536,6 +1536,9 @@ public class ImageUtil
 		@Override
 		public void onLoadingCancelled(String s, View view) {
 		}
+
+
+
 	}
 
 	/**

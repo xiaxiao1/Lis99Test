@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.PushManager;
+import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StatusUtil;
 
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ public class HelpActivity extends Activity {
     private int currentPosition;
 
     private int[] is = new int[] { R.drawable.help1, R.drawable.help2,
-            R.drawable.help3, R.drawable.help4 };
+            R.drawable.help3 };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class HelpActivity extends Activity {
 
             ImageView d = new ImageView(this);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.rightMargin = 5;
+            lp.rightMargin = Common.dip2px(5);
             d.setLayoutParams(lp);
             if ( i == 0 )
             {
@@ -140,14 +143,15 @@ public class HelpActivity extends Activity {
         }
     }
 
-    // private SharedPreferences sharedPreferences;
-
     public void startbutton(View v) {
 
             Intent intent = new Intent();
         intent.setClass(HelpActivity.this, NewHomeActivity.class);
+
+        intent.putExtra(PushManager.TAG, PushManager.getInstance().getPushModel(HelpActivity.this.getIntent()));
+
         startActivity(intent);
-//        SharedPreferencesHelper.saveHelp("help");
+        SharedPreferencesHelper.saveHelp("help");
         this.finish();
     }
 

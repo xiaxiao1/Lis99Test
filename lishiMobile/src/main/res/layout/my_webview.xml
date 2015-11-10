@@ -1,8 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-                android:id="@+id/layout_main"
      >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:id="@+id/viewhead"
+        />
 
     <include
         android:id="@+id/include1"
@@ -10,18 +15,44 @@
         android:layout_height="@dimen/title_height"
         layout="@layout/activity_title" />
     
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/include1"
-        android:orientation="vertical" >
+        android:layout_below="@+id/viewhead"
+        android:id="@+id/layout_main"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/location_fail"
+            android:layout_gravity="center"
+            />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定位失败\n点击屏幕重试"
+                android:textColor="@color/color_six"
+                />
+
+        </LinearLayout>
 
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </LinearLayout>
+    </FrameLayout>
     
     
 

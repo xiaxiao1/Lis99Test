@@ -93,7 +93,7 @@ public class DynamicAdapter extends MyBaseAdapter {
         ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, options, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
 
         holder.tv_name.setText(item.nickname);
-        holder.tv_reply.setText("" + item.replytot + "则评论");
+        holder.tv_reply.setText("" + item.replytot + "则回复");
         holder.tv_like.setText(""+item.likeNum);
         holder.tv_title.setText(item.topic_title);
         holder.btn_concern.setText(item.createtime);
@@ -148,6 +148,5 @@ public class DynamicAdapter extends MyBaseAdapter {
         TextView tv_name, tv_like, tv_title, tv_reply;
         Button btn_concern;
         View layout_like;
-
     }
 }

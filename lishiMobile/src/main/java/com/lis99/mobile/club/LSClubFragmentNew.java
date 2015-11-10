@@ -30,10 +30,11 @@ import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.ScrollTopUtil;
 
 
 public class LSClubFragmentNew extends LSFragment implements
-		OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
+		OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener, ScrollTopUtil.ToTop
 {
 
 	private WebView webView;
@@ -116,6 +117,19 @@ public class LSClubFragmentNew extends LSFragment implements
 
 //        webView.loadUrl(url);
 		webView.loadUrl("file:///android_asset/web/index.html");
+	}
+
+	@Override
+	public void handler() {
+
+		ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
+			@Override
+			public void handler() {
+				if ( webView != null )
+					webView.setScrollY(0);
+			}
+		});
+
 	}
 
 	// 这是他定义由 addJavascriptInterface 提供的一个Object
@@ -368,6 +382,7 @@ public class LSClubFragmentNew extends LSFragment implements
 			if (TextUtils.isEmpty(userId) || webView == null ) return;
 			webView.loadUrl("javascript:sendUserId("+userId+")");
 		}
+
 	}
 
 

@@ -11,13 +11,14 @@ import android.widget.Button;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.LSClubFragmentAdapter;
 import com.lis99.mobile.newhome.LSFragment;
+import com.lis99.mobile.util.ScrollTopUtil;
 
 import java.util.ArrayList;
 
 /**
  * Created by yy on 15/10/16.
  */
-public class FragmentChoicenessNewMain extends LSFragment implements View.OnClickListener {
+public class FragmentChoicenessNewMain extends LSFragment implements View.OnClickListener, ScrollTopUtil.ToTop {
 
 
     private ViewPager viewPager;
@@ -33,6 +34,8 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     private FragmentChoicenessList choicenessList;
 
     private FragmentDinamicList dinamicList;
+
+    private Fragment currentFragment;
 
     private View view_choiceness, view_dynamic, dynamic_line;
 
@@ -113,6 +116,8 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
         choicenessList.init();
 
+        currentFragment = choicenessList;
+
     }
 
     private void selectDynamic()
@@ -126,6 +131,24 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         dynamic_line.setVisibility(View.VISIBLE);
 
         dinamicList.init();
+
+        currentFragment = dinamicList;
+
+    }
+
+    @Override
+    public void handler() {
+
+        ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
+            @Override
+            public void handler() {
+                if (currentFragment == choicenessList) {
+                    choicenessList.scrollToTop();
+                } else {
+                    dinamicList.scrollToTop();
+                }
+            }
+        });
 
     }
 

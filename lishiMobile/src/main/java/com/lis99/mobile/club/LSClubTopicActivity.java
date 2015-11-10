@@ -894,25 +894,25 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	// 设置title右边按钮
 	private void setTitleRight(boolean isBg)
 	{
-		if (isBg)
-		{
-			setRightView(R.drawable.club_share);
-		} else
-		{
-			setRightView(R.drawable.club_share_nul);
-		}
+//		if (isBg)
+//		{
+//			setRightView(R.drawable.club_share);
+//		} else
+//		{
+//			setRightView(R.drawable.club_share_nul);
+//		}
 	}
 
 	// 设置返回按钮
 	private void setBack(boolean isBg)
 	{
-		if (isBg)
-		{
-			setLeftView(R.drawable.ls_club_back_icon_bg);
-		} else
-		{
-			setLeftView(R.drawable.ls_page_back_icon);
-		}
+//		if (isBg)
+//		{
+//			setLeftView(R.drawable.ls_club_back_icon_bg);
+//		} else
+//		{
+//			setLeftView(R.drawable.ls_page_back_icon);
+//		}
 	}
 
 	OnScrollListener listScroll = new OnScrollListener()

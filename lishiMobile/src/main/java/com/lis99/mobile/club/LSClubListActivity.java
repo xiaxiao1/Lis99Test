@@ -173,7 +173,11 @@ public class LSClubListActivity extends LSBaseActivity {
 			public void Location(double latitude, double longitude)
 			{
 				// TODO Auto-generated method stub
-				
+				location.setGlocation(null);
+				if ( latitude == 0 )
+				{
+					return;
+				}
 				LocationOk(""+latitude, ""+longitude);
 				
 				location.stopLocation();

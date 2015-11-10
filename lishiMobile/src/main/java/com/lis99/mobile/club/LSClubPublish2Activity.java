@@ -72,8 +72,8 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 
 	@Override
 	protected void rightAction() {
-		String title = titleView.getText().toString();
-		String body = bodyView.getText().toString();
+		String title = titleView.getText().toString().trim();
+		String body = bodyView.getText().toString().trim();
 		
 		if (TextUtils.isEmpty(title)) {
 			postMessage(POPUP_TOAST, "标题不能为空");
@@ -81,8 +81,15 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		}
 		
 		if (TextUtils.isEmpty(body)) {
-			postMessage(POPUP_TOAST, "正文不能为空");
-			return;
+			if ( bitmap != null )
+			{
+				body = "分享图片";
+			}
+			else
+			{
+				postMessage(POPUP_TOAST, "正文不能为空");
+				return;
+			}
 		}
 		
 		String userID = DataManager.getInstance().getUser().getUser_id();

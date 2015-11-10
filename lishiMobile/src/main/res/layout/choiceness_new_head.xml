@@ -27,6 +27,32 @@
 
         <LinearLayout
 
+            android:id="@+id/layout_nearby"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:background="@drawable/choiceness_nearby"
+                />
+
+            <TextView
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="周边推荐"
+                android:textColor="#73706e"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+
             android:id="@+id/layout_club_level"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -36,14 +62,12 @@
             >
 
             <ImageView
-                android:layout_marginLeft="4dp"
                 style="@style/wrap_wrap"
                 android:background="@drawable/tubu"
                 />
 
             <TextView
                 android:textSize="10sp"
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"

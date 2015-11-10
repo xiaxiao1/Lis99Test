@@ -53,6 +53,12 @@ public class LocationUtil
 			if (location == null){
 				Common.toast("定位失败");
 				stopLocation();
+
+				if ( glocation != null )
+				{
+					glocation.Location(0, 0);
+				}
+
 				return;
 			}
 //			Common.log("getLatitude()=="+location.getLatitude()+"=location.getLongitude()=="+location.getLongitude());

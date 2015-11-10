@@ -47,14 +47,15 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
     static HashMap<String,Integer[]> categories;
 
     static {
+//        Integer 【0】id， 【1】 类型
         categories = new HashMap<String, Integer[]>();
         categories.put("冲锋衣", new Integer[]{6, 1});
         categories.put("冲锋裤", new Integer[]{7, 1});
-        categories.put("速干衣", new Integer[]{12, 1});
-        categories.put("速干裤", new Integer[]{13, 1});
+        categories.put("软壳衣", new Integer[]{8, 1});
+        categories.put("软壳裤", new Integer[]{9, 1});
 
         categories.put("抓绒衣", new Integer[]{10, 1});
-        categories.put("软壳衣", new Integer[]{8, 1});
+        categories.put("羽绒服", new Integer[]{18, 1});
         categories.put("高山靴", new Integer[]{26, 1});
         categories.put("徒步鞋", new Integer[]{28, 1});
 

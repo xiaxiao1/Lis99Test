@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/titlehead"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/title_height" >
-
+    android:id="@+id/titlehead"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height" >
+    
     <ImageView style="@style/fill_fill"
-               android:id="@+id/iv_title_bg"
-               android:background="@drawable/title_bar_bg"
-        />
+            android:id="@+id/iv_title_bg"
+            android:background="@drawable/title_bar_bg"
+            />
 
     <RelativeLayout
         android:id="@+id/titleLeft"
         android:layout_width="70dp"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" 
         android:layout_marginLeft="10dip"
         >
 
@@ -21,29 +22,31 @@
             android:id="@+id/titleLeftImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ls_page_back_icon"
             android:layout_centerVertical="true"
-
+            android:src="@drawable/ls_page_back_icon" 
+            
             />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/titleRight"
         android:layout_width="70dip"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="10dip"
-        >
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="3dip"
+		android:layout_marginRight="10dip"
+         >
 
         <TextView
             android:id="@+id/titleRightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
             android:singleLine="true"
             android:textColor="@color/title_bar_text"
-            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
 
             />
 
@@ -53,6 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+
             />
 
     </RelativeLayout>
@@ -68,6 +73,6 @@
         android:singleLine="true"
         android:textColor="@color/title_bar_text"
         android:textSize="@dimen/title_text_height" />
-
+    
 
 </RelativeLayout>

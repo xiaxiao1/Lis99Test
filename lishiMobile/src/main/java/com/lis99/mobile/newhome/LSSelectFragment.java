@@ -513,9 +513,15 @@ public class LSSelectFragment extends LSFragment implements
 		public void Location(double latitude, double longitude)
 		{
 			// TODO Auto-generated method stub
+
+			location.setGlocation(null);
+			if ( latitude == 0 )
+			{
+				return;
+			}
+
 			if ( location != null )
 			{
-				location.setGlocation(null);
 				location.stopLocation();
 				location = null;
 				LSSelectFragment.this.latitude = latitude;

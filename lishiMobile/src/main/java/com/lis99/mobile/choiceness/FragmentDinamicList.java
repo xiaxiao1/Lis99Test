@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.DynamicListModel;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -75,6 +76,7 @@ public class FragmentDinamicList extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
+
 
         String userId = DataManager.getInstance().getUser().getUser_id();
         if ( !TextUtils.isEmpty(userId) && isLogin )
@@ -135,9 +137,19 @@ public class FragmentDinamicList extends Fragment implements
                 DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) adapter.getItem(i);
                 if (item == null) return;
 
-                Intent intent = new Intent(getActivity(), LSClubTopicActivity.class);
-                intent.putExtra("topicID", item.topic_id);
-                startActivity(intent);
+                if ( item.category == 2 )
+                {
+                    Intent intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
+                    intent.putExtra("topicID", item.topic_id);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(getActivity(), LSClubTopicActivity.class);
+                    intent.putExtra("topicID", item.topic_id);
+                    startActivity(intent);
+                }
+
 
             }
         });
@@ -329,4 +341,17 @@ public class FragmentDinamicList extends Fragment implements
             getDynamicList();
         }
     }
+
+    public void scrollToTop ()
+    {
+        if ( list_dynamic.getVisibility() == View.VISIBLE && list_dynamic.getAdapter() != null )
+        {
+            list_dynamic.setSelection(0);
+        }
+        else if ( list.getVisibility() == View.VISIBLE && list.getAdapter() != null )
+        {
+            list.setSelection(0);
+        }
+    }
+
 }
