@@ -3,7 +3,6 @@ package com.lis99.mobile.club;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
@@ -43,7 +42,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 	View mainView;
 	int clubID;
 	
-	Drawable add, noadd;
+//	Drawable add, noadd;
 
 	//====
 	ImageView addImage, addEmotion;
@@ -60,10 +59,10 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		clubID = getIntent().getIntExtra("clubID", 0);
 		setContentView(R.layout.activity_lsclub_publish2);
 		
-		noadd = getResources().getDrawable(R.drawable.reply_add_image_draw);
-		noadd.setBounds(0, 0, noadd.getIntrinsicWidth(), noadd.getIntrinsicHeight());
-		add = getResources().getDrawable(R.drawable.club_reply_chose_image);
-		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
+//		noadd = getResources().getDrawable(R.drawable.reply_add_image_draw);
+//		noadd.setBounds(0, 0, noadd.getIntrinsicWidth(), noadd.getIntrinsicHeight());
+//		add = getResources().getDrawable(R.drawable.club_reply_chose_image);
+//		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
 
 		initViews();
 		setTitle("发布话题");
@@ -81,15 +80,8 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		}
 		
 		if (TextUtils.isEmpty(body)) {
-			if ( bitmap != null )
-			{
-				body = "分享图片";
-			}
-			else
-			{
-				postMessage(POPUP_TOAST, "正文不能为空");
-				return;
-			}
+			postMessage(POPUP_TOAST, "正文不能为空");
+			return;
 		}
 		
 		String userID = DataManager.getInstance().getUser().getUser_id();

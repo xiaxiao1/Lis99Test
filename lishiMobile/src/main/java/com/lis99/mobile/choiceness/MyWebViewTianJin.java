@@ -41,6 +41,8 @@ public class MyWebViewTianJin extends LSBaseActivity {
 
 //        webView.setVisibility(View.GONE);
 
+        setTitle("地区活动精选");
+
         loadInfo();
 
 
@@ -112,7 +114,7 @@ public class MyWebViewTianJin extends LSBaseActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setSupportZoom(true);
 
-        webView.setWebChromeClient(new MyWebChromeClient());
+//        webView.setWebChromeClient(new MyWebChromeClient());
 
         webView.setWebViewClient(WebViewUtil.getInstance().getWebviewClient());
 

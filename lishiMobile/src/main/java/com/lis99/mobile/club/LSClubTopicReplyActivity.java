@@ -77,7 +77,7 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 	private RelativeLayout titleRight;
 	int pageNo = -1;
 	
-	Drawable add, noadd, emotionfocuse, emotionnofocuse;
+	Drawable /*add, noadd,*/ emotionfocuse, emotionnofocuse;
 
 	//=============================emotion===========
 
@@ -100,10 +100,10 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 		clubId = getIntent().getStringExtra("clubId");
 		topicId = getIntent().getStringExtra("topicId");
 		
-		noadd = getResources().getDrawable(R.drawable.reply_add_image_draw);
-		noadd.setBounds(0, 0, noadd.getIntrinsicWidth(), noadd.getIntrinsicHeight());
-		add = getResources().getDrawable(R.drawable.club_reply_chose_image);
-		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
+//		noadd = getResources().getDrawable(R.drawable.reply_add_image_draw);
+//		noadd.setBounds(0, 0, noadd.getIntrinsicWidth(), noadd.getIntrinsicHeight());
+//		add = getResources().getDrawable(R.drawable.club_reply_chose_image);
+//		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
 
 		emotionfocuse = getResources().getDrawable(R.drawable.emotion_keybody);
 		emotionnofocuse = getResources().getDrawable(R.drawable.emotion_face);
@@ -353,13 +353,13 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 	
 	private void changeButtonBg()
 	{
-		if (bitmap == null)
-		{
-			addImage.setCompoundDrawables(add, null, null, null);
-		} else
-		{
-			addImage.setCompoundDrawables(noadd, null, null, null);
-		}
+//		if (bitmap == null)
+//		{
+//			addImage.setCompoundDrawables(add, null, null, null);
+//		} else
+//		{
+//			addImage.setCompoundDrawables(noadd, null, null, null);
+//		}
 	}
 	
 	@Override
