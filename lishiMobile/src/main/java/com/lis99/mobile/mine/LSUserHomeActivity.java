@@ -145,7 +145,22 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
     }
 
 
+    @Override
+    protected void rightAction() {
+        super.rightAction();
+        String userID = DataManager.getInstance().getUser().getUser_id();
+        if (TextUtils.isEmpty(userID)) {
+            Intent intent = new Intent(this, LSLoginActivity.class);
+            startActivity(intent);
+            return;
+        }
 
+        if (!user.isIs_follows()) {
+            joinClub(userID);
+        } else {
+            doQuit(userID);
+        }
+    }
 
     @Override
     protected void initViews() {
@@ -155,7 +170,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         setTitleBarAlpha(0f);
         setLeftView(R.drawable.ls_club_back_icon_bg);
         setRightView(R.drawable.bg_button_follow);
-        titleRightImage.setOnClickListener(this);
+//        titleRightImage.setOnClickListener(this);
 
 
 
@@ -658,22 +673,22 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
             return;
         }
-       else if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
-
-            String userID = DataManager.getInstance().getUser().getUser_id();
-            if (TextUtils.isEmpty(userID)) {
-                Intent intent = new Intent(this, LSLoginActivity.class);
-                startActivity(intent);
-                return;
-            }
-
-            if (!user.isIs_follows()) {
-                joinClub(userID);
-            } else {
-                doQuit(userID);
-            }
-            return;
-        }
+//       else if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
+//
+//            String userID = DataManager.getInstance().getUser().getUser_id();
+//            if (TextUtils.isEmpty(userID)) {
+//                Intent intent = new Intent(this, LSLoginActivity.class);
+//                startActivity(intent);
+//                return;
+//            }
+//
+//            if (!user.isIs_follows()) {
+//                joinClub(userID);
+//            } else {
+//                doQuit(userID);
+//            }
+//            return;
+//        }
         else if ( view.getId() == R.id.allPanel1 || view.getId() == R.id.allPanel )
         {
             view_line.setVisibility(View.VISIBLE);

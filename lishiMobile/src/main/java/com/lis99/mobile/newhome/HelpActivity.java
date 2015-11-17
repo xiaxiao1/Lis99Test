@@ -66,7 +66,7 @@ public class HelpActivity extends Activity {
 
             ImageView d = new ImageView(this);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.rightMargin = Common.dip2px(5);
+            lp.rightMargin = Common.dip2px(10);
             d.setLayoutParams(lp);
             if ( i == 0 )
             {

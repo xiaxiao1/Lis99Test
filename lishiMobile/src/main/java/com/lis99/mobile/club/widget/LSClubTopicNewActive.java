@@ -26,6 +26,7 @@ import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ClubTopicNewActiveInfo;
 import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
@@ -84,7 +85,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 //    3.6.3-＝＝＝＝＝
     private TextView dateView, tv_click_reply, tv_active_style;
     private Button btn_attention;
-
+    private View layout_club_name;
+    private TextView tv_club_name;
 
     public void setInstance (LSClubTopicNewActivity main)
     {
@@ -159,6 +161,9 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
 //        3.6.3===
         dateView = (TextView) v.findViewById(R.id.dateView);
+        layout_club_name = v.findViewById(R.id.layout_club_name);
+        tv_club_name = (TextView) v.findViewById(R.id.tv_club_name);
+        layout_club_name.setOnClickListener(this);
 
         tv_click_reply = (TextView) v.findViewById(R.id.tv_click_reply);
         tv_click_reply.setOnClickListener(this);
@@ -175,7 +180,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         this.model = model;
         titleView.setText(model.title);
 
-        nameView.setText(model.club_title);
+        nameView.setText(model.nickname);
 
         if ( "1".equals(model.days))
         {
@@ -193,6 +198,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
 //  3.6.3 时间， 关注
         dateView.setText(model.createdate);
+        tv_club_name.setText("来自 " + model.club_title);
 //        if ( model.attenStatus == 0 )
 //        {
 //            btn_attention.setVisibility(VISIBLE);
@@ -253,7 +259,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         //====emotion====
 //        contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity)c, clubhead.content));
         // 头像
-        ImageLoader.getInstance().displayImage(model.club_images, roundedImageView1,
+        ImageLoader.getInstance().displayImage(model.headicon, roundedImageView1,
                 ImageUtil.getImageOptionClubIcon());
         // 话题帖
         if (model.topic_image != null && model.topic_image.size() > 0)
@@ -492,6 +498,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.btn_join:
 
@@ -520,9 +527,15 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
             case R.id.tv_click_reply:
                 main.showReplyPanel();
                 break;
-            case R.id.roundedImageView1 :
-                Intent intent = new Intent(mContext, LSClubDetailActivity.class);
+            // 俱乐部详情
+            case R.id.layout_club_name:
+                intent = new Intent(mContext, LSClubDetailActivity.class);
                 intent.putExtra("clubID", Common.string2int(model.club_id));
+                mContext.startActivity(intent);
+                break;
+            case R.id.roundedImageView1 :
+                intent = new Intent(mContext, LSUserHomeActivity.class);
+                intent.putExtra("userID", model.user_id);
                 mContext.startActivity(intent);
                 break;
             case R.id.btn_attention:

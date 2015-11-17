@@ -195,6 +195,7 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 
 //		3.6.3----
 		layout_club_name = v.findViewById(R.id.layout_club_name);
+		layout_club_name.setOnClickListener(this);
 		tv_click_reply = (TextView) v.findViewById(R.id.tv_click_reply);
 		tv_click_reply.setOnClickListener(this);
 		btn_attention = (Button) v.findViewById(R.id.btn_attention);

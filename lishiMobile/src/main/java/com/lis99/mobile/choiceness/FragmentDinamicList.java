@@ -215,10 +215,13 @@ public class FragmentDinamicList extends Fragment implements
             @Override
             public void handler(MyTask mTask) {
                 model = (DynamicListModel) mTask.getResultModel();
+                if ( model == null ) return;
+                Common.log("model.nofans="+model.nofans);
                 //没有关注
                 if ( 0 == model.nofans )
                 {
                     layout_need_add_attention.setVisibility(View.VISIBLE);
+                    layout_dynamic.setVisibility(View.GONE);
                     cleanRecommendList();
                     getRecommendList();
                     return;
@@ -264,6 +267,8 @@ public class FragmentDinamicList extends Fragment implements
             public void handler(MyTask mTask) {
                 MyFriendsRecommendModel model = (MyFriendsRecommendModel) mTask.getResultModel();
 //                setRightView("下一步");
+
+
                 rPage.nextPage();
                 if (attentionAdapter == null) {
                     rPage.setPageSize(model.totPage);
@@ -333,7 +338,7 @@ public class FragmentDinamicList extends Fragment implements
         if ( layout_need_add_attention.getVisibility() == View.VISIBLE )
         {
             cleanRecommendList();
-            getRecommendList();
+            getDynamicList();
         }
         else if ( layout_dynamic.getVisibility() == View.VISIBLE )
         {

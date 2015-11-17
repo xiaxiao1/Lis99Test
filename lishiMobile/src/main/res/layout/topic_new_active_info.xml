@@ -111,6 +111,7 @@
             />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_toRightOf="@id/dateView"
             style="@style/wrap_wrap"
             android:gravity="center"

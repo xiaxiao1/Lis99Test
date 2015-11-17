@@ -178,7 +178,9 @@
     <TextView
         android:id="@+id/noteView"
         android:layout_width="match_parent"
-        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="#999"
@@ -186,11 +188,6 @@
         android:ellipsize="end"
         android:lineSpacingExtra="5dp"/>
 
-
-    <include android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             layout="@layout/list_line"
-             />
 
     <RelativeLayout
         android:visibility="gone"
@@ -268,6 +265,13 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/text_color_blue" />
         </RelativeLayout>
+
+        <View
+            android:layout_gravity="center_vertical"
+            android:layout_width="1px"
+            android:layout_height="15dp"
+            android:background="#e3dbd0"
+            />
 
 
         <RelativeLayout

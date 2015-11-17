@@ -56,6 +56,12 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     public int attenStatus;
 //  发贴人id
     public int id;
+//  用户ID
+    public String user_id;
+//用户名称
+    public String nickname;
+
+    public String headicon;
 
     @Override
     public String getTopic_id() {
