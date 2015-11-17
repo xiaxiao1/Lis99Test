@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicReplyActivity;
 import com.lis99.mobile.club.model.MineReplyModel.Replylist;
@@ -25,6 +26,7 @@ import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -150,10 +152,10 @@ public class AdapterMineReplyItem extends BaseAdapter
 			//回复内容＝＝＝＝＝
 			holder.tv_reply_body.setText("回复@ " + item.reply_nickname);
 			holder.tv_reply_floor.setText(item.reply_floor + "层");
-			holder.tv_reply_content.setText(item.reply_content);
+			holder.tv_reply_content.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(LSBaseActivity.activity, item.reply_content));
 		}
 		
-		holder.contentView.setText(item.topic_content);
+		holder.contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(LSBaseActivity.activity, item.topic_content));
 		if ( "1".equals(item.is_image) && item.topic_image != null && item.topic_image.size() > 0 )
 		{
 			holder.contentImageView.setVisibility(View.VISIBLE);

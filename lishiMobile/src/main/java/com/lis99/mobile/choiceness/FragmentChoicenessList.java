@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
+import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
@@ -45,10 +47,9 @@ import java.util.HashMap;
 /**
  * Created by yy on 15/10/16.
  */
-public class FragmentChoicenessList extends Fragment  implements
+public class FragmentChoicenessList extends Fragment implements
         com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener, com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener, View.OnClickListener,
-        LSSelectAdapter.OnSelectItemClickListener, ImagePageAdapter.ImagePageAdapterListener, ImagePageAdapter.ImagePageClickListener
-{
+        LSSelectAdapter.OnSelectItemClickListener, ImagePageAdapter.ImagePageAdapterListener, ImagePageAdapter.ImagePageClickListener {
 
     private View v, head;
     private ListView list;
@@ -60,7 +61,7 @@ public class FragmentChoicenessList extends Fragment  implements
     private Page page;
 
     private BannerView bannerView;
-    private LinearLayout layout_club_level, layout_leader_level, layout_hot_topic, layout_lis_special;
+    private LinearLayout layout_club_level, layout_leader_level, layout_hot_topic, layout_lis_special, layout_nearby;
 
     private ImagePageAdapter bannerAdapter;
 
@@ -68,8 +69,9 @@ public class FragmentChoicenessList extends Fragment  implements
 
     private ChoicenessModel listModel;
 
-    public FragmentChoicenessList ()
-    {
+    private View include_search;
+
+    public FragmentChoicenessList() {
         page = new Page();
     }
 
@@ -77,7 +79,7 @@ public class FragmentChoicenessList extends Fragment  implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        v = View.inflate(getActivity(), R.layout.club_level_list, null );
+        v = View.inflate(getActivity(), R.layout.club_level_list, null);
 
         pull_refresh_view = (PullToRefreshView) v.findViewById(R.id.pull_refresh_view);
         pull_refresh_view.setOnFooterRefreshListener(this);
@@ -91,15 +93,44 @@ public class FragmentChoicenessList extends Fragment  implements
 
         bannerView = (BannerView) head.findViewById(R.id.viewBanner);
 
+        bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        bannerView.stopAutoScroll();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        bannerView.stopAutoScroll();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        bannerView.startAutoScroll();
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        layout_nearby = (LinearLayout) head.findViewById(R.id.layout_nearby);
         layout_club_level = (LinearLayout) head.findViewById(R.id.layout_club_level);
         layout_leader_level = (LinearLayout) head.findViewById(R.id.layout_leader_level);
         layout_hot_topic = (LinearLayout) head.findViewById(R.id.layout_hot_topic);
         layout_lis_special = (LinearLayout) head.findViewById(R.id.layout_lis_special);
+        include_search = head.findViewById(R.id.include_search);
+
+        include_search.setOnClickListener(this);
 
         layout_lis_special.setOnClickListener(this);
         layout_hot_topic.setOnClickListener(this);
         layout_leader_level.setOnClickListener(this);
         layout_club_level.setOnClickListener(this);
+        layout_nearby.setOnClickListener(this);
 
 //        page = new Page();
 
@@ -108,17 +139,14 @@ public class FragmentChoicenessList extends Fragment  implements
         return v;
     }
 
-    public void init ()
-    {
-        if ( adapter != null ) return;
+    public void init() {
+        if (adapter != null) return;
         getList();
 
     }
 
-    private void getList ()
-    {
-        if ( bannerAdapter == null )
-        {
+    private void getList() {
+        if (bannerAdapter == null) {
             String url = C.CHOICENESS_AD_BANNER;
 
             HashMap<String, Object> map = new HashMap<String, Object>();
@@ -138,6 +166,7 @@ public class FragmentChoicenessList extends Fragment  implements
                     bannerAdapter.addImagePageAdapterListener(FragmentChoicenessList.this);
                     bannerAdapter.setImagePageClickListener(FragmentChoicenessList.this);
                     bannerView.setBannerAdapter(bannerAdapter);
+                    bannerView.startAutoScroll();
                 }
             });
         }
@@ -150,16 +179,13 @@ public class FragmentChoicenessList extends Fragment  implements
 //        bannerView.setBannerAdapter(adapter);
     }
 
-    private void getInfo ()
-    {
-        if ( page.isLastPage() )
-        {
+    private void getInfo() {
+        if (page.isLastPage()) {
             return;
         }
 
         String userId = DataManager.getInstance().getUser().getUser_id();
-        if (TextUtils.isEmpty(userId))
-        {
+        if (TextUtils.isEmpty(userId)) {
             userId = "0";
         }
         String url = C.CHOICENESS_NEW_LIST + page.getPageNo() + "/" + userId;
@@ -171,12 +197,10 @@ public class FragmentChoicenessList extends Fragment  implements
                 listModel = (ChoicenessModel) mTask.getResultModel();
 
                 page.pageNo += 1;
-                if ( adapter == null )
-                {
+                if (adapter == null) {
                     page.setPageSize(listModel.totalpage);
 
-                    if (DeviceInfo.CHANNELVERSION.equals("ttest"))
-                    {
+                    if ("ttest".equals(DeviceInfo.CHANNELVERSION)) {
                         ChoicenessModel.Omnibuslist f = new ChoicenessModel().new Omnibuslist();
                         f.type = 4;
                         f.id = "846";
@@ -229,7 +253,7 @@ public class FragmentChoicenessList extends Fragment  implements
                                 intent = new Intent(getActivity(), ClubSpecialListActivity.class);
                                 intent.putExtra("tagid", item.tag_id);
                                 startActivity(intent);
-                            } else if (item.type == 8 || item.type == 9 ) {
+                            } else if (item.type == 8 || item.type == 9) {
                                 intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
                                 intent.putExtra("topicID", item.topic_id);
                                 startActivity(intent);
@@ -238,19 +262,18 @@ public class FragmentChoicenessList extends Fragment  implements
                         }
                     });
 
-                }
-                else
-                {
+                } else {
                     adapter.setList(listModel.omnibuslist);
                 }
+                pull_refresh_view.onFooterRefreshComplete();
+                pull_refresh_view.onHeaderRefreshComplete();
 
             }
         });
 
     }
 
-    private void cleanList ()
-    {
+    private void cleanList() {
         page = new Page();
         adapter = null;
         list.setAdapter(null);
@@ -260,43 +283,50 @@ public class FragmentChoicenessList extends Fragment  implements
     @Override
     public void onClick(View view) {
         Intent intent = null;
-        switch (view.getId())
-        {
+        switch (view.getId()) {
+            case R.id.include_search:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+//                startActivity(new Intent(getActivity(), MyTest.class));
+                break;
             case R.id.layout_club_level:
                 intent = new Intent(getActivity(), ClubSpecialListActivity.class);
                 intent.putExtra("tagid", 12);
-                startActivity( intent );
+                startActivity(intent);
                 break;
             case R.id.layout_leader_level:
                 intent = new Intent(getActivity(), ClubSpecialListActivity.class);
                 intent.putExtra("tagid", 3);
-                startActivity( intent );
+                startActivity(intent);
                 break;
             case R.id.layout_hot_topic:
                 intent = new Intent(getActivity(), ClubSpecialListActivity.class);
                 intent.putExtra("tagid", 13);
-                startActivity( intent );
+                startActivity(intent);
                 break;
             case R.id.layout_lis_special:
                 startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
 
+//                startActivity(new Intent(getActivity(), HelpActivity.class));
 //                intent = new Intent(getActivity(), MyTestActivityWebView.class);
 //                startActivity(intent);
 
+                break;
+            case R.id.layout_nearby:
+                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
                 break;
         }
     }
 
     @Override
     public void onFooterRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-        view.onFooterRefreshComplete();
+
         getList();
 
     }
 
     @Override
     public void onHeaderRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-        view.onHeaderRefreshComplete();
+
         cleanList();
         getList();
     }
@@ -304,7 +334,8 @@ public class FragmentChoicenessList extends Fragment  implements
     @Override
     public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
 
-        if ( bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() == 0 ) return;
+        if (bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() == 0)
+            return;
 
         ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
 
@@ -312,14 +343,14 @@ public class FragmentChoicenessList extends Fragment  implements
 
     @Override
     public void onClick(int index) {
-        if ( bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() <= index ) return;
+        if (bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() <= index)
+            return;
 
         Intent intent = null;
 
         ChoicenessBannerModel.Lists item = bannerModel.lists.get(index);
 
-        switch ( item.type )
-        {
+        switch (item.type) {
 //            话题
             case 0:
 //            线下贴
@@ -360,4 +391,11 @@ public class FragmentChoicenessList extends Fragment  implements
     public void onSelectItemClick(LSSelectContent content, LSSelectItem item) {
 
     }
+
+    public void scrollToTop() {
+        if (list.getAdapter() != null) {
+            list.setSelection(0);
+        }
+    }
+
 }

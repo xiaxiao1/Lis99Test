@@ -1,7 +1,5 @@
 package com.lis99.mobile.newhome;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -59,6 +57,7 @@ import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.PushManager;
@@ -149,24 +148,26 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
                 case LSTab.EQUI:
                     if (equiFragment == null)
 //					equiFragment = new LSEquiFragment();
-                        switchContent(equiFragment);
+//                        switchContent(equiFragment);
                     break;
                 case LSTab.CLUB:
-                    if (clubFragment == null) {
-                        clubFragment = new LSClubFragment();
-                    }
-                    switchContent(clubFragment);
-//                    if ( clubFragmentNew == null )
-//                    {
-//                        clubFragmentNew = new LSClubFragmentNew();
+//                    if (clubFragment == null) {
+//                        clubFragment = new LSClubFragment();
 //                    }
-//                    switchContent(clubFragmentNew);
+//                    switchContent(clubFragment);
+                    if ( clubFragmentNew == null )
+                    {
+                        clubFragmentNew = new LSClubFragmentNew();
+                    }
+                    clubFragmentNew.handler();
+                    switchContent(clubFragmentNew);
                     break;
                 case LSTab.CHOICENESS:
                     if ( choicenessNewMain == null )
                     {
                         choicenessNewMain = new FragmentChoicenessNewMain();
                     }
+                    choicenessNewMain.handler();
                     switchContent(choicenessNewMain);
                     break;
                 case LSTab.EVENT:
@@ -515,34 +516,36 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 
 
     private void showNewVersionDialog() {
-        AlertDialog.Builder builder = new Builder(this);
-        builder.setMessage(vb.getChangelog());
-        builder.setTitle("新版本提示");
-        builder.setPositiveButton("去更新", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
 
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse(vb.getUrl());
-                intent.setData(content_url);
-                startActivity(intent);
-            }
-        });
-        builder.setNegativeButton("暂不", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // 敢点暂不，就退出程序
-//				Intent intent = new Intent(Intent.ACTION_MAIN);
-//				intent.addCategory(Intent.CATEGORY_HOME);
-//				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//				startActivity(intent);
-//				android.os.Process.killProcess(Process.myPid());
-            }
-        });
-        builder.create().show();
+        DialogManager.getInstance().showUpdataDialog(null, vb.getChangelog(), vb.getUrl(), null);
+//        AlertDialog.Builder builder = new Builder(this);
+//        builder.setMessage(vb.getChangelog());
+//        builder.setTitle("新版本提示");
+//        builder.setPositiveButton("去更新", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//
+//                Intent intent = new Intent();
+//                intent.setAction("android.intent.action.VIEW");
+//                Uri content_url = Uri.parse(vb.getUrl());
+//                intent.setData(content_url);
+//                startActivity(intent);
+//            }
+//        });
+//        builder.setNegativeButton("暂不", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//                // 敢点暂不，就退出程序
+////				Intent intent = new Intent(Intent.ACTION_MAIN);
+////				intent.addCategory(Intent.CATEGORY_HOME);
+////				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+////				startActivity(intent);
+////				android.os.Process.killProcess(Process.myPid());
+//            }
+//        });
+//        builder.create().show();
     }
 
     @Override

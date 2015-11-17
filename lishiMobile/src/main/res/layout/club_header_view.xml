@@ -185,12 +185,4 @@
        
     </LinearLayout>
     
-    <View 
-        android:id="@+id/view_line_head"
-        android:layout_marginTop="10dip"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#e8e8e8"
-        />
-        
     </LinearLayout>

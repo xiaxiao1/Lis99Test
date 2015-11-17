@@ -214,6 +214,12 @@ public class LSClubFragment extends LSFragment implements
 			public void Location(double latitude, double longitude) {
 				// TODO Auto-generated method stub
 
+				location.setGlocation(null);
+
+				if ( latitude == 0 )
+				{
+					return;
+				}
 				getClubHomePageList(latitude, longitude);
 
 				if (location != null)

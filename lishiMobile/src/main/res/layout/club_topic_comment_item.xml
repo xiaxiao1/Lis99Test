@@ -44,7 +44,7 @@
         android:textIsSelectable="true"
         android:textSize="15sp"
         android:gravity="top"
-        android:lineSpacingExtra="5dp"
+        android:lineSpacingExtra="7dp"
         />
 
     <RelativeLayout
@@ -55,8 +55,6 @@
             android:id="@+id/contentImageView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"

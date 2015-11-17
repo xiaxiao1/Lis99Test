@@ -2,7 +2,6 @@ package com.lis99.mobile.newhome;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -37,17 +36,7 @@ public class DynamicAdapter extends MyBaseAdapter {
         super(c, listItem);
         animation = AnimationUtils.loadAnimation(c, R.anim.like_anim_rotate);
 
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.club_topic_default)
-                .showImageForEmptyUri(R.drawable.dymamic_img_none)
-                .showImageOnFail(R.drawable.dymamic_img_none)
-                .considerExifParams(true)// 图片旋转
-                .cacheInMemory(true)
-                .cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中
-                .resetViewBeforeLoading(true)//设置图片在下载前是否重置，复位
-//				.displayer(new FadeInBitmapDisplayer(200))//是否图片加载好后渐入的动画时间
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
+        options = ImageUtil.getDynamicImageOptions();
 
     }
 
@@ -104,7 +93,7 @@ public class DynamicAdapter extends MyBaseAdapter {
         ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, options, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
 
         holder.tv_name.setText(item.nickname);
-        holder.tv_reply.setText("" + item.replytot + "则评论");
+        holder.tv_reply.setText("" + item.replytot + "则回复");
         holder.tv_like.setText(""+item.likeNum);
         holder.tv_title.setText(item.topic_title);
         holder.btn_concern.setText(item.createtime);
@@ -159,6 +148,5 @@ public class DynamicAdapter extends MyBaseAdapter {
         TextView tv_name, tv_like, tv_title, tv_reply;
         Button btn_concern;
         View layout_like;
-
     }
 }

@@ -66,7 +66,7 @@ public class MyRequest{
 					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
 				}
 				//没有生成解析类
-				if (mTask.getResultModel() == null )
+				if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
 				{
 					return;
 				}

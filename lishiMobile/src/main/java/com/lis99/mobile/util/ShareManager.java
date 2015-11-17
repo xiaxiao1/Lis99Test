@@ -235,6 +235,7 @@ public class ShareManager
 	}
 
 	/** http://club.lis99.com/actives/detail/帖子id */
+	//俱乐部用到
 	private static String shareUrl = "http://club.lis99.com/actives/detail/";
 	private static String shareText = "砾石，最好玩儿的户外运动社区，我的户外大本营";
 	private static PopupWindow pop;
@@ -477,6 +478,29 @@ public class ShareManager
 		LSBaseActivity.activity.getWindow().setAttributes(lp);
 
 		return pop;
+	}
+
+	public void share2Weichat ( String topicId, String Image_Url, String title, CallBack callBack )
+	{
+		WXEntryActivity.callBack = callBack;
+		String shareWx1Text = shareUrl + topicId;
+		String title1 = title;
+		String desc1 = shareText;// + finalSharedUrl + "" + topicId;
+		LsWeiboWeixin.getInstance(LSBaseActivity.activity)
+				.share1(shareWx1Text, title1, desc1, Image_Url,
+						SendMessageToWX.Req.WXSceneSession);
+	}
+
+	public void share2Friend ( String topicId, String Image_Url, String title, CallBack callBack )
+	{
+		WXEntryActivity.callBack = callBack;
+		state = wechat_friends;
+		String shareWx2Text = shareUrl + topicId;
+		String title2 = title;
+		String desc2 = shareText;// + finalSharedUrl + "" + topicId;
+		LsWeiboWeixin.getInstance(LSBaseActivity.activity)
+				.share1(shareWx2Text, title2, desc2, Image_Url,
+						SendMessageToWX.Req.WXSceneTimeline);
 	}
 
 	/***

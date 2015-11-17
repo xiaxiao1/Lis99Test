@@ -87,15 +87,6 @@
     </RelativeLayout>
 
 
-    <include
-        android:id="@+id/include_search"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        layout="@layout/choiceness_fragment_title_bar" />
-
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -107,11 +98,6 @@
             style="@style/fill_wrap"
             android:layout_height="8dip"
             android:background="@color/pull_bg" />
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
 
     </LinearLayout>
 

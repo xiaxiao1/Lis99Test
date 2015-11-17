@@ -14,6 +14,7 @@ import com.lis99.mobile.club.model.EquipRecommendModel;
 import com.lis99.mobile.club.model.EquipTypeModel;
 import com.lis99.mobile.club.model.LikeModelNew;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
+import com.lis99.mobile.club.model.MyJoinClubModel;
 import com.lis99.mobile.club.model.NearbyModel;
 import com.lis99.mobile.club.model.QQLoginModel;
 import com.lis99.mobile.club.model.RedDotModel;
@@ -87,10 +88,12 @@ public class LSRequestManager
 		String Token = SharedPreferencesHelper.getPushToken();
 		if ( TextUtils.isEmpty(Token)) return;
 		String userid = DataManager.getInstance().getUser().getUser_id();
+
 		if ( TextUtils.isEmpty(userid))
 		{
 			return;
 		}
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		BaseModel model = new BaseModel();
 		map.put("os_version", DeviceInfo.SDKVERSIONCODE);
@@ -447,7 +450,9 @@ public class LSRequestManager
 		MyRequestManager.getInstance().requestPost(C.CANCEL_ATTENTION, map, model, call);
 
 	}
-	/**添加关注*/
+	/**添加关注
+	 * 			@param AttentionId 被关注的ID
+	 * */
 	public void getFriendsAddAttention ( int AttentionId, CallBack call )
 	{
 		if ( !Common.isLogin(LSBaseActivity.activity))
@@ -504,12 +509,30 @@ public class LSRequestManager
 
 		BaseModel model = new BaseModel();
 
-		MyRequestManager.getInstance().requestPost(url, map, model, callBack );
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
 
 
 
 	}
 
+	/**
+	 * 		用户加入的俱乐部
+	 * @param user_id
+	 * @param pageNo
+	 * @param callBack
+	 */
+	public void getMyJoinClub ( int user_id, int pageNo, CallBack callBack )
+	{
+		String url = C.MY_JOIN_CLUB_LIST + pageNo;
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("user_id", user_id);
+
+		MyJoinClubModel model = new MyJoinClubModel();
+
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
+	}
 
 
 

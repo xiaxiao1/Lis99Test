@@ -15,9 +15,11 @@ android {
 //        oppo {}
 //        oppo {}
 //        gfan {}
-        zs360 {}
-        huawei {}
+//        zs360 {}
+//        huawei {}
 //        lis99test {}
+//        jinli {}
+//        xiaomi {}
     }
 
     productFlavors.all {
@@ -49,7 +51,7 @@ android {
 //                def releaseApkName = 'yjf-android-v' + getVersionNameFromManifest() + '-' + variant.productFlavors[0].name + '-sign-42.apk'
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-3.6.1.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-3.6.4.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('beta')){

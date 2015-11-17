@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.DynamicListModel;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -59,7 +60,6 @@ public class FragmentDinamicList extends Fragment implements
 
     private DynamicListModel model;
 
-    private boolean needLogin = false;
 //点击TAB第一次加载
     private boolean isInit = false;
 
@@ -77,10 +77,10 @@ public class FragmentDinamicList extends Fragment implements
     public void onResume() {
         super.onResume();
 
+
         String userId = DataManager.getInstance().getUser().getUser_id();
         if ( !TextUtils.isEmpty(userId) && isLogin )
         {
-            needLogin = false;
             getDynamicList();
         }
 //        if ( needLogin )
@@ -137,9 +137,19 @@ public class FragmentDinamicList extends Fragment implements
                 DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) adapter.getItem(i);
                 if (item == null) return;
 
-                Intent intent = new Intent(getActivity(), LSClubTopicActivity.class);
-                intent.putExtra("topicID", item.topic_id);
-                startActivity(intent);
+                if ( item.category == 2 )
+                {
+                    Intent intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
+                    intent.putExtra("topicID", item.topic_id);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(getActivity(), LSClubTopicActivity.class);
+                    intent.putExtra("topicID", item.topic_id);
+                    startActivity(intent);
+                }
+
 
             }
         });
@@ -183,6 +193,8 @@ public class FragmentDinamicList extends Fragment implements
         if (TextUtils.isEmpty(UserId))
         {
             isLogin = true;
+            layout_need_add_attention.setVisibility(View.GONE);
+            layout_dynamic.setVisibility(View.GONE);
             layout_login.setVisibility(View.VISIBLE);
             return;
         }
@@ -203,17 +215,16 @@ public class FragmentDinamicList extends Fragment implements
             @Override
             public void handler(MyTask mTask) {
                 model = (DynamicListModel) mTask.getResultModel();
+                if ( model == null ) return;
+                Common.log("model.nofans="+model.nofans);
                 //没有关注
                 if ( 0 == model.nofans )
                 {
                     layout_need_add_attention.setVisibility(View.VISIBLE);
+                    layout_dynamic.setVisibility(View.GONE);
                     cleanRecommendList();
                     getRecommendList();
                     return;
-                }
-                else if ( 1 == model.nofans && (model.topiclist == null || model.topiclist.size() == 0))
-                {
-                    Common.toast("您关注的用户,尚未发贴");
                 }
 
                 layout_need_add_attention.setVisibility(View.GONE);
@@ -256,6 +267,8 @@ public class FragmentDinamicList extends Fragment implements
             public void handler(MyTask mTask) {
                 MyFriendsRecommendModel model = (MyFriendsRecommendModel) mTask.getResultModel();
 //                setRightView("下一步");
+
+
                 rPage.nextPage();
                 if (attentionAdapter == null) {
                     rPage.setPageSize(model.totPage);
@@ -292,7 +305,6 @@ public class FragmentDinamicList extends Fragment implements
     public void onClick(View arg0) {
         if ( arg0.getId() == R.id.btn_login )
         {
-            needLogin = true;
             Common.isLogin(getActivity());
         }
         else if ( arg0.getId() == R.id.btn_next )
@@ -326,7 +338,7 @@ public class FragmentDinamicList extends Fragment implements
         if ( layout_need_add_attention.getVisibility() == View.VISIBLE )
         {
             cleanRecommendList();
-            getRecommendList();
+            getDynamicList();
         }
         else if ( layout_dynamic.getVisibility() == View.VISIBLE )
         {
@@ -334,4 +346,17 @@ public class FragmentDinamicList extends Fragment implements
             getDynamicList();
         }
     }
+
+    public void scrollToTop ()
+    {
+        if ( list_dynamic.getVisibility() == View.VISIBLE && list_dynamic.getAdapter() != null )
+        {
+            list_dynamic.setSelection(0);
+        }
+        else if ( list.getVisibility() == View.VISIBLE && list.getAdapter() != null )
+        {
+            list.setSelection(0);
+        }
+    }
+
 }

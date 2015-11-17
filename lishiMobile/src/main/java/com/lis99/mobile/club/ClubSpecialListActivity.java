@@ -65,7 +65,7 @@ public class ClubSpecialListActivity extends LSBaseActivity implements
 
         initViews();
 
-        setLeftView(R.drawable.ls_page_back_icon_bg);
+        setLeftView(R.drawable.ls_club_back_icon_bg);
 
         page = new Page();
 
@@ -240,7 +240,7 @@ public class ClubSpecialListActivity extends LSBaseActivity implements
     {
         if ( isBg )
         {
-            setLeftView(R.drawable.ls_page_back_icon_bg);
+            setLeftView(R.drawable.ls_club_back_icon_bg);
         }
         else
         {

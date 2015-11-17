@@ -45,7 +45,7 @@ public class MyHttpClient {
 	
 	private HttpGet mHttpGet;
 	private HttpPost mHttpPost;
-	private final int TIMEOUT = 15000;
+	private int TIME_OUT = 15000;
 	
 	public MyHttpClient()
 	{
@@ -216,13 +216,11 @@ public class MyHttpClient {
 									+ "AppleWebKit/553.1(KHTML,like Gecko) Version/4.0 Mobile Safari/533.1");
 			// 超时设置
 			/* 从连接池中取连接的超时 */
-			ConnManagerParams.setTimeout(params, TIMEOUT);
-			/* 连接超时 */
-//			int ConnectionTimeOut = 5000;
+			ConnManagerParams.setTimeout(params, TIME_OUT);
 			HttpConnectionParams
-					.setConnectionTimeout(params, TIMEOUT);
+					.setConnectionTimeout(params, TIME_OUT);
 			/* 请求超时 */
-			HttpConnectionParams.setSoTimeout(params, TIMEOUT);
+			HttpConnectionParams.setSoTimeout(params, TIME_OUT);
 			// 设置我们的HttpClient支持HTTP和HTTPS两种模式
 			SchemeRegistry schReg = new SchemeRegistry();
 			schReg.register(new Scheme("http", PlainSocketFactory

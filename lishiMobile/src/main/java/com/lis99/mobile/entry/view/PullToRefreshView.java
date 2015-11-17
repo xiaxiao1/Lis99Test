@@ -127,6 +127,10 @@ public class PullToRefreshView extends LinearLayout {
 	private OnHeaderRefreshListener mOnHeaderRefreshListener;
 	/**下拉文字， 下拉刷新文字*/
 	private String HeadText, HeadTextRefresh;
+//	新的下拉刷新
+	private boolean newTop = true;
+//	移动距离参数调整， 越大越快
+	private float scrollDistance = 0.5f;
 
 	public PullToRefreshView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -185,6 +189,14 @@ public class PullToRefreshView extends LinearLayout {
 		// 设置topMargin的�?为负的header View高度,即将其隐藏在�?���?
 		params.topMargin = -(mHeaderViewHeight);
 		// mHeaderView.setLayoutParams(params1);
+
+		if ( newTop )
+		{
+			mHeaderTextView.setVisibility(GONE);
+			mHeaderImageView.setVisibility(GONE);
+			mHeaderProgressBar.setVisibility(VISIBLE);
+		}
+
 		addView(mHeaderView, params);
 
 	}
@@ -438,12 +450,18 @@ public class PullToRefreshView extends LinearLayout {
 			else mHeaderTextView.setText(HeadTextRefresh);
 //			刷新时间隐藏
 //			mHeaderUpdateTextView.setVisibility(View.VISIBLE);
-			mHeaderImageView.clearAnimation();
-			mHeaderImageView.startAnimation(mFlipAnimation);
+			if ( !newTop )
+			{
+				mHeaderImageView.clearAnimation();
+				mHeaderImageView.startAnimation(mFlipAnimation);
+			}
 			mHeaderState = RELEASE_TO_REFRESH;
 		} else if (newTopMargin < 0 && newTopMargin > -mHeaderViewHeight) {// 拖动时没有释�?
-			mHeaderImageView.clearAnimation();
-			mHeaderImageView.startAnimation(mFlipAnimation);
+			if ( !newTop )
+			{
+				mHeaderImageView.clearAnimation();
+				mHeaderImageView.startAnimation(mFlipAnimation);
+			}
 			// mHeaderImageView.
 			if ( HeadText == null)
 			mHeaderTextView.setText(R.string.pull_to_refresh_pull_label);
@@ -487,7 +505,7 @@ public class PullToRefreshView extends LinearLayout {
 	 */
 	private int changingHeaderViewTopMargin(int deltaY) {
 		LayoutParams params = (LayoutParams) mHeaderView.getLayoutParams();
-		float newTopMargin = params.topMargin + deltaY * 0.3f;
+		float newTopMargin = params.topMargin + deltaY * scrollDistance;
 		// 这里对上拉做�?��限制,因为当前上拉后然后不释放手指直接下拉,会把下拉刷新给触发了,感谢网友yufengzungzhe的指�?
 		// 表示如果是在上拉后一段距�?然后直接下拉
 		if (deltaY > 0 && mPullState == PULL_UP_STATE
@@ -513,10 +531,13 @@ public class PullToRefreshView extends LinearLayout {
 	private void headerRefreshing() {
 		mHeaderState = REFRESHING;
 		setHeaderTopMargin(0);
-		mHeaderImageView.setVisibility(View.GONE);
-		mHeaderImageView.clearAnimation();
-		mHeaderImageView.setImageDrawable(null);
-		mHeaderProgressBar.setVisibility(View.VISIBLE);
+		if ( !newTop )
+		{
+			mHeaderImageView.setVisibility(View.GONE);
+			mHeaderImageView.clearAnimation();
+			mHeaderImageView.setImageDrawable(null);
+			mHeaderProgressBar.setVisibility(View.VISIBLE);
+		}
 		mHeaderTextView.setText(R.string.pull_to_refresh_refreshing_label);
 		if (mOnHeaderRefreshListener != null) {
 			mOnHeaderRefreshListener.onHeaderRefresh(this);
@@ -565,10 +586,14 @@ public class PullToRefreshView extends LinearLayout {
 	 */
 	public void onHeaderRefreshComplete() {
 		setHeaderTopMargin(-mHeaderViewHeight);
-		mHeaderImageView.setVisibility(View.VISIBLE);
-		mHeaderImageView.setImageResource(R.drawable.push_up_img);
+		if ( !newTop )
+		{
+			mHeaderImageView.setVisibility(View.VISIBLE);
+			mHeaderImageView.setImageResource(R.drawable.push_up_img);
+			mHeaderProgressBar.setVisibility(View.VISIBLE);
+		}
 		mHeaderTextView.setText(R.string.pull_to_refresh_pull_label);
-		mHeaderProgressBar.setVisibility(View.GONE);
+//		mHeaderProgressBar.setVisibility(View.GONE);
 		// mHeaderUpdateTextView.setText("");
 		mHeaderState = PULL_TO_REFRESH;
 	}

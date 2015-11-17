@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
@@ -14,7 +15,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -38,7 +38,7 @@ public class MyActivityWebView extends LSBaseActivity
 
 	private int topic_id;
 
-	private RelativeLayout layout_main;
+	private View layout_main;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -100,7 +100,7 @@ public class MyActivityWebView extends LSBaseActivity
 			setRightView(R.drawable.share);
 		}
 
-		layout_main = (RelativeLayout) findViewById(R.id.layout_main);
+		layout_main = findViewById(R.id.layout_main);
 
 		webView = (WebView) findViewById(R.id.webView);
 		

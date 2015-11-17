@@ -14,18 +14,19 @@
         
         <Button 
             style="@style/wrap_wrap"
-            android:background="@drawable/club_level_tab1_left"
+            android:background="@drawable/club_level_tab2_left"
             android:id="@+id/btn_level_club"
             android:text="人气俱乐部"
-            android:textColor="@color/text_color_blue"
+            android:textColor="@color/white"
             />
         
         <Button 
             style="@style/wrap_wrap"
-            android:background="@drawable/club_level_tab2_right"
+            android:background="@drawable/club_level_tab1_right"
             android:id="@+id/btn_level_leader"
             android:text="活动领队"
-            android:textColor="@color/white"
+
+            android:textColor="@color/text_color_blue"
             />
         
     </LinearLayout>

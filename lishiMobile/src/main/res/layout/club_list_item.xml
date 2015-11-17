@@ -7,8 +7,8 @@
 
     <com.lis99.mobile.club.widget.RoundedImageView
         android:id="@+id/roundedImageView1"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="11dp"
@@ -38,7 +38,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:text="@string/temp_string"
         android:singleLine="true"
         android:textColor="#666" />
@@ -50,12 +50,12 @@
         android:layout_below="@+id/nameView"
         android:layout_toRightOf="@+id/roundedImageView1"
         android:layout_toLeftOf="@+id/addButton"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="3dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textColor="#999"
         android:singleLine="true"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:text="@string/temp_string" />
     
     <View 

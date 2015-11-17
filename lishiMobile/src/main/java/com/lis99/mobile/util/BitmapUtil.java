@@ -323,7 +323,7 @@ public class BitmapUtil {
 		BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 		bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);
 		bitmapOptions.inDither = true;// optional
-		bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;// optional
+		bitmapOptions.inPreferredConfig = Config.ARGB_4444;// optional
 		input = new FileInputStream(file);
 		Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
 		input.close();

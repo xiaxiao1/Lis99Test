@@ -60,7 +60,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		this.list = omnibuslist;
 		optionshead = ImageUtil.getclub_topic_headImageOptions();
 		optionsclub = ImageUtil.getImageOptionClubIcon();
-		optionsBg = ImageUtil.getDefultImageOptions();
+		optionsBg = ImageUtil.getDynamicImageOptions();
 		animation = AnimationUtils.loadAnimation(a, R.anim.like_anim_rotate);
 		
 	}

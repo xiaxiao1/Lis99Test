@@ -8,7 +8,7 @@ function htmlString(id,title,topic_id,topic_title,joinNum,image){
 	html+='<div class="clubItem" onclick="window.LS.goClubInfo('+id+');">'
 	html+='<div class="clubHeaderImg"><img src="'+image+'"></div>';
 	html+='<div class="clubInfo">';
-	html+='<div class="clubTitle"><div class="clubTitleWord">'+title+'</div><div class="clubTitleNum">'+joinNum+'人参加</div></div>';
+	html+='<div class="clubTitle"><div class="clubTitleWord">'+title+'</div><div class="clubTitleNum">'+joinNum+'人参与</div></div>';
 	html+='<div class="clubConIngo">'+topic_title+'</div>';
 	html+='</div>';						
 	html+='</div>';
@@ -24,22 +24,26 @@ function moreHtml(){
     $("#clubBox").append(html);
 }
 
-function htmlString2(topic_id,category,user_id,headicon,nickname,topic_title,images,replytotal,attenStatus,likeNum,LikeStatus){
-	var html="";	
+function htmlString2(topic_id,category,user_id,headicon,nickname,topic_title,images,replytotal,attenStatus,likeNum,LikeStatus,imgWidth,imgHeight){
+	var html="";
+	var imgMarginTop=-2;
+	if(images!=undefined){
+		imgMarginTop=marginTop(imgWidth,imgHeight);
+	}
 	html+='<div class="mainItem postsItem">';
 	html+='<div class="mainItemTitle title2"></div>';
 	html+='<div class="cardItem">';
 	html+='<div class="cardItemBox">';
-	html+='<div class="cardTitle"><div class="headerImg"><img src="'+headicon+'" /></div><div class="headerName">'+nickname+'</div>';
+	html+='<div class="cardTitle"><div class="headerImg" onclick="window.LS.goUserHomePage('+user_id+')"><img src="'+headicon+'" /></div><div class="headerName" onclick="window.LS.goUserHomePage('+user_id+')">'+nickname+'</div>';
 	if(attenStatus==1){
 		/*html+='<div class="attentionBox acitve">已关注</div>';*/
 	}else{
-		html+='<div class="attentionBox" onclick="attentionClick($(this));window.LS.attention ('+user_id+')">关注</div>';
+		html+='<div class="attentionBox" onclick="attentionClick($(this));window.LS.attention ('+user_id+')"></div>';/*关注*/
 	}
 	html+='</div>';
-	html+='<div class="cardImg" onclick="window.LS.goTopicInfo('+topic_id+','+category+')"><img src="'+images+'" /></div>';
+	html+='<div class="cardImg"  onclick="window.LS.goTopicInfo('+topic_id+','+category+')"><img src="'+images+'" style="margin-top:'+imgMarginTop+'px;"/></div>';
 	html+='<div class="cardInfo">';
-	html+='<div class="cardInfoTitle">'+topic_title+'</div>';
+	html+='<div class="cardInfoTitle"  onclick="window.LS.goTopicInfo('+topic_id+','+category+')">'+topic_title+'</div>';
 	html+='<div class="reviewNum">'+replytotal+'则评论 </div>';
 	if(LikeStatus==1){
 		html+='<div class="likeBox active"><span>'+likeNum+'</span></div>';
@@ -132,7 +136,10 @@ function cardCheck(num){
 					var LikeStatus=listsArr[i].LikeStatus;
 					var likeNum=listsArr[i].likeNum;
 					
-					html+=htmlString2(topic_id,category,user_id,headicon,nickname,topic_title,images,replytotal,attenStatus,likeNum,LikeStatus);
+					var imgWidth=listsArr[i].width;
+					var imgHeight=listsArr[i].height;
+					
+					html+=htmlString2(topic_id,category,user_id,headicon,nickname,topic_title,images,replytotal,attenStatus,likeNum,LikeStatus,imgWidth,imgHeight);
 				});
 				$(".mainContent").append(html);
 				$(".postsItem").eq(0).addClass("postsItemFirst");
@@ -180,10 +187,10 @@ function attentionClick($thisObj){
 		$thisObj.hide();
 	}
 }
-var userIdSend=window.LS.getUserId;
+/*var userIdSend=1111111;*/
+var userIdSend=window.LS.getUserId();
 function userIdHave(){
-	var userId=userIdSend;
-	if(userId==""){
+	if(userIdSend==undefined || userIdSend=="" || userIdSend==null){
 		return false;
 	}
 	return true
@@ -243,3 +250,18 @@ window.onscroll=function(){
 				$(".loadingImgClass").addClass("loadingImgNoHave");
 				$(".wordClass").show();
 			}
+
+function marginTop(imgWidth,imgHeight){
+	var windowWidth;
+	if (document.body.clientHeight && document.documentElement.clientHeight) {
+		windowWidth = (document.body.clientWidth < document.documentElement.clientWidth) ? document.body.clientWidth: document.documentElement.clientWidth;
+	} else {
+		windowWidth = (document.body.clientWidth > document.documentElement.clientWidth) ? document.body.clientWidth: document.documentElement.clientWidth;
+	}
+	var widthProportion=parseFloat(windowWidth)/parseFloat(imgWidth);
+	imgHeight=parseInt(imgHeight*widthProportion);
+	var marginTop=(imgHeight)-230;
+	marginTop=marginTop/2;
+	marginTop= - marginTop;
+	return marginTop;
+}

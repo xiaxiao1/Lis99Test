@@ -277,5 +277,5 @@ public class LSFragment extends Fragment implements IEventHandler{
     	if(getActivity() != null)
     		getActivity().unregisterReceiver(receiver);
     }
-    
+
 }

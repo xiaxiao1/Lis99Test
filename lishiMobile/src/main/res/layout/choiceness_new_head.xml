@@ -4,6 +4,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/include_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/choiceness_fragment_title_bar" />
 
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/viewBanner"
@@ -20,6 +27,32 @@
 
         <LinearLayout
 
+            android:id="@+id/layout_nearby"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:background="@drawable/choiceness_nearby"
+                />
+
+            <TextView
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="周边活动"
+                android:textColor="#73706e"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+
             android:id="@+id/layout_club_level"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -29,14 +62,12 @@
             >
 
             <ImageView
-                android:layout_marginLeft="4dp"
                 style="@style/wrap_wrap"
                 android:background="@drawable/tubu"
                 />
 
             <TextView
-                android:textSize="11sp"
-                android:layout_marginLeft="4dp"
+                android:textSize="10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -66,7 +97,7 @@
                 android:layout_marginTop="6dp"
                 android:text="精品行记"
                 android:textColor="#73706e"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 />
 
         </LinearLayout>
@@ -92,7 +123,7 @@
                 android:layout_marginTop="6dp"
                 android:text="干货知识"
                 android:textColor="#73706e"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 />
 
         </LinearLayout>
@@ -117,7 +148,7 @@
                 android:layout_marginTop="6dp"
                 android:text="更多专栏"
                 android:textColor="#73706e"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 />
 
         </LinearLayout>

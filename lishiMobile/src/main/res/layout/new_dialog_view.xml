@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="260dp"
+        >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/text_color_blue"
+            android:text="新版本更新啦！"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_title"
+            />
+
+
+
+        <LinearLayout
+            android:id="@+id/bottombar"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="稍后再说"
+                android:textSize="16sp"
+                android:textColor="@color/color_six"
+                android:padding="10dp"
+                android:id="@+id/cancel"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#eeeeee"
+                />
+
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:textColor="@color/color_six"
+                android:text="立即更新"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:id="@+id/ok"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/bottomBar_line"
+            android:layout_above="@+id/bottombar"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee"
+            />
+
+        <ScrollView
+            android:layout_margin="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/tv_title"
+            android:layout_above="@+id/bottomBar_line"
+            android:scrollbars="none"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textColor="@color/color_six"
+                android:id="@+id/tv_content"
+                android:lineSpacingExtra="5dp"
+                android:text="@string/temp_string_long"
+                />
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

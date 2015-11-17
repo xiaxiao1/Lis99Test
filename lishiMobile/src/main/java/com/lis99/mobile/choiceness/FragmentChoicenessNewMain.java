@@ -1,6 +1,5 @@
 package com.lis99.mobile.choiceness;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -12,14 +11,14 @@ import android.widget.Button;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.LSClubFragmentAdapter;
 import com.lis99.mobile.newhome.LSFragment;
-import com.lis99.mobile.search.SearchActivity;
+import com.lis99.mobile.util.ScrollTopUtil;
 
 import java.util.ArrayList;
 
 /**
  * Created by yy on 15/10/16.
  */
-public class FragmentChoicenessNewMain extends LSFragment implements View.OnClickListener {
+public class FragmentChoicenessNewMain extends LSFragment implements View.OnClickListener, ScrollTopUtil.ToTop {
 
 
     private ViewPager viewPager;
@@ -36,7 +35,9 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
     private FragmentDinamicList dinamicList;
 
-    private View view_choiceness, view_dynamic, include_search, dynamic_line;
+    private Fragment currentFragment;
+
+    private View view_choiceness, view_dynamic, dynamic_line;
 
 
     @Override
@@ -55,11 +56,8 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
         view_dynamic = v.findViewById(R.id.view_dynamic);
 
-        include_search = v.findViewById(R.id.include_search);
-
         dynamic_line = v.findViewById(R.id.dynamic_line);
 
-        include_search.setOnClickListener(this);
         tab_choiceness.setOnClickListener(this);
         tab_Dynamic.setOnClickListener(this);
 
@@ -88,9 +86,6 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.include_search:
-                startActivity(new Intent(getActivity(), SearchActivity.class));
-                break;
             case R.id.tab_choiceness:
 
                 selectChoiceness();
@@ -117,10 +112,11 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_choiceness.setVisibility(View.VISIBLE);
         view_dynamic.setVisibility(View.INVISIBLE);
 
-        include_search.setVisibility(View.VISIBLE);
         dynamic_line.setVisibility(View.GONE);
 
         choicenessList.init();
+
+        currentFragment = choicenessList;
 
     }
 
@@ -132,10 +128,27 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_dynamic.setVisibility(View.VISIBLE);
         view_choiceness.setVisibility(View.INVISIBLE);
 
-        include_search.setVisibility(View.GONE);
         dynamic_line.setVisibility(View.VISIBLE);
 
         dinamicList.init();
+
+        currentFragment = dinamicList;
+
+    }
+
+    @Override
+    public void handler() {
+
+        ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
+            @Override
+            public void handler() {
+                if (currentFragment == choicenessList) {
+                    choicenessList.scrollToTop();
+                } else {
+                    dinamicList.scrollToTop();
+                }
+            }
+        });
 
     }
 

@@ -83,10 +83,10 @@ public class ThirdLogin {
 
         mTencent = Tencent.createInstance(C.TENCENT_APP_ID, LSBaseActivity.activity);
 
-        //SSO登录检查
-        if (!QQInstalled(LSBaseActivity.activity)) {
-            return;
-        }
+//        //SSO登录检查
+//        if (!QQInstalled(LSBaseActivity.activity)) {
+//            return;
+//        }
 
 
         if (mTencent != null && mTencent.isSessionValid()) {

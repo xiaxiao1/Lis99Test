@@ -113,7 +113,7 @@ public class ParserUtil {
 			// TODO Auto-generated catch block
 			Common.log("parser error ="+e.toString());
 			Common.log(result);
-			Common.toast(result);
+//			Common.toast(result);
 			e.printStackTrace();
 			return null;
 		}

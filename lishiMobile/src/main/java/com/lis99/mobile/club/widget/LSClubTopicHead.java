@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -21,8 +22,6 @@ import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
-import com.lis99.mobile.engine.base.CallBack;
-import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.Common;
@@ -53,7 +52,6 @@ public class LSClubTopicHead extends LinearLayout implements
 	TextView nameView;
 	TextView dateView;
 	TextView contentView;
-	TextView clubButton;
 
 	View vipStar;
 
@@ -69,14 +67,13 @@ public class LSClubTopicHead extends LinearLayout implements
 
 	// ========2.3===========
 	private int ImageWidth;
-	// 帖子回复数量，
-	private TextView tv_reply_number;
 	// 楼层数, 删除楼层
-	private TextView tv_floor, tv_floor_delete;
+	private Button btn_attention;
+//	private TextView tv_floor_delete;
 	// 攒, 标题文字
-	private TextView tv_like;
+//	private TextView tv_like;
 	// 回复， 点赞
-	private LinearLayout layout_club_detail_reply, layout_club_detail_like;
+//	private LinearLayout layout_club_detail_like;
 
 	// LSClubTopic topic;
 	// 俱乐部名称,ID
@@ -90,7 +87,7 @@ public class LSClubTopicHead extends LinearLayout implements
 
 	private ClubTopicDetailHead clubhead;
 
-	private ImageView iv_like;
+//	private ImageView iv_like;
 //点
 	private ImageView iv_load;
 
@@ -105,6 +102,11 @@ public class LSClubTopicHead extends LinearLayout implements
 
 //	＝＝＝＝＝＝3.5.5=＝＝＝＝＝
 	private LSClubTopicHeadLike like;
+
+	//===3.6.3====
+	private View layout_club_name;
+	private TextView tv_club_name, tv_click_reply;
+
 
 	public void setHead(final ClubTopicDetailHead clubhead)
 	{
@@ -122,7 +124,19 @@ public class LSClubTopicHead extends LinearLayout implements
 			vipStar.setVisibility(View.GONE);
 		}
 
-		clubButton.setText("来自【" + clubhead.club_title + "】 >");
+		tv_club_name.setText("来自 " + clubhead.club_title);
+		//==3.6.3==
+		if ( clubhead.attenStatus == 0 )
+		{
+			btn_attention.setVisibility(VISIBLE);
+		}
+		else
+		{
+			btn_attention.setVisibility(GONE);
+		}
+
+
+
 
 		nameView.setText(clubhead.nickname);
 		dateView.setText(clubhead.createdate);
@@ -214,12 +228,7 @@ public class LSClubTopicHead extends LinearLayout implements
 			contentImageView.setVisibility(View.GONE);
 			contentImageView.setImageBitmap(null);
 		}
-		String replynum = clubhead.replytopic;
-		if ("0".equals(replynum))
-		{
-			replynum = "1";
-		}
-		tv_reply_number.setText(replynum + "则回复");
+
 //		// 删帖
 //		if (Common.clubDelete(clubhead.is_jion))
 //		{
@@ -230,19 +239,19 @@ public class LSClubTopicHead extends LinearLayout implements
 //		}
 		//
 
-		tv_like.setText(Common.getLikeNum(clubhead.likeNum));
+//		tv_like.setText(Common.getLikeNum(clubhead.likeNum));
 
-		if ( "1".equals(clubhead.LikeStatus))
-		{
-			tv_like.setTextColor(getResources().getColor(R.color.color_like_press_red));
-		}
-		else
-		{
-			tv_like.setTextColor(getResources().getColor(R.color.pull_text_color));
-		}
+//		if ( "1".equals(clubhead.LikeStatus))
+//		{
+//			tv_like.setTextColor(getResources().getColor(R.color.color_like_press_red));
+//		}
+//		else
+//		{
+//			tv_like.setTextColor(getResources().getColor(R.color.pull_text_color));
+//		}
 		
-		iv_like.setImageResource("1".equals(clubhead.LikeStatus) ? R.drawable.like_button_press
-				: R.drawable.like_button);
+//		iv_like.setImageResource("1".equals(clubhead.LikeStatus) ? R.drawable.like_button_press
+//				: R.drawable.like_button);
 
 		//====3.5======
 		if ( clubhead.taglist != null && clubhead.taglist.size() != 0 )
@@ -392,25 +401,24 @@ public class LSClubTopicHead extends LinearLayout implements
 		dateView = (TextView) v.findViewById(R.id.dateView);
 		contentView = (TextView) v.findViewById(R.id.contentView);
 
-		clubButton = (TextView) v.findViewById(R.id.clubButton);
-		clubButton.setOnClickListener(this);
+		layout_club_name = v.findViewById(R.id.layout_club_name);
+		tv_club_name = (TextView) v.findViewById(R.id.tv_club_name);
+		layout_club_name.setOnClickListener(this);
+
+		tv_click_reply = (TextView) v.findViewById(R.id.tv_click_reply);
+		tv_click_reply.setOnClickListener(this);
 
 		// ===========2.3====================
-		tv_reply_number = (TextView) findViewById(R.id.tv_reply_number);
-		tv_floor = (TextView) findViewById(R.id.tv_floor);
-		tv_floor_delete = (TextView) findViewById(R.id.tv_floor_delete);
-		tv_like = (TextView) findViewById(R.id.tv_like);
-		layout_club_detail_reply = (LinearLayout) findViewById(R.id.layout_club_detail_reply);
-		layout_club_detail_like = (LinearLayout) findViewById(R.id.layout_club_detail_like);
 
-		tv_floor_delete.setOnClickListener(this);
-		layout_club_detail_like.setVisibility(INVISIBLE);
+//		tv_floor_delete = (TextView) findViewById(R.id.tv_floor_delete);
+//		tv_like = (TextView) findViewById(R.id.tv_like);
+//		layout_club_detail_like = (LinearLayout) findViewById(R.id.layout_club_detail_like);
+
+//		tv_floor_delete.setOnClickListener(this);
+//		layout_club_detail_like.setVisibility(INVISIBLE);
 //		layout_club_detail_like.setOnClickListener(this);
-		layout_club_detail_reply.setOnClickListener(this);
 
-		iv_like = (ImageView) findViewById(R.id.iv_like);
-
-		tv_floor.setVisibility(View.GONE);
+//		iv_like = (ImageView) findViewById(R.id.iv_like);
 
 		iv_load= (ImageView) findViewById(R.id.iv_load);
 
@@ -431,6 +439,10 @@ public class LSClubTopicHead extends LinearLayout implements
 		equiNameView = (TextView)  v.findViewById(R.id.equiNameView);
 		equiRatingBar = (RatingBar)  v.findViewById(R.id.equiRatingBar);
 
+//		3.6.3===
+		btn_attention = (Button) findViewById(R.id.btn_attention);
+		btn_attention.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -440,37 +452,37 @@ public class LSClubTopicHead extends LinearLayout implements
 		switch (v.getId())
 		{
 		// 赞
-			case R.id.layout_club_detail_like:
-				if ( clubhead == null ) return;
-				if ( "1".equals(clubhead.LikeStatus))
-				{
-					return;
-				}
-				LSRequestManager.getInstance().mClubTopicInfoLike(clubhead.topic_id, new CallBack()
-				{
-					
-					@Override
-					public void handler(MyTask mTask)
-					{
-						// TODO Auto-generated method stub
-						iv_like.setImageResource(R.drawable.like_button_press);
-						clubhead.LikeStatus = "1";
-						int num = Common.string2int(clubhead.likeNum);
-						num += 1;
-						clubhead.likeNum = ""+num;
-						tv_like.setText(clubhead.likeNum);
-						tv_like.setTextColor(getResources().getColor(R.color.color_like_press_red));
-					}
-				});
-				// 调用赞的接口
-				break;
+//			case R.id.layout_club_detail_like:
+//				if ( clubhead == null ) return;
+//				if ( "1".equals(clubhead.LikeStatus))
+//				{
+//					return;
+//				}
+//				LSRequestManager.getInstance().mClubTopicInfoLike(clubhead.topic_id, new CallBack()
+//				{
+//
+//					@Override
+//					public void handler(MyTask mTask)
+//					{
+//						// TODO Auto-generated method stub
+//						iv_like.setImageResource(R.drawable.like_button_press);
+//						clubhead.LikeStatus = "1";
+//						int num = Common.string2int(clubhead.likeNum);
+//						num += 1;
+//						clubhead.likeNum = ""+num;
+//						tv_like.setText(clubhead.likeNum);
+//						tv_like.setTextColor(getResources().getColor(R.color.color_like_press_red));
+//					}
+//				});
+//				// 调用赞的接口
+//				break;
 			// 回复
-			case R.id.layout_club_detail_reply:
+			case R.id.tv_click_reply:
 				lsTopic.showReplyPanel();
 				break;
-			case R.id.tv_floor_delete:
-				lsTopic.delTopic();
-				break;
+//			case R.id.tv_floor_delete:
+//				lsTopic.delTopic();
+//				break;
 			case R.id.roundedImageView1:
 			{
 				Intent intent = new Intent(c, LSUserHomeActivity.class);
@@ -478,12 +490,18 @@ public class LSClubTopicHead extends LinearLayout implements
 				c.startActivity(intent);
 			}
 		break;
-			case R.id.clubButton:
+			case R.id.layout_club_name:
 			{
 				Intent intent = new Intent(c, LSClubDetailActivity.class);
 				intent.putExtra("clubID", clubID);
 				c.startActivity(intent);
 			}
+				break;
+			case R.id.btn_attention:
+
+				btn_attention.setVisibility(GONE);
+				if ( clubhead == null ) return;
+				LSRequestManager.getInstance().getFriendsAddAttention(Common.string2int(clubhead.user_id), null);
 				break;
 		}
 	}

@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="@dimen/title_height"
-        android:background="@color/text_color_blue" >
+        android:background="@drawable/title_bar_bg" >
 
         <ImageView
             android:id="@+id/iv_back"
@@ -23,8 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="设置"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textColor="@color/title_bar_text"
+            android:textSize="18sp" />
     </RelativeLayout>
     
     <ScrollView 

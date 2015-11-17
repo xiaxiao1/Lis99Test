@@ -25,6 +25,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.equip.ActivityTest;
+import com.lis99.mobile.newhome.HelpActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.C;
@@ -340,8 +341,19 @@ public class LsStartupActivity extends ActivityPattern {
 
     private void goNext() {
 
-        Intent intent = new Intent(LsStartupActivity.this,
-                NewHomeActivity.class);
+        Intent intent = null;
+        if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()))
+        {
+//            startActivity( new Intent(this, HelpActivity.class));
+            intent = new Intent(LsStartupActivity.this,
+                    HelpActivity.class);
+//            return;
+        }
+        else {
+            intent = new Intent(LsStartupActivity.this,
+                    NewHomeActivity.class);
+        }
+
         //传送push信息
         intent.putExtra(PushManager.TAG, PushManager.getInstance().getPushModel(LsStartupActivity.this.getIntent()));
         startActivity(intent);

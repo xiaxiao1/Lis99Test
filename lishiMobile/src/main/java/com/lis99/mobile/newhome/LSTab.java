@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.util.ScrollTopUtil;
 
 /**
  * tab 切换
@@ -180,8 +181,11 @@ public class LSTab extends FrameLayout implements OnClickListener {
 
 	public void switchDrawable(int oldcur, int newcur) {
 		if (oldcur == newcur) {
+			//第第次点击相同的， 则执行滚动到顶部
+			ScrollTopUtil.getInstance().scrollToTop();
 			return;
 		}
+
 		switch (newcur) {
 //		case SELECT:
 //			selectImg.setImageResource(R.drawable.icon_tab_select_selected);

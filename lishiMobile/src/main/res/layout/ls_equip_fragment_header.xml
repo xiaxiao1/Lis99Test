@@ -227,7 +227,7 @@
                 style="@style/ls_equip_odd"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:text="速干衣"/>
+                android:text="软壳衣"/>
 
             <TextView
                 android:background="@drawable/ls_equip_category_normal_bg"
@@ -236,7 +236,7 @@
                 android:gravity="center"
                 style="@style/ls_equip_even"
                 android:layout_weight="1"
-                android:text="速干裤"/>
+                android:text="软壳裤"/>
 
         </LinearLayout>
 
@@ -265,7 +265,7 @@
                 android:gravity="center"
                 style="@style/ls_equip_odd"
                 android:layout_weight="1"
-                android:text="软壳衣"
+                android:text="羽绒服"
                 android:layout_width="0dp" />
 
             <TextView

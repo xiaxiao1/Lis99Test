@@ -58,7 +58,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	LSClubDitalAdapter adapter;
 
 	int clubID;
-	View headerView, view_line_head;
+	View headerView;
 	RoundedImageView headerImageView;
 //	Button addButton;
 	TextView nameView;
@@ -77,28 +77,28 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	View eventPanel;
 	TextView eventView;
 	View eventLine;
-	
+
 	View topPanel;
-	
+
 	int lastScrollY = 0;
-	
+
 	int type = -1;
 	int offset = 0;
-	
+
 	private final static int SHOW_CLUB = 1001;
 	private final static int SHOW_MORE_TOPIC = 1003;
 	private final static int NO_MORE_TOPIC = 1004;
 	private final static int SHOW_ADDBUTTON = 1002;
-	
+
 	public final static String CLUB_TOPIC_CHANGE = "com.lis99.topicChange";
-	
+
 	private LocalBroadcastManager lbm;
 
 	DisplayImageOptions options;
-	
+
 	int topPanelHeight;
 	boolean topPanelVisible = true;
-	
+
 	//=============2.3版本=============
 	private int[] clubIcon = new int[]
 			{
@@ -110,7 +110,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			};
 
 //	private MyScrollView scrollview;
-	
+
 	//标题栏
 //	private ImageView iv_title_bg;
 //	private ImageView titleRightImage;
@@ -123,22 +123,22 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	private TextView allView1, eventView1;
 	private View allLine1, eventLine1, view_line;
 //	========
-	
+
 	private ClubDetailList clubAll;
 	private Page page;
-	
+
 	private View headViewMain;
 	//ListView 第一个可见item
 	private int visibleFirst;
-	
-	
-	
+
+
+
 	private void buildOptions() {
 		options = ImageUtil.getImageOptionClubIcon();
 	}
 
 	private PullToRefreshView refreshView;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -146,15 +146,15 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		initViews();
 		clubID = getIntent().getIntExtra("clubID", 0);
 		setTitle("帖子列表");
-		
+
 		buildOptions();
-		
+
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(CLUB_TOPIC_CHANGE);
 		lbm = LocalBroadcastManager.getInstance(this);
 		lbm.registerReceiver(localReceiver, filter);
 		clubHead = new ClubDetailHead();
-		
+
 		clubAll = new ClubDetailList();
 //		clubActive = new ClubDetailList();
 		page = new Page();
@@ -166,11 +166,11 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 		getAllList();
 	}
-	
+
 	@Override
 	protected void initViews() {
 		super.initViews();
-		
+
 		topPanel1 = (LinearLayout) findViewById(R.id.topPanel1);
 		allPanel1 = (RelativeLayout) findViewById(R.id.allPanel1);
 		eventPanel1 = (RelativeLayout) findViewById(R.id.eventPanel1);
@@ -179,12 +179,12 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		allLine1 = findViewById(R.id.allLine1);
 		eventLine1 = findViewById(R.id.eventLine1);
 		view_line = findViewById(R.id.view_line);
-		
+
 		topPanel1.setVisibility(View.GONE);
 		view_line.setVisibility(View.GONE);
-		
-		
-		
+
+
+
 //		iv_title_bg = (ImageView) findViewById(R.id.iv_title_bg);
 		setTitleBarAlpha(0f);
 //		title = (TextView) findViewById(R.id.title);
@@ -193,31 +193,30 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		setRightView(R.drawable.club_join);
 		setLeftView(R.drawable.ls_club_back_icon_bg);
 		titleRightImage.setOnClickListener(this);
-		
+
 		listView = (ListView) findViewById(R.id.listView);
 
 		refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
 		refreshView.setOnHeaderRefreshListener(this);
 		refreshView.setOnFooterRefreshListener(this);
-		
+
 		headViewMain = View.inflate(activity, R.layout.club_header_view, null);
-		
+
 		headerView = headViewMain.findViewById(R.id.headView);
-		
-		view_line_head = headViewMain.findViewById(R.id.view_line_head);
-		
+
+
 		ViewTreeObserver vto1 = headerView.getViewTreeObserver();
 		vto1.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 			@SuppressLint("NewApi")
 			@Override
 			public void onGlobalLayout() {
 				getHeadAdHeight();
-				
+
 				ViewTreeObserver obs = headerView.getViewTreeObserver();
 				obs.removeOnGlobalLayoutListener(this);
 			}
 		});
-		
+
 		headerView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -230,7 +229,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 //		adapter = new LSTopicAdapter(this, null);
 //		listView.setAdapter(adapter);
-		
+
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -261,26 +260,26 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		headerImageView = (RoundedImageView)headViewMain.findViewById(R.id.roundedImageView1);
 //		addButton = (Button) findViewById(R.id.addButton);
 //		addButton.setOnClickListener(this);
-		
+
 		nameView = (TextView) headViewMain.findViewById(R.id.nameView);
 		locView = (TextView) headViewMain.findViewById(R.id.locView);
 		labelView = (TextView) headViewMain.findViewById(R.id.labelView);
 		memberNumView = (TextView) headViewMain.findViewById(R.id.memberNumView);
-		
-		
+
+
 		allPanel = headViewMain.findViewById(R.id.allPanel);
 		allView = (TextView) headViewMain.findViewById(R.id.allView);
 		allLine = headViewMain.findViewById(R.id.allLine);
-		
+
 		eventPanel = headViewMain.findViewById(R.id.eventPanel);
 		eventView = (TextView) headViewMain.findViewById(R.id.eventView);
 		eventLine = headViewMain.findViewById(R.id.eventLine);
-		
+
 		allPanel.setOnClickListener(this);
 		eventPanel.setOnClickListener(this);
-		
+
 		topPanel = headViewMain.findViewById(R.id.topPanel);
-		
+
 		ViewTreeObserver vto = topPanel.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 			@SuppressLint("NewApi")
@@ -291,17 +290,17 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				obs.removeOnGlobalLayoutListener(this);
 			}
 		});
-		
+
 
 		listView.addHeaderView(headViewMain);
-		
+
 		listView.setOnScrollListener( new OnScrollListener() {
-			
+
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				// TODO Auto-generated method stub
 			}
-			
+
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
@@ -322,22 +321,22 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				}
 			}
 		});
-		
+
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		lbm.unregisterReceiver(localReceiver);
 		super.onDestroy();
 	}
-	
+
 	private BroadcastReceiver localReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			needRefresh = true;
 		}
 	};
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -350,7 +349,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			loadClubInfo();
 		}
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -361,8 +360,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			loginBeforePause = false;
 		}
 	}
-	
-	
+
+
 	private void loadClubInfo() {
 //		offset = 0;
 //		String userID = DataManager.getInstance().getUser().getUser_id();
@@ -390,39 +389,39 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			url += "/"+userID;
 		}
 		MyRequestManager.getInstance().requestGet(url, clubHead, new CallBack() {
-			
+
 			@Override
 			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
 				clubHead = (ClubDetailHead) mTask.getResultModel();
 				initClubHead();
-				
+
 			}
 		});
 	}
-	
+
 	private void initClubHead ()
 	{
 		headerView.setBackgroundResource(clubIcon[Common.getClubId(clubHead.club_id)]);
 		nameView.setText(clubHead.title);
 		memberNumView.setText(clubHead.topicnum + "个帖");
 		locView.setText(clubHead.cityname);
-		
+
 		if (clubHead.is_jion.equals("-1")) {
 			setRightView(R.drawable.club_join);
 		} else{
 			setRightView(R.drawable.club_joined);
 		}
 		labelView.setText(clubHead.catename);
-		
+
 		if ( !TextUtils.isEmpty(clubHead.images))
 		ImageLoader.getInstance().displayImage(clubHead.images,
 				headerImageView, options);
 
-		
-		
+
+
 	}
-	
+
 
 	@Override
 	public void handleTask(int initiator, Task task, int operation) {
@@ -448,7 +447,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		}
 		postMessage(DISMISS_PROGRESS);
 	}
-	
+
 	private void parserJoinClubInfo(String result) {
 		try {
 			JsonNode root = LSFragment.mapper.readTree(result);
@@ -466,7 +465,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			postMessage(ActivityPattern1.DISMISS_PROGRESS);
 		}
 	}
-	
+
 	private void parserQuitClubInfo(String result) {
 		try {
 			JsonNode root = LSFragment.mapper.readTree(result);
@@ -484,7 +483,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			postMessage(ActivityPattern1.DISMISS_PROGRESS);
 		}
 	}
-	
+
 	private void loadMore() {
 		String userID = DataManager.getInstance().getUser().getUser_id();
 
@@ -520,10 +519,10 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //			postMessage(ActivityPattern1.DISMISS_PROGRESS);
 //		}
 //	}
-	
-	
-	
-	
+
+
+
+
 //	private void parserMoreClubInfo(String result) {
 //		try {
 //			JsonNode root = LSFragment.mapper.readTree(result);
@@ -556,7 +555,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //			nameView.setText(club.getTitle());
 //			memberNumView.setText(club.getMembers() + "位成员");
 //			locView.setText(club.getProvince() + " " + club.getCity());
-//			
+//
 //			if (club.getIs_jion() == -1) {
 //				setRightView(R.drawable.club_join);
 //			} else{
@@ -582,11 +581,11 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //			listView.setAdapter(adapter);
 
 			return true;
-		} else if (msg.what == SHOW_MORE_TOPIC) { 
+		} else if (msg.what == SHOW_MORE_TOPIC) {
 			adapter.notifyDataSetChanged();
 			return true;
 		} else if (msg.what == NO_MORE_TOPIC){
-			
+
 		} else if (msg.what == SHOW_ADDBUTTON) {
 			setTitleRight(isBg);
 //			if ("-1".equals(clubHead.is_jion)) {
@@ -598,17 +597,17 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		}
 		return super.handleMessage(msg);
 	}
-	
+
 	private void joinClub(String userID){
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("club_id", clubID);
 		params.put("user_id", userID);
-		
+
 		Task task = new Task(null, C.CLUB_JOIN, C.HTTP_POST, C.CLUB_JOIN, this);
 		task.setPostData(RequestParamUtil.getInstance(this).getRequestParams(params).getBytes());
 		publishTask(task, IEvent.IO);
 	}
-	
+
 	private void quitClub(final String userID) {
 
 		postMessage(POPUP_ALERT, null, "确定要退出俱乐部吗？", true, "确定",
@@ -621,7 +620,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				}, true, "取消", null);
 
 	}
-	
+
 	private void doQuit(String userID){
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("club_id", clubID);
@@ -633,7 +632,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				.getRequestParams(params).getBytes());
 		publishTask(task, IEvent.IO);
 	}
-	
+
 	@Override
 	public void onClick(View view) {
 		if(view.getId() == allPanel.getId() || view.getId() == allPanel1.getId()){
@@ -642,7 +641,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			type = -1;
 			//这跟线在线路活动 里是没有的
-			view_line_head.setVisibility(View.VISIBLE);
 			allView1.setTextColor(getResources().getColor(R.color.text_color_blue));
 			allView.setTextColor(getResources().getColor(R.color.text_color_blue));
 			allLine1.setVisibility(View.VISIBLE);
@@ -660,7 +658,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			type = 1;
 			//这跟线消失
-			view_line_head.setVisibility(View.GONE);
 			eventView.setTextColor(getResources().getColor(R.color.text_color_blue));
 			eventView1.setTextColor(getResources().getColor(R.color.text_color_blue));
 			eventLine.setVisibility(View.VISIBLE);
@@ -694,7 +691,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				startActivity(intent);
 				return;
 			}
-			
+
 			if ("-1".equals(clubHead.is_jion)) {
 				joinClub(userID);
 			} else if ("4".equals(clubHead.is_jion)){
@@ -703,10 +700,10 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				postMessage(POPUP_TOAST, "您是俱乐部管理员，不能退出俱乐部");
 			}
 			return;
-		} 
+		}
 		super.onClick(view);
 	}
-	
+
 	@Override
 	public void onFooterRefresh(PullToRefreshView view) {
 		refreshView.onFooterRefreshComplete();
@@ -729,7 +726,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	public void onHeaderRefresh(PullToRefreshView view) {
 		refreshView.onHeaderRefreshComplete();
 //		offset = 0;
-		
+
 		cleanList();
 		loadClubInfo();
 		if ( type == -1 )
@@ -741,7 +738,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			getActiveList();
 		}
 	}
-	
+
 	private void getHeadAdHeight ()
 	{
 		int titleHeight = iv_title_bg.getHeight();
@@ -832,7 +829,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			setLeftView(R.drawable.ls_page_back_icon);
 		}
 	}
-	
+
 //=========
 	//获取所有列表
 	public void getAllList ()
@@ -843,9 +840,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			Common.toast("没有更多帖子");
 			 return;
 		}
-		
+
 		MyRequestManager.getInstance().requestGet(C.CLUB_DETAIL_LIST + clubID + "/" + "0" + "?page=" + page.getPageNo(), clubAll, new CallBack() {
-			
+
 			@Override
 			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
@@ -880,7 +877,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		listView.setAdapter(null);
 //		adapterActive = null;
 	}
-	
+
 //	获取线路活动列表
 	public void getActiveList ()
 	{
@@ -890,7 +887,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			return;
 		}
 		MyRequestManager.getInstance().requestGet(C.CLUB_DETAIL_LIST + clubID + "/" + "1" + "?page=" + page.getPageNo(), clubAll, new CallBack() {
-			
+
 			@Override
 			public void handler(MyTask mTask) {
 				// TODO Auto-generated method stub
@@ -915,7 +912,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 		});
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -954,5 +951,5 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-	
+
 }

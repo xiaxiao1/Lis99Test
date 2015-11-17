@@ -2,16 +2,22 @@ package com.lis99.mobile.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.widget.ioscitychoose.AbstractWheelTextAdapter;
 import com.lis99.mobile.club.widget.ioscitychoose.AddressData;
 import com.lis99.mobile.club.widget.ioscitychoose.ArrayWheelAdapter;
@@ -305,6 +311,56 @@ public class DialogManager {
 			str += " "+ccc;
 		}
 		return str;
+	}
+//  应用更新提醒框
+	public void showUpdataDialog (String title, String content, String url, String type )
+	{
+		final String Url = url;
+
+		final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.CustomDialog);
+
+		dialog.show();
+
+		dialog.setContentView(R.layout.new_dialog_view);
+
+		TextView tv_title = (TextView) dialog.findViewById(R.id.tv_title);
+
+		TextView tv_content = (TextView) dialog.findViewById(R.id.tv_content);
+
+		Button cancel = (Button) dialog.findViewById(R.id.cancel);
+
+		Button ok = (Button) dialog.findViewById(R.id.ok);
+
+		if ( !TextUtils.isEmpty(title))
+		{
+			tv_title.setText(title);
+		}
+
+		tv_content.setText(content);
+
+
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if (dialog != null) dialog.dismiss();
+			}
+		});
+
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if (dialog != null) dialog.dismiss();
+				Intent intent = new Intent();
+				intent.setAction("android.intent.action.VIEW");
+				Uri content_url = Uri.parse(Url);
+				intent.setData(content_url);
+				LSBaseActivity.activity.startActivity(intent);
+			}
+		});
+
+
+
+
 	}
 	
 }

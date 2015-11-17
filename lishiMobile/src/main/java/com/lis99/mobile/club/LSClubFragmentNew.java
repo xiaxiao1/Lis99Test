@@ -1,6 +1,7 @@
 package com.lis99.mobile.club;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -26,11 +28,13 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.ScrollTopUtil;
 
 
 public class LSClubFragmentNew extends LSFragment implements
-		OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
+		OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener, ScrollTopUtil.ToTop
 {
 
 	private WebView webView;
@@ -69,7 +73,7 @@ public class LSClubFragmentNew extends LSFragment implements
 
 		//搜索按钮
 		titleRightImage = (ImageView) body.findViewById(R.id.titleRightImage);
-		titleRightImage.setImageResource(R.drawable.club_search_title_left);
+		titleRightImage.setImageResource(R.drawable.club_main_refresh);
 		titleRightImage.setOnClickListener(this);
 
 		titleLeftImage = (ImageView) body.findViewById(R.id.titleLeftImage);
@@ -105,14 +109,27 @@ public class LSClubFragmentNew extends LSFragment implements
 
 //		webView.setWebChromeClient(new MyWebChromeClient());
 //
-//		webView.setWebViewClient( new MyWebClinet());
+		webView.setWebViewClient( new MyWebClinet());
 
 		// 看这里用到了 addJavascriptInterface 这就是我们的重点中的重点
 		// 我们再看他的DemoJavaScriptInterface这个类。还要这个类一定要在主线程中
 		webView.addJavascriptInterface(new LSJavaScriptInterface(), "LS");
 
 //        webView.loadUrl(url);
-		webView.loadUrl("file:///android_asset/web/indexAndroid.html");
+		webView.loadUrl("file:///android_asset/web/index.html");
+	}
+
+	@Override
+	public void handler() {
+
+		ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
+			@Override
+			public void handler() {
+				if ( webView != null )
+					webView.setScrollY(0);
+			}
+		});
+
 	}
 
 	// 这是他定义由 addJavascriptInterface 提供的一个Object
@@ -139,7 +156,12 @@ public class LSClubFragmentNew extends LSFragment implements
 							startActivity(new Intent(getActivity(), ActiveAllActivity.class));
 							break;
 						case 3:
-							startActivity(new Intent(getActivity(), ClubHotTopicActivity.class));
+//							startActivity(new Intent(getActivity(), ClubHotTopicActivity.class));
+							if ( !Common.isLogin(LSBaseActivity.activity))
+							{
+								return;
+							}
+							startActivity(new Intent(getActivity(), MyJoinClubActivity.class));
 							break;
 					}
 				}
@@ -173,7 +195,6 @@ public class LSClubFragmentNew extends LSFragment implements
 		@JavascriptInterface
 		public void JoinClub ( String club_id )
 		{
-			Common.log("JoinClub  id =" + club_id);
 			LSRequestManager.getInstance().addClub(club_id, new CallBack() {
 				@Override
 				public void handler(MyTask mTask) {
@@ -183,23 +204,19 @@ public class LSClubFragmentNew extends LSFragment implements
 
 //赞
 		@JavascriptInterface
-		public void like ( int topic_id )
+		public void like(int topic_id)
 		{
 			LSRequestManager.getInstance().clubTopicLike(topic_id, null);
-			Common.log("like on click id =" + topic_id);
 		}
 //		关注
 		@JavascriptInterface
-		public void attention ( int user_id )
-		{
+		public void attention ( int user_id) {
 			LSRequestManager.getInstance().getFriendsAddAttention(user_id, null);
-			Common.log("attention on click id =" + user_id);
 		}
 //		跳转铁子
 		@JavascriptInterface
 		public void goTopicInfo ( final int topic_id, int type )
 		{
-			Common.log("goTopicInfo topic id =" + topic_id + "＝type＝" + type);
 			final int id = type;
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
@@ -226,6 +243,16 @@ public class LSClubFragmentNew extends LSFragment implements
 		}
 
 		/**
+		 * 			跳转用户主页
+		 * @param userID
+		 */
+		@JavascriptInterface
+		public void goUserHomePage(String userID)
+		{
+			Common.goUserHomeActivit(getActivity(), userID);
+		}
+
+		/**
 		 * This is not called on the UI thread. Post a runnable to invoke
 		 * 这不是呼吁界面线程。发表一个运行调用
 		 * loadUrl on the UI thread.
@@ -237,7 +264,7 @@ public class LSClubFragmentNew extends LSFragment implements
 				public void run() {
 					// 此处调用 HTML 中的javaScript 函数
 //                    webView.loadUrl("javascript:wave()");
-					webView.loadUrl("javascript:sendUserId()");
+//					webView.loadUrl("javascript:sendUserId()");
 				}
 			});
 		}
@@ -252,13 +279,10 @@ public class LSClubFragmentNew extends LSFragment implements
 		{
 
 			String userId = DataManager.getInstance().getUser().getUser_id();
-			Common.log("=================userId==="+userId);
 			if ( TextUtils.isEmpty(userId))
 			{
-				Common.log("=================userId==="+userId);
 				return "";
 			}
-			Common.log("=================userId==="+userId);
 			return userId;
 		}
 
@@ -280,6 +304,45 @@ public class LSClubFragmentNew extends LSFragment implements
 
 	}
 
+	class MyWebClinet extends WebViewClient
+	{
+
+		@Override
+		public void onLoadResource(WebView view, String url) {
+			// TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onLoadResource", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onLoadResource="+url);
+			super.onLoadResource(view, url);
+		}
+
+		@Override
+		public void onPageFinished(WebView view, String url) {
+			// TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onPageFinished", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageFinished=");
+			DialogManager.getInstance().stopWaitting();
+			super.onPageFinished(view, url);
+		}
+
+		@Override
+		public void onPageStarted(WebView view, String url, Bitmap favicon) {
+			// TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onPageStarted", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageStarted=");
+			DialogManager.getInstance().startWaiting(LSBaseActivity.activity, null, "数据加载中...");
+			super.onPageStarted(view, url, favicon);
+		}
+
+		@Override
+		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			// TODO Auto-generated method stub
+			view.loadUrl(url);
+			return super.shouldOverrideUrlLoading(view, url);
+		}
+
+	}
+
+
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack())
@@ -296,7 +359,8 @@ public class LSClubFragmentNew extends LSFragment implements
 		{
 			case R.id.titleRightImage:
 			case R.id.titleRight:
-				startActivity(new Intent(getActivity(), LSClubListActivity.class));
+//				startActivity(new Intent(getActivity(), LSClubListActivity.class));
+				webView.reload();
 				break;
 			case R.id.titleLeftImage:
 			case R.id.titleLeft:
@@ -318,6 +382,7 @@ public class LSClubFragmentNew extends LSFragment implements
 			if (TextUtils.isEmpty(userId) || webView == null ) return;
 			webView.loadUrl("javascript:sendUserId("+userId+")");
 		}
+
 	}
 
 

@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}"
+    android:background="@color/pull_bg"
+    >
 
     <RelativeLayout 
     android:id="@+id/titlehead"
@@ -59,6 +61,32 @@
         android:background="#fff"
         android:orientation="horizontal" >
 
+        <RelativeLayout
+            android:id="@+id/layout_recommend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick" >
+
+            <TextView
+                android:id="@+id/tv_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="推荐"
+                android:textColor="@color/text_color_blue"
+                />
+
+            <View
+                android:id="@+id/view_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_alignLeft="@+id/tv_recommend"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/tv_recommend"
+                android:background="@color/text_color_blue" />
+        </RelativeLayout>
+
          <RelativeLayout
             android:id="@+id/cityPanel"
             android:layout_width="0dp"
@@ -76,6 +104,7 @@
                  />
 
             <View
+                android:visibility="gone"
                 android:id="@+id/cityLine"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
