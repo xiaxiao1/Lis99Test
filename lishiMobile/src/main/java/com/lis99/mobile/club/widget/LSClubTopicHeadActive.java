@@ -19,7 +19,6 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubApplyActivity;
-import com.lis99.mobile.club.LSClubApplyListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
@@ -408,28 +407,29 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		
 //		iv_like.setImageResource("1".equals(clubhead.LikeStatus) ? R.drawable.like_button_press : R.drawable.like_button);
 
-		// 权限1创始人，2管理员，4成员,8网站编辑
-		if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
+		//报名已结束
+		if ( clubhead.applyTimeStatus == 1 )
 		{
-			//已报名
-			if (  clubhead.applyStauts == 1 )
-			{
-				applyOK();
-			}
-			else
-			{
-				//报名已结束
-				if ( clubhead.applyTimeStatus == 1 )
-				{
-					applyPast();
-				}
-			}
+			applyPast();
 		}
 		else
 		{
-			// actionButton.setBackgroundResource(R.drawable.club_topic_checkapply_bg);
-			actionButton.setText("查看已报名用户");
+			// 权限1创始人，2管理员，4成员,8网站编辑
+//			if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
+//			{
+				//已报名
+				if (  clubhead.applyStauts == 1 )
+				{
+					applyOK();
+				}
+//			}
 		}
+
+//		else
+//		{
+//			// actionButton.setBackgroundResource(R.drawable.club_topic_checkapply_bg);
+//			actionButton.setText("查看已报名用户");
+//		}
 
 
 
@@ -531,22 +531,23 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 			getContext().startActivity(intent);
 		} else
 		{
-			if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
-			{
+//			if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
+//			{
 				Intent intent = new Intent(getContext(), LSClubApplyActivity.class);
 				intent.putExtra("clubID", clubID);
 				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
 				intent.putExtra("clubName", clubName);
 //				lsTopic.startActivity(intent);
 				lsTopic.startActivityForResult(intent, 997);
-			} else
-			{
-				Intent intent = new Intent(getContext(), LSClubApplyListActivity.class);
-				intent.putExtra("clubID", clubID);
-				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
-				intent.putExtra("clubName", clubName);
-				getContext().startActivity(intent);
-			}
+//			}
+//			else
+//			{
+//				Intent intent = new Intent(getContext(), LSClubApplyListActivity.class);
+//				intent.putExtra("clubID", clubID);
+//				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
+//				intent.putExtra("clubName", clubName);
+//				getContext().startActivity(intent);
+//			}
 		}
 	}
 	

@@ -38,6 +38,7 @@ import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
+import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -288,9 +289,10 @@ public class FragmentChoicenessList extends Fragment implements
                 startActivity(new Intent(getActivity(), SearchActivity.class));
 //                startActivity(new Intent(getActivity(), MyTest.class));
                 break;
+            //线路活动
             case R.id.layout_club_level:
-                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-                intent.putExtra("tagid", 12);
+                intent = new Intent(getActivity(), ChoicenessRouteWebView.class);
+//                intent.putExtra("tagid", 12);
                 startActivity(intent);
                 break;
             case R.id.layout_leader_level:

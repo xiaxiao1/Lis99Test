@@ -35,9 +35,9 @@ public class LSClubApplyActivity extends LSBaseActivity
 	int clubID;
 	int topicID;
 
-	TextView nameView;
-	TextView phoneView;
-	TextView idNumView;
+	EditText nameView;
+	EditText phoneView;
+	EditText idNumView;
 	// TextView noteView;
 	Stepper stepper;
 
@@ -213,9 +213,9 @@ public class LSClubApplyActivity extends LSBaseActivity
 	protected void initViews()
 	{
 		super.initViews();
-		nameView = (TextView) findViewById(R.id.nameView);
-		phoneView = (TextView) findViewById(R.id.phoneView);
-		idNumView = (TextView) findViewById(R.id.idNumView);
+		nameView = (EditText) findViewById(R.id.nameView);
+		phoneView = (EditText) findViewById(R.id.phoneView);
+		idNumView = (EditText) findViewById(R.id.idNumView);
 		stepper = (Stepper) findViewById(R.id.stepper1);
 
 		// ====2.3====
