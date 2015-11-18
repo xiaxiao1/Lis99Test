@@ -34,6 +34,7 @@ public class LocationUtil
 		mLocClient.registerLocationListener(myListener);
 		LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true);// 打开gps
+		option.setLocationMode(LocationClientOption.LocationMode.Battery_Saving);
 		option.setCoorType("bd09ll"); // 设置坐标类型
 		option.setScanSpan(900);
 		mLocClient.setLocOption(option);

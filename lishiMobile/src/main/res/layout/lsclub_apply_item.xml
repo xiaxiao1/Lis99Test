@@ -1,0 +1,164 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+                android:background="@color/pull_bg"
+    tools:context="${relativePackage}.${activityClass}" >
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/pull_bg"
+                android:text="报名人1"
+                />
+
+
+
+            <EditText
+                android:layout_marginTop="15dip"
+                android:id="@+id/nameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_bg_club"
+                android:hint="真实姓名"
+                android:padding="10dip"
+                android:singleLine="true"
+                android:textColor="#666"
+                android:textColorHint="#999"
+                android:textSize="15sp" >
+            </EditText>
+
+            <EditText
+                android:id="@+id/idNumView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/edit_bg_club"
+                android:hint="身份证号"
+                android:padding="10dip"
+                android:singleLine="true"
+                android:textColor="#666"
+                android:textColorHint="#999"
+                android:textSize="15sp" >
+            </EditText>
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radioMan"
+                    style="@style/wrap_wrap"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="男"
+                    android:textColor="#666"
+                    android:button="@drawable/club_radio_apply_man"
+                    android:layout_marginRight="20dip"
+                    android:paddingLeft="15dp"
+                     />
+
+                <RadioButton
+                    android:id="@+id/radioWoman"
+                    style="@style/wrap_wrap"
+                    android:gravity="center"
+                    android:text="女"
+                    android:textColor="#666"
+                    android:button="@drawable/club_radio_apply_man"
+                    android:paddingLeft="15dp"
+                    />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/phoneView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/edit_bg_club"
+                android:hint="手机号"
+                android:numeric="integer"
+                android:padding="10dip"
+                android:singleLine="true"
+                android:textColor="#666"
+                android:textColorHint="#999"
+                android:textSize="15sp" >
+            </EditText>
+
+            <EditText
+                android:id="@+id/et_telOhter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/edit_bg_club"
+                android:hint="紧急联系电话：区号-固定电话/手机号码"
+                android:numeric="integer"
+                android:padding="10dip"
+                android:singleLine="true"
+                android:textColor="#666"
+                android:textColorHint="#999"
+                android:textSize="15sp" >
+            </EditText>
+
+            <EditText
+                android:id="@+id/et_QQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/edit_bg_club"
+                android:hint="QQ"
+                android:numeric="integer"
+                android:padding="10dip"
+                android:singleLine="true"
+                android:textColor="#666"
+                android:textColorHint="#999"
+                android:textSize="15sp" >
+            </EditText>
+
+
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/edit_bg_club"
+                android:gravity="center_vertical"
+                android:hint="邮寄地址"
+                android:maxLines="4"
+                android:minLines="4"
+                android:padding="10dip"
+                android:textColor="#666"
+                android:textColorHint="#999"
+                android:textSize="15sp" >
+            </EditText>
+
+            <Button
+                android:id="@+id/btn_address"
+                style="@style/fill_wrap"
+                android:layout_marginTop="15dip"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/club_apply_city_choose"
+                android:drawableRight="@drawable/club_apply_city_choose_dot"
+                android:paddingRight="20dip"
+                android:text="选择居住城市" />
+        </LinearLayout>
+
+</RelativeLayout>
