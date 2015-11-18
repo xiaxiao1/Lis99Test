@@ -43,8 +43,8 @@
 
         <com.lis99.mobile.club.widget.RoundedImageView
             android:id="@+id/roundedImageView1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dip"
@@ -81,7 +81,7 @@
                 android:id="@+id/nameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="17sp"
                 android:text="@string/temp_string"
                 android:singleLine="true"
                 android:textColor="#666"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#999"
                 android:singleLine="true"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:text="@string/temp_string_long"
                 android:layout_toLeftOf="@id/btn_join"
                 />

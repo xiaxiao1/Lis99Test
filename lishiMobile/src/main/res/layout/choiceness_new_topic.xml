@@ -43,7 +43,6 @@
             android:layout_toRightOf="@id/roundedImageView1"
             android:layout_marginLeft="10dp"
             android:textColor="#73706e"
-            android:textSize="12sp"
             />
 
         <Button
