@@ -1059,8 +1059,12 @@
         <activity android:name="com.lis99.mobile.webview.ChoicenessRouteWebView"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
-
+<!-- 报名-->
         <activity android:name="com.lis99.mobile.club.apply.LSApplayNew"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity android:name="com.lis99.mobile.club.apply.LSApplyEnterActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 

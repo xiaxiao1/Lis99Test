@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@color/pull_bg"
     >
 
@@ -121,6 +122,8 @@
             android:stretchMode="columnWidth"
             android:id="@+id/grid"
             android:scrollbars="none"
+            android:listSelector="#00000000"
+            android:cacheColorHint="#00000000"
             ></GridView>
 
         <View
@@ -176,6 +179,7 @@
                         android:checked="true"
                         android:button="@drawable/club_radio_apply_man"
                         android:layout_centerVertical="true"
+                        android:clickable="false"
                         />
 
                     <View
@@ -212,6 +216,7 @@
                         style="@style/wrap_wrap"
                         android:button="@drawable/club_radio_apply_man"
                         android:layout_centerVertical="true"
+                        android:clickable="false"
                         />
 
                     <View
@@ -248,6 +253,7 @@
                         style="@style/wrap_wrap"
                         android:button="@drawable/club_radio_apply_man"
                         android:layout_centerVertical="true"
+                        android:clickable="false"
                         />
 
                     <View

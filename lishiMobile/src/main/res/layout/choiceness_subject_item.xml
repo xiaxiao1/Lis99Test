@@ -27,7 +27,7 @@
             <com.lis99.mobile.club.widget.RoundedImageView
                 android:id="@+id/iv_bg"
                 android:layout_width="match_parent"
-                android:layout_height="120dip"
+                android:layout_height="180dip"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 app:border_width="0px"
@@ -58,13 +58,14 @@
                 android:textSize="15sp" />
 
             <RelativeLayout
+                android:background="@drawable/subject_forground"
                 style="@style/fill_wrap"
                 android:layout_alignBottom="@id/iv_bg"
-                android:layout_marginBottom="9dip"
-                android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip" >
+                 >
 
                 <com.lis99.mobile.club.widget.RoundedImageView
+                    android:layout_marginBottom="9dip"
+                    android:layout_marginLeft="10dip"
                     android:layout_centerVertical="true"
                     android:id="@+id/iv_icon_head"
                     android:layout_width="26dp"
@@ -112,6 +113,7 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:layout_marginRight="10dip"
                     android:id="@+id/tv_reply"
                     style="@style/wrap_wrap"
                     android:layout_alignBottom="@id/tv_data"

@@ -1,6 +1,8 @@
 package com.lis99.mobile.club.apply;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -46,9 +48,28 @@ public class LSApplayNew extends LSBaseActivity {
 
         btn_ok = (Button) findViewById(R.id.btn_ok);
 
+        btn_ok.setOnClickListener(this);
+
+        btn_add.setOnClickListener(this);
 
     }
 
+    @Override
+    public void onClick(View arg0) {
+        super.onClick(arg0);
+
+        switch (arg0.getId())
+        {
+            case R.id.btn_ok:
+                startActivity(new Intent(this, LSApplyEnterActivity.class));
+                break;
+            case R.id.btn_add:
+                break;
+            default:
+                break;
+        }
+
+    }
 
     private void getList() {
 
