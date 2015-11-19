@@ -315,6 +315,9 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
             case R.id.layout_nearby:
                 startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
+
+//                startActivity(new Intent(getActivity(), LSApplayNew.class));
+
                 break;
         }
     }
