@@ -39,6 +39,7 @@
     </RelativeLayout>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_close"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
@@ -86,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@+id/titleRight"
-        android:layout_toRightOf="@+id/tv_close"
+        android:layout_toRightOf="@+id/titleLeft"
         android:gravity="center"
         android:text=""
         android:singleLine="true"

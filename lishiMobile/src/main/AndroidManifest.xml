@@ -1060,6 +1060,11 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
+        <activity android:name="com.lis99.mobile.club.apply.LSApplayNew"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+
     </application>
 
 

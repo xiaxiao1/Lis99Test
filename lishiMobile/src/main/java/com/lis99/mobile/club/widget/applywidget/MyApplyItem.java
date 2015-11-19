@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.util.MyBaseAdapter;
@@ -37,12 +38,12 @@ public class MyApplyItem extends MyBaseAdapter{
                 visibleItem = new ArrayList<String>();
                 visibleItem.add("1");
                 visibleItem.add("1");
-                visibleItem.add("0");
                 visibleItem.add("1");
-                visibleItem.add("0");
-                visibleItem.add("0");
-                visibleItem.add("0");
-                visibleItem.add("0");
+                visibleItem.add("1");
+                visibleItem.add("1");
+                visibleItem.add("1");
+                visibleItem.add("1");
+                visibleItem.add("1");
             }
         }
     }
@@ -68,11 +69,62 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.btn_address = (Button) view.findViewById(R.id.btn_address);
 
             holder.radioGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
+
+            holder.v_name = view.findViewById(R.id.v_name);
+            holder.v_idcode = view.findViewById(R.id.v_idcode);
+            holder.v_man = view.findViewById(R.id.v_man);
+            holder.v_phone = view.findViewById(R.id.v_phone);
+            holder.v_telOhter = view.findViewById(R.id.v_telOhter);
+            holder.v_qq = view.findViewById(R.id.v_qq);
+
+            holder.layout_name = view.findViewById(R.id.layout_name);
+            holder.layout_idcode = view.findViewById(R.id.layout_idcode);
+            holder.layout_phone = view.findViewById(R.id.layout_phone);
+            holder.layout_telOhter = view.findViewById(R.id.layout_telOhter);
+            holder.layout_qq = view.findViewById(R.id.layout_qq);
+            holder.layout_address = view.findViewById(R.id.layout_address);
+            holder.delete = view.findViewById(R.id.delete);
+
+            holder.title = (TextView) view.findViewById(R.id.title);
+
+
+            view.setTag(holder);
         }
+        else
+        {
+            holder = (Holder) view.getTag();
+        }
+
+        if ( i == 0 )
+        {
+            holder.delete.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.delete.setVisibility(View.VISIBLE);
+        }
+
+        holder.title.setText("报名人" + (i + 1));
+
 
 //        设置显示内容
         setVisibleInfo(holder);
 
+
+        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO Auto-generated method stub
+                if (checkedId == R.id.radioMan) {
+                    // Common.log("man");
+//                    sex = "1";
+                } else {
+                    // Common.log("Woman");
+//                    sex = "0";
+                }
+            }
+        });
 
 
 
@@ -86,52 +138,64 @@ public class MyApplyItem extends MyBaseAdapter{
         //控制显示哪个选项
         if ("0".equals(visibleItem.get(0)))
         {
-            holder.nameView.setVisibility(View.GONE);
+            holder.layout_name.setVisibility(View.GONE);
+            holder.v_name.setVisibility(View.GONE);
         } else
         {
-            holder.nameView.setVisibility(View.VISIBLE);
+            holder.layout_name.setVisibility(View.VISIBLE);
+            holder.v_name.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(1)))
         {
-            holder.idNumView.setVisibility(View.GONE);
+            holder.layout_idcode.setVisibility(View.GONE);
+            holder.v_idcode.setVisibility(View.GONE);
         } else
         {
-            holder.idNumView.setVisibility(View.VISIBLE);
+            holder.layout_idcode.setVisibility(View.VISIBLE);
+            holder.v_idcode.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(2)))
         {
             holder.radioGroup.setVisibility(View.GONE);
+            holder.v_man.setVisibility(View.GONE);
         } else
         {
             holder.radioGroup.setVisibility(View.VISIBLE);
+            holder.v_man.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(3)))
         {
-            holder.phoneView.setVisibility(View.GONE);
+            holder.layout_phone.setVisibility(View.GONE);
+            holder.v_phone.setVisibility(View.GONE);
         } else
         {
-            holder.phoneView.setVisibility(View.VISIBLE);
+            holder.layout_phone.setVisibility(View.VISIBLE);
+            holder.v_phone.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(4)))
         {
-            holder.et_telOhter.setVisibility(View.GONE);
+            holder.layout_telOhter.setVisibility(View.GONE);
+            holder.v_telOhter.setVisibility(View.GONE);
         } else
         {
-            holder.et_telOhter.setVisibility(View.VISIBLE);
+            holder.layout_telOhter.setVisibility(View.VISIBLE);
+            holder.v_telOhter.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(5)))
         {
-            holder.et_QQ.setVisibility(View.GONE);
+            holder.layout_qq.setVisibility(View.GONE);
+            holder.v_qq.setVisibility(View.GONE);
         } else
         {
-            holder.et_QQ.setVisibility(View.VISIBLE);
+            holder.layout_qq.setVisibility(View.VISIBLE);
+            holder.v_qq.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(6)))
         {
-            holder.et_address.setVisibility(View.GONE);
+            holder.layout_address.setVisibility(View.GONE);
         } else
         {
-            holder.et_address.setVisibility(View.VISIBLE);
+            holder.layout_address.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(7)))
         {
@@ -154,6 +218,13 @@ public class MyApplyItem extends MyBaseAdapter{
         Button btn_address;
 
         RadioGroup radioGroup;
+
+        View v_name, v_idcode, v_man, v_phone, v_telOhter, v_qq;
+
+        View layout_name, layout_idcode, layout_phone, layout_telOhter, layout_qq, layout_address,delete;
+
+        TextView title;
+
     }
 
 }

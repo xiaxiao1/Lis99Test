@@ -1,15 +1,18 @@
 package com.lis99.mobile.webview;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.WebViewUtil;
 
 /**
@@ -67,7 +70,7 @@ public class ChoicenessRouteWebView extends LSBaseActivity {
 
         webView.setWebChromeClient(new MyWebChromeClient());
 
-        webView.setWebViewClient(WebViewUtil.getInstance().getWebviewClient());
+        webView.setWebViewClient(new MyWebClinet());
 
         webView.addJavascriptInterface(WebViewUtil.getInstance().getTianJinJS(), "LS");
 
@@ -89,6 +92,44 @@ public class ChoicenessRouteWebView extends LSBaseActivity {
 
         }
 
+    }
+
+    class MyWebClinet extends WebViewClient
+    {
+
+        @Override
+        public void onLoadResource(WebView view, String url) {
+            // TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onLoadResource", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onLoadResource="+url);
+            super.onLoadResource(view, url);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            // TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onPageFinished", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageFinished=");
+            DialogManager.getInstance().stopWaitting();
+            setTitle(view.getTitle());
+            super.onPageFinished(view, url);
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            // TODO Auto-generated method stub
+//			Toast.makeText(getActivity(), "WebViewClient.onPageStarted", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageStarted=");
+            DialogManager.getInstance().startWaiting(LSBaseActivity.activity, null, "数据加载中...");
+            super.onPageStarted(view, url, favicon);
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // TODO Auto-generated method stub
+            view.loadUrl(url);
+            return super.shouldOverrideUrlLoading(view, url);
+        }
 
     }
 

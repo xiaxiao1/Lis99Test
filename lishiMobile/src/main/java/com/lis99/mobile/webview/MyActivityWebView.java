@@ -59,6 +59,8 @@ public class MyActivityWebView extends LSBaseActivity
 		initViews();
 		setTitle(title);
 
+
+
 		init();
 	}
 
@@ -68,7 +70,7 @@ public class MyActivityWebView extends LSBaseActivity
 
 		if ( "积分商城".equals(title))
 		{
-			finish();
+			webView.reload();
 			return;
 		}
 
@@ -83,17 +85,30 @@ public class MyActivityWebView extends LSBaseActivity
 
 	}
 
+	@Override
+	protected void leftAction() {
+		if ( webView.canGoBack() )
+		{
+			webView.goBack();
+		}
+		else
+		{
+			finish();
+		}
+	}
+
 	private void init()
 	{
 
 		if ( "积分商城".equals(title))
 		{
-			setLeftView(-1);
+//			setLeftView(-1);
 			ViewGroup.LayoutParams lp = titleRightImage.getLayoutParams();// new RelativeLayout.LayoutParams(Common.px2dip(30), Common.px2dip(30));
 			lp.height = Common.dip2px(16);
 			lp.width = Common.dip2px(16);
 			titleRightImage.setLayoutParams(lp);
-			setRightView(R.drawable.mywebview_delete);
+//			setRightView(R.drawable.mywebview_delete);
+			setRightView(R.drawable.club_main_refresh);
 		}
 		else
 		{

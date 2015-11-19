@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        android:background="@color/pull_bg"
+    >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title_new" />
+
+
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/apply_botoom_bar"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/apply_add_people_btn"
+            android:id="@+id/btn_add"
+            android:layout_marginRight="26dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/apply_ok_btn"
+            android:id="@+id/btn_ok"
+            android:layout_marginLeft="26dp"
+            />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/listViewStyle"
+        android:layout_below="@id/include1"
+        android:layout_above="@id/bottombar"
+        android:id="@+id/list"
+        android:dividerHeight="0px"
+        android:divider="@null"
+        ></ListView>
+
+
+</RelativeLayout>
