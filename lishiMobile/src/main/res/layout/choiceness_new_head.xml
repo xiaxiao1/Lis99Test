@@ -18,7 +18,6 @@
         android:layout_height="155dp"/>
 
     <LinearLayout
-        android:layout_marginTop="8dp"
         style="@style/fill_wrap"
         android:background="@color/white"
         android:orientation="horizontal"
@@ -158,7 +157,6 @@
     <View
         style="@style/fill_wrap"
         android:layout_height="1px"
-        android:layout_marginTop="8dip"
         android:background="@color/color_1px_stroke" />
 
     <View
