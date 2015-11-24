@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.adapter.LSClubTopicCommentAdapter;
+import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
 import com.lis99.mobile.club.model.ClubTopicNewActiveInfo;
 import com.lis99.mobile.club.model.ClubTopicReplyList;
 import com.lis99.mobile.club.widget.LSClubTopicNewActive;
@@ -36,13 +37,14 @@ import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.ShareManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by yy on 15/10/13.
  */
 public class LSClubTopicNewActivity  extends LSBaseActivity implements
-        PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener {
+        PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener, LSClubTopicImageListener {
 
     int topicID;
     int clubID;
@@ -80,6 +82,8 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
     private Page page;
 
     private RelativeLayout layoutMain;
+
+    private ArrayList<String> pics = new ArrayList<String>();
 
     //	＝＝＝＝3.5.5＝＝＝＝＝＝＝
     private HandlerList likeCall;
@@ -534,6 +538,14 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 return;
             }
             clubID = Common.string2int(infoModel.club_id);
+
+            String imgUrl = null;
+            if (infoModel.topic_image != null && infoModel.topic_image.size() >= 1 )
+            {
+                imgUrl = infoModel.topic_image.get(0).image;
+                pics.add(imgUrl);
+            }
+
             setHeadView();
             // 获取回复列表
             getReplyList();
@@ -566,6 +578,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             if (headViewActive == null)
             {
                 headViewActive = new LSClubTopicNewActive(activity);
+                headViewActive.lsClubTopicImageListener = this;
                 headViewActive.setInstance(this);
                 listView.addHeaderView(headViewActive);
 //                headViewActive.setClubName(clubName, clubID);
@@ -623,6 +636,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                             adapter = new LSClubTopicCommentAdapter(
                                     LSClubTopicNewActivity.this,
                                     clubreply.topiclist, clubID, topicID);
+                            adapter.lsClubTopicCommentListener = LSClubTopicNewActivity.this;
                             listView.setAdapter(adapter);
                             // 移动到最后
                             listView.setSelection(adapter.getCount());
@@ -674,6 +688,14 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             {
                 return;
             }
+
+            for (ClubTopicReplyList.Topiclist item : clubreply.topiclist) {
+                if (item.topic_image != null && item.topic_image.size() > 0)
+                {
+                    pics.add(item.topic_image.get(0).image);
+                }
+            }
+
             page.pageNo += 1;
             if (adapter == null)
             {
@@ -681,6 +703,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 adapter = new LSClubTopicCommentAdapter(
                         LSClubTopicNewActivity.this, clubreply.topiclist, clubID,
                         topicID);
+                adapter.lsClubTopicCommentListener = LSClubTopicNewActivity.this;
                 listView.setAdapter(adapter);
                 listView.setOnScrollListener(listScroll);
                 return;
@@ -692,6 +715,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
 
     public void cleanList()
     {
+        pics.clear();
         page = new Page();
         adapter = null;
         listView.setAdapter(null);
@@ -699,6 +723,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
 
     public void cleanListUp()
     {
+        pics.clear();
         page = new Page();
         adapter = null;
     }
@@ -890,5 +915,16 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
     };
 
 
+    @Override
+    public void onClickImage(String imageUrl) {
+        int index = pics.indexOf(imageUrl);
+        if (index < 0) {
+            index = 0;
+        }
+        Intent intent = new Intent(this, LSImageGralleryActivity.class);
+        intent.putExtra("page", index);
+        intent.putExtra("photos", pics);
+        startActivity(intent);
+    }
 
 }

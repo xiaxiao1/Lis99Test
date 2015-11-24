@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@null"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_marginBottom="50dp">
         
     
     <ListView
@@ -23,21 +24,41 @@
             android:cacheColorHint="#00000000"
             android:divider="@null"
             android:dividerHeight="0dp"
-            android:listSelector="#00000000" >
+            android:listSelector="#00000000"
+        >
         </ListView>
                 
     </com.lis99.mobile.entry.view.PullToRefreshView>
 
-    <Button
-        android:id="@+id/publishButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/club_icon_publish"
-        android:onClick="onClick" />
+        android:layout_alignParentRight="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/color_1px_stroke"
+            />
+
+        <Button
+            android:id="@+id/publishButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_publish_new"
+            android:layout_centerInParent="true"
+            android:onClick="onClick" />
+
+    </RelativeLayout>
+
+
     
     <include
         android:id="@+id/include1"

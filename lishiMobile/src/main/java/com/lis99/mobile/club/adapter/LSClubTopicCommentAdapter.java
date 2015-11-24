@@ -55,6 +55,11 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 	private Activity main;
 
+
+
+	public LSClubTopicImageListener lsClubTopicCommentListener;
+
+
 	class CommentOnClickListener implements OnClickListener
 	{
 		Topiclist comment;
@@ -243,7 +248,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		holder.layout_tag.setVisibility(View.INVISIBLE);
 
 		// LSClubTopicComment item = data.get(position);
-		Topiclist item = (Topiclist) getItem(position);
+		final Topiclist item = (Topiclist) getItem(position);
 		if (item == null)
 			return convertView;
 
@@ -277,6 +282,15 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		{
 
 			holder.contentImageView.setVisibility(View.VISIBLE);
+			holder.contentImageView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+
+					if (lsClubTopicCommentListener != null) {
+						lsClubTopicCommentListener.onClickImage(item.topic_image.get(0).image);
+					}
+				}
+			});
 			holder.iv_load.setVisibility(View.VISIBLE);
 			// imageLoader.displayImage(item.topic_image.get(0).image,
 			// holder.contentImageView, options);

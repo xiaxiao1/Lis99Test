@@ -42,7 +42,20 @@ public class ClubDetailList implements Serializable{
 		public String catename;
 		public String times;
 		public int is_hot;
-		public ClubActiveImages image;
+		public String image;
+
+		public int height;
+		public int width;
+
+		public String setaddress;
+		public String starttime;
+
+		public int is_vip;
+		public int is_follow;
+		public int likeNum;
+		public int LikeStatus;
+		public String headicon;
+
 		
 	}
 

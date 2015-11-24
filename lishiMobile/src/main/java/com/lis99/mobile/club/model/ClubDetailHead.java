@@ -24,5 +24,6 @@ public class ClubDetailHead implements Serializable{
 	public String catename;
 	public String is_jion;
 	public String topicnum;
+	public int ui_levels;
 
 }

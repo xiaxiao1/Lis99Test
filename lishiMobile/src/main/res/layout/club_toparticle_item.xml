@@ -4,7 +4,25 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#fff">
-    
+
+
+    <LinearLayout
+        style="@style/fill_wrap"
+        android:orientation="vertical"
+        android:id="@+id/topGapView"
+        android:visibility="gone"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/pull_bg" />
+
+        <View android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke"/>
+
+    </LinearLayout>
     
     <TextView 
         android:id="@+id/titleView"
@@ -42,12 +60,13 @@
         
         <View
         android:layout_width="match_parent"
-        android:layout_height="12dp"
+        android:layout_height="10dp"
         android:background="@color/pull_bg" />
         
         <View android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/color_1px_stroke"/>
+        android:background="@color/color_1px_stroke"
+            android:id="@+id/gapBottomLine"/>
         
     </LinearLayout>
     

@@ -21,6 +21,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
@@ -87,6 +88,8 @@ public class LSClubTopicHead extends LinearLayout implements
 
 	private ClubTopicDetailHead clubhead;
 
+	public LSClubTopicImageListener lsClubTopicImageListener;
+
 //	private ImageView iv_like;
 //点
 	private ImageView iv_load;
@@ -149,6 +152,17 @@ public class LSClubTopicHead extends LinearLayout implements
 		if (clubhead.topic_image != null && clubhead.topic_image.size() > 0)
 		{
 			contentImageView.setVisibility(View.VISIBLE);
+
+			contentImageView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+
+					if (lsClubTopicImageListener != null) {
+						lsClubTopicImageListener.onClickImage(clubhead.topic_image.get(0).image);
+					}
+				}
+			});
+
 			iv_load.setVisibility(View.VISIBLE);
 			animationDrawable = (AnimationDrawable) iv_load.getDrawable();
 			animationDrawable.start();
