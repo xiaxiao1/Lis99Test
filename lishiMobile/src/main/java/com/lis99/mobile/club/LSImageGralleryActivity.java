@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.LSImageGralleryAdapter;
 import com.lis99.mobile.entry.ActivityPattern1;
+import com.lis99.mobile.util.StatusUtil;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 

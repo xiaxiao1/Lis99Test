@@ -20,7 +20,6 @@ import com.lis99.mobile.club.LSCLubSpecialMain;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
-import com.lis99.mobile.club.apply.LSApplayNew;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.widget.BannerView;
@@ -315,9 +314,10 @@ public class FragmentChoicenessList extends Fragment implements
 
                 break;
             case R.id.layout_nearby:
-//                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
+                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
 
-                startActivity(new Intent(getActivity(), LSApplayNew.class));
+//                startActivity(new Intent(getActivity(), LSApplayNew.class));
+
 
                 break;
         }

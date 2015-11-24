@@ -36,6 +36,7 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
+import com.lis99.mobile.myactivty.ShowPic;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
