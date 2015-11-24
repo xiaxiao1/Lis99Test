@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_width="fill_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:background="@color/pull_bg"
+            android:id="@+id/iv_bg"
+            app:corner_radius="0px"
+            app:border_width="0px"
+            />
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/iv_load"
+            android:src="@drawable/load_image_temp_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="15sp"
+            android:textColor="#73706e"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:text="啦啦啦啦德玛西亚"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#c6b6a7"
+                android:drawableLeft="@drawable/club_topic_activity_label"
+                android:drawablePadding="5dp"
+                android:text="晒图"/>
+
+            <TextView
+                android:id="@+id/locTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#c6b6a7"
+                android:drawableLeft="@drawable/club_topic_activity_loc"
+                android:drawablePadding="5dp"
+                android:layout_marginLeft="15dp"
+                android:text="北京"/>
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#c6b6a7"
+                android:drawableLeft="@drawable/club_topic_activity_time"
+                android:drawablePadding="5dp"
+                android:layout_marginLeft="15dp"
+                android:text="2015-12-15"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/pull_bg"
+        />
+
+
+
+
+</LinearLayout>
