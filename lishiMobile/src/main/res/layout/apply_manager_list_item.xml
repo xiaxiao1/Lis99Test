@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="10dp"
+    >
+
+    <include android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/apply_manager_item_head"
+             />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apply_manager_item_title"
+        android:layout_marginTop="10dp"
+        android:text="报名信息1"
+        android:textColor="#c6b6a7"
+        android:gravity="center"
+        android:id="@+id/tv_title"
+        />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/listViewStyle"
+        android:background="@drawable/apply_manager_item_content"
+        android:divider="@null"
+        android:dividerHeight="0px"
+        android:padding="10dp"
+        android:id="@+id/list"
+        >
+
+
+    </ListView>
+
+
+    <RelativeLayout
+        android:id="@+id/bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <Button
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/apply_manager_out_btn"
+            android:id="@+id/btn_out"
+            android:layout_marginLeft="20dp"
+            />
+
+        <Button
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/btn_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/apply_manager_ok_btn"
+            android:id="@+id/btn_ok"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

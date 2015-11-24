@@ -52,6 +52,17 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         return (listItem == null || listItem.size() == 0 ) ? null : listItem.get(i);
     }
 
+    public Object getList ()
+    {
+        return listItem;
+    }
+
+    public void removeAt ( int position )
+    {
+        listItem.remove(position);
+        notifyDataSetChanged();
+    }
+
     @Override
     public long getItemId(int i) {
         return i;

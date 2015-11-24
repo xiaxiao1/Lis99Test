@@ -11,7 +11,12 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.OrderInfoModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.MyRequestManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +38,12 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
     private Button btn_ok;
 
+    private int topicID, clubID;
+
+    private int jonNum;
+
+    public OrderInfoModel model;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +53,16 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
         initViews();
 
+        radio_off_line.setVisibility(View.GONE);
+        radio_weixin.setVisibility(View.GONE);
+        radio_zhifubao.setVisibility(View.GONE);
+
         setTitle("报名");
+
+        topicID = getIntent().getIntExtra("topicID", 0);
+        clubID = getIntent().getIntExtra("clubID", 0);
+
+        jonNum = LSApplayNew.updata.size();
 
         getList();
 
@@ -119,18 +139,77 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
     private void getList ()
     {
-        ArrayList<HashMap<String, String>> item = new ArrayList<HashMap<String, String>>();
 
-        for ( int i = 0; i < 5; i++ )
-        {
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("name", "小明丫" + i);
-            item.add(map);
-        }
+        String url = C.GET_ORDER_INFO;
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, item, R.layout.apply_enter_grid_item, new String[]{"name"}, new int[]{R.id.text});
+        model = new OrderInfoModel();
 
-        grid.setAdapter(simpleAdapter);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("topic_id", topicID);
+
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+
+                model = (OrderInfoModel) mTask.getResultModel();
+                if ( model == null ) return;
+
+                title.setText(model.title);
+
+                tv_pay.setText("人均费用"+model.consts+"元");
+
+                tv_joinNum.setText("报名人员（共"+jonNum+"人）");
+
+                //总价
+                float allPrice = model.consts * jonNum;
+
+                allPrice = (float)(Math.round(allPrice*100)/100);
+
+                tv_price.setText("总计："+allPrice+"元");
+
+                //显示支付方式
+                int typeLength = model.type.length;
+
+                for ( int i = 0; i < typeLength; i++ )
+                {
+                    int num = model.type[i];
+                    if ( num == 0 )
+                    {
+
+                    }
+                    else if ( num == 1 )
+                    {
+                        radio_off_line.setVisibility(View.VISIBLE);
+                    }
+                    else if ( num == 2 )
+                    {
+                        radio_weixin.setVisibility(View.VISIBLE);
+                    }
+                    else if ( num == 3 )
+                    {
+                        radio_zhifubao.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                ArrayList<HashMap<String, String>> item = new ArrayList<HashMap<String, String>>();
+
+                for (int i = 0; i < jonNum; i++) {
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("name", LSApplayNew.updata.get(i).name);
+                    item.add(map);
+                }
+
+                SimpleAdapter simpleAdapter = new SimpleAdapter(activity, item, R.layout.apply_enter_grid_item, new String[]{"name"}, new int[]{R.id.text});
+
+                grid.setAdapter(simpleAdapter);
+            }
+        });
+
+
+
+
     }
 
     private void cleanList ()

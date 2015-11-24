@@ -316,5 +316,10 @@ public class Common {
         c.startActivity(intent2);
     }
 
+//    public static void getEditTextString ( EditText et, String s )
+//    {
+//
+//    }
+
 
 }
