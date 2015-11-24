@@ -296,9 +296,9 @@ public class C {
 	/**俱乐部排行榜*/
 	public static final String CLUB_LEVEL = DOMAIN + "/v2/common/rank";
 	/**俱乐部详情*/
-	public static final String CLUB_DETAIL_HEAD = DOMAIN + "/v2/club/detail/";
+	public static final String CLUB_DETAIL_HEAD = DOMAIN + "/v4/club/detail/";
 	/**俱乐部详情列表 http://api.lis99.com/v2/club/topiclist/170/0?page=0 */
-	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v2/club/topiclist/";
+	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v4/club/topiclist/";
 	/**帖子详情（HEAD）*/
 	public static final String CLUB_TOPIC_DETAIL_HEAD = DOMAIN + "/v2/club/topic/";
 //＝＝＝＝帖子详情＝＝＝＝＝＝

@@ -24,6 +24,7 @@ import com.lis99.mobile.club.LSClubApplyActivity;
 import com.lis99.mobile.club.LSClubApplyListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
 import com.lis99.mobile.club.model.ClubTopicNewActiveInfo;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
@@ -75,6 +76,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
     private LSClubTopicNewActivity main;
 
     private LinearLayout layout_detail;
+
+    public LSClubTopicImageListener lsClubTopicImageListener;
 
     private View equiPanel;
     private ImageView equiImageView;
@@ -264,6 +267,15 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         // 话题帖
         if (model.topic_image != null && model.topic_image.size() > 0)
         {
+            iv_head.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (lsClubTopicImageListener != null) {
+                        lsClubTopicImageListener.onClickImage(model.topic_image.get(0).image);
+                    }
+                }
+            });
             iv_head.setVisibility(View.VISIBLE);
             iv_load.setVisibility(View.VISIBLE);
             animationDrawable = (AnimationDrawable) iv_load.getDrawable();

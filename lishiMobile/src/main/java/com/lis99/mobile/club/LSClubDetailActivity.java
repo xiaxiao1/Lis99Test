@@ -160,11 +160,11 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		page = new Page();
 //		pageactive = new Page();
 ////		加载俱乐部head
-//		loadClubInfo();
+		loadClubInfoFirst();
 
 		setBack(true);
 
-		getAllList();
+
 	}
 
 	@Override
@@ -362,6 +362,27 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	}
 
 
+	private void loadClubInfoFirst() {
+		offset = 0;
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		String url = C.CLUB_DETAIL_HEAD + clubID;
+		if (userID != null && !"".equals(userID)) {
+			url += "/"+userID;
+		}
+		MyRequestManager.getInstance().requestGet(url, clubHead, new CallBack() {
+
+			@Override
+			public void handler(MyTask mTask) {
+				// TODO Auto-generated method stub
+				clubHead = (ClubDetailHead) mTask.getResultModel();
+				initClubHead();
+				getAllList();
+			}
+		});
+
+	}
+
 	private void loadClubInfo() {
 //		offset = 0;
 //		String userID = DataManager.getInstance().getUser().getUser_id();
@@ -378,6 +399,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		MyHttp();
 
 	}
+
+
 	private ClubDetailHead clubHead;
 	private void MyHttp ()
 	{
@@ -841,7 +864,14 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			 return;
 		}
 
-		MyRequestManager.getInstance().requestGet(C.CLUB_DETAIL_LIST + clubID + "/" + "0" + "?page=" + page.getPageNo(), clubAll, new CallBack() {
+		String url = C.CLUB_DETAIL_LIST + clubID + "/" + "0" + "?page=" + page.getPageNo();
+
+		String userID = DataManager.getInstance().getUser().getUser_id();
+		if (!TextUtils.isEmpty(userID)) {
+			url += "&user_id=" + userID;
+		}
+
+		MyRequestManager.getInstance().requestGet(url, clubAll, new CallBack() {
 
 			@Override
 			public void handler(MyTask mTask) {
@@ -856,6 +886,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				{
 					page.pageSize = clubAll.totpage;
 					adapter = new LSClubDitalAdapter(activity, clubAll.topiclist, false);
+					if (clubHead != null) {
+						adapter.ui_level = clubHead.ui_levels;
+					}
 					listView.setAdapter(adapter);
 //					//隐藏标题懒
 //					setTabTopVisible(0);
@@ -901,6 +934,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				{
 					page.pageSize = clubAll.totpage;
 					adapter = new LSClubDitalAdapter(activity, clubAll.topiclist, true);
+					if (clubHead != null) {
+						adapter.ui_level = clubHead.ui_levels;
+					}
 					listView.setAdapter(adapter);
 //					//隐藏标题懒
 //					setTabTopVisible(0);

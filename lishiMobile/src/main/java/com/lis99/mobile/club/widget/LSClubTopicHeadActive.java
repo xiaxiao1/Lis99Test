@@ -22,6 +22,7 @@ import com.lis99.mobile.club.LSClubApplyActivity;
 import com.lis99.mobile.club.LSClubApplyListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -42,6 +43,8 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	private LayoutInflater inflater;
 	private Context c;
 	private View v;
+
+	public LSClubTopicImageListener lsClubTopicImageListener;
 
 	private ImageView iv_head, vipStar;
 	private RoundedImageView roundedImageView1;
@@ -365,6 +368,17 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		// 大图
 		if (clubhead.topic_image != null && clubhead.topic_image.size() > 0)
 		{
+
+			iv_head.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+
+					if (lsClubTopicImageListener != null) {
+						lsClubTopicImageListener.onClickImage(clubhead.topic_image.get(0).image);
+					}
+				}
+			});
+
 			ImageLoader.getInstance().displayImage(
 					clubhead.topic_image.get(0).image, iv_head, options);
 		}

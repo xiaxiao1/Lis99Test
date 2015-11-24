@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.adapter.LSClubTopicCommentAdapter;
+import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.club.model.ClubTopicReplyList;
 import com.lis99.mobile.club.model.LSClubTopic;
@@ -44,6 +45,8 @@ import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.ShareManager;
 
+import java.util.ArrayList;
+
 /**
  * 帖子详情
  * 
@@ -51,7 +54,7 @@ import com.lis99.mobile.util.ShareManager;
  * 
  */
 public class LSClubTopicActivity extends LSBaseActivity implements
-		OnHeaderRefreshListener, OnFooterRefreshListener
+		OnHeaderRefreshListener, OnFooterRefreshListener, LSClubTopicImageListener
 {
 
 	int topicID;
@@ -119,6 +122,8 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	private TextView tv_reply, tv_like;
 
 	private ImageView titleRightImage, iv_weichat, iv_friend;
+
+	private ArrayList<String> pics = new ArrayList<String>();
 
 	//分享的图片
 //	public Bitmap shareBit;
@@ -592,6 +597,12 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			{
 				return;
 			}
+			String imgUrl = null;
+			if (clubhead.topic_image != null && clubhead.topic_image.size() >= 1 )
+			{
+				imgUrl = clubhead.topic_image.get(0).image;
+				pics.add(imgUrl);
+			}
 			clubID = Common.string2int(clubhead.club_id);
 			setHeadView();
 			// 获取回复列表
@@ -627,6 +638,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			if (headView == null)
 			{
 				headView = new LSClubTopicHead(activity);
+				headView.lsClubTopicImageListener = this;
 				headView.setTopic(this);
 				headView.setClubName(clubName, clubID);
 				listView.addHeaderView(headView);
@@ -653,6 +665,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			if (headViewActive == null)
 			{
 				headViewActive = new LSClubTopicHeadActive(activity);
+				headViewActive.lsClubTopicImageListener = this;
 				headViewActive.setTopic(this);
 				listView.addHeaderView(headViewActive);
 				headViewActive.setClubName(clubName, clubID);
@@ -711,6 +724,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 							adapter = new LSClubTopicCommentAdapter(
 									LSClubTopicActivity.this,
 									clubreply.topiclist, clubID, topicID);
+							adapter.lsClubTopicCommentListener = LSClubTopicActivity.this;
 							listView.setAdapter(adapter);
 							// 移动到最后
 							listView.setSelection(adapter.getCount());
@@ -762,6 +776,16 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			{
 				return;
 			}
+
+
+			for (ClubTopicReplyList.Topiclist item : clubreply.topiclist) {
+				if (item.topic_image != null && item.topic_image.size() > 0)
+				{
+					pics.add(item.topic_image.get(0).image);
+				}
+			}
+
+
 			page.pageNo += 1;
 			if (adapter == null)
 			{
@@ -769,6 +793,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 				adapter = new LSClubTopicCommentAdapter(
 						LSClubTopicActivity.this, clubreply.topiclist, clubID,
 						topicID);
+				adapter.lsClubTopicCommentListener = LSClubTopicActivity.this;
 				listView.setAdapter(adapter);
 				listView.setOnScrollListener(listScroll);
 				return;
@@ -780,6 +805,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 	public void cleanList()
 	{
+		pics.clear();
 		page = new Page();
 		adapter = null;
 		listView.setAdapter(null);
@@ -787,6 +813,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 	public void cleanListUp()
 	{
+		pics.clear();
 		page = new Page();
 		adapter = null;
 	}
@@ -986,4 +1013,15 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		}
 	};
 
+	@Override
+	public void onClickImage(String imageUrl) {
+		int index = pics.indexOf(imageUrl);
+		if (index < 0) {
+			index = 0;
+		}
+		Intent intent = new Intent(this, LSImageGralleryActivity.class);
+		intent.putExtra("page", index);
+		intent.putExtra("photos", pics);
+		startActivity(intent);
+	}
 }
