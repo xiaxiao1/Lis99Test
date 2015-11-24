@@ -23,6 +23,7 @@ public class DeviceInfo
 		{
 			ApplicationInfo ai = a.getPackageManager().getApplicationInfo(a.getPackageName(), PackageManager.GET_META_DATA);
 			CHANNELVERSION = ai.metaData.getString("UMENG_CHANNEL");
+//			CHANNELVERSION = "zs360";
 		} catch (NameNotFoundException e)
 		{
 			// TODO Auto-generated catch block

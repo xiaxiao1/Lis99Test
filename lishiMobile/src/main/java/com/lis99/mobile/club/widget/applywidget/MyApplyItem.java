@@ -1,6 +1,9 @@
 package com.lis99.mobile.club.widget.applywidget;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -9,6 +12,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.NewApplyUpData;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.MyBaseAdapter;
 
 import java.util.ArrayList;
@@ -110,6 +116,71 @@ public class MyApplyItem extends MyBaseAdapter{
 //        设置显示内容
         setVisibleInfo(holder);
 
+        final NewApplyUpData item = (NewApplyUpData) getItem(i);
+
+        final int position = i;
+
+        holder.nameView.setText(item.name);
+        holder.phoneView.setText(item.mobile);
+        holder.idNumView.setText(item.credentials);
+        holder.et_telOhter.setText(item.phone);
+        holder.et_QQ.setText(item.qq);
+        holder.et_address.setText(item.postaladdress);
+        holder.btn_address.setText(TextUtils.isEmpty(item.address) ? "选择居住城市" : item.address);
+
+        if ( visibleItem.get(2).equals(1))
+        {
+            if ( !TextUtils.isEmpty(item.sex) )
+            {
+                if ( "男".equals(item.sex))
+                {
+                    holder.radioGroup.check(R.id.radioMan);
+                }
+                else if ( "女".equals(item.sex))
+                {
+                    holder.radioGroup.check(R.id.radioWoman);
+                }
+            }
+            else
+            {
+                holder.radioGroup.check(R.id.radioMan);
+                item.sex = "男";
+            }
+        }
+
+
+
+
+        setEditTextChanged(holder.nameView, holder.phoneView, holder.idNumView, holder.et_telOhter, holder.et_QQ, holder.et_address, item);
+
+        final Holder finalHolder = holder;
+        holder.btn_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogManager.getInstance().showCityChooseDialog(LSBaseActivity.activity,
+                        new DialogManager.callBack()
+                        {
+
+                            @Override
+                            public void onCallBack(Object o)
+                            {
+                                // TODO Auto-generated method stub
+                                item.address = o.toString();
+                                finalHolder.btn_address.setText(o.toString());
+                            }
+                        });
+            }
+        });
+
+
+        //删除当前条
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               removeAt(position);
+
+            }
+        });
 
         holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -119,9 +190,11 @@ public class MyApplyItem extends MyBaseAdapter{
                 if (checkedId == R.id.radioMan) {
                     // Common.log("man");
 //                    sex = "1";
+                    item.sex = "男";
                 } else {
                     // Common.log("Woman");
 //                    sex = "0";
+                    item.sex = "女";
                 }
             }
         });
@@ -206,6 +279,126 @@ public class MyApplyItem extends MyBaseAdapter{
         }
     }
 
+    public void getInfo ()
+    {
+
+    }
+
+    /**
+     *      输入框监听
+     * @param name
+     * @param phoneView
+     * @param idNumView
+     * @param et_telOhter
+     * @param et_QQ
+     * @param et_address
+     * @param item
+     */
+    private void setEditTextChanged ( EditText name, EditText phoneView, EditText idNumView, EditText et_telOhter, EditText et_QQ, EditText et_address,  final NewApplyUpData item )
+    {
+        name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                item.name = charSequence.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        phoneView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                item.mobile = charSequence.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        idNumView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                item.credentials = charSequence.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        et_telOhter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                item.phone = charSequence.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        et_QQ.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                item.qq = charSequence.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        et_address.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                item.postaladdress = charSequence.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+    }
 
     class Holder
     {

@@ -11,6 +11,10 @@ import com.google.gson.JsonParser;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.newhome.LSFragment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 
 public class ParserUtil {
@@ -130,9 +134,30 @@ public class ParserUtil {
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Common.log("ParserUtil getUTF-8 ERROE="+e.getMessage());
+			Common.log("ParserUtil getUTF-8 ERROE=" + e.getMessage());
 			return str;
 		}
+		return result;
+	}
+
+	/**
+	 *		拼装JsonArray，
+	 * @param name	表名称
+	 * @param info	表数据
+	 * @return
+	 */
+	public static String getJsonArrayWithName (String name, String info )
+	{
+		String result = "";
+		try {
+			JSONArray aj = new JSONArray(info);
+			JSONObject jo = new JSONObject();
+			jo.put(name, aj);
+			result = jo.toString();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 }

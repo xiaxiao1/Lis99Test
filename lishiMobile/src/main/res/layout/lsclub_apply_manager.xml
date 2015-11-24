@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/pull_bg"
+    >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title_new" />
+
+
+    <include
+        android:layout_below="@id/include1"
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/list_line"
+        />
+
+
+        <LinearLayout
+            android:id="@+id/layout_title"
+            android:layout_below="@id/line"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_six"
+                android:textSize="16sp"
+                android:text="@string/temp_string_long"
+                android:maxLines="2"
+                android:minLines="2"
+                android:ellipsize="end"
+                android:lineSpacingExtra="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_pay"
+                android:layout_marginTop="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_nine"
+                android:textSize="12sp"
+                android:text="人均费用500.00元"
+                android:singleLine="true"
+                />
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee"
+                />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    >
+
+                    <Button
+                        android:layout_centerInParent="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="已确认（10）"
+                        android:id="@+id/btn_enter"
+                        android:background="@null"
+                        android:textColor="@color/text_color_blue"
+                        android:textSize="16sp"
+                        />
+
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/view_enter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="@drawable/tab_line"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    >
+
+                    <Button
+                        android:layout_centerInParent="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="已拒绝（3）"
+                        android:id="@+id/btn_refuse"
+                        android:background="@null"
+                        android:textColor="@color/text_color_blue"
+                        android:textSize="16sp"
+                        />
+
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/view_refuse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="@drawable/tab_line"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    >
+
+                    <Button
+                        android:layout_centerInParent="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="待确认（17）"
+                        android:id="@+id/btn_need_enter"
+                        android:background="@null"
+                        android:textColor="@color/text_color_blue"
+                        android:textSize="16sp"
+                        />
+
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/view_need_enter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="@drawable/tab_line"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"
+                />
+
+        </LinearLayout>
+
+
+    <ListView
+        android:layout_margin="8dp"
+        android:layout_below="@id/layout_title"
+        android:layout_above="@id/bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/apply_manager_item_bg"
+        style="@style/listViewStyle"
+        android:id="@+id/list"
+        ></ListView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apply_manager_no_offline"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/layout_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="8dp"
+        android:id="@+id/iv_pay_state"
+        />
+
+</RelativeLayout>
