@@ -10,11 +10,13 @@ apply plugin: 'android-library'
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
+    compile files('libs/android-support-v4.jar')
+    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
+    compile files('libs/need_lib.jar')
+    compile files('libs/patchupdate.jar')
 }
 
 android {
-    signingConfigs {
-    }
     compileSdkVersion 19
     buildToolsVersion '22.0.1'
     sourceSets {
@@ -39,5 +41,16 @@ android {
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
+    }
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 19
+    }
+    productFlavors {
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
     }
 }

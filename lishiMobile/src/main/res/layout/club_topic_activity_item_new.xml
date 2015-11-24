@@ -79,6 +79,7 @@
                 android:textColor="#c6b6a7"
                 android:drawableLeft="@drawable/club_topic_activity_label"
                 android:drawablePadding="5dp"
+                android:paddingRight="15dp"
                 android:text="晒图"/>
 
             <TextView
@@ -89,18 +90,16 @@
                 android:textColor="#c6b6a7"
                 android:drawableLeft="@drawable/club_topic_activity_loc"
                 android:drawablePadding="5dp"
-                android:layout_marginLeft="15dp"
+                android:paddingRight="15dp"
                 android:text="北京"/>
 
-            <TextView
-                android:id="@+id/timeTextView"
+            <TextView android:id="@+id/timeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="11sp"
                 android:textColor="#c6b6a7"
                 android:drawableLeft="@drawable/club_topic_activity_time"
                 android:drawablePadding="5dp"
-                android:layout_marginLeft="15dp"
                 android:text="2015-12-15"/>
 
         </LinearLayout>

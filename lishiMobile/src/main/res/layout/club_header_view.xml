@@ -169,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="线路活动"
+                android:text="活动"
                 android:textColor="#999"
                 android:textSize="15sp" />
 

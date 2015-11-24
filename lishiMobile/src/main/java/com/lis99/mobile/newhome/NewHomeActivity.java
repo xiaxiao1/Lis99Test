@@ -233,7 +233,11 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 
         initViews();
         initListeners();
-        getCheckTask();
+        if ( !Common.isBDUpdata() )
+        {
+//        检测更新
+            getCheckTask();
+        }
 
         // 注册 百度地图SDK 广播监听者
         IntentFilter iFilter = new IntentFilter();

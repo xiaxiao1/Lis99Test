@@ -1,6 +1,5 @@
-include ':androidSDK', ':BDIntegrationSDK_LibProject1'
+include ':androidSDK'
 include ':androidSDKComponent'
 include ':mUList'
 include ':weiboSDK'
 include ':lishiMobile'
-project(':BDIntegrationSDK_LibProject1').projectDir = new File('BDIntegrationSDK_LibProject')

@@ -424,9 +424,10 @@ public class LSClubDitalAdapter extends BaseAdapter {
 
 		holder.titleTextView.setText(item.title);
 
-		if ( "1".equals(item.is_image))
+		if (!StringUtils.isEmpty(item.catename))
 		{
 			holder.labelTextView.setVisibility(View.VISIBLE);
+			holder.labelTextView.setText(item.catename);
 		}
 		else
 		{

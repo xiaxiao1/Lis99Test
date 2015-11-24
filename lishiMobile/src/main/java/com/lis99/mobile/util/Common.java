@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.baidu.autoupdatesdk.BDAutoUpdateSDK;
+import com.baidu.autoupdatesdk.UICheckUpdateCallback;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
@@ -321,5 +323,23 @@ public class Common {
 //
 //    }
 
+//    是否是百度更新， 是的话， 禁止用自己的更新
+    public static boolean isBDUpdata ()
+    {
+        boolean b = false;
+        if ( "baidu".equals(DeviceInfo.CHANNELVERSION) )
+        {
+            b = true;
+            BDAutoUpdateSDK.uiUpdateAction(LSBaseActivity.activity, new UICheckUpdateCallback() {
+
+                @Override
+                public void onCheckComplete() {
+
+                }
+            });
+        }
+
+        return b;
+    }
 
 }
