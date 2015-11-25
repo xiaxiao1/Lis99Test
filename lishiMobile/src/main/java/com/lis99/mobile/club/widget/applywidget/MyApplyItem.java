@@ -50,6 +50,7 @@ public class MyApplyItem extends MyBaseAdapter{
                 visibleItem.add("1");
                 visibleItem.add("1");
                 visibleItem.add("1");
+                visibleItem.add("1");
             }
         }
     }
@@ -128,7 +129,7 @@ public class MyApplyItem extends MyBaseAdapter{
         holder.et_address.setText(item.postaladdress);
         holder.btn_address.setText(TextUtils.isEmpty(item.address) ? "选择居住城市" : item.address);
 
-        if ( visibleItem.get(2).equals(1))
+        if ("1".equals(visibleItem.get(2)) )
         {
             if ( !TextUtils.isEmpty(item.sex) )
             {
@@ -263,14 +264,14 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_qq.setVisibility(View.VISIBLE);
             holder.v_qq.setVisibility(View.VISIBLE);
         }
-        if ("0".equals(visibleItem.get(6)))
+        if ("0".equals(visibleItem.get(7)))
         {
             holder.layout_address.setVisibility(View.GONE);
         } else
         {
             holder.layout_address.setVisibility(View.VISIBLE);
         }
-        if ("0".equals(visibleItem.get(7)))
+        if ("0".equals(visibleItem.get(8)))
         {
             holder.btn_address.setVisibility(View.GONE);
         } else

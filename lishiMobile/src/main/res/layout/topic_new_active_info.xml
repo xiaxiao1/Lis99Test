@@ -212,7 +212,6 @@
                 android:id="@+id/tv_location"
                 style="@style/fill_wrap"
                 android:text="@string/temp_string"
-                android:gravity="center_horizontal"
                 android:layout_marginRight="10dp"
                 />
 
@@ -257,7 +256,6 @@
 
             <TextView
                 android:lineSpacingExtra="5dp"
-                android:gravity="center_horizontal"
                 android:textColor="#666666"
                 android:id="@+id/tv_rmb"
                 style="@style/fill_wrap"
