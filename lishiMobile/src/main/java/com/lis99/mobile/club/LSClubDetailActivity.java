@@ -50,6 +50,7 @@ import com.lis99.mobile.util.RequestParamUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefreshListener, OnFooterRefreshListener{
@@ -60,7 +61,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	int clubID;
 	View headerView;
 	RoundedImageView headerImageView;
-//	Button addButton;
 	TextView nameView;
 	TextView locView;
 	/**类型， （登山）*/
@@ -156,15 +156,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		clubHead = new ClubDetailHead();
 
 		clubAll = new ClubDetailList();
-//		clubActive = new ClubDetailList();
 		page = new Page();
-//		pageactive = new Page();
-////		加载俱乐部head
 		loadClubInfoFirst();
-
 		setBack(true);
-
-
 	}
 
 	@Override
@@ -184,12 +178,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		view_line.setVisibility(View.GONE);
 
 
-
-//		iv_title_bg = (ImageView) findViewById(R.id.iv_title_bg);
 		setTitleBarAlpha(0f);
-//		title = (TextView) findViewById(R.id.title);
-//		title.setAlpha(0f);
-//		titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
 		setRightView(R.drawable.club_join);
 		setLeftView(R.drawable.ls_club_back_icon_bg);
 		titleRightImage.setOnClickListener(this);
@@ -227,14 +216,11 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 		});
 
-//		adapter = new LSTopicAdapter(this, null);
-//		listView.setAdapter(adapter);
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-//				LSClubTopic topic = club.getTopiclist().get(position);
 				Topiclist item = null;
 				item = (Topiclist) adapter.getItem(position - 1);
 				if ( item == null ) return;
@@ -242,24 +228,18 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				if ( "2".equals(item.category))
 				{
 					Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicNewActivity.class);
-//				intent.putExtra("clubID", clubID);
 					intent.putExtra("topicID", item.id);
-//				intent.putExtra("clubName", item.title);
 					startActivityForResult(intent, 998);
 					return;
 				}
 
 				Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicActivity.class);
-//				intent.putExtra("clubID", clubID);
 				intent.putExtra("topicID", item.id);
-//				intent.putExtra("clubName", item.title);
 				startActivityForResult(intent, 998);
 			}
 		});
 
 		headerImageView = (RoundedImageView)headViewMain.findViewById(R.id.roundedImageView1);
-//		addButton = (Button) findViewById(R.id.addButton);
-//		addButton.setOnClickListener(this);
 
 		nameView = (TextView) headViewMain.findViewById(R.id.nameView);
 		locView = (TextView) headViewMain.findViewById(R.id.locView);
@@ -374,30 +354,30 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 			@Override
 			public void handler(MyTask mTask) {
-				// TODO Auto-generated method stub
 				clubHead = (ClubDetailHead) mTask.getResultModel();
 				initClubHead();
-				getAllList();
+				if (clubHead.ui_levels != 3) {
+					allView.setText("线路活动");
+					allView1.setText("线路活动");
+					eventView.setText("讨论区");
+					eventView1.setText("讨论区");
+					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new ArrayList<Topiclist>(), true);
+					adapter.ui_level = clubHead.ui_levels;
+					listView.setAdapter(adapter);
+					getActiveList();
+				} else {
+					getAllList();
+					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new ArrayList<Topiclist>(), false);
+					adapter.ui_level = clubHead.ui_levels;
+					listView.setAdapter(adapter);
+				}
 			}
 		});
 
 	}
 
 	private void loadClubInfo() {
-//		offset = 0;
-//		String userID = DataManager.getInstance().getUser().getUser_id();
-//
-//		postMessage(ActivityPattern1.POPUP_PROGRESS,
-//				getString(R.string.sending));
-//		String url = C.CLUB_GET_INFO + "?club_id=" + clubID + "&category=" + type + "&offset=" + offset;
-//		if (userID != null && !"".equals(userID)) {
-//			url += "&user_id=" + userID;
-//		}
-//
-//		Task task = new Task(null, url, null, C.CLUB_GET_INFO, this);
-//		publishTask(task, IEvent.IO);
 		MyHttp();
-
 	}
 
 
@@ -415,7 +395,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 			@Override
 			public void handler(MyTask mTask) {
-				// TODO Auto-generated method stub
 				clubHead = (ClubDetailHead) mTask.getResultModel();
 				initClubHead();
 
@@ -522,87 +501,10 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 	}
 
-//	private void parserClubInfo(String result) {
-//		try {
-//			JsonNode root = LSFragment.mapper.readTree(result);
-//			String errCode = root.get("status").asText("");
-//			if (!"OK".equals(errCode)) {
-//				postMessage(ActivityPattern1.POPUP_TOAST, errCode);
-//				return;
-//			}
-//			JsonNode data = root.get("data");
-//			club = LSFragment.mapper.readValue(data.traverse(), LSClub.class);
-//			if (club.getTopiclist() != null) {
-//				offset++;
-//			}
-//			postMessage(SHOW_CLUB);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			postMessage(ActivityPattern1.DISMISS_PROGRESS);
-//		}
-//	}
-
-
-
-
-//	private void parserMoreClubInfo(String result) {
-//		try {
-//			JsonNode root = LSFragment.mapper.readTree(result);
-//			String errCode = root.get("status").asText("");
-//			if (!"OK".equals(errCode)) {
-//				postMessage(ActivityPattern1.POPUP_TOAST, errCode);
-//				return;
-//			}
-//			JsonNode data = root.get("data");
-//			List<LSClubTopic> topics = LSFragment.mapper.readValue(data.get("topiclist").traverse(), new TypeReference<List<LSClubTopic>>() {
-//			});
-//			if (topics != null && topics.size() > 0) {
-//				offset++;
-//				club.addTopics(topics);
-//				postMessage(SHOW_MORE_TOPIC);
-//			} else {
-//				postMessage(POPUP_TOAST, "没有更多帖子");
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			postMessage(ActivityPattern1.DISMISS_PROGRESS);
-//		}
-//	}
 
 	@Override
 	public boolean handleMessage(Message msg) {
 		if (msg.what == SHOW_CLUB) {
-//			headerView.setBackgroundResource(clubIcon[Common.getClubId(""+club.getId())]);
-//			nameView.setText(club.getTitle());
-//			memberNumView.setText(club.getMembers() + "位成员");
-//			locView.setText(club.getProvince() + " " + club.getCity());
-//
-//			if (club.getIs_jion() == -1) {
-//				setRightView(R.drawable.club_join);
-//			} else{
-//				setRightView(R.drawable.club_joined);
-//			}
-//
-//			String tagString = "";
-//			List<LSClubTag> tags = club.getClubsport();
-//			if (tags != null && tags.size() > 0) {
-//				for (int i = 0; i < tags.size(); i++) {
-//					tagString += tags.get(i).getTitle() + " ";
-//				}
-//				labelView.setVisibility(View.VISIBLE);
-//				labelView.setText(tagString);
-//			} else {
-//				labelView.setVisibility(View.INVISIBLE);
-//			}
-//			if ( !TextUtils.isEmpty(club.getImage()))
-//			ImageLoader.getInstance().displayImage(club.getImage(),
-//					headerImageView, options);
-
-//			adapter = new LSTopicAdapter(this, club.getTopiclist());
-//			listView.setAdapter(adapter);
-
 			return true;
 		} else if (msg.what == SHOW_MORE_TOPIC) {
 			adapter.notifyDataSetChanged();
@@ -611,11 +513,6 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 		} else if (msg.what == SHOW_ADDBUTTON) {
 			setTitleRight(isBg);
-//			if ("-1".equals(clubHead.is_jion)) {
-//				setRightView(R.drawable.club_join);
-//			} else{
-//				setRightView(R.drawable.club_joined);
-//			}
 			return true;
 		}
 		return super.handleMessage(msg);
@@ -674,7 +571,12 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			eventView.setTextColor(getResources().getColor(R.color.bantouming));
 //			loadClubInfo();
 			cleanList();
-			getAllList();
+			if (clubHead.ui_levels == 3) {
+				getAllList();
+			} else {
+				getActiveList();
+			}
+
 		}else if(view.getId() == eventPanel.getId() || view.getId() == eventPanel1.getId() ){
 			if (type == 1) {
 				return;
@@ -691,7 +593,12 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			allView1.setTextColor(getResources().getColor(R.color.bantouming));
 //			loadClubInfo();
 			cleanList();
-			getActiveList();
+			if (clubHead.ui_levels == 3) {
+				getActiveList();
+			} else {
+				getAllList();
+			}
+
 		} else if (view.getId() == R.id.publishButton) {
 			String userID = DataManager.getInstance().getUser().getUser_id();
 			if (TextUtils.isEmpty(userID)) {
@@ -754,11 +661,19 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		loadClubInfo();
 		if ( type == -1 )
 		{
-			getAllList();
+			if (clubHead.ui_levels == 3) {
+				getAllList();
+			} else {
+				getActiveList();
+			}
 		}
 		else
 		{
-			getActiveList();
+			if (clubHead.ui_levels == 3) {
+				getActiveList();
+			} else {
+				getAllList();
+			}
 		}
 	}
 
@@ -952,6 +867,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
+		super.onActivityResult(requestCode, resultCode, data);
 		//简介，操作后， 更新是否加入俱乐部界面
 		// TODO Auto-generated method stub
 		if ( resultCode == RESULT_OK && requestCode == 999 )
@@ -975,17 +891,25 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		else if ( resultCode == RESULT_OK  && requestCode == 998 )
 		{
 			cleanList();
-			loadClubInfo();
+//			loadClubInfo();
 			if ( type == -1 )
 			{
-				getAllList();
+				if (clubHead.ui_levels == 3) {
+					getAllList();
+				} else {
+					getActiveList();
+				}
 			}
 			else
 			{
-				getActiveList();
+				if (clubHead.ui_levels == 3) {
+					getActiveList();
+				} else {
+					getAllList();
+				}
 			}
 		}
-		super.onActivityResult(requestCode, resultCode, data);
+
 	}
 
 }

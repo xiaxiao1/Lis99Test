@@ -243,7 +243,8 @@ public class C {
 	public static final String CLUB_QUIT = DOMAIN + "/club/quitClub/";
 	public static final String CLUB_EVENT_APPLY = DOMAIN + "/club/addClubActivityApply/";
 	public static final String CLUB_EVENT_APPLYLIST = DOMAIN + "/club/clubActivityApplyList/";
-	public static final String CLUB_ADD_TOPIC = DOMAIN + "/club/clubActivityTopic/";
+//	public static final String CLUB_ADD_TOPIC = DOMAIN + "/club/clubActivityTopic/";
+	public static final String CLUB_ADD_TOPIC = DOMAIN + "/v4/club/clubActivityTopic";
 	public static final String CLUB_GET_INFO = DOMAIN + "/club/getclubinfo/";
 	public static final String CLUB_TOPIC_GET_INFO = DOMAIN + "/club/getTopicInfo/";
 	public static final String CLUB_TOPIC_GET_INFO2 = DOMAIN + "/club/getClubTopicInfo/";

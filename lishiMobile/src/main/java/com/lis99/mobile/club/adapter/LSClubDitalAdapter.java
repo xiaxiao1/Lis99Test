@@ -98,7 +98,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		//线路活动
 		if ( activeList )
 		{
-			return ui_level != 3 ? 2 : 4;
+			return  4;
 		}
 		
 //		0 | 1 为置顶的 , 2为线路活动
@@ -286,6 +286,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			holder.iv_like = (ImageView) view.findViewById(R.id.iv_like);
 
 			holder.btn_concern = (Button) view.findViewById(R.id.btn_concern);
+			holder.topGapView = view.findViewById(R.id.topGapView);
 
 			view.setTag(holder);
 		}
@@ -297,7 +298,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		final Topiclist item = topiclist.get(position);
 		if ( item == null ) return view;
 
-
+		holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
 
 		if ( item.is_vip == 1 )
 		{
@@ -406,6 +407,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			holder.labelTextView = (TextView)view.findViewById(R.id.labelTextView);
 			holder.locTextView = (TextView)view.findViewById(R.id.locTextView);
 			holder.timeTextView = (TextView)view.findViewById(R.id.timeTextView);
+			holder.topGapView = view.findViewById(R.id.topGapView);
 
 			view.setTag(holder);
 		}
@@ -417,6 +419,8 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		final Topiclist item = topiclist.get(position);
 		if ( item == null ) return view;
 
+
+		holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
 
 		ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
 
@@ -476,6 +480,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		TextView tv_name, tv_like, tv_title, tv_reply;
 		Button btn_concern;
 		View layout_like;
+		View topGapView;
 	}
 
 	static class ActivityHolder
@@ -483,6 +488,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 
 		ImageView imageView, iv_load;
 		TextView titleTextView, labelTextView, locTextView, timeTextView;
+		View topGapView;
 	}
 
 

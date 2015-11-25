@@ -5,6 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fff">
 
+
+    <View
+        android:id="@+id/topGapView"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/pull_bg"
+        android:visibility="gone"
+        />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"

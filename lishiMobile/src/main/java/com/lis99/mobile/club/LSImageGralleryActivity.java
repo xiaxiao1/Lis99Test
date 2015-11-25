@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class LSImageGralleryActivity extends ActivityPattern1 {
+public class LSImageGralleryActivity extends ActivityPattern1 implements LSImageGralleryAdapter.LSImageGralleryListner {
 
 //	private GestureDetector gestureDetector;
 
@@ -43,9 +43,10 @@ public class LSImageGralleryActivity extends ActivityPattern1 {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_ls_line_big_image);
+        setContentView(R.layout.activity_ls_image_grallery);
 
-//        StatusUtil.setStatusBar(this);
+
+        StatusUtil.setStatusBar(this);
 
         //gestureDetector = new GestureDetector(this,this);
 
@@ -54,6 +55,7 @@ public class LSImageGralleryActivity extends ActivityPattern1 {
         photos = (ArrayList<String>) getIntent().getSerializableExtra("photos");
 
         adapter = new LSImageGralleryAdapter(this, photos);
+        adapter.lsImageGralleryListner = this;
 
         vp = (ViewPager) findViewById(R.id.gallery);
         vp.setOffscreenPageLimit(3);
@@ -165,6 +167,7 @@ public class LSImageGralleryActivity extends ActivityPattern1 {
         });
     }
 
+
     public static void saveBitmapToFile(Bitmap bitmap, String _file)
             throws IOException {
         BufferedOutputStream os = null;
@@ -188,6 +191,13 @@ public class LSImageGralleryActivity extends ActivityPattern1 {
             }
         }
     }
+
+    @Override
+    public void onClickPageView(View v) {
+        finish();
+    }
+
+
 
 
 	/*

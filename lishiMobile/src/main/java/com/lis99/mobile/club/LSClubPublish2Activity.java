@@ -118,6 +118,35 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 					Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
 					lbm.sendBroadcast(intent);
 
+					String data = response.optString("data", "");
+					if ( !TextUtils.isEmpty(data) )
+					{
+						try {
+							JSONObject j = new JSONObject(data);
+
+							int category = j.optInt("category", -1);
+							int topicid = j.optInt("topicid", -1);
+							if ( category != -1 && topicid != -1 )
+							{
+								if ( category == 2 )
+								{
+									Intent in = new Intent(activity, LSClubTopicNewActivity.class);
+									in.putExtra("topicID", topicid);
+									startActivity(in);
+									return;
+								}
+
+								Intent in = new Intent(activity, LSClubTopicActivity.class);
+								in.putExtra("topicID", topicid);
+								startActivity(in);
+
+							}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+
 					setresult();
 					finish();
 				}
