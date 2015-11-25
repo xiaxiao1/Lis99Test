@@ -7,6 +7,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <View
+        android:id="@+id/topGapView"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/pull_bg"
+        android:visibility="gone"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -62,13 +69,6 @@
             android:layout_alignParentTop="true"
             />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            />
     </RelativeLayout>
 
 
@@ -97,12 +97,6 @@
             />
 
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/color_1px_stroke"
-        />
 
     <RelativeLayout
         android:layout_width="match_parent"

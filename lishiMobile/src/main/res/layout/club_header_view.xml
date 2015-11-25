@@ -29,7 +29,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/club_icon_header_default"
             app:border_color="#e8e8e8"
-        	app:border_width="1px" 
+        	app:border_width="4px"
             app:corner_radius="37dp"
             android:background="@drawable/club_detail_head_bg"
              />

@@ -26,6 +26,12 @@ public class LSImageGralleryAdapter extends PagerAdapter {
     DisplayImageOptions options;
     protected ImageLoader imageLoader = ImageLoader.getInstance();
 
+    public static interface LSImageGralleryListner {
+        void onClickPageView(View v);
+    }
+
+    public LSImageGralleryListner lsImageGralleryListner;
+
     // 构造方法
     public LSImageGralleryAdapter(Context mContext, List<String> photos) {
         super();
@@ -33,9 +39,9 @@ public class LSImageGralleryAdapter extends PagerAdapter {
         this.photos = photos;
 
         options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.bigimage_def)
-                .showImageForEmptyUri(R.drawable.bigimage_def)
-                .showImageOnFail(R.drawable.bigimage_def).cacheInMemory(true)
+                .showImageOnLoading(R.drawable.ls_image_gallery_def)
+                .showImageForEmptyUri(R.drawable.ls_image_gallery_def)
+                .showImageOnFail(R.drawable.ls_image_gallery_def).cacheInMemory(true)
                 .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
                 .build();
     }
@@ -54,6 +60,15 @@ public class LSImageGralleryAdapter extends PagerAdapter {
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         imageLoader.displayImage(photos.get(position), iv,
                 options);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (lsImageGralleryListner != null) {
+                    lsImageGralleryListner.onClickPageView(v);
+                }
+            }
+        });
         collection.addView(iv);
         return iv;
     }

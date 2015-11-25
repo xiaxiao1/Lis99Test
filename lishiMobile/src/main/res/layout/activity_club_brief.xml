@@ -33,7 +33,7 @@
                     <View 
                         style="@style/fill_fill"
                         android:layout_weight="1"
-                        android:background="@drawable/title_bar_bg"
+                        android:background="@color/white"
                         />
                     
                     <View 
@@ -46,8 +46,8 @@
 
                 <com.lis99.mobile.club.widget.RoundedImageView
                     android:id="@+id/roundedImageView1"
-                    android:layout_width="74dp"
-                    android:layout_height="74dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/club_icon_header_default"
                     app:corner_radius="37dp"
@@ -192,7 +192,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="112dp"
+                    android:layout_height="74dp"
                     android:paddingBottom="10dp"
                     android:paddingLeft="18dp"
                     android:paddingTop="10dp" >
@@ -212,6 +212,7 @@
                         android:orientation="vertical" >
 
                         <com.lis99.mobile.club.widget.RoundedImageView
+                            android:layout_centerVertical="true"
                             android:id="@+id/founderImageView"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
@@ -232,20 +233,19 @@
 					        android:src="@drawable/club_icon_v" />
 
                         <TextView
-                            android:layout_below="@id/founderImageView"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@id/founderImageView"
                             android:id="@+id/founderView"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center_horizontal"
-                            android:maxLines="2"
+                            android:singleLine="true"
                             android:text="@string/temp_string"
                             android:textColor="#666"
-                            android:textSize="12sp" 
-                            android:layout_alignRight="@id/founderImageView"
+                            android:textSize="12sp"
+                            android:layout_centerVertical="true"
                             />
                         <View
-                            android:layout_below="@id/founderView"
+                            android:layout_below="@id/founderImageView"
                             android:layout_alignLeft="@id/founderImageView"
                             android:layout_marginTop="3dip"
                     android:layout_width="match_parent"
