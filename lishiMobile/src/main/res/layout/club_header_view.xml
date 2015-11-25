@@ -14,7 +14,8 @@
     android:id="@+id/headView"
 	    >
 	    
-	    <ImageView 
+	    <ImageView
+            android:visibility="gone"
 	        style="@style/fill_fill"
 	        android:background="@drawable/club_head_shade"
 	        />

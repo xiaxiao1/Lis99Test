@@ -12,7 +12,11 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.ClubTopicGetApplyList;
 import com.lis99.mobile.club.model.NewApplyUpData;
 import com.lis99.mobile.club.widget.applywidget.MyApplyItem;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.MyRequestManager;
 
 import java.util.ArrayList;
 
@@ -139,7 +143,7 @@ public class LSApplayNew extends LSBaseActivity {
 
         if ( adapter == null )
         {
-            return ok;
+            return false;
         }
 
         for ( int i = 0; i < updata.size(); i++ )
@@ -148,42 +152,42 @@ public class LSApplayNew extends LSBaseActivity {
             if ( listmodel.items.get(0).equals("1") && TextUtils.isEmpty(item.name))
             {
                 ok = false;
-                break;
+                return false;
             }
             else if ( listmodel.items.get(1).equals("1") && TextUtils.isEmpty(item.credentials) )
             {
                 ok = false;
-                break;
+                return false;
             }
             else if ( listmodel.items.get(2).equals("1") && TextUtils.isEmpty(item.sex) )
             {
                 ok = false;
-                break;
+                return false;
             }
             else if ( listmodel.items.get(3).equals("1") && TextUtils.isEmpty(item.mobile) )
             {
                 ok = false;
-                break;
+                return false;
             }
             else if ( listmodel.items.get(4).equals("1") && TextUtils.isEmpty(item.phone) )
             {
                 ok = false;
-                break;
+                return false;
             }
             else if ( listmodel.items.get(5).equals("1") && TextUtils.isEmpty(item.qq) )
             {
                 ok = false;
-                break;
+                return false;
             }
-            else if ( listmodel.items.get(6).equals("1") && TextUtils.isEmpty(item.postaladdress) )
+            else if ( listmodel.items.get(7).equals("1") && TextUtils.isEmpty(item.postaladdress) )
             {
                 ok = false;
-                break;
+                return false;
             }
-            else if ( listmodel.items.get(7).equals("1") && TextUtils.isEmpty(item.address) )
+            else if ( listmodel.items.get(8).equals("1") && TextUtils.isEmpty(item.address) )
             {
                 ok = false;
-                break;
+                return false;
             }
 
         }
@@ -201,57 +205,59 @@ public class LSApplayNew extends LSBaseActivity {
 
     private void getApplyList()
     {
+//        listmodel = new ClubTopicGetApplyList();
+//
+//        listmodel.items = new ArrayList<String>();
+//        listmodel.items.add("1");
+//        listmodel.items.add("1");
+//        listmodel.items.add("1");
+//        listmodel.items.add("1");
+//        listmodel.items.add("0");
+//        listmodel.items.add("0");
+//        listmodel.items.add("1");
+//        listmodel.items.add("0");
+//        listmodel.items.add("0");
+//
+//        adapter = new MyApplyItem(activity, updata);
+////        设置显示属性
+//        adapter.setVisibleItem(listmodel.items);
+//
+//        list.setAdapter(adapter);
+
         listmodel = new ClubTopicGetApplyList();
 
-        listmodel.items = new ArrayList<String>();
-        listmodel.items.add("1");
-        listmodel.items.add("1");
-        listmodel.items.add("1");
-        listmodel.items.add("1");
-        listmodel.items.add("0");
-        listmodel.items.add("0");
-        listmodel.items.add("1");
-        listmodel.items.add("0");
-        listmodel.items.add("0");
+        MyRequestManager.getInstance().requestGet(
+                C.CLUB_TOPIC_APPLY_LIST + topicID, listmodel, new CallBack() {
 
-        adapter = new MyApplyItem(activity, updata);
+                    @Override
+                    public void handler(MyTask mTask) {
+                        // TODO Auto-generated method stub
+                        listmodel = (ClubTopicGetApplyList) mTask
+                                .getResultModel();
+                        if (listmodel.items == null) {
+                            listmodel.items = new ArrayList<String>();
+                            listmodel.items.add("1");
+                            listmodel.items.add("0");
+                            listmodel.items.add("0");
+                            listmodel.items.add("0");
+                            listmodel.items.add("0");
+                            listmodel.items.add("0");
+                            listmodel.items.add("0");
+                            listmodel.items.add("0");
+                            listmodel.items.add("0");
+                            // return;
+                        }
+
+
+                        adapter = new MyApplyItem(activity, updata);
 //        设置显示属性
-        adapter.setVisibleItem(listmodel.items);
+                        adapter.setVisibleItem(listmodel.items);
 
-        list.setAdapter(adapter);
+                        list.setAdapter(adapter);
 
-//        MyRequestManager.getInstance().requestGet(
-//                C.CLUB_TOPIC_APPLY_LIST + topicID, listmodel, new CallBack() {
-//
-//                    @Override
-//                    public void handler(MyTask mTask) {
-//                        // TODO Auto-generated method stub
-//                        listmodel = (ClubTopicGetApplyList) mTask
-//                                .getResultModel();
-//                        if (listmodel.items == null) {
-//                            listmodel.items = new ArrayList<String>();
-//                            listmodel.items.add("1");
-//                            listmodel.items.add("1");
-//                            listmodel.items.add("0");
-//                            listmodel.items.add("1");
-//                            listmodel.items.add("0");
-//                            listmodel.items.add("0");
-//                            listmodel.items.add("1");
-//                            listmodel.items.add("0");
-//                            listmodel.items.add("0");
-//                            // return;
-//                        }
-//
-//
-//                        adapter = new MyApplyItem(activity, updata);
-////        设置显示属性
-//                        adapter.setVisibleItem(listmodel.items);
-//
-//                        list.setAdapter(adapter);
-//
-//
-//                    }
-//                });
+
+                    }
+                });
 
     }
 
