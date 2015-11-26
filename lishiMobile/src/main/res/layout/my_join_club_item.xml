@@ -6,12 +6,24 @@
     android:background="#fff"
     >
 
-    <include
+    <LinearLayout
         android:id="@+id/layout_include"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        layout="@layout/list_line"
-        />
+        android:orientation="vertical"
+        >
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="8dip"
+            android:background="@color/pull_bg" />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+    </LinearLayout>
 	
     <RelativeLayout
         android:layout_below="@id/layout_include"

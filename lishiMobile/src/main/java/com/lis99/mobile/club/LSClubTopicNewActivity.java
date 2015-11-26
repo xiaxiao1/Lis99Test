@@ -398,7 +398,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             return;
         }
         Intent intent = new Intent(this, LSClubTopicReplyActivity.class);
-        intent.putExtra("replyedName", infoModel.club_title);
+        intent.putExtra("replyedName", infoModel.nickname);
         intent.putExtra("replyedcontent", "");
         intent.putExtra("replyedfloor", "");
         intent.putExtra("replyedId", "");
@@ -538,13 +538,6 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 return;
             }
             clubID = Common.string2int(infoModel.club_id);
-
-            String imgUrl = null;
-            if (infoModel.topic_image != null && infoModel.topic_image.size() >= 1 )
-            {
-                imgUrl = infoModel.topic_image.get(0).image;
-                pics.add(imgUrl);
-            }
 
             setHeadView();
             // 获取回复列表
@@ -689,12 +682,6 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 return;
             }
 
-            for (ClubTopicReplyList.Topiclist item : clubreply.topiclist) {
-                if (item.topic_image != null && item.topic_image.size() > 0)
-                {
-                    pics.add(item.topic_image.get(0).image);
-                }
-            }
 
             page.pageNo += 1;
             if (adapter == null)
@@ -917,6 +904,25 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
 
     @Override
     public void onClickImage(String imageUrl) {
+
+        pics.clear();
+
+        if (infoModel != null && infoModel.topic_image != null && infoModel.topic_image.size() >= 1 )
+        {
+            String imgUrl = infoModel.topic_image.get(0).image;
+            pics.add(imgUrl);
+        }
+
+        if (adapter != null) {
+            for (ClubTopicReplyList.Topiclist item : adapter.topiclist) {
+                if (item.topic_image != null && item.topic_image.size() > 0)
+                {
+                    pics.add(item.topic_image.get(0).image);
+                }
+            }
+
+        }
+
         int index = pics.indexOf(imageUrl);
         if (index < 0) {
             index = 0;

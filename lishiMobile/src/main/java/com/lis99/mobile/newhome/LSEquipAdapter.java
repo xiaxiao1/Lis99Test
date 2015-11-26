@@ -16,6 +16,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -159,9 +160,18 @@ public class LSEquipAdapter extends BaseAdapter {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(c, LSClubTopicActivity.class);
-                    intent.putExtra("topicID", content.getTopicid());
-                    c.startActivity(intent);
+                    if ( "2".equals(content.getTopic_type()) )
+                    {
+                        Intent intent = new Intent(c, LSClubTopicNewActivity.class);
+                        intent.putExtra("topicID", content.getTopicid());
+                        c.startActivity(intent);
+                    }
+                    else
+                    {
+                        Intent intent = new Intent(c, LSClubTopicActivity.class);
+                        intent.putExtra("topicID", content.getTopicid());
+                        c.startActivity(intent);
+                    }
                 }
             });
 

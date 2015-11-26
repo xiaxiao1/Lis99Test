@@ -166,6 +166,7 @@ public class MyApplyItem extends MyBaseAdapter{
                             public void onCallBack(Object o)
                             {
                                 // TODO Auto-generated method stub
+                                if ( o == null ) return;
                                 item.address = o.toString();
                                 finalHolder.btn_address.setText(o.toString());
                             }

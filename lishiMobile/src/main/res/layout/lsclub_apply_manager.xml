@@ -166,17 +166,26 @@
 
         </LinearLayout>
 
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:layout_below="@id/layout_title"
+        android:layout_above="@id/bottombar"
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pull_bg"
+        android:orientation="vertical"
+        >
 
     <ListView
         android:layout_margin="8dp"
-        android:layout_below="@id/layout_title"
-        android:layout_above="@id/bottombar"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:background="@drawable/apply_manager_item_bg"
         style="@style/listViewStyle"
         android:id="@+id/list"
         ></ListView>
+
+    </com.lis99.mobile.entry.view.PullToRefreshView>
 
     <ImageView
         android:layout_width="wrap_content"

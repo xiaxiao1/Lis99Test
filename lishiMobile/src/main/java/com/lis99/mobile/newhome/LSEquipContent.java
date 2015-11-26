@@ -24,6 +24,16 @@ public class LSEquipContent {
 
     int type;
 
+    public String getTopic_type() {
+        return topic_type;
+    }
+
+    public void setTopic_type(String topic_type) {
+        this.topic_type = topic_type;
+    }
+
+    String topic_type;
+
 
     public int getMarket_price() {
         return market_price;
