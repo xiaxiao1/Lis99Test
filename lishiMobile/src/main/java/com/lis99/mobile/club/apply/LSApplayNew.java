@@ -107,7 +107,7 @@ public class LSApplayNew extends LSBaseActivity {
                 Intent intent = new Intent(this, LSApplyEnterActivity.class);
                 intent.putExtra("clubID", clubID);
                 intent.putExtra("topicID", topicID);
-                startActivity(intent);
+                startActivityForResult(intent, 999);
                 break;
             case R.id.btn_add:
 
@@ -261,12 +261,25 @@ public class LSApplayNew extends LSBaseActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        updata.clear();
+    }
 
     private void cleanList()
     {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
+        if ( requestCode == 999 && resultCode == RESULT_OK )
+        {
+            setResult(RESULT_OK);
+            finish();
+        }
+    }
 }

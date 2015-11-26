@@ -70,7 +70,7 @@
             >
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/tv_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_six"
@@ -159,6 +159,43 @@
                     android:layout_height="50dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:id="@+id/layout_free"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_six"
+                        android:text="免费　　"
+                        android:drawableRight="@drawable/pay_free"
+                        android:drawablePadding="20dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <RadioButton
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/radio_free"
+                        style="@style/wrap_wrap"
+                        android:button="@drawable/club_radio_apply_man"
+                        android:layout_centerVertical="true"
+                        android:clickable="false"
+                        />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1px"
+                        android:background="#eee"
+                        android:layout_alignParentBottom="true"
+                        />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:id="@+id/layout_off_line"
                     >
 
@@ -176,7 +213,6 @@
                         android:layout_alignParentRight="true"
                         android:id="@+id/radio_off_line"
                         style="@style/wrap_wrap"
-                        android:checked="true"
                         android:button="@drawable/club_radio_apply_man"
                         android:layout_centerVertical="true"
                         android:clickable="false"

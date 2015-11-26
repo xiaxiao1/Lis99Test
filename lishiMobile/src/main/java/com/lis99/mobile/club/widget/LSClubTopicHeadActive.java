@@ -18,10 +18,11 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
+import com.lis99.mobile.club.LSClubApplyActivity;
+import com.lis99.mobile.club.LSClubApplyListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
-import com.lis99.mobile.club.apply.LSApplayNew;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -545,30 +546,30 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 			getContext().startActivity(intent);
 		} else
 		{
-			Intent intent = new Intent(getContext(), LSApplayNew.class);
-				intent.putExtra("clubID", clubID);
-				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
-				intent.putExtra("clubName", clubName);
-//				lsTopic.startActivity(intent);
-				lsTopic.startActivityForResult(intent, 997);
-
-//			if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
-//			{
-//				Intent intent = new Intent(getContext(), LSClubApplyActivity.class);
+//			Intent intent = new Intent(getContext(), LSApplayNew.class);
 //				intent.putExtra("clubID", clubID);
 //				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
 //				intent.putExtra("clubName", clubName);
 ////				lsTopic.startActivity(intent);
 //				lsTopic.startActivityForResult(intent, 997);
-//			}
-//			else
-//			{
-//				Intent intent = new Intent(getContext(), LSClubApplyListActivity.class);
-//				intent.putExtra("clubID", clubID);
-//				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
-//				intent.putExtra("clubName", clubName);
-//				getContext().startActivity(intent);
-//			}
+
+			if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
+			{
+				Intent intent = new Intent(getContext(), LSClubApplyActivity.class);
+				intent.putExtra("clubID", clubID);
+				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
+				intent.putExtra("clubName", clubName);
+//				lsTopic.startActivity(intent);
+				lsTopic.startActivityForResult(intent, 997);
+			}
+			else
+			{
+				Intent intent = new Intent(getContext(), LSClubApplyListActivity.class);
+				intent.putExtra("clubID", clubID);
+				intent.putExtra("topicID", Common.string2int(clubhead.topic_id));
+				intent.putExtra("clubName", clubName);
+				getContext().startActivity(intent);
+			}
 		}
 	}
 	

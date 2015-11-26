@@ -41,23 +41,8 @@
                 android:layout_height="wrap_content"
                 />
 
-            <TextView
-                android:id="@+id/tv_title"
-                style="@style/fill_wrap"
-                android:layout_below="@id/iv_bg"
-                android:layout_marginTop="-4dip"
-                android:background="@drawable/club_active_list_bg"
-                android:ellipsize="end"
-                android:paddingBottom="6dip"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
-                android:paddingTop="9dip"
-                android:singleLine="true"
-                android:text="@string/temp_string_long"
-                android:textColor="#666666"
-                android:textSize="15sp" />
-
             <RelativeLayout
+                android:layout_marginBottom="4dp"
                 android:background="@drawable/subject_forground"
                 style="@style/fill_wrap"
                 android:layout_alignBottom="@id/iv_bg"
@@ -129,6 +114,23 @@
                     android:textColor="@color/white"
                     android:textSize="11sp" />
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/fill_wrap"
+                android:layout_below="@id/iv_bg"
+                android:layout_marginTop="-4dip"
+                android:background="@drawable/club_active_list_bg"
+                android:ellipsize="end"
+                android:paddingBottom="6dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="9dip"
+                android:singleLine="true"
+                android:text="@string/temp_string_long"
+                android:textColor="#666666"
+                android:textSize="15sp" />
+
         </RelativeLayout>
     </FrameLayout>
 

@@ -36,7 +36,6 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
-import com.lis99.mobile.myactivty.ShowPic;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
@@ -598,12 +597,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			{
 				return;
 			}
-			String imgUrl = null;
-			if (clubhead.topic_image != null && clubhead.topic_image.size() >= 1 )
-			{
-				imgUrl = clubhead.topic_image.get(0).image;
-				pics.add(imgUrl);
-			}
+
 			clubID = Common.string2int(clubhead.club_id);
 			setHeadView();
 			// 获取回复列表
@@ -779,12 +773,6 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			}
 
 
-			for (ClubTopicReplyList.Topiclist item : clubreply.topiclist) {
-				if (item.topic_image != null && item.topic_image.size() > 0)
-				{
-					pics.add(item.topic_image.get(0).image);
-				}
-			}
 
 
 			page.pageNo += 1;
@@ -1016,6 +1004,25 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 
 	@Override
 	public void onClickImage(String imageUrl) {
+
+		pics.clear();
+
+		if (clubhead != null && clubhead.topic_image != null && clubhead.topic_image.size() >= 1 )
+		{
+			String imgUrl = clubhead.topic_image.get(0).image;
+			pics.add(imgUrl);
+		}
+
+		if (adapter != null) {
+			for (ClubTopicReplyList.Topiclist item : adapter.topiclist) {
+				if (item.topic_image != null && item.topic_image.size() > 0)
+				{
+					pics.add(item.topic_image.get(0).image);
+				}
+			}
+
+		}
+
 		int index = pics.indexOf(imageUrl);
 		if (index < 0) {
 			index = 0;

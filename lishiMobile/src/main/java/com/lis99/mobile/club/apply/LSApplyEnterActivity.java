@@ -10,13 +10,17 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.OrderInfoModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.ParserUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,15 +30,15 @@ import java.util.HashMap;
  */
 public class LSApplyEnterActivity extends LSBaseActivity{
 
-    private TextView title, tv_pay, tv_joinNum, tv_price;
+    private TextView tv_title, tv_pay, tv_joinNum, tv_price;
 
     private GridView grid;
 
     private RadioGroup radioGroup;
 
-    private View layout_off_line, layout_weixin, layout_zhifubao;
+    private View layout_off_line, layout_weixin, layout_zhifubao, layout_free;
 
-    private RadioButton radio_off_line, radio_weixin, radio_zhifubao, currentRadio;
+    private RadioButton radio_off_line, radio_weixin, radio_zhifubao, currentRadio, radio_free;
 
     private Button btn_ok;
 
@@ -44,6 +48,9 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
     public OrderInfoModel model;
 
+    public BaseModel bModel;
+
+    private int payType = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +60,10 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
         initViews();
 
-        radio_off_line.setVisibility(View.GONE);
-        radio_weixin.setVisibility(View.GONE);
-        radio_zhifubao.setVisibility(View.GONE);
+        layout_off_line.setVisibility(View.GONE);
+        layout_weixin.setVisibility(View.GONE);
+        layout_zhifubao.setVisibility(View.GONE);
+        layout_free.setVisibility(View.GONE);
 
         setTitle("报名");
 
@@ -72,7 +80,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
     protected void initViews() {
         super.initViews();
 
-        title = (TextView) findViewById(R.id.title);
+        tv_title = (TextView) findViewById(R.id.tv_title);
         tv_pay = (TextView) findViewById(R.id.tv_pay);
         tv_joinNum = (TextView) findViewById(R.id.tv_joinNum);
         tv_price = (TextView) findViewById(R.id.tv_price);
@@ -84,6 +92,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         layout_off_line = findViewById(R.id.layout_off_line);
         layout_weixin = findViewById(R.id.layout_weixin);
         layout_zhifubao = findViewById(R.id.layout_zhifubao);
+        layout_free = findViewById(R.id.layout_free);
 
         btn_ok = (Button) findViewById(R.id.btn_ok);
         btn_ok.setOnClickListener(this);
@@ -91,9 +100,11 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         radio_off_line = (RadioButton) findViewById(R.id.radio_off_line);
         radio_weixin = (RadioButton) findViewById(R.id.radio_weixin);
         radio_zhifubao = (RadioButton) findViewById(R.id.radio_zhifubao);
+        radio_free = (RadioButton) findViewById(R.id.radio_free);
 
-        currentRadio = radio_off_line;
+//        currentRadio = radio_off_line;
 
+        layout_free.setOnClickListener(this);
         layout_off_line.setOnClickListener(this);
         layout_weixin.setOnClickListener(this);
         layout_zhifubao.setOnClickListener(this);
@@ -103,12 +114,21 @@ public class LSApplyEnterActivity extends LSBaseActivity{
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 String name = "0000000";
                 switch (i) {
+                    case R.id.layout_free:
+                        if (currentRadio == radio_free) return;
+                        currentRadio.setChecked(false);
+                        radio_free.setChecked(true);
+                        currentRadio = radio_free;
+                        payType = 0;
+                        name = "111111";
+                        break;
                     case R.id.layout_off_line:
                         if (currentRadio == radio_off_line) return;
                         currentRadio.setChecked(false);
                         radio_off_line.setChecked(true);
                         currentRadio = radio_off_line;
                         name = "111111";
+                        payType = 1;
                         break;
                     case R.id.layout_weixin:
                         if (currentRadio == radio_weixin) return;
@@ -116,6 +136,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                         radio_weixin.setChecked(true);
                         currentRadio = radio_weixin;
                         name = "222222";
+                        payType = 2;
                         break;
                     case R.id.layout_zhifubao:
                         if (currentRadio == radio_zhifubao) return;
@@ -123,12 +144,14 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                         currentRadio = radio_zhifubao;
                         currentRadio.setChecked(true);
                         name = "33333";
+                        payType = 3;
                         break;
+
                     default:
                         name = "4444444444";
                         break;
                 }
-                Common.toast("radio position is " + name);
+//                Common.toast("radio position is " + name);
             }
         });
 
@@ -156,7 +179,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                 model = (OrderInfoModel) mTask.getResultModel();
                 if ( model == null ) return;
 
-                title.setText(model.title);
+                tv_title.setText(model.title);
 
                 tv_pay.setText("人均费用"+model.consts+"元");
 
@@ -177,19 +200,19 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                     int num = model.type[i];
                     if ( num == 0 )
                     {
-
+                        layout_free.setVisibility(View.VISIBLE);
                     }
                     else if ( num == 1 )
                     {
-                        radio_off_line.setVisibility(View.VISIBLE);
+                        layout_off_line.setVisibility(View.VISIBLE);
                     }
                     else if ( num == 2 )
                     {
-                        radio_weixin.setVisibility(View.VISIBLE);
+                        layout_weixin.setVisibility(View.VISIBLE);
                     }
                     else if ( num == 3 )
                     {
-                        radio_zhifubao.setVisibility(View.VISIBLE);
+                        layout_zhifubao.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -223,21 +246,74 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         switch (arg0.getId())
         {
             case R.id.btn_ok:
+                SubmitOrderList();
+                break;
+            case R.id.layout_free:
+                radioGroup.check(layout_free.getId());
                 break;
             case R.id.layout_off_line:
                 radioGroup.check(layout_off_line.getId());
-//                radio_off_line.setChecked(true);
                 break;
             case R.id.layout_weixin:
                 radioGroup.check(layout_weixin.getId());
-//                radio_weixin.setChecked(true);
                 break;
             case R.id.layout_zhifubao:
                 radioGroup.check(layout_zhifubao.getId());
-//                radio_zhifubao.setChecked(true);
                 break;
         }
+    }
+
+    /**
+     *   提交报名信息
+     */
+    private void SubmitOrderList ()
+    {
+        String userId = DataManager.getInstance().getUser().getUser_id();
+
+        int client_version = DeviceInfo.CLIENTVERSIONCODE;
+
+        String platform = DeviceInfo.PLATFORM;
+
+        String url = C.SUBMIT_ORDER_INFO;
+
+        String OrderList = ParserUtil.getGsonString(LSApplayNew.updata);
+        Common.log("OrderList==" + OrderList);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        map.put("topic_id", topicID);
+        map.put("user_id", userId);
+        map.put("club_id", clubID);
+        map.put("pay_type", payType);
+        map.put("client_version", client_version);
+        map.put("platform", platform);
+        map.put("apply_info", OrderList);
+
+        bModel = new BaseModel();
+
+        MyRequestManager.getInstance().requestPost(url, map, bModel, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                bModel = (BaseModel) mTask.getResultModel();
+                if ( bModel != null )
+                {
+                    if ( payType == 0 || payType == 1 )
+                    {
+                        sendResult();
+                    }
+                }
+            }
+        });
+
+
 
 
     }
+
+    private void sendResult ()
+    {
+        setResult(RESULT_OK);
+        finish();
+    }
+
+
 }

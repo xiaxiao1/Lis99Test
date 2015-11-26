@@ -434,5 +434,9 @@ public class C {
 	public static final String RECOMMEND_CLUB_LIST = DOMAIN + "/v4/club/recommendClubList";
 //	获取订单信息， 支付方式等
 	public static final String GET_ORDER_INFO = DOMAIN + "/v4/apply/applyInfoDetail";
+//	提交报名订单
+	public static final String SUBMIT_ORDER_INFO = DOMAIN + "/v4/apply/enroll";
+//	管理报名		http://api.lis99.com/v4/apply/enrollList/[topicid]/[page]
+	public static final String MANAGER_JON_ACTIVE_LIST = DOMAIN + "/v4/apply/enrollList/";
 
 }

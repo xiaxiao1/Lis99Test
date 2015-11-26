@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -114,9 +113,9 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 				if ("OK".equals(errorCode)) {
 					postMessage(POPUP_TOAST, "发布成功");
 
-					LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LSClubPublish2Activity.this);
-					Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
-					lbm.sendBroadcast(intent);
+//					LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LSClubPublish2Activity.this);
+//					Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
+//					lbm.sendBroadcast(intent);
 
 					String data = response.optString("data", "");
 					if ( !TextUtils.isEmpty(data) )
