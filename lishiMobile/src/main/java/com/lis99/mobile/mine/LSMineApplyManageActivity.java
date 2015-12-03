@@ -53,16 +53,24 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 	@Override
 	protected void initViews() {
 		super.initViews();
+
+		refreshView = (PullToRefreshView) findViewById(R.id.refreshView);
+		refreshView.setOnHeaderRefreshListener(this);
+		refreshView.setOnFooterRefreshListener(this);
+
 		listView = (MyListView) findViewById(R.id.listView);
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+									int position, long id) {
 
 
-				if ( adapter == null ) return;
+				if (adapter == null) {
+					Common.log("adapter == null");
+					return;
+				}
 
 				Intent intent = new Intent(LSMineApplyManageActivity.this,
 						ApplyManager.class);
@@ -74,15 +82,13 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 						position).getClub_title());
 				startActivity(intent);
 
+				Common.log("adapter == onclick");
+
 				//更新红点消失
 				adapter.onClick(position);
 
 			}
 		});
-
-		refreshView = (PullToRefreshView) findViewById(R.id.refreshView);
-		refreshView.setOnHeaderRefreshListener(this);
-		refreshView.setOnFooterRefreshListener(this);
 
 	}
 

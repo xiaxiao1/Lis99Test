@@ -9,16 +9,16 @@ android {
         shichang {}
         zhuzhan {}
         tuiguang1 {}
-        sougou {}
-        baidu {}
-        pp{}
+//        sougou {}
+//        baidu {}
+//        pp{}
 //        oppo {}
 //        oppo {}
-//        gfan {}
+        gfan {}
 //        zs360 {}
 //        huawei {}
 //        lis99test {}
-//        jinli {}
+        jinli {}
 //        xiaomi {}
     }
 
@@ -51,7 +51,7 @@ android {
 //                def releaseApkName = 'yjf-android-v' + getVersionNameFromManifest() + '-' + variant.productFlavors[0].name + '-sign-42.apk'
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.0.0.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-3.8.0.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('beta')){

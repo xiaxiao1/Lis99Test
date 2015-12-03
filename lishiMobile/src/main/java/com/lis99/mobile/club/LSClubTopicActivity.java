@@ -44,6 +44,7 @@ import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.ShareManager;
+import com.lis99.mobile.util.SharedPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -672,6 +673,14 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			CurrentHeader = headViewActive;
 			// 获取AD高度
 			getHeadAdHeight();
+
+//			首次显示菜单
+			if (TextUtils.isEmpty(SharedPreferencesHelper.getFirstActive()))
+			{
+				rightAction();
+				SharedPreferencesHelper.saveFirstActive("1");
+			}
+
 		}
 		listView.setAdapter(null);
 	}

@@ -94,6 +94,10 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
         view_refuse.setVisibility(View.GONE);
         view_need_enter.setVisibility(View.VISIBLE);
 
+        btn_enter.setTextColor(getResources().getColor(R.color.color_nine));
+        btn_refuse.setTextColor(getResources().getColor(R.color.color_nine));
+
+
         currentView = view_need_enter;
 
         list = (ListView) findViewById(R.id.list);
@@ -121,16 +125,12 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
                 view_enter.setVisibility(View.VISIBLE);
                 currentView = view_enter;
                 currentPage = pageEnter;
-//                if ( adapterEnter == null )
-//                {
 
                     onHeaderRefresh(pull_refresh_view);
-//                }
-//                else
-//                {
-//                    list.setAdapter(adapterEnter);
-//                }
 
+                btn_enter.setTextColor(getResources().getColor(R.color.text_color_blue));
+                btn_refuse.setTextColor(getResources().getColor(R.color.color_nine));
+                btn_need_enter.setTextColor(getResources().getColor(R.color.color_nine));
 
                 break;
             case R.id.btn_refuse:
@@ -140,15 +140,11 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
                 currentView = view_refuse;
                 currentPage = pageRefuse;
                 onHeaderRefresh(pull_refresh_view);
-//                if ( adapterRefuse == null )
-//                {
-//                    list.setAdapter(null);
-//                    getList();
-//                }
-//                else
-//                {
-//                    list.setAdapter(adapterRefuse);
-//                }
+
+
+                btn_enter.setTextColor(getResources().getColor(R.color.color_nine));
+                btn_refuse.setTextColor(getResources().getColor(R.color.text_color_blue));
+                btn_need_enter.setTextColor(getResources().getColor(R.color.color_nine));
 
                 break;
             case R.id.btn_need_enter:
@@ -158,15 +154,12 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
                 currentView = view_need_enter;
                 currentPage = pageNeed;
                 onHeaderRefresh(pull_refresh_view);
-//                if ( adapterNeed == null )
-//                {
-//                    list.setAdapter(null);
-//                    getList();
-//                }
-//                else
-//                {
-//                    list.setAdapter(adapterNeed);
-//                }
+
+
+                btn_enter.setTextColor(getResources().getColor(R.color.color_nine));
+                btn_refuse.setTextColor(getResources().getColor(R.color.color_nine));
+                btn_need_enter.setTextColor(getResources().getColor(R.color.text_color_blue));
+
                 break;
         }
     }
