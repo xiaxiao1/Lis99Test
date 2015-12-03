@@ -12,8 +12,8 @@
         android:background="@color/color_1px_stroke" />
 
     <com.lis99.mobile.club.widget.RoundedImageView
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
         android:id="@+id/roundedImageView1"
         android:layout_width="100dp"
         android:layout_height="70dp"
@@ -104,7 +104,7 @@
         android:layout_alignLeft="@id/roundedImageView1"
         android:layout_below="@id/roundedImageView1"
         android:background="#eee"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
 
         />
 

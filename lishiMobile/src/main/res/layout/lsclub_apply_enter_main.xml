@@ -117,6 +117,8 @@
             android:background="@color/color_1px_stroke" />
 
         <GridView
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:background="@color/white"
             android:layout_width="fill_parent"
             android:layout_height="60dp"
@@ -171,13 +173,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_six"
-                        android:text="免费　　"
+                        android:text="免费"
                         android:drawableRight="@drawable/pay_free"
-                        android:drawablePadding="20dp"
+                        android:drawablePadding="10dp"
                         android:layout_centerVertical="true"
                         />
 
                     <RadioButton
+                        android:visibility="gone"
                         android:layout_alignParentRight="true"
                         android:id="@+id/radio_free"
                         style="@style/wrap_wrap"
@@ -210,11 +213,12 @@
                         android:textColor="@color/color_six"
                         android:text="线下支付"
                         android:drawableRight="@drawable/pay_off_line"
-                        android:drawablePadding="20dp"
+                        android:drawablePadding="10dp"
                         android:layout_centerVertical="true"
                         />
 
                     <RadioButton
+                        android:visibility="gone"
                         android:layout_alignParentRight="true"
                         android:id="@+id/radio_off_line"
                         style="@style/wrap_wrap"
@@ -247,7 +251,7 @@
                         android:textColor="@color/color_six"
                         android:text="微信支付"
                         android:drawableRight="@drawable/pay_weixin"
-                        android:drawablePadding="20dp"
+                        android:drawablePadding="10dp"
                         android:layout_centerVertical="true"
                         />
 
@@ -284,7 +288,7 @@
                         android:textColor="@color/color_six"
                         android:text="支付宝　"
                         android:drawableRight="@drawable/pay_zhifubao"
-                        android:drawablePadding="20dp"
+                        android:drawablePadding="10dp"
                         android:layout_centerVertical="true"
                         />
 

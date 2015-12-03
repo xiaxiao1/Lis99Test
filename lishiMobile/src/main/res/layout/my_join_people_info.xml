@@ -32,10 +32,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/apply_bg"
             android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:paddingRight="10dp"
-            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
             >
 
             <LinearLayout

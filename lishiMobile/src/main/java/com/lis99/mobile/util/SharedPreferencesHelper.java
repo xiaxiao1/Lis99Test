@@ -205,6 +205,11 @@ public class SharedPreferencesHelper {
 		removePhone();
 //		引导页
 		cleanHelp();
+
+//		===========活动弹出菜单===========
+		cleanFirstActive();
+
+
 	}
 
 
@@ -582,6 +587,23 @@ public class SharedPreferencesHelper {
 	public static void cleanHelp ()
 	{
 		removeBase("SAVEHELP0");
+	}
+
+
+//	管理报名位置移动， 首次进入下线活动帖， 弹出菜单提示
+	public static void saveFirstActive ( String state )
+	{
+		saveBase("FirstActive", state);
+	}
+
+	public static String getFirstActive ()
+	{
+		return getBase("FirstActive", "");
+	}
+
+	public static void cleanFirstActive ()
+	{
+		removeBase("FirstActive");
 	}
 
 //	@SuppressLint("NewApi")

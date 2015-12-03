@@ -44,7 +44,6 @@
                 android:textSize="16sp"
                 android:text="@string/temp_string_long"
                 android:maxLines="2"
-                android:minLines="2"
                 android:ellipsize="end"
                 android:lineSpacingExtra="5dp"
                 />
@@ -181,10 +180,8 @@
         >
 
     <ListView
-        android:layout_margin="8dp"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/apply_manager_item_bg"
         style="@style/listViewStyle"
         android:id="@+id/list"
         android:dividerHeight="0px"
