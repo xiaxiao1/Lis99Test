@@ -192,6 +192,10 @@ public class ShopDetailActivity extends ActivityPattern implements
 		initOptions();
 		setListener();
 		initData();
+
+		View ll_bottom = findViewById(R.id.ll_bottom);
+		ll_bottom.setVisibility(View.GONE);
+
 	}
 
 	public int getLayoutId() {
@@ -755,6 +759,7 @@ public class ShopDetailActivity extends ActivityPattern implements
 										tv_pinglun.setText("店铺评价  （共"
 												+ info.getCount() + "条）");
 									}
+									ll_pinglun.setVisibility(View.GONE);
 									data_chanping.setText(info.getProduct());
 									imageAdapter.setData(shopDetailItem
 											.getPic());

@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
@@ -27,7 +27,7 @@ public class LSApplayNew extends LSBaseActivity {
 
     private ListView list;
 
-    private Button btn_ok, btn_add;
+    private RelativeLayout layout_btn_ok, layout_btn_add;
 
     private MyApplyItem adapter;
 
@@ -81,13 +81,13 @@ public class LSApplayNew extends LSBaseActivity {
 
         list = (ListView) findViewById(R.id.list);
 
-        btn_add = (Button) findViewById(R.id.btn_add);
+            layout_btn_add = (RelativeLayout) findViewById(R.id.layout_btn_add);
 
-        btn_ok = (Button) findViewById(R.id.btn_ok);
+            layout_btn_ok = (RelativeLayout) findViewById(R.id.layout_btn_ok);
 
-        btn_ok.setOnClickListener(this);
+            layout_btn_ok.setOnClickListener(this);
 
-        btn_add.setOnClickListener(this);
+            layout_btn_add.setOnClickListener(this);
 
     }
 
@@ -97,7 +97,7 @@ public class LSApplayNew extends LSBaseActivity {
 
         switch (arg0.getId())
         {
-            case R.id.btn_ok:
+            case R.id.layout_btn_ok:
 
                 if ( !isOk() )
                 {
@@ -109,11 +109,17 @@ public class LSApplayNew extends LSBaseActivity {
                 intent.putExtra("topicID", topicID);
                 startActivityForResult(intent, 999);
                 break;
-            case R.id.btn_add:
+            case R.id.layout_btn_add:
 
                 if ( !isOk() )
                 {
-                    Common.toast("还有一些信息未填写");
+//                    Common.toast("还有一些信息未填写");
+                    return;
+                }
+
+                if ( updata.size() >= 5 )
+                {
+                    Common.toast("您好，一次最多报名五人,如有特殊需求请联系领队");
                     return;
                 }
 
@@ -124,6 +130,8 @@ public class LSApplayNew extends LSBaseActivity {
                 updata.add(item);
 
                 if ( adapter != null ) adapter.notifyDataSetChanged();
+
+                list.setSelection(updata.size() - 1);
 
                 break;
             default:
@@ -152,42 +160,73 @@ public class LSApplayNew extends LSBaseActivity {
             if ( listmodel.items.get(0).equals("1") && TextUtils.isEmpty(item.name))
             {
                 ok = false;
+                Common.toast("姓名不能为空");
                 return false;
             }
             else if ( listmodel.items.get(1).equals("1") && TextUtils.isEmpty(item.credentials) )
             {
                 ok = false;
+                Common.toast("身份证号码不能为空");
                 return false;
             }
             else if ( listmodel.items.get(2).equals("1") && TextUtils.isEmpty(item.sex) )
             {
                 ok = false;
+//                Common.toast("身份证号码不能为空");
                 return false;
             }
             else if ( listmodel.items.get(3).equals("1") && TextUtils.isEmpty(item.mobile) )
             {
                 ok = false;
+                Common.toast("手机号不能为空");
                 return false;
             }
             else if ( listmodel.items.get(4).equals("1") && TextUtils.isEmpty(item.phone) )
             {
                 ok = false;
+                Common.toast("紧急联系电话不能为空");
                 return false;
             }
             else if ( listmodel.items.get(5).equals("1") && TextUtils.isEmpty(item.qq) )
             {
                 ok = false;
+                Common.toast("QQ不能为空");
                 return false;
             }
             else if ( listmodel.items.get(7).equals("1") && TextUtils.isEmpty(item.postaladdress) )
             {
                 ok = false;
+                Common.toast("邮寄地址不能为空");
                 return false;
             }
             else if ( listmodel.items.get(8).equals("1") && TextUtils.isEmpty(item.address) )
             {
                 ok = false;
+                Common.toast("地址不能为空");
                 return false;
+            }
+            else if ( listmodel.items.get(3).equals("1") && item.mobile.length() != 11 )
+            {
+                ok = false;
+                Common.toast("手机号码格式错误");
+                return false;
+            }
+            else if (listmodel.items.get(1).equals("1") && !TextUtils.isEmpty(item.credentials) )
+            {
+                if (item.credentials.length() != 18)
+                {
+                    ok = false;
+                    Common.toast("身份证号位数不正确");
+                    return false;
+                }
+
+                if (!item.credentials.matches("[0-9]{18}") && !item.credentials.matches("[0-9]{17}(X|x)")
+                        && listmodel.items.get(1).equals("1"))
+                {
+                    ok = false;
+                    Common.toast("身份证号格式不正确");
+                    return false;
+                }
             }
 
         }

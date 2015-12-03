@@ -317,7 +317,9 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+
+
+            <RelativeLayout
                 android:id="@+id/topicPanel"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -328,29 +330,92 @@
                  >
 
                 <ImageView
+                    android:id="@+id/iv_my_topic"
+                    android:layout_marginRight="13sp"
+                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/mine_icon_topic" />
 
                 <TextView
+                    android:layout_toRightOf="@id/iv_my_topic"
+                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="14dp"
                     android:text="我的发帖"
                     android:textColor="#666"
                     android:textSize="14sp" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
 
                 <ImageView
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/mine_icon_right_arrow" />
-            </LinearLayout>
+
+                <View
+
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@id/iv_my_topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_my_join"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_my_join"
+                    android:id="@+id/iv_my_join"
+                    android:layout_marginRight="13dp"
+                    />
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_my_join"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我报名的活动"
+                    android:textColor="#666"
+                    android:textSize="14sp"
+                    />
+
+                <ImageView
+                    android:id="@+id/v_my_join_arrow"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/iv_joinDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_reddot"
+                    />
+
+
+            </RelativeLayout>
+
 
             <View
                 android:layout_width="fill_parent"
@@ -374,6 +439,7 @@
                 android:background="@color/color_1px_stroke" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/applyInfoPanel"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubMyTopicActivity;
+import com.lis99.mobile.club.apply.MyJoinActiveActivity;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.MyTask;
@@ -118,6 +119,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 	 * @param tab
 	 */
 	private int points, rank;
+
+	private View layout_my_join, v_my_join_arrow, iv_joinDot;
+
+
 
 	public void setTab(LSTab tab)
 	{
@@ -278,6 +283,13 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 
 		layout_market.setOnClickListener(this);
 		layout_sys.setOnClickListener(this);
+
+		layout_my_join = findViewById(R.id.layout_my_join);
+		layout_my_join.setOnClickListener(this);
+
+		iv_joinDot = findViewById(R.id.iv_joinDot);
+		v_my_join_arrow = findViewById(R.id.v_my_join_arrow);
+
 	}
 
 	private void getUserInfoTask()
@@ -455,6 +467,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v_sys_arrow.setVisibility( isSysMassage ? View.GONE : View.VISIBLE);
 		v_like_arrow.setVisibility( likeStatus ? View.GONE : View.VISIBLE);
 
+		v_my_join_arrow.setVisibility(haveApplyInfo ? View.GONE : View.VISIBLE);
+
+
 		//红点
 		iv_friendDot.setVisibility(isAttention ? View.VISIBLE : View.GONE);
 		applyInfoDot.setVisibility(haveApplyInfo ? View.VISIBLE : View.GONE);
@@ -464,6 +479,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 				: View.GONE);
 		iv_sysDot.setVisibility(isSysMassage ? View.VISIBLE : View.GONE);
 		likeDot.setVisibility( likeStatus ? View.VISIBLE : View.GONE);
+
+		iv_joinDot.setVisibility(haveApplyInfo ? View.VISIBLE : View.GONE);
+
 	}
 
 	@Override
@@ -615,6 +633,12 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 			{
 				Intent intent = new Intent(getActivity(),
 						LSReceiveMassageActivity.class);
+				startActivity(intent);
+			}
+			else if ( v.getId() == R.id.layout_my_join )
+			{
+				Intent intent = new Intent(getActivity(),
+						MyJoinActiveActivity.class);
 				startActivity(intent);
 			}
 		}

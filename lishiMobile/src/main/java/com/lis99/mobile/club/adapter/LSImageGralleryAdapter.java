@@ -4,9 +4,10 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.widget.TouchImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
@@ -53,11 +54,11 @@ public class LSImageGralleryAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup collection, int position) {
-        ImageView iv = new ImageView(mContext);
-        iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        iv.setLayoutParams(new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
+        TouchImageView iv = new TouchImageView(mContext);
+//        iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        collection.addView(iv, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
         imageLoader.displayImage(photos.get(position), iv,
                 options);
         iv.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,7 @@ public class LSImageGralleryAdapter extends PagerAdapter {
                 }
             }
         });
-        collection.addView(iv);
+        //collection.addView(iv);
         return iv;
     }
 
@@ -88,7 +89,7 @@ public class LSImageGralleryAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view.equals(object);
+        return view == object;
     }
 
 }

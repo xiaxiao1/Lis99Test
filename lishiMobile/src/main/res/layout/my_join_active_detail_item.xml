@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:textColor="#73706e"
+        android:text="未支付"
+        android:textSize="16sp"
+        />
+
+    <ImageView
+        android:layout_marginRight="20dp"
+        android:id="@+id/v_applyinfo_arrow"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mine_icon_right_arrow" />
+
+
+</RelativeLayout>

@@ -27,6 +27,8 @@ public class SysMassageModel extends BaseModel {
 
     public class Lists
     {
+        public int club_id;
+        public int orderid;
         public String nickname;
         public String headicon;
         public String title;
@@ -36,7 +38,7 @@ public class SysMassageModel extends BaseModel {
         public String url;
         //默认没有展开
         public int state = 0;
-//      跳转类型（系统消息跳转类型0：不跳转 1：帖子 2：ulr 3:装备 4：俱乐部 5： 个人主页）
+//      跳转类型（系统消息跳转类型0：不跳转 1：帖子 2：ulr 3:装备 4：俱乐部 5： 个人主页， 6. 报名订单 7.管理报名 ）
         public int skip_type;
 
         public int category;

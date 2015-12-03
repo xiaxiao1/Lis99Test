@@ -2,10 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}"
+    android:background="@color/pull_bg"
+    >
 
 
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title_new" />
 
+
+    <ScrollView
+        android:layout_below="@id/include1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/scroll"
+        >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -13,8 +33,8 @@
             android:background="@drawable/apply_bg"
             android:orientation="vertical"
             android:layout_margin="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:paddingBottom="10dp"
             >
 
@@ -34,7 +54,7 @@
                     android:textColor="@color/color_six"
                     />
 
-                <EditText
+                <TextView
                     android:background="@null"
                     android:id="@+id/nameView"
                     android:layout_width="match_parent"
@@ -43,25 +63,31 @@
                     android:singleLine="true"
                     android:textColor="#666"
                     android:textSize="15sp" >
-                </EditText>
+                </TextView>
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/v_name"
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#eee"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                />
-
             <LinearLayout
+                android:orientation="vertical"
                 android:id="@+id/layout_idcode"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 >
+
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -69,9 +95,10 @@
                     android:text="身份证号："
                     android:textSize="15sp"
                     android:textColor="@color/color_six"
+                    android:id="@+id/name"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/idNumView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,65 +107,32 @@
                     android:singleLine="true"
                     android:textColor="#666"
                     android:textSize="15sp" >
-                </EditText>
+                </TextView>
+                </LinearLayout>
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/v_idcode"
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#eee"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                />
-
-            <RadioGroup
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/radioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <RadioButton
-                    android:id="@+id/radioMan"
-                    style="@style/wrap_wrap"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:text="男"
-                    android:textColor="#666"
-                    android:button="@drawable/club_radio_apply_man"
-                    android:layout_marginRight="20dip"
-                    android:paddingLeft="15dp"
-                     />
-
-                <RadioButton
-                    android:id="@+id/radioWoman"
-                    style="@style/wrap_wrap"
-                    android:gravity="center"
-                    android:text="女"
-                    android:textColor="#666"
-                    android:button="@drawable/club_radio_apply_man"
-                    android:paddingLeft="15dp"
-                    />
-            </RadioGroup>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#eee"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/v_man"/>
 
             <LinearLayout
                 android:id="@+id/layout_phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 >
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -146,9 +140,10 @@
                     android:text="手机号码："
                     android:textSize="15sp"
                     android:textColor="@color/color_six"
+
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/phoneView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -158,24 +153,34 @@
                     android:singleLine="true"
                     android:textColor="#666"
                     android:textSize="15sp" >
-                </EditText>
+                </TextView>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#eee"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/v_phone"/>
+
 
             <LinearLayout
                 android:id="@+id/layout_telOhter"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 >
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -185,36 +190,42 @@
                     android:textColor="@color/color_six"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_telOhter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="区号-固定电话/手机号码"
-                    android:phoneNumber="true"
+                    android:numeric="integer"
                     android:padding="10dip"
                     android:singleLine="true"
                     android:textColor="#666"
                     android:textColorHint="@color/color_six"
                     android:textSize="15sp" >
-                </EditText>
-
+                </TextView>
+                </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#eee"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/v_telOhter"/>
 
             <LinearLayout
                 android:id="@+id/layout_qq"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 >
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -224,7 +235,7 @@
                     android:textColor="@color/color_six"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_QQ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -234,24 +245,30 @@
                     android:singleLine="true"
                     android:textColor="#666"
                     android:textSize="15sp" >
-                </EditText>
-
+                </TextView>
+                </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1px"
-                android:background="#eee"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/v_qq"/>
 
             <LinearLayout
                 android:id="@+id/layout_address"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 >
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -261,58 +278,36 @@
                     android:textColor="@color/color_six"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dip"
                     android:background="@null"
-                    android:gravity="center_vertical"
                     android:maxLines="4"
                     android:minLines="4"
-                    android:padding="10dip"
                     android:textColor="#666"
                     android:textSize="15sp" >
-                </EditText>
-
+                </TextView>
+                </LinearLayout>
             </LinearLayout>
-
-
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:id="@+id/btn_address"
-                android:layout_marginTop="15dip"
-                android:textStyle="bold"
-                android:background="@drawable/btn_apply_city"
-                android:text="选择居住城市"
-                android:textColor="@color/color_six"
-                />
 
         </LinearLayout>
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/apply_tag1"
         android:gravity="center"
         android:text="报名人1"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textColor="#c6b6a7"
         android:textSize="12sp"
         />
 
-    <ImageView
-        android:id="@+id/delete"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/apply_delete"
-        android:layout_alignParentRight="true"
-        />
+    </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

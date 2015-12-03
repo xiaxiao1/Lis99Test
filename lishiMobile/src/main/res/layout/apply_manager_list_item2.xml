@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    >
+
+    <com.lis99.mobile.view.MyListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/listViewStyle"
+        android:background="@drawable/apply_manager_item_content"
+        android:divider="@null"
+        android:dividerHeight="0px"
+        android:padding="10dp"
+        android:id="@+id/list"
+        >
+    </com.lis99.mobile.view.MyListView>
+
+</LinearLayout>

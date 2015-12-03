@@ -533,8 +533,40 @@ public class LSRequestManager
 
 		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
 	}
+// 	报名管理， 通过
+	public void managerApplyPass (int topicId, int clubId, int Id, CallBack callBack)
+	{
+		String url = C.MANAGER_APPLY_PASS;
 
+		String userId = DataManager.getInstance().getUser().getUser_id();
 
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("topicid", topicId);
+		map.put("club_id", clubId);
+		map.put("user_id", userId);
+		map.put("id", Id);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
+	}
+//	报名管理，拒绝
+	public void managerApplyRefuse (int topicId, int clubId, int Id, CallBack callBack)
+	{
+		String url = C.MANAGER_APPLY_REFUSE;
+
+		String userId = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("topicid", topicId);
+		map.put("club_id", clubId);
+		map.put("user_id", userId);
+		map.put("id", Id);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
+	}
 
 	
 }
