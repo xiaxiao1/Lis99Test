@@ -46,8 +46,8 @@ import java.util.HashMap;
 public class LSClubTopicNewActivity  extends LSBaseActivity implements
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener, LSClubTopicImageListener {
 
-    int topicID;
-    int clubID;
+    public int topicID;
+    public int clubID;
     ListView listView;
     LSClubTopicCommentAdapter adapter;
     // 弹出的回复界面

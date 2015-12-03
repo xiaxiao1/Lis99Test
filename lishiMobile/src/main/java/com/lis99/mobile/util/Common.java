@@ -147,7 +147,7 @@ public class Common {
      * @return
      */
     public static boolean clubDelete(String isJoin) {
-        if ( "1".equals(isJoin) || "8".equals(isJoin))
+        if ( "1".equals(isJoin) || "8".equals(isJoin) || "2".equals(isJoin) )
         {
             return true;
         }

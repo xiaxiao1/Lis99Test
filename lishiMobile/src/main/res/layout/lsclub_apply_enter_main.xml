@@ -77,7 +77,6 @@
                 android:textSize="16sp"
                 android:text="@string/temp_string_long"
                 android:maxLines="2"
-                android:minLines="2"
                 android:ellipsize="end"
                 android:lineSpacingExtra="5dp"
                 />
@@ -106,7 +105,10 @@
             android:background="@color/pull_bg"
             android:textColor="#c6b6a7"
             android:text="报名人员（共2人）"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
             />
 
         <View
@@ -137,7 +139,10 @@
             android:background="@color/pull_bg"
             android:textColor="#c6b6a7"
             android:text="支付方式"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
             />
 
         <View

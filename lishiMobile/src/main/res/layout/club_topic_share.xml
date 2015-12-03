@@ -132,12 +132,18 @@
             android:textColor="#666666"
             />
 
-        <ImageView
+        <TextView
+            android:id="@+id/iv_manager_apply"
             style="@style/wrap_wrap"
             android:layout_weight="1"
-            android:src="@drawable/top"
+            android:drawableTop="@drawable/share_manager_apply"
+            android:alpha="1"
+            android:gravity="center_horizontal"
+            android:text="管理报名"
             android:textSize="12sp"
-            android:visibility="invisible" />
+            android:drawablePadding="3dip"
+            android:textColor="#666666"
+            />
 
         <ImageView
             style="@style/wrap_wrap"

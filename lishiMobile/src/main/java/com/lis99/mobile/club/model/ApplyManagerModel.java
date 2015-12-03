@@ -10,7 +10,7 @@ public class ApplyManagerModel extends BaseModel{
 
     public int totPage;
 
-    public ArrayList<Info> info;
+    public Info info;
 
     public class Info
     {

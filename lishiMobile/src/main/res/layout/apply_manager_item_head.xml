@@ -18,6 +18,7 @@
         app:border_width="1px"/>
 
     <LinearLayout
+        android:id="@+id/layout_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -55,7 +56,6 @@
         android:layout_alignBottom="@+id/roundedImageView1"
         android:layout_marginLeft="-8dp"
         android:src="@drawable/club_icon_v" />
-    
-    
+
 
 </RelativeLayout>

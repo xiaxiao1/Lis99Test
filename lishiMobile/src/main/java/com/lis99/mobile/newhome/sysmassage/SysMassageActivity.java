@@ -10,7 +10,8 @@ import android.widget.ListView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.apply.ApplyManager;
+import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -78,8 +79,20 @@ public class SysMassageActivity extends LSBaseActivity implements
                         break;
 //                    帖子
                     case 1:
-                        intent = new Intent(activity, LSClubTopicActivity.class);
+//                        intent = new Intent(activity, LSClubTopicActivity.class);
+//                        intent.putExtra("topicID", item.topicid);
+//                        startActivity(intent);
+                        break;
+                    case 7:
+
+                        intent = new Intent(activity, ApplyManager.class);
                         intent.putExtra("topicID", item.topicid);
+                        intent.putExtra("clubID", item.club_id);
+                        startActivity(intent);
+                        break;
+                    case 6:
+                        intent = new Intent(activity, MyJoinActiveInfoActivity.class);
+                        intent.putExtra("ORDERID", item.orderid);
                         startActivity(intent);
                         break;
                 }

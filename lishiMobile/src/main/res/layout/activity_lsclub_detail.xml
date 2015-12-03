@@ -33,17 +33,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fff"
+        android:background="@drawable/club_detail_bottom_bar_bg"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:background="@color/color_1px_stroke"
-            />
 
         <Button
             android:id="@+id/publishButton"

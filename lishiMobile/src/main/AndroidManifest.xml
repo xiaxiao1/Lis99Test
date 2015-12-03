@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="370"
-    android:versionName="3.7.0" >
+    android:versionCode="400"
+    android:versionName="4.0.0" >
 
 
 
@@ -1074,6 +1074,23 @@
         <activity android:name="com.lis99.mobile.club.apply.LSApplyEnterActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
+        
+        <activity android:name="com.lis99.mobile.club.apply.ApplyManager"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity android:name="com.lis99.mobile.club.apply.MyJoinActiveActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity android:name="com.lis99.mobile.club.apply.MyJoinActiveInfoActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity android:name="com.lis99.mobile.club.apply.MyJoinActivePeopleInfo"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
 
         <activity android:name=".club.LSImageGralleryActivity" >
         </activity>

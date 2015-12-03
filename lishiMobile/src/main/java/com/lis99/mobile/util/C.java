@@ -438,5 +438,13 @@ public class C {
 	public static final String SUBMIT_ORDER_INFO = DOMAIN + "/v4/apply/enroll";
 //	管理报名		http://api.lis99.com/v4/apply/enrollList/[topicid]/[page]
 	public static final String MANAGER_JON_ACTIVE_LIST = DOMAIN + "/v4/apply/enrollList/";
+//	http://api.lis99.com/v4/apply/pass
+	public static final String MANAGER_APPLY_PASS = DOMAIN + "/v4/apply/pass";
+//http://api.lis99.com/v4/apply/refuse
+	public static final String MANAGER_APPLY_REFUSE = DOMAIN + "/v4/apply/refuse";
+//	我报名列表详情			http://api.lis99.com/v4/apply/orderDetail
+	public static final String MY_APPLY_DETAIL = DOMAIN + "/v4/apply/orderDetail";
+//	我报名的活动列表		http://api.lis99.com/v4/user/myApplyActivities/[page]
+	public static final String MY_APPLY_LIST = DOMAIN + "/v4/user/myApplyActivities/";
 
 }

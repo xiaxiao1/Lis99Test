@@ -51,6 +51,8 @@ public class LSApplyEnterActivity extends LSBaseActivity{
     public BaseModel bModel;
 
     private int payType = -1;
+//    不显示网上支付
+    private boolean test = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +104,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         radio_zhifubao = (RadioButton) findViewById(R.id.radio_zhifubao);
         radio_free = (RadioButton) findViewById(R.id.radio_free);
 
-//        currentRadio = radio_off_line;
+//        currentRadio = radio_free;
 
         layout_free.setOnClickListener(this);
         layout_off_line.setOnClickListener(this);
@@ -201,18 +203,42 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                     if ( num == 0 )
                     {
                         layout_free.setVisibility(View.VISIBLE);
+                        if ( i == 0 )
+                        {
+                            currentRadio = radio_free;
+                            currentRadio.setChecked(true);
+                            payType = 0;
+                        }
                     }
                     else if ( num == 1 )
                     {
                         layout_off_line.setVisibility(View.VISIBLE);
+                        if ( i == 0 )
+                        {
+                            currentRadio = radio_off_line;
+                            currentRadio.setChecked(true);
+                            payType = 1;
+                        }
                     }
-                    else if ( num == 2 )
+                    else if ( num == 2 && !test )
                     {
                         layout_weixin.setVisibility(View.VISIBLE);
+                        if ( i == 0 )
+                        {
+                            currentRadio = radio_weixin;
+                            currentRadio.setChecked(true);
+                            payType = 2;
+                        }
                     }
-                    else if ( num == 3 )
+                    else if ( num == 3 && !test )
                     {
                         layout_zhifubao.setVisibility(View.VISIBLE);
+                        if ( i == 0 )
+                        {
+                            currentRadio = radio_zhifubao;
+                            currentRadio.setChecked(true);
+                            payType = 3;
+                        }
                     }
                 }
 
@@ -268,6 +294,13 @@ public class LSApplyEnterActivity extends LSBaseActivity{
      */
     private void SubmitOrderList ()
     {
+
+        if ( payType == -1 )
+        {
+            Common.toast("请选择支付方式");
+            return;
+        }
+
         String userId = DataManager.getInstance().getUser().getUser_id();
 
         int client_version = DeviceInfo.CLIENTVERSIONCODE;
@@ -277,6 +310,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         String url = C.SUBMIT_ORDER_INFO;
 
         String OrderList = ParserUtil.getGsonString(LSApplayNew.updata);
+        OrderList = ParserUtil.getJsonArrayWithName("lists", OrderList);
         Common.log("OrderList==" + OrderList);
         HashMap<String, Object> map = new HashMap<String, Object>();
 
@@ -296,6 +330,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                 bModel = (BaseModel) mTask.getResultModel();
                 if ( bModel != null )
                 {
+                    Common.toast("报名成功");
                     if ( payType == 0 || payType == 1 )
                     {
                         sendResult();

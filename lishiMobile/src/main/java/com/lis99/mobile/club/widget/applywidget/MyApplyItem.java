@@ -56,7 +56,19 @@ public class MyApplyItem extends MyBaseAdapter{
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 6;
+    }
+
+    @Override
     public View setView(int i, View view, ViewGroup viewGroup) {
+
+        getItemViewType(i);
 
         Holder holder = null;
 
@@ -148,9 +160,6 @@ public class MyApplyItem extends MyBaseAdapter{
                 item.sex = "男";
             }
         }
-
-
-
 
         setEditTextChanged(holder.nameView, holder.phoneView, holder.idNumView, holder.et_telOhter, holder.et_QQ, holder.et_address, item);
 
@@ -286,121 +295,122 @@ public class MyApplyItem extends MyBaseAdapter{
 
     }
 
-    /**
-     *      输入框监听
-     * @param name
-     * @param phoneView
-     * @param idNumView
-     * @param et_telOhter
-     * @param et_QQ
-     * @param et_address
-     * @param item
-     */
-    private void setEditTextChanged ( EditText name, EditText phoneView, EditText idNumView, EditText et_telOhter, EditText et_QQ, EditText et_address,  final NewApplyUpData item )
-    {
-        name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
+        /**
+         *      输入框监听
+         * @param name
+         * @param phoneView
+         * @param idNumView
+         * @param et_telOhter
+         * @param et_QQ
+         * @param et_address
+         * @param item
+         */
+        private void setEditTextChanged ( EditText name, EditText phoneView, EditText idNumView, EditText et_telOhter, EditText et_QQ, EditText et_address,  final NewApplyUpData item )
+        {
+            name.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                item.name = charSequence.toString();
-            }
+                }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    item.name = charSequence.toString();
+                }
 
-            }
-        });
+                @Override
+                public void afterTextChanged(Editable editable) {
 
-        phoneView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+            });
 
-            }
+            phoneView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                item.mobile = charSequence.toString();
-            }
+                }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    item.mobile = charSequence.toString();
+                }
 
-            }
-        });
+                @Override
+                public void afterTextChanged(Editable editable) {
 
-        idNumView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+            });
 
-            }
+            idNumView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                item.credentials = charSequence.toString();
-            }
+                }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    item.credentials = charSequence.toString();
+                }
 
-            }
-        });
+                @Override
+                public void afterTextChanged(Editable editable) {
 
-        et_telOhter.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+            });
 
-            }
+            et_telOhter.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                item.phone = charSequence.toString();
-            }
+                }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    item.phone = charSequence.toString();
+                }
 
-            }
-        });
+                @Override
+                public void afterTextChanged(Editable editable) {
 
-        et_QQ.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+            });
 
-            }
+            et_QQ.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                item.qq = charSequence.toString();
-            }
+                }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    item.qq = charSequence.toString();
+                }
 
-            }
-        });
+                @Override
+                public void afterTextChanged(Editable editable) {
 
-        et_address.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+            });
 
-            }
+            et_address.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                item.postaladdress = charSequence.toString();
-            }
+                }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    item.postaladdress = charSequence.toString();
+                }
 
-            }
-        });
+                @Override
+                public void afterTextChanged(Editable editable) {
 
-    }
+                }
+            });
+
+        }
 
     class Holder
     {

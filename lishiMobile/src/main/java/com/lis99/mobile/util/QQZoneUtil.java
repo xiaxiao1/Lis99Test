@@ -3,7 +3,6 @@ package com.lis99.mobile.util;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.tencent.connect.share.QzoneShare;
@@ -35,9 +34,9 @@ public class QQZoneUtil {
         mTencent = Tencent.createInstance(C.TENCENT_APP_ID, activity);
 
         //SSO登录检查
-        if (!ThirdLogin.getInstance().QQInstalled(LSBaseActivity.activity)) {
-            return;
-        }
+//        if (!ThirdLogin.getInstance().QQInstalled(LSBaseActivity.activity)) {
+//            return;
+//        }
 
         final Bundle params = new Bundle();
         params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);

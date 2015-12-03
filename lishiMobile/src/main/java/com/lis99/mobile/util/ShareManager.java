@@ -24,6 +24,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.cache.ImageCacheManager;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.apply.ApplyManager;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.engine.base.CallBack;
@@ -309,6 +310,7 @@ public class ShareManager
 		TextView iv_delete = (TextView) view.findViewById(R.id.iv_delete);
 		final ImageView iv_top = (ImageView) view.findViewById(R.id.iv_top);
 		final TextView tv_top = (TextView) view.findViewById(R.id.tv_top);
+		final TextView iv_manager_apply = (TextView) view.findViewById(R.id.iv_manager_apply);
 		if (clubhead != null)
 		{
 			if ("2".equals(clubhead.getStick()))
@@ -435,6 +437,12 @@ public class ShareManager
 							});
 						}
 						break;
+					case R.id.iv_manager_apply:
+						Intent i = new Intent(LSBaseActivity.activity, ApplyManager.class);
+						i.putExtra("topicID", Common.string2int(topicId));
+						i.putExtra("clubID", Common.string2int(clubId));
+						LSBaseActivity.activity.startActivity(i);
+						break;
 				}
 				// TODO Auto-generated method stub
 				// listener.onSuccess(null, 0, ((Button)
@@ -449,6 +457,7 @@ public class ShareManager
 		iv_friend.setOnClickListener(click);
 		iv_delete.setOnClickListener(click);
 		iv_top.setOnClickListener(click);
+		iv_manager_apply.setOnClickListener(click);
 
 		pop = new PopupWindow(view, LayoutParams.FILL_PARENT,
 				LayoutParams.WRAP_CONTENT);

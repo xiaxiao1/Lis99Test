@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubApplyListActivity;
+import com.lis99.mobile.club.apply.ApplyManager;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
@@ -60,8 +60,12 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+
+
+				if ( adapter == null ) return;
+
 				Intent intent = new Intent(LSMineApplyManageActivity.this,
-						LSClubApplyListActivity.class);
+						ApplyManager.class);
 				intent.putExtra("topicID", Integer.valueOf(adapter.getItem(
 						position).getTopic_id()));
 				intent.putExtra("clubID", Integer.valueOf(adapter.getItem(
@@ -69,8 +73,8 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 				intent.putExtra("clubName", adapter.getItem(
 						position).getClub_title());
 				startActivity(intent);
+
 				//更新红点消失
-				if ( adapter == null ) return;
 				adapter.onClick(position);
 
 			}

@@ -20,11 +20,10 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
-import com.lis99.mobile.club.LSClubApplyActivity;
-import com.lis99.mobile.club.LSClubApplyListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
+import com.lis99.mobile.club.apply.LSApplayNew;
 import com.lis99.mobile.club.model.ClubTopicNewActiveInfo;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
@@ -426,10 +425,10 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                 }
             }
         }
-        else
-        {
-            btn_join.setText("查看已报名用户");
-        }
+//        else
+//        {
+//            btn_join.setText("查看已报名用户");
+//        }
 
         getHeight(iv_head);
 
@@ -446,21 +445,28 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
             getContext().startActivity(intent);
         } else
         {
-            if ("4".equals(model.is_jion) || "-1".equals(model.is_jion))
-            {
-                Intent intent = new Intent(getContext(), LSClubApplyActivity.class);
-                intent.putExtra("clubID", Common.string2int(model.club_id));
-                intent.putExtra("topicID", Common.string2int(model.topic_id));
-                intent.putExtra("clubName", model.club_title);
-                main.startActivityForResult(intent, 997);
-            } else
-            {
-                Intent intent = new Intent(getContext(), LSClubApplyListActivity.class);
-                intent.putExtra("clubID", Common.string2int(model.club_id));
-                intent.putExtra("topicID", Common.string2int(model.topic_id));
-                intent.putExtra("clubName", model.club_title);
-                getContext().startActivity(intent);
-            }
+
+            Intent intent = new Intent(getContext(), LSApplayNew.class);
+            intent.putExtra("clubID", main.clubID);
+            intent.putExtra("topicID", Common.string2int(model.topic_id));
+            intent.putExtra("clubName", model.title);
+            main.startActivityForResult(intent, 997);
+
+//            if ("4".equals(model.is_jion) || "-1".equals(model.is_jion))
+//            {
+//                Intent intent = new Intent(getContext(), LSClubApplyActivity.class);
+//                intent.putExtra("clubID", Common.string2int(model.club_id));
+//                intent.putExtra("topicID", Common.string2int(model.topic_id));
+//                intent.putExtra("clubName", model.club_title);
+//                main.startActivityForResult(intent, 997);
+//            } else
+//            {
+//                Intent intent = new Intent(getContext(), LSClubApplyListActivity.class);
+//                intent.putExtra("clubID", Common.string2int(model.club_id));
+//                intent.putExtra("topicID", Common.string2int(model.topic_id));
+//                intent.putExtra("clubName", model.club_title);
+//                getContext().startActivity(intent);
+//            }
         }
     }
 
@@ -518,12 +524,12 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                     return;
                 }
                 //管理员可以直接进入报名管理列表
-                String uid = DataManager.getInstance().getUser().getUser_id();
-                if (Common.replyDelete(model.is_jion, uid))
-                {
-                    doAction();
-                    return;
-                }
+//                String uid = DataManager.getInstance().getUser().getUser_id();
+//                if (Common.replyDelete(model.is_jion, uid))
+//                {
+//                    doAction();
+//                    return;
+//                }
 
                 if ( !main.isShared )
                 {

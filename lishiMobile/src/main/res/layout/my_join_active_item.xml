@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    >
+
+    <View
+        android:id="@+id/view_line"
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/roundedImageView1"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitXY"
+        app:corner_radius="3dp"
+        app:border_color="#e8e8e8"
+        app:border_width="1px"
+        android:layout_marginRight="8dp"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/roundedImageView1"
+        android:layout_marginRight="8dp"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/color_six"
+            android:text="@string/temp_string_long"
+            android:id="@+id/tv_title"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:id="@+id/tv_data"
+            android:textSize="12sp"
+            android:textColor="@color/color_nine"
+            android:layout_marginTop="5dp"
+            android:text="@string/temp_string"
+            />
+
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_status"
+            android:src="@drawable/pay_status_enter"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignBottom="@id/roundedImageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/manager_pay_state_bg"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_pay_state"
+            android:textColor="#73706e"
+            android:text="未支付"
+            android:textSize="12sp"
+            android:layout_marginRight="3dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pay_weixin"
+            android:id="@+id/iv_pay_state"
+            />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_alignLeft="@id/roundedImageView1"
+        android:layout_below="@id/roundedImageView1"
+        android:background="#eee"
+        android:layout_marginTop="10dp"
+
+        />
+
+
+</RelativeLayout>
