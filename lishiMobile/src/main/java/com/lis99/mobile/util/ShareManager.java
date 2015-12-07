@@ -247,7 +247,23 @@ public class ShareManager
 			final String topicId, boolean b, View parent,
 			final CallBack listener )
 	{
-		return showPopWindowInShare(clubhead, clubId, Image_Url, title, shareTxt, topicId, b, parent, listener, "" );
+		return showPopWindowInShare(clubhead, clubId, Image_Url, title, "", topicId, b, parent, listener, "" );
+	}
+
+	/**
+	 * 			网页分享调用
+	 * @param title
+	 * @param content
+	 * @param image_url
+	 * @param url
+	 * @param layout_main
+	 * @return
+	 */
+	public PopupWindow showPopWindoInWeb ( String title, String content, String image_url, String url, View layout_main )
+	{
+		return showPopWindowInShare(null, "",
+				image_url, title, content,
+				"", false, layout_main, null, url);
 	}
 
 	/**
@@ -265,7 +281,7 @@ public class ShareManager
 	 */
 	public PopupWindow showPopWindowInShare(
 			final ShareInterface clubhead, final String clubId,
-			final String Image_Url, final String title, final String shareTxt,
+			final String Image_Url, final String title, String shareTxt,
 			final String topicId, boolean b, View parent,
 			final CallBack listener, String sharedUrl ) {
 		if (pop != null && pop.isShowing()) {
@@ -278,6 +294,12 @@ public class ShareManager
 			sharedUrl = shareUrl;
 		}
 
+//		String content = shareTxt;
+
+		if ( TextUtils.isEmpty(shareTxt) )
+		{
+			shareTxt = this.shareText;
+		}
 
 
 		Common.log("activity=" + LSBaseActivity.activity.getClass().getName());

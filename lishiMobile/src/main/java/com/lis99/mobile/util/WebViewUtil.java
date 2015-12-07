@@ -103,6 +103,11 @@ public class WebViewUtil {
             });
         }
 
+        public void shareTo (String title, String content, String image_url, String url)
+        {
+
+        }
+
 
     }
 

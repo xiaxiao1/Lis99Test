@@ -1095,6 +1095,11 @@
         <activity android:name=".club.LSImageGralleryActivity" >
         </activity>
 
+        <!-- webview分享-->
+        <activity android:name="com.lis99.mobile.webview.ShareWebView"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
 
     </application>
 
