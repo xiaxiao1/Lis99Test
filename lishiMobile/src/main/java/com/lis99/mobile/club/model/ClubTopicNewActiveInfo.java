@@ -103,6 +103,11 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
         this.stick = s;
     }
 
+    @Override
+    public String getCategory() {
+        return "1";
+    }
+
 
     public class Taglist
     {

@@ -40,7 +40,6 @@ import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
-import com.lis99.mobile.webview.ShareWebView;
 import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -226,6 +225,7 @@ public class FragmentChoicenessList extends Fragment implements
                         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                                 long arg3) {
 
+
                             if (adapter == null) return;
                             ChoicenessModel.Omnibuslist item = (ChoicenessModel.Omnibuslist) adapter.getItem(arg2 - 1);
                             if (item == null) return;
@@ -315,10 +315,12 @@ public class FragmentChoicenessList extends Fragment implements
 
                 break;
             case R.id.layout_nearby:
-//                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
-                intent = new Intent(getActivity(), ShareWebView.class);
-                intent.putExtra("URL", "http://m.lis99.com/club/test/shared");
-                startActivity(intent);
+                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
+
+//                webview调用原生分享菜单
+//                intent = new Intent(getActivity(), ShareWebView.class);
+//                intent.putExtra("URL", "http://m.lis99.com/club/test/shared");
+//                startActivity(intent);
 
 
                 break;

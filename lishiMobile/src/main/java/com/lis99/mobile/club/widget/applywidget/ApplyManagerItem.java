@@ -92,6 +92,15 @@ public class ApplyManagerItem extends MyBaseAdapter {
 
         holder.tv_data.setText("报名时间：" + item.createdate);
 
+        if ( item.is_vip == 1 )
+        {
+            holder.vipStar.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.vipStar.setVisibility(View.GONE);
+        }
+
         ArrayList<Object> list = new ArrayList<Object>();
 
         for ( int n = 0; n < item.apply_info.size(); n++ )

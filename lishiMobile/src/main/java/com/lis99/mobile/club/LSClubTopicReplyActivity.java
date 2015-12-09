@@ -3,8 +3,10 @@ package com.lis99.mobile.club;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -22,6 +24,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.ActivityPattern1;
+import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -38,6 +41,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+
 /**
  * 				回复页
  * @author yy
@@ -85,6 +91,10 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 
 	private RelativeLayout parentLayout;
 
+	String url;
+
+	private final static int PREVIEW = 1001;
+
 //	private ImageView emoticonsButton;
 	
 	@Override
@@ -113,9 +123,17 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 
 		
 		initViews();
+
+		processImage(getIntent());
 		
 	}
-	
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		processImage(intent);
+	}
+
 	@Override
 	protected void initViews() {
 		// TODO Auto-generated method stub
@@ -127,6 +145,8 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 		replyImageView = (ImageView)findViewById(R.id.imageView);
 		delButton = (Button) findViewById(R.id.delButton);
 		delButton.setOnClickListener(this);
+
+		replyImageView.setOnClickListener(this);
 
 		bottomBar_img = (LinearLayout) findViewById(R.id.bottomBar_img);
 		bottomBar_img.setOnClickListener(this);
@@ -313,12 +333,69 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 								break;
 							case 1:
 								// 相册
-								BitmapUtil
-										.doPickPhotoFromGallery(LSClubTopicReplyActivity.this);
+								Intent intent = new Intent(LSClubTopicReplyActivity.this, LSImagePicker.class);
+								intent.putExtra("isReply", true);
+								startActivity(intent);
+
 								break;
 						}
 					}
 				});
+	}
+
+	private void processImage(Intent intent) {
+		ArrayList<String> uris = (ArrayList<String>) intent.getStringArrayListExtra("uris");
+		if (uris != null && uris.size() > 0) {
+			url = uris.get(0);
+			new LoadImageAsynTask().execute(url);
+		}
+	}
+
+	public class LoadImageAsynTask extends AsyncTask<String, Integer, Bitmap> {
+		@Override
+		protected Bitmap doInBackground(String... params) {
+			String url = params[0];
+			if (url != null) {
+				BitmapFactory.Options options = new BitmapFactory.Options();
+				options.inJustDecodeBounds = true;
+				BitmapFactory.decodeFile(url, options);
+				int width = options.outWidth;
+				int height = options.outHeight;
+				double scaleWidth = width / 600;
+				double scaleHeight = height / 1000;
+				double maxScale = Math.max(scaleHeight, scaleWidth);
+
+				double scale = 1.0;
+				while (scale < maxScale) {
+					scale = scale * 2.0;
+				}
+
+				try {
+					options.inJustDecodeBounds = false;
+					options.inSampleSize = (int) scale;
+					options.inPreferredConfig = Bitmap.Config.RGB_565;
+					options.inInputShareable = true;
+					options.inPurgeable = true;
+					Bitmap bitmap = BitmapFactory.decodeFile(url, options);
+					return bitmap;
+
+
+				} catch (OutOfMemoryError e) {
+
+				}
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap bitmap) {
+			super.onPostExecute(bitmap);
+			if (bitmap != null) {
+				LSClubTopicReplyActivity.this.bitmap = bitmap;
+				imagePanel.setVisibility(View.VISIBLE);
+				replyImageView.setImageBitmap(bitmap);
+			}
+		}
 	}
 	
 	
@@ -342,6 +419,16 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 					bitmap = BitmapUtil.getThumbnail(file, this);
 					imagePanel.setVisibility(View.VISIBLE);
 					replyImageView.setImageBitmap(bitmap);
+					break;
+				case PREVIEW:
+					if (data != null) {
+						boolean delete = data.getBooleanExtra("delete", false);
+						if (delete) {
+							bitmap = null;
+							replyImageView.setImageBitmap(null);
+							imagePanel.setVisibility(View.GONE);
+						}
+					}
 					break;
 			}
 //			changeButtonBg();
@@ -382,6 +469,14 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 			case R.id.titleRight:
 				rightAction();
 				break;
+			case R.id.imageView:
+			{
+				Intent intent = new Intent(this, LSPublishImagePreviewActivity.class);
+				DemoApplication.publishBitmap = new WeakReference<Bitmap>(bitmap);
+				startActivityForResult(intent, PREVIEW);
+				return;
+			}
+
 		}
 	}
 

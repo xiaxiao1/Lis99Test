@@ -159,6 +159,26 @@ public class MyActivityWebView extends LSBaseActivity
         LSJavaScriptInterface() {
         }
 
+		/**
+		 * 		调用原生分享
+		 * @param title
+		 * @param content
+		 * @param image_url
+		 * @param url
+		 */
+		@JavascriptInterface
+		public void shareTo (final String title, final String content, final String image_url, final String url)
+		{
+			Common.log("title ="+title+"\n content="+content+"\n image_url="+image_url+"\n url="+url);
+
+			mHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					pop = ShareManager.getInstance().showPopWindoInWeb(title, content, image_url, url, webView);
+				}
+			});
+		}
+
         /**
          * This is not called on the UI thread. Post a runnable to invoke
          * 这不是呼吁界面线程。发表一个运行调用

@@ -176,6 +176,11 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 		this.stick = s;
 	}
 
+	@Override
+	public String getCategory() {
+		return category;
+	}
+
 
 	public class Topic_image
 	{

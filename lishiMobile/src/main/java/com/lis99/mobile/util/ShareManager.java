@@ -356,6 +356,16 @@ public class ShareManager
 			layoutmanager.setVisibility(View.GONE);
 		}
 
+		//话题贴不显示
+		if ( clubhead != null && "1".equals(clubhead.getCategory()))
+		{
+			iv_manager_apply.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			iv_manager_apply.setVisibility(View.INVISIBLE);
+		}
+
 		final String finalSharedUrl = sharedUrl;
 		OnClickListener click = new OnClickListener()
 		{

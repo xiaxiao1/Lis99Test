@@ -15,6 +15,8 @@ import com.lis99.mobile.util.PushManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.umeng.analytics.MobclickAgent;
 
+import java.lang.ref.WeakReference;
+
 public class DemoApplication extends Application {
 
 	private static DemoApplication mInstance = null;
@@ -22,6 +24,8 @@ public class DemoApplication extends Application {
 	private BDLocation location;
 	public int versionCode;
 	public String versionName;
+
+	public static WeakReference<Bitmap> publishBitmap;
 	
 
 	public BDLocation getLocation() {

@@ -275,14 +275,24 @@ public class LSApplayNew extends LSBaseActivity {
                                 .getResultModel();
                         if (listmodel.items == null) {
                             listmodel.items = new ArrayList<String>();
+//                            姓名
                             listmodel.items.add("1");
+//                            身份证号
                             listmodel.items.add("0");
+//                            性别
                             listmodel.items.add("0");
+//                            手机号
                             listmodel.items.add("0");
+//                            紧急电话
                             listmodel.items.add("0");
+//                            QQ
                             listmodel.items.add("0");
+//                              没用
                             listmodel.items.add("0");
+
+                            //                            邮寄地址
                             listmodel.items.add("0");
+                            //                            居住城市
                             listmodel.items.add("0");
                             // return;
                         }

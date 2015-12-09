@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="380"
-    android:versionName="3.8.0" >
+    android:versionCode="390"
+    android:versionName="3.9.0" >
 
 
 
@@ -181,6 +181,14 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Translucent" >
         </activity>
+        <!--支付确认-->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            >
+        </activity>
+
         <activity
             android:name=".entry.LsActivityInfo"
             android:screenOrientation="portrait"
@@ -731,6 +739,7 @@
         <activity
             android:name=".club.LSClubPublish2Activity"
             android:label="@string/title_activity_lsclub_publish2"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="adjustResize" >
@@ -738,6 +747,7 @@
         <activity
             android:name=".club.LSClubTopicReplyActivity"
             android:label="@string/title_activity_lsclub_topic_reply"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="adjustResize" >
@@ -1101,6 +1111,20 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
 
+        <activity
+            android:name=".club.LSImagePicker"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".club.LSImagePickerPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity android:name=".club.LSPublishImagePreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity>
     </application>
 
 

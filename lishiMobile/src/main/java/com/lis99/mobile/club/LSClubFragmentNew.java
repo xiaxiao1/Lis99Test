@@ -3,6 +3,7 @@ package com.lis99.mobile.club;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.ScrollTopUtil;
-
+import com.lis99.mobile.util.ShareManager;
 
 public class LSClubFragmentNew extends LSFragment implements
 		OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener, ScrollTopUtil.ToTop
@@ -59,9 +60,12 @@ public class LSClubFragmentNew extends LSFragment implements
 
 	private RelativeLayout titleLeft, titleRight;
 
+	private Handler mHandler;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		mHandler = new Handler();
 
 	}
 
@@ -135,6 +139,26 @@ public class LSClubFragmentNew extends LSFragment implements
 	// 这是他定义由 addJavascriptInterface 提供的一个Object
 	final class LSJavaScriptInterface {
 		LSJavaScriptInterface() {
+		}
+
+		/**
+		 * 		调用原生分享
+		 * @param title
+		 * @param content
+		 * @param image_url
+		 * @param url
+		 */
+		@JavascriptInterface
+		public void shareTo (final String title, final String content, final String image_url, final String url)
+		{
+			Common.log("title ="+title+"\n content="+content+"\n image_url="+image_url+"\n url="+url);
+
+			mHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					pop = ShareManager.getInstance().showPopWindoInWeb(title, content, image_url, url, webView);
+				}
+			});
 		}
 
 		//跳转到排行

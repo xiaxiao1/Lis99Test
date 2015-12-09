@@ -1,16 +1,23 @@
 package com.lis99.mobile.choiceness;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.PopupWindow;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LocationUtil;
+import com.lis99.mobile.util.ShareManager;
 import com.lis99.mobile.util.WebViewUtil;
 
 /**
@@ -26,6 +33,8 @@ public class MyWebViewTianJin extends LSBaseActivity {
     private LocationUtil location;
 
     private View layout_main;
+
+    private PopupWindow pop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,7 +76,7 @@ public class MyWebViewTianJin extends LSBaseActivity {
                 // TODO Auto-generated method stub
                 DialogManager.getInstance().stopWaitting();
                 location.setGlocation(null);
-                if (latitude == 0 || location == null ) {
+                if (latitude == 0 || location == null) {
                     webView.setVisibility(View.GONE);
                     return;
                 }
@@ -89,11 +98,76 @@ public class MyWebViewTianJin extends LSBaseActivity {
 
     }
 
+    class TianJinJS
+    {
+        public TianJinJS()
+        {
+
+        }
+
+        /**
+         * 		调用原生分享
+         * @param title
+         * @param content
+         * @param image_url
+         * @param url
+         */
+        @JavascriptInterface
+        public void shareTo (final String title, final String content, final String image_url, final String url)
+        {
+            Common.log("title =" + title + "\n content=" + content + "\n image_url=" + image_url + "\n url=" + url);
+
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    pop = ShareManager.getInstance().showPopWindoInWeb(title, content, image_url, url, webView);
+                }
+            });
+        }
+
+        //		跳转铁子
+        @JavascriptInterface
+        public void goTopicInfo ( final int topic_id, int type )
+        {
+            final int id = type;
+            LSBaseActivity.activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = null;
+                    switch (id) {
+                        //            话题
+                        case 0:
+//            线下贴
+                        case 1:
+                            intent = new Intent(LSBaseActivity.activity, LSClubTopicActivity.class);
+                            intent.putExtra("topicID", topic_id);
+                            LSBaseActivity.activity.startActivity(intent);
+                            break;
+//            线上贴
+                        case 2:
+                            intent = new Intent(LSBaseActivity.activity, LSClubTopicNewActivity.class);
+                            intent.putExtra("topicID", topic_id);
+                            LSBaseActivity.activity.startActivity(intent);
+                            break;
+                    }
+                }
+            });
+        }
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if ( location != null )
             location.stopLocation();
+
+        if ( pop != null && pop.isShowing() )
+        {
+            pop.dismiss();
+            pop = null;
+        }
+
     }
 
     private void init()
@@ -120,12 +194,14 @@ public class MyWebViewTianJin extends LSBaseActivity {
 
         // 看这里用到了 addJavascriptInterface 这就是我们的重点中的重点
         // 我们再看他的DemoJavaScriptInterface这个类。还要这个类一定要在主线程中
-        webView.addJavascriptInterface(WebViewUtil.getInstance().getTianJinJS(), "LS");
+        webView.addJavascriptInterface(new TianJinJS(), "LS");
 
         webView.loadUrl(url);
 
 //        webView.loadUrl("file:///android_asset/web/test.html");
     }
+
+
 
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

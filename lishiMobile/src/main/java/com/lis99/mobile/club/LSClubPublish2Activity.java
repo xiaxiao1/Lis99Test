@@ -3,7 +3,9 @@ package com.lis99.mobile.club;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -17,6 +19,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.ActivityPattern1;
+import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSScoreManager;
@@ -31,6 +34,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 public class LSClubPublish2Activity extends LSBaseActivity {
 	EditText titleView;
@@ -40,6 +45,9 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 	View imagePanel;
 	View mainView;
 	int clubID;
+	String url;
+
+	private final static int PREVIEW = 1001;
 	
 //	Drawable add, noadd;
 
@@ -66,6 +74,63 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		initViews();
 		setTitle("发布话题");
 
+		processImage(getIntent());
+
+	}
+
+	private void processImage(Intent intent) {
+		ArrayList<String> uris = (ArrayList<String>) intent.getStringArrayListExtra("uris");
+		if (uris != null && uris.size() > 0) {
+			url = uris.get(0);
+			new LoadImageAsynTask().execute(url);
+		}
+	}
+
+	public class LoadImageAsynTask extends AsyncTask<String, Integer, Bitmap> {
+		@Override
+		protected Bitmap doInBackground(String... params) {
+			String url = params[0];
+			if (url != null) {
+				BitmapFactory.Options options = new BitmapFactory.Options();
+				options.inJustDecodeBounds = true;
+				BitmapFactory.decodeFile(url, options);
+				int width = options.outWidth;
+				int height = options.outHeight;
+				double scaleWidth = width / 600;
+				double scaleHeight = height / 1000;
+				double maxScale = Math.max(scaleHeight, scaleWidth);
+
+				double scale = 1.0;
+				while (scale < maxScale) {
+					scale = scale * 2.0;
+				}
+
+				try {
+					options.inJustDecodeBounds = false;
+					options.inSampleSize = (int) scale;
+					options.inPreferredConfig = Bitmap.Config.RGB_565;
+					options.inInputShareable = true;
+					options.inPurgeable = true;
+					Bitmap bitmap = BitmapFactory.decodeFile(url, options);
+					return bitmap;
+
+
+				} catch (OutOfMemoryError e) {
+
+				}
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap bitmap) {
+			super.onPostExecute(bitmap);
+			if (bitmap != null) {
+				LSClubPublish2Activity.this.bitmap = bitmap;
+				imagePanel.setVisibility(View.VISIBLE);
+				imageView.setImageBitmap(bitmap);
+			}
+		}
 	}
 
 	@Override
@@ -164,6 +229,12 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		});
 	}
 
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		processImage(intent);
+	}
+
 	private void setresult ()
 	{
 		LSScoreManager.getInstance().sendScore(LSScoreManager.pubtalktopic);
@@ -180,6 +251,11 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 			imageView.setImageBitmap(null);
 			imagePanel.setVisibility(View.GONE);
 //			changeButtonBg();
+			return;
+		} else if (v.getId() == imageView.getId()) {
+			Intent intent = new Intent(this, LSPublishImagePreviewActivity.class);
+			DemoApplication.publishBitmap = new WeakReference<Bitmap>(bitmap);
+			startActivityForResult(intent, PREVIEW);
 			return;
 		}
 
@@ -215,6 +291,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 
 
 		imageView = (ImageView) findViewById(R.id.imageView);
+		imageView.setOnClickListener(this);
 		imagePanel = findViewById(R.id.imagePanel);
 		
 		mainView = findViewById(R.id.main);
@@ -268,8 +345,13 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 							break;
 						case 1:
 							// 相册
-							BitmapUtil
-									.doPickPhotoFromGallery(LSClubPublish2Activity.this);
+							//BitmapUtil
+							//		.doPickPhotoFromGallery(LSClubPublish2Activity.this);
+
+
+							Intent intent = new Intent(LSClubPublish2Activity.this, LSImagePicker.class);
+							startActivity(intent);
+
 							break;
 						}
 					}
@@ -301,6 +383,16 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 				bitmap = BitmapUtil.getThumbnail(file, this);
 				imagePanel.setVisibility(View.VISIBLE);
 				imageView.setImageBitmap(bitmap);
+				break;
+			case PREVIEW:
+				if (data != null) {
+					boolean delete = data.getBooleanExtra("delete", false);
+					if (delete) {
+						bitmap = null;
+						imageView.setImageBitmap(null);
+						imagePanel.setVisibility(View.GONE);
+					}
+				}
 				break;
 			}
 //			changeButtonBg();

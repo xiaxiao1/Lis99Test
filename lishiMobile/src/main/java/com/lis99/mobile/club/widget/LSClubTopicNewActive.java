@@ -409,8 +409,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
 
         // 权限1创始人，2管理员，4成员,8网站编辑
-        if ("4".equals(model.is_jion) || "-1".equals(model.is_jion))
-        {
+//        if ("4".equals(model.is_jion) || "-1".equals(model.is_jion))
+//        {
             //已报名
             if (  model.applyStauts == 1 )
             {
@@ -424,7 +424,7 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                     applyPast();
                 }
             }
-        }
+//        }
 //        else
 //        {
 //            btn_join.setText("查看已报名用户");
