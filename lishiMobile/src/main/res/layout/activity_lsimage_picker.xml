@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pull_bg">
+
+    <RelativeLayout
+        android:id="@+id/titlehead"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height" >
+
+        <ImageView style="@style/fill_fill"
+            android:id="@+id/iv_title_bg"
+            android:background="@drawable/title_bar_bg"
+            />
+
+        <RelativeLayout
+            android:id="@+id/titleLeft"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dip"
+            >
+
+            <ImageView
+                android:id="@+id/titleLeftImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ls_page_back_icon"
+                android:layout_centerVertical="true"
+
+                />
+        </RelativeLayout>
+
+
+
+           <Button
+               android:id="@+id/okButton"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_marginRight="12dp"
+               android:layout_centerVertical="true"
+               android:background="@drawable/image_picker_ok_btn"
+               android:onClick="onClick"
+               android:textSize="@dimen/ls_text_14sp"
+               android:enabled="false"/>
+
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="相机胶卷"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:textColor="@color/title_bar_text"
+            android:textSize="@dimen/title_text_height" />
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_marginTop="@dimen/title_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="120dp"
+            android:horizontalSpacing="3dp"
+            android:listSelector="@null"
+            android:numColumns="3"
+
+            android:verticalSpacing="3dp"></GridView>
+
+
+    </FrameLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f0ffffff"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/color_1px_stroke"
+            />
+
+        <TextView
+            android:id="@+id/all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="所有图片"
+            android:textColor="#fff"
+            android:visibility="gone"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:text="预览"
+            android:onClick="onClick"
+            android:background="@drawable/btn_bg_image_preview"
+            android:textColor="#999"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+
+
+
+</FrameLayout>

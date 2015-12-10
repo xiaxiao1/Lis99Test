@@ -11,15 +11,15 @@ android {
         tuiguang1 {}
 //        sougou {}
 //        baidu {}
-//        pp{}
+        pp{}
 //        oppo {}
 //        oppo {}
-        gfan {}
+//        gfan {}
 //        zs360 {}
 //        huawei {}
 //        lis99test {}
-        jinli {}
-//        xiaomi {}
+//        jinli {}
+        xiaomi {}
     }
 
     productFlavors.all {
