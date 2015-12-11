@@ -1,258 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/pull_bg"
+              android:orientation="vertical"
     >
 
     <include
         android:id="@+id/include1"
+        layout="@layout/activity_title_new"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        layout="@layout/activity_title_new" />
+        android:layout_alignParentTop="true"/>
 
     <View
         style="@style/fill_wrap"
         android:layout_height="8dip"
-        android:background="@color/pull_bg" />
+        android:background="@color/pull_bg"/>
 
     <View
         style="@style/fill_wrap"
         android:layout_height="1px"
-        android:background="@color/color_1px_stroke" />
+        android:background="@color/color_1px_stroke"/>
 
 
     <ScrollView
+        style="@style/scroll"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="@style/scroll"
-        >
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
         >
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:background="@color/white"
-            android:padding="10dp"
             >
 
-            <TextView
-                android:id="@+id/tv_title"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="5dp"
+                    android:maxLines="2"
+                    android:text="@string/temp_string"
+                    android:textColor="@color/color_six"
+                    android:textSize="16sp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_pay"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="人均费用500.00元"
+                        android:textColor="@color/color_nine"
+                        android:textSize="12sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_pay_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="人均费用500.00元"
+                        android:textColor="@color/color_nine"
+                        android:textSize="12sp"
+                        />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+            <TextView
+                style="@style/fill_wrap"
+                android:layout_height="wrap_content"
+                android:background="@color/pull_bg"
+                android:paddingBottom="6dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="6dp"
+                android:text="报名状态"
+                android:textColor="#c6b6a7"
+                />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+
+            <TextView
+                android:id="@+id/tv_join_state"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/temp_string"
                 android:textColor="@color/color_six"
                 android:textSize="16sp"
-                android:text="@string/temp_string"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:lineSpacingExtra="5dp"
                 />
+
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+            <TextView
+                android:id="@+id/tv_joinNum"
+                style="@style/fill_wrap"
+                android:layout_height="wrap_content"
+                android:background="@color/pull_bg"
+                android:paddingBottom="6dp"
+                android:paddingLeft="10dp"
+
+                android:paddingRight="10dp"
+                android:paddingTop="6dp"
+                android:text="报名人员（共2人）"
+                android:textColor="#c6b6a7"
+                />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+            <com.lis99.mobile.view.MyListView
+                android:id="@+id/list"
+                style="@style/listViewStyle"
+                android:background="@color/white"
+                android:divider="#eee"
+                android:dividerHeight="1px"
+                ></com.lis99.mobile.view.MyListView>
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+            <TextView
+                style="@style/fill_wrap"
+                android:layout_height="wrap_content"
+                android:background="@color/pull_bg"
+                android:paddingBottom="6dp"
+                android:paddingLeft="10dp"
+
+                android:paddingRight="10dp"
+                android:paddingTop="6dp"
+                android:text="支付方式"
+                android:textColor="#c6b6a7"
+                />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_pay_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temp_string"
+                    android:textColor="@color/color_six"
+                    android:textSize="16sp"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_pay_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/pay_free"
+                    />
+
+            </LinearLayout>
+
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+            <TextView
+                style="@style/fill_wrap"
+                android:layout_height="wrap_content"
+                android:background="@color/pull_bg"
+                android:paddingBottom="6dp"
+                android:paddingLeft="10dp"
+
+                android:paddingRight="10dp"
+                android:paddingTop="6dp"
+                android:text="支付状态"
+                android:textColor="#c6b6a7"
+                />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@color/white"
                 >
 
                 <TextView
-                    android:id="@+id/tv_pay"
-
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_pay_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_nine"
-                    android:textSize="12sp"
-                    android:text="人均费用500.00元"
+                    android:text="@string/temp_string"
+                    android:textColor="@color/color_six"
+                    android:textSize="16sp"
                     />
 
-                <TextView
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/tv_pay_all"
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_nine"
-                    android:textSize="12sp"
-                    android:text="人均费用500.00元"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/pay_now_btn"
+                    android:id="@+id/btn_pay"
                     />
 
             </RelativeLayout>
 
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
 
 
-        </LinearLayout>
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <TextView
-            style="@style/fill_wrap"
-            android:layout_height="wrap_content"
-            android:background="@color/pull_bg"
-            android:textColor="#c6b6a7"
-            android:text="报名状态"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
-            />
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-
-        <TextView
-            android:id="@+id/tv_join_state"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:textColor="@color/color_six"
-            android:textSize="16sp"
-            android:text="@string/temp_string"
-            />
-
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <TextView
-            android:id="@+id/tv_joinNum"
-            style="@style/fill_wrap"
-            android:layout_height="wrap_content"
-            android:background="@color/pull_bg"
-            android:textColor="#c6b6a7"
-            android:text="报名人员（共2人）"
-
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
-            />
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <com.lis99.mobile.view.MyListView
-            android:background="@color/white"
-            style="@style/listViewStyle"
-            android:divider="#eee"
-            android:dividerHeight="1px"
-            android:id="@+id/list"
-            ></com.lis99.mobile.view.MyListView>
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <TextView
-            style="@style/fill_wrap"
-            android:layout_height="wrap_content"
-            android:background="@color/pull_bg"
-            android:textColor="#c6b6a7"
-            android:text="支付方式"
-
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
-            />
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical"
-            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_six"
-                android:textSize="16sp"
-                android:text="@string/temp_string"
-                android:id="@+id/tv_pay_type"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:textColor="#ed6969"
+                android:id="@+id/tv_pay_info"
+                android:textSize="12sp"
+                android:text=""
+                android:singleLine="true"
                 />
 
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pay_free"
-                android:id="@+id/iv_pay_type"
-                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/color_nine"
+                android:id="@+id/tv_pay_phone"
+                android:textSize="12sp"
+                android:text="如果您有支付方面的疑问，敬请致电：010-53525135"
+                android:singleLine="true"
+                android:layout_marginBottom="10dp"
                 />
 
+
         </LinearLayout>
-
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <TextView
-            style="@style/fill_wrap"
-            android:layout_height="wrap_content"
-            android:background="@color/pull_bg"
-            android:textColor="#c6b6a7"
-            android:text="支付状态"
-
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
-            />
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-        <TextView
-            android:id="@+id/tv_pay_state"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:textColor="@color/color_six"
-            android:textSize="16sp"
-            android:text="@string/temp_string"
-            android:paddingLeft="10dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            />
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="1px"
-            android:background="@color/color_1px_stroke" />
-
-    </LinearLayout>
 
 
     </ScrollView>

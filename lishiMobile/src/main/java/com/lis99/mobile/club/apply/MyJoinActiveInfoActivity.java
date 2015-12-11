@@ -1,9 +1,12 @@
 package com.lis99.mobile.club.apply;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,7 +28,7 @@ import java.util.HashMap;
 public class MyJoinActiveInfoActivity extends LSBaseActivity
 {
 
-    private TextView tv_title, tv_pay, tv_pay_all, tv_join_state, tv_joinNum, tv_pay_type, tv_pay_state;
+    private TextView tv_title, tv_pay, tv_pay_all, tv_join_state, tv_joinNum, tv_pay_type, tv_pay_state, tv_pay_info, tv_pay_phone;
     private ImageView iv_pay_type;
     private ListView list;
 
@@ -38,6 +41,8 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
     private String[] PAY_TYPE = new String[]{
             "未支付","已支付","已退款","退款中","线下支付","免费活动",
     };
+
+    private Button btn_pay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +84,30 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
 
                 tv_joinNum.setText("报名人员共（" + model.applyNum + "）");
 
+
+                if (TextUtils.isEmpty(model.payhint))
+                {
+                    tv_pay_info.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    tv_pay_info.setVisibility(View.VISIBLE);
+                    tv_pay_info.setText(model.payhint);
+                }
+
+
                 if ( model.pay_status > 0 && model.pay_status < PAY_TYPE.length )
                 {
                     tv_pay_state.setText( PAY_TYPE[model.pay_status] );
+//                  微支付
+                    if ( model.pay_status == 0 )
+                    {
+                        btn_pay.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        btn_pay.setVisibility(View.GONE);
+                    }
+
                 }
 
                 switch (model.pay_type )
@@ -143,6 +169,12 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
     protected void initViews() {
         super.initViews();
 
+        btn_pay = (Button) findViewById(R.id.btn_pay);
+
+        tv_pay_info = (TextView) findViewById(R.id.tv_pay_info);
+
+        tv_pay_phone = (TextView) findViewById(R.id.tv_pay_phone);
+
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_pay = (TextView) findViewById(R.id.tv_pay);
         tv_pay_all = (TextView) findViewById(R.id.tv_pay_all);
@@ -164,6 +196,22 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
                 Intent intent = new Intent(activity, MyJoinActivePeopleInfo.class);
                 intent.putExtra("PEOPLEINFO", item);
                 intent.putExtra("NUM", (i + 1));
+                startActivity(intent);
+            }
+        });
+
+
+        btn_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        tv_pay_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-53525135"));
                 startActivity(intent);
             }
         });

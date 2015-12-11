@@ -18,6 +18,7 @@ import android.widget.PopupWindow;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ShareManager;
@@ -158,6 +159,22 @@ public class MyActivityWebView extends LSBaseActivity
     final class LSJavaScriptInterface {
         LSJavaScriptInterface() {
         }
+
+		/**
+		 * 			跳转到全部活动页
+		 */
+		@JavascriptInterface
+		public void  goActiveMain()
+		{
+			mHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					Intent intent = new Intent(activity, ActiveAllActivity.class);
+					startActivity(intent);
+				}
+			});
+
+		}
 
 		/**
 		 * 		调用原生分享

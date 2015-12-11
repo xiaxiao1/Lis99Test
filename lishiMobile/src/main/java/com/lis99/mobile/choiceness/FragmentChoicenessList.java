@@ -40,6 +40,7 @@ import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
+import com.lis99.mobile.webview.ShareWebView;
 import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -315,12 +316,12 @@ public class FragmentChoicenessList extends Fragment implements
 
                 break;
             case R.id.layout_nearby:
-                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
+//                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
 
 //                webview调用原生分享菜单
-//                intent = new Intent(getActivity(), ShareWebView.class);
-//                intent.putExtra("URL", "http://m.lis99.com/club/test/shared");
-//                startActivity(intent);
+                intent = new Intent(getActivity(), ShareWebView.class);
+                intent.putExtra("URL", "http://m.lis99.com/club/test/shared");
+                startActivity(intent);
 
 
                 break;

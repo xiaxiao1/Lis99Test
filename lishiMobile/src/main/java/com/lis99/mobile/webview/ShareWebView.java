@@ -1,5 +1,6 @@
 package com.lis99.mobile.webview;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -13,6 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -95,6 +97,22 @@ public class ShareWebView extends LSBaseActivity {
 
         }
 
+
+        /**
+         * 			跳转到全部活动页
+         */
+        @JavascriptInterface
+        public void  goActiveMain()
+        {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(activity, ActiveAllActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+        }
 
         @JavascriptInterface
         public void shareTo (final String title, final String content, final String image_url, final String url)

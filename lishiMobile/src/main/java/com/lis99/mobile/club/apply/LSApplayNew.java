@@ -101,7 +101,7 @@ public class LSApplayNew extends LSBaseActivity {
 
                 if ( !isOk() )
                 {
-                    Common.toast("还有一些信息未填写");
+//                    Common.toast("还有一些信息未填写");
                     return;
                 }
                 Intent intent = new Intent(this, LSApplyEnterActivity.class);
