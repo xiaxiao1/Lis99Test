@@ -342,7 +342,20 @@ public class LsStartupActivity extends ActivityPattern {
     private void goNext() {
 
         Intent intent = null;
-        if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()))
+
+        boolean visible = false;
+//      如果版本号增加， 则显示引导页
+        int version = Integer.parseInt(SharedPreferencesHelper.getClientVersion());
+
+        Common.log("version="+version + "\ncurrentVersion="+DeviceInfo.CLIENTVERSIONCODE);
+
+        if ( version == -1 || DeviceInfo.CLIENTVERSIONCODE > version )
+        {
+            SharedPreferencesHelper.saveClientVersion(""+DeviceInfo.CLIENTVERSIONCODE);
+            visible = true;
+        }
+
+        if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()) || visible )
         {
 //            startActivity( new Intent(this, HelpActivity.class));
             intent = new Intent(LsStartupActivity.this,

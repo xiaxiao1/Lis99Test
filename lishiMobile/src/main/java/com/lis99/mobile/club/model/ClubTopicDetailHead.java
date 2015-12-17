@@ -136,6 +136,9 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 //	====3.5.5=======赞列表=====
 	public ArrayList<LikeListModel> lists;
 
+//	====== 3.9.1===== 版主  版主（1：版主 0：非版主）
+	public String moderator;
+
 	@Override
 	public String getTopic_id() {
 		return this.topic_id;

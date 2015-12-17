@@ -25,6 +25,12 @@
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
         >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_main"
+            >
         
         <TextView
         android:id="@+id/nameView"
@@ -38,9 +44,21 @@
         android:drawableRight="@drawable/club_tier_master"
          />
 
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_moderator"
+                android:src="@drawable/moderator_icon"
+                android:layout_toRightOf="@id/nameView"
+                android:layout_marginLeft="5dp"
+                />
+
+        </RelativeLayout>
+
     <TextView
         android:layout_marginTop="-3dp"
-        android:layout_below="@id/nameView"
+        android:layout_below="@id/layout_main"
         android:id="@+id/dateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

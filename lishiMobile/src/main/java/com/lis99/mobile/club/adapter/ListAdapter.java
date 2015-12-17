@@ -16,6 +16,7 @@ public class ListAdapter extends android.widget.BaseAdapter {
     private ArrayList<ListItem> data = new ArrayList<ListItem>();
     private LayoutInflater layoutInflater;
     int width;
+    public int selectID ;
 
     public ListAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
@@ -55,9 +56,18 @@ public class ListAdapter extends android.widget.BaseAdapter {
         }
         ListItem item = data.get(position);
         LoadFileImageView imageView = (LoadFileImageView) convertView.findViewById(R.id.image);
+
         imageView.loadUrl(item.pictureUrl, width, width);
         TextView textView = (TextView) convertView.findViewById(R.id.name);
         textView.setText(item.name);
+
+        View selectedView = convertView.findViewById(R.id.selectedView);
+        if (item.id == selectID) {
+            selectedView.setVisibility(View.VISIBLE);
+        } else {
+            selectedView.setVisibility(View.GONE);
+        }
+
         return convertView;
     }
 

@@ -1,4 +1,4 @@
-package com.lis99.mobile.choiceness;
+package com.lis99.mobile.webview;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.widget.PopupWindow;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
@@ -98,10 +99,21 @@ public class MyWebViewTianJin extends LSBaseActivity {
 
     }
 
-    class TianJinJS
+    class Nearby
     {
-        public TianJinJS()
+        /**
+         * 			跳转到全部活动页
+         */
+        @JavascriptInterface
+        public void  goActiveMain()
         {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(activity, ActiveAllActivity.class);
+                    startActivity(intent);
+                }
+            });
 
         }
 
@@ -194,7 +206,7 @@ public class MyWebViewTianJin extends LSBaseActivity {
 
         // 看这里用到了 addJavascriptInterface 这就是我们的重点中的重点
         // 我们再看他的DemoJavaScriptInterface这个类。还要这个类一定要在主线程中
-        webView.addJavascriptInterface(new TianJinJS(), "LS");
+        webView.addJavascriptInterface(new Nearby(), "LS");
 
         webView.loadUrl(url);
 

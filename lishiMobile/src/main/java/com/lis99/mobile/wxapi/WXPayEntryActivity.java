@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -35,8 +36,6 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        api = WXAPIFactory.createWXAPI(this, C.WEIXIN_APP_ID);
-        api.handleIntent(getIntent(), this);
 
         setContentView(R.layout.weixin_pay_entry_main);
 
@@ -55,6 +54,9 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
             }
         });
 
+        api = WXAPIFactory.createWXAPI(this, C.WEIXIN_APP_ID);
+        api.handleIntent(getIntent(), this);
+
     }
 
     @Override
@@ -71,6 +73,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
     @Override
     public void onResp(BaseResp resp) {
         Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
+        Common.log("onPayFinish======="+resp.toString());
 
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
 //            AlertDialog.Builder builder = new AlertDialog.Builder(this);

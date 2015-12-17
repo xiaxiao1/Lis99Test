@@ -69,6 +69,9 @@ public class ClubTopicReplyList implements Serializable
 		public String zhuangbei_price;
 		public int zhuangbei_star;
 
+		//	====== 3.9.1===== 版主  版主（1：版主 0：非版主）
+		public String moderator;
+
 		public class Topic_image
 		{
 			public String image;

@@ -1,9 +1,12 @@
 package com.lis99.mobile.util;
 
+import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.newhome.LSFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -12,6 +15,8 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by yy on 15/12/7.
@@ -26,8 +31,8 @@ public class PayUtil {
     private String access_token;
 
     private IWXAPI api;
-
-    private String appId, partnerId, prepayId, nonceStr, timeStamp, sign = "26f33f45de7f2a851319b647a28a5cdb";
+//                                                                          C380BEC2BFD727A4B6845133519F3AD6
+    private String appId, partnerId, prepayId, nonceStr, timeStamp, sign; //= "26f33f45de7f2a851319b647a28a5cdb";
 
     public PayUtil ()
     {
@@ -37,7 +42,8 @@ public class PayUtil {
         }
         if ( api == null )
         {
-            api = WXAPIFactory.createWXAPI(LSBaseActivity.activity, C.WEIXIN_APP_ID);
+//            api = WXAPIFactory.createWXAPI(LSBaseActivity.activity, C.WEIXIN_APP_ID);
+            api = WXAPIFactory.createWXAPI(LSBaseActivity.activity, "wx7076726e66e9ad2c");
         }
 //        APP_ID = Base64.encodeToString(APP_ID.getBytes(), Base64.DEFAULT);
 //        byte[] app_id_byte = Base64.decode(APP_ID.getBytes(), Base64.DEFAULT);
@@ -90,33 +96,95 @@ public class PayUtil {
             return;
         }
 
-        api.registerApp(C.WEIXIN_APP_ID);
+//        api.registerApp("wxd930ea5d5a258f4f");
+//        api.registerApp(C.WEIXIN_APP_ID);
 
-        PayReq req = new PayReq();
 
-        req.appId = appId;
+        MyRequestManager.getInstance().requestGetNoModel("http://pay.lis99.com/main/wechatpay", null, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                String result = mTask.getresult();
 
-        req.partnerId = partnerId;
+                try {
+                    JSONObject json = new JSONObject(result);
 
-        req.prepayId = prepayId;
+                    appId = json.optString("appid");
 
-        req.nonceStr = nonceStr;
+                    partnerId = json.optString("partnerid");
 
-        req.timeStamp = timeStamp;
+                    prepayId = json.optString("prepayid");
 
-        req.packageValue = "Sign=WXPay";
+                    nonceStr = json.optString("noncestr");
 
-        req.sign = sign;
+                    timeStamp = json.optString("timestamp");
 
-        api.sendReq(req);
+                    sign = json.optString("sign");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Common.toast("订单信息获取错误");
+                    return;
+                }
+
+
+                PayReq req = new PayReq();
+
+                req.appId = appId;
+
+                req.partnerId = partnerId;
+
+                req.prepayId = prepayId;
+
+                req.nonceStr = nonceStr;
+
+                req.timeStamp = timeStamp;
+
+                req.packageValue = "Sign=WXPay";
+
+                req.sign = sign;
+
+                req.extData	= "app data";
+
+
+                api.sendReq(req);
+
+
+
+            }
+        });
 
     }
 
-    public void payZhiFuBao ()
+    public void payZhiFuBao ( String orderId )
     {
 
     }
+/*
+*       支付宝用到
+* */
+    class payTask extends AsyncTask
+    {
+//
+        private int state;
 
+        public payTask() {
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Object doInBackground( Object[] objects ) {
+            return null;
+        }
+    }
 
 
 }

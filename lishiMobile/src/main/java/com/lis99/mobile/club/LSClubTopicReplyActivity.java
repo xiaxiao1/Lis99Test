@@ -3,7 +3,6 @@ package com.lis99.mobile.club;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -28,6 +27,7 @@ import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.loopj.android.http.AsyncHttpClient;
@@ -356,33 +356,36 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 		protected Bitmap doInBackground(String... params) {
 			String url = params[0];
 			if (url != null) {
-				BitmapFactory.Options options = new BitmapFactory.Options();
-				options.inJustDecodeBounds = true;
-				BitmapFactory.decodeFile(url, options);
-				int width = options.outWidth;
-				int height = options.outHeight;
-				double scaleWidth = width / 600;
-				double scaleHeight = height / 1000;
-				double maxScale = Math.max(scaleHeight, scaleWidth);
 
-				double scale = 1.0;
-				while (scale < maxScale) {
-					scale = scale * 2.0;
-				}
+				return ImageUtil.getUpdataBitmap(url);
 
-				try {
-					options.inJustDecodeBounds = false;
-					options.inSampleSize = (int) scale;
-					options.inPreferredConfig = Bitmap.Config.RGB_565;
-					options.inInputShareable = true;
-					options.inPurgeable = true;
-					Bitmap bitmap = BitmapFactory.decodeFile(url, options);
-					return bitmap;
-
-
-				} catch (OutOfMemoryError e) {
-
-				}
+//				BitmapFactory.Options options = new BitmapFactory.Options();
+//				options.inJustDecodeBounds = true;
+//				BitmapFactory.decodeFile(url, options);
+//				int width = options.outWidth;
+//				int height = options.outHeight;
+//				double scaleWidth = width / 600;
+//				double scaleHeight = height / 1000;
+//				double maxScale = Math.max(scaleHeight, scaleWidth);
+//
+//				double scale = 1.0;
+//				while (scale < maxScale) {
+//					scale = scale * 2.0;
+//				}
+//
+//				try {
+//					options.inJustDecodeBounds = false;
+//					options.inSampleSize = (int) scale;
+//					options.inPreferredConfig = Bitmap.Config.RGB_565;
+//					options.inInputShareable = true;
+//					options.inPurgeable = true;
+//					Bitmap bitmap = BitmapFactory.decodeFile(url, options);
+//					return bitmap;
+//
+//
+//				} catch (OutOfMemoryError e) {
+//
+//				}
 			}
 			return null;
 		}
@@ -416,7 +419,10 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 					break;
 				case C.CAMERA_WITH_DATA:
 					File file = new File(C.HEAD_IMAGE_PATH + "temp.jpg");
-					bitmap = BitmapUtil.getThumbnail(file, this);
+//					bitmap = BitmapUtil.getThumbnail(file, this);
+
+					bitmap = ImageUtil.getUpdataBitmap(file.getAbsolutePath());
+
 					imagePanel.setVisibility(View.VISIBLE);
 					replyImageView.setImageBitmap(bitmap);
 					break;

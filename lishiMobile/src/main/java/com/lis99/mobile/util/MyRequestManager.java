@@ -110,4 +110,44 @@ public class MyRequestManager {
 		mRequest.start();
 	}
 
+	/**
+	 * 			get请求
+	 * @param url
+	 * @param resultModel
+	 * @param callBack
+	 */
+	public void requestGetNoModel ( String url, Object resultModel, CallBack callBack )
+	{
+		mTask = new MyTask();
+		mTask.setUrl(url);
+		mTask.setResultModel(resultModel);
+		mTask.setCallBack(callBack);
+		mTask.setErrorCallBack(true);
+		mTask.setShowDialog(true);
+		mRequest = new MyRequest(mTask);
+		mRequest.start();
+	}
+
+
+	/**
+	 * 			post请求
+	 * @param url
+	 * @param map
+	 * @param resultModel
+	 * @param callBack
+	 */
+	public void requestPostNoModel ( String url, Map<String, Object> map, Object resultModel, CallBack callBack )
+	{
+		mTask = new MyTask();
+		mTask.setRequestState(mTask.POST);
+		mTask.setUrl(url);
+		mTask.setResultModel(resultModel);
+		mTask.setCallBack(callBack);
+		mTask.setMap(map);
+		mTask.setErrorCallBack(true);
+		mTask.setShowDialog(true);
+		mRequest = new MyRequest(mTask);
+		mRequest.start();
+	}
+
 }

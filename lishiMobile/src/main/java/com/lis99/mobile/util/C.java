@@ -83,7 +83,7 @@ public class C {
 //	public static final String WEIXIN_APP_ID = "wxd20a2898e337e6db";//
 //	public static final String WEIXIN_APP_KEY = "e8a85b901a0a36905cc057d56bbcf94b";//
 	
-//	AppID：wx95ad7d760771c3f4
+//	AppID：wx95ad7d760771c3f4			wx7076726e66e9ad2c(公众平台)		wx7076726e66e9ad2c
 	public static final String WEIXIN_APP_ID = "wx95ad7d760771c3f4";//
 	public static final String WEIXIN_APP_KEY = "f607ce67e7f1e7d9e52865d6b49729af";//
 	

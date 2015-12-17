@@ -10,11 +10,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -54,7 +56,12 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
     Button previewButton;
     Button okButton;
 
+    Button maskButton;
+
     boolean isReply;
+
+
+    TextView allAlbumView;
 
     ImageView iv_title_bg;
     protected ImageView titleLeftImage;
@@ -68,8 +75,18 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_lsimage_picker);
 
         isReply = getIntent().getBooleanExtra("isReply", false);
+
         okButton = (Button) findViewById(R.id.okButton);
         previewButton = (Button) findViewById(R.id.preview);
+
+        listView = (ListView) findViewById(R.id.listView);
+        listAdapter = new ListAdapter(this);
+        listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(this);
+
+        allAlbumView = (TextView) findViewById(R.id.all);
+
+        maskButton = (Button) findViewById(R.id.maskView);
 
         titleLeftImage = (ImageView) findViewById(R.id.titleLeftImage);
         View titleLeft = findViewById(R.id.titleLeft);
@@ -215,20 +232,72 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
         }
     }
 
+    private void showAlbum(){
+        allAlbumView.setEnabled(false);
+        maskButton.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.VISIBLE);
+        TranslateAnimation animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0);
+        animation.setInterpolator(new AccelerateInterpolator());
+        animation.setDuration(300);
+        maskButton.startAnimation(animation);
+        listView.startAnimation(animation);
+
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                allAlbumView.setEnabled(true);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+    }
+
+    private void hideAlbum(){
+        allAlbumView.setEnabled(false);
+        TranslateAnimation animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1.0f);
+        animation.setInterpolator(new AccelerateInterpolator());
+        animation.setDuration(300);
+        maskButton.startAnimation(animation);
+        listView.startAnimation(animation);
+
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                maskButton.setVisibility(View.INVISIBLE);
+                listView.setVisibility(View.INVISIBLE);
+                allAlbumView.setEnabled(true);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.all:
-                if (listView == null) {
-                    listView = new ListView(this);
-                    listAdapter = new ListAdapter(this);
-                    listView.setAdapter(listAdapter);
-                    listView.setOnItemClickListener(this);
+                if (listView.getVisibility() == View.VISIBLE) {
+                    hideAlbum();
+                    return;
                 }
 
-                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                listView.setLayoutParams(params);
-                listView.setBackgroundColor(Color.WHITE);
                 ArrayList<ListAdapter.ListItem> listItems = new ArrayList<ListAdapter.ListItem>();
                 int index = 0;
                 for (Integer key : items.keySet()) {
@@ -237,7 +306,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                         ListAdapter.ListItem item = new ListAdapter.ListItem();
                         item.pictureUrl = items.get(key).get(0);
                         item.name = "全部照片";
-                        item.id = key;
+                        item.id = -1;
                         listItems.add(item);
                     }
                     ListAdapter.ListItem item = new ListAdapter.ListItem();
@@ -248,16 +317,8 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                     index++;
                 }
                 listAdapter.setData(listItems);
-                WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-                layoutParams.gravity = Gravity.BOTTOM | Gravity.LEFT;
-                layoutParams.x = 0;
-                layoutParams.y = getResources().getDimensionPixelOffset(R.dimen.height);
-
-                layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-                layoutParams.format = Color.GRAY;
-
-                getWindowManager().addView(listView, layoutParams);
+                listAdapter.selectID = bucketId;
+                showAlbum();
                 break;
             case R.id.preview:
                 if (selectedUri != null && selectedUri.size() > 0) {
@@ -268,6 +329,9 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                     intent.putExtra("isReply", isReply);
                     startActivityForResult(intent, PREVIEW);
                 }
+                break;
+            case R.id.maskView:
+                hideAlbum();
                 break;
             case R.id.okButton:
                 if (selectedUri != null && selectedUri.size() > 0) {
@@ -298,19 +362,22 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                     adapter.setData(gridItems, selectedUri);
                 }
             }
-            ((TextView) findViewById(R.id.all)).setText("全部");
+            bucketId = -1;
+            allAlbumView.setText("全部照片");
             selectedId = null;
-            getWindowManager().removeViewImmediate(listView);
+           // getWindowManager().removeViewImmediate(listView);
         } else {
             ListAdapter.ListItem listItem = (ListAdapter.ListItem) listAdapter.getItem(position);
             bucketId = listItem.id;
             selectedId = bucketId;
-            ((TextView) findViewById(R.id.all)).setText(listItem.name);
+            allAlbumView.setText(listItem.name);
             ArrayList<String> listItems = items.get(bucketId);
             adapter.setData(listItems, selectedUri);
-            getWindowManager().removeViewImmediate(listView);
+
+           // getWindowManager().removeViewImmediate(listView);
         }
 
+        hideAlbum();
     }
 
     private void resetButton(){
@@ -337,11 +404,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
             selectedUri.remove(url);
         } else {
             if (selectedUri.size() + selectSize >= MAX_COUNT) {
-                ArrayList<String> gridItems = new ArrayList<String>();
-                for (Integer key : items.keySet()) {
-                    gridItems.addAll(items.get(key));
-                }
-                adapter.setData(gridItems, selectedUri);
+                adapter.setSelectedUri(selectedUri);
                 Toast.makeText(this, "你最多能选择" + MAX_COUNT + "张照片", Toast.LENGTH_LONG).show();
                 return;
             }
@@ -352,10 +415,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
 
         resetButton();
 
-        ArrayList<String> gridItems = new ArrayList<String>();
-        for (Integer key : items.keySet()) {
-            gridItems.addAll(items.get(key));
-        }
+
         adapter.setSelectedUri(selectedUri);
 
 

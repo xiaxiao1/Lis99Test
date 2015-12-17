@@ -341,5 +341,16 @@ public class Common {
 
         return b;
     }
+/*
+*   是否是版主
+* */
+    public static boolean isModerator (String s)
+    {
+        if ( "1".equals(s))
+        {
+            return true;
+        }
+        return false;
+    }
 
 }

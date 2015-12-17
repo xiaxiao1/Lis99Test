@@ -49,7 +49,7 @@ public class BitmapUtil {
 		try {
 			if (null != bitmap) {
 				ByteArrayOutputStream os = new ByteArrayOutputStream();
-				bitmap.compress(Bitmap.CompressFormat.JPEG, 50, os);
+				bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
 				array = os.toByteArray();
 				os.close();
 			}

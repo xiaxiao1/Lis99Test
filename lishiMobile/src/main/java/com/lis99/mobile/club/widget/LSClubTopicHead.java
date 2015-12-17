@@ -110,11 +110,24 @@ public class LSClubTopicHead extends LinearLayout implements
 	private View layout_club_name;
 	private TextView tv_club_name, tv_click_reply;
 
+	//    ===3.9.1====
+	private View iv_moderator;
+
 
 	public void setHead(final ClubTopicDetailHead clubhead)
 	{
 		this.clubhead = clubhead;
 		titleView.setText(clubhead.title);
+
+
+		if ( Common.isModerator(clubhead.moderator))
+		{
+			iv_moderator.setVisibility(VISIBLE);
+		}
+		else
+		{
+			iv_moderator.setVisibility(GONE);
+		}
 
 		//赞
 		like.setInfo(clubhead);
@@ -398,6 +411,8 @@ public class LSClubTopicHead extends LinearLayout implements
 		addView(v, lp);
 
 		buildOptions();
+
+		iv_moderator = v.findViewById(R.id.iv_moderator);
 
 		//		=======3.5.5=======赞
 		like = new LSClubTopicHeadLike(c);

@@ -17,11 +17,16 @@
         app:corner_radius="5dp"
         app:border_color="#e8e8e8"
         app:border_width="1px"/>
-    
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/roundedImageView1"
+        android:layout_marginLeft="10dp"
+        >
+
         <TextView
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/roundedImageView1"
-            android:layout_marginLeft="10dp"
         android:id="@+id/nameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +37,19 @@
         android:drawablePadding="4dip"
         android:drawableRight="@drawable/club_tier_master"
          />
-    
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_moderator"
+            android:src="@drawable/moderator_icon"
+            android:layout_toRightOf="@id/nameView"
+            android:layout_marginLeft="5dp"
+            />
+
+    </RelativeLayout>
+
     <Button
         style="@style/wrap_wrap"
         android:layout_alignParentRight="true"

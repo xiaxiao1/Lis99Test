@@ -129,6 +129,9 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     private View view_line;
 
+//    3.9.1====
+    private View iv_moderator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -191,6 +194,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         layout_no_item = headViewMain.findViewById(R.id.layout_no_item);
 
         tv_num_reply = (TextView) headViewMain.findViewById(R.id.tv_num_reply);
+
+        iv_moderator = headViewMain.findViewById(R.id.iv_moderator);
 
 
         allPanel1 = headViewMain.findViewById(R.id.allPanel1);
@@ -393,6 +398,15 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         if (user == null) {
             return;
         }
+
+        if ( Common.isModerator(user.moderator))
+        {
+            iv_moderator.setVisibility(View.VISIBLE);
+        }
+        else {
+            iv_moderator.setVisibility(View.GONE);
+        }
+
         setTitle(user.getNickname());
 
 
@@ -423,7 +437,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
             setRightView(R.drawable.bg_button_follow);
         }
 
-        tv_num_reply.setText("Ta的发帖（"+replyNum+"）");
+        tv_num_reply.setText("Ta的发帖（" + replyNum + "）");
 
         if ( !TextUtils.isEmpty(user.getHeadicon()))
             ImageLoader.getInstance().displayImage(user.getHeadicon(),

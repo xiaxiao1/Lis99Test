@@ -89,6 +89,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
     private Button btn_attention;
     private View layout_club_name;
     private TextView tv_club_name;
+//    ===3.9.1====
+    private View iv_moderator;
 
     public void setInstance (LSClubTopicNewActivity main)
     {
@@ -123,6 +125,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                 LayoutParams.WRAP_CONTENT);
         addView(v, lp);
 
+        iv_moderator = v.findViewById(R.id.iv_moderator);
+
         like = new LSClubTopicHeadLike(mContext);
         like.InitView(v);
 
@@ -132,6 +136,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         roundedImageView1 = (RoundedImageView) v.findViewById(R.id.roundedImageView1);
 
         roundedImageView1.setOnClickListener(this);
+
+
 
         nameView = (TextView) v.findViewById(R.id.nameView);
         titleView = (TextView) v.findViewById(R.id.titleView);
@@ -183,6 +189,15 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         titleView.setText(model.title);
 
         nameView.setText(model.nickname);
+
+        if ( Common.isModerator(model.moderator))
+        {
+            iv_moderator.setVisibility(VISIBLE);
+        }
+        else
+        {
+            iv_moderator.setVisibility(GONE);
+        }
 
         if ( "1".equals(model.days))
         {

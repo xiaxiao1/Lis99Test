@@ -209,6 +209,8 @@ public class SharedPreferencesHelper {
 //		===========活动弹出菜单===========
 		cleanFirstActive();
 
+//		===引导页用到====
+		cleanClientVersion();
 
 	}
 
@@ -589,6 +591,20 @@ public class SharedPreferencesHelper {
 		removeBase("SAVEHELP0");
 	}
 
+	public static void saveClientVersion ( String version )
+	{
+		saveBase("CLIENTVERSION", version);
+	}
+
+	public static String getClientVersion ()
+	{
+		return getBase("CLIENTVERSION", "-1");
+	}
+
+	public static void cleanClientVersion ()
+	{
+		removeBase("CLIENTVERSION");
+	}
 
 //	管理报名位置移动， 首次进入下线活动帖， 弹出菜单提示
 	public static void saveFirstActive ( String state )

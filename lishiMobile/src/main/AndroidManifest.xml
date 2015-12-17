@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="390"
-    android:versionName="3.9.0" >
+    android:versionCode="391"
+    android:versionName="3.9.1" >
 
 
 
@@ -186,6 +186,8 @@
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
             >
         </activity>
 
@@ -1069,7 +1071,7 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
-        <activity android:name=".choiceness.MyWebViewTianJin"
+        <activity android:name="com.lis99.mobile.webview.MyWebViewTianJin"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
@@ -1121,10 +1123,24 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
-        <activity android:name=".club.LSPublishImagePreviewActivity"
+        <activity
+            android:name=".club.LSPublishImagePreviewActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar">
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
+        <activity android:name=".club.LSAlbumsActivity" >
+        </activity>
+
+<!--支付宝网页-->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+
     </application>
 
 

@@ -190,6 +190,8 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 			holder = new ViewHolder();
 			holder.nameView = (TextView) convertView
 					.findViewById(R.id.nameView);
+
+			holder.iv_moderator = convertView.findViewById(R.id.iv_moderator);
 			// 去掉楼主
 			holder.nameView
 					.setCompoundDrawablesRelative(null, null, null, null);
@@ -251,6 +253,14 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		final Topiclist item = (Topiclist) getItem(position);
 		if (item == null)
 			return convertView;
+
+		if ( Common.isModerator(item.moderator))
+		{
+			holder.iv_moderator.setVisibility(View.VISIBLE);
+		}
+		else {
+			holder.iv_moderator.setVisibility(View.GONE);
+		}
 
 		holder.nameView.setText(item.nickname);
 		holder.dateView.setText(item.createdate);
@@ -367,6 +377,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 	static class ViewHolder
 	{
+		View iv_moderator;
 		ImageView imageView;
 		ImageView contentImageView;
 		TextView nameView;

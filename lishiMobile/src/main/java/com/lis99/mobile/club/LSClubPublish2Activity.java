@@ -3,7 +3,6 @@ package com.lis99.mobile.club;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.loopj.android.http.AsyncHttpClient;
@@ -91,33 +91,37 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		protected Bitmap doInBackground(String... params) {
 			String url = params[0];
 			if (url != null) {
-				BitmapFactory.Options options = new BitmapFactory.Options();
-				options.inJustDecodeBounds = true;
-				BitmapFactory.decodeFile(url, options);
-				int width = options.outWidth;
-				int height = options.outHeight;
-				double scaleWidth = width / 600;
-				double scaleHeight = height / 1000;
-				double maxScale = Math.max(scaleHeight, scaleWidth);
 
-				double scale = 1.0;
-				while (scale < maxScale) {
-					scale = scale * 2.0;
-				}
+				return ImageUtil.getUpdataBitmap(url);
 
-				try {
-					options.inJustDecodeBounds = false;
-					options.inSampleSize = (int) scale;
-					options.inPreferredConfig = Bitmap.Config.RGB_565;
-					options.inInputShareable = true;
-					options.inPurgeable = true;
-					Bitmap bitmap = BitmapFactory.decodeFile(url, options);
-					return bitmap;
-
-
-				} catch (OutOfMemoryError e) {
-
-				}
+//				BitmapFactory.Options options = new BitmapFactory.Options();
+//				options.inJustDecodeBounds = true;
+//				BitmapFactory.decodeFile(url, options);
+//				int width = options.outWidth;
+//				int height = options.outHeight;
+//				double scaleWidth = width / 600;
+//				double scaleHeight = height / 1000;
+//				double maxScale = Math.max(scaleHeight, scaleWidth);
+//
+//				double scale = 1.0;
+//				while (scale < maxScale) {
+//					scale = scale * 2.0;
+//				}
+//
+//				try {
+//					options.inJustDecodeBounds = false;
+//					options.inSampleSize = (int) scale;
+//					options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//					options.inInputShareable = true;
+//					options.inPurgeable = true;
+//					Bitmap bitmap = BitmapFactory.decodeFile(url, options);
+//					return bitmap;
+//
+//
+//				}
+//				catch (OutOfMemoryError e) {
+//
+//				}
 			}
 			return null;
 		}
@@ -162,7 +166,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 		params.put("user_id", userID);
 		if (bitmap != null)
 			params.put("thumb", new ByteArrayInputStream(BitmapUtil.bitampToByteArray(bitmap)), "image.jpg");
-		
+
 		client.post(C.CLUB_ADD_TOPIC, params, new JsonHttpResponseHandler() {
 
 			@Override
@@ -183,17 +187,14 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 //					lbm.sendBroadcast(intent);
 
 					String data = response.optString("data", "");
-					if ( !TextUtils.isEmpty(data) )
-					{
+					if (!TextUtils.isEmpty(data)) {
 						try {
 							JSONObject j = new JSONObject(data);
 
 							int category = j.optInt("category", -1);
 							int topicid = j.optInt("topicid", -1);
-							if ( category != -1 && topicid != -1 )
-							{
-								if ( category == 2 )
-								{
+							if (category != -1 && topicid != -1) {
+								if (category == 2) {
 									Intent in = new Intent(activity, LSClubTopicNewActivity.class);
 									in.putExtra("topicID", topicid);
 									startActivity(in);
@@ -380,7 +381,10 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 				break;
 			case C.CAMERA_WITH_DATA:
 				File file = new File(C.HEAD_IMAGE_PATH + "temp.jpg");
-				bitmap = BitmapUtil.getThumbnail(file, this);
+
+				bitmap = ImageUtil.getUpdataBitmap(file.getAbsolutePath());
+
+//				bitmap = BitmapUtil.getThumbnail(file, this);
 				imagePanel.setVisibility(View.VISIBLE);
 				imageView.setImageBitmap(bitmap);
 				break;

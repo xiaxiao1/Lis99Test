@@ -97,6 +97,9 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	private TextView tv_click_reply;
 	private Button btn_attention;
 
+	//    ===3.9.1====
+	private View iv_moderator;
+
 	public void setTopic(LSClubTopicActivity lsTopic)
 	{
 		this.lsTopic = lsTopic;
@@ -139,6 +142,8 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		LayoutParams lp = new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.WRAP_CONTENT);
 		addView(v, lp);
+
+		iv_moderator = v.findViewById(R.id.iv_moderator);
 
 //		=======3.5.5=======赞
 		like = new LSClubTopicHeadLike(c);
@@ -333,6 +338,17 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	public void setModel(final ClubTopicDetailHead clubhead)
 	{
 		this.clubhead = clubhead;
+
+
+		if ( Common.isModerator(clubhead.moderator))
+		{
+			iv_moderator.setVisibility(VISIBLE);
+		}
+		else
+		{
+			iv_moderator.setVisibility(GONE);
+		}
+
 //赞
 		like.setInfo(clubhead);
 

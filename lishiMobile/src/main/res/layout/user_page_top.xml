@@ -32,6 +32,13 @@
             app:corner_radius="10dp"
             />
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/roundedImageView1"
+            android:layout_marginTop="8dip"
+            android:id="@+id/layout_main"
+            >
 
         <TextView
             android:id="@+id/nameView"
@@ -40,15 +47,26 @@
             android:singleLine="true"
             android:text="@string/temp_string"
             android:textSize="16sp"
-            android:layout_below="@id/roundedImageView1"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
-            android:layout_marginTop="8dip"
+
             />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_moderator"
+            android:src="@drawable/moderator_icon"
+            android:layout_toRightOf="@id/nameView"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/fansView"
-            android:layout_below="@+id/nameView"
+            android:layout_below="@+id/layout_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"

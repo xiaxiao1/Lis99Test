@@ -36,6 +36,18 @@ public class UserBean {
 
 	private int follows;
 
+	public String getModerator() {
+		return moderator;
+	}
+
+	public void setModerator(String moderator) {
+		this.moderator = moderator;
+	}
+
+	//	====== 3.9.1===== 版主  版主（1：版主 0：非版主）
+	public String moderator;
+
+
 	public List<String> getTags() {
 		return tags;
 	}
