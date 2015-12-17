@@ -21,6 +21,7 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
@@ -133,6 +134,9 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 				LSClubPublish2Activity.this.bitmap = bitmap;
 				imagePanel.setVisibility(View.VISIBLE);
 				imageView.setImageBitmap(bitmap);
+			}
+			else {
+				Common.toast("相片格式错误");
 			}
 		}
 	}

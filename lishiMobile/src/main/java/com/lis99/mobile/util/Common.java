@@ -3,6 +3,7 @@ package com.lis99.mobile.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -351,6 +352,19 @@ public class Common {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 判断当前应用是否是debug状态
+     */
+
+    public static boolean isApkInDebug(Context context) {
+        try {
+            ApplicationInfo info = context.getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

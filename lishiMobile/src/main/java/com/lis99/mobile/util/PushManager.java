@@ -99,7 +99,7 @@ public class PushManager
 					{
 						// TODO Auto-generated method stub
 						UTrack.getInstance(c.getApplicationContext())
-								.trackMsgClick(msg, false);
+								.trackMsgClick(msg);
 						Toast.makeText(context, msg.custom, Toast.LENGTH_LONG)
 								.show();
 					}

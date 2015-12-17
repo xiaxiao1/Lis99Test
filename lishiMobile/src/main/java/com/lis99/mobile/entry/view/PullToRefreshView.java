@@ -18,7 +18,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.umeng.message.proguard.S;
 
 public class PullToRefreshView extends LinearLayout {
 	private static final String TAG = "PullToRefreshView";

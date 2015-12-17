@@ -3,7 +3,6 @@ package com.lis99.mobile.wxapi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.C;
-import com.lis99.mobile.util.Common;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -57,6 +55,10 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
         api = WXAPIFactory.createWXAPI(this, C.WEIXIN_APP_ID);
         api.handleIntent(getIntent(), this);
 
+        int code = getIntent().getIntExtra("CODE", -1);
+
+        setPayStatus(code);
+
     }
 
     @Override
@@ -72,8 +74,8 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     @Override
     public void onResp(BaseResp resp) {
-        Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
-        Common.log("onPayFinish======="+resp.toString());
+//        Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
+//        Common.log("onPayFinish======="+resp.toString());
 
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
 //            AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -82,32 +84,37 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 //            builder.setMessage(result);
 //            builder.show();
 
-            switch ( resp.errCode )
-            {
-//                支付成功
-                case 0:
-                    iv_img.setImageResource(R.drawable.pay_ok_img);
-                    tv_content.setVisibility(View.GONE);
-                    tv_pay_state.setText("支付成功");
-                    btn_ok.setText("完成");
-                break;
-//                支付失败
-                case -1:
-                    iv_img.setImageResource(R.drawable.pay_refuse_img);
-                    tv_content.setVisibility(View.VISIBLE);
-                    tv_pay_state.setText("支付失败");
-                    btn_ok.setText("我知道了");
-                break;
-//                取消支付
-                case -2:
-                    iv_img.setImageResource(R.drawable.pay_cancel_img);
-                    tv_content.setVisibility(View.VISIBLE);
-                    tv_pay_state.setText("支付已取消");
-                    btn_ok.setText("我知道了");
-                break;
-            }
-
+            setPayStatus(resp.errCode);
 
         }
     }
+
+    private void setPayStatus ( int code )
+    {
+        switch ( code )
+        {
+//                支付成功
+            case 0:
+                iv_img.setImageResource(R.drawable.pay_ok_img);
+                tv_content.setVisibility(View.GONE);
+                tv_pay_state.setText("支付成功");
+                btn_ok.setText("完成");
+                break;
+//                支付失败
+            case -1:
+                iv_img.setImageResource(R.drawable.pay_refuse_img);
+                tv_content.setVisibility(View.VISIBLE);
+                tv_pay_state.setText("支付失败");
+                btn_ok.setText("我知道了");
+                break;
+//                取消支付
+            case -2:
+                iv_img.setImageResource(R.drawable.pay_cancel_img);
+                tv_content.setVisibility(View.VISIBLE);
+                tv_pay_state.setText("支付已取消");
+                btn_ok.setText("我知道了");
+                break;
+        }
+    }
+
 }

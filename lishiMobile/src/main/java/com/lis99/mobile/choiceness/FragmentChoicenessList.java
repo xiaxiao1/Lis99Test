@@ -41,6 +41,7 @@ import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.PayUtil;
 import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
+import com.lis99.mobile.webview.MyWebViewTianJin;
 import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -316,9 +317,18 @@ public class FragmentChoicenessList extends Fragment implements
 
                 break;
             case R.id.layout_nearby:
-//                startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
 
-                PayUtil.getInstance().payWeiXin();
+                if ( Common.isApkInDebug(getActivity()))
+                {
+//                    PayUtil.getInstance().payWeiXin();
+                PayUtil.getInstance().payZhiFuBao("");
+                }
+                else {
+                    startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
+                }
+
+
+//
 
 //                webview调用原生分享菜单
 //                intent = new Intent(getActivity(), ShareWebView.class);

@@ -398,6 +398,10 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 				imagePanel.setVisibility(View.VISIBLE);
 				replyImageView.setImageBitmap(bitmap);
 			}
+			else
+			{
+				Common.toast("相片格式错误");
+			}
 		}
 	}
 	

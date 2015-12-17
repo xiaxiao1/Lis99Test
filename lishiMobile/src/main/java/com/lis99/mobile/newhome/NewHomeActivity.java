@@ -128,6 +128,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
     private FragmentChoicenessNewMain choicenessNewMain;
     private LSClubFragmentNew clubFragmentNew;
 
+    public static boolean CLOSEAPPLICATION = false;
+
 
     public void gotoShop(String shopType) {
         Intent intent = new Intent(this, LsBuyActivity.class);
@@ -787,6 +789,13 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
     protected void onNewIntent(Intent intent) {
         // TODO Auto-generated method stub
         super.onNewIntent(intent);
+
+
+        if (CLOSEAPPLICATION)
+        {
+            CLOSEAPPLICATION = false;
+            finish();
+        }
         PushModel model = PushManager.getInstance().getPushModel(intent);
         if (model == null) {
             Common.log("push model NewHome == null");

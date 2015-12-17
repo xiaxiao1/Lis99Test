@@ -1,6 +1,7 @@
 package com.lis99.mobile.entry.application;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -10,6 +11,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.Common;
 
 import java.io.File;
@@ -83,9 +86,32 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 			} catch (InterruptedException e) {
 				Log.e(TAG, "error : ", e);
 			}
-			//退出程序
-			android.os.Process.killProcess(android.os.Process.myPid());
-			System.exit(1);
+
+			NewHomeActivity.CLOSEAPPLICATION = true;
+			Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			LSBaseActivity.activity.startActivity(i);
+
+//			new Thread(new Runnable() {
+//				@Override
+//				public void run() {
+//
+//					Looper.prepare();
+//
+////					Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+////					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+////					i.putExtra("CLOSE", "CLOSE");
+////					LSBaseActivity.activity.startActivity(i);
+//
+////					android.os.Process.killProcess(android.os.Process.myPid());
+////					System.exit(1);
+//
+//					Looper.loop();
+//
+//				}
+//			});
+
+
 //			Common.Dialog();
 		}
 	}
@@ -107,6 +133,7 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 				Looper.prepare();
 				Toast.makeText(mContext, "很抱歉,程序出现异常,即将退出.", Toast.LENGTH_LONG).show();
 //				Common.Dialog();
+				//退出程序
 				Looper.loop();
 			}
 		}.start();
