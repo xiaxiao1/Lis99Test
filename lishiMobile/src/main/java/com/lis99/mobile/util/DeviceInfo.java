@@ -10,7 +10,7 @@ import android.telephony.TelephonyManager;
 public class DeviceInfo
 {
 
-	public static String IMEI, SDKVERSION, CLIENTVERSION, CHANNELVERSION, MODEL, PLATFORM = "Android";
+	public static String IMEI, SDKVERSION, CLIENTVERSION, CHANNELVERSION, MODEL, PLATFORM = "1";//"Android";
 	public static int CLIENTVERSIONCODE, SDKVERSIONCODE;
 	public static void getDeviceInfo (Activity a)
 	{

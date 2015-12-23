@@ -7,7 +7,9 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ZFBPayModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.newhome.LSFragment;
@@ -24,10 +26,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
+import java.util.HashMap;
 
 /**
  * Created by yy on 15/12/7.
@@ -44,6 +43,12 @@ public class PayUtil {
     private IWXAPI api;
 //                                                                          C380BEC2BFD727A4B6845133519F3AD6
     private String appId, partnerId, prepayId, nonceStr, timeStamp, sign; //= "26f33f45de7f2a851319b647a28a5cdb";
+
+    private final String ZFBURL = "http://api.lis99.com/v4/club/ordersinfo";
+
+    private final String WEIXINURL = "http://api.lis99.com/v4/club/wxpay";
+
+    private ZFBPayModel zfbModel;
 
     public PayUtil ()
     {
@@ -165,33 +170,63 @@ public class PayUtil {
 
     }
 
-    // 商户PID
-    public static final String PARTNER = "2088011634294350";
-    // 商户收款账号
-    public static final String SELLER = "baoming@lis99.com";
-    // 商户私钥，pkcs8格式
-    public static final String RSA_PRIVATE = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMWyfKuaiK2p+YoLg90D2IYFhFP+EFJe4K3BwGs38Uqwf6h5Ip5D7STud/9mT+83fvzxMMwoawu+Q2NxQ9/Bqs9EyIprcGVXW9qSnzbBJAYTTo0ThG52+QTEt0PLkOai8otTEMWrtZpM4EgRyYUpa0ON7S/aJu8+p6UO17z0cE5zAgMBAAECgYBwBT4NQog11z11kibKwlYbQt8DdM+szOQEsOemGVHZH3+GZ/VMtnKWXaWTC1c51jlXfBdJZ5GYWtv2agSqsiNlRW+fKXM64H9wsB/+syQplmtwOCKUIYTS5BsMF8RCiWWv+mAEvJbqdQF35mVA6+pLXRx56nginyoaHUGiRXSCUQJBAOyVIWLeYLsNkhCp/3dhaLSjkSdmP3HW7MleE4U63p3az1reLMLHj7C006oPM+RftbtxBl+mUGuyyMC/zEq9DksCQQDV7FTZGOKpIEJY/Yt7EoBl7wq0nFZ3K5AZa196RzUn3sZ+8XbX9bT9cPjbJilOLYnQawDVUEtjAO38Lvt4wYd5AkEAqJUsETO9Yg0thEpfDEaRQgc8LAMkOo6YdHVhG5LzhzCgiXPAGZvyvExed9QVeirpaQQFMqtkqxnfC9qgTLGjOQJALK7dli8tgPgdA6uKC930ddY1XT5ejSvLQJP98HOZNcfBnFhhY4COGnYTdOsGq661X5RKK0RHStmx3AAQRMvfuQJBAIofEfKldjEzvmyU2q/71igalqMOjGnroTVszuhbSHiEIxIdfIfOmfrI/Y4OX+iOXzpdDVn5TFZyxJXS42diQ8M=";
+//    // 商户PID
+//    public static final String PARTNER = "2088011634294350";
+//    // 商户收款账号
+//    public static final String SELLER = "baoming@lis99.com";
+//    // 商户私钥，pkcs8格式
+//    public static final String RSA_PRIVATE = "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMWyfKuaiK2p+YoLg90D2IYFhFP+EFJe4K3BwGs38Uqwf6h5Ip5D7STud/9mT+83fvzxMMwoawu+Q2NxQ9/Bqs9EyIprcGVXW9qSnzbBJAYTTo0ThG52+QTEt0PLkOai8otTEMWrtZpM4EgRyYUpa0ON7S/aJu8+p6UO17z0cE5zAgMBAAECgYBwBT4NQog11z11kibKwlYbQt8DdM+szOQEsOemGVHZH3+GZ/VMtnKWXaWTC1c51jlXfBdJZ5GYWtv2agSqsiNlRW+fKXM64H9wsB/+syQplmtwOCKUIYTS5BsMF8RCiWWv+mAEvJbqdQF35mVA6+pLXRx56nginyoaHUGiRXSCUQJBAOyVIWLeYLsNkhCp/3dhaLSjkSdmP3HW7MleE4U63p3az1reLMLHj7C006oPM+RftbtxBl+mUGuyyMC/zEq9DksCQQDV7FTZGOKpIEJY/Yt7EoBl7wq0nFZ3K5AZa196RzUn3sZ+8XbX9bT9cPjbJilOLYnQawDVUEtjAO38Lvt4wYd5AkEAqJUsETO9Yg0thEpfDEaRQgc8LAMkOo6YdHVhG5LzhzCgiXPAGZvyvExed9QVeirpaQQFMqtkqxnfC9qgTLGjOQJALK7dli8tgPgdA6uKC930ddY1XT5ejSvLQJP98HOZNcfBnFhhY4COGnYTdOsGq661X5RKK0RHStmx3AAQRMvfuQJBAIofEfKldjEzvmyU2q/71igalqMOjGnroTVszuhbSHiEIxIdfIfOmfrI/Y4OX+iOXzpdDVn5TFZyxJXS42diQ8M=";
 
     public void payZhiFuBao ( String orderId )
     {
-        // 订单
-        String orderInfo = getOrderInfo("lis99Test", "lis99Test详细描述", "0.01");
 
-        // 对订单做RSA 签名
-        String sign = sign(orderInfo);
-        try {
-            // 仅需对sign 做URL编码
-            sign = URLEncoder.encode(sign, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        String userId = DataManager.getInstance().getUser().getUser_id();
+
+        if ( TextUtils.isEmpty(userId))
+        {
+            Common.toast("需要登录后才能支付");
+            return;
         }
 
-        // 完整的符合支付宝参数规范的订单信息
-        final String payInfo = orderInfo + "&sign=\"" + sign + "\"&"
-                + getSignType();
+        zfbModel = new ZFBPayModel();
+
+        map.put("orderCode", orderId);
+        map.put("user_id", userId);
+
+        MyRequestManager.getInstance().requestPostNoModel(ZFBURL, map, zfbModel, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                zfbModel = (ZFBPayModel) mTask.getResultModel();
+
+                if (zfbModel == null || TextUtils.isEmpty(zfbModel.seller_id)) {
+                    Common.toast("获取订单信息失败");
+                    return;
+                }
+
+                // 订单
+                String orderInfo = getOrderInfo(zfbModel.subject, zfbModel.body, zfbModel.total_fee);
+
+                // 对订单做RSA 签名
+                String sign = sign(orderInfo);
+                try {
+                    // 仅需对sign 做URL编码
+                    sign = URLEncoder.encode(sign, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                // 完整的符合支付宝参数规范的订单信息
+                final String payInfo = orderInfo + "&sign=\"" + sign + "\"&"
+                        + getSignType();
 
 
-        new payZFBTask().execute(payInfo);
+                new payZFBTask().execute(payInfo);
+
+
+            }
+        });
 
     }
 /*
@@ -271,13 +306,13 @@ public class PayUtil {
     private String getOrderInfo(String subject, String body, String price) {
 
         // 签约合作者身份ID
-        String orderInfo = "partner=" + "\"" + PARTNER + "\"";
+        String orderInfo = "partner=" + "\"" + zfbModel.partner + "\"";
 
         // 签约卖家支付宝账号
-        orderInfo += "&seller_id=" + "\"" + SELLER + "\"";
+        orderInfo += "&seller_id=" + "\"" + zfbModel.seller_id + "\"";
 
         // 商户网站唯一订单号
-        orderInfo += "&out_trade_no=" + "\"" + getOutTradeNo() + "\"";
+        orderInfo += "&out_trade_no=" + "\"" + zfbModel.out_trade_no + "\"";
 
         // 商品名称
         orderInfo += "&subject=" + "\"" + subject + "\"";
@@ -289,7 +324,7 @@ public class PayUtil {
         orderInfo += "&total_fee=" + "\"" + price + "\"";
 
         // 服务器异步通知页面路径
-        orderInfo += "&notify_url=" + "\"" + "http://api.lis99.com/alipayapi/wapapi"
+        orderInfo += "&notify_url=" + "\"" + zfbModel.notify_url//"http://api.lis99.com/alipayapi/wapapi"
                 + "\"";
 
         // 服务接口名称， 固定值
@@ -306,34 +341,19 @@ public class PayUtil {
         // 取值范围：1m～15d。
         // m-分钟，h-小时，d-天，1c-当天（无论交易何时创建，都在0点关闭）。
         // 该参数数值不接受小数点，如1.5h，可转换为90m。
-        orderInfo += "&it_b_pay=\"30m\"";
+        orderInfo += "&it_b_pay=\"" + zfbModel.it_b_pay +"\"";    ///*30m*/
 
         // extern_token为经过快登授权获取到的alipay_open_id,带上此参数用户将使用授权的账户进行支付
         // orderInfo += "&extern_token=" + "\"" + extern_token + "\"";
 
         // 支付宝处理完请求后，当前页面跳转到商户指定页面的路径，可空
-        orderInfo += "&return_url=\"m.alipay.com\"";
+//        orderInfo += "&return_url=\"m.alipay.com\"";
+        orderInfo += "&return_url=\""+zfbModel.return_url+"\"";
 
         // 调用银行卡支付，需配置此参数，参与签名， 固定值 （需要签约《无线银行卡快捷支付》才能使用）
         // orderInfo += "&paymethod=\"expressGateway\"";
 
         return orderInfo;
-    }
-
-    /**
-     * get the out_trade_no for an order. 生成商户订单号，该值在商户端应保持唯一（可自定义格式规范）
-     *
-     */
-    public String getOutTradeNo() {
-        SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss",
-                Locale.getDefault());
-        Date date = new Date();
-        String key = format.format(date);
-
-        Random r = new Random();
-        key = key + r.nextInt();
-        key = key.substring(0, 15);
-        return key;
     }
 
     /**
@@ -343,7 +363,7 @@ public class PayUtil {
      *            待签名订单信息
      */
     public String sign(String content) {
-        return SignUtils.sign(content, RSA_PRIVATE);
+        return SignUtils.sign(content, zfbModel.rsa_private_key);
     }
 
     /**

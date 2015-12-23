@@ -18,7 +18,9 @@ import com.lis99.mobile.club.widget.applywidget.MyJoinActiveDetailItem;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.PayUtil;
 
 import java.util.HashMap;
 
@@ -204,7 +206,22 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (model == null || TextUtils.isEmpty(model.ordercode)) {
+                    Common.toast("订单获取失败");
+                    return;
+                }
+                switch (model.pay_type) {
+                    case 2:
 
+                        PayUtil.getInstance().payWeiXin(model.ordercode);
+
+                        break;
+                    case 3:
+
+                        PayUtil.getInstance().payZhiFuBao(model.ordercode);
+
+                        break;
+                }
             }
         });
 

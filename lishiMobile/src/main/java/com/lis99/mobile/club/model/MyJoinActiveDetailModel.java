@@ -24,6 +24,8 @@ public class MyJoinActiveDetailModel extends BaseModel {
 
     public String payhint;
 
+    public String ordercode;
+
     public ArrayList<Apply_info> apply_info;
 
     public class Apply_info extends BaseModel

@@ -1,6 +1,7 @@
 package com.lis99.mobile.wxapi;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,8 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private Button btn_ok;
 
+    public static Activity PayBackA;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,18 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if ( PayBackA != null )
+                {
+                    Intent intent = new Intent(activity, PayBackA.getClass());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("CLOSE", "close");
+                    startActivity(intent);
+                }
+                if ( PayBackA != null )
+                {
+                    PayBackA = null;
+                }
                 finish();
             }
         });

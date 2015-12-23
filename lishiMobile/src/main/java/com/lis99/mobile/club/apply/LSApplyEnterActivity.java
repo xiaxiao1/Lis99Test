@@ -1,5 +1,6 @@
 package com.lis99.mobile.club.apply;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.ParserUtil;
 import com.lis99.mobile.util.PayUtil;
+import com.lis99.mobile.wxapi.WXPayEntryActivity;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -78,6 +80,18 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         jonNum = LSApplayNew.updata.size();
 
         getList();
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        String str = intent.getStringExtra("CLOSE");
+        if ( !TextUtils.isEmpty(str) )
+        {
+            sendResult();
+        }
 
     }
 
@@ -349,7 +363,8 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                             return;
                         }
 
-                        sendResult();
+//                        sendResult();
+                        WXPayEntryActivity.PayBackA = LSApplyEnterActivity.this;
 
                         PayUtil.getInstance().payWeiXin(bModel.ordercode);
                     }
@@ -361,7 +376,8 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                             return;
                         }
 
-                        sendResult();
+//                        sendResult();
+                        WXPayEntryActivity.PayBackA = LSApplyEnterActivity.this;
 
                         PayUtil.getInstance().payZhiFuBao(bModel.ordercode);
                     }
