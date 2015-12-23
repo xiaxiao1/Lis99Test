@@ -6,21 +6,17 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.ZFBPayModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
-import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.wxapi.WXPayEntryActivity;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.TextHttpResponseHandler;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
-import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -72,36 +68,6 @@ public class PayUtil {
         return instance;
     }
 
-    public void getWXToken ()
-    {
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+ C.WEIXIN_APP_ID +"&secret=" + C.WEIXIN_APP_KEY;
-
-        client.get(url, new TextHttpResponseHandler() {
-            @Override
-            public void onFailure(int i, Header[] headers, String s, Throwable throwable) {
-
-            }
-
-            @Override
-            public void onSuccess(int i, Header[] headers, String s) {
-                try {
-                    JsonNode root = LSFragment.mapper.readTree(s);
-                    if ( root.has("access_token"))
-                    {
-                        access_token = root.get("access_token").asText();
-                    }
-                }
-                catch (Exception e )
-                {
-                    e.printStackTrace();
-                }
-                finally {
-
-                }
-
-            }
-        });
-    }
 
     public void payWeiXin ( String orderId )
     {
@@ -114,8 +80,21 @@ public class PayUtil {
 //        api.registerApp("wxd930ea5d5a258f4f");
 //        api.registerApp(C.WEIXIN_APP_ID);
 
+        HashMap<String, Object> map = new HashMap<String, Object>();
 
-        MyRequestManager.getInstance().requestGetNoModel("http://pay.lis99.com/main/wechatpay", null, new CallBack() {
+        String userId = DataManager.getInstance().getUser().getUser_id();
+
+        if ( TextUtils.isEmpty(userId))
+        {
+            Common.toast("需要登录后才能支付");
+            return;
+        }
+
+        map.put("orderCode", orderId);
+        map.put("user_id", userId);
+
+
+        MyRequestManager.getInstance().requestPostNoModel(WEIXINURL, map, null, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 String result = mTask.getresult();
@@ -123,17 +102,34 @@ public class PayUtil {
                 try {
                     JSONObject json = new JSONObject(result);
 
-                    appId = json.optString("appid");
+                    String ok = json.optString("status");
 
-                    partnerId = json.optString("partnerid");
+                    JSONObject jo = json.getJSONObject("data");
 
-                    prepayId = json.optString("prepayid");
+                    if (TextUtils.isEmpty(ok) || !"OK".equals(ok)) {
+                        String err = jo.optString("error");
+                        if ( !TextUtils.isEmpty(err) )
+                        {
+                            Common.toast(err);
+                            return;
+                        }
+                        Common.toast("获取订单信息失败");
+                        return;
+                    }
 
-                    nonceStr = json.optString("noncestr");
 
-                    timeStamp = json.optString("timestamp");
 
-                    sign = json.optString("sign");
+                    appId = jo.optString("appid");
+
+                    partnerId = jo.optString("partner_id");
+
+                    prepayId = jo.optString("prepay_id");
+
+                    nonceStr = jo.optString("nonce_str");
+
+                    timeStamp = jo.optString("timestamp");
+
+                    sign = jo.optString("sign");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -158,12 +154,10 @@ public class PayUtil {
 
                 req.sign = sign;
 
-                req.extData	= "app data";
+                req.extData = "app data";
 
 
                 api.sendReq(req);
-
-
 
             }
         });

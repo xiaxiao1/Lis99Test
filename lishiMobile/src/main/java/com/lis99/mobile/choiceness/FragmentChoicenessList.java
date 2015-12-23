@@ -320,8 +320,8 @@ public class FragmentChoicenessList extends Fragment implements
 
                 if ( Common.isApkInDebug(getActivity()))
                 {
-//                    PayUtil.getInstance().payWeiXin();
-                PayUtil.getInstance().payZhiFuBao("");
+                    PayUtil.getInstance().payWeiXin("");
+//                PayUtil.getInstance().payZhiFuBao("");
                 }
                 else {
                     startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
