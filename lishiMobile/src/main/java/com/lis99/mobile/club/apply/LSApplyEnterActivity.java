@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.apply;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -12,8 +13,8 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.OrderInfoModel;
+import com.lis99.mobile.club.model.PayEnterOrderModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.C;
@@ -21,7 +22,9 @@ import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.ParserUtil;
+import com.lis99.mobile.util.PayUtil;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -48,11 +51,11 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
     public OrderInfoModel model;
 
-    public BaseModel bModel;
+    public PayEnterOrderModel bModel;
 
     private int payType = -1;
 //    不显示网上支付
-    private boolean test = true;
+    private boolean test = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,9 +193,11 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                 //总价
                 float allPrice = model.consts * jonNum;
 
-                allPrice = (float)(Math.round(allPrice*100)/100);
+                DecimalFormat df = new DecimalFormat("0.00");
 
-                tv_price.setText("总计："+allPrice+"元");
+                String priceAll = df.format(allPrice);
+
+                tv_price.setText("总计："+priceAll+"元");
 
                 //显示支付方式
                 int typeLength = model.type.length;
@@ -322,12 +327,12 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         map.put("platform", platform);
         map.put("apply_info", OrderList);
 
-        bModel = new BaseModel();
+        bModel = new PayEnterOrderModel();
 
         MyRequestManager.getInstance().requestPost(url, map, bModel, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                bModel = (BaseModel) mTask.getResultModel();
+                bModel = (PayEnterOrderModel) mTask.getResultModel();
                 if ( bModel != null )
                 {
                     Common.toast("报名成功");
@@ -335,6 +340,32 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                     {
                         sendResult();
                     }
+
+                    else if ( payType == 2 )
+                    {
+                        if (TextUtils.isEmpty(bModel.ordercode))
+                        {
+                            Common.toast("订单号获取失败");
+                            return;
+                        }
+
+                        sendResult();
+
+                        PayUtil.getInstance().payWeiXin(bModel.ordercode);
+                    }
+                    else if ( payType == 3 )
+                    {
+                        if (TextUtils.isEmpty(bModel.ordercode))
+                        {
+                            Common.toast("订单号获取失败");
+                            return;
+                        }
+
+                        sendResult();
+
+                        PayUtil.getInstance().payZhiFuBao(bModel.ordercode);
+                    }
+
                 }
             }
         });

@@ -180,7 +180,6 @@
                         />
 
                     <RadioButton
-                        android:visibility="gone"
                         android:layout_alignParentRight="true"
                         android:id="@+id/radio_free"
                         style="@style/wrap_wrap"
@@ -218,7 +217,6 @@
                         />
 
                     <RadioButton
-                        android:visibility="gone"
                         android:layout_alignParentRight="true"
                         android:id="@+id/radio_off_line"
                         style="@style/wrap_wrap"

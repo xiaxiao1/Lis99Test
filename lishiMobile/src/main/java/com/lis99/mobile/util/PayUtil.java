@@ -53,8 +53,7 @@ public class PayUtil {
         }
         if ( api == null )
         {
-//            api = WXAPIFactory.createWXAPI(LSBaseActivity.activity, C.WEIXIN_APP_ID);
-            api = WXAPIFactory.createWXAPI(LSBaseActivity.activity, "wx7076726e66e9ad2c");
+            api = WXAPIFactory.createWXAPI(LSBaseActivity.activity, C.WEIXIN_APP_ID);
         }
 //        APP_ID = Base64.encodeToString(APP_ID.getBytes(), Base64.DEFAULT);
 //        byte[] app_id_byte = Base64.decode(APP_ID.getBytes(), Base64.DEFAULT);
@@ -99,7 +98,7 @@ public class PayUtil {
         });
     }
 
-    public void payWeiXin ()
+    public void payWeiXin ( String orderId )
     {
         if ( !api.isWXAppInstalled())
         {
