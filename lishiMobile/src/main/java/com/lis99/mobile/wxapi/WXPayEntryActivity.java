@@ -40,6 +40,10 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
         setContentView(R.layout.weixin_pay_entry_main);
 
+        super.initViews();
+
+        setTitle("支付结果");
+
         iv_img = (ImageView) findViewById(R.id.iv_img);
 
         tv_pay_state = (TextView) findViewById(R.id.tv_pay_state);
@@ -52,18 +56,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
             @Override
             public void onClick(View view) {
 
-                if ( PayBackA != null )
-                {
-                    Intent intent = new Intent(activity, PayBackA.getClass());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("CLOSE", "close");
-                    startActivity(intent);
-                }
-                if ( PayBackA != null )
-                {
-                    PayBackA = null;
-                }
-                finish();
+                onBackPressed();
             }
         });
 
@@ -74,6 +67,12 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
         setPayStatus(code);
 
+    }
+
+    @Override
+    protected void leftAction() {
+        super.leftAction();
+        onBackPressed();
     }
 
     @Override
@@ -104,6 +103,23 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if ( PayBackA != null )
+        {
+            Intent intent = new Intent(activity, PayBackA.getClass());
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("CLOSE", "close");
+            startActivity(intent);
+        }
+        if ( PayBackA != null )
+        {
+            PayBackA = null;
+        }
+        finish();
+    }
+
     private void setPayStatus ( int code )
     {
         switch ( code )
@@ -111,8 +127,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 //                支付成功
             case 0:
                 iv_img.setImageResource(R.drawable.pay_ok_img);
-                tv_content.setText("支付成功\n" +
-                        "希望您玩得愉快\n" +
+                tv_content.setText("希望您玩得愉快\n" +
                         "如果您需要帮助 请联系010-53525135");
                 tv_pay_state.setText("支付成功");
                 btn_ok.setText("完成");

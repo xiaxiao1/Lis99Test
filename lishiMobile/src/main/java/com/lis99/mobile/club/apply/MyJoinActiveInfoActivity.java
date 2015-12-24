@@ -40,9 +40,9 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
     private MyJoinActiveDetailItem adapter;
 
     private int orderid;
-
-    private String[] PAY_TYPE = new String[]{
-            "未支付","已支付","已退款","退款中","线下支付","免费活动",
+//    支付状态（0待支付1已支付 2退款已完成 3退款申请中 4 线下支付 5免费活动 6 退款中 7逾期未支付 8 无法付款 9 无法退款）
+    public static String[] PAY_TYPE = new String[]{
+            "待支付","已支付","2退款已完成","退款申请中","线下支付","免费活动", "退款中", "逾期未支付", "无法付款", "无法退款",
     };
 
     private Button btn_pay;

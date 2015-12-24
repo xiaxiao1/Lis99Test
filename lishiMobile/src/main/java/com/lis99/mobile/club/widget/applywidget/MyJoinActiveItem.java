@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.MyJoinActiveModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.ImageUtil;
@@ -66,27 +67,44 @@ public class MyJoinActiveItem extends MyBaseAdapter {
         holder.tv_title.setText(item.topic_title);
         holder.tv_data.setText(item.createTime+" 报名");
         String pay_state = "";
-        switch (item.pay_status )
+        if ( item.pay_status > 0 && item.pay_status < MyJoinActiveInfoActivity.PAY_TYPE.length )
         {
-            case 0:
-                pay_state = "未支付";
-                break;
-            case 1:
-                pay_state = "已支付";
-                break;
-            case 2:
-                pay_state = "已退款";
-                break;
-            case 3:
-                pay_state = "退款中";
-                break;
-            case 4:
-                pay_state = "线下支付";
-                break;
-            case 5:
-                pay_state = "免费活动";
-                break;
+            pay_state = MyJoinActiveInfoActivity.PAY_TYPE[item.pay_status];
         }
+        //    支付状态（0待支付1已支付 2退款已完成 3退款申请中 4 线下支付 5免费活动 6 退款中 7逾期未支付 8 无法付款 9 无法退款）
+//        switch (item.pay_status )
+//        {
+//            case 0:
+//                pay_state = "待支付";
+//                break;
+//            case 1:
+//                pay_state = "已支付";
+//                break;
+//            case 2:
+//                pay_state = "退款已完成";
+//                break;
+//            case 3:
+//                pay_state = "退款申请中";
+//                break;
+//            case 4:
+//                pay_state = "线下支付";
+//                break;
+//            case 5:
+//                pay_state = "免费活动";
+//                break;
+//            case 6:
+//                pay_state = "退款中";
+//                break;
+//            case 7:
+//                pay_state = "逾期未支付";
+//                break;
+//            case 8:
+//                pay_state = "无法付款";
+//                break;
+//            case 9:
+//                pay_state = "无法退款";
+//                break;
+//        }
 
         holder.tv_pay_state.setText(pay_state);
 

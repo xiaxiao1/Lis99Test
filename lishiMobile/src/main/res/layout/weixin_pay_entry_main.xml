@@ -30,15 +30,8 @@
             android:gravity="center"
             >
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pay_ok_img"
-                android:id="@+id/iv_img"
-                />
 
             <TextView
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_pay_state"
@@ -47,6 +40,13 @@
                 android:textSize="16sp"
                 />
 
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pay_ok_img"
+                android:id="@+id/iv_img"
+                />
 
             <TextView
                 android:gravity="center_horizontal"
@@ -55,7 +55,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_content"
                 android:textColor="@color/color_six"
-                android:text="您可以在个人中心--我报名的活动中重新支付"
+                android:textSize="12sp"
+                android:text="希望您玩得愉快\n如果您需要帮助 请联系010-53525135"
+                android:lineSpacingExtra="5dp"
                 />
 
             <Button
@@ -66,6 +68,7 @@
                 android:text="我知道了"
                 android:textColor="@color/color_six"
                 android:id="@+id/btn_ok"
+                android:layout_marginBottom="15dp"
                 />
 
 

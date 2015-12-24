@@ -195,7 +195,7 @@ public class PayUtil {
                 zfbModel = (ZFBPayModel) mTask.getResultModel();
 
                 if (zfbModel == null || TextUtils.isEmpty(zfbModel.seller_id)) {
-                    Common.toast("获取订单信息失败");
+//                    Common.toast("获取订单信息失败");
                     return;
                 }
 
@@ -336,6 +336,7 @@ public class PayUtil {
         // m-分钟，h-小时，d-天，1c-当天（无论交易何时创建，都在0点关闭）。
         // 该参数数值不接受小数点，如1.5h，可转换为90m。
         orderInfo += "&it_b_pay=\"" + zfbModel.it_b_pay +"\"";    ///*30m*/
+//        orderInfo += "&it_b_pay=\"1m\"";    ///*30m*/
 
         // extern_token为经过快登授权获取到的alipay_open_id,带上此参数用户将使用授权的账户进行支付
         // orderInfo += "&extern_token=" + "\"" + extern_token + "\"";
