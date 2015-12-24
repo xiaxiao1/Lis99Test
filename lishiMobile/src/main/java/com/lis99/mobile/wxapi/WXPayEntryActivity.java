@@ -111,21 +111,23 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 //                支付成功
             case 0:
                 iv_img.setImageResource(R.drawable.pay_ok_img);
-                tv_content.setVisibility(View.GONE);
+                tv_content.setText("支付成功\n" +
+                        "希望您玩得愉快\n" +
+                        "如果您需要帮助 请联系010-53525135");
                 tv_pay_state.setText("支付成功");
                 btn_ok.setText("完成");
                 break;
 //                支付失败
             case -1:
                 iv_img.setImageResource(R.drawable.pay_refuse_img);
-                tv_content.setVisibility(View.VISIBLE);
+                tv_content.setText("您可以在个人中心--我报名的活动中重新支付");
                 tv_pay_state.setText("支付失败");
                 btn_ok.setText("我知道了");
                 break;
 //                取消支付
             case -2:
                 iv_img.setImageResource(R.drawable.pay_cancel_img);
-                tv_content.setVisibility(View.VISIBLE);
+                tv_content.setText("您可以在个人中心--我报名的活动中重新支付");
                 tv_pay_state.setText("支付已取消");
                 btn_ok.setText("我知道了");
                 break;

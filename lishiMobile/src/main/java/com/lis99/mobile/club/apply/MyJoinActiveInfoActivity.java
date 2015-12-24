@@ -21,6 +21,7 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.PayUtil;
+import com.lis99.mobile.wxapi.WXPayEntryActivity;
 
 import java.util.HashMap;
 
@@ -59,6 +60,19 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
         orderid = getIntent().getIntExtra("ORDERID", -1);
 
         getList();
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        setIntent(intent);
+        String str = intent.getStringExtra("CLOSE");
+        if ( !TextUtils.isEmpty(str) )
+        {
+            getList();
+        }
 
     }
 
@@ -213,10 +227,14 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
                 switch (model.pay_type) {
                     case 2:
 
+                        WXPayEntryActivity.PayBackA = MyJoinActiveInfoActivity.this;
+
                         PayUtil.getInstance().payWeiXin(model.ordercode);
 
                         break;
                     case 3:
+
+                        WXPayEntryActivity.PayBackA = MyJoinActiveInfoActivity.this;
 
                         PayUtil.getInstance().payZhiFuBao(model.ordercode);
 

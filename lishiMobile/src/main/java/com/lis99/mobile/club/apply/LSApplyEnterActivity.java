@@ -57,7 +57,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
     private int payType = -1;
 //    不显示网上支付
-    private boolean test = false;
+    private boolean test = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,7 +249,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                             payType = 2;
                         }
                     }
-                    else if ( num == 3 && !test )
+                    else if ( num == 3 )
                     {
                         layout_zhifubao.setVisibility(View.VISIBLE);
                         if ( i == 0 )
@@ -349,9 +349,10 @@ public class LSApplyEnterActivity extends LSBaseActivity{
                 bModel = (PayEnterOrderModel) mTask.getResultModel();
                 if ( bModel != null )
                 {
-                    Common.toast("报名成功");
+
                     if ( payType == 0 || payType == 1 )
                     {
+                        Common.toast("报名成功");
                         sendResult();
                     }
 

@@ -24,12 +24,14 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     public void setList (ArrayList<T> listItem)
     {
+        if ( listItem == null ) return;
         this.listItem = listItem;
         notifyDataSetChanged();
     }
 
     public void addList ( ArrayList<T> listItem )
     {
+        if ( listItem == null ) return;
         this.listItem.addAll(listItem);
         notifyDataSetChanged();
     }

@@ -1099,7 +1099,9 @@
 
         <activity android:name="com.lis99.mobile.club.apply.MyJoinActiveInfoActivity"
                   android:screenOrientation="portrait"
-                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  android:launchMode="singleTask"
+            />
 
         <activity android:name="com.lis99.mobile.club.apply.MyJoinActivePeopleInfo"
                   android:screenOrientation="portrait"
