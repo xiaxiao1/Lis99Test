@@ -79,7 +79,7 @@ public class MyTestActivityWebView extends LSBaseActivity
 		}
 		pop = ShareManager.getInstance().showPopWindowInShare(null, "",
 				image_url, title, "",
-				"", false, layout_main, null, url);
+				"", layout_main, null, url);
 
 	}
 

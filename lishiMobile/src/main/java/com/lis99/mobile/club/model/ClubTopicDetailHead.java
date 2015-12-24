@@ -184,6 +184,11 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 		return category;
 	}
 
+	@Override
+	public String getIsJoin() {
+		return is_jion;
+	}
+
 
 	public class Topic_image
 	{

@@ -8,5 +8,6 @@ public interface ShareInterface {
     public String getStick ();
     public void setStick (String s);
     public String getCategory ();
+    public String getIsJoin ();
 
 }

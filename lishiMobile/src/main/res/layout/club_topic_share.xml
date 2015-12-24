@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/share_bg"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_gravity="bottom"
+    >
 
     <!--
          <ImageView 
@@ -16,12 +18,12 @@
 
     <TextView
         android:id="@+id/tv_share"
-        style="@style/wrap_wrap"
-        android:layout_centerHorizontal="true"
+        style="@style/fill_wrap"
         android:layout_margin="10dip"
         android:text="分享到"
         android:textColor="#666666"
         android:textSize="16sp"
+        android:gravity="center_horizontal"
          />
 
     <LinearLayout
@@ -92,7 +94,8 @@
         android:layout_below="@id/layoutshare"
         android:orientation="horizontal"
         android:paddingLeft="8dip"
-        android:paddingRight="8dip" 
+        android:paddingRight="8dip"
+        android:layout_marginBottom="10dp"
         >
 
         <LinearLayout
@@ -153,6 +156,73 @@
             android:visibility="invisible" />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/layoutmanager1"
+        style="@style/fill_wrap"
+        android:layout_below="@id/layoutmanager"
+        android:orientation="horizontal"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        >
+
+        <TextView
+            android:id="@+id/iv_manager_apply1"
+            style="@style/wrap_wrap"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/share_manager_apply"
+            android:alpha="1"
+            android:gravity="center_horizontal"
+            android:text="管理报名"
+            android:textSize="12sp"
+            android:drawablePadding="3dip"
+            android:textColor="#666666"
+            />
+
+        <LinearLayout
+            style="@style/wrap_wrap"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:alpha="1"
+            android:visibility="invisible"
+            >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:src="@drawable/top" />
+
+            <TextView
+                style="@style/wrap_wrap"
+                android:alpha="1"
+                android:text="置顶"
+                android:textSize="12sp"
+                android:layout_marginTop="3dip"
+                android:textColor="#666666"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:visibility="invisible"
+            style="@style/wrap_wrap"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/delete"
+            android:alpha="1"
+            android:gravity="center_horizontal"
+            android:text="删除"
+            android:textSize="12sp"
+            android:drawablePadding="3dip"
+            android:textColor="#666666"
+            />
+
+        <ImageView
+            style="@style/wrap_wrap"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:src="@drawable/delete"
+            android:visibility="invisible" />
+    </LinearLayout>
+
     <View
         android:id="@+id/view_line"
         style="@style/fill_wrap"
@@ -170,4 +240,4 @@
         android:text="取消"
         android:textColor="#666666" />
 
-</RelativeLayout>
+</LinearLayout>

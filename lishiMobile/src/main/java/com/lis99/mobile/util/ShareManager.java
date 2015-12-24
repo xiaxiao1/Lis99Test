@@ -244,10 +244,10 @@ public class ShareManager
 	public PopupWindow showPopWindowInShare(
 			final ShareInterface clubhead, final String clubId,
 			final String Image_Url, final String title, final String shareTxt,
-			final String topicId, boolean b, View parent,
+			final String topicId, View parent,
 			final CallBack listener )
 	{
-		return showPopWindowInShare(clubhead, clubId, Image_Url, title, "", topicId, b, parent, listener, "" );
+		return showPopWindowInShare(clubhead, clubId, Image_Url, title, "", topicId, parent, listener, "" );
 	}
 
 	/**
@@ -263,7 +263,7 @@ public class ShareManager
 	{
 		return showPopWindowInShare(null, "",
 				image_url, title, content,
-				"", false, layout_main, null, url);
+				"", layout_main, null, url);
 	}
 
 	/**
@@ -275,14 +275,13 @@ public class ShareManager
 	 * @param title				展示的标题
 	 * @param shareTxt			分享文本
 	 * @param topicId			帖子Id
-	 * @param b					是否展示管理选项
 	 * @param parent			父View
 	 * @param listener			点击监听， 管理时用到, 删除，置顶
 	 */
 	public PopupWindow showPopWindowInShare(
 			final ShareInterface clubhead, final String clubId,
 			final String Image_Url, final String title, String shareTxt,
-			final String topicId, boolean b, View parent,
+			final String topicId, View parent,
 			final CallBack listener, String sharedUrl ) {
 		if (pop != null && pop.isShowing()) {
 			pop.dismiss();
@@ -333,6 +332,18 @@ public class ShareManager
 		final ImageView iv_top = (ImageView) view.findViewById(R.id.iv_top);
 		final TextView tv_top = (TextView) view.findViewById(R.id.tv_top);
 		final TextView iv_manager_apply = (TextView) view.findViewById(R.id.iv_manager_apply);
+		LinearLayout layoutmanager = (LinearLayout) view
+				.findViewById(R.id.layoutmanager);
+
+		View layoutmanager1 = view
+				.findViewById(R.id.layoutmanager1);
+
+		final TextView iv_manager_apply1 = (TextView) view.findViewById(R.id.iv_manager_apply1);
+
+
+		layoutmanager.setVisibility(View.GONE);
+		layoutmanager1.setVisibility(View.GONE);
+
 		if (clubhead != null)
 		{
 			if ("2".equals(clubhead.getStick()))
@@ -344,26 +355,38 @@ public class ShareManager
 				iv_top.setImageResource(R.drawable.remove);
 				tv_top.setText("解除");
 			}
-		}
+//			显示删除  1 只有创始人
+			if ( Common.clubDelete(clubhead.getIsJoin()) )
+			{
+				layoutmanager.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				layoutmanager.setVisibility(View.GONE);
+			}
 
-		LinearLayout layoutmanager = (LinearLayout) view
-				.findViewById(R.id.layoutmanager);
-		if (b)
-		{
-			layoutmanager.setVisibility(View.VISIBLE);
-		} else
-		{
-			layoutmanager.setVisibility(View.GONE);
-		}
+			//		领队不显示置顶、删帖
+			if ( "2".equals(clubhead.getIsJoin()) )
+			{
+				layoutmanager1.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				layoutmanager1.setVisibility(View.GONE);
+			}
 
-		//话题贴不显示
-		if ( clubhead != null && "1".equals(clubhead.getCategory()))
-		{
-			iv_manager_apply.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			iv_manager_apply.setVisibility(View.INVISIBLE);
+			//话题贴不显示 1,线下， 2线上活动
+			if ( clubhead != null && ("1".equals(clubhead.getCategory()) || "2".equals(clubhead.getCategory()) ))
+			{
+				iv_manager_apply.setVisibility(View.VISIBLE);
+//				layoutmanager1.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				iv_manager_apply.setVisibility(View.INVISIBLE);
+				layoutmanager1.setVisibility(View.GONE);
+			}
+
 		}
 
 		final String finalSharedUrl = sharedUrl;
@@ -431,6 +454,11 @@ public class ShareManager
 								});
 						break;
 					case R.id.iv_top:
+						if ( clubhead == null )
+						{
+							Common.toast("置顶数据获取失败");
+							return;
+						}
 						if ("2".equals(clubhead.getStick()))
 						{
 							topTopic(clubId, topicId, new CallBack()
@@ -470,6 +498,7 @@ public class ShareManager
 						}
 						break;
 					case R.id.iv_manager_apply:
+					case R.id.iv_manager_apply1:
 						Intent i = new Intent(LSBaseActivity.activity, ApplyManager.class);
 						i.putExtra("topicID", Common.string2int(topicId));
 						i.putExtra("clubID", Common.string2int(clubId));
@@ -490,6 +519,7 @@ public class ShareManager
 		iv_delete.setOnClickListener(click);
 		iv_top.setOnClickListener(click);
 		iv_manager_apply.setOnClickListener(click);
+		iv_manager_apply1.setOnClickListener(click);
 
 		pop = new PopupWindow(view, LayoutParams.FILL_PARENT,
 				LayoutParams.WRAP_CONTENT);

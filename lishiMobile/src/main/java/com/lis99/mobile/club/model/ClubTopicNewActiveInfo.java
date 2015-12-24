@@ -113,6 +113,11 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
         return "1";
     }
 
+    @Override
+    public String getIsJoin() {
+        return is_jion;
+    }
+
 
     public class Taglist
     {

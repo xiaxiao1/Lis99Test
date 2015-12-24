@@ -157,7 +157,7 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
 
         if ( model == null || model.info == null ) return;
 
-        ShareManager.getInstance().showPopWindowInShare(null, null, model.info.thumb, model.info.title, "", "", false, layoutMain, null, model.info.share_url);
+        ShareManager.getInstance().showPopWindowInShare(null, null, model.info.thumb, model.info.title, "", "", layoutMain, null, model.info.share_url);
 
     }
 

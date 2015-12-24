@@ -841,11 +841,10 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 		{
 			imgUrl = clubhead.topic_image.get(0).image;
 		}
-		boolean viewManager = Common.clubDelete(clubhead.is_jion);
 
 		ShareManager.getInstance().showPopWindowInShare(clubhead, "" + clubID,
 				imgUrl, clubhead.title, clubhead.shareTxt,
-				"" + clubhead.topic_id, viewManager, layoutMain, new CallBack() {
+				"" + clubhead.topic_id, layoutMain, new CallBack() {
 
 					@Override
 					public void handler(MyTask mTask) {

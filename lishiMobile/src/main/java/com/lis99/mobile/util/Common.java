@@ -147,8 +147,8 @@ public class Common {
      * @param isJoin
      * @return
      */
-    public static boolean clubDelete(String isJoin) {
-        if ( "1".equals(isJoin) || "8".equals(isJoin) || "2".equals(isJoin) )
+    public static boolean clubDelete( String isJoin ) {
+        if ( "1".equals(isJoin) )
         {
             return true;
         }
@@ -163,7 +163,7 @@ public class Common {
      */
     public static boolean replyDelete(String isJoin, String user_id) {
         String uid = DataManager.getInstance().getUser().getUser_id();
-        if ( "1".equals(isJoin) || "8".equals(isJoin) || ("2".equals(isJoin) && !TextUtils.isEmpty(uid)) && uid.equals(user_id) )
+        if ( "1".equals(isJoin) || ("2".equals(isJoin) && !TextUtils.isEmpty(uid)) && uid.equals(user_id) )
         {
             return true;
         }
