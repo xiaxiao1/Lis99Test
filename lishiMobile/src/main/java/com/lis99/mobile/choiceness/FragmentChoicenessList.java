@@ -38,7 +38,6 @@ import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
-import com.lis99.mobile.util.PayUtil;
 import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.lis99.mobile.webview.MyWebViewTianJin;
@@ -320,13 +319,14 @@ public class FragmentChoicenessList extends Fragment implements
 
                 if ( Common.isApkInDebug(getActivity()))
                 {
-                    PayUtil.getInstance().payWeiXin("");
+//                    PayUtil.getInstance().payWeiXin("");
 //                PayUtil.getInstance().payZhiFuBao("");
                 }
                 else {
                     startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
                 }
 
+//                PayUtil.getInstance().payWeiXin("");
 
 //
 

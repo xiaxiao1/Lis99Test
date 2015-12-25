@@ -372,7 +372,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 {
                     imgUrl = infoModel.topic_image.get(0).image;
                 }
-                ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, infoModel.title, shareFandW);
+                ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, infoModel.title, shareFandW1);
                 break;
             case R.id.iv_friend:
                 String imgUrl1 = null;
@@ -382,7 +382,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                     imgUrl1 = infoModel.topic_image.get(0).image;
                 }
 //				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
-                ShareManager.getInstance().share2Friend("" + topicID, imgUrl1, infoModel.title, shareFandW);
+                ShareManager.getInstance().share2Friend("" + topicID, imgUrl1, infoModel.title, shareFandW1);
                 break;
             default:
                 super.onClick(v);
@@ -897,6 +897,14 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             Common.toast("分享成功");
             isShared = true;
             headViewActive.doAction();
+        }
+    };
+//只分享， 不跳转
+    private CallBack shareFandW1 = new CallBack() {
+        @Override
+        public void handler(MyTask mTask) {
+            Common.toast("分享成功");
+            isShared = true;
         }
     };
 
