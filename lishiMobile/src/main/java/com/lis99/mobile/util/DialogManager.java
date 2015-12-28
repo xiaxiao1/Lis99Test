@@ -34,6 +34,8 @@ import com.lis99.mobile.entry.view.CustomProgressDialog;
 public class DialogManager {
 
 	private static CustomProgressDialog customProgressDialog;
+//
+	private static Dialog dlWait;
 	
 	private static DialogManager Instance;
 	
@@ -46,7 +48,13 @@ public class DialogManager {
 	}
 	
 	public void alert(Activity a, String message) {
+		alert(a, "提示", message);
+	}
+
+	public void alert (Activity a, String title, String message)
+	{
 		AlertDialog.Builder bld = new AlertDialog.Builder(a);
+		bld.setTitle(title);
 		bld.setMessage(message);
 		bld.setNeutralButton("确定", new DialogInterface.OnClickListener() {
 
@@ -67,22 +75,30 @@ public class DialogManager {
 	 * @param content
 	 */
 	synchronized public void startWaiting(Activity a, String title, String content) {
-		if (customProgressDialog == null) {
-			customProgressDialog = CustomProgressDialog.getInstance(a);
-		}
-		if (customProgressDialog != null
-				&& customProgressDialog.isShow() == false) {
-			customProgressDialog.popup(this, a, title, content);
-		}
+//		if (customProgressDialog == null) {
+//			customProgressDialog = CustomProgressDialog.getInstance(a);
+//		}
+//		if (customProgressDialog != null
+//				&& customProgressDialog.isShow() == false) {
+//			customProgressDialog.popup(this, a, title, content);
+//		}
+
+		showWaiting(a);
+
+
 	}
 
 	/**
 	 * 结束等待对话框
 	 */
 	public synchronized void stopWaitting() {
-		if (customProgressDialog != null && customProgressDialog.isShow()) {
-			customProgressDialog.close();
-		}
+
+//		if (customProgressDialog != null && customProgressDialog.isShow()) {
+//			customProgressDialog.close();
+//		}
+
+		stopWaitingDialog();
+
 	}
 	/**
 	 * 				启动提示对话框
@@ -357,10 +373,34 @@ public class DialogManager {
 				LSBaseActivity.activity.startActivity(intent);
 			}
 		});
-
-
-
-
 	}
-	
+
+	synchronized private static void showWaiting ( Activity a )
+	{
+		if ( dlWait == null )
+		{
+			dlWait = new Dialog(a == null ? LSBaseActivity.activity : a, R.style.waitingDialog);
+
+			dlWait.setContentView(R.layout.waiting_dialog);
+
+			dlWait.setCanceledOnTouchOutside(false);
+
+		}
+
+
+		if ( dlWait != null && !dlWait.isShowing() )
+		{
+			dlWait.show();
+		}
+	}
+
+	synchronized private static void stopWaitingDialog ()
+	{
+		if ( dlWait != null && dlWait.isShowing() )
+		{
+			dlWait.dismiss();
+		}
+	}
+
+
 }

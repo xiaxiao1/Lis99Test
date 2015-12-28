@@ -112,7 +112,7 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
                 }
 
 
-                if ( model.pay_status > 0 && model.pay_status < PAY_TYPE.length )
+                if ( model.pay_status >= 0 && model.pay_status < PAY_TYPE.length )
                 {
                     tv_pay_state.setText( PAY_TYPE[model.pay_status] );
 //                  微支付

@@ -319,8 +319,9 @@ public class FragmentChoicenessList extends Fragment implements
 
                 if ( Common.isApkInDebug(getActivity()))
                 {
-//                    PayUtil.getInstance().payWeiXin("");
-//                PayUtil.getInstance().payZhiFuBao("");
+
+//                    DialogManager.getInstance().showWaiting(this);
+
                 }
                 else {
                     startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
@@ -329,12 +330,6 @@ public class FragmentChoicenessList extends Fragment implements
 //                PayUtil.getInstance().payWeiXin("");
 
 //
-
-//                webview调用原生分享菜单
-//                intent = new Intent(getActivity(), ShareWebView.class);
-//                intent.putExtra("URL", "http://m.lis99.com/club/test/shared");
-//                startActivity(intent);
-
 
                 break;
         }

@@ -1,6 +1,7 @@
 package com.lis99.mobile.entry;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import com.lis99.mobile.engine.io.IOManager;
 import com.lis99.mobile.entry.cptslide.ChapterFragment.onChapterPageClickListener;
 import com.lis99.mobile.entry.view.CustomProgressDialog;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.InternetUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -524,22 +526,28 @@ public class ActivityPattern1 extends FragmentActivity implements
 	 * @param content
 	 */
 	synchronized public void startWaiting(String title, String content) {
-		if (customProgressDialog == null) {
-			customProgressDialog = CustomProgressDialog.getInstance(this);
-		}
-		if (customProgressDialog != null
-				&& customProgressDialog.isShow() == false) {
-			customProgressDialog.popup(this, this, title, content);
-		}
+//		if (customProgressDialog == null) {
+//			customProgressDialog = CustomProgressDialog.getInstance(this);
+//		}
+//		if (customProgressDialog != null
+//				&& customProgressDialog.isShow() == false) {
+//			customProgressDialog.popup(this, this, title, content);
+//		}
+
+		DialogManager.getInstance().startWaiting(this, null, null);
+
 	}
 
 	/**
 	 * 结束等待对话框
 	 */
 	public synchronized void stopWaitting() {
-		if (customProgressDialog != null && customProgressDialog.isShow()) {
-			customProgressDialog.close();
-		}
+//		if (customProgressDialog != null && customProgressDialog.isShow()) {
+//			customProgressDialog.close();
+//		}
+
+		DialogManager.getInstance().stopWaitting();
+
 	}
 
 	/**

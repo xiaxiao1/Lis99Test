@@ -77,8 +77,7 @@ public class PayUtil {
             return;
         }
 
-//        api.registerApp("wxd930ea5d5a258f4f");
-//        api.registerApp(C.WEIXIN_APP_ID);
+        api.registerApp(C.WEIXIN_APP_ID);
 
         HashMap<String, Object> map = new HashMap<String, Object>();
 

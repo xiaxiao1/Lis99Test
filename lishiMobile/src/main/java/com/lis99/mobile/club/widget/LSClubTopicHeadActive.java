@@ -436,32 +436,22 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 //		}
 		
 //		iv_like.setImageResource("1".equals(clubhead.LikeStatus) ? R.drawable.like_button_press : R.drawable.like_button);
-
-		//报名已结束
-		if ( clubhead.applyTimeStatus == 1 )
+//默认
+		applyBtn();
+//已报名
+		if (  clubhead.applyStauts == 1 )
 		{
-			applyPast();
+			applyOK();
 		}
-		else
-		{
-			// 权限1创始人，2管理员，4成员,8网站编辑
-//			if ("4".equals(clubhead.is_jion) || "-1".equals(clubhead.is_jion))
-//			{
-				//已报名
-				if (  clubhead.applyStauts == 1 )
-				{
-					applyOK();
-				}
-//			}
+		else {
+
+			//报名已结束
+			if ( clubhead.applyTimeStatus == 1 )
+			{
+				applyPast();
+			}
+
 		}
-
-//		else
-//		{
-//			// actionButton.setBackgroundResource(R.drawable.club_topic_checkapply_bg);
-//			actionButton.setText("查看已报名用户");
-//		}
-
-
 
 		//====3.5======
 		if ( clubhead.taglist != null && clubhead.taglist.size() != 0 )
@@ -586,11 +576,20 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 //			}
 		}
 	}
+//	默认
+	public void applyBtn ()
+	{
+		actionButton.setText("报名");
+		actionButton.setBackgroundResource(R.drawable.club_sign);
+		actionButton.setEnabled(true);
+		actionButton.setClickable(true);
+	}
 	
 	public void applyOK ()
 	{
 		clubhead.applyStauts = 1;
 		actionButton.setText("已报名");
+		actionButton.setBackgroundResource(R.drawable.club_sign);
 		actionButton.setEnabled(false);
 		actionButton.setClickable(false);
 	}

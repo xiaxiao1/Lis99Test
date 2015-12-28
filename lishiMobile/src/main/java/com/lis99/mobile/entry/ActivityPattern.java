@@ -25,6 +25,7 @@ import com.lis99.mobile.engine.base.IEventHandler;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.engine.io.IOManager;
 import com.lis99.mobile.entry.view.CustomProgressDialog;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.InternetUtil;
 import com.lis99.mobile.util.PushManager;
 import com.lis99.mobile.util.StatusUtil;
@@ -466,22 +467,28 @@ public class ActivityPattern extends Activity implements OnClickListener,
 	 * @param content
 	 */
 	synchronized public void startWaiting(String title, String content) {
-		if (customProgressDialog == null) {
-			customProgressDialog = CustomProgressDialog.getInstance(this);
-		}
-		if (customProgressDialog != null
-				&& customProgressDialog.isShow() == false) {
-			customProgressDialog.popup(this, this, title, content);
-		}
+//		if (customProgressDialog == null) {
+//			customProgressDialog = CustomProgressDialog.getInstance(this);
+//		}
+//		if (customProgressDialog != null
+//				&& customProgressDialog.isShow() == false) {
+//			customProgressDialog.popup(this, this, title, content);
+//		}
+
+		DialogManager.getInstance().startWaiting(this, null, null);
+
 	}
 
 	/**
 	 * 结束等待对话框
 	 */
 	public synchronized void stopWaitting() {
-		if (customProgressDialog != null && customProgressDialog.isShow()) {
-			customProgressDialog.close();
-		}
+//		if (customProgressDialog != null && customProgressDialog.isShow()) {
+//			customProgressDialog.close();
+//		}
+
+		DialogManager.getInstance().stopWaitting();
+
 	}
 
 	/**

@@ -421,8 +421,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         else {
             layout_tag.setVisibility(View.INVISIBLE);
         }
-
-
+//设置默认
+        applyBtn();
         // 权限1创始人，2管理员，4成员,8网站编辑
 //        if ("4".equals(model.is_jion) || "-1".equals(model.is_jion))
 //        {
@@ -486,9 +486,18 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
     }
 
 
+    public void applyBtn ()
+    {
+        btn_join.setText("立即申请");
+        btn_join.setBackgroundResource(R.drawable.topic_new_active_apply_btn);
+        btn_join.setEnabled(true);
+        btn_join.setClickable(true);
+    }
+
     public void applyOK ()
     {
         model.applyStauts = 1;
+        btn_join.setBackgroundResource(R.drawable.topic_new_active_apply_btn);
         btn_join.setText("已申请");
         btn_join.setEnabled(false);
         btn_join.setClickable(false);

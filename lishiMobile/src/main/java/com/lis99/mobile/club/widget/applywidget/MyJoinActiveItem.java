@@ -67,7 +67,7 @@ public class MyJoinActiveItem extends MyBaseAdapter {
         holder.tv_title.setText(item.topic_title);
         holder.tv_data.setText(item.createTime+" 报名");
         String pay_state = "";
-        if ( item.pay_status > 0 && item.pay_status < MyJoinActiveInfoActivity.PAY_TYPE.length )
+        if ( item.pay_status >= 0 && item.pay_status < MyJoinActiveInfoActivity.PAY_TYPE.length )
         {
             pay_state = MyJoinActiveInfoActivity.PAY_TYPE[item.pay_status];
         }

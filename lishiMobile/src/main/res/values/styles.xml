@@ -117,20 +117,22 @@
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
-    
+
     <style name="fill_fill">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
+
     <style name="fill_wrap">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="wrap_wrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    
+
     <style name="wrap_fill">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">fill_parent</item>
@@ -141,17 +143,17 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">fill_parent</item>
     </style>
-    
-    <style name="listViewStyle" parent="@fill_wrap" >
+
+    <style name="listViewStyle" parent="@fill_wrap">
         <item name="android:listSelector">#00000000</item>
         <item name="android:cacheColorHint">#00000000</item>
         <item name="android:scrollbars">none</item>
     </style>
-    
+
     <style name="scroll" parent="@fill_fill">
         <item name="android:scrollbars">none</item>
     </style>
-    
+
     <!-- 自定义仿IOS的AlertDialog的样式 -->
     <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -162,12 +164,12 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-    
+
     <style name="text_small" parent="@fill_wrap">
         <item name="android:textColor">@color/color_nine</item>
         <item name="android:textSize">@dimen/text_small</item>
     </style>
-    
+
     <style name="text_large" parent="@fill_wrap">
         <item name="android:textColor">@color/color_six</item>
         <item name="android:textSize">@dimen/text_large</item>
@@ -184,6 +186,7 @@
         <item name="android:textSize">14sp</item>
     </style>
     @android:style/Animation">
+
     <style name="ls_equip_star_big" parent="@android:style/Widget.RatingBar">
 
         <item name="android:progressDrawable">@drawable/ls_equip_star_score</item>
@@ -215,25 +218,66 @@
 
         <!-- 除去背景 -->
         <item
-            name="android:windowBackground">@drawable/updata_dialog_bg</item>
+            name="android:windowBackground">@drawable/updata_dialog_bg
+        </item>
         <!--windowFrame框为无 -->
         <item
-            name="android:windowFrame">@null</item>
+            name="android:windowFrame">@null
+        </item>
 
         <item
-            name="android:windowNoTitle">true</item>
+            name="android:windowNoTitle">true
+        </item>
         <!--是否浮现在activity之上 -->
         <item
-            name="android:windowIsFloating">true</item>
+            name="android:windowIsFloating">true
+        </item>
         <!-- 是否半透明 -->
         <item
-            name="android:windowIsTranslucent">true</item>
+            name="android:windowIsTranslucent">true
+        </item>
         <!-- 去掉覆盖层 -->
         <item
-            name="android:windowContentOverlay">@null</item>
+            name="android:windowContentOverlay">@null
+        </item>
         <!-- 设置背景颜色 -->
         <item
-            name="android:background">@null</item>
+            name="android:background">@null
+        </item>
     </style>
-    
+
+    <!-- 自定义Dialog -->
+    <style
+        name="waitingDialog"
+        parent="@android:style/Theme.Dialog">
+
+        <!-- 除去背景 -->
+        <item
+            name="android:windowBackground">@android:color/transparent
+        </item>
+        <!--windowFrame框为无 -->
+        <item
+            name="android:windowFrame">@null
+        </item>
+
+        <item
+            name="android:windowNoTitle">true
+        </item>
+        <!--是否浮现在activity之上 -->
+        <item
+            name="android:windowIsFloating">true
+        </item>
+        <!-- 是否半透明 -->
+        <item
+            name="android:windowIsTranslucent">false
+        </item>
+        <!-- 去掉覆盖层 -->
+        <item
+            name="android:windowContentOverlay">@null
+        </item>
+<!--    灰色背景去掉false， 保留true-->
+        <item name="android:backgroundDimEnabled">false</item>
+
+    </style>
+
 </resources>
