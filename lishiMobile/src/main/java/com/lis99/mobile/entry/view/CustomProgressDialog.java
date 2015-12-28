@@ -61,7 +61,9 @@ public class CustomProgressDialog extends ProgressDialog implements DialogInterf
 			instance.mParent = parent;
 			instance.setTitle(title == null ? dialogTitle : title);
 			instance.setMessage(content == null ? dialogContent : content);
-	
+
+//			instance.setContentView();
+
 			if (!instance.isShowing()) {
 				instance.setCanceledOnTouchOutside(false);
 				instance.show();

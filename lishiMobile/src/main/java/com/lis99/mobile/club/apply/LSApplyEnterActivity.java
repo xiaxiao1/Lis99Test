@@ -57,7 +57,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
     private int payType = -1;
 //    不显示网上支付
-    private boolean test = true;
+    private boolean test = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

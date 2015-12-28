@@ -62,9 +62,12 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
         api = WXAPIFactory.createWXAPI(this, C.WEIXIN_APP_ID);
         api.handleIntent(getIntent(), this);
-
-        int code = getIntent().getIntExtra("CODE", -1);
-
+//      支付宝传进来用到的
+        int code = getIntent().getIntExtra("CODE", -100);
+        if ( code == -100 )
+        {
+            return;
+        }
         setPayStatus(code);
 
     }
