@@ -78,7 +78,7 @@ import java.io.File;
 import java.util.HashMap;
 
 public class NewHomeActivity extends ActivityPattern1 implements OnItemClickListener {
-
+  
     public class SDKReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
             String s = intent.getAction();
@@ -260,6 +260,7 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         LSRequestManager.getInstance().upDataInfo();
 
         PushModel model = PushManager.getInstance().getPushModel(getIntent());
+//        控制点的是哪个Tab
         if (model == null) {
 //			tab.onTabClick(tab.SELECT);
 			tab.onTabClick(tab.CHOICENESS);
