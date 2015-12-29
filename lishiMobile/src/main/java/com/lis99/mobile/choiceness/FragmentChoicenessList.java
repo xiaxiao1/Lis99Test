@@ -26,6 +26,7 @@ import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
@@ -35,6 +36,7 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
@@ -320,10 +322,11 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( Common.isApkInDebug(getActivity()))
                 {
 
-//                    DialogManager.getInstance().showWaiting(this);
+                    DialogManager.getInstance().startWaiting(DemoApplication.getInstance().getApplicationContext(), null, null);
 
                 }
-                else {
+                else
+                {
                     startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
                 }
 

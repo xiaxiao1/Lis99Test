@@ -24,6 +24,7 @@ import com.lis99.mobile.club.widget.ioscitychoose.ArrayWheelAdapter;
 import com.lis99.mobile.club.widget.ioscitychoose.MyAlertDialog;
 import com.lis99.mobile.club.widget.ioscitychoose.OnWheelChangedListener;
 import com.lis99.mobile.club.widget.ioscitychoose.WheelView;
+import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.entry.view.CustomProgressDialog;
 
 /**
@@ -48,6 +49,7 @@ public class DialogManager {
 	}
 	
 	public void alert(Activity a, String message) {
+
 		alert(a, "提示", message);
 	}
 
@@ -74,7 +76,7 @@ public class DialogManager {
 	 * @param title
 	 * @param content
 	 */
-	synchronized public void startWaiting(Activity a, String title, String content) {
+	synchronized public void startWaiting(Context a, String title, String content) {
 //		if (customProgressDialog == null) {
 //			customProgressDialog = CustomProgressDialog.getInstance(a);
 //		}
@@ -83,10 +85,14 @@ public class DialogManager {
 //			customProgressDialog.popup(this, a, title, content);
 //		}
 
+		if ( a == null )
+			a = DemoApplication.getInstance().getApplicationContext();
+
 		showWaiting(a);
 
 
 	}
+
 
 	/**
 	 * 结束等待对话框
@@ -375,11 +381,11 @@ public class DialogManager {
 		});
 	}
 
-	synchronized private static void showWaiting ( Activity a )
+	private void showWaiting ( Context a )
 	{
 		if ( dlWait == null )
 		{
-			dlWait = new Dialog(a == null ? LSBaseActivity.activity : a, R.style.waitingDialog);
+			dlWait = new Dialog(a, R.style.waitingDialog);
 
 			dlWait.setContentView(R.layout.waiting_dialog);
 
@@ -394,7 +400,7 @@ public class DialogManager {
 		}
 	}
 
-	synchronized private static void stopWaitingDialog ()
+	private void stopWaitingDialog ()
 	{
 		if ( dlWait != null && dlWait.isShowing() )
 		{
