@@ -33,7 +33,7 @@ import java.util.HashMap;
 /**
  * Created by yy on 15/11/18.
  */
-public class LSApplyEnterActivity extends LSBaseActivity{
+public class LSApplyEnterActivity extends LSBaseActivity {
 
     private TextView tv_title, tv_pay, tv_joinNum, tv_price;
 
@@ -56,7 +56,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
     public PayEnterOrderModel bModel;
 
     private int payType = -1;
-//    不显示网上支付
+    //    不显示网上支付
     private boolean test = false;
 
     @Override
@@ -88,8 +88,7 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         super.onNewIntent(intent);
         setIntent(intent);
         String str = intent.getStringExtra("CLOSE");
-        if ( !TextUtils.isEmpty(str) )
-        {
+        if (!TextUtils.isEmpty(str)) {
             sendResult();
         }
 
@@ -175,12 +174,10 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         });
 
 
-
     }
 
 
-    private void getList ()
-    {
+    private void getList() {
 
         String url = C.GET_ORDER_INFO;
 
@@ -196,13 +193,13 @@ public class LSApplyEnterActivity extends LSBaseActivity{
             public void handler(MyTask mTask) {
 
                 model = (OrderInfoModel) mTask.getResultModel();
-                if ( model == null ) return;
+                if (model == null) return;
 
                 tv_title.setText(model.title);
 
-                tv_pay.setText("人均费用"+model.consts+"元");
+                tv_pay.setText("人均费用" + model.consts + "元");
 
-                tv_joinNum.setText("报名人员（共"+jonNum+"人）");
+                tv_joinNum.setText("报名人员（共" + jonNum + "人）");
 
                 //总价
                 float allPrice = model.consts * jonNum;
@@ -211,49 +208,37 @@ public class LSApplyEnterActivity extends LSBaseActivity{
 
                 String priceAll = df.format(allPrice);
 
-                tv_price.setText("总计："+priceAll+"元");
+                tv_price.setText("总计：" + priceAll + "元");
 
                 //显示支付方式
                 int typeLength = model.type.length;
 
-                for ( int i = 0; i < typeLength; i++ )
-                {
+                for (int i = 0; i < typeLength; i++) {
                     int num = model.type[i];
-                    if ( num == 0 )
-                    {
+                    if (num == 0) {
                         layout_free.setVisibility(View.VISIBLE);
-                        if ( i == 0 )
-                        {
+                        if (i == 0) {
                             currentRadio = radio_free;
                             currentRadio.setChecked(true);
                             payType = 0;
                         }
-                    }
-                    else if ( num == 1 )
-                    {
+                    } else if (num == 1) {
                         layout_off_line.setVisibility(View.VISIBLE);
-                        if ( i == 0 )
-                        {
+                        if (i == 0) {
                             currentRadio = radio_off_line;
                             currentRadio.setChecked(true);
                             payType = 1;
                         }
-                    }
-                    else if ( num == 2 && !test )
-                    {
+                    } else if (num == 2 && !test) {
                         layout_weixin.setVisibility(View.VISIBLE);
-                        if ( i == 0 )
-                        {
+                        if (i == 0) {
                             currentRadio = radio_weixin;
                             currentRadio.setChecked(true);
                             payType = 2;
                         }
-                    }
-                    else if ( num == 3 )
-                    {
+                    } else if (num == 3) {
                         layout_zhifubao.setVisibility(View.VISIBLE);
-                        if ( i == 0 )
-                        {
+                        if (i == 0) {
                             currentRadio = radio_zhifubao;
                             currentRadio.setChecked(true);
                             payType = 3;
@@ -276,21 +261,22 @@ public class LSApplyEnterActivity extends LSBaseActivity{
         });
 
 
-
-
     }
 
-    private void cleanList ()
-    {
+    private void cleanList() {
 
     }
 
     @Override
     public void onClick(View arg0) {
         super.onClick(arg0);
-        switch (arg0.getId())
-        {
+        switch (arg0.getId()) {
             case R.id.btn_ok:
+                if ( bModel != null && !TextUtils.isEmpty(bModel.ordercode) )
+                {
+                    goPayNow();
+                    return;
+                }
                 SubmitOrderList();
                 break;
             case R.id.layout_free:
@@ -309,13 +295,11 @@ public class LSApplyEnterActivity extends LSBaseActivity{
     }
 
     /**
-     *   提交报名信息
+     * 提交报名信息
      */
-    private void SubmitOrderList ()
-    {
+    private void SubmitOrderList() {
 
-        if ( payType == -1 )
-        {
+        if (payType == -1) {
             Common.toast("请选择支付方式");
             return;
         }
@@ -347,53 +331,50 @@ public class LSApplyEnterActivity extends LSBaseActivity{
             @Override
             public void handler(MyTask mTask) {
                 bModel = (PayEnterOrderModel) mTask.getResultModel();
-                if ( bModel != null )
-                {
+                if (bModel != null) {
 
-                    if ( payType == 0 || payType == 1 )
-                    {
+                    if (payType == 0 || payType == 1) {
                         Common.toast("报名成功");
                         sendResult();
                     }
-
-                    else if ( payType == 2 )
-                    {
-                        if (TextUtils.isEmpty(bModel.ordercode))
-                        {
-                            Common.toast("订单号获取失败");
-                            return;
-                        }
-
-//                        sendResult();
-                        WXPayEntryActivity.PayBackA = LSApplyEnterActivity.this;
-
-                        PayUtil.getInstance().payWeiXin(bModel.ordercode);
+                    else {
+                        goPayNow();
                     }
-                    else if ( payType == 3 )
-                    {
-                        if (TextUtils.isEmpty(bModel.ordercode))
-                        {
-                            Common.toast("订单号获取失败");
-                            return;
-                        }
 
-//                        sendResult();
-                        WXPayEntryActivity.PayBackA = LSApplyEnterActivity.this;
-
-                        PayUtil.getInstance().payZhiFuBao(bModel.ordercode);
-                    }
 
                 }
             }
         });
 
 
-
-
     }
 
-    private void sendResult ()
-    {
+
+    public void goPayNow() {
+        if (payType == 2) {
+            if (TextUtils.isEmpty(bModel.ordercode)) {
+                Common.toast("订单号获取失败");
+                return;
+            }
+
+//                        sendResult();
+            WXPayEntryActivity.PayBackA = LSApplyEnterActivity.this;
+
+            PayUtil.getInstance().payWeiXin(bModel.ordercode);
+        } else if (payType == 3) {
+            if (TextUtils.isEmpty(bModel.ordercode)) {
+                Common.toast("订单号获取失败");
+                return;
+            }
+
+//                        sendResult();
+            WXPayEntryActivity.PayBackA = LSApplyEnterActivity.this;
+
+            PayUtil.getInstance().payZhiFuBao(bModel.ordercode);
+        }
+    }
+
+    private void sendResult() {
         setResult(RESULT_OK);
         finish();
     }

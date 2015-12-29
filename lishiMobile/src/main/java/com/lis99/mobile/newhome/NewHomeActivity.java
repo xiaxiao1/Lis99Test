@@ -258,11 +258,6 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         }
         //上传设备信息
         LSRequestManager.getInstance().upDataInfo();
-//		selectFragment = new LSSelectFragment();
-//		switchContent(selectFragment);
-//		content = selectFragment;
-//		getSupportFragmentManager().beginTransaction()
-//		.add(R.id.content_frame, content).commit();
 
         PushModel model = PushManager.getInstance().getPushModel(getIntent());
         if (model == null) {
@@ -274,7 +269,6 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 			sendPush(model);
 		}
 		Common.mainIsStart = true;
-		Common.log("NewHomeActivity.isStart set  ===  true");
 	}
 
 	private void initViews() {
