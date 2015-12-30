@@ -81,7 +81,7 @@ public class QQZoneUtil {
                 callBack.handler(task);
             }
             callBack = null;
-            LSScoreManager.getInstance().sendScore(LSScoreManager.shareqzone);
+            LSScoreManager.getInstance().sendScore(LSScoreManager.shareqzone, ShareManager.topicid);
 
         }
 

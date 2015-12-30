@@ -325,7 +325,7 @@ public class LSClubEventApplyerAdapter extends BaseAdapter {
 				item.flag = "1";
 				LSClubEventApplyerAdapter.this.notifyDataSetChanged();
 
-				LSScoreManager.getInstance().sendScore(""+item.applyuserid, LSScoreManager.enroll);
+				LSScoreManager.getInstance().sendScore(""+item.applyuserid, LSScoreManager.enroll, ""+LSClubApplyListActivity.topicID);
 
 			}
 		});

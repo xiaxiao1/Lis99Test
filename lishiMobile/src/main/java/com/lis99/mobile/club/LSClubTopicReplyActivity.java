@@ -281,11 +281,11 @@ public class LSClubTopicReplyActivity extends LSBaseActivity implements OnClickL
 
 					if ( bitmap == null )
 					{
-						LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbynoimg);
+						LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbynoimg, topicId);
 					}
 					else
 					{
-						LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbyimg);
+						LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbyimg, topicId);
 					}
 
 					Intent intent = new Intent();

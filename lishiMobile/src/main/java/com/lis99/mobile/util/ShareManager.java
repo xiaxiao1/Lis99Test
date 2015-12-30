@@ -63,6 +63,8 @@ public class ShareManager
 
 	private static ShareManager Instance;
 
+	public static String topicid;
+
 	public static ShareManager getInstance()
 	{
 		if (Instance == null)
@@ -300,6 +302,7 @@ public class ShareManager
 			shareTxt = this.shareText;
 		}
 
+		this.topicid = topicId;
 
 		Common.log("activity=" + LSBaseActivity.activity.getClass().getName());
 

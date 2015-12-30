@@ -875,11 +875,11 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 	{
 		if ( clubhead != null && "0".equals(clubhead.category) )
 		{
-			LSScoreManager.getInstance().sendScore(clubhead.user_id, LSScoreManager.delpubtalktopic);
+			LSScoreManager.getInstance().sendScore(clubhead.user_id, LSScoreManager.delpubtalktopic, clubhead.topic_id);
 		}
 		else
 		{
-			LSScoreManager.getInstance().sendScore(clubhead.user_id, LSScoreManager.delpubactivetopic);
+			LSScoreManager.getInstance().sendScore(clubhead.user_id, LSScoreManager.delpubactivetopic, clubhead.topic_id);
 		}
 		setResult(RESULT_OK);
 		finish();

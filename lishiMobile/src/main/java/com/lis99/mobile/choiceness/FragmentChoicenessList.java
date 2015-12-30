@@ -35,6 +35,7 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
@@ -320,7 +321,7 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( Common.isApkInDebug(getActivity()))
                 {
 
-//                    DialogManager.getInstance().startWaiting(DemoApplication.getInstance().getApplicationContext(), null, null);
+                    DialogManager.getInstance().startWaiting(getActivity(), null, null);
 
                 }
                 else

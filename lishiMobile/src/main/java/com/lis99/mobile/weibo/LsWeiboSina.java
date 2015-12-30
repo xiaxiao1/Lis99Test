@@ -13,6 +13,7 @@ import com.lis99.mobile.entry.LsShakesActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.ShareManager;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -107,7 +108,7 @@ public class LsWeiboSina{
 			callBack = null;
 			Toast.makeText(activity, "分享成功", Toast.LENGTH_LONG).show();
 
-			LSScoreManager.getInstance().sendScore(LSScoreManager.shareweibo);
+			LSScoreManager.getInstance().sendScore(LSScoreManager.shareweibo, ShareManager.topicid);
 
 			if(page==1){
 				LsShakesActivity.webview.loadUrl("javascript:shareCallback('weibo')");

@@ -548,7 +548,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 					}
 				});
 
-				instance.sendScore(LSScoreManager.sign);
+				instance.sendScore(LSScoreManager.sign, "0");
 
 			}
 			else if ( v.getId() == R.id.layout_market )

@@ -244,7 +244,7 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
     		return true;
     	} else if (msg.what == REGIST_SUCCESS) {
 
-			LSScoreManager.getInstance().sendScore(userId, LSScoreManager.register);
+			LSScoreManager.getInstance().sendScore(userId, LSScoreManager.register, "0");
 
 			SharedPreferencesHelper.saveuser_id(userId);
 			SharedPreferencesHelper.saveaccounttype("phone");

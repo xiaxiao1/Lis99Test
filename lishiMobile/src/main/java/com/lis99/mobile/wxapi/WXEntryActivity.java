@@ -135,12 +135,12 @@ public class WXEntryActivity extends LSBaseActivity implements IWXAPIEventHandle
                     //朋友
                     if (ShareManager.state == ShareManager.wechat)
                     {
-                        LSScoreManager.getInstance().sendScore(LSScoreManager.sharewechatfriends);
+                        LSScoreManager.getInstance().sendScore(LSScoreManager.sharewechatfriends, ShareManager.topicid);
                     }
 //                    朋友圈
                     else if (ShareManager.state == ShareManager.wechat_friends)
                     {
-                        LSScoreManager.getInstance().sendScore(LSScoreManager.sharewechatfriendscircle);
+                        LSScoreManager.getInstance().sendScore(LSScoreManager.sharewechatfriendscircle, ShareManager.topicid);
                     }
                 }
 

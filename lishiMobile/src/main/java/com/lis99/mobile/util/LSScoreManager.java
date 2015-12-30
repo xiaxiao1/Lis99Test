@@ -17,9 +17,11 @@ public class LSScoreManager {
 
     private static LSScoreManager instance;
 
-    private static final String URL = C.DOMAIN + "/v3/user/incrUserPoints";
+//    private static final String URL = C.DOMAIN + "/v3/user/incrUserPoints";
+//    /v3/user/newIncrUserPoints
+private static final String URL = C.DOMAIN + "/v3/user/newIncrUserPoints";
 
-    private static String /*action,*/ user_id, version, platform, channel;
+    private static String /*action,*/ user_id, version, platform, channel, topicid;
 
     private CallBack callBack;
     //注册信息
@@ -92,14 +94,16 @@ public class LSScoreManager {
         map.put("version", version);
         map.put("platform", platform);
         map.put("channel", channel);
+        map.put("topicid", topicid);
     }
 
-    public void sendScore ( String action )
+    public void sendScore ( String action, String topicid )
     {
         if ( !getUserId() )
         {
             return;
         }
+        this.topicid = topicid;
         BaseModel model = new BaseModel();
         HashMap<String, Object> map = new HashMap<String, Object>();
 
@@ -115,9 +119,10 @@ public class LSScoreManager {
         });
     }
 
-    public void sendScore ( String UserId, String action )
+    public void sendScore ( String UserId, String action, String topicid )
     {
         user_id = UserId;
+        this.topicid = topicid;
         BaseModel model = new BaseModel();
         HashMap<String, Object> map = new HashMap<String, Object>();
 

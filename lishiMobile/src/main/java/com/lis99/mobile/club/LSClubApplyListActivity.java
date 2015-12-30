@@ -33,7 +33,7 @@ import java.util.List;
 public class LSClubApplyListActivity extends LSBaseActivity implements OnHeaderRefreshListener, OnFooterRefreshListener{
 	
 	int clubID;
-	int topicID;
+	public static int topicID;
 	List<LSClubEventApplyer> applyers = new ArrayList<LSClubEventApplyer>();
 	///人数
 	TextView totalView;

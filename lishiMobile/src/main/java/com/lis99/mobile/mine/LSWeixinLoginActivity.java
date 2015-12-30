@@ -143,7 +143,7 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
 //            微信登陆
             if ( "1".equals(is_new))
             {
-                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register, "0");
             }
 
             postMessage(LOGIN_SUCCESS);

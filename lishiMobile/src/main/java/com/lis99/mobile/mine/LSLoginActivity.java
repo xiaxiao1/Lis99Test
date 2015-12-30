@@ -488,7 +488,7 @@ public class LSLoginActivity extends LSBaseActivity {
             //            微信登陆
             if ( "1".equals(is_new))
             {
-                LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+                LSScoreManager.getInstance().sendScore(LSScoreManager.register, "0");
             }
 
             SharedPreferencesHelper.saveWeixinOpenID(openid);

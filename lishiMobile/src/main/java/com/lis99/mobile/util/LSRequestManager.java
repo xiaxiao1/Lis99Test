@@ -196,7 +196,7 @@ public class LSRequestManager
 				//上传设备信息
 				LSRequestManager.getInstance().upDataInfo();
 //注册
-				LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+				LSScoreManager.getInstance().sendScore(LSScoreManager.register, "0");
 
 				if (call != null) {
 					call.handler(mTask);
@@ -325,7 +325,7 @@ public class LSRequestManager
 				//QQ注册
 				if ( "1".equals(model.is_new))
 				{
-					LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+					LSScoreManager.getInstance().sendScore(LSScoreManager.register, "0");
 				}
 
 				if ( callBack != null )
@@ -376,7 +376,7 @@ public class LSRequestManager
 //新浪注册
 				if ( "1".equals(model.is_new))
 				{
-					LSScoreManager.getInstance().sendScore(LSScoreManager.register);
+					LSScoreManager.getInstance().sendScore(LSScoreManager.register, "0");
 				}
 
 				if ( callBack != null )
