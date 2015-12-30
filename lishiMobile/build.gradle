@@ -9,7 +9,7 @@ android {
         shichang {}
         zhuzhan {}
         tuiguang1 {}
-//        sougou {}
+        sougou {}
 //        baidu {}
 //        pp{}
 //        oppo {}
