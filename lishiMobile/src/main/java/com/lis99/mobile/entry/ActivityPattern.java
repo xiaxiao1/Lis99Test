@@ -37,6 +37,8 @@ import com.umeng.analytics.MobclickAgent;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.jpush.android.api.JPushInterface;
+
 /*******************************************
  * @ClassName: ActivityPattern
  * @Description: Activity基类
@@ -189,12 +191,14 @@ public class ActivityPattern extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);
+		JPushInterface.onPause(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		activity = this;
+		JPushInterface.onResume(this);
 		MobclickAgent.onResume(this);
 	}
 

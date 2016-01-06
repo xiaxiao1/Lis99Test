@@ -22,7 +22,9 @@ public class DeviceInfo
 		try
 		{
 			ApplicationInfo ai = a.getPackageManager().getApplicationInfo(a.getPackageName(), PackageManager.GET_META_DATA);
-			CHANNELVERSION = ai.metaData.getString("UMENG_CHANNEL");
+//			CHANNELVERSION = ai.metaData.getString("UMENG_CHANNEL");
+			CHANNELVERSION = ai.metaData.getString("JPUSH_CHANNEL");
+			Common.log("JPUSH_CHANNEL="+CHANNELVERSION + "\nJPUSH_APPKEY="+ai.metaData.getString("JPUSH_APPKEY"));
 //			CHANNELVERSION = "zs360";
 		} catch (NameNotFoundException e)
 		{

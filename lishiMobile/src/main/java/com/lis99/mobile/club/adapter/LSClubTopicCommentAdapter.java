@@ -192,6 +192,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 					.findViewById(R.id.nameView);
 
 			holder.iv_moderator = convertView.findViewById(R.id.iv_moderator);
+			holder.iv_writer = convertView.findViewById(R.id.iv_writer);
 			// 去掉楼主
 			holder.nameView
 					.setCompoundDrawablesRelative(null, null, null, null);
@@ -253,6 +254,17 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		final Topiclist item = (Topiclist) getItem(position);
 		if (item == null)
 			return convertView;
+
+		//4.0.2===== 撰稿人
+
+		if (Common.isWriter(item.tags))
+		{
+			holder.iv_writer.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			holder.iv_writer.setVisibility(View.GONE);
+		}
 
 		if ( Common.isModerator(item.moderator))
 		{
@@ -408,6 +420,9 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		TextView equiPriceView;
 		TextView equiNameView;
 		RatingBar equiRatingBar;
+
+		//==4.0.2==
+		View iv_writer;
 	}
 
 	private void replyNow(Topiclist comment)

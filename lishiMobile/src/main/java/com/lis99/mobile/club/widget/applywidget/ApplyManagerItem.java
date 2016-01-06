@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.apply.ApplyManager;
+import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.ApplyManagerModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
@@ -200,29 +201,11 @@ public class ApplyManagerItem extends MyBaseAdapter {
                 iv_pay_state.setImageResource(R.drawable.pay_zhifubao);
                 break;
         }
-        switch ( status )
-        {
-            //未支付
-            case 0:
-                tv_pay_state.setText("未支付");
-                break;
-//
-            case 1:
-                tv_pay_state.setText("已支付");
-                break;
-            case 2:
-                tv_pay_state.setText("已退款");
-                break;
-            case 3:
-                tv_pay_state.setText("退款中");
-                break;
-            case 4:
-                tv_pay_state.setText("线下支付");
-                break;
-            case 5:
-                tv_pay_state.setText("免费");
-                break;
-        }
+
+
+
+        tv_pay_state.setText((status >= 0 && status < MyJoinActiveInfoActivity.PAY_TYPE.length) ? MyJoinActiveInfoActivity.PAY_TYPE[status] : "");
+
     }
 
 

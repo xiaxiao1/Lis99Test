@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DeviceInfo;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -150,6 +151,7 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 	 */
 	public void collectDeviceInfo(Context ctx) {
 		try {
+			infos.put("lisVersion", DeviceInfo.CLIENTVERSION);
 			PackageManager pm = ctx.getPackageManager();
 			PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
 			if (pi != null) {

@@ -47,6 +47,8 @@ import com.tencent.tauth.Tencent;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.jpush.android.api.JPushInterface;
+
 /*******************************************
  * @ClassName: ActivityPattern
  * @Description: Activity基类
@@ -247,12 +249,14 @@ public class ActivityPattern1 extends FragmentActivity implements
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
+		JPushInterface.onFragmentPause(this, "");
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
+		JPushInterface.onFragmentResume(this, "");
 		LSBaseActivity.activity = this;
 		super.onResume();
 	}

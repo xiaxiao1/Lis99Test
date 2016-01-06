@@ -9,13 +9,13 @@ android {
         shichang {}
         zhuzhan {}
         tuiguang1 {}
-        sougou {}
+//        sougou {}
 //        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}
 //        gfan {}
-//        zs360 {}
+        zs360 {}
 //        huawei {}
 //        lis99test {}
 //        jinli {}
@@ -23,7 +23,8 @@ android {
     }
 
     productFlavors.all {
-        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+//        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        flavor -> flavor.manifestPlaceholders = [JPUSH_CHANNEL_VALUE: name]
     }
 
 //    //获取时间戳
@@ -164,8 +165,9 @@ dependencies {
     compile files('libs/systembartintlibrary.jar')
     compile files('libs/com.haarman.listviewanimations-2.6.0.jar')
     compile files('libs/nineoldandroids.jar')
-    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
-    compile files('libs/need_lib.jar')
     compile files('libs/patchupdate.jar')
-    compile files('libs/com.umeng.message.lib_v2.6.0.jar')
+    //    compile files('libs/com.umeng.message.lib_v2.6.0.jar')
+    compile files('libs/need_lib.jar')
+    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
+    compile files('libs/jpush-android-2.0.5.jar')
 }

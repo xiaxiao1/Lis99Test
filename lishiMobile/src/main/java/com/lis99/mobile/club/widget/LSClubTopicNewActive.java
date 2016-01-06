@@ -92,6 +92,10 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 //    ===3.9.1====
     private View iv_moderator;
 
+    //====4.0.2===
+    private  TextView lookNum;
+    private View iv_writer;
+
     public void setInstance (LSClubTopicNewActivity main)
     {
         this.main = main;
@@ -124,6 +128,11 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         LayoutParams lp = new LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.WRAP_CONTENT);
         addView(v, lp);
+
+        //		=======4.0.2==
+        lookNum = (TextView) v.findViewById(R.id.lookNum);
+        iv_writer = v.findViewById(R.id.iv_writer);
+
 
         iv_moderator = v.findViewById(R.id.iv_moderator);
 
@@ -187,6 +196,18 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
     {
         this.model = model;
         titleView.setText(model.title);
+
+        //===4.0.2===撰稿人
+        if ( Common.isWriter(model.tags))
+        {
+            iv_writer.setVisibility(VISIBLE);
+        }
+        else
+        {
+            iv_writer.setVisibility(GONE);
+        }
+
+        lookNum.setText(model.visits+"人读过");
 
         nameView.setText(model.nickname);
 

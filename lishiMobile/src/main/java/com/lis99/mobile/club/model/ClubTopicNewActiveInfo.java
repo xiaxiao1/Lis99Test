@@ -66,7 +66,9 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     //	====== 3.9.1===== 版主  版主（1：版主 0：非版主）
     public String moderator;
 
-
+//4.0.2==
+    public String visits;
+    public int[] tags;
 
     @Override
     public String getTopic_id() {

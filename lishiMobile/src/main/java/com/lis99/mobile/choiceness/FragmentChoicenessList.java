@@ -35,13 +35,13 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
-import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.lis99.mobile.webview.MyWebViewTianJin;
+import com.lis99.mobile.wxapi.WXPayEntryActivity;
 import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -321,7 +321,10 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( Common.isApkInDebug(getActivity()))
                 {
 
-                    DialogManager.getInstance().startWaiting(getActivity(), null, null);
+//                    DialogManager.getInstance().startWaiting(getActivity(), null, null);
+                    Intent i = new Intent(getActivity(), WXPayEntryActivity.class);
+                    i.putExtra("CODE", -2);
+                    startActivity(i);
 
                 }
                 else

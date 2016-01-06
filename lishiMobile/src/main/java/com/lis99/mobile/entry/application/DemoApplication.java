@@ -46,12 +46,14 @@ public class DemoApplication extends Application {
 		mInstance = this;
 		try
 		{
+//			地图
 			SDKInitializer.initialize(this);
 		}
 		catch (Exception e)
 		{
 
 		}
+//		统计
 		MobclickAgent.openActivityDurationTrack(true);
 		getPackageIngo();
 		BaseConfig.init(this);

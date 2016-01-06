@@ -252,10 +252,10 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         bmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.ls_nologin_header_icon);
 
-        if (PushManager.isPush) {
-            //开关推送
-            PushManager.getInstance().initViews(this);
-        }
+//        if (PushManager.isPush) {
+//            //开关推送
+//            PushManager.getInstance().initViews(this);
+//        }
         //上传设备信息
         LSRequestManager.getInstance().upDataInfo();
 

@@ -111,6 +111,7 @@
                 />
 
             <LinearLayout
+                android:id="@+id/layout"
                 android:layout_toRightOf="@id/dateView"
                 style="@style/wrap_wrap"
                 android:gravity="center"
@@ -132,7 +133,21 @@
                     android:text="@string/temp_string"
                     android:textColor="#999"
                     android:textSize="12sp" />
+
             </LinearLayout>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/club_info_look_num"
+                android:textSize="12sp"
+                android:textColor="@color/color_nine"
+                android:text="@string/temp_string"
+                android:drawablePadding="6dp"
+                android:id="@+id/lookNum"
+                />
 
         </RelativeLayout>
 

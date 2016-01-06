@@ -568,4 +568,5 @@ private static final int LOGIN_SUCCESS = 200;
         thirdLogin.SinaLogin(false);
     }
 
+
 }

@@ -4,9 +4,9 @@ package com.lis99.mobile.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -26,13 +26,16 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private IWXAPI api;
 
-    private ImageView iv_img;
+    private TextView tv_pay_type, tv_info;
 
-    private TextView tv_pay_state, tv_content;
-
-    private Button btn_ok;
+    private Button btn_ok, btn_ok1;
 
     public static Activity PayBackA;
+
+    private View layout_ok, layout_cancel;
+//<font color="red">I love android</font><br>
+    private String info = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过24小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-53525135</font>";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,13 +47,24 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
         setTitle("支付结果");
 
-        iv_img = (ImageView) findViewById(R.id.iv_img);
+        layout_ok = findViewById(R.id.layout_ok);
 
-        tv_pay_state = (TextView) findViewById(R.id.tv_pay_state);
+        layout_cancel = findViewById(R.id.layout_cancel);
 
-        tv_content = (TextView) findViewById(R.id.tv_content);
+        tv_pay_type = (TextView) findViewById(R.id.tv_pay_type);
+
+        tv_info = (TextView) findViewById(R.id.tv_info);
+
+        btn_ok1 = (Button) findViewById(R.id.btn_ok1);
 
         btn_ok = (Button) findViewById(R.id.btn_ok);
+
+        btn_ok1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,25 +143,26 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
         {
 //                支付成功
             case 0:
-                iv_img.setImageResource(R.drawable.pay_ok_img);
-                tv_content.setText("希望您玩得愉快\n" +
-                        "如果您需要帮助 请联系010-53525135");
-                tv_pay_state.setText("支付成功");
-                btn_ok.setText("完成");
+                setTitle("支付成功");
+                layout_ok.setVisibility(View.VISIBLE);
+                layout_cancel.setVisibility(View.GONE);
                 break;
 //                支付失败
             case -1:
-                iv_img.setImageResource(R.drawable.pay_refuse_img);
-                tv_content.setText("您可以在个人中心--我报名的活动中重新支付");
-                tv_pay_state.setText("支付失败");
-                btn_ok.setText("我知道了");
+
+                tv_info.setText(Html.fromHtml(info));
+                setTitle("支付失败");
+                tv_pay_type.setText("支付失败");
+                layout_ok.setVisibility(View.GONE);
+                layout_cancel.setVisibility(View.VISIBLE);
                 break;
 //                取消支付
             case -2:
-                iv_img.setImageResource(R.drawable.pay_cancel_img);
-                tv_content.setText("您可以在个人中心--我报名的活动中重新支付");
-                tv_pay_state.setText("支付已取消");
-                btn_ok.setText("我知道了");
+                tv_info.setText(Html.fromHtml(info));
+                setTitle("支付取消");
+                tv_pay_type.setText("支付取消");
+                layout_ok.setVisibility(View.GONE);
+                layout_cancel.setVisibility(View.VISIBLE);
                 break;
         }
     }

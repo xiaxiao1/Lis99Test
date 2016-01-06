@@ -206,6 +206,19 @@
                 />
 
             <TextView
+                android:layout_toRightOf="@id/dateView"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/club_info_look_num"
+                android:textSize="12sp"
+                android:textColor="@color/color_nine"
+                android:text="@string/temp_string"
+                android:drawablePadding="5dp"
+                android:id="@+id/lookNum"
+                />
+
+            <TextView
                 style="@style/wrap_wrap"
                 android:drawableLeft="@drawable/club_detail_reply"
                 android:text="回复"

@@ -100,6 +100,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 	//    ===3.9.1====
 	private View iv_moderator;
 
+	//====4.0.2===
+	private  TextView lookNum;
+	private View iv_writer;
+
 	public void setTopic(LSClubTopicActivity lsTopic)
 	{
 		this.lsTopic = lsTopic;
@@ -144,6 +148,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		addView(v, lp);
 
 		iv_moderator = v.findViewById(R.id.iv_moderator);
+
+//		=======4.0.2==
+		lookNum = (TextView) v.findViewById(R.id.lookNum);
+		iv_writer = v.findViewById(R.id.iv_writer);
 
 //		=======3.5.5=======赞
 		like = new LSClubTopicHeadLike(c);
@@ -348,6 +356,19 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		{
 			iv_moderator.setVisibility(GONE);
 		}
+
+		//===4.0.2===撰稿人
+		if ( Common.isWriter(clubhead.tags))
+		{
+			iv_writer.setVisibility(VISIBLE);
+		}
+		else
+		{
+			iv_writer.setVisibility(GONE);
+		}
+
+		lookNum.setText(clubhead.visits+"人读过");
+
 
 //赞
 		like.setInfo(clubhead);

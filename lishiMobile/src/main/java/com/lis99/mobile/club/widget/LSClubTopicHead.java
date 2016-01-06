@@ -51,7 +51,7 @@ public class LSClubTopicHead extends LinearLayout implements
 
 	TextView titleView;
 	TextView nameView;
-	TextView dateView;
+	TextView dateView, lookNum;
 	TextView contentView;
 
 	View vipStar;
@@ -112,6 +112,7 @@ public class LSClubTopicHead extends LinearLayout implements
 
 	//    ===3.9.1====
 	private View iv_moderator;
+	private View iv_writer;
 
 
 	public void setHead(final ClubTopicDetailHead clubhead)
@@ -128,6 +129,18 @@ public class LSClubTopicHead extends LinearLayout implements
 		{
 			iv_moderator.setVisibility(GONE);
 		}
+
+		//===4.0.2===撰稿人
+		if ( Common.isWriter(clubhead.tags))
+		{
+			iv_writer.setVisibility(VISIBLE);
+		}
+		else
+		{
+			iv_writer.setVisibility(GONE);
+		}
+
+		lookNum.setText(clubhead.visits+"人读过");
 
 		//赞
 		like.setInfo(clubhead);
@@ -413,6 +426,10 @@ public class LSClubTopicHead extends LinearLayout implements
 		buildOptions();
 
 		iv_moderator = v.findViewById(R.id.iv_moderator);
+
+//		＝＝＝4.0.2=＝＝＝
+		lookNum = (TextView) v.findViewById(R.id.lookNum);
+		iv_writer = v.findViewById(R.id.iv_writer);
 
 		//		=======3.5.5=======赞
 		like = new LSClubTopicHeadLike(c);

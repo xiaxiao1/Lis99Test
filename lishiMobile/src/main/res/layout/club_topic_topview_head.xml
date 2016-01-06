@@ -48,6 +48,16 @@
             android:layout_marginLeft="5dp"
             />
 
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_writer"
+            android:src="@drawable/club_info_tag_writer"
+            android:layout_toRightOf="@id/iv_moderator"
+            android:layout_marginLeft="5dp"
+            />
+
     </RelativeLayout>
 
     <Button

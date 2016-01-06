@@ -366,5 +366,19 @@ public class Common {
             return false;
         }
     }
+//  是否显示撰稿人  35
+    public static boolean isWriter ( int[] nums )
+    {
+        if ( nums == null || nums.length == 0 ) return false;
+        for ( int num : nums )
+        {
+            if ( num == 35)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
