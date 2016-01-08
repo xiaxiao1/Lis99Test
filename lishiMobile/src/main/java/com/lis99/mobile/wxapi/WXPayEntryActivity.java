@@ -34,8 +34,13 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private View layout_ok, layout_cancel;
 //<font color="red">I love android</font><br>
-    private String info = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过24小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-53525135</font>";
+    private String infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过24小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-53525135</font>";
+    private String infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-53525135</font>";
 
+    private int state;
+
+    private final int sZFB = 1;
+    private final int sWX = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,11 +83,11 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
         api.handleIntent(getIntent(), this);
 //      支付宝传进来用到的
         int code = getIntent().getIntExtra("CODE", -100);
-        if ( code == -100 )
+        if ( code != -100 )
         {
-            return;
+            state = sZFB;
+            setPayStatus(code);
         }
-        setPayStatus(code);
 
     }
 
@@ -114,7 +119,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 //            String result = String.format("微信支付结果：%s", String.valueOf(resp.errCode));
 //            builder.setMessage(result);
 //            builder.show();
-
+            state = sWX;
             setPayStatus(resp.errCode);
 
         }
@@ -150,7 +155,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 //                支付失败
             case -1:
 
-                tv_info.setText(Html.fromHtml(info));
+                tv_info.setText(Html.fromHtml(state == sWX ? infoWX : infoZFB));
                 setTitle("支付失败");
                 tv_pay_type.setText("支付失败");
                 layout_ok.setVisibility(View.GONE);
@@ -158,7 +163,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
                 break;
 //                取消支付
             case -2:
-                tv_info.setText(Html.fromHtml(info));
+                tv_info.setText(Html.fromHtml(state == sWX ? infoWX : infoZFB));
                 setTitle("支付取消");
                 tv_pay_type.setText("支付取消");
                 layout_ok.setVisibility(View.GONE);

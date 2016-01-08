@@ -112,6 +112,7 @@ public class LSClubTopicHead extends LinearLayout implements
 
 	//    ===3.9.1====
 	private View iv_moderator;
+//	=＝＝＝4.0.2=＝＝
 	private View iv_writer;
 
 
@@ -139,8 +140,8 @@ public class LSClubTopicHead extends LinearLayout implements
 		{
 			iv_writer.setVisibility(GONE);
 		}
-
-		lookNum.setText(clubhead.visits+"人读过");
+		Common.visibleReader(lookNum, clubhead.visits);
+//		lookNum.setText(clubhead.visits+"人读过");
 
 		//赞
 		like.setInfo(clubhead);

@@ -212,6 +212,9 @@ public class SharedPreferencesHelper {
 //		===引导页用到====
 		cleanClientVersion();
 
+//		========JPush========
+		removeJPushToken();
+
 	}
 
 
@@ -432,9 +435,9 @@ public class SharedPreferencesHelper {
 	public static String getPushToken ()
 	{
 		String Token = getBase("PUSHTOKEN", "");
-		if ( TextUtils.isEmpty(Token))
+		if ( TextUtils.isEmpty(Token) && PushManager.getInstance().getPushInstance() != null )
 		{
-			Token = PushManager.getInstance().Token;
+			Token = PushManager.getInstance().getPushInstance().getToken();
 		}
 		return Token;
 	}
@@ -442,6 +445,24 @@ public class SharedPreferencesHelper {
 	public static void removePushToken ()
 	{
 		removeBase("PUSHTOKEN");
+	}
+
+
+	public static void saveJPushToken (String token ){saveBase("JPUSHTOKEN", token);}
+
+	public static  String getJPushToken ()
+	{
+		String token = getBase("JPUSHTOKEN", "");
+		if ( TextUtils.isEmpty(token) && PushManager.getInstance().getPushInstance() != null )
+		{
+			token = PushManager.getInstance().getPushInstance().getToken();
+		}
+		return token;
+	}
+
+	public static void removeJPushToken ()
+	{
+		removeBase("JPUSHTOKEN");
 	}
 
 	public static void saveQQSex ( String sex )
@@ -621,6 +642,10 @@ public class SharedPreferencesHelper {
 	{
 		removeBase("FirstActive");
 	}
+
+
+
+
 
 //	@SuppressLint("NewApi")
 //	public static void saveSearchHistory ( Set<String> set )

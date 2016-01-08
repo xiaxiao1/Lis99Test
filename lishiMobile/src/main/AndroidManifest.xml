@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="401"
-    android:versionName="4.0.1" >
+    android:versionCode="402"
+    android:versionName="4.0.2" >
 
 
 
@@ -69,10 +69,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 极光推送-->
-    <permission android:name="${applicationId}.permission.JPUSH_MESSAGE"
+    <permission android:name="com.lis99.mobile.permission.JPUSH_MESSAGE"
                 android:protectionLevel="signature"
         />
-    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="com.lis99.mobile.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
@@ -115,7 +115,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="${applicationId}" />
+                <category android:name="com.lis99.mobile" />
             </intent-filter>
         </activity>
         <!-- Required  SDK核心功能-->
@@ -149,7 +149,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="${applicationId}" />
+                <category android:name="com.lis99.mobile" />
             </intent-filter>
 
         </service>
@@ -162,7 +162,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="${applicationId}" />
+                <category android:name="com.lis99.mobile" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -193,7 +193,7 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
                 <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="${applicationId}" />
+                <category android:name="com.lis99.mobile" />
             </intent-filter>
         </receiver>
 
@@ -201,7 +201,7 @@
         <!-- Required  . Enable it you can get statistics data with channel -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="${JPUSH_CHANNEL_VALUE}"/>
         <!--                                                 d1c44e8dee0c5d53a973e246 -->
-        <meta-data android:name="JPUSH_APPKEY" android:value="d00852967df178274df89ee9" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="d1c44e8dee0c5d53a973e246" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
 

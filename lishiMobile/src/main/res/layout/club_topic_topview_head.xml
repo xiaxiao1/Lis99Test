@@ -9,8 +9,8 @@
     <com.lis99.mobile.club.widget.RoundedImageView
         android:layout_centerVertical="true"
         android:id="@+id/roundedImageView1"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:src="@drawable/ls_nologin_header_icon"
         android:scaleType="fitXY"
@@ -18,47 +18,48 @@
         app:border_color="#e8e8e8"
         app:border_width="1px"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/roundedImageView1"
-        android:layout_marginLeft="10dp"
-        >
-
         <TextView
-            android:layout_centerVertical="true"
+            android:gravity="top"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/roundedImageView1"
         android:id="@+id/nameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:textSize="13sp"
+        android:textSize="12sp"
         android:textColor="#666"
         android:text="@string/temp_string"
-        android:drawablePadding="4dip"
-        android:drawableRight="@drawable/club_tier_master"
          />
 
         <ImageView
-            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/roundedImageView1"
+            android:layout_alignBottom="@id/roundedImageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_tag_floor"
+            android:src="@drawable/club_tier_master"
+            />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/iv_moderator"
             android:src="@drawable/moderator_icon"
-            android:layout_toRightOf="@id/nameView"
+            android:layout_toRightOf="@id/iv_tag_floor"
             android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@id/iv_tag_floor"
             />
 
         <ImageView
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/iv_writer"
             android:src="@drawable/club_info_tag_writer"
             android:layout_toRightOf="@id/iv_moderator"
             android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@id/iv_tag_floor"
             />
-
-    </RelativeLayout>
 
     <Button
         style="@style/wrap_wrap"

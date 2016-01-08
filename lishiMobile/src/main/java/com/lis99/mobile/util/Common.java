@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.autoupdatesdk.BDAutoUpdateSDK;
 import com.baidu.autoupdatesdk.UICheckUpdateCallback;
+import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
@@ -34,10 +36,12 @@ public class Common {
     private static String TAG = "MYUTIL";
 
     public static void log(String str) {
+        if (BuildConfig.LOG_DEBUG)
         Log.w(TAG, str);
     }
 
     public static void log1(String str) {
+        if (BuildConfig.LOG_DEBUG)
         Log.w(TAG + "1", str);
     }
 
@@ -378,6 +382,20 @@ public class Common {
             }
         }
         return false;
+    }
+//  阅读量
+    public static void visibleReader ( TextView tv, String num )
+    {
+        int n = string2int(num);
+        if ( n < 1 )
+        {
+            tv.setVisibility(View.GONE);
+        }
+        else
+        {
+            tv.setVisibility(View.VISIBLE);
+            tv.setText(n + "人读过");
+        }
     }
 
 

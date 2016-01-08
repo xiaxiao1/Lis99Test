@@ -13,5 +13,8 @@ public interface PushBase {
 
     public void init ( Context c );
 
+    public String getToken ();
+
+    public void setToken (String token);
 
 }

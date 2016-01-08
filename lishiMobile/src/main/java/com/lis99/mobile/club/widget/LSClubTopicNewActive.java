@@ -207,7 +207,8 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
             iv_writer.setVisibility(GONE);
         }
 
-        lookNum.setText(model.visits+"人读过");
+        Common.visibleReader(lookNum, model.visits);
+//        lookNum.setText(model.visits+"人读过");
 
         nameView.setText(model.nickname);
 

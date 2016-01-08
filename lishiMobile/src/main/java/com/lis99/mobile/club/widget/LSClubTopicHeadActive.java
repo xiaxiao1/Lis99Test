@@ -367,7 +367,9 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 			iv_writer.setVisibility(GONE);
 		}
 
-		lookNum.setText(clubhead.visits+"人读过");
+		Common.visibleReader(lookNum, clubhead.visits);
+
+//		lookNum.setText(clubhead.visits+"人读过");
 
 
 //赞

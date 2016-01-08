@@ -28,13 +28,11 @@ public class PushManager
 //
 //	public static IUmengUnregisterCallback mUnregisterCallback;
 
-	public String Token = "";
-
 //	public Handler handler = new Handler();
 
 	public static final String TAG = "pushModel";
 //	push开关
-	public static boolean isPush = true;
+	public static boolean isPush = false;
 
 	public PushBase push;
 
@@ -63,6 +61,11 @@ public class PushManager
 	public void RegisterPush  ( Context c )
 	{
 		push.init(c);
+	}
+
+	public PushBase getPushInstance ()
+	{
+		return push;
 	}
 
 ////	注册push
