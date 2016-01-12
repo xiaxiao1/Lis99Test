@@ -125,7 +125,7 @@
 	<string name="club_detail_title_click">双击此处回到1楼</string>
 	
 	<string name="temp_string">砾石俱乐部</string>
-	<string name="temp_string_long">砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部</string>
+	<string name="temp_string_long">砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部</string>
     <string name="title_activity_lsweixin_login">LSWeixinLoginActivity</string>
     <string name="title_activity_search">SearchActivity</string>
 
@@ -151,6 +151,7 @@
     <string name="logining">程序在后台执行, 请查看日志！</string>
     <string name="setting_su">设置成功</string>
 
+    <string name="tel">57730746</string>
 
 
 

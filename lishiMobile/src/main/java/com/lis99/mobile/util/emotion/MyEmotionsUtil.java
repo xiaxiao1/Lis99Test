@@ -57,7 +57,8 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 
     private final String[] NAME = {"[[大笑]]", "[[得意]]", "[[点赞]]", "[[感动]]", "[[好色]]",
                                     "[[流泪]]", "[[难过]]", "[[生气]]", "[[失落]]", "[[微笑]]",
-                                    "[[享受]]", "[[愉快]]",// "[[点赞]]", "[[感动]]", "[[好色]]",
+                                    "[[享受]]", "[[愉快]]","[[调皮]]", "[[捂嘴笑]]", "[[嘻嘻]]",
+                                    "[[笑哭]]", "[[羞涩]]",//"[[调皮]]", "[[捂嘴笑]]", "[[嘻嘻]]",
 //            "[[金盾宇]]",
     };
 
@@ -82,7 +83,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
     private Activity c;
 
 
-    private int emotionBound = Common.dip2px(25);
+    private int emotionBound = Common.dip2px(24);
 
     private CallBack callBack;
 

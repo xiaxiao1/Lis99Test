@@ -60,7 +60,7 @@
                 android:id="@+id/tv_content"
                 android:textColor="@color/color_six"
                 android:textSize="12sp"
-                android:text="希望您玩得愉快\n如果您需要帮助 请联系010-53525135"
+                android:text="希望您玩得愉快\n如果您需要帮助 请联系010-57730746"
                 android:lineSpacingExtra="5dp"
                 />
 
@@ -116,7 +116,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="请在“我----我报名的活动”中继续完成支付。超过24小时未支付，报名将被拒绝，需要重新报名。如果您需要帮助，请联系010-53525135"
+                android:text="请在“我----我报名的活动”中继续完成支付。超过24小时未支付，报名将被拒绝，需要重新报名。如果您需要帮助，请联系010-57730746"
                 />
 
             <Button

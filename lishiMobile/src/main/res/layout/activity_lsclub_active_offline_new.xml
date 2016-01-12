@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/club_info_btn_ok"
+        android:id="@+id/btn_ok"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:text="马上报名"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/scroll"
+        android:layout_above="@id/btn_ok"
+        android:paddingTop="@dimen/title_height"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+
+            <com.lis99.mobile.club.widget.BannerView
+                android:id="@+id/viewBanner"
+                android:layout_width="match_parent"
+                android:layout_height="155dp"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:id="@+id/titleView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lineSpacingExtra="3dip"
+                android:maxLines="2"
+                android:text="@string/temp_string_long"
+                android:textColor="@color/text_color_black"
+                android:textSize="20sp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/club_info_data_icon"
+                    android:id="@+id/iv"
+                    />
+
+                <TextView
+                    android:layout_toRightOf="@id/iv"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_nine"
+                    android:id="@+id/tv_data"
+                    android:text="2015.12.25-2015.12.26"
+                    />
+
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_black"
+                    android:text="元/人"
+                    android:id="@+id/tv"
+                    />
+
+                <TextView
+
+                    android:layout_toLeftOf="@id/tv"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_black"
+                    android:text="850"
+                    android:id="@+id/tv_price"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
+
+
+            </RelativeLayout>
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/list_line"
+
+                />
+
+            <ImageView
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/club_info_highlights"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <FrameLayout
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.lis99.mobile.view.MyListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list_highlights"
+                    android:scrollbars="none"
+                    android:visibility="gone"
+                    ></com.lis99.mobile.view.MyListView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="@color/text_color_black"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:id="@+id/tv_highlights"
+                    android:text="@string/temp_string_long"
+                    />
+
+            </FrameLayout>
+
+
+
+            <Button
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/club_info_btn_info"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#2bca63"
+                android:text="查看详情"
+                android:drawableRight="@drawable/club_info_arrow"
+                android:drawablePadding="5dp"
+                android:id="@+id/btn_info"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                />
+
+
+            <RelativeLayout
+                android:layout_marginTop="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                >
+
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+                    android:padding="10dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/roundedImageView1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    android:scaleType="fitXY"
+                    app:corner_radius="50dp"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    android:background="@drawable/club_info_leader_bg"
+                    />
+
+                <ImageView
+                    android:id="@+id/vipStar"
+                    android:layout_width="16dp"
+                    android:layout_height="32dp"
+                    android:layout_alignRight="@id/roundedImageView1"
+                    android:layout_alignBottom="@+id/roundedImageView1"
+                    android:layout_marginLeft="-8dp"
+                    android:background="@drawable/club_info_leader_tags" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_name"
+                android:textSize="12sp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/text_color_black"
+                android:text="四哥"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#c6b6a7"
+                    android:text="颜值高颜值高"
+                    android:background="@drawable/club_info_tags_bg"
+                    android:maxEms="5"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:id="@+id/tv_tags1"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#c6b6a7"
+                    android:text="颜值高颜值高"
+                    android:background="@drawable/club_info_tags_bg"
+                    android:maxEms="5"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:id="@+id/tv_tags2"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#c6b6a7"
+                    android:text="颜值高颜值高"
+                    android:background="@drawable/club_info_tags_bg"
+                    android:maxEms="5"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:id="@+id/tv_tags3"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#c6b6a7"
+                    android:text="颜值高颜值高"
+                    android:background="@drawable/club_info_tags_bg"
+                    android:maxEms="5"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:id="@+id/tv_tags4"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/club_name"
+                android:drawableRight="@drawable/club_info_arrow"
+                android:text="@string/temp_string"
+                android:textColor="#2bca63"
+                android:drawablePadding="5dp"
+                android:layout_marginTop="16dp"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:visibility="gone"
+                >
+
+                <ImageView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    android:id="@+id/iv_travel_bg"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_travel_tag"
+                    android:background="@drawable/club_info_travel_bg"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:text="3天行程"
+                    android:gravity="center"
+                    android:paddingTop="9dp"
+                    />
+
+                <Button
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/club_info_btn_info"
+                    android:textColor="#2bca63"
+                    android:text="查看活动详细行程"
+                    android:drawableRight="@drawable/club_info_arrow"
+                    android:drawablePadding="5dp"
+                    android:id="@+id/btn_travel"
+                    android:paddingLeft="60dp"
+                    android:paddingRight="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/club_info_join_readme"
+                />
+
+            <com.lis99.mobile.view.MyListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_join_readme"
+                android:scrollbars="none"
+                android:visibility="gone"
+                ></com.lis99.mobile.view.MyListView>
+
+            <include android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     layout="@layout/list_line"
+                     android:layout_marginTop="10dp"
+                     />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    android:id="@+id/iv_destination_bg"
+                    />
+
+                <Button
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/club_info_btn_info"
+                    android:textColor="#2bca63"
+                    android:text="目的地：崇礼"
+                    android:drawableRight="@drawable/club_info_arrow"
+                    android:drawablePadding="5dp"
+                    android:id="@+id/btn_destination"
+                    android:paddingLeft="60dp"
+                    android:paddingRight="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/topic_title" />
+
+
+</RelativeLayout>

@@ -290,7 +290,7 @@
                 android:textColor="@color/color_nine"
                 android:id="@+id/tv_pay_phone"
                 android:textSize="12sp"
-                android:text="如果您有支付方面的疑问，敬请致电：010-53525135"
+                android:text="如果您有支付方面的疑问，敬请致电：010-57730746"
                 android:singleLine="true"
                 android:layout_marginBottom="10dp"
                 />

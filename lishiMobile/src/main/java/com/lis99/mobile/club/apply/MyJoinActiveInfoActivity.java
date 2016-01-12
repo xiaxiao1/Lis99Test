@@ -246,7 +246,7 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
         tv_pay_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-53525135"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-57730746"));
                 startActivity(intent);
             }
         });
