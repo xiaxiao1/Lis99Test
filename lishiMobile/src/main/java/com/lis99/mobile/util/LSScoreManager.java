@@ -109,7 +109,7 @@ private static final String URL = C.DOMAIN + "/v3/user/newIncrUserPoints";
 
         setMap(map, action);
 
-        MyRequestManager.getInstance().requestPost(URL, map, model, new CallBack() {
+        MyRequestManager.getInstance().requestPostNoDialog(URL, map, model, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 if ( callBack == null ) return;

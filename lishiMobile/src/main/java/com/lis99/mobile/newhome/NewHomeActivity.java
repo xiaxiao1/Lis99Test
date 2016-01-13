@@ -790,6 +790,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         {
             CLOSEAPPLICATION = false;
             finish();
+            System.exit(1);
+            return;
         }
         PushModel model = PushManager.getInstance().getPushModel(intent);
         if (model == null) {

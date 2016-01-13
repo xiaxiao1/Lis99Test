@@ -22,17 +22,19 @@ public class LSClubTopicDetailAdapter extends MyBaseAdapter {
 
     @Override
     public View setView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder = null;
+        ViewHolder viewHolder = null;
         if ( view == null )
         {
             view = View.inflate(mContext, R.layout.adapter_club_info_detail_item, null);
-            holder.tvInfo = (TextView) view.findViewById(R.id.tv_info);
-            holder.iv = (ImageView) view.findViewById(R.id.iv);
+            viewHolder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            viewHolder.tvInfo = (TextView) view.findViewById(R.id.tv_info);
+            viewHolder.iv = (ImageView) view.findViewById(R.id.iv);
+            viewHolder.tvDescrible = (TextView) view.findViewById(R.id.tv_describle);
 
-            view.setTag(holder);
+            view.setTag(viewHolder);
         }
         else {
-            holder = (ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
 
 
@@ -43,8 +45,10 @@ public class LSClubTopicDetailAdapter extends MyBaseAdapter {
 
 
     protected class ViewHolder {
+        private TextView tvTitle;
         private TextView tvInfo;
         private ImageView iv;
+        private TextView tvDescrible;
     }
 
 
