@@ -389,9 +389,18 @@ public class DialogManager {
     }
 
     private void stopWaitingDialog() {
-        if (dlWait != null && dlWait.isShowing()) {
-            dlWait.dismiss();
+        try
+        {
+            if (dlWait != null && dlWait.isShowing()) {
+                dlWait.dismiss();
+            }
         }
+        catch (Exception e )
+        {
+
+        }
+
+
     }
 
 

@@ -23,7 +23,6 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
-import com.lis99.mobile.util.StringUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.ta.utdid2.android.utils.StringUtils;
@@ -308,9 +307,9 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		{
 			holder.vipStar.setVisibility(View.GONE);
 		}
-
+		if (!TextUtils.isEmpty(item.image))
 		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
-
+		if (!TextUtils.isEmpty(item.headicon))
 		ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
 
 

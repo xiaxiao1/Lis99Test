@@ -332,6 +332,7 @@ public class Common {
     public static boolean isBDUpdata ()
     {
         boolean b = false;
+
         if ( "baidu".equals(DeviceInfo.CHANNELVERSION) )
         {
             b = true;

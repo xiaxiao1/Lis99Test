@@ -130,6 +130,17 @@ public class LSFragment extends Fragment implements IEventHandler{
 				}
 			});
 		}
+
+		View right = findViewById(R.id.titleRight);
+		if ( right != null )
+		{
+			right.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					rightAction();
+				}
+			});
+		}
 		
 		return body;
 	}
@@ -140,7 +151,8 @@ public class LSFragment extends Fragment implements IEventHandler{
 	}
 
 	protected void initViews(ViewGroup container){
-		
+
+
 	}
 
 	

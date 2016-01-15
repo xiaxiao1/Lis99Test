@@ -32,7 +32,6 @@ import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
-import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.ImageUtil;
@@ -42,7 +41,6 @@ import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.lis99.mobile.webview.MyWebViewTianJin;
 import com.lis99.mobile.wxapi.WXPayEntryActivity;
-import com.nhaarman.listviewanimations.swinginadapters.AnimationAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.HashMap;
@@ -216,9 +214,11 @@ public class FragmentChoicenessList extends Fragment implements
 
                     adapter = new ChoicenessAdapter(getActivity(), listModel.omnibuslist);
 
-                    AnimationAdapter animationAdapter = new CardsAnimationAdapter(adapter);
-                    animationAdapter.setAbsListView(list);
-                    list.setAdapter(animationAdapter);
+                    list.setAdapter(adapter);
+
+//                    AnimationAdapter animationAdapter = new CardsAnimationAdapter(adapter);
+//                    animationAdapter.setAbsListView(list);
+//                    list.setAdapter(animationAdapter);
 
 
                     list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

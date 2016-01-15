@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -291,8 +292,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
                 edit.setFocusable(true);
                 edit.setFocusableInTouchMode(true);
                 Common.showSoftInput(c, edit);
-                if ( callBack != null )
-                {
+                if (callBack != null) {
                     MyTask m = new MyTask();
                     m.setresult("GONE");
                     callBack.handler(m);
@@ -409,6 +409,11 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
      */
     public SpannableString getTextWithEmotion ( Activity context, String str )
     {
+        if (TextUtils.isEmpty(str) )
+        {
+            return new SpannableString("");
+        }
+
         initBitmap();
 
         this.c = context;

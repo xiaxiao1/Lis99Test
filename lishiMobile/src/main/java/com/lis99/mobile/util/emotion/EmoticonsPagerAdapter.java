@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class EmoticonsPagerAdapter extends PagerAdapter {
 
     ArrayList<ArrayList<Object>> emoticons;
-    private static final int NO_OF_EMOTICONS_PER_PAGE = 13;
+//    控制显示数量
+    private static final int NO_OF_EMOTICONS_PER_PAGE = 20;
     Context mActivity;
     EmoticonsGridAdapter.KeyClickListener mListener;
 
