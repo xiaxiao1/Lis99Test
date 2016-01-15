@@ -99,6 +99,12 @@
 
     </RelativeLayout>
 
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        >
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -108,5 +114,6 @@
         android:id="@+id/list"
         />
 
+    </com.lis99.mobile.entry.view.PullToRefreshView>
 
 </LinearLayout>

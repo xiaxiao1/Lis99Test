@@ -15,12 +15,20 @@
         android:text="马上报名"
         />
 
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@null"
+        android:layout_above="@id/btn_ok"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/title_height"
+        >
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/scroll"
-        android:layout_above="@id/btn_ok"
-        android:paddingTop="@dimen/title_height"
         >
 
         <LinearLayout
@@ -390,6 +398,8 @@
 
 
     </ScrollView>
+
+    </com.lis99.mobile.entry.view.PullToRefreshView>
 
 
     <include

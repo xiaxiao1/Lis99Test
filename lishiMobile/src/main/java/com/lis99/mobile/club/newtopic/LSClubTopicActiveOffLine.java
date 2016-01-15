@@ -54,6 +54,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
     private Button btntravel;
     private MyListView listjoinreadme;
     private Button btndestination;
+    private PullToRefreshView pull_refresh_view;
 
     private LSClubTopicInfoAdapter highlightsAdapter, joinAdapter;
 

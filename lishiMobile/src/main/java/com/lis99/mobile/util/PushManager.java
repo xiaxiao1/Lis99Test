@@ -32,7 +32,7 @@ public class PushManager
 
 	public static final String TAG = "pushModel";
 //	push开关
-	public static boolean isPush = false;
+	public static boolean isPush = true;
 
 	public PushBase push;
 
