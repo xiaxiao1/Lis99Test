@@ -30,19 +30,56 @@ public class ActiveAllAdapter extends MyBaseAdapter {
     @Override
     public View setView(int i, View view, ViewGroup viewGroup) {
         Holder holder = null;
+//        if ( view == null )
+//        {
+//            view = View.inflate(mContext, R.layout.active_all_adapter, null);
+//            holder = new Holder();
+//
+//            holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
+//            holder.tv_club_name = (TextView) view.findViewById(R.id.tv_club_name);
+//            holder.tv_data = (TextView) view.findViewById(R.id.tv_data);
+//            holder.tv_type = (TextView) view.findViewById(R.id.tv_type);
+//
+//            holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+//            holder.roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
+//            holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
+//            view.setTag(holder);
+//
+//        }
+//        else
+//        {
+//            holder = (Holder) view.getTag();
+//        }
+//
+//        ActiveAllModel.Clubtopiclist item = (ActiveAllModel.Clubtopiclist) getItem(i);
+//
+//        if ( item == null )
+//            return view;
+//
+//        holder.tv_title.setText(item.title);
+//        holder.tv_type.setText(item.catename);
+//        holder.tv_data.setText(item.times);
+//        holder.tv_club_name.setText(item.club_title);
+//        if (!TextUtils.isEmpty(item.club_img))
+//        {
+//            ImageLoader.getInstance().displayImage(item.club_img, holder.roundedImageView1, ImageUtil.getImageOptionClubIcon());
+//        }
+//
+//        if ( !TextUtils.isEmpty(item.image))
+//        {
+//            ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+//        }
+
         if ( view == null )
         {
-            view = View.inflate(mContext, R.layout.active_all_adapter, null);
+            view = View.inflate(mContext, R.layout.active_all_item_new, null);
             holder = new Holder();
 
-            holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
-            holder.tv_club_name = (TextView) view.findViewById(R.id.tv_club_name);
-            holder.tv_data = (TextView) view.findViewById(R.id.tv_data);
-            holder.tv_type = (TextView) view.findViewById(R.id.tv_type);
+            holder.ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+            holder.ivLoad = (ImageView) view.findViewById(R.id.iv_load);
+            holder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            holder.tvTag = (TextView) view.findViewById(R.id.tv_tag);
 
-            holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
-            holder.roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
-            holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
             view.setTag(holder);
 
         }
@@ -56,18 +93,12 @@ public class ActiveAllAdapter extends MyBaseAdapter {
         if ( item == null )
             return view;
 
-        holder.tv_title.setText(item.title);
-        holder.tv_type.setText(item.catename);
-        holder.tv_data.setText(item.times);
-        holder.tv_club_name.setText(item.club_title);
-        if (!TextUtils.isEmpty(item.club_img))
-        {
-            ImageLoader.getInstance().displayImage(item.club_img, holder.roundedImageView1, ImageUtil.getImageOptionClubIcon());
-        }
+        holder.tvTitle.setText(item.title);
+        holder.tvTag.setText(item.times);
 
         if ( !TextUtils.isEmpty(item.image))
         {
-            ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+            ImageLoader.getInstance().displayImage(item.image, holder.ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
         }
 
         return view;
@@ -85,10 +116,16 @@ public class ActiveAllAdapter extends MyBaseAdapter {
 
     class Holder
     {
-        TextView tv_data,tv_type;
-        RoundedImageView iv_bg, roundedImageView1;
-        ImageView iv_load;
-        TextView tv_title;
-        TextView tv_club_name;
+//        TextView tv_data,tv_type;
+//        RoundedImageView iv_bg, roundedImageView1;
+//        ImageView iv_load;
+//        TextView tv_title;
+//        TextView tv_club_name;
+
+        private RoundedImageView ivBg;
+        private ImageView ivLoad;
+        private TextView tvTitle;
+        private TextView tvTag;
+
     }
 }

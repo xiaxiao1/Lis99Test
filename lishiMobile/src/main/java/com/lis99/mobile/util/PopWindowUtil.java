@@ -2,6 +2,7 @@ package com.lis99.mobile.util;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,6 +28,11 @@ public class PopWindowUtil {
 
     private static PopupWindow pop;
 
+//    public static PopupWindow showActiveCitys ()
+//    {
+//
+//    }
+
     public static PopupWindow showActiveAllTimes ( int position, View parent, final CallBack callBack )
     {
         if (pop != null && pop.isShowing()) {
@@ -35,6 +41,15 @@ public class PopWindowUtil {
         }
 
         View v = View.inflate(LSBaseActivity.activity, R.layout.active_all_times_chose, null);
+
+        View bg = v.findViewById(R.id.bg);
+
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closePop();
+            }
+        });
 
         final ListView list = (ListView) v.findViewById(R.id.list);
 
@@ -102,13 +117,18 @@ public class PopWindowUtil {
             }
         });
 
+//        pop = new PopupWindow(v, ViewGroup.LayoutParams.FILL_PARENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+
         pop = new PopupWindow(v, ViewGroup.LayoutParams.FILL_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+                Common.HEIGHT - Common.dip2px(50));
+
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
         pop.setFocusable(true);
 //        pop.showAsDropDown(parent);
-        pop.showAsDropDown(parent, 0, Common.dip2px(3));
+//        pop.showAsDropDown(parent, 0, Common.dip2px(3));
+        pop.showAtLocation(parent, Gravity.BOTTOM, 0, Common.dip2px(50));
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
@@ -127,8 +147,9 @@ public class PopWindowUtil {
 
 //        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
 //                .getAttributes();
-//        lp.alpha = 0.5f;
+//        lp.alpha = 0.2f;
 //        LSBaseActivity.activity.getWindow().setAttributes(lp);
+
         return pop;
 
     }

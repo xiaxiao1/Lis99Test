@@ -58,7 +58,7 @@
 	
 	<!--<color name="title_bar_bg">#ffffff</color>-->
 	<color name="title_bar_bg">#ffffff</color>
-	<color name="title_bar_text">#73706e</color>
+	<color name="title_bar_text">#525252</color>
 	
 	
 	
@@ -73,10 +73,11 @@
     
     <color name="color_six">#73706e</color>
     <color name="color_nine">#999999</color>
-    
-    
-    
-    <color name="text_color_blue">#49a34b</color>
+
+
+
+    <!--<color name="text_color_blue">#49a34b</color>-->
+	<color name="text_color_blue">#73706e</color>
     <color name="pull_bg">#f7f3ec</color>
     <color name="color_1px_stroke">#e3dbd0</color>
     

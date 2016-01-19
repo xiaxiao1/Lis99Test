@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:descendantFocusability="blocksDescendants"
+              android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_width="fill_parent"
+            android:layout_height="220dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/icon_discount"
+            android:id="@+id/iv_bg"
+            app:corner_radius="0px"
+            app:border_width="0px"
+            />
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/iv_load"
+            android:src="@drawable/load_image_temp_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+
+        >
+
+        <TextView
+
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="@string/temp_string_long"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:id="@+id/tv_title"
+            android:textColor="#73706e"
+            />
+
+        <TextView
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123213213"
+            android:textColor="@color/text_color_green"
+            android:background="@drawable/active_line_item_tag"
+            android:textSize="12sp"
+            android:id="@+id/tv_tag"
+            android:gravity="center"
+            />
+
+
+    </RelativeLayout>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/list_line"
+        />
+
+
+</LinearLayout>

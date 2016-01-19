@@ -36,9 +36,9 @@ import java.util.HashMap;
 public class ActiveAllActivity extends LSBaseActivity implements
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener{
 
-    private LinearLayout layout_tab_data, layout_tab_city;
-    private TextView tv_data, tv_city;
-    private ImageView iv_data, iv_city;
+    private LinearLayout layout_tab_data, layout_tab_city, layout_tab_type;
+    private TextView tv_data, tv_city, tv_type;
+    private ImageView iv_data, iv_city, iv_type;
     private PullToRefreshView pull_refresh_view;
     private ListView list, list_city;
     private Page page;
@@ -84,12 +84,17 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
         layout_tab_data = (LinearLayout) findViewById(R.id.layout_tab_data);
         layout_tab_city = (LinearLayout) findViewById(R.id.layout_tab_city);
+        layout_tab_type = (LinearLayout) findViewById(R.id.layout_tab_type);
+
+        layout_tab_type.setVisibility(View.GONE);
 
         tv_data = (TextView) findViewById(R.id.tv_data);
         tv_city = (TextView) findViewById(R.id.tv_city);
+        tv_type = (TextView) findViewById(R.id.tv_type);
 
         iv_data = (ImageView) findViewById(R.id.iv_data);
         iv_city = (ImageView) findViewById(R.id.iv_city);
+        iv_type = (ImageView) findViewById(R.id.iv_type);
 
         pull_refresh_view = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
         pull_refresh_view.setOnHeaderRefreshListener(this);
@@ -99,6 +104,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
         layout_tab_data.setOnClickListener(this);
         layout_tab_city.setOnClickListener(this);
+        layout_tab_type.setOnClickListener(this);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -150,6 +156,9 @@ public class ActiveAllActivity extends LSBaseActivity implements
                 break;
             case R.id.layout_tab_city:
                 getCityList();
+                break;
+            case R.id.layout_tab_type:
+
                 break;
         }
     }
@@ -414,13 +423,13 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
     private void selectTab ( TextView tv, ImageView iv )
     {
-        tv.setTextColor(getResources().getColor(R.color.text_color_blue));
+        tv.setTextColor(getResources().getColor(R.color.white));
         iv.setImageResource(R.drawable.active_all_dot_default);
     }
 
     private void unSelectTab ( TextView tv, ImageView iv )
     {
-        tv.setTextColor(getResources().getColor(R.color.color_six));
+        tv.setTextColor(getResources().getColor(R.color.white));
         iv.setImageResource(R.drawable.active_all_dot_select);
     }
 

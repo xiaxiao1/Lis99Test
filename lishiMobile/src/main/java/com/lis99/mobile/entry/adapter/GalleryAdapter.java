@@ -95,7 +95,7 @@ public class GalleryAdapter extends BaseAdapter {
 				.getImage_url(), viewHolder.imageView, options);
 		return convertView;
 	}
-	public class ViewHolder{
+	public class ViewHolder {
 		public ImageView imageView;
 	}
 }
