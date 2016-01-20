@@ -1,8 +1,9 @@
 package com.lis99.mobile.club.model;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class ClubTopicActiveLineMainModel extends BaseModel {
+public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInterface{
 
 
     /**
@@ -80,9 +81,9 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
      * width : 950
      */
 
-    private List<ActivityimgsEntity> activityimgs;
-    private List<String> leaderdesc;
-    private List<String> activelightspot;
+    private ArrayList<ActivityimgsEntity> activityimgs;
+    private ArrayList<String> leaderdesc;
+    private ArrayList<String> activelightspot;
     /**
      * content : 活动介绍1
 
@@ -91,7 +92,7 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
      * width : 1600
      */
 
-    private List<ActivitydetailEntity> activitydetail;
+    private ArrayList<ActivitydetailEntity> activitydetail;
     /**
      * content : 行程详情
      * images : http://i3.lis99.com/upload/club/c/d/e/cd08bb233b444816ff2ebaee3ec2693e.jpg!middle
@@ -99,8 +100,8 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
      * width : 1024
      */
 
-    private List<TripdetailEntity> tripdetail;
-    private List<String> reportnote;
+    private ArrayList<TripdetailEntity> tripdetail;
+    private ArrayList<String> reportnote;
 
     public void setActivity_id(String activity_id) {
         this.activity_id = activity_id;
@@ -222,27 +223,27 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
         this.createdate = createdate;
     }
 
-    public void setActivityimgs(List<ActivityimgsEntity> activityimgs) {
+    public void setActivityimgs(ArrayList<ActivityimgsEntity> activityimgs) {
         this.activityimgs = activityimgs;
     }
 
-    public void setLeaderdesc(List<String> leaderdesc) {
+    public void setLeaderdesc(ArrayList<String> leaderdesc) {
         this.leaderdesc = leaderdesc;
     }
 
-    public void setActivelightspot(List<String> activelightspot) {
+    public void setActivelightspot(ArrayList<String> activelightspot) {
         this.activelightspot = activelightspot;
     }
 
-    public void setActivitydetail(List<ActivitydetailEntity> activitydetail) {
+    public void setActivitydetail(ArrayList<ActivitydetailEntity> activitydetail) {
         this.activitydetail = activitydetail;
     }
 
-    public void setTripdetail(List<TripdetailEntity> tripdetail) {
+    public void setTripdetail(ArrayList<TripdetailEntity> tripdetail) {
         this.tripdetail = tripdetail;
     }
 
-    public void setReportnote(List<String> reportnote) {
+    public void setReportnote(ArrayList<String> reportnote) {
         this.reportnote = reportnote;
     }
 
@@ -366,31 +367,51 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
         return createdate;
     }
 
-    public List<ActivityimgsEntity> getActivityimgs() {
+    public ArrayList<ActivityimgsEntity> getActivityimgs() {
         return activityimgs;
     }
 
-    public List<String> getLeaderdesc() {
+    public ArrayList<String> getLeaderdesc() {
         return leaderdesc;
     }
 
-    public List<String> getActivelightspot() {
+    public ArrayList<String> getActivelightspot() {
         return activelightspot;
     }
 
-    public List<ActivitydetailEntity> getActivitydetail() {
+    public ArrayList<ActivitydetailEntity> getActivitydetail() {
         return activitydetail;
     }
 
-    public List<TripdetailEntity> getTripdetail() {
+    public ArrayList<TripdetailEntity> getTripdetail() {
         return tripdetail;
     }
 
-    public List<String> getReportnote() {
+    public ArrayList<String> getReportnote() {
         return reportnote;
     }
 
-    public static class ActivityimgsEntity {
+    @Override
+    public String getStick() {
+        return "";
+    }
+
+    @Override
+    public void setStick(String s) {
+
+    }
+
+    @Override
+    public String getCategory() {
+        return "2";
+    }
+
+    @Override
+    public String getIsJoin() {
+        return is_jion;
+    }
+
+    public static class ActivityimgsEntity implements Serializable{
         private String images;
 
         public void setImages(String images) {
@@ -402,7 +423,7 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
         }
     }
 
-    public static class ActivitydetailEntity {
+    public static class ActivitydetailEntity implements Serializable{
         private String content;
         private String images;
 
@@ -423,7 +444,7 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
         }
     }
 
-    public static class TripdetailEntity {
+    public static class TripdetailEntity implements Serializable {
         private String content;
         private String images;
 
@@ -443,4 +464,16 @@ public class ClubTopicActiveLineMainModel extends BaseModel {
             return images;
         }
     }
+
+
+    public String is_jion;
+
+    public int applyTimeStatus;
+
+    public int applyStatus;
+
+    public String shareTxt;
+//  3天行程
+    public String tripdays;
+
 }

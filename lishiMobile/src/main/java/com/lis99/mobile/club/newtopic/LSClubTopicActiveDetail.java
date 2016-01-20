@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicInfoLocation;
+import com.lis99.mobile.club.model.ClubTopicActiveLineMainModel;
+import com.lis99.mobile.util.Common;
 
 /**
  * Created by yy on 16/1/12.
@@ -47,6 +50,8 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
     private LSClubTopicDetailAdapter adapter;
 
+    private ClubTopicActiveLineMainModel model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +63,22 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
         initialize();
 
-        lfBtn();
+        setTitle("详细信息");
+
+        model = (ClubTopicActiveLineMainModel) getIntent().getSerializableExtra("MODEL");
+
+        String type = getIntent().getStringExtra("TYPE");
+
+        if ( "0".equals(type))
+        {
+            lfBtn();
+        }
+        else {
+            rgBtn();
+        }
+
+        getInfo();
+
     }
 
     @Override
@@ -75,7 +95,7 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
                 break;
 //            集合地点
             case R.id.layout_location:
-
+                toMap();
                 break;
 //            具体行程
             case R.id.layout_journey:
@@ -106,13 +126,13 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
     {
         if ( tv.getVisibility() == View.VISIBLE )
         {
-            ivjourney.setImageResource(R.drawable.club_info_dot_down);
-            tvjourney.setVisibility(View.GONE);
+            iv.setImageResource(R.drawable.club_info_dot_down);
+            tv.setVisibility(View.GONE);
         }
         else
         {
-            ivjourney.setImageResource(R.drawable.club_info_dot_up);
-            tvjourney.setVisibility(View.VISIBLE);
+            iv.setImageResource(R.drawable.club_info_dot_up);
+            tv.setVisibility(View.VISIBLE);
         }
     }
 
@@ -136,6 +156,29 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
     private void getInfo ()
     {
+        adapter = new LSClubTopicDetailAdapter(activity, model.getActivitydetail());
+        list.setAdapter(adapter);
+
+        tvdate.setText(model.getSettime());
+
+        tvlocation.setText(model.getSetaddress());
+
+        tvtel.setText(model.getTell());
+
+        if ( model.getTripdetail() != null && model.getTripdetail().size() != 0 )
+        tvjourney.setText(model.getTripdetail().get(0).getContent());
+
+        tvjoinNum.setText(model.getActivenum()+"人");
+
+        tvequip.setText(model.getEquipadvise());
+
+        tvprice.setText(model.getConstdesc());
+
+        tvreadme.setText(model.getDisclaimer());
+
+        tvsafely.setText(model.getCatematter());
+
+
 
     }
 
@@ -189,4 +232,22 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
         tvsafely.setVisibility(View.GONE);
 
     }
+
+    private void toMap ()
+    {
+        //跳转地图
+        Intent intent = new Intent(activity, LSClubTopicInfoLocation.class);
+        Double latitude = Common.string2Double(model.getGaodelatitude());
+        Double longtitude = Common.string2Double(model.getGaodlongitude());
+        if ( latitude == -1 || longtitude == -1 )
+        {
+            Common.toast("暂时没集合地图位置");
+            return;
+        }
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longtitude", longtitude);
+        startActivity(intent);
+    }
+
+
 }

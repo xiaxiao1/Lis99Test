@@ -26,14 +26,32 @@
         />
 
 
-
-    <ImageView
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/iv"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        />
+        android:id="@+id/layout_iv"
+        >
+
+        <ImageView
+            android:id="@+id/contentImageView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/club_topic_default"/>
+
+        <ImageView
+            android:id="@+id/iv_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/load_image_temp_bg"
+            />
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"

@@ -22,6 +22,7 @@ import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
@@ -40,7 +41,6 @@ import com.lis99.mobile.util.Page;
 import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.lis99.mobile.webview.MyWebViewTianJin;
-import com.lis99.mobile.wxapi.WXPayEntryActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.HashMap;
@@ -322,8 +322,8 @@ public class FragmentChoicenessList extends Fragment implements
                 {
 
 //                    DialogManager.getInstance().startWaiting(getActivity(), null, null);
-                    Intent i = new Intent(getActivity(), WXPayEntryActivity.class);
-                    i.putExtra("CODE", -2);
+                    Intent i = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+                    i.putExtra("topicID", 1);
                     startActivity(i);
 
                 }

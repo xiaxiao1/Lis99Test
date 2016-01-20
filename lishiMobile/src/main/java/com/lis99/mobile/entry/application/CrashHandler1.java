@@ -7,7 +7,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Handler.Callback;
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -35,7 +38,7 @@ import java.util.Map;
  * @author user
  * 
  */
-public class CrashHandler1 implements UncaughtExceptionHandler {
+public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 	
 	public static final String TAG = "CrashHandler";
 	
@@ -50,6 +53,8 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 
 	//用于格式化日期,作为日志文件名的一部分
 	private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+
+	protected Handler mHandler; // 线程通信管理器
 
 	/** 保证只有一个CrashHandler实例 */
 	private CrashHandler1() {
@@ -67,6 +72,9 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 	 */
 	public void init(Context context) {
 		mContext = context;
+
+//		mHandler = new Handler(this);
+
 		//获取系统默认的UncaughtException处理器
 		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 		//设置该CrashHandler为程序的默认处理器
@@ -88,32 +96,37 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 				Log.e(TAG, "error : ", e);
 			}
 
-			NewHomeActivity.CLOSEAPPLICATION = true;
-			Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			LSBaseActivity.activity.startActivity(i);
+//			Message msg = Message.obtain();
+//			msg.what = 1;
+//			mHandler.sendMessage(msg);
 
-//			new Thread(new Runnable() {
-//				@Override
-//				public void run() {
-//
-//					Looper.prepare();
-//
-////					Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
-////					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-////					i.putExtra("CLOSE", "CLOSE");
-////					LSBaseActivity.activity.startActivity(i);
-//
-////					android.os.Process.killProcess(android.os.Process.myPid());
-////					System.exit(1);
-//
-//					Looper.loop();
-//
-//				}
-//			});
+//			NewHomeActivity.CLOSEAPPLICATION = true;
+//			Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+//			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//			LSBaseActivity.activity.startActivity(i);
+//			android.os.Process.killProcess(android.os.Process.myPid());
+//			System.exit(1);
+
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+
+					Looper.prepare();
+
+					NewHomeActivity.CLOSEAPPLICATION = true;
+					Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					LSBaseActivity.activity.startActivity(i);
+
+					android.os.Process.killProcess(android.os.Process.myPid());
+					System.exit(1);
+
+					Looper.loop();
+
+				}
+			});
 
 
-//			Common.Dialog();
 		}
 	}
 
@@ -127,6 +140,15 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 		if (ex == null) {
 			return false;
 		}
+		//收集设备参数信息
+		collectDeviceInfo(mContext);
+		//保存日志文件 
+		saveCrashInfo2File(ex);
+
+//		Message msg = Message.obtain();
+//		msg.what = 0;
+//		mHandler.sendMessage(msg);
+
 		//使用Toast来显示异常信息
 		new Thread() {
 			@Override
@@ -134,14 +156,29 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 				Looper.prepare();
 				Toast.makeText(mContext, "很抱歉,程序出现异常,即将退出.", Toast.LENGTH_LONG).show();
 //				Common.Dialog();
-				//退出程序
+//				退出程序
+
+				try
+				{
+					Thread.sleep(1000);
+				}
+				catch (Exception e)
+				{
+
+				}
+
+				NewHomeActivity.CLOSEAPPLICATION = true;
+				Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				LSBaseActivity.activity.startActivity(i);
+
+				android.os.Process.killProcess(android.os.Process.myPid());
+				System.exit(1);
+
 				Looper.loop();
 			}
 		}.start();
-		//收集设备参数信息 
-		collectDeviceInfo(mContext);
-		//保存日志文件 
-		saveCrashInfo2File(ex);
+
 		return true;
 	}
 	
@@ -222,5 +259,28 @@ public class CrashHandler1 implements UncaughtExceptionHandler {
 			Log.e(TAG, "an error occured while writing file...", e);
 		}
 		return null;
+	}
+
+	@Override
+	public boolean handleMessage(Message message) {
+
+		switch (message.what)
+		{
+			case 0:
+				Toast.makeText(mContext, "很抱歉,程序出现异常,即将退出.", Toast.LENGTH_LONG).show();
+				break;
+			case 1:
+				NewHomeActivity.CLOSEAPPLICATION = true;
+				Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				LSBaseActivity.activity.startActivity(i);
+
+				android.os.Process.killProcess(android.os.Process.myPid());
+				System.exit(1);
+
+				break;
+		}
+
+		return false;
 	}
 }

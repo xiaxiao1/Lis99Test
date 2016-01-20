@@ -1179,6 +1179,17 @@
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
 
+        <!-- 新版活动贴-->
+        <activity android:name="com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  />
+        <!-- 新版活动贴详情-->
+        <activity android:name="com.lis99.mobile.club.newtopic.LSClubTopicActiveDetail"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  />
+
 
     </application>
 

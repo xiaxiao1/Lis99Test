@@ -2,7 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+                android:id="@+id/layoutMain"
+                android:background="@color/white"
+    >
 
 
     <Button
@@ -15,6 +18,19 @@
         android:text="马上报名"
         />
 
+    <View
+        android:visibility="invisible"
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        />
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/topic_title" />
+
     <com.lis99.mobile.entry.view.PullToRefreshView
         android:id="@+id/pull_refresh_view"
         android:layout_width="fill_parent"
@@ -22,7 +38,7 @@
         android:background="@null"
         android:layout_above="@id/btn_ok"
         android:orientation="vertical"
-        android:paddingTop="@dimen/title_height"
+        android:layout_below="@id/titlebar"
         >
 
     <ScrollView
@@ -42,7 +58,6 @@
                 android:id="@+id/viewBanner"
                 android:layout_width="match_parent"
                 android:layout_height="155dp"
-                android:visibility="gone"
                 />
 
             <TextView
@@ -131,11 +146,15 @@
                 android:layout_height="wrap_content">
 
                 <com.lis99.mobile.view.MyListView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/list_highlights"
                     android:scrollbars="none"
                     android:visibility="gone"
+                    android:divider="@null"
+                    android:dividerHeight="0px"
                     ></com.lis99.mobile.view.MyListView>
 
                 <TextView
@@ -297,10 +316,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
-                android:visibility="gone"
                 >
 
                 <ImageView
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="155dp"
@@ -321,7 +341,6 @@
                     />
 
                 <Button
-                    android:layout_marginTop="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/club_info_btn_info"
@@ -333,27 +352,39 @@
                     android:paddingLeft="60dp"
                     android:paddingRight="60dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@id/iv_travel_bg"
                     android:layout_marginBottom="20dp"
                     />
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:id="@+id/layout_readme"
+                >
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/club_info_join_readme"
                 />
 
             <com.lis99.mobile.view.MyListView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/list_join_readme"
                 android:scrollbars="none"
-                android:visibility="gone"
+                android:divider="@null"
+                android:dividerHeight="0px"
                 ></com.lis99.mobile.view.MyListView>
+
+            </LinearLayout>
 
             <include android:layout_width="match_parent"
                      android:layout_height="wrap_content"
@@ -363,7 +394,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_address"
+                >
 
                 <ImageView
                     android:layout_marginTop="3dp"
@@ -400,15 +433,6 @@
     </ScrollView>
 
     </com.lis99.mobile.entry.view.PullToRefreshView>
-
-
-    <include
-        android:id="@+id/include1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        layout="@layout/topic_title" />
 
 
 </RelativeLayout>

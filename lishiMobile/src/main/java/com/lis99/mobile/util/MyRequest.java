@@ -83,7 +83,13 @@ public class MyRequest{
 			super.onPreExecute();
 			if ( mTask.isShowDialog())
 			{
-				DialogManager.getInstance().startWaiting(LSBaseActivity.activity, null, "数据加载中...");
+				try{
+					DialogManager.getInstance().startWaiting(LSBaseActivity.activity, null, "数据加载中...");
+				}
+				catch (Exception e)
+				{
+
+				}
 			}
 		}
 

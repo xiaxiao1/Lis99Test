@@ -36,7 +36,9 @@ public class LSClubTopicInfoAdapter extends MyBaseAdapter {
             holder = (Holder) view.getTag();
         }
 
+        String item = (String) getItem(i);
 
+        holder.tv.setText(item);
 
 
 
