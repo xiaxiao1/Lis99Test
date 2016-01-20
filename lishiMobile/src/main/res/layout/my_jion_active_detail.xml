@@ -89,6 +89,44 @@
 
             </LinearLayout>
 
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+            <TextView
+                style="@style/fill_wrap"
+                android:layout_height="wrap_content"
+                android:background="@color/pull_bg"
+                android:paddingBottom="6dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="6dp"
+                android:text="订单号"
+                android:textColor="#c6b6a7"
+                />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"/>
+
+
+            <TextView
+                android:textIsSelectable="true"
+                android:id="@+id/tv_ordercode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/temp_string"
+                android:textColor="@color/color_six"
+                android:textSize="16sp"
+                />
+
             <View
                 style="@style/fill_wrap"
                 android:layout_height="1px"

@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class MyJoinActiveInfoActivity extends LSBaseActivity
 {
 
-    private TextView tv_title, tv_pay, tv_pay_all, tv_join_state, tv_joinNum, tv_pay_type, tv_pay_state, tv_pay_info, tv_pay_phone;
+    private TextView tv_title, tv_pay, tv_pay_all, tv_join_state, tv_joinNum, tv_pay_type, tv_pay_state, tv_pay_info, tv_pay_phone, tv_ordercode;
     private ImageView iv_pay_type;
     private ListView list;
 
@@ -91,6 +91,9 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
             public void handler(MyTask mTask) {
                 model = (MyJoinActiveDetailModel) mTask.getResultModel();
                 if ( model == null ) return;
+
+                tv_ordercode.setText(model.ordercode);
+
                 tv_title.setText(model.title);
                 tv_pay.setText(model.consts + "元 x" + model.applyNum);
                 tv_pay_all.setText("费用总计"+model.totprice + "元");
@@ -199,6 +202,7 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
         tv_pay_type = (TextView) findViewById(R.id.tv_pay_type);
         tv_pay_state = (TextView) findViewById(R.id.tv_pay_state);
 
+        tv_ordercode = (TextView) findViewById(R.id.tv_ordercode);
 
         iv_pay_type = (ImageView) findViewById(R.id.iv_pay_type);
         list = (ListView) findViewById(R.id.list);
