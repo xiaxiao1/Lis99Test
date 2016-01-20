@@ -25,6 +25,7 @@ public class DeviceInfo
 //			CHANNELVERSION = ai.metaData.getString("UMENG_CHANNEL");
 			CHANNELVERSION = ai.metaData.getString("JPUSH_CHANNEL");
 			Common.log("JPUSH_CHANNEL="+CHANNELVERSION + "\nJPUSH_APPKEY="+ai.metaData.getString("JPUSH_APPKEY"));
+			Common.log("\nJPushToken="+SharedPreferencesHelper.getJPushToken());
 //			CHANNELVERSION = "zs360";
 		} catch (NameNotFoundException e)
 		{
