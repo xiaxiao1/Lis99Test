@@ -446,5 +446,7 @@ public class C {
 	public static final String MY_APPLY_DETAIL = DOMAIN + "/v4/apply/orderDetail";
 //	我报名的活动列表		http://api.lis99.com/v4/user/myApplyActivities/[page]
 	public static final String MY_APPLY_LIST = DOMAIN + "/v4/user/myApplyActivities/";
+//	http://api.lis99.com/v5/club/activity   新版活动贴
+	public static final String CLUB_TOPIC_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/activity";
 
 }

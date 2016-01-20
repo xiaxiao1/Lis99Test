@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ClubTopicActiveLineMainModel;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.club.widget.RoundedImageView;
@@ -16,6 +18,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
+import com.lis99.mobile.util.C;
 import com.lis99.mobile.view.MyListView;
 
 /**
@@ -58,11 +61,17 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     private LSClubTopicInfoAdapter highlightsAdapter, joinAdapter;
 
+    private ClubTopicActiveLineMainModel model;
+
+    private int activity_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_lsclub_active_offline_new);
+
+        activity_id = getIntent().getIntExtra("topicID", 0);
 
         initViews();
 
@@ -73,6 +82,11 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     private void getInfo ()
     {
+        String url = C.CLUB_TOPIC_ACTIVE_LINE_MIAN;
+
+        String UserId = DataManager.getInstance().getUser().getUser_id();
+
+
 
     }
 
