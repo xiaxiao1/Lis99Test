@@ -55,10 +55,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 	private Activity main;
 
-
-
 	public LSClubTopicImageListener lsClubTopicCommentListener;
-
 
 	class CommentOnClickListener implements OnClickListener
 	{

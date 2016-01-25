@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,10 +14,14 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.choiceness.ActiveAllActivity;
+import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yy on 16/1/15.
@@ -32,13 +37,29 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
     private int num = 3;
 
 
-    public LSActiveLineAdapter(Context c, ArrayList listItem) {
+    public LSActiveLineAdapter(Context c, List listItem) {
         super(c, listItem);
     }
 
 
     @Override
     public int getItemViewType(int position) {
+
+        Object o = getItem(position);
+
+        if ( o instanceof ActiveLineNewModel.ActivitylistEntity )
+        {
+            return normal;
+        }
+        else if ( o instanceof List )
+        {
+            return ad;
+        }
+        else if ( o instanceof String )
+        {
+            return isLast;
+        }
+
         return super.getItemViewType(position);
     }
 
@@ -54,18 +75,18 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
 
         if ( flag == normal )
         {
-            getNormal(i, view, viewGroup);
+            return getNormal(i, view, viewGroup);
         }
         else if ( flag == ad )
         {
-            getAd(i, view, viewGroup);
+            return getAd(i, view, viewGroup);
         }
         else if ( flag == isLast )
         {
-
+            return getIsLast(i, view, viewGroup);
         }
 
-        return null;
+        return view;
     }
 
 
@@ -87,6 +108,34 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
+        ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) getItem(i);
+
+        if ( !TextUtils.isEmpty(item.getImages()))
+        {
+            ImageLoader.getInstance().displayImage(item.getImages(), viewHolder.ivBg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(viewHolder.ivLoad, viewHolder.ivBg));
+        }
+
+        viewHolder.tvTag.setText(item.getHarddesc());
+
+        viewHolder.tvTitle.setText(item.getTitle());
+
+
+
+        String[] date = Common.getTimeStamp(item.getStartdate());
+        if ( date != null )
+        {
+            if (date.length > 0 )
+            {
+                viewHolder.tvMonth.setText(date[0]);
+            }
+            if ( date.length > 1 )
+            {
+                viewHolder.tvDay.setText(date[1]);
+            }
+        }
+
+
+
         return view;
     }
 
@@ -106,20 +155,29 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
             viewholder = (ViewHolderAD) view.getTag();
         }
 
-        LSActiveLineADAdapter adapter = new LSActiveLineADAdapter(mContext, null);
+        List<Object> list = (List<Object>) getItem(i);
 
-        LinearLayoutManager linearLayoutM = new LinearLayoutManager(mContext);
-        linearLayoutM.setOrientation(LinearLayoutManager.HORIZONTAL);
+        if ( list != null && list.size() > 0 )
+        {
 
-        viewholder.recyclerView.setLayoutManager(linearLayoutM);
-        viewholder.recyclerView.setAdapter(adapter);
+            LSActiveLineADAdapter adapter = new LSActiveLineADAdapter(mContext, list);
 
-        adapter.setOnItemClickLitener(new LSActiveLineADAdapter.OnItemClickLitener() {
-            @Override
-            public void onItemClick(View view, int position) {
+            LinearLayoutManager linearLayoutM = new LinearLayoutManager(mContext);
+            linearLayoutM.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-            }
-        });
+            viewholder.recyclerView.setLayoutManager(linearLayoutM);
+            viewholder.recyclerView.setAdapter(adapter);
+
+            adapter.setOnItemClickLitener(new LSActiveLineADAdapter.OnItemClickLitener() {
+                @Override
+                public void onItemClick(View view, int position) {
+
+                }
+            });
+
+        }
+
+
 
 
         return view;

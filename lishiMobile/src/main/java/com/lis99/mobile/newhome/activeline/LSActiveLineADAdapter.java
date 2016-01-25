@@ -2,6 +2,7 @@ package com.lis99.mobile.newhome.activeline;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.ImageUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -66,12 +70,27 @@ public class LSActiveLineADAdapter extends RecyclerView.Adapter<LSActiveLineADAd
         viewHolder.ivLoad = (ImageView) view.findViewById(R.id.iv_load);
         viewHolder.tvName = (TextView) view.findViewById(R.id.tv_name);
 
+
+
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
 
+
+        ActiveLineNewModel.AreaweblistEntity item = (ActiveLineNewModel.AreaweblistEntity) listInfo.get(i);
+
+        if ( item != null )
+        {
+            viewHolder.tvName.setText(item.getTagname());
+
+            if ( !TextUtils.isEmpty(item.getImages()))
+            {
+                ImageLoader.getInstance().displayImage(item.getImages(), viewHolder.ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(viewHolder.ivLoad, viewHolder.ivBg));
+            }
+
+        }
 
 
 

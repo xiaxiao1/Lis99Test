@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yy on 15/7/2.
@@ -14,22 +14,22 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     public Context mContext;
 
-    private ArrayList<T> listItem;
+    private List<T> listItem;
 
-    public MyBaseAdapter ( Context c, ArrayList<T> listItem )
+    public MyBaseAdapter ( Context c, List<T> listItem )
     {
         this.mContext = c;
         this.listItem = listItem;
     }
 
-    public void setList (ArrayList<T> listItem)
+    public void setList (List<T> listItem)
     {
         if ( listItem == null ) return;
         this.listItem = listItem;
         notifyDataSetChanged();
     }
 
-    public void addList ( ArrayList<T> listItem )
+    public void addList ( List<T> listItem )
     {
         if ( listItem == null ) return;
         this.listItem.addAll(listItem);

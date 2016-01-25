@@ -322,6 +322,10 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
             case R.id.titleRightImage:
                 rightAction();
                 break;
+            case R.id.roundedImageView1:
+                if ( model != null )
+                Common.goUserHomeActivit(activity, model.getUser_id());
+                break;
         }
     }
 
@@ -428,6 +432,8 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
         title = findViewById(R.id.titlebar);
 
+
+        roundedImageView1.setOnClickListener(this);
 
     }
 

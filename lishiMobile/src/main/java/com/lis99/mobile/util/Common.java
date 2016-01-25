@@ -23,6 +23,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -399,5 +400,24 @@ public class Common {
         }
     }
 
+
+    public static String[] getTimeStamp ( String timeS )
+    {
+        String[] result = new String[]{"","",};
+        if ( TextUtils.isEmpty(timeS) )
+        {
+            return result;
+        }
+        //时间戳转化为Sting或Date
+        SimpleDateFormat format =  new SimpleDateFormat("MM,dd");
+        Long time = new Long(timeS);
+        String d = format.format(time);
+
+        result = d.split(",");
+
+        System.out.println("Format To String(Date):"+d);
+
+        return result;
+    }
 
 }

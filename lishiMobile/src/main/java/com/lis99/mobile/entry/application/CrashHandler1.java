@@ -54,8 +54,6 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 	//用于格式化日期,作为日志文件名的一部分
 	private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
-	protected Handler mHandler; // 线程通信管理器
-
 	/** 保证只有一个CrashHandler实例 */
 	private CrashHandler1() {
 	}
@@ -65,6 +63,8 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 		return INSTANCE;
 	}
 
+	private Handler mHandler;
+
 	/**
 	 * 初始化
 	 * 
@@ -72,8 +72,6 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 	 */
 	public void init(Context context) {
 		mContext = context;
-
-//		mHandler = new Handler(this);
 
 		//获取系统默认的UncaughtException处理器
 		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
@@ -90,11 +88,11 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 			//如果用户没有处理则让系统默认的异常处理器来处理
 			mDefaultHandler.uncaughtException(thread, ex);
 		} else {
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				Log.e(TAG, "error : ", e);
-			}
+//			try {
+//				Thread.sleep(3000);
+//			} catch (InterruptedException e) {
+//				Log.e(TAG, "error : ", e);
+//			}
 
 //			Message msg = Message.obtain();
 //			msg.what = 1;
@@ -107,24 +105,24 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 //			android.os.Process.killProcess(android.os.Process.myPid());
 //			System.exit(1);
 
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-
-					Looper.prepare();
-
-					NewHomeActivity.CLOSEAPPLICATION = true;
-					Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
-					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					LSBaseActivity.activity.startActivity(i);
-
-					android.os.Process.killProcess(android.os.Process.myPid());
-					System.exit(1);
-
-					Looper.loop();
-
-				}
-			});
+//			new Thread(new Runnable() {
+//				@Override
+//				public void run() {
+//
+//					Looper.prepare();
+//
+//					NewHomeActivity.CLOSEAPPLICATION = true;
+//					Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+//					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//					LSBaseActivity.activity.startActivity(i);
+//
+//					android.os.Process.killProcess(android.os.Process.myPid());
+//					System.exit(1);
+//
+//					Looper.loop();
+//
+//				}
+//			});
 
 
 		}
@@ -140,14 +138,11 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 		if (ex == null) {
 			return false;
 		}
+
 		//收集设备参数信息
 		collectDeviceInfo(mContext);
 		//保存日志文件 
 		saveCrashInfo2File(ex);
-
-//		Message msg = Message.obtain();
-//		msg.what = 0;
-//		mHandler.sendMessage(msg);
 
 		//使用Toast来显示异常信息
 		new Thread() {
@@ -158,15 +153,12 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 //				Common.Dialog();
 //				退出程序
 
-				try
-				{
-					Thread.sleep(1000);
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					Log.e(TAG, "error : ", e);
 				}
-				catch (Exception e)
-				{
-
-				}
-
+//
 				NewHomeActivity.CLOSEAPPLICATION = true;
 				Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -178,6 +170,7 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
 				Looper.loop();
 			}
 		}.start();
+
 
 		return true;
 	}

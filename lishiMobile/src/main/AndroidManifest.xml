@@ -1189,7 +1189,11 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   />
-
+        <!--城市选择-->
+        <activity android:name="com.lis99.mobile.newhome.activeline.LSActiveLineChoseLocation"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
 
     </application>
 

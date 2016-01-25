@@ -54,6 +54,7 @@ import com.lis99.mobile.entry.LsUserOrderActivity;
 import com.lis99.mobile.entry.view.AsyncLoadImageView;
 import com.lis99.mobile.entry.view.SlidingMenuView;
 import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.newhome.activeline.LSActiveLineFragment;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -127,6 +128,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 //    private FragmentChoiceness choicenessFragment;
     private FragmentChoicenessNewMain choicenessNewMain;
     private LSClubFragmentNew clubFragmentNew;
+    //新线路活动
+    private LSActiveLineFragment activeFragment;
 
     public static boolean CLOSEAPPLICATION = false;
 
@@ -157,12 +160,20 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 //                        clubFragment = new LSClubFragment();
 //                    }
 //                    switchContent(clubFragment);
-                    if ( clubFragmentNew == null )
+//                    if ( clubFragmentNew == null )
+//                    {
+//                        clubFragmentNew = new LSClubFragmentNew();
+//                    }
+//                    clubFragmentNew.handler();
+//                    switchContent(clubFragmentNew);
+
+                    if ( activeFragment == null )
                     {
-                        clubFragmentNew = new LSClubFragmentNew();
+                        activeFragment = new LSActiveLineFragment();
                     }
-                    clubFragmentNew.handler();
-                    switchContent(clubFragmentNew);
+                    activeFragment.handler();
+                    switchContent(activeFragment);
+
                     break;
                 case LSTab.CHOICENESS:
                     if ( choicenessNewMain == null )

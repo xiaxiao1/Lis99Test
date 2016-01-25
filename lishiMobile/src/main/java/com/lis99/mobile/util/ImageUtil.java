@@ -1294,9 +1294,9 @@ public class ImageUtil
 	 * 		获取大图动态loading效果
 	 * @return
 	 */
-	public static ImageLoadingListener getImageLoading(ImageView imageView, ImageView imgRes )
+	public static ImageLoadingListener getImageLoading(ImageView loader, ImageView imgRes )
 	{
-		return new ImageLoadingListen(imageView, imgRes);
+		return new ImageLoadingListen(loader, imgRes);
 	}
 
 	/**
