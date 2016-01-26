@@ -35,8 +35,10 @@ public class LocationUtil
 		LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true);// 打开gps
 		option.setLocationMode(LocationClientOption.LocationMode.Battery_Saving);
+
+		option.setAddrType("all");
 		option.setCoorType("bd09ll"); // 设置坐标类型
-		option.setScanSpan(900);
+//		option.setScanSpan(900);
 		mLocClient.setLocOption(option);
 		mLocClient.start();
 	}
@@ -57,7 +59,7 @@ public class LocationUtil
 
 				if ( glocation != null )
 				{
-					glocation.Location(0, 0);
+					glocation.Location(0, 0, "");
 				}
 
 				return;
@@ -65,7 +67,7 @@ public class LocationUtil
 //			Common.log("getLatitude()=="+location.getLatitude()+"=location.getLongitude()=="+location.getLongitude());
 			if ( glocation != null )
 			{
-				glocation.Location(location.getLatitude(), location.getLongitude());
+				glocation.Location(location.getLatitude(), location.getLongitude(), location.getCity());
 			}
 			stopLocation();
 		}
@@ -102,7 +104,7 @@ public class LocationUtil
 
 	public interface getLocation
 	{
-		public void Location ( double latitude, double longitude );
+		public void Location ( double latitude, double longitude, String cityName );
 	}
 	
 }

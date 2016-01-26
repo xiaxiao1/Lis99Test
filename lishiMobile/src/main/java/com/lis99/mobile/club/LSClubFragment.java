@@ -211,7 +211,7 @@ public class LSClubFragment extends LSFragment implements
 		location.setGlocation(new getLocation() {
 
 			@Override
-			public void Location(double latitude, double longitude) {
+			public void Location(double latitude, double longitude, String cityName) {
 				// TODO Auto-generated method stub
 
 				location.setGlocation(null);

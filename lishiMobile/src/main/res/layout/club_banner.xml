@@ -10,7 +10,6 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:id="@+id/iv_banner"
-        android:src="@drawable/icon_discount"
         />
 
     <ImageView

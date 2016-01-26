@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSClubDetailActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.BannerView;
@@ -23,13 +27,19 @@ import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
+import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
+import com.lis99.mobile.util.PopWindowUtil;
+import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.ScrollTopUtil;
+import com.lis99.mobile.webview.MyActivityWebView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +75,13 @@ public class LSActiveLineFragment extends LSFragment implements
 
     private View v;
 
+    private View titleLeft, titleRight;
+
+    private PopupWindow pop;
+    private int position;
+    private int cityId = -1;
+    private String cityName = "北京";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +92,8 @@ public class LSActiveLineFragment extends LSFragment implements
 
         v = View.inflate(getActivity(), R.layout.active_line, null);
 
+        titleRight = v.findViewById(R.id.titleRight);
+
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
         pull_refresh_view = (PullToRefreshView) v.findViewById(R.id.pull_refresh_view);
@@ -84,8 +103,14 @@ public class LSActiveLineFragment extends LSFragment implements
 
         list = (ListView)v.findViewById(R.id.list);
 
-        tvMassage.setOnClickListener(this);
-        tvLocation.setOnClickListener(this);
+        titleLeft = v.findViewById(R.id.titleLeft);
+
+        titleLeft.setOnClickListener(this);
+        titleRight.setOnClickListener(this);
+
+        tvMassage.setText("");
+        tvMassage.setVisibility(View.GONE);
+
 
         head = View.inflate(getActivity(), R.layout.active_line_head, null);
 
@@ -139,9 +164,6 @@ public class LSActiveLineFragment extends LSFragment implements
 
 
                 }
-
-
-
             }
         });
 
@@ -162,6 +184,23 @@ public class LSActiveLineFragment extends LSFragment implements
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        tvMassage.setVisibility(View.GONE);
+
+        RedDotUtil redDotUtil = RedDotUtil.getInstance();
+
+        redDotUtil.setRedSend(new RedDotUtil.OnRedSend() {
+            @Override
+            public void SenderSystem(int num) {
+                tvMassage.setVisibility(View.VISIBLE);
+            }
+        });
+
+        redDotUtil.getRedDot();
+    }
 
     private void cleanList ()
     {
@@ -174,14 +213,22 @@ public class LSActiveLineFragment extends LSFragment implements
 
     private void getList (double latitude, double longitude)
     {
-        if ( latitude == -1 ) return;
+//        if ( latitude == -1 ) return;
 
         if ( page.isLastPage())
         {
             return;
         }
 
-        String url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?latitude="+latitude+"&longitude="+longitude;
+        String url = "";
+        if ( cityId == -1 )
+        {
+             url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?latitude="+latitude+"&longitude="+longitude;
+        }
+        else
+        {
+            url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?city_id="+cityId;
+        }
 
         model = new ActiveLineNewModel();
 
@@ -191,6 +238,8 @@ public class LSActiveLineFragment extends LSFragment implements
                 model = (ActiveLineNewModel) mTask.getResultModel();
 
                 if ( model == null ) return;
+
+                page.nextPage();
 
                 for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
                 {
@@ -206,13 +255,33 @@ public class LSActiveLineFragment extends LSFragment implements
                         else
                             l.add(model.getAreaweblist());
                     }
+//                    最后一页
+                    if ( page.isLastPage() )
+                    {
+                        l.add("last");
+                    }
 
                     adapter = new LSActiveLineAdapter(getActivity(), l);
                     list.setAdapter(adapter);
 
+                    if ( model.adlist != null )
+                    {
+                        bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
+                        bannerAdapter.addImagePageAdapterListener(LSActiveLineFragment.this);
+                        bannerAdapter.setImagePageClickListener(LSActiveLineFragment.this);
+                        viewBanner.setBannerAdapter(bannerAdapter);
+                        viewBanner.startAutoScroll();
+                    }
+
+
                 }
                 else
                 {
+                    //                    最后一页
+                    if ( page.isLastPage() )
+                    {
+                        l.add("last");
+                    }
                     adapter.addList(l);
                 }
 
@@ -229,22 +298,99 @@ public class LSActiveLineFragment extends LSFragment implements
     public void onClick(View view) {
         switch (view.getId())
         {
-            case R.id.tv_massage:
+            case R.id.titleLeft:
+
+                startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;
-            case R.id.tv_location:
+            case R.id.titleRight:
+
+                pop = PopWindowUtil.showActiveMainCityList(position, list, new CallBack() {
+                    @Override
+                    public void handler(MyTask mTask) {
+                        if ( mTask == null )
+                        {
+                            return;
+                        }
+                        String[] values = (String[]) mTask.getResultModel();
+
+                        cityName = values[0];
+                        cityId = Common.string2int(values[1]);
+
+                        tvLocation.setText(cityName);
+
+                        position = Integer.parseInt(mTask.getresult());
+
+                        onHeaderRefresh(pull_refresh_view);
+                    }
+                });
 
                 break;
         }
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PopWindowUtil.closePop();
+    }
+
+    @Override
     public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
+
+        if ( model == null || model.adlist == null || model.adlist.size() <= position ) return;
+        ActiveLineNewModel.Adlist adlist = model.adlist.get(position);
+        ImageLoader.getInstance().displayImage(adlist.images, banner, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(iv_load, banner));
 
     }
 
     @Override
     public void onClick(int index) {
+
+        if ( model == null || model.adlist == null || model.adlist.size() <= index ) return;
+
+        Intent intent = null;
+
+        ActiveLineNewModel.Adlist item = model.adlist.get(index);
+
+        switch (item.type) {
+//            话题
+            case 0:
+                intent = new Intent(getActivity(), LSClubTopicActivity.class);
+                intent.putExtra("topicID", item.platform);
+                startActivity(intent);
+                break;
+//            线下贴
+            case 1:
+                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+                intent.putExtra("topicID", item.platform);
+                startActivity(intent);
+                break;
+//            线上贴
+            case 2:
+                intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
+                intent.putExtra("topicID", item.platform);
+                startActivity(intent);
+                break;
+//            URL
+            case 3:
+                intent = new Intent(getActivity(), MyActivityWebView.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("URL", item.url);
+                bundle.putString("TITLE", item.title);
+                bundle.putString("IMAGE_URL", item.images);
+                bundle.putInt("TOPIC_ID", 0);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
+//            俱乐部
+            case 4:
+                intent = new Intent(getActivity(), LSClubDetailActivity.class);
+                intent.putExtra("clubID", item.platform);
+                startActivity(intent);
+
+                break;
+        }
 
     }
 
@@ -268,16 +414,21 @@ public class LSActiveLineFragment extends LSFragment implements
 
     public void getLocation ()
     {
-        if (location != null ) return;
+//        选择了城市
+        if ( cityId != -1 )
+        {
+            getList(Latitude, Longitude);
+            return;
+        }
 
-        cleanList();
+        if (location != null ) return;
 
         DialogManager.getInstance().startWaiting(getActivity(), null, "数据加载中...");
         location = LocationUtil.getinstance();
         location.setGlocation(new LocationUtil.getLocation() {
 
             @Override
-            public void Location(double latitude, double longitude) {
+            public void Location(double latitude, double longitude, String cityName) {
                 // TODO Auto-generated method stub
 
                 DialogManager.getInstance().stopWaitting();
@@ -292,6 +443,9 @@ public class LSActiveLineFragment extends LSFragment implements
 
                 Latitude = latitude;
                 Longitude = longitude;
+
+                LSActiveLineFragment.this.cityName = cityName;
+                tvLocation.setText(cityName);
 
                 getList(latitude, longitude);
 
@@ -310,6 +464,7 @@ public class LSActiveLineFragment extends LSFragment implements
         ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
             @Override
             public void handler() {
+                if ( list == null ) return;
                 if ( list.getAdapter() != null )
                 {
                     list.setSelection(0);

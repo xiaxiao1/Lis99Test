@@ -15,7 +15,7 @@
 
         <RelativeLayout
             android:id="@+id/titleLeft"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -52,7 +52,7 @@
 
         <RelativeLayout
             android:id="@+id/titleRight"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
@@ -77,9 +77,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/text_color_black"
-                    android:text="北京"
+                    android:text="北京北京北京北京"
                     android:textSize="12sp"
                     android:id="@+id/tv_location"
+                    android:maxEms="4"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     />
 
             </LinearLayout>

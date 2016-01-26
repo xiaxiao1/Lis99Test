@@ -29,7 +29,7 @@ public class JPush implements PushBase {
     @Override
     public void init(Context c ) {
 
-            JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+            JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
             JPushInterface.init(c);     		// 初始化 JPush
 
     }
@@ -40,7 +40,8 @@ public class JPush implements PushBase {
     }
 
     @Override
-    public void setToken(String token) {
+    public void setToken(String token)
+    {
         Token = token;
 //        保存token
         SharedPreferencesHelper.saveJPushToken(token);

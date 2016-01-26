@@ -510,7 +510,7 @@ public class LSSelectFragment extends LSFragment implements
 	{
 		
 		@Override
-		public void Location(double latitude, double longitude)
+		public void Location(double latitude, double longitude, String cityName)
 		{
 			// TODO Auto-generated method stub
 

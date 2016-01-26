@@ -3,6 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
               android:orientation="vertical"
+              android:background="@color/white"
     >
 
 
@@ -19,10 +20,17 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="140dp"
         android:scrollbars="none"
         android:id="@+id/recyclerView"
+        android:layout_gravity="center_vertical"
         />
+
+    <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/list_line"
+            />
 
 
 </LinearLayout>

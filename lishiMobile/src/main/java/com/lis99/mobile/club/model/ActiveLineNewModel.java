@@ -184,4 +184,18 @@ public class ActiveLineNewModel extends BaseModel {
             return tagname;
         }
     }
+
+    public List<Adlist> adlist;
+
+    public class Adlist implements Serializable {
+
+        public String title;
+        public int type;
+        public String url;
+        public String platform;
+        public String images;
+
+    }
+
+
 }

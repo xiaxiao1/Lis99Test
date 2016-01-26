@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,7 +33,94 @@ public class PopWindowUtil {
 //    {
 //
 //    }
+  /**
+   * 选择城市
+   * */
+    public static PopupWindow showActiveMainCityList (  int position, View parent, final CallBack callBack  )
+    {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            return pop;
+        }
 
+        View v = View.inflate(LSBaseActivity.activity, R.layout.active_all_times_chose, null);
+
+        View bg = v.findViewById(R.id.bg);
+
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closePop();
+            }
+        });
+
+        final ListView list = (ListView) v.findViewById(R.id.list);
+
+        final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveCityList();
+
+        currentMapCity = alist.get(0);
+
+        setMap(alist.get(position), currentMapCity);
+
+        final ActiveAllTimesAdapter adapter = new ActiveAllTimesAdapter(LSBaseActivity.activity, alist);
+
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (callBack != null) {
+                    HashMap<String, String> map = (HashMap<String, String>) adapter.getItem(i);
+                    setMap(map, currentMapCity);
+                    String[] values = new String[2];
+                    values[0] = alist.get(i).get("name");
+                    values[1] = alist.get(i).get("value");
+                    MyTask task = new MyTask();
+                    task.setresult(""+i);
+                    task.setResultModel(values);
+                    callBack.handler(task);
+                    closePop();
+                }
+            }
+        });
+
+//        pop = new PopupWindow(v, ViewGroup.LayoutParams.FILL_PARENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
+                Common.HEIGHT - Common.dip2px(100));
+
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setFocusable(true);
+        pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                // TODO Auto-generated method stub
+                WindowManager.LayoutParams lp = LSBaseActivity.activity
+                        .getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                LSBaseActivity.activity.getWindow().setAttributes(lp);
+                if ( callBack != null )
+                {
+                    callBack.handler(null);
+                }
+            }
+        });
+
+        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
+                .getAttributes();
+        lp.alpha = 0.7f;
+        LSBaseActivity.activity.getWindow().setAttributes(lp);
+
+        return pop;
+    }
+  /**
+    *全部活动筛选
+    *
+    * */
     public static PopupWindow showActiveAllTimes ( int position, View parent, final CallBack callBack )
     {
         if (pop != null && pop.isShowing()) {
@@ -53,48 +141,13 @@ public class PopWindowUtil {
 
         final ListView list = (ListView) v.findViewById(R.id.list);
 
-        final ArrayList<HashMap<String, String>> alist = new ArrayList<HashMap<String, String>>();
+        final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveTime();
 
-        HashMap<String, String> map = new HashMap<String, String>();
-
-        map.put("select", "1");
-        map.put("name", "全部开始日期");
-        map.put("value", "0");
-        alist.add(map);
-
-        currentMap = map;
-
-        map = new HashMap<String, String>();
-
-        map.put("select", "0");
-        map.put("name", "1周内开始");
-        map.put("value", "1");
-        alist.add(map);
-
-        map = new HashMap<String, String>();
-
-        map.put("select", "0");
-        map.put("name", "1-2周内开始");
-        map.put("value", "2");
-        alist.add(map);
-
-        map = new HashMap<String, String>();
-
-        map.put("select", "0");
-        map.put("name", "2周-1个月内开始");
-        map.put("value", "3");
-        alist.add(map);
-
-        map = new HashMap<String, String>();
-
-        map.put("select", "0");
-        map.put("name", "1个月以后开始");
-        map.put("value", "4");
-        alist.add(map);
+        currentMap = alist.get(0);
 
         if ( position != 0 )
         {
-            setMap(alist.get(position));
+            setMap(alist.get(position), currentMap);
         }
 
         final ActiveAllTimesAdapter adapter = new ActiveAllTimesAdapter(LSBaseActivity.activity, alist);
@@ -106,7 +159,7 @@ public class PopWindowUtil {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (callBack != null) {
                     HashMap<String, String> map = (HashMap<String, String>) adapter.getItem(i);
-                    setMap(map);
+                    setMap(map, currentMap);
                     String value = alist.get(i).get("value");
                     MyTask task = new MyTask();
                     task.setresult(value);
@@ -153,14 +206,15 @@ public class PopWindowUtil {
         return pop;
 
     }
-//    private static int position = 0;
-    private static HashMap<String, String> currentMap;
-    private static void setMap ( HashMap<String, String> map )
+    private static HashMap<String, String> currentMap = new HashMap<String, String>();
+    private static HashMap<String, String> currentMapCity = new HashMap<String, String>();
+
+    private static void setMap ( HashMap<String, String> map, HashMap<String, String> cmap )
     {
-        if ( map == currentMap ) return;
-        currentMap.put("select", "0");
-        currentMap = map;
-        currentMap.put("select", "1");
+        if ( map == cmap ) return;
+        cmap.put("select", "0");
+        cmap = map;
+        cmap.put("select", "1");
     }
 
     static class ActiveAllTimesAdapter extends MyBaseAdapter

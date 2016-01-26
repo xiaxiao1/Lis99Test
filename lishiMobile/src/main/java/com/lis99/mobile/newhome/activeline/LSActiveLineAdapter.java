@@ -2,6 +2,7 @@ package com.lis99.mobile.newhome.activeline;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,6 +20,7 @@ import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -126,11 +128,11 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         {
             if (date.length > 0 )
             {
-                viewHolder.tvMonth.setText(date[0]);
+                viewHolder.tvMonth.setText(date[1]);
             }
             if ( date.length > 1 )
             {
-                viewHolder.tvDay.setText(date[1]);
+                viewHolder.tvDay.setText(date[0]+"月");
             }
         }
 
@@ -139,7 +141,7 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         return view;
     }
 
-    private View getAd (int i, View view, ViewGroup viewGroup)
+    private View getAd (final int i, View view, ViewGroup viewGroup)
     {
         ViewHolderAD viewholder = null;
         if ( view == null )
@@ -155,7 +157,7 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
             viewholder = (ViewHolderAD) view.getTag();
         }
 
-        List<Object> list = (List<Object>) getItem(i);
+        final List<Object> list = (List<Object>) getItem(i);
 
         if ( list != null && list.size() > 0 )
         {
@@ -172,12 +174,21 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
                 @Override
                 public void onItemClick(View view, int position) {
 
+                    ActiveLineNewModel.AreaweblistEntity item = (ActiveLineNewModel.AreaweblistEntity) list.get(position);
+                    if ( item == null ) return;
+
+                    Intent intent = new Intent(mContext, MyActivityWebView.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("URL", item.getTagid());
+                    bundle.putString("TITLE", item.getTagname());
+                    bundle.putString("IMAGE_URL", item.getImages());
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
+
                 }
             });
 
         }
-
-
 
 
         return view;

@@ -15,6 +15,7 @@ import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LocationUtil;
@@ -73,7 +74,7 @@ public class MyWebViewTianJin extends LSBaseActivity {
         location.setGlocation(new LocationUtil.getLocation() {
 
             @Override
-            public void Location(double latitude, double longitude) {
+            public void Location(double latitude, double longitude, String cityName) {
                 // TODO Auto-generated method stub
                 DialogManager.getInstance().stopWaitting();
                 location.setGlocation(null);
@@ -149,9 +150,13 @@ public class MyWebViewTianJin extends LSBaseActivity {
                     switch (id) {
                         //            话题
                         case 0:
+                            intent = new Intent(LSBaseActivity.activity, LSClubTopicActivity.class);
+                            intent.putExtra("topicID", topic_id);
+                            LSBaseActivity.activity.startActivity(intent);
+                            break;
 //            线下贴
                         case 1:
-                            intent = new Intent(LSBaseActivity.activity, LSClubTopicActivity.class);
+                            intent = new Intent(LSBaseActivity.activity, LSClubTopicActiveOffLine.class);
                             intent.putExtra("topicID", topic_id);
                             LSBaseActivity.activity.startActivity(intent);
                             break;
