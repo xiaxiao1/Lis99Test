@@ -8,6 +8,51 @@ import java.util.HashMap;
  */
 public class PopWindowData {
 
+    /*活动筛选， 日期数据
+    * 大本营（48）、徒步露营（284）、户外摄影（342）、极限攀登（349）、装备控（285）
+    * */
+    public static ArrayList<HashMap<String, String>> getTopicClub ()
+    {
+        final ArrayList<HashMap<String, String>> alist = new ArrayList<HashMap<String, String>>();
+
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put("select", "1");
+        map.put("name", "大本营");
+        map.put("value", "48");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "徒步露营");
+        map.put("value", "284");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "户外摄影");
+        map.put("value", "342");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "极限攀登");
+        map.put("value", "349");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "装备控");
+        map.put("value", "285");
+        alist.add(map);
+
+        return alist;
+    }
+
     /*活动筛选， 日期数据*/
     public static ArrayList<HashMap<String, String>> getActiveTime ()
     {

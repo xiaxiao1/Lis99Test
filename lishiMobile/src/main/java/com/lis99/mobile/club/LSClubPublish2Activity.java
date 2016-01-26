@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -24,6 +25,7 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -49,6 +51,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
     String url;
     int topicid;
 
+
     private final static int PREVIEW = 1001;
 
 //	Drawable add, noadd;
@@ -62,10 +65,18 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 
     private View parentLayout;
 
+    private TextView title;
+
+    private ImageView dot;
+//  列表显示
+    private boolean listVisible = false;
+
+    private int position = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        clubID = getIntent().getIntExtra("clubID", 0);
+        clubID = getIntent().getIntExtra("clubID", 48);
         setContentView(R.layout.activity_lsclub_publish2);
 
 //		noadd = getResources().getDrawable(R.drawable.reply_add_image_draw);
@@ -74,7 +85,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 //		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
 
         initViews();
-        setTitle("发布话题");
+        setTitle("大本营");
 
         processImage(getIntent());
 
@@ -239,7 +250,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
     }
 
     private void setresult() {
-        LSScoreManager.getInstance().sendScore(LSScoreManager.pubtalktopic, ""+topicid);
+        LSScoreManager.getInstance().sendScore(LSScoreManager.pubtalktopic, "" + topicid);
         setResult(RESULT_OK);
     }
 
@@ -260,13 +271,60 @@ public class LSClubPublish2Activity extends LSBaseActivity {
             startActivityForResult(intent, PREVIEW);
             return;
         }
+        else if ( v.getId() == R.id.title )
+        {
+            if ( listVisible )
+            {
+                PopWindowUtil.closePop();
+                dot.setImageResource(R.drawable.topic_club_down_dot);
+            }
+            else
+            {
+                dot.setImageResource(R.drawable.topic_club_up_dot);
+                PopWindowUtil.showTopicClub(position, title, new CallBack() {
+                    @Override
+                    public void handler(MyTask mTask) {
+
+                        dot.setImageResource(R.drawable.topic_club_down_dot);
+
+                        if (mTask == null) {
+                            return;
+                        }
+                        String[] values = (String[]) mTask.getResultModel();
+
+                        clubID = Common.string2int(values[1]);
+
+                        title.setText(values[0]);
+
+                        position = Integer.parseInt(mTask.getresult());
+
+                    }
+                });
+            }
+
+
+
+
+            listVisible = !listVisible;
+        }
 
         super.onClick(v);
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PopWindowUtil.closePop();
+    }
+
+    @Override
     protected void initViews() {
         super.initViews();
+
+        dot = (ImageView) findViewById(R.id.dot);
+        title = (TextView) findViewById(R.id.title);
+        title.setOnClickListener(this);
+
         titleView = (EditText) findViewById(R.id.titleView);
         bodyView = (EditText) findViewById(R.id.bodyView);
 

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -77,7 +76,6 @@ public class LSActiveLineFragment extends LSFragment implements
 
     private View titleLeft, titleRight;
 
-    private PopupWindow pop;
     private int position;
     private int cityId = -1;
     private String cityName = "北京";
@@ -305,7 +303,7 @@ public class LSActiveLineFragment extends LSFragment implements
                 break;
             case R.id.titleRight:
 
-                pop = PopWindowUtil.showActiveMainCityList(position, list, new CallBack() {
+                PopWindowUtil.showActiveMainCityList(position, list, new CallBack() {
                     @Override
                     public void handler(MyTask mTask) {
                         if ( mTask == null )
