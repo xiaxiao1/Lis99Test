@@ -167,159 +167,6 @@
 
 
             <RelativeLayout
-                android:id="@+id/layout_friends"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="13dp"
-                
-                >
-
-                <ImageView
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mine_icon_my_friends"
-                    android:id="@+id/iv_friend"
-                    android:layout_marginRight="13dp"
-                    />
-
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/iv_friend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我的好友"
-                    android:textColor="#666"
-                    android:textSize="14sp"
-                    android:id="@+id/tv_friends"
-                    />
-
-                <ImageView
-                    android:id="@+id/v_friend_arrow"
-                    android:layout_marginRight="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/mine_icon_right_arrow" />
-
-                <ImageView
-                    android:layout_marginRight="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/iv_friendDot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_reddot"
-                    />
-
-                <View
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@id/tv_friends"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:background="#eee" />
-
-            </RelativeLayout>
-
-
-
-            <RelativeLayout
-                android:id="@+id/likePanel"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="13dp"
-                 >
-
-                <ImageView
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mine_icon_like"
-                    android:layout_marginRight="13dp"
-                    android:id="@+id/iv_like_icon"
-                    />
-
-                <TextView
-                    android:layout_toRightOf="@id/iv_like_icon"
-                    android:id="@+id/tv_like"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="喜欢的装备"
-                    android:textColor="#666"
-                    android:textSize="14sp" />
-
-
-
-                <ImageView
-                    android:layout_marginRight="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mine_icon_right_arrow" />
-
-                <View
-                    android:layout_alignLeft="@id/tv_like"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#eee" />
-
-            </RelativeLayout>
-
-
-
-            <RelativeLayout
-                android:id="@+id/collectionPanel"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="13dp"
-                 >
-
-                <ImageView
-                    android:id="@+id/iv_collection_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="13sp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/mine_icon_collection" />
-
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:id="@+id/tv_collection"
-                    android:layout_toRightOf="@id/iv_collection_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="收藏的店铺"
-                    android:textColor="#666"
-                    android:textSize="14sp" />
-
-
-                <ImageView
-                    android:layout_marginRight="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mine_icon_right_arrow" />
-
-                <View
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@id/tv_collection"
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#eee" />
-
-            </RelativeLayout>
-
-
-
-            <RelativeLayout
                 android:id="@+id/topicPanel"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -327,7 +174,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="13dp"
-                 >
+                >
 
                 <ImageView
                     android:id="@+id/iv_my_topic"
@@ -364,7 +211,6 @@
                     android:background="#eee" />
 
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/layout_my_join"
@@ -413,8 +259,124 @@
                     android:src="@drawable/icon_reddot"
                     />
 
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@id/iv_my_join"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
 
             </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_join_club"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="13dp"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_join_club"
+                    android:layout_marginRight="13sp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/my_join_club" />
+
+                <TextView
+                    android:layout_toRightOf="@id/iv_join_club"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我加入的俱乐部"
+                    android:textColor="#666"
+                    android:textSize="14sp" />
+
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@id/iv_join_club"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_friends"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+                
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_my_friends"
+                    android:id="@+id/iv_friend"
+                    android:layout_marginRight="13dp"
+                    />
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的好友"
+                    android:textColor="#666"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_friends"
+                    />
+
+                <ImageView
+                    android:id="@+id/v_friend_arrow"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/iv_friendDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_reddot"
+                    />
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
 
 
             <View
@@ -735,6 +697,127 @@
                     android:layout_height="1px"
                     android:background="@color/color_1px_stroke" />
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/pull_bg"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="15dp"
+                    android:textColor="#c6b6a7"
+                    android:text="装备" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
+
+                <RelativeLayout
+                    android:id="@+id/likePanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#fff"
+                    android:paddingLeft="13dp"
+                    >
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mine_icon_like"
+                        android:layout_marginRight="13dp"
+                        android:id="@+id/iv_like_icon"
+                        />
+
+                    <TextView
+                        android:layout_toRightOf="@id/iv_like_icon"
+                        android:id="@+id/tv_like"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="喜欢的装备"
+                        android:textColor="#666"
+                        android:textSize="14sp" />
+
+
+
+                    <ImageView
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mine_icon_right_arrow" />
+
+                    <View
+                        android:layout_alignLeft="@id/tv_like"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="#eee" />
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/collectionPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#fff"
+                    android:paddingLeft="13dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/iv_collection_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="13sp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mine_icon_collection" />
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tv_collection"
+                        android:layout_toRightOf="@id/iv_collection_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收藏的店铺"
+                        android:textColor="#666"
+                        android:textSize="14sp" />
+
+
+                    <ImageView
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mine_icon_right_arrow" />
+
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignLeft="@id/tv_collection"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="#eee" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

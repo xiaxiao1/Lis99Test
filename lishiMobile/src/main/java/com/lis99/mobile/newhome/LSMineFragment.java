@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubMyTopicActivity;
+import com.lis99.mobile.club.MyJoinClubActivity;
 import com.lis99.mobile.club.apply.MyJoinActiveActivity;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
@@ -216,6 +217,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 		v.setOnClickListener(this);
 //		收到的赞
 		v = findViewById(R.id.receivelike);
+		v.setOnClickListener(this);
+//		我加入的俱乐部
+		v = findViewById(R.id.layout_join_club);
 		v.setOnClickListener(this);
 
 		managePanel = findViewById(R.id.managePanel);
@@ -641,7 +645,13 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 						MyJoinActiveActivity.class);
 				startActivity(intent);
 			}
+//			我加入的俱乐部
+			else if ( v.getId() == R.id.layout_join_club )
+			{
+				startActivity(new Intent(getActivity(), MyJoinClubActivity.class));
+			}
 		}
+//		UserId == null
 		else
 		{
 //			if (v.getId() == R.id.layout_user )
