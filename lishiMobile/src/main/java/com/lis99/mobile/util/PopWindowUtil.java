@@ -330,7 +330,7 @@ public class PopWindowUtil {
             if ( "1".equals(map.get("select")) )
             {
                 holder.tv_select.setVisibility(View.VISIBLE);
-                holder.tv_all.setTextColor(mContext.getResources().getColor(R.color.text_color_blue));
+                holder.tv_all.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
             }
             else
             {
