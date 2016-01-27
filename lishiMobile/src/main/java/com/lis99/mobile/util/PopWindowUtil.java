@@ -39,7 +39,7 @@ public class PopWindowUtil {
             return pop;
         }
 
-        View v = View.inflate(LSBaseActivity.activity, R.layout.active_all_times_chose, null);
+        View v = View.inflate(LSBaseActivity.activity, R.layout.topic_club_new_topic, null);
 
         View bg = v.findViewById(R.id.bg);
 
@@ -84,22 +84,22 @@ public class PopWindowUtil {
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                Common.HEIGHT - Common.dip2px(100));
+                ViewGroup.LayoutParams.MATCH_PARENT);
 
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
         pop.setFocusable(true);
 //        pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
-        pop.showAsDropDown(parent, 0, Common.dip2px(50));
+        pop.showAsDropDown(parent);
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
             public void onDismiss() {
                 // TODO Auto-generated method stub
-                WindowManager.LayoutParams lp = LSBaseActivity.activity
-                        .getWindow().getAttributes();
-                lp.alpha = 1.0f;
-                LSBaseActivity.activity.getWindow().setAttributes(lp);
+//                WindowManager.LayoutParams lp = LSBaseActivity.activity
+//                        .getWindow().getAttributes();
+//                lp.alpha = 1.0f;
+//                LSBaseActivity.activity.getWindow().setAttributes(lp);
                 if ( callBack != null )
                 {
                     callBack.handler(null);
@@ -107,10 +107,10 @@ public class PopWindowUtil {
             }
         });
 
-        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
-                .getAttributes();
-        lp.alpha = 0.7f;
-        LSBaseActivity.activity.getWindow().setAttributes(lp);
+//        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
+//                .getAttributes();
+//        lp.alpha = 0.7f;
+//        LSBaseActivity.activity.getWindow().setAttributes(lp);
 
         return pop;
     }

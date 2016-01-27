@@ -45,7 +45,7 @@ public class MyHttpClient {
 	
 	private HttpGet mHttpGet;
 	private HttpPost mHttpPost;
-	private int TIME_OUT = 15000;
+	private int TIME_OUT = 20000;
 	
 	public MyHttpClient()
 	{

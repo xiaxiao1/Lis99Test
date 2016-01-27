@@ -322,9 +322,8 @@ public class FragmentChoicenessList extends Fragment implements
                 {
 
 //                    DialogManager.getInstance().startWaiting(getActivity(), null, null);
-//                    Intent i = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
-//                    i.putExtra("topicID", 1);
-//                    startActivity(i);
+                    Intent i = new Intent(getActivity(), ActiveAllActivity.class);
+                    startActivity(i);
 
                 }
                 else

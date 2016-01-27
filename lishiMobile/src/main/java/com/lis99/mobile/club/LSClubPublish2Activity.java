@@ -68,7 +68,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
     private TextView title;
 
     private ImageView dot;
-//  列表显示
+    //  列表显示
     private boolean listVisible = false;
 
     private int position = 0;
@@ -270,16 +270,11 @@ public class LSClubPublish2Activity extends LSBaseActivity {
             DemoApplication.publishBitmap = new WeakReference<Bitmap>(bitmap);
             startActivityForResult(intent, PREVIEW);
             return;
-        }
-        else if ( v.getId() == R.id.title )
-        {
-            if ( listVisible )
-            {
+        } else if (v.getId() == R.id.title) {
+            if (listVisible) {
                 PopWindowUtil.closePop();
                 dot.setImageResource(R.drawable.topic_club_down_dot);
-            }
-            else
-            {
+            } else {
                 dot.setImageResource(R.drawable.topic_club_up_dot);
                 PopWindowUtil.showTopicClub(position, title, new CallBack() {
                     @Override
@@ -301,8 +296,6 @@ public class LSClubPublish2Activity extends LSBaseActivity {
                     }
                 });
             }
-
-
 
 
             listVisible = !listVisible;
