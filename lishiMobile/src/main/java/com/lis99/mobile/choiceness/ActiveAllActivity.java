@@ -217,7 +217,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
                 page.nextPage();
                 if (adapter == null) {
                     page.setPageSize(activeAllModel.totalpage);
-                    adapter = new ActiveAllAdapter(activity, activeAllModel.clubtopiclist);
+                    adapter = new ActiveAllAdapter(activity, activeAllModel.activitylist);
 //                    list.setAdapter(adapter);
 
                     animationAdapter = new CardsAnimationAdapter(adapter);
@@ -226,7 +226,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
 
                 } else {
-                    adapter.addList(activeAllModel.clubtopiclist);
+                    adapter.addList(activeAllModel.activitylist);
                     animationAdapter.notifyDataSetChanged();
                 }
 

@@ -96,9 +96,9 @@ public class ActiveAllAdapter extends MyBaseAdapter {
         holder.tvTitle.setText(item.title);
         holder.tvTag.setText(item.times);
 
-        if ( !TextUtils.isEmpty(item.image))
+        if ( !TextUtils.isEmpty(item.images))
         {
-            ImageLoader.getInstance().displayImage(item.image, holder.ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
+            ImageLoader.getInstance().displayImage(item.images, holder.ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
         }
 
         return view;
