@@ -58,6 +58,8 @@ public class LSApplyEnterActivity extends LSBaseActivity {
     private int payType = -1;
     //    不显示网上支付
     private boolean test = false;
+//    从哪里来
+    private String TYPE = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class LSApplyEnterActivity extends LSBaseActivity {
 
         topicID = getIntent().getIntExtra("topicID", 0);
         clubID = getIntent().getIntExtra("clubID", 0);
+        TYPE = getIntent().getStringExtra("TYPE");
 
         jonNum = LSApplayNew.updata.size();
 
@@ -310,7 +313,16 @@ public class LSApplyEnterActivity extends LSBaseActivity {
 
         String platform = DeviceInfo.PLATFORM;
 
-        String url = C.SUBMIT_ORDER_INFO;
+        String url = "";
+//      新的活动报名接口
+        if ( "TOPICNEW".equals(TYPE))
+        {
+            url = C.SUBMIT_ORDER_INFO_NEW;
+        }
+        else
+        {
+            url = C.SUBMIT_ORDER_INFO;
+        }
 
         String OrderList = ParserUtil.getGsonString(LSApplayNew.updata);
         OrderList = ParserUtil.getJsonArrayWithName("lists", OrderList);

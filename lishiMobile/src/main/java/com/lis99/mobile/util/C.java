@@ -382,8 +382,11 @@ public class C {
 	//=====3.4=======
 //	全部精选
 	public static final String CHOICENESSALL = DOMAIN + "/v3/club/zhuanti/";
-/**线路活动*/
-	public static final String ACTIVE_ALL = DOMAIN + "/v3/club/clubtopics/";
+/**线路活动
+ * http://api.lis99.com/v5/club/alllists
+ * */
+//	public static final String ACTIVE_ALL = DOMAIN + "/v3/club/clubtopics/";
+	public static final String ACTIVE_ALL = DOMAIN + "/v5/club/alllists/";
 	/**线路活动， 城市选择*/
 	public static final String ACTIVE_ALL_CITY = DOMAIN + "/v3/club/getAreaListInfo";
 
@@ -436,6 +439,8 @@ public class C {
 	public static final String GET_ORDER_INFO = DOMAIN + "/v4/apply/applyInfoDetail";
 //	提交报名订单
 	public static final String SUBMIT_ORDER_INFO = DOMAIN + "/v4/apply/enroll";
+//	提交报名订单 （新版线下活动帖） http://api.lis99.com/v5/club/enroll
+	public static final String SUBMIT_ORDER_INFO_NEW = DOMAIN + "/v5/club/enroll/";
 //	管理报名		http://api.lis99.com/v4/apply/enrollList/[topicid]/[page]
 	public static final String MANAGER_JON_ACTIVE_LIST = DOMAIN + "/v4/apply/enrollList/";
 //	http://api.lis99.com/v4/apply/pass

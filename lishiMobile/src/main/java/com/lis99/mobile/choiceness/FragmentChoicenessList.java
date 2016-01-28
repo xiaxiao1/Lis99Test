@@ -375,12 +375,13 @@ public class FragmentChoicenessList extends Fragment implements
         switch (item.type) {
 //            话题
             case 0:
+            case 1:
                 intent = new Intent(getActivity(), LSClubTopicActivity.class);
                 intent.putExtra("topicID", item.id);
                 startActivity(intent);
                 break;
 //            线下贴
-            case 1:
+            case 5:
                 intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
                 intent.putExtra("topicID", item.id);
                 startActivity(intent);

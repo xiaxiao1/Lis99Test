@@ -479,6 +479,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
             intent.putExtra("clubID", clubID);
             intent.putExtra("topicID", activity_id);
             intent.putExtra("clubName", model.getClub_title());
+            intent.putExtra("TYPE", "TOPICNEW");
             startActivityForResult(intent, 997);
         }
     }

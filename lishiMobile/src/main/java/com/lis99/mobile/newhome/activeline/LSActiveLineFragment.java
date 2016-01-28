@@ -149,7 +149,7 @@ public class LSActiveLineFragment extends LSFragment implements
                 }
 
 
-                Object o = adapter.getItem(i);
+                Object o = adapter.getItem(i - 1);
                 if ( o instanceof  ActiveLineNewModel.ActivitylistEntity )
                 {
                     ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) o;
@@ -353,21 +353,17 @@ public class LSActiveLineFragment extends LSFragment implements
 
         switch (item.type) {
 //            话题
-            case 0:
-                intent = new Intent(getActivity(), LSClubTopicActivity.class);
-                intent.putExtra("topicID", item.platform);
-                startActivity(intent);
-                break;
 //            线下贴
+            case 0:
             case 1:
-                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
-                intent.putExtra("topicID", item.platform);
+                intent = new Intent(getActivity(), LSClubTopicActivity.class);
+                intent.putExtra("topicID", Common.string2int(item.url));
                 startActivity(intent);
                 break;
 //            线上贴
             case 2:
                 intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
-                intent.putExtra("topicID", item.platform);
+                intent.putExtra("topicID", Common.string2int(item.url));
                 startActivity(intent);
                 break;
 //            URL
@@ -384,9 +380,14 @@ public class LSActiveLineFragment extends LSFragment implements
 //            俱乐部
             case 4:
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", item.platform);
+                intent.putExtra("clubID", Common.string2int(item.url));
                 startActivity(intent);
 
+                break;
+            case 5:
+                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+                intent.putExtra("topicID", Common.string2int(item.url));
+                startActivity(intent);
                 break;
         }
 

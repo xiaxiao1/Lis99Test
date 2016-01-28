@@ -96,10 +96,31 @@ public class PopWindowData {
         return alist;
     }
 
+//  线路活动筛选
+    public static ArrayList<HashMap<String, String>> getActiveCityList ()
+    {
+        final ArrayList<HashMap<String, String>> alist = new ArrayList<HashMap<String, String>>();
+
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put("select", "1");
+        map.put("name", "全部集合地");
+        map.put("value", "0");
+        alist.add(map);
+
+        alist.addAll(getActiveMainCityList());
+
+        map = alist.get(1);
+
+        map.put("select", "0");
+
+        return alist;
+
+    }
 
     /**活动筛选， 城市数据
     */
-    public static ArrayList<HashMap<String, String>> getActiveCityList ()
+    public static ArrayList<HashMap<String, String>> getActiveMainCityList ()
     {
         final ArrayList<HashMap<String, String>> alist = new ArrayList<HashMap<String, String>>();
 

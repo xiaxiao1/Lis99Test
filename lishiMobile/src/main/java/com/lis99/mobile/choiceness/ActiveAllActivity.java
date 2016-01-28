@@ -51,13 +51,13 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
     private ActiveAllCity cityModel;
 //城市列表
-    private static ArrayList<HashMap<String, String>> cityMap;
+//    private static ArrayList<HashMap<String, String>> cityMap;
 
-    private static HashMap<String, String> currentMap;
+//    private static HashMap<String, String> currentMap;
 
     private String times = "0", cityId = "0";
     //时间选择位置
-    private int position;
+    private int position, positionCity;
 
     private AnimationAdapter animationAdapter;
     @Override
@@ -116,27 +116,27 @@ public class ActiveAllActivity extends LSBaseActivity implements
             }
         });
 
-        list_city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                HashMap<String, String> map = (HashMap<String, String>) cityAdapter.getItem(i);
-                if ( !map.containsKey("id") )
-                {
-                    return;
-                }
-                setCurrentMap(map);
-                cityId = map.get("id");
-                if ( i == 0 )
-                {
-                    tv_city.setText("全部集合地");
-                }
-                else {
-                    tv_city.setText(map.get("name").toString());
-                }
-//                Common.log("cityId="+cityId);
-                onHeaderRefresh(pull_refresh_view);
-            }
-        });
+//        list_city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                HashMap<String, String> map = (HashMap<String, String>) cityAdapter.getItem(i);
+//                if ( !map.containsKey("id") )
+//                {
+//                    return;
+//                }
+//                setCurrentMap(map);
+//                cityId = map.get("id");
+//                if ( i == 0 )
+//                {
+//                    tv_city.setText("全部集合地");
+//                }
+//                else {
+//                    tv_city.setText(map.get("name").toString());
+//                }
+////                Common.log("cityId="+cityId);
+//                onHeaderRefresh(pull_refresh_view);
+//            }
+//        });
 
     }
 
@@ -146,16 +146,37 @@ public class ActiveAllActivity extends LSBaseActivity implements
         switch ( arg0.getId())
         {
             case R.id.layout_tab_data:
-                if ( cityListShow() )
-                {
-                    getCityList();
-                    return;
-                }
+//                if ( cityListShow() )
+//                {
+//                    getCityList();
+//                    return;
+//                }
                 selectTab(tv_data, iv_data);
                 PopWindowUtil.showActiveAllTimes(position, layout_tab_data, dataCallBack);
                 break;
             case R.id.layout_tab_city:
-                getCityList();
+//                getCityList();
+                PopWindowUtil.showActiveCityList(positionCity, layout_tab_data, new CallBack() {
+                    @Override
+                    public void handler(MyTask mTask) {
+
+                        if ( mTask == null )
+                        {
+                            return;
+                        }
+                        String[] values = (String[]) mTask.getResultModel();
+
+
+//                        ci = values[0];
+                        cityId = values[1];
+                        tv_city.setText(values[0]);
+
+                        positionCity = Integer.parseInt(mTask.getresult());
+
+                        onHeaderRefresh(pull_refresh_view);
+                    }
+                });
+
                 break;
             case R.id.layout_tab_type:
 
@@ -272,128 +293,129 @@ public class ActiveAllActivity extends LSBaseActivity implements
         tv_data.setText(data);
     }
 
-    private void getCityList ()
-    {
-        if ( cityMap != null && cityMap.size() != 0 )
-        {
-            setCityAdapter();
-            return;
-        }
-        String url = C.ACTIVE_ALL_CITY;
-        cityModel = new ActiveAllCity();
-        MyRequestManager.getInstance().requestGet(url, cityModel, new CallBack() {
-            @Override
-            public void handler(MyTask mTask) {
-                cityModel = (ActiveAllCity) mTask.getResultModel();
-                initCity(cityModel);
-                setCityAdapter();
-            }
-        });
-    }
-//打开关闭城市列表
-    private void setCityAdapter ()
-    {
-        if ( cityAdapter == null )
-        {
-            cityAdapter = new ActiveAllCityAdapter(activity, cityMap);
-            list_city.setAdapter(cityAdapter);
-        }
-
-        if ( cityListShow() )
-        {
-            unSelectTab(tv_city, iv_city);
-            list_city.setVisibility(View.GONE);
-        }
-        else
-        {
-            selectTab(tv_city, iv_city);
-            list_city.setVisibility(View.VISIBLE);
-        }
-
-    }
+//    private void getCityList ()
+//    {
+//        if ( cityMap != null && cityMap.size() != 0 )
+//        {
+//            setCityAdapter();
+//            return;
+//        }
+//        String url = C.ACTIVE_ALL_CITY;
+//        cityModel = new ActiveAllCity();
+//        MyRequestManager.getInstance().requestGet(url, cityModel, new CallBack() {
+//            @Override
+//            public void handler(MyTask mTask) {
+//                cityModel = (ActiveAllCity) mTask.getResultModel();
+//                initCity(cityModel);
+//                setCityAdapter();
+//            }
+//        });
+//    }
+////打开关闭城市列表
+//    private void setCityAdapter ()
+//    {
+//        if ( cityAdapter == null )
+//        {
+//            cityAdapter = new ActiveAllCityAdapter(activity, cityMap);
+//            list_city.setAdapter(cityAdapter);
+//        }
+//
+//        if ( cityListShow() )
+//        {
+//            unSelectTab(tv_city, iv_city);
+//            list_city.setVisibility(View.GONE);
+//        }
+//        else
+//        {
+//            selectTab(tv_city, iv_city);
+//            list_city.setVisibility(View.VISIBLE);
+//        }
+//
+//    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //城市列表重置
-        if ( currentMap != null )
-        {
-            currentMap.put("select", "0");
-            cityMap.get(0).put("select", "1");
-        }
+//        if ( currentMap != null )
+//        {
+//            currentMap.put("select", "0");
+//            cityMap.get(0).put("select", "1");
+//        }
+        PopWindowUtil.closePop();
 
     }
 
-    private void setCurrentMap ( HashMap<String, String> map )
-    {
-        if ( currentMap == map )
-        {
-            setCityAdapter();
-            return;
-        }
-        currentMap.put("select", "0");
-        currentMap = map;
-        currentMap.put("select", "1");
-        if ( cityAdapter != null )
-        {
-            cityAdapter.notifyDataSetChanged();
-        }
-        setCityAdapter();
+//    private void setCurrentMap ( HashMap<String, String> map )
+//    {
+//        if ( currentMap == map )
+//        {
+//            setCityAdapter();
+//            return;
+//        }
+//        currentMap.put("select", "0");
+//        currentMap = map;
+//        currentMap.put("select", "1");
+//        if ( cityAdapter != null )
+//        {
+//            cityAdapter.notifyDataSetChanged();
+//        }
+//        setCityAdapter();
+//
+//    }
 
-    }
+//    private boolean cityListShow ()
+//    {
+//        return list_city.getVisibility() == View.VISIBLE;
+//    }
 
-    private boolean cityListShow ()
-    {
-        return list_city.getVisibility() == View.VISIBLE;
-    }
-
-    //设置城市数据
-    private void initCity ( ActiveAllCity model )
-    {
-        if ( cityMap != null ) cityMap.clear();
-        collectionsList(model.citylist);
-        cityMap = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> all = new HashMap<String, String>();
-        all.put("name", "全部");
-        all.put("id", "0");
-        all.put("select", "1");
-        cityMap.add(all);
-
-        currentMap = all;
-
-        all = new HashMap<String, String>();
-        all.put("name", "热门集合地");
-        all.put("type", "title");
-        cityMap.add(all);
-
-        for ( int i = 0; model.hotcity != null && model.hotcity.size() != 0 && i < model.hotcity.size(); i++ )
-        {
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("name", model.hotcity.get(i).name);
-            map.put("id", ""+model.hotcity.get(i).id);
-            all.put("select", "0");
-            cityMap.add(map);
-        }
-
-        for ( int i = 0; model.citylist != null && model.citylist.size() != 0 && i < model.citylist.size(); i++ )
-        {
-            String pinyin = getFirstCode(model.citylist.get(i).pinyin);
-            if ( !TextUtils.isEmpty(pinyin))
-            {
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("name", pinyin);
-                map.put("type", "title");
-                cityMap.add(map);
-            }
-
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("name", model.citylist.get(i).name);
-            map.put("id", ""+model.citylist.get(i).id);
-            map.put("pinyin", model.citylist.get(i).pinyin);
-            all.put("select", "0");
-            cityMap.add(map);
-        }
-    }
+//    //设置城市数据
+//    private void initCity ( ActiveAllCity model )
+//    {
+//        if ( cityMap != null ) cityMap.clear();
+//        collectionsList(model.citylist);
+//        cityMap = new ArrayList<HashMap<String, String>>();
+//        HashMap<String, String> all = new HashMap<String, String>();
+//        all.put("name", "全部");
+//        all.put("id", "0");
+//        all.put("select", "1");
+//        cityMap.add(all);
+//
+//        currentMap = all;
+//
+//        all = new HashMap<String, String>();
+//        all.put("name", "热门集合地");
+//        all.put("type", "title");
+//        cityMap.add(all);
+//
+//        for ( int i = 0; model.hotcity != null && model.hotcity.size() != 0 && i < model.hotcity.size(); i++ )
+//        {
+//            HashMap<String, String> map = new HashMap<String, String>();
+//            map.put("name", model.hotcity.get(i).name);
+//            map.put("id", ""+model.hotcity.get(i).id);
+//            all.put("select", "0");
+//            cityMap.add(map);
+//        }
+//
+//        for ( int i = 0; model.citylist != null && model.citylist.size() != 0 && i < model.citylist.size(); i++ )
+//        {
+//            String pinyin = getFirstCode(model.citylist.get(i).pinyin);
+//            if ( !TextUtils.isEmpty(pinyin))
+//            {
+//                HashMap<String, String> map = new HashMap<String, String>();
+//                map.put("name", pinyin);
+//                map.put("type", "title");
+//                cityMap.add(map);
+//            }
+//
+//            HashMap<String, String> map = new HashMap<String, String>();
+//            map.put("name", model.citylist.get(i).name);
+//            map.put("id", ""+model.citylist.get(i).id);
+//            map.put("pinyin", model.citylist.get(i).pinyin);
+//            all.put("select", "0");
+//            cityMap.add(map);
+//        }
+//    }
 
     private String currentStr = "";
     //获取第一个字母

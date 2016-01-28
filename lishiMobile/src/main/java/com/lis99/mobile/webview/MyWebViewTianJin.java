@@ -149,13 +149,14 @@ public class MyWebViewTianJin extends LSBaseActivity {
                     Intent intent = null;
                     switch (id) {
                         //            话题
+//            线下贴
                         case 0:
+                        case 1:
                             intent = new Intent(LSBaseActivity.activity, LSClubTopicActivity.class);
                             intent.putExtra("topicID", topic_id);
                             LSBaseActivity.activity.startActivity(intent);
                             break;
-//            线下贴
-                        case 1:
+                        case 5:
                             intent = new Intent(LSBaseActivity.activity, LSClubTopicActiveOffLine.class);
                             intent.putExtra("topicID", topic_id);
                             LSBaseActivity.activity.startActivity(intent);

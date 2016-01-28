@@ -34,6 +34,8 @@ public class LSApplayNew extends LSBaseActivity {
     private int topicID, clubID;
 // 上传列表
     public static ArrayList<NewApplyUpData> updata;
+//    从哪里来
+    private String TYPE = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class LSApplayNew extends LSBaseActivity {
 
         topicID = getIntent().getIntExtra("topicID", 0);
         clubID = getIntent().getIntExtra("clubID", 0);
+
+        TYPE = getIntent().getStringExtra("TYPE");
 
         updata = new ArrayList<NewApplyUpData>();
 
@@ -107,6 +111,7 @@ public class LSApplayNew extends LSBaseActivity {
                 Intent intent = new Intent(this, LSApplyEnterActivity.class);
                 intent.putExtra("clubID", clubID);
                 intent.putExtra("topicID", topicID);
+                intent.putExtra("TYPE", TYPE);
                 startActivityForResult(intent, 999);
                 break;
             case R.id.layout_btn_add:
