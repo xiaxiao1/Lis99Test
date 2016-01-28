@@ -208,7 +208,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("type", times);
-        map.put("cityid", cityId);
+        map.put("city_id", cityId);
 
         MyRequestManager.getInstance().requestPost(url, map, activeAllModel, new CallBack() {
             @Override

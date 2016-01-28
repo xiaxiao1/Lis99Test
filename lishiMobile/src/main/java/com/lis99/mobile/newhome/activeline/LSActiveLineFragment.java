@@ -280,7 +280,8 @@ public class LSActiveLineFragment extends LSFragment implements
                     {
                         l.add("last");
                     }
-                    adapter.addList(l);
+//                    adapter.addList(l);
+                    adapter.setList(l);
                 }
 
 

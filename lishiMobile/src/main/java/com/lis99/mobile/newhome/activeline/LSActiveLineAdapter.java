@@ -104,6 +104,7 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
             viewHolder.tvMonth = (TextView) view.findViewById(R.id.tv_month);
             viewHolder.tvTag = (TextView) view.findViewById(R.id.tv_tag);
             viewHolder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            viewHolder.tv_style = (TextView) view.findViewById(R.id.tv_style);
             view.setTag(viewHolder);
         } else
         {
@@ -118,6 +119,8 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         }
 
         viewHolder.tvTag.setText(item.getHarddesc());
+
+        viewHolder.tv_style.setText(item.getCatename());
 
         viewHolder.tvTitle.setText(item.getTitle());
 
@@ -230,7 +233,7 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         private RelativeLayout layout;
         private TextView tvDay;
         private TextView tvMonth;
-        private TextView tvTag;
+        private TextView tvTag, tv_style;
         private TextView tvTitle;
     }
 

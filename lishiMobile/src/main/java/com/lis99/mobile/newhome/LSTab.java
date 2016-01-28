@@ -197,19 +197,19 @@ public class LSTab extends FrameLayout implements OnClickListener {
 //			break;
 		case SELECT:
 			equiImg.setImageResource(R.drawable.icon_tab_equi_selected);
-			tv_equip.setTextColor(getResources().getColor(R.color.text_color_blue));
+			tv_equip.setTextColor(getResources().getColor(R.color.text_color_green));
 			break;
 		case EVENT:
 			eventImg.setImageResource(R.drawable.tab_icon_mine_press);
-			tv_mine.setTextColor(getResources().getColor(R.color.text_color_blue));
+			tv_mine.setTextColor(getResources().getColor(R.color.text_color_green));
 			break;
 		case CLUB:
 			shopImg.setImageResource(R.drawable.tab_icon_club_press);
-			tv_club.setTextColor(getResources().getColor(R.color.text_color_blue));
+			tv_club.setTextColor(getResources().getColor(R.color.text_color_green));
 			break;
 		case CHOICENESS:
 			iv_choiceness.setImageResource(R.drawable.icon_tab_select_selected);
-			tv_choiceness.setTextColor(getResources().getColor(R.color.text_color_blue));
+			tv_choiceness.setTextColor(getResources().getColor(R.color.text_color_green));
 			break;
 		default:
 			break;

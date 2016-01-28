@@ -80,6 +80,16 @@ public class ActiveLineNewModel extends BaseModel {
         private int height;
         private int width;
 
+        public String getCatename() {
+            return catename;
+        }
+
+        public void setCatename(String catename) {
+            this.catename = catename;
+        }
+
+        private String catename;
+
         public void setId(String id) {
             this.id = id;
         }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +23,7 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
     private Button btnlf;
     private Button btnrg;
-    private ListView list;
+    private ListView list_info;
     private TextView tvdate;
     private ImageView dot;
     private TextView tvlocation;
@@ -46,11 +45,12 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
     private RelativeLayout layoutprice;
     private RelativeLayout layoutreadme;
     private RelativeLayout layoutsafely;
-    private LinearLayout layout;
 
     private LSClubTopicDetailAdapter adapter;
 
     private ClubTopicActiveLineMainModel model;
+
+    private View head;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,8 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
         String type = getIntent().getStringExtra("TYPE");
 
+        getInfo();
+
         if ( "0".equals(type))
         {
             lfBtn();
@@ -77,7 +79,6 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
             rgBtn();
         }
 
-        getInfo();
 
     }
 
@@ -142,22 +143,27 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
     {
         btnlf.setTextColor(getResources().getColor(R.color.text_color_green));
         btnrg.setTextColor(getResources().getColor(R.color.color_eee));
-        list.setVisibility(View.VISIBLE);
-        layout.setVisibility(View.GONE);
+
+        list_info.setAdapter(null);
+        list_info.removeHeaderView(head);
+        list_info.setAdapter(adapter);
     }
 
     private void rgBtn ()
     {
         btnrg.setTextColor(getResources().getColor(R.color.text_color_green));
         btnlf.setTextColor(getResources().getColor(R.color.color_eee));
-        list.setVisibility(View.GONE);
-        layout.setVisibility(View.VISIBLE);
+        list_info.addHeaderView(head);
+        adapter.notifyDataSetChanged();
+        list_info.setAdapter(null);
     }
 
     private void getInfo ()
     {
         adapter = new LSClubTopicDetailAdapter(activity, model.getActivitydetail());
-        list.setAdapter(adapter);
+
+//        list_info.addHeaderView(head);
+//        list_info.setAdapter(adapter);
 
         tvdate.setText(model.getSettime());
 
@@ -191,29 +197,31 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
         btnlf = (Button) findViewById(R.id.btn_lf);
         btnrg = (Button) findViewById(R.id.btn_rg);
-        list = (ListView) findViewById(R.id.list);
-        tvdate = (TextView) findViewById(R.id.tv_date);
-        dot = (ImageView) findViewById(R.id.dot);
-        tvlocation = (TextView) findViewById(R.id.tv_location);
-        tvtel = (TextView) findViewById(R.id.tv_tel);
-        ivjourney = (ImageView) findViewById(R.id.iv_journey);
-        tvjourney = (TextView) findViewById(R.id.tv_journey);
-        tvjoinNum = (TextView) findViewById(R.id.tv_join_Num);
-        ivequip = (ImageView) findViewById(R.id.iv_equip);
-        tvequip = (TextView) findViewById(R.id.tv_equip);
-        ivprice = (ImageView) findViewById(R.id.iv_price);
-        tvprice = (TextView) findViewById(R.id.tv_price);
-        ivreadme = (ImageView) findViewById(R.id.iv_readme);
-        tvreadme = (TextView) findViewById(R.id.tv_readme);
-        ivsafely = (ImageView) findViewById(R.id.iv_safely);
-        tvsafely = (TextView) findViewById(R.id.tv_safely);
-        layoutlocation = (RelativeLayout) findViewById(R.id.layout_location);
-        layoutjourney = (RelativeLayout) findViewById(R.id.layout_journey);
-        layoutequip = (RelativeLayout) findViewById(R.id.layout_equip);
-        layoutprice = (RelativeLayout) findViewById(R.id.layout_price);
-        layoutreadme = (RelativeLayout) findViewById(R.id.layout_readme);
-        layoutsafely = (RelativeLayout) findViewById(R.id.layout_safely);
-        layout = (LinearLayout) findViewById(R.id.layout);
+        list_info = (ListView) findViewById(R.id.list_info);
+
+        head = View.inflate(activity, R.layout.club_topic_info_detail_route, null);
+
+        tvdate = (TextView) head.findViewById(R.id.tv_date);
+        dot = (ImageView) head.findViewById(R.id.dot);
+        tvlocation = (TextView) head.findViewById(R.id.tv_location);
+        tvtel = (TextView) head.findViewById(R.id.tv_tel);
+        ivjourney = (ImageView) head.findViewById(R.id.iv_journey);
+        tvjourney = (TextView) head.findViewById(R.id.tv_journey);
+        tvjoinNum = (TextView) head.findViewById(R.id.tv_join_Num);
+        ivequip = (ImageView) head.findViewById(R.id.iv_equip);
+        tvequip = (TextView) head.findViewById(R.id.tv_equip);
+        ivprice = (ImageView) head.findViewById(R.id.iv_price);
+        tvprice = (TextView) head.findViewById(R.id.tv_price);
+        ivreadme = (ImageView) head.findViewById(R.id.iv_readme);
+        tvreadme = (TextView) head.findViewById(R.id.tv_readme);
+        ivsafely = (ImageView) head.findViewById(R.id.iv_safely);
+        tvsafely = (TextView) head.findViewById(R.id.tv_safely);
+        layoutlocation = (RelativeLayout) head.findViewById(R.id.layout_location);
+        layoutjourney = (RelativeLayout) head.findViewById(R.id.layout_journey);
+        layoutequip = (RelativeLayout) head.findViewById(R.id.layout_equip);
+        layoutprice = (RelativeLayout) head.findViewById(R.id.layout_price);
+        layoutreadme = (RelativeLayout) head.findViewById(R.id.layout_readme);
+        layoutsafely = (RelativeLayout) head.findViewById(R.id.layout_safely);
 
         btnlf.setOnClickListener(this);
         btnrg.setOnClickListener(this);
