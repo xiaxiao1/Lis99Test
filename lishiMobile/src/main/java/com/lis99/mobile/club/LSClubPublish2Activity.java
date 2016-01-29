@@ -68,15 +68,18 @@ public class LSClubPublish2Activity extends LSBaseActivity {
     private TextView title;
 
     private ImageView dot;
-    //  列表显示
-    private boolean listVisible = false;
 
     private int position = 0;
+
+    private boolean CURRENTCLUB = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CURRENTCLUB = getIntent().getBooleanExtra("CURRENTCLUB", false);
         clubID = getIntent().getIntExtra("clubID", 48);
+
         setContentView(R.layout.activity_lsclub_publish2);
 
 //		noadd = getResources().getDrawable(R.drawable.reply_add_image_draw);
@@ -85,7 +88,15 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 //		add.setBounds(0, 0, add.getIntrinsicWidth(), add.getIntrinsicHeight());
 
         initViews();
-        setTitle("大本营");
+        if ( !CURRENTCLUB )
+        {
+            setTitle("大本营");
+        }
+        else
+        {
+            setTitle("");
+            dot.setVisibility(View.GONE);
+        }
 
         processImage(getIntent());
 
@@ -271,10 +282,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
             startActivityForResult(intent, PREVIEW);
             return;
         } else if (v.getId() == R.id.title) {
-            if (listVisible) {
-                PopWindowUtil.closePop();
-                dot.setImageResource(R.drawable.topic_club_down_dot);
-            } else {
+            if ( CURRENTCLUB ) return;
                 dot.setImageResource(R.drawable.topic_club_up_dot);
                 PopWindowUtil.showTopicClub(position, title, new CallBack() {
                     @Override
@@ -295,10 +303,6 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 
                     }
                 });
-            }
-
-
-            listVisible = !listVisible;
         }
 
         super.onClick(v);

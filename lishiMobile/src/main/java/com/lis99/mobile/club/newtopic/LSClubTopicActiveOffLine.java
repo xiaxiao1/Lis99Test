@@ -490,6 +490,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
     {
         btnok.setText("报名");
 //        actionButton.setBackgroundResource(R.drawable.club_sign);
+        btnok.setBackgroundResource(R.drawable.club_info_btn_ok);
         btnok.setEnabled(true);
         btnok.setClickable(true);
     }
@@ -498,6 +499,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
     {
         btnok.setText("已报名");
 //        actionButton.setBackgroundResource(R.drawable.club_sign);
+        btnok.setBackgroundResource(R.drawable.club_info_btn_ok);
         btnok.setEnabled(false);
         btnok.setClickable(false);
     }
@@ -506,6 +508,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
     {
         btnok.setText("报名已截止");
 //        actionButton.setBackgroundResource(R.drawable.club_action_past);
+        btnok.setBackgroundResource(R.drawable.club_info_btn_ok_over);
         btnok.setClickable(false);
         btnok.setEnabled(false);
     }

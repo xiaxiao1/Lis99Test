@@ -608,6 +608,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			Intent intent = new Intent(LSClubDetailActivity.this, LSClubPublish2Activity.class);
 			intent.putExtra("clubID", clubID);
+			intent.putExtra("CURRENTCLUB", true);
 //			startActivity(intent);
 			startActivityForResult(intent, 998);
 			return;
