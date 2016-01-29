@@ -42,7 +42,7 @@
             android:text="@string/temp_string"
             android:layout_toRightOf="@id/roundedImageView1"
             android:layout_marginLeft="10dp"
-            android:textColor="#73706e"
+            android:textColor="#525252"
             />
 
         <Button
@@ -138,7 +138,7 @@
         android:singleLine="true"
         android:ellipsize="end"
         android:id="@+id/tv_title"
-        android:textColor="#73706e"
+        android:textColor="#525252"
         />
 
         <TextView

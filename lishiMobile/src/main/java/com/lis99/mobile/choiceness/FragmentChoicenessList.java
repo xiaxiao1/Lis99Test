@@ -10,16 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
-import com.lis99.mobile.club.LSCLubSpecialMain;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
@@ -38,9 +37,7 @@ import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
-import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
-import com.lis99.mobile.webview.MyWebViewTianJin;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.HashMap;
@@ -62,7 +59,7 @@ public class FragmentChoicenessList extends Fragment implements
     private Page page;
 
     private BannerView bannerView;
-    private LinearLayout layout_club_level, layout_leader_level, layout_hot_topic, layout_lis_special, layout_nearby;
+    private View layout_club_level, layout_leader_level, layout_hot_topic, layout_lis_special, layout_nearby, allButton;
 
     private ImagePageAdapter bannerAdapter;
 
@@ -76,11 +73,11 @@ public class FragmentChoicenessList extends Fragment implements
         page = new Page();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
+           @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            super.onCreateView(inflater, container, savedInstanceState);
 
-        v = View.inflate(getActivity(), R.layout.club_level_list, null);
+            v = View.inflate(getActivity(), R.layout.club_level_list, null);
 
         pull_refresh_view = (PullToRefreshView) v.findViewById(R.id.pull_refresh_view);
         pull_refresh_view.setOnFooterRefreshListener(this);
@@ -118,12 +115,14 @@ public class FragmentChoicenessList extends Fragment implements
             }
         });
 
-        layout_nearby = (LinearLayout) head.findViewById(R.id.layout_nearby);
-        layout_club_level = (LinearLayout) head.findViewById(R.id.layout_club_level);
-        layout_leader_level = (LinearLayout) head.findViewById(R.id.layout_leader_level);
-        layout_hot_topic = (LinearLayout) head.findViewById(R.id.layout_hot_topic);
-        layout_lis_special = (LinearLayout) head.findViewById(R.id.layout_lis_special);
+        layout_nearby =  head.findViewById(R.id.layout_nearby);
+        layout_club_level =  head.findViewById(R.id.layout_club_level);
+        layout_leader_level =  head.findViewById(R.id.layout_leader_level);
+        layout_hot_topic =  head.findViewById(R.id.layout_hot_topic);
+        layout_lis_special =  head.findViewById(R.id.layout_lis_special);
         include_search = head.findViewById(R.id.include_search);
+               allButton = head.findViewById(R.id.allButton);
+               allButton.setOnClickListener(this);
 
         include_search.setOnClickListener(this);
 
@@ -294,47 +293,33 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
             //线路活动
             case R.id.layout_club_level:
-                intent = new Intent(getActivity(), ChoicenessRouteWebView.class);
-//                intent.putExtra("tagid", 12);
+                intent = new Intent(getActivity(), LSClubDetailActivity.class);
+                intent.putExtra("clubID", 48);
                 startActivity(intent);
                 break;
             case R.id.layout_leader_level:
-                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-                intent.putExtra("tagid", 3);
+                intent = new Intent(getActivity(), LSClubDetailActivity.class);
+                intent.putExtra("clubID", 349);
                 startActivity(intent);
                 break;
             case R.id.layout_hot_topic:
-                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-                intent.putExtra("tagid", 13);
+                intent = new Intent(getActivity(), LSClubDetailActivity.class);
+                intent.putExtra("clubID", 342);
                 startActivity(intent);
                 break;
             case R.id.layout_lis_special:
-                startActivity( new Intent(getActivity(), LSCLubSpecialMain.class));
-
-//                startActivity(new Intent(getActivity(), HelpActivity.class));
-//                intent = new Intent(getActivity(), MyTestActivityWebView.class);
-//                startActivity(intent);
-
+                intent = new Intent(getActivity(), LSClubDetailActivity.class);
+                intent.putExtra("clubID", 285);
+                startActivity(intent);
                 break;
             case R.id.layout_nearby:
-
-                if ( Common.isApkInDebug(getActivity()))
-                {
-
-//                    DialogManager.getInstance().startWaiting(getActivity(), null, null);
-                    Intent i = new Intent(getActivity(), ActiveAllActivity.class);
-                    startActivity(i);
-
-                }
-                else
-                {
-                    startActivity(new Intent(getActivity(), MyWebViewTianJin.class));
-                }
-
-//                PayUtil.getInstance().payWeiXin("");
-
-//
-
+                intent = new Intent(getActivity(), LSClubDetailActivity.class);
+                intent.putExtra("clubID", 284);
+                startActivity(intent);
+                break;
+            case R.id.allButton:
+                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -425,4 +410,19 @@ public class FragmentChoicenessList extends Fragment implements
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+    }
 }

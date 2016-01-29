@@ -71,6 +71,12 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
         list_city.setVisibility(View.GONE);
 
+        cityId = ""+getIntent().getIntExtra("CITYID", 0);
+
+        if ( !"0".equals(cityId) )
+        {
+            tv_city.setText(PopWindowUtil.getCityNameWithId(cityId));
+        }
 
         page = new Page();
 

@@ -448,6 +448,23 @@ public class PopWindowUtil {
         }
 
     }
+//  线路活动筛选， 根据CityId获取cityName
+    public static String getCityNameWithId ( String cityId )
+    {
+        String name = "全部俱乐部";
+
+        final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveCityList();
+        for ( HashMap<String, String> map : alist )
+        {
+            if ( cityId.equals(map.get("value")))
+            {
+                 name = map.get("name");
+                return name;
+            }
+        }
+
+        return name;
+    }
 
     public static void closePop ()
     {

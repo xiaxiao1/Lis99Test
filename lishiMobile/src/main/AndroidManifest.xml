@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="403"
-    android:versionName="4.0.3" >
+    android:versionCode="410"
+    android:versionName="4.1.0" >
 
 
 
@@ -1194,7 +1194,10 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
-
+        <activity android:name=".club.LSSelectAllClubActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
     </application>
 
 

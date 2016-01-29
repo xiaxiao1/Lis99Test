@@ -18,6 +18,8 @@ public class ActiveLineNewModel extends BaseModel {
 
     private int totalpage;
     private int total;
+//    城市ID
+    public int city_id;
     /**
      * id : 5
      * title : 有村架纯

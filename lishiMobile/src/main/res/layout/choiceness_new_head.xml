@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/include_search"
@@ -17,14 +18,25 @@
         android:layout_width="match_parent"
         android:layout_height="155dp"/>
 
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="12dp"
+        android:background="@color/pull_bg" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
     <LinearLayout
         style="@style/fill_wrap"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="8dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         >
 
-        <LinearLayout
+        <RelativeLayout
 
             android:id="@+id/layout_nearby"
             android:layout_width="fill_parent"
@@ -35,22 +47,36 @@
             >
 
             <ImageView
-                style="@style/wrap_wrap"
-                android:background="@drawable/choiceness_nearby"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club1"
+                android:id="@+id/select_club1"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club_border"
                 />
 
             <TextView
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="周边活动"
-                android:textColor="#73706e"
+                android:layout_below="@+id/select_club1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="徒步露营"
+                android:textColor="#525252"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
 
             android:id="@+id/layout_club_level"
             android:layout_width="fill_parent"
@@ -61,22 +87,36 @@
             >
 
             <ImageView
-                style="@style/wrap_wrap"
-                android:background="@drawable/tubu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club2"
+                android:id="@+id/select_club2"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club_border"
                 />
 
             <TextView
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="线路大全"
-                android:textColor="#73706e"
+                android:layout_below="@+id/select_club2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="大本营"
+                android:textColor="#525252"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/layout_leader_level"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -86,23 +126,37 @@
             >
 
             <ImageView
-                style="@style/wrap_wrap"
-                android:background="@drawable/jingpin"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club3"
+                android:id="@+id/select_club3"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club_border"
                 />
 
             <TextView
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="精品行记"
-                android:textColor="#73706e"
-                android:textSize="10sp"
+                android:layout_below="@+id/select_club3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="极限攀登"
+                android:textColor="#525252"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/layout_hot_topic"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -112,22 +166,36 @@
             >
 
             <ImageView
-                style="@style/wrap_wrap"
-                android:background="@drawable/ganhuo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club4"
+                android:id="@+id/select_club4"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club_border"
                 />
 
             <TextView
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="干货知识"
-                android:textColor="#73706e"
-                android:textSize="10sp"
+                android:layout_below="@+id/select_club4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="户外摄影"
+                android:textColor="#525252"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/layout_lis_special"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -137,32 +205,77 @@
             >
 
             <ImageView
-                style="@style/wrap_wrap"
-                android:background="@drawable/more_special"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club5"
+                android:id="@+id/select_club5"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club_border"
                 />
 
             <TextView
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="更多专栏"
-                android:textColor="#73706e"
-                android:textSize="10sp"
+                android:layout_below="@+id/select_club5"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="装备控"
+                android:textColor="#525252"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        style="@style/fill_wrap"
+        android:background="@color/white"
+        android:paddingBottom="20dp">
+
+        <Button
+            android:id="@+id/allButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_all_club"
+            android:textColor="#2bca63"
+            android:textSize="12sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="全部俱乐部"/>
+
+
+    </RelativeLayout>
+
 
     <View
         style="@style/fill_wrap"
         android:layout_height="1px"
         android:background="@color/color_1px_stroke" />
 
-    <View
+    <RelativeLayout
         style="@style/fill_wrap"
-        android:layout_height="8dip"
-        android:background="@color/pull_bg" />
+        android:layout_height="32dp"
+        android:background="@color/pull_bg" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#cec0b3"
+            android:textSize="13sp"
+            android:layout_centerInParent="true"
+            android:text="最 新 精 选"/>
+
+
+    </RelativeLayout>
 
     <View
         style="@style/fill_wrap"

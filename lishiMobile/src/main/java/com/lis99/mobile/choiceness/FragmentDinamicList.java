@@ -167,17 +167,23 @@ public class FragmentDinamicList extends Fragment implements
 
     public void init ()
     {
-        if ( isInit )
+        if ( !isInit )
         {
+            isInit = true;
+            getDynamicList();
+
+            /*
+
             String userId = DataManager.getInstance().getUser().getUser_id();
             if ( !TextUtils.isEmpty(userId) && isLogin )
             {
                 getDynamicList();
             }
             return;
+            */
         }
-        isInit = true;
-        getDynamicList();
+
+
 
     }
 

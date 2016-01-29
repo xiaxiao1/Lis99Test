@@ -14,7 +14,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     public Context mContext;
 
-    private List<T> listItem;
+    protected List<T> listItem;
 
     public MyBaseAdapter ( Context c, List<T> listItem )
     {

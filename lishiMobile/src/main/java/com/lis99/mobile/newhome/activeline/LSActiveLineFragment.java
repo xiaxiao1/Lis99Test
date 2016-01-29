@@ -77,7 +77,7 @@ public class LSActiveLineFragment extends LSFragment implements
     private View titleLeft, titleRight;
 
     private int position;
-    private int cityId = -1;
+    public static int cityId = -1;
     private String cityName = "北京";
 
     @Override
@@ -238,6 +238,8 @@ public class LSActiveLineFragment extends LSFragment implements
                 if ( model == null ) return;
 
                 page.nextPage();
+
+                cityId = model.city_id;
 
                 for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
                 {

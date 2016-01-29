@@ -218,7 +218,10 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         viewHolder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startActivity(new Intent(mContext, ActiveAllActivity.class));
+
+                Intent i = new Intent(mContext, ActiveAllActivity.class);
+                i.putExtra("CITYID", LSActiveLineFragment.cityId);
+                mContext.startActivity(i);
             }
         });
 

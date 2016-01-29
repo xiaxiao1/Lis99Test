@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="180dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="1px">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:id="@+id/columnPanel1">
+
+        <ImageView
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/columnImage1"
+            android:scaleType="centerCrop"/>
+
+        <View
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000"
+            />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_marginBottom="5dp"
+            android:text="标题"
+            android:id="@+id/columnTitle1"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/columnTitle1"
+            android:textSize="13sp"
+            android:textColor="#2bca63"
+            android:text="1568篇"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp"
+            android:id="@+id/columnInfo1"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="1px"
+        android:layout_height="match_parent"
+        android:id="@+id/columnPanel2">
+
+        <ImageView
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/columnImage2"
+            android:scaleType="centerCrop"/>
+
+        <View
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000"
+            />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:text="标题"
+            android:id="@+id/columnTitle2"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/columnTitle2"
+            android:textSize="13sp"
+            android:textColor="#2bca63"
+            android:layout_marginTop="4dp"
+            android:text="1568篇"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/columnInfo2"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

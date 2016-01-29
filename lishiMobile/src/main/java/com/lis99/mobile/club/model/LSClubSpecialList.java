@@ -21,6 +21,8 @@ public class LSClubSpecialList extends BaseModel {
 
         public String images;
 
+        public int topicTotal;
+
     }
 
 }

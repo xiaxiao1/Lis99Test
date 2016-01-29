@@ -255,6 +255,7 @@ public class C {
 	public static final String CLUB_GET_LIST = DOMAIN + "/club/getClubList/";
 	public static final String CLUB_SEL_LIST = DOMAIN + "/club/selClubInfo/";
 	public static final String CLUB_GET_AREA = DOMAIN + "/club/getAreaListInfo/";
+	public static final String CLUB_ALL_LIST = DOMAIN + "/v5/club/allclublist/";
 	
 	public static final String LS_MINE_APPLY_INFO = DOMAIN + "/v2/user/applynotice/";
 	public static final String LS_MINE_APPLY_MANAGE = DOMAIN + "/v2/user/myTopic/";
