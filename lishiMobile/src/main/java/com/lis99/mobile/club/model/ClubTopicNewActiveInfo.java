@@ -120,6 +120,11 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
         return is_jion;
     }
 
+    @Override
+    public String getTopicId() {
+        return topic_id;
+    }
+
 
     public class Taglist
     {

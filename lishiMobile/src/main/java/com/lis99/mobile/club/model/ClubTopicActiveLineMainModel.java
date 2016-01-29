@@ -411,6 +411,11 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
         return is_jion;
     }
 
+    @Override
+    public String getTopicId() {
+        return activity_code;
+    }
+
     public static class ActivityimgsEntity implements Serializable{
         private String images;
 

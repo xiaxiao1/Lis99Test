@@ -184,6 +184,15 @@ public class LSApplyEnterActivity extends LSBaseActivity {
 
         String url = C.GET_ORDER_INFO;
 
+        if ( "TOPICNEW".equals(TYPE))
+        {
+            url = C.GET_ORDER_INFO_NEW;
+        }
+        else
+        {
+            url = C.GET_ORDER_INFO;
+        }
+
         model = new OrderInfoModel();
 
         HashMap<String, Object> map = new HashMap<String, Object>();

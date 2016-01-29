@@ -270,8 +270,19 @@ public class LSApplayNew extends LSBaseActivity {
 
         listmodel = new ClubTopicGetApplyList();
 
+        String url = "";
+
+        if ( "TOPICNEW".equals(TYPE))
+        {
+            url = C.CLUB_TOPIC_APPLY_LIST_NEW;
+        }
+        else {
+            url = C.CLUB_TOPIC_APPLY_LIST;
+        }
+
+
         MyRequestManager.getInstance().requestGet(
-                C.CLUB_TOPIC_APPLY_LIST + topicID, listmodel, new CallBack() {
+                url + topicID, listmodel, new CallBack() {
 
                     @Override
                     public void handler(MyTask mTask) {

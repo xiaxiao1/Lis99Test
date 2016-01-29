@@ -453,7 +453,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
         ShareManager.getInstance().showPopWindowInShare(model, "" + clubID,
                 imgUrl, model.getTitle(), shareText,
-                "" + activity_id, layoutMain, null, "http://m.lis99.com/club/activity/detail/");
+                "" + model.getActivity_code(), layoutMain, null, "http://m.lis99.com/club/activity/detail/");
 
         super.rightAction();
     }

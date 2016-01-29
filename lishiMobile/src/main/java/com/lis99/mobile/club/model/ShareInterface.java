@@ -9,5 +9,7 @@ public interface ShareInterface {
     public void setStick (String s);
     public String getCategory ();
     public String getIsJoin ();
+//    用来分享用
+    public String getTopicId ();
 
 }

@@ -317,6 +317,11 @@ public class C {
 //	public static final String CLUBTIPIC_LIKE = DOMAIN + "/v2/club/addLike/";
 	/**获取报名填写选项*/
 	public static final String CLUB_TOPIC_APPLY_LIST = DOMAIN + "/v2/apply/applyEnroll/";
+	/**获取报名填写选项
+	 *		http://api.lis99.com/v5/club/applyEnroll/[topic_id]
+	 * */
+	public static final String CLUB_TOPIC_APPLY_LIST_NEW = DOMAIN + "/v5/club/applyEnroll/";
+
 	/**报名信息上传*/
 	public static final String CLUB_TOPIC_APPLY_INFO = DOMAIN + "/v2/apply/enroll/";
 	/**报名列表管理 http://api.lis99.com/v2/apply/enrollList/[topicid]/[offset]*/
@@ -437,6 +442,8 @@ public class C {
 	public static final String RECOMMEND_CLUB_LIST = DOMAIN + "/v4/club/recommendClubList";
 //	获取订单信息， 支付方式等
 	public static final String GET_ORDER_INFO = DOMAIN + "/v4/apply/applyInfoDetail";
+	//	获取订单信息， 支付方式等新版  http://api.lis99.com/v5/club/applyInfoDetail
+	public static final String GET_ORDER_INFO_NEW = DOMAIN + "/v5/club/applyInfoDetail";
 //	提交报名订单
 	public static final String SUBMIT_ORDER_INFO = DOMAIN + "/v4/apply/enroll";
 //	提交报名订单 （新版线下活动帖） http://api.lis99.com/v5/club/enroll
