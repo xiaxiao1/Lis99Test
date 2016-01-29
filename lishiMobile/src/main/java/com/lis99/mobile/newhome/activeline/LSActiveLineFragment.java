@@ -241,6 +241,11 @@ public class LSActiveLineFragment extends LSFragment implements
 
                 cityId = model.city_id;
 
+                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+
+                tvLocation.setText(name[0]);
+                position = Common.string2int(name[1]);
+
                 for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
                 {
                     l.add(item);
@@ -446,8 +451,8 @@ public class LSActiveLineFragment extends LSFragment implements
                 Latitude = latitude;
                 Longitude = longitude;
 
-                LSActiveLineFragment.this.cityName = cityName;
-                tvLocation.setText(cityName);
+//                LSActiveLineFragment.this.cityName = cityName;
+//                tvLocation.setText(cityName);
 
                 getList(latitude, longitude);
 

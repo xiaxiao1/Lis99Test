@@ -104,7 +104,7 @@ public class PopWindowData {
         HashMap<String, String> map = new HashMap<String, String>();
 
         map.put("select", "1");
-        map.put("name", "全部集合地");
+        map.put("name", "全部归属地");
         map.put("value", "0");
         alist.add(map);
 

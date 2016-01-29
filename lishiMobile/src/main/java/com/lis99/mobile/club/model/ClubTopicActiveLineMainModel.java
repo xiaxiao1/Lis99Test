@@ -481,4 +481,7 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
 //  3天行程
     public String tripdays;
 
+
+
+
 }

@@ -12,14 +12,15 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ActiveAllCity;
 import com.lis99.mobile.club.model.ActiveAllModel;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.PopWindowUtil;
@@ -75,7 +76,9 @@ public class ActiveAllActivity extends LSBaseActivity implements
 
         if ( !"0".equals(cityId) )
         {
-            tv_city.setText(PopWindowUtil.getCityNameWithId(cityId));
+            String[] name = PopWindowUtil.getCityNameWithId(cityId);
+            positionCity = Common.string2int(name[1]);
+            tv_city.setText(name[0]);
         }
 
         page = new Page();
@@ -116,7 +119,7 @@ public class ActiveAllActivity extends LSBaseActivity implements
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if ( adapter == null || adapter.getTopicId(i) == -1 ) return;
-                Intent intent = new Intent(activity, LSClubTopicActivity.class);
+                Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
                 intent.putExtra("topicID", adapter.getTopicId(i));
                 startActivity(intent);
             }

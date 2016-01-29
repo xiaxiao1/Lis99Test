@@ -449,22 +449,45 @@ public class PopWindowUtil {
 
     }
 //  线路活动筛选， 根据CityId获取cityName
-    public static String getCityNameWithId ( String cityId )
+    public static String[] getCityNameWithId ( String cityId )
     {
-        String name = "全部俱乐部";
-
+        String[] name = new String[]{"全部归属地", "0"};
+        int i = 0;
         final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveCityList();
         for ( HashMap<String, String> map : alist )
         {
             if ( cityId.equals(map.get("value")))
             {
-                 name = map.get("name");
+                name[1] = ""+i;
+                name[0] = map.get("name");
                 return name;
             }
+            i++;
         }
 
         return name;
     }
+
+    //  线路活动筛选， 根据CityId获取cityName
+    public static String[] getMainCityNameWithId ( String cityId )
+    {
+        String[] name = new String[]{"北京", "2"};
+        int i = 0;
+        final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveMainCityList();
+        for ( HashMap<String, String> map : alist )
+        {
+            if ( cityId.equals(map.get("value")))
+            {
+                name[1] = ""+i;
+                name[0] = map.get("name");
+                return name;
+            }
+            i++;
+        }
+
+        return name;
+    }
+
 
     public static void closePop ()
     {
