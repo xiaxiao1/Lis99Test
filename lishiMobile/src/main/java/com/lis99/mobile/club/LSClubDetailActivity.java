@@ -85,6 +85,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	int type = -1;
 	int offset = 0;
 
+	View titleView;
+
 	private final static int SHOW_CLUB = 1001;
 	private final static int SHOW_MORE_TOPIC = 1003;
 	private final static int NO_MORE_TOPIC = 1004;
@@ -130,7 +132,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	private View headViewMain;
 	//ListView 第一个可见item
 	private int visibleFirst;
-
+	private View buttonPanel;
 
 
 	private void buildOptions() {
@@ -176,6 +178,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 		topPanel1.setVisibility(View.GONE);
 		view_line.setVisibility(View.GONE);
+
+		buttonPanel = findViewById(R.id.buttonPanel);
 
 
 		setTitleBarAlpha(0f);
@@ -259,6 +263,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		eventPanel.setOnClickListener(this);
 
 		topPanel = headViewMain.findViewById(R.id.topPanel);
+
+		titleView = headViewMain.findViewById(R.id.titleView);
 
 		ViewTreeObserver vto = topPanel.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -356,7 +362,18 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			public void handler(MyTask mTask) {
 				clubHead = (ClubDetailHead) mTask.getResultModel();
 				initClubHead();
-				if (clubHead.ui_levels != 3) {
+				if (clubHead.ui_levels == 1) {
+					topPanel.setVisibility(View.GONE);
+					topPanel1.setVisibility(View.GONE);
+					buttonPanel.setVisibility(View.GONE);
+					titleView.setVisibility(View.VISIBLE);
+					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new ArrayList<Topiclist>(), true);
+					adapter.ui_level = clubHead.ui_levels;
+					listView.setAdapter(adapter);
+					getActiveList();
+				} else if (clubHead.ui_levels != 3) {
+					topPanel.setVisibility(View.VISIBLE);
+					titleView.setVisibility(View.GONE);
 					allView.setText("线路活动");
 					allView1.setText("线路活动");
 					eventView.setText("讨论区");
@@ -366,6 +383,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 					listView.setAdapter(adapter);
 					getActiveList();
 				} else {
+					topPanel.setVisibility(View.VISIBLE);
+					titleView.setVisibility(View.GONE);
 					getAllList();
 					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new ArrayList<Topiclist>(), false);
 					adapter.ui_level = clubHead.ui_levels;
@@ -720,8 +739,13 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	{
 		if ( num >= HeadAdHeight )
 		{
-			topPanel1.setVisibility(View.VISIBLE);
-			view_line.setVisibility(View.VISIBLE);
+			if (clubHead != null && clubHead.ui_levels == 1) {
+				topPanel1.setVisibility(View.GONE);
+				view_line.setVisibility(View.GONE);
+			} else {
+				topPanel1.setVisibility(View.VISIBLE);
+				view_line.setVisibility(View.VISIBLE);
+			}
 		}
 		else
 		{

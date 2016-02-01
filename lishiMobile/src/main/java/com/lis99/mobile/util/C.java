@@ -451,6 +451,8 @@ public class C {
 	public static final String SUBMIT_ORDER_INFO_NEW = DOMAIN + "/v5/club/enroll/";
 //	管理报名		http://api.lis99.com/v4/apply/enrollList/[topicid]/[page]
 	public static final String MANAGER_JON_ACTIVE_LIST = DOMAIN + "/v4/apply/enrollList/";
+//	管理报名		http://api.lis99.com/v5/club/enrollList/[topicid]/[page]
+	public static final String MANAGER_JON_ACTIVE_LIST_NEW = DOMAIN + "/v5/club/enrollList/";
 //	http://api.lis99.com/v4/apply/pass
 	public static final String MANAGER_APPLY_PASS = DOMAIN + "/v4/apply/pass";
 //http://api.lis99.com/v4/apply/refuse

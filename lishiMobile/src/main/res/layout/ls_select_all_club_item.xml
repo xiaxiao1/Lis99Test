@@ -155,6 +155,8 @@
     <ImageView
         android:id="@+id/sepLine"
         android:layout_width="match_parent"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:layout_height="1dp"
         android:layout_below="@+id/bodyView"
         android:src="@drawable/club_group_sepline"

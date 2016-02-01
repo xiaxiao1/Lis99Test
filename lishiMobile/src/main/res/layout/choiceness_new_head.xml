@@ -16,7 +16,7 @@
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/viewBanner"
         android:layout_width="match_parent"
-        android:layout_height="155dp"/>
+        android:layout_height="235dp"/>
 
     <View
         style="@style/fill_wrap"

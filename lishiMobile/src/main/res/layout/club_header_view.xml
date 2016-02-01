@@ -183,7 +183,21 @@
                 android:background="@color/text_color_blue" />
         </RelativeLayout>
 
+
+
        
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/titleView"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textSize="12sp"
+        android:background="@color/pull_bg"
+        android:textColor="#c6b6a7"
+        android:gravity="center"
+        android:text="线路活动"/>
     
     </LinearLayout>

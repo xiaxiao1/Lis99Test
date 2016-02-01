@@ -480,7 +480,8 @@ public class ShareManager
 									tv_top.setText("解除");
 								}
 							});
-						} else
+						}
+							else
 						{
 							cancelTopTopic(clubId, topicId, new CallBack()
 							{

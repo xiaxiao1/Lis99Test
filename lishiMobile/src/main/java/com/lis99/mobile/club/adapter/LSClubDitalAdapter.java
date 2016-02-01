@@ -419,7 +419,12 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		if ( item == null ) return view;
 
 
-		holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+		if (ui_level == 1) {
+			holder.topGapView.setVisibility(View.GONE);
+		} else {
+			holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+		}
+
 
 		ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
 

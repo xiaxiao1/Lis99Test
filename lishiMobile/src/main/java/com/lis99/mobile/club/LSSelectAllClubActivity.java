@@ -107,6 +107,9 @@ public class LSSelectAllClubActivity extends LSBaseActivity {
         if (msg.what == SHOW_CLUB) {
             adapter = new LSSelectAllClubAdapter(djClubs, tsClubs, ppClubs, this);
             listView.setAdapter(adapter);
+            listView.expandGroup(0);
+            listView.expandGroup(1);
+            listView.expandGroup(2);
             return true;
         }
         return super.handleMessage(msg);
