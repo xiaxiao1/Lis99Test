@@ -20,6 +20,7 @@ import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.webview.ChoicenessRouteWebView;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -165,7 +166,7 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         if ( list != null && list.size() > 0 )
         {
 
-            LSActiveLineADAdapter adapter = new LSActiveLineADAdapter(mContext, list);
+            final LSActiveLineADAdapter adapter = new LSActiveLineADAdapter(mContext, list);
 
             LinearLayoutManager linearLayoutM = new LinearLayoutManager(mContext);
             linearLayoutM.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -179,8 +180,15 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
 
                     ActiveLineNewModel.AreaweblistEntity item = (ActiveLineNewModel.AreaweblistEntity) list.get(position);
                     if ( item == null ) return;
+                    Intent intent = null;
+                    if ( position == adapter.getItemCount() - 1)
+                    {
+                        intent = new Intent(mContext, ChoicenessRouteWebView.class);
+                        mContext.startActivity(intent);
+                        return;
+                    }
 
-                    Intent intent = new Intent(mContext, MyActivityWebView.class);
+                    intent = new Intent(mContext, MyActivityWebView.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("URL", item.getTagid());
                     bundle.putString("TITLE", item.getTagname());

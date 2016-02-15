@@ -190,14 +190,17 @@ public class LSActiveLineFragment extends LSFragment implements
 
         RedDotUtil redDotUtil = RedDotUtil.getInstance();
 
-        redDotUtil.setRedSend(new RedDotUtil.OnRedSend() {
-            @Override
-            public void SenderSystem(int num) {
-                tvMassage.setVisibility(View.VISIBLE);
-            }
-        });
+        redDotUtil.setRedText(tvMassage);
 
         redDotUtil.getRedDot();
+
+//        redDotUtil.setRedSend(new RedDotUtil.OnRedSend() {
+//            @Override
+//            public void SenderSystem(int num) {
+//                tvMassage.setVisibility(View.VISIBLE);
+//            }
+//        });
+
     }
 
     private void cleanList ()
