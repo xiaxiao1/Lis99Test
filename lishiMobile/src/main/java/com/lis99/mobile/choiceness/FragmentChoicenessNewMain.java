@@ -103,6 +103,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
         viewPager.setOnPageChangeListener( new MyPagerListener() );
 
+        redDotUtil.setRedText(tvMassage);
 
         return v;
     }
@@ -200,14 +201,13 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
     }
 
+    RedDotUtil redDotUtil = RedDotUtil.getInstance();
+
     @Override
     public void onResume() {
         super.onResume();
 
-
-        RedDotUtil redDotUtil = RedDotUtil.getInstance();
-
-        redDotUtil.setRedText(tvMassage);
+//        redDotUtil.setRedText(tvMassage);
 
         redDotUtil.getRedDot();
 

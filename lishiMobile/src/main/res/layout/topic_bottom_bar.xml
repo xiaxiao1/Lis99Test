@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="123个赞"
-                android:textColor="@color/color_nine"
+                android:textColor="#c6b6a7"
                 android:id="@+id/tv_like"
                 />
 

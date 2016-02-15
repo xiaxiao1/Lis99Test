@@ -165,6 +165,8 @@ public class LSActiveLineFragment extends LSFragment implements
             }
         });
 
+        redDotUtil.setRedText(tvMassage);
+
         return v;
 
     }
@@ -181,16 +183,10 @@ public class LSActiveLineFragment extends LSFragment implements
 
     }
 
-
+    RedDotUtil redDotUtil = RedDotUtil.getInstance();
     @Override
     public void onResume() {
         super.onResume();
-
-        tvMassage.setVisibility(View.GONE);
-
-        RedDotUtil redDotUtil = RedDotUtil.getInstance();
-
-        redDotUtil.setRedText(tvMassage);
 
         redDotUtil.getRedDot();
 

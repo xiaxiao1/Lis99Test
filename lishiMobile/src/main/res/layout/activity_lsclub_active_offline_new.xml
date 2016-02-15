@@ -194,7 +194,7 @@
 
 
                 <com.lis99.mobile.club.widget.RoundedImageView
-                    android:padding="10dp"
+                    android:padding="6dp"
                     android:layout_centerVertical="true"
                     android:id="@+id/roundedImageView1"
                     android:layout_width="80dp"

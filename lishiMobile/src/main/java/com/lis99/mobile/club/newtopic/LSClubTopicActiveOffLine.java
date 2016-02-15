@@ -183,7 +183,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 //                ivtravelbg
 
                 if (model.getTripdetail() != null && model.getTripdetail().size() != 0) {
-                    ImageLoader.getInstance().displayImage(model.getTripdetail().get(0).getImages(), ivtravelbg, ImageUtil.getDefultImageOptions());
+                    ImageLoader.getInstance().displayImage(model.getTripdetail().get(0).getImages(), ivtravelbg, ImageUtil.getDefultTravelImageOptions());
                 }
 
                 if (model.getReportnote() != null && model.getReportnote().size() != 0) {
@@ -488,7 +488,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
     //	默认
     public void applyBtn ()
     {
-        btnok.setText("报名");
+        btnok.setText("马上报名");
 //        actionButton.setBackgroundResource(R.drawable.club_sign);
         btnok.setBackgroundResource(R.drawable.club_info_btn_ok);
         btnok.setEnabled(true);
