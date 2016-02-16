@@ -178,6 +178,12 @@ public class LSClubPublish2Activity extends LSBaseActivity {
             return;
         }
 
+        if ( !Common.isLogin(this))
+        {
+            postMessage(POPUP_TOAST, "请先登录");
+            return;
+        }
+
         String userID = DataManager.getInstance().getUser().getUser_id();
 
         AsyncHttpClient client = new AsyncHttpClient();
