@@ -65,7 +65,7 @@
         style="@style/wrap_wrap"
         android:layout_alignParentRight="true"
         android:id="@+id/btn_attention"
-        android:background="@drawable/choiceness_consern"
+        android:background="@drawable/friends_no_attention"
         android:layout_centerVertical="true"
         />
 

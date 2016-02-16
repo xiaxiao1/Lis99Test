@@ -183,21 +183,14 @@ public class LSActiveLineFragment extends LSFragment implements
 
     }
 
-    RedDotUtil redDotUtil = RedDotUtil.getInstance();
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        redDotUtil.getRedDot();
-
-//        redDotUtil.setRedSend(new RedDotUtil.OnRedSend() {
-//            @Override
-//            public void SenderSystem(int num) {
-//                tvMassage.setVisibility(View.VISIBLE);
-//            }
-//        });
-
+    //  没有当前城市数据， 弹出提示
+    private void showNoCityDialog ()
+    {
+        DialogManager.getInstance().showActiveDialog(getActivity());
     }
+
+
+    RedDotUtil redDotUtil = RedDotUtil.getInstance();
 
     private void cleanList ()
     {
@@ -235,6 +228,11 @@ public class LSActiveLineFragment extends LSFragment implements
                 model = (ActiveLineNewModel) mTask.getResultModel();
 
                 if ( model == null ) return;
+//              没有这个省的数据，弹出提示
+                if ( model.getDefault_data() == 1 )
+                {
+                    showNoCityDialog();
+                }
 
                 page.nextPage();
 
@@ -304,7 +302,7 @@ public class LSActiveLineFragment extends LSFragment implements
         switch (view.getId())
         {
             case R.id.titleLeft:
-
+                RedDotUtil.getInstance().InVisibleDot();
                 startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;
@@ -463,9 +461,11 @@ public class LSActiveLineFragment extends LSFragment implements
         location.getLocation();
     }
 
-
+//    切换View 会被调用
     @Override
     public void handler() {
+
+        redDotUtil.getRedDot();
 
         ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
             @Override

@@ -57,7 +57,7 @@
             <com.lis99.mobile.club.widget.BannerView
                 android:id="@+id/viewBanner"
                 android:layout_width="match_parent"
-                android:layout_height="155dp"
+                android:layout_height="220dp"
                 />
 
             <TextView
@@ -320,7 +320,7 @@
                     android:adjustViewBounds="true"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
-                    android:layout_height="155dp"
+                    android:layout_height="220dp"
                     android:id="@+id/iv_travel_bg"
                     />
 
@@ -398,7 +398,7 @@
                 <ImageView
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
-                    android:layout_height="155dp"
+                    android:layout_height="220dp"
                     android:id="@+id/iv_destination_bg"
                     />
 

@@ -30,6 +30,7 @@ import com.lis99.mobile.club.adapter.LSClubDitalAdapter;
 import com.lis99.mobile.club.model.ClubDetailHead;
 import com.lis99.mobile.club.model.ClubDetailList;
 import com.lis99.mobile.club.model.ClubDetailList.Topiclist;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
@@ -228,6 +229,14 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				Topiclist item = null;
 				item = (Topiclist) adapter.getItem(position - 1);
 				if ( item == null ) return;
+
+				if ( !TextUtils.isEmpty(item.activity_code))
+				{
+					Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+					intent.putExtra("topicID", item.id);
+					startActivity(intent);
+					return;
+				}
 
 				if ( "2".equals(item.category))
 				{

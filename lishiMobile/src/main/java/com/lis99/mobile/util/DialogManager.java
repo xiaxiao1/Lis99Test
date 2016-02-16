@@ -399,7 +399,27 @@ public class DialogManager {
         {
 
         }
+    }
+//  线路活动，没有当前省份数据后， 提示信息
+    public void showActiveDialog ( Activity a )
+    {
+        final Dialog dialog = new Dialog(a, R.style.waitingDialog);
 
+        View view = View.inflate(a, R.layout.active_dialog_no_city, null);
+        Button btn = (Button) view.findViewById(R.id.btn_ok);
+
+        btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setContentView(view);
+
+
+        dlWait.setCanceledOnTouchOutside(false);
+
+        dlWait.show();
 
     }
 

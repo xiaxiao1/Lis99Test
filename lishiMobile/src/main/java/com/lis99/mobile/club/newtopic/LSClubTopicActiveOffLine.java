@@ -106,7 +106,6 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     }
 
-
     private void getInfo() {
         String url = C.CLUB_TOPIC_ACTIVE_LINE_MIAN;
 

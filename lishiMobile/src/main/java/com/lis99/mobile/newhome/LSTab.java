@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.ScrollTopUtil;
 
 /**
@@ -125,6 +126,8 @@ public class LSTab extends FrameLayout implements OnClickListener {
 //		mImageViews.add(iv_choiceness);
 		
 		tab_reddot = (ImageView) findViewById(R.id.tab_reddot);
+
+		RedDotUtil.getInstance().setRedText(tab_reddot);
 		
 	}
 	//红点

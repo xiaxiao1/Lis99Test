@@ -55,7 +55,10 @@ public class ClubDetailList implements Serializable{
 		public int likeNum;
 		public int LikeStatus;
 		public String headicon;
-
+		/**
+		 * 		判断是否为新版活动贴: 空为旧版活动贴，非空为新版活动贴
+		 */
+		public String activity_code;
 		
 	}
 

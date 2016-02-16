@@ -101,7 +101,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 //        choicenessList.init();
         selectChoiceness();
 
-        viewPager.setOnPageChangeListener( new MyPagerListener() );
+        viewPager.setOnPageChangeListener(new MyPagerListener());
 
         redDotUtil.setRedText(tvMassage);
 
@@ -133,7 +133,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
                 break;
             case R.id.titleLeft:
-
+                RedDotUtil.getInstance().InVisibleDot();
                 startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;
@@ -149,7 +149,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
 
     private void selectChoiceness() {
-        tab_choiceness.setTextColor(getResources().getColor(R.color.text_color_blue));
+        tab_choiceness.setTextColor(getResources().getColor(R.color.text_color_green));
         tab_column.setTextColor(getResources().getColor(R.color.color_nine));
         tab_Dynamic.setTextColor(getResources().getColor(R.color.color_nine));
 
@@ -169,7 +169,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     {
         tab_choiceness.setTextColor(getResources().getColor(R.color.color_nine));
         tab_column.setTextColor(getResources().getColor(R.color.color_nine));
-        tab_Dynamic.setTextColor(getResources().getColor(R.color.text_color_blue));
+        tab_Dynamic.setTextColor(getResources().getColor(R.color.text_color_green));
 
         view_dynamic.setVisibility(View.VISIBLE);
         view_column.setVisibility(View.INVISIBLE);
@@ -186,7 +186,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     private void selectColumn()
     {
         tab_choiceness.setTextColor(getResources().getColor(R.color.color_nine));
-        tab_column.setTextColor(getResources().getColor(R.color.text_color_blue));
+        tab_column.setTextColor(getResources().getColor(R.color.text_color_green));
         tab_Dynamic.setTextColor(getResources().getColor(R.color.color_nine));
 
         view_dynamic.setVisibility(View.INVISIBLE);
@@ -204,24 +204,9 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     RedDotUtil redDotUtil = RedDotUtil.getInstance();
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-//        redDotUtil.setRedText(tvMassage);
+    public void handler() {
 
         redDotUtil.getRedDot();
-
-//        redDotUtil.setRedSend(new RedDotUtil.OnRedSend() {
-//            @Override
-//            public void SenderSystem(int num) {
-//                tvMassage.setVisibility(View.VISIBLE);
-//            }
-//        });
-
-    }
-
-    @Override
-    public void handler() {
 
         ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
             @Override

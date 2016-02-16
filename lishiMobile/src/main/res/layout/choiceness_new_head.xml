@@ -32,8 +32,7 @@
         style="@style/fill_wrap"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:padding="20dp"
         >
 
         <RelativeLayout

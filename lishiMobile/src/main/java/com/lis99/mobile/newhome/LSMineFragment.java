@@ -38,6 +38,7 @@ import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -293,6 +294,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener
 
 		iv_joinDot = findViewById(R.id.iv_joinDot);
 		v_my_join_arrow = findViewById(R.id.v_my_join_arrow);
+
+		RedDotUtil.getInstance().setRedText(v_sys_arrow);
 
 	}
 

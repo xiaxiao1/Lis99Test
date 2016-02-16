@@ -76,6 +76,7 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
         super.initViews();
 
         tv_title = (TextView) findViewById(R.id.tv_title);
+        
         tv_pay = (TextView) findViewById(R.id.tv_pay);
 
         btn_enter = (Button) findViewById(R.id.btn_enter);

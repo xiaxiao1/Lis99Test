@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:id="@+id/btn_concern"
-            android:background="@drawable/choiceness_consern"
+            android:background="@drawable/friends_no_attention"
             android:textColor="@color/color_nine"
             android:textSize="12sp"
             />
@@ -124,7 +124,7 @@
                 android:text="8668"
                 android:id="@+id/tv_like"
                 android:maxLength="4"
-                android:textColor="@color/color_nine"
+                android:textColor="#c6b6a7"
                 />
 
         </LinearLayout>
