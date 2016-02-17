@@ -151,18 +151,22 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                     }
                 }
 
-                if ( TextUtils.isEmpty(model.getLeader_userid()))
+                if ( TextUtils.isEmpty(model.getLeader_userid()) || "0".equals(model.getLeader_userid()))
                 {
                     if (!TextUtils.isEmpty(model.getClub_iconv())) {
                         ImageLoader.getInstance().displayImage(model.getClub_iconv(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
                     }
-                    tvname.setText(model.getClub_title());
+//                    tvname.setText(model.getClub_title());
+                    tvname.setVisibility(View.GONE);
+                    vipStar.setVisibility(View.GONE);
                 }
                 else
                 {
                     if (!TextUtils.isEmpty(model.getLeaderheadicon())) {
                         ImageLoader.getInstance().displayImage(model.getLeaderheadicon(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
                     }
+                    vipStar.setVisibility(View.VISIBLE);
+                    tvname.setVisibility(View.VISIBLE);
                     tvname.setText(model.getLeadernickname());
                 }
 
@@ -336,7 +340,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
                 if ( model != null )
                 {
-                    if ( TextUtils.isEmpty(model.getLeader_userid()))
+                    if ( TextUtils.isEmpty(model.getLeader_userid()) || "0".equals(model.getLeader_userid()) )
                     {
                         i = new Intent(activity, LSClubDetailActivity.class);
                         i.putExtra("clubID", clubID);

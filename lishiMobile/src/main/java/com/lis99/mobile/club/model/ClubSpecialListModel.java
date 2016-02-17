@@ -18,6 +18,7 @@ public class ClubSpecialListModel extends BaseModel {
 
     public class Topiclist
     {
+        public String activity_code;
         public int topic_id;
         public String topic_title;
         public int replytotal;

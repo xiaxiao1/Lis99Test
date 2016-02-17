@@ -316,7 +316,14 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		holder.tv_title.setText(item.title);
 		holder.tv_like.setText(""+item.likeNum);
 		holder.tv_name.setText(item.nickname);
-//		holder.tv_reply.setText(item.replytot + "则回复" );
+		if (TextUtils.isEmpty(item.replytot))
+		{
+			holder.tv_reply.setText( "0则回复" );
+		}
+		else
+		{
+			holder.tv_reply.setText(item.replytot + "则回复" );
+		}
 
 		if ( item.LikeStatus == 1 )
 		{

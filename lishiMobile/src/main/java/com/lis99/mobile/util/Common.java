@@ -396,7 +396,7 @@ public class Common {
         else
         {
             tv.setVisibility(View.VISIBLE);
-            tv.setText(n + "人读过");
+            tv.setText(""+n);
         }
     }
 

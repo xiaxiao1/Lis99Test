@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.ClubSpecialListItemAdapter;
 import com.lis99.mobile.club.model.ClubSpecialListModel;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -135,6 +136,15 @@ public class ClubSpecialListActivity extends LSBaseActivity implements
                 if ( i == 0 ) return;
                 ClubSpecialListModel.Topiclist item = (ClubSpecialListModel.Topiclist) adapter.getItem(i - 1);
                 if ( item == null ) return;
+
+                if ( !TextUtils.isEmpty(item.activity_code))
+                {
+                    Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+                    intent.putExtra("topicID", item.topic_id);
+                    startActivity(intent);
+                    return;
+                }
+
                 Intent intent = new Intent(activity, LSClubTopicActivity.class);
                 intent.putExtra("topicID", item.topic_id);
                 startActivity(intent);

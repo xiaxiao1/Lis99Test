@@ -311,7 +311,7 @@ public class LSActiveLineFragment extends LSFragment implements
         switch (view.getId())
         {
             case R.id.titleLeft:
-                RedDotUtil.getInstance().InVisibleDot();
+//                RedDotUtil.getInstance().InVisibleDot();
                 startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;

@@ -46,9 +46,9 @@ public class MyJoinClubActivity extends LSBaseActivity implements
 
         setTitle("我加入的俱乐部");
 
-        setRightView("全部俱乐部");
+//        setRightView("全部俱乐部");
 
-        setRightViewColor(getResources().getColor(R.color.ff7800));
+//        setRightViewColor(getResources().getColor(R.color.ff7800));
 
         page = new Page();
 
@@ -56,11 +56,11 @@ public class MyJoinClubActivity extends LSBaseActivity implements
 
     }
 
-    @Override
-    protected void rightAction() {
-        super.rightAction();
-        startActivity(new Intent(activity, LSClubListActivity.class));
-    }
+//    @Override
+//    protected void rightAction() {
+//        super.rightAction();
+//        startActivity(new Intent(activity, LSClubListActivity.class));
+//    }
 
     @Override
     protected void initViews() {

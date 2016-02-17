@@ -454,9 +454,9 @@ public class C {
 //	管理报名		http://api.lis99.com/v5/club/enrollList/[topicid]/[page]
 	public static final String MANAGER_JON_ACTIVE_LIST_NEW = DOMAIN + "/v5/club/enrollList/";
 //	http://api.lis99.com/v4/apply/pass
-	public static final String MANAGER_APPLY_PASS = DOMAIN + "/v4/apply/pass";
+	public static final String MANAGER_APPLY_PASS = DOMAIN + "/v5/club/pass";
 //http://api.lis99.com/v4/apply/refuse
-	public static final String MANAGER_APPLY_REFUSE = DOMAIN + "/v4/apply/refuse";
+	public static final String MANAGER_APPLY_REFUSE = DOMAIN + "/v5/club/refuse";
 //	我报名列表详情			http://api.lis99.com/v4/apply/orderDetail
 	public static final String MY_APPLY_DETAIL = DOMAIN + "/v4/apply/orderDetail";
 //	我报名的活动列表		http://api.lis99.com/v4/user/myApplyActivities/[page]

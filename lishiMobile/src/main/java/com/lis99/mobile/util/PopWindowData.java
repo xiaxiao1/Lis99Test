@@ -152,13 +152,6 @@ public class PopWindowData {
         map = new HashMap<String, String>();
 
         map.put("select", "0");
-        map.put("name", "澳门");
-        map.put("value", "34");
-        alist.add(map);
-
-        map = new HashMap<String, String>();
-
-        map.put("select", "0");
         map.put("name", "北京");
         map.put("value", "2");
         alist.add(map);
@@ -334,13 +327,6 @@ public class PopWindowData {
         map = new HashMap<String, String>();
 
         map.put("select", "0");
-        map.put("name", "台湾");
-        map.put("value", "35");
-        alist.add(map);
-
-        map = new HashMap<String, String>();
-
-        map.put("select", "0");
         map.put("name", "天津");
         map.put("value", "27");
         alist.add(map);
@@ -350,13 +336,6 @@ public class PopWindowData {
         map.put("select", "0");
         map.put("name", "西藏");
         map.put("value", "28");
-        alist.add(map);
-
-        map = new HashMap<String, String>();
-
-        map.put("select", "0");
-        map.put("name", "香港");
-        map.put("value", "33");
         alist.add(map);
 
         map = new HashMap<String, String>();

@@ -85,13 +85,11 @@ public class RedDotUtil {
 //                显示红点
                 if ( tvList != null && model.notice != 0 )
                 {
-                    synchronized (tvList)
-                    {
-                        for ( View tv:tvList)
-                        {
-                            tv.setVisibility(View.VISIBLE);
-                        }
-                    }
+                    VisibleDot();
+                }
+                else
+                {
+                    InVisibleDot();
                 }
 
                 if ( redSend == null ) return;
