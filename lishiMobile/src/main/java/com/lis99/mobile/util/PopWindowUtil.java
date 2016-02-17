@@ -203,7 +203,7 @@ public class PopWindowUtil {
   /**
    * 选择城市
    * */
-    public static PopupWindow showActiveMainCityList (  int position, View parent, final CallBack callBack  )
+    public static PopupWindow showActiveMainCityList ( String cityName, String cityId, int position, View parent, final CallBack callBack  )
     {
         if (pop != null && pop.isShowing()) {
             pop.dismiss();
@@ -223,7 +223,7 @@ public class PopWindowUtil {
 
         final ListView list = (ListView) v.findViewById(R.id.list);
 
-        final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveMainCityList();
+        final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveCityListMain(cityName, cityId);
 
         currentMapCity = alist.get(0);
 

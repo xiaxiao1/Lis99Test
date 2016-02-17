@@ -8,7 +8,7 @@
     <include
         android:id="@+id/include_search"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout="@layout/choiceness_fragment_title_bar" />

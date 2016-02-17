@@ -118,6 +118,24 @@ public class PopWindowData {
 
     }
 
+    //  线路活动城市
+    public static ArrayList<HashMap<String, String>> getActiveCityListMain (String cityName, String cityId)
+    {
+        final ArrayList<HashMap<String, String>> alist = new ArrayList<HashMap<String, String>>();
+
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put("select", "1");
+        map.put("name", cityName + "  GPS定位");
+        map.put("value", cityId);
+        alist.add(map);
+
+        alist.addAll(getActiveMainCityListMain());
+
+        return alist;
+
+    }
+
     /**活动筛选， 城市数据
     */
     public static ArrayList<HashMap<String, String>> getActiveMainCityList ()
@@ -364,5 +382,121 @@ public class PopWindowData {
 
         return alist;
     }
+
+
+    /**活动筛选， 城市数据
+     */
+    public static ArrayList<HashMap<String, String>> getActiveMainCityListMain ()
+    {
+        final ArrayList<HashMap<String, String>> alist = new ArrayList<HashMap<String, String>>();
+
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "北京");
+        map.put("value", "2");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "广东");
+        map.put("value", "6");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "广西");
+        map.put("value", "7");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "河北");
+        map.put("value", "10");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "河南");
+        map.put("value", "11");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "黑龙江");
+        map.put("value", "12");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "吉林");
+        map.put("value", "15");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "辽宁");
+        map.put("value", "18");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "山东");
+        map.put("value", "22");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "山西");
+        map.put("value", "23");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "陕西");
+        map.put("value", "24");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "上海");
+        map.put("value", "25");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "四川");
+        map.put("value", "26");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "天津");
+        map.put("value", "27");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "新疆");
+        map.put("value", "29");
+        alist.add(map);
+
+        return alist;
+    }
+
 
 }

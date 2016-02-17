@@ -97,7 +97,7 @@
             android:gravity="center"
             android:textColor="@color/title_bar_text"
             android:textSize="@dimen/title_text_height"
-            android:text="线路活动"
+            android:text="活动"
             />
 
     </RelativeLayout>

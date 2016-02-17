@@ -20,6 +20,9 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ShareManager;
 
@@ -229,6 +232,42 @@ public class MyActivityWebView extends LSBaseActivity
         	String userId = DataManager.getInstance().getUser().getUser_id();
         	return userId;
         }
+
+
+		//		跳转铁子
+		@JavascriptInterface
+		public void goTopicInfo ( final int topic_id, int type )
+		{
+			final int id = type;
+			LSBaseActivity.activity.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Intent intent = null;
+					switch (id) {
+						//            话题
+//            线下贴
+						case 0:
+						case 1:
+							intent = new Intent(LSBaseActivity.activity, LSClubTopicActivity.class);
+							intent.putExtra("topicID", topic_id);
+							LSBaseActivity.activity.startActivity(intent);
+							break;
+						case 5:
+							intent = new Intent(LSBaseActivity.activity, LSClubTopicActiveOffLine.class);
+							intent.putExtra("topicID", topic_id);
+							LSBaseActivity.activity.startActivity(intent);
+							break;
+//            线上贴
+						case 2:
+							intent = new Intent(LSBaseActivity.activity, LSClubTopicNewActivity.class);
+							intent.putExtra("topicID", topic_id);
+							LSBaseActivity.activity.startActivity(intent);
+							break;
+					}
+				}
+			});
+		}
+
         
     }
 	

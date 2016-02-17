@@ -2,6 +2,7 @@ package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -78,7 +79,7 @@ public class LSActiveLineFragment extends LSFragment implements
 
     private int position;
     public static int cityId = -1;
-    private String cityName = "北京";
+    private String cityName = "北京", locationCityName = "", locationCityId = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -242,8 +243,14 @@ public class LSActiveLineFragment extends LSFragment implements
 
                 String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
 
+                if (TextUtils.isEmpty(locationCityId))
+                {
+                    locationCityId = ""+cityId;
+                    locationCityName = name[0];
+                }
+
                 tvLocation.setText(name[0]);
-                position = Common.string2int(name[1]);
+//                position = Common.string2int(name[1]);
 
                 for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
                 {
@@ -310,7 +317,7 @@ public class LSActiveLineFragment extends LSFragment implements
                 break;
             case R.id.titleRight:
 
-                PopWindowUtil.showActiveMainCityList(position, list, new CallBack() {
+                PopWindowUtil.showActiveMainCityList(locationCityName, locationCityId, position, list, new CallBack() {
                     @Override
                     public void handler(MyTask mTask) {
                         if ( mTask == null )
