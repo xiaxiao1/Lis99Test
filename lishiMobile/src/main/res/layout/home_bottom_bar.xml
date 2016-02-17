@@ -58,7 +58,7 @@
                 android:id="@+id/tv_club"
                 android:layout_marginTop="0dip"
                 style="@style/wrap_wrap"
-                android:text="线路活动"
+                android:text="活动"
                 android:layout_below="@id/takephotoimg"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/color_tab_unselect"

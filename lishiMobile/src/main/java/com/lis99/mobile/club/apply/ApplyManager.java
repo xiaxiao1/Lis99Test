@@ -1,5 +1,6 @@
 package com.lis99.mobile.club.apply;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ApplyManagerModel;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.applywidget.ApplyManagerItem;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -50,6 +53,8 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
 
     private ApplyManagerItem adapterEnter, adapterRefuse, adapterNeed;
 
+    private boolean NEWACTIVE = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,7 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
 
         topic_id = getIntent().getIntExtra("topicID", 0);
         club_id = getIntent().getIntExtra("clubID", 0);
+        NEWACTIVE = getIntent().getBooleanExtra("NEWACTIVE", false);
 
         pageEnter = new Page();
         pageNeed = new Page();
@@ -76,7 +82,7 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
         super.initViews();
 
         tv_title = (TextView) findViewById(R.id.tv_title);
-        
+        tv_title.setOnClickListener(this);
         tv_pay = (TextView) findViewById(R.id.tv_pay);
 
         btn_enter = (Button) findViewById(R.id.btn_enter);
@@ -161,6 +167,20 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
                 btn_refuse.setTextColor(getResources().getColor(R.color.color_nine));
                 btn_need_enter.setTextColor(getResources().getColor(R.color.text_color_blue));
 
+                break;
+            case R.id.tv_title:
+                if ( NEWACTIVE )
+                {
+                    Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+                    intent.putExtra("topicID", topic_id);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(activity, LSClubTopicActivity.class);
+                    intent.putExtra("topicID", topic_id);
+                    startActivity(intent);
+                }
                 break;
         }
     }

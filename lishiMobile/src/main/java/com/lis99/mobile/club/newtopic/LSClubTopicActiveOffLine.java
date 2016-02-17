@@ -151,11 +151,22 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                     }
                 }
 
-                if (!TextUtils.isEmpty(model.getLeaderheadicon())) {
-                    ImageLoader.getInstance().displayImage(model.getLeaderheadicon(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                if ( TextUtils.isEmpty(model.getLeader_userid()))
+                {
+                    if (!TextUtils.isEmpty(model.getClub_iconv())) {
+                        ImageLoader.getInstance().displayImage(model.getClub_iconv(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                    }
+                    tvname.setText(model.getClub_title());
+                }
+                else
+                {
+                    if (!TextUtils.isEmpty(model.getLeaderheadicon())) {
+                        ImageLoader.getInstance().displayImage(model.getLeaderheadicon(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                    }
+                    tvname.setText(model.getLeadernickname());
                 }
 
-                tvname.setText(model.getLeadernickname());
+
 //                标签
                 if (model.getLeaderdesc() != null && model.getLeaderdesc().size() != 0) {
                     for (int ii = 0; ii < model.getLeaderdesc().size(); ii++) {
@@ -322,8 +333,20 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                 rightAction();
                 break;
             case R.id.roundedImageView1:
+
                 if ( model != null )
-                Common.goUserHomeActivit(activity, model.getUser_id());
+                {
+                    if ( TextUtils.isEmpty(model.getLeader_userid()))
+                    {
+                        i = new Intent(activity, LSClubDetailActivity.class);
+                        i.putExtra("clubID", clubID);
+                        startActivity(i);
+                    }
+                    else
+                    {
+                        Common.goUserHomeActivit(activity, model.getLeader_userid());
+                    }
+                }
                 break;
         }
     }

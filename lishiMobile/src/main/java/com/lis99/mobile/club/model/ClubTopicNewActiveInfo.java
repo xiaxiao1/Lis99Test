@@ -125,6 +125,13 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
         return topic_id;
     }
 
+    public String active_code;
+
+    @Override
+    public String getNewActive() {
+        return active_code;
+    }
+
 
     public class Taglist
     {

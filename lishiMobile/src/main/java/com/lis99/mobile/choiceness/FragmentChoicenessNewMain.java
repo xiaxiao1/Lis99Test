@@ -43,7 +43,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     private LSSelectColumnFragment columnFragment;
     private Fragment currentFragment;
 
-    private View view_choiceness, view_dynamic, view_column, dynamic_line;
+    private View view_choiceness, view_dynamic, view_column;
 
     private View titleLeft, titleRight;
 
@@ -67,8 +67,6 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
         view_dynamic = v.findViewById(R.id.view_dynamic);
         view_column = v.findViewById(R.id.view_column);
-
-        dynamic_line = v.findViewById(R.id.dynamic_line);
 
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
 
@@ -157,7 +155,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_column.setVisibility(View.INVISIBLE);
         view_dynamic.setVisibility(View.INVISIBLE);
 
-        dynamic_line.setVisibility(View.GONE);
+//        dynamic_line.setVisibility(View.GONE);
 
         choicenessList.init();
 
@@ -175,7 +173,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_column.setVisibility(View.INVISIBLE);
         view_choiceness.setVisibility(View.INVISIBLE);
 
-        dynamic_line.setVisibility(View.VISIBLE);
+//        dynamic_line.setVisibility(View.VISIBLE);
 
         dinamicList.init();
 
@@ -193,7 +191,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_column.setVisibility(View.VISIBLE);
         view_choiceness.setVisibility(View.INVISIBLE);
 
-        dynamic_line.setVisibility(View.GONE);
+//        dynamic_line.setVisibility(View.GONE);
 
         columnFragment.init();
 

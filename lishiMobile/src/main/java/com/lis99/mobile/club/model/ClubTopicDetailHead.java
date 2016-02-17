@@ -198,6 +198,12 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 		return topic_id;
 	}
 
+	public String active_code;
+
+	@Override
+	public String getNewActive() {
+		return active_code;
+	}
 
 	public class Topic_image
 	{

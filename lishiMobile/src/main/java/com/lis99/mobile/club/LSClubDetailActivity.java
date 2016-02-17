@@ -589,8 +589,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			type = -1;
 			//这跟线在线路活动 里是没有的
-			allView1.setTextColor(getResources().getColor(R.color.text_color_blue));
-			allView.setTextColor(getResources().getColor(R.color.text_color_blue));
+			allView1.setTextColor(getResources().getColor(R.color.text_color_green));
+			allView.setTextColor(getResources().getColor(R.color.text_color_green));
 			allLine1.setVisibility(View.VISIBLE);
 			allLine.setVisibility(View.VISIBLE);
 			eventLine1.setVisibility(View.GONE);
@@ -611,8 +611,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			}
 			type = 1;
 			//这跟线消失
-			eventView.setTextColor(getResources().getColor(R.color.text_color_blue));
-			eventView1.setTextColor(getResources().getColor(R.color.text_color_blue));
+			eventView.setTextColor(getResources().getColor(R.color.text_color_green));
+			eventView1.setTextColor(getResources().getColor(R.color.text_color_green));
 			eventLine.setVisibility(View.VISIBLE);
 			eventLine1.setVisibility(View.VISIBLE);
 			allLine.setVisibility(View.GONE);

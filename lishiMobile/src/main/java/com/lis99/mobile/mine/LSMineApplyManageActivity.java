@@ -74,6 +74,11 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 
 				Intent intent = new Intent(LSMineApplyManageActivity.this,
 						ApplyManager.class);
+				if (TextUtils.isEmpty(adapter.getItem(position).getActivity_code())) {
+					intent.putExtra("NEWACTIVE", false);
+				} else {
+					intent.putExtra("NEWACTIVE", true);
+				}
 				intent.putExtra("topicID", Integer.valueOf(adapter.getItem(
 						position).getTopic_id()));
 				intent.putExtra("clubID", Integer.valueOf(adapter.getItem(
@@ -81,6 +86,7 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 				intent.putExtra("clubName", adapter.getItem(
 						position).getClub_title());
 				startActivity(intent);
+
 
 				Common.log("adapter == onclick");
 

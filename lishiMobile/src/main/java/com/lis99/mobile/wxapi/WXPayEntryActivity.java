@@ -34,7 +34,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private View layout_ok, layout_cancel;
 //<font color="red">I love android</font><br>
-    private String infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过24小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
+    private String infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
     private String infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
 
     private int state;

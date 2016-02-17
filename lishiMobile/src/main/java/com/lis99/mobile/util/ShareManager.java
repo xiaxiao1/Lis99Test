@@ -506,6 +506,8 @@ public class ShareManager
 						Intent i = new Intent(LSBaseActivity.activity, ApplyManager.class);
 						i.putExtra("topicID", Common.string2int(topicId));
 						i.putExtra("clubID", Common.string2int(clubId));
+						i.putExtra("NEWACTIVE", !TextUtils.isEmpty(clubhead.getNewActive()));
+
 						LSBaseActivity.activity.startActivity(i);
 						break;
 				}

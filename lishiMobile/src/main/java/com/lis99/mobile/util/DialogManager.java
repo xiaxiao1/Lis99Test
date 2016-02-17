@@ -417,9 +417,9 @@ public class DialogManager {
         dialog.setContentView(view);
 
 
-        dlWait.setCanceledOnTouchOutside(false);
+        dialog.setCanceledOnTouchOutside(false);
 
-        dlWait.show();
+        dialog.show();
 
     }
 

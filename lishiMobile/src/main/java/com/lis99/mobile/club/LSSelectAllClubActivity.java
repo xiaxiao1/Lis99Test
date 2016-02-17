@@ -34,7 +34,7 @@ public class LSSelectAllClubActivity extends LSBaseActivity {
         setContentView(R.layout.activity_lsselect_all_club);
 
         initViews();
-        setTitle("全部俱乐部");
+        setTitle("全部讨论区");
 
         loadClubList();
     }

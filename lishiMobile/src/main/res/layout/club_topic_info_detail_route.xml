@@ -6,6 +6,8 @@
 
 
     <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -133,6 +135,7 @@
 
 
         <TextView
+            android:lineSpacingExtra="5dp"
             android:id="@+id/tv_journey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -197,6 +200,7 @@
 
 
         <TextView
+            android:lineSpacingExtra="5dp"
             android:id="@+id/tv_equip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -233,6 +237,7 @@
 
 
         <TextView
+            android:lineSpacingExtra="5dp"
             android:id="@+id/tv_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -269,6 +274,7 @@
 
 
         <TextView
+            android:lineSpacingExtra="5dp"
             android:id="@+id/tv_readme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -305,6 +311,7 @@
 
 
         <TextView
+            android:lineSpacingExtra="5dp"
             android:id="@+id/tv_safely"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

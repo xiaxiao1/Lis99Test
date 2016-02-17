@@ -12,4 +12,6 @@ public interface ShareInterface {
 //    用来分享用
     public String getTopicId ();
 
+    public String getNewActive();
+
 }

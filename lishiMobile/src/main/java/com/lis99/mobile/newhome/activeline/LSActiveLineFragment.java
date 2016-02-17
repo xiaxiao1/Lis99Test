@@ -114,6 +114,8 @@ public class LSActiveLineFragment extends LSFragment implements
 
         viewBanner = (BannerView) head.findViewById(R.id.viewBanner);
 
+        viewBanner.setVisibility(View.GONE);
+
         viewBanner.mViewPager.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -266,7 +268,7 @@ public class LSActiveLineFragment extends LSFragment implements
                     adapter = new LSActiveLineAdapter(getActivity(), l);
                     list.setAdapter(adapter);
 
-                    if ( model.adlist != null )
+                    if ( viewBanner.getVisibility() == View.VISIBLE && model.adlist != null )
                     {
                         bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
                         bannerAdapter.addImagePageAdapterListener(LSActiveLineFragment.this);

@@ -6,6 +6,14 @@ import java.util.ArrayList;
 public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInterface{
 
 
+    public String getClub_iconv() {
+        return club_iconv;
+    }
+
+    public void setClub_iconv(String club_iconv) {
+        this.club_iconv = club_iconv;
+    }
+
     /**
      * activity_id : 1
      * activityimgs : [{"images":"http://i3.lis99.com/upload/club/a/1/f/a1c658aac6cac9ac5d8358453bc65fcf.jpg!middle","height":594,"width":950},{"images":"http://i3.lis99.com/upload/club/5/f/b/5fc57e782744c9755234070b57d5bffb.jpg!middle","height":768,"width":1024}]
@@ -45,6 +53,7 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
      * createdate : 2016-01-20 10:40:24
      */
 
+    private String club_iconv;
     private String activity_id;
     private String title;
     private String activity_code;
@@ -413,6 +422,11 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
 
     @Override
     public String getTopicId() {
+        return activity_code;
+    }
+
+    @Override
+    public String getNewActive() {
         return activity_code;
     }
 

@@ -19,7 +19,8 @@
             style="@style/listViewStyle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            app:dividerHeight="0px"
+            android:dividerHeight="0px"
+            android:divider="@null"
             android:id="@+id/list"
             ></ListView>
 

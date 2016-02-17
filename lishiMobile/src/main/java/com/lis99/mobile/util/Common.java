@@ -410,12 +410,12 @@ public class Common {
         }
         //时间戳转化为Sting或Date
         SimpleDateFormat format =  new SimpleDateFormat("MM,dd");
-        Long time = new Long(timeS);
+        Long time = new Long(timeS+"000");
         String d = format.format(time);
 
         result = d.split(",");
 
-        System.out.println("Format To String(Date):"+d);
+//        System.out.println("Format To String(Date):"+d);
 
         return result;
     }
