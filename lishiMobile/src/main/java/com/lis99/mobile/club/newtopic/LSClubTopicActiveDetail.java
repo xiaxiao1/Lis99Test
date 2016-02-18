@@ -171,7 +171,7 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
         tvlocation.setText(model.getSetaddress());
 
-        tvtel.setText(model.getTell());
+        tvtel.setText(model.getLeadermobile());
 
         if ( model.getTripdetail() != null && model.getTripdetail().size() != 0 )
         tvjourney.setText(model.getTripdetail().get(0).getContent());

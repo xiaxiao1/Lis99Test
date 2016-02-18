@@ -17,6 +17,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ShareManager;
@@ -146,6 +147,11 @@ public class ChoicenessRouteWebView extends LSBaseActivity {
 //            线上贴
                         case 2:
                             intent = new Intent(LSBaseActivity.activity, LSClubTopicNewActivity.class);
+                            intent.putExtra("topicID", topic_id);
+                            LSBaseActivity.activity.startActivity(intent);
+                            break;
+                        case 5:
+                            intent = new Intent(LSBaseActivity.activity, LSClubTopicActiveOffLine.class);
                             intent.putExtra("topicID", topic_id);
                             LSBaseActivity.activity.startActivity(intent);
                             break;
