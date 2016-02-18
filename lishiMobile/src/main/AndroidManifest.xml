@@ -1198,6 +1198,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
+        <!--首次启动的视频-->
+        <activity android:name="com.lis99.mobile.newhome.HelpMovieActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
     </application>
 
 

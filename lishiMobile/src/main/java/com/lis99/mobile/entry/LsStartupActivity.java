@@ -25,7 +25,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.equip.ActivityTest;
-import com.lis99.mobile.newhome.HelpActivity;
+import com.lis99.mobile.newhome.HelpMovieActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.C;
@@ -354,12 +354,14 @@ public class LsStartupActivity extends ActivityPattern {
             SharedPreferencesHelper.saveClientVersion(""+DeviceInfo.CLIENTVERSIONCODE);
             visible = true;
         }
-
+        visible = true;
         if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()) || visible )
         {
 //            startActivity( new Intent(this, HelpActivity.class));
+//            intent = new Intent(LsStartupActivity.this,
+//                    HelpActivity.class);
             intent = new Intent(LsStartupActivity.this,
-                    HelpActivity.class);
+                    HelpMovieActivity.class);
 //            return;
         }
         else {
