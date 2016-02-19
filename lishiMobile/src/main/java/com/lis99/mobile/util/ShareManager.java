@@ -1,12 +1,8 @@
 package com.lis99.mobile.util;
 
-import android.app.Activity;
-import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -21,7 +17,6 @@ import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.application.cache.ImageCacheManager;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.apply.ApplyManager;
@@ -30,20 +25,14 @@ import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.weibo.LsWeiboSina;
-import com.lis99.mobile.weibo.LsWeiboTencent;
 import com.lis99.mobile.weibo.LsWeiboWeixin;
 import com.lis99.mobile.wxapi.WXEntryActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.tencent.connect.share.QzoneShare;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -70,171 +59,6 @@ public class ShareManager
 		if (Instance == null)
 			Instance = new ShareManager();
 		return Instance;
-	}
-
-	/**
-	 * 分享
-	 * 
-	 * @param a
-	 * @param title
-	 *            分享内容
-	 * @param Content_url
-	 *            分享的url地址
-	 * @param Image_Url
-	 *            分享图片地址
-	 */
-	public void showShareList(final Activity a, final String title,
-			final String Content_url, final String Image_Url)
-	{
-
-		final Tencent tencent = Tencent.createInstance(C.TENCENT_APP_ID, a);
-
-		final IWXAPIEventHandler handler = new IWXAPIEventHandler()
-		{
-
-			@Override
-			public void onResp(BaseResp arg0)
-			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onReq(BaseReq arg0)
-			{
-				// TODO Auto-generated method stub
-
-			}
-		};
-
-		DialogManager.getInstance().showDialogList(a, "分享到",
-				R.array.share_items, new DialogInterface.OnClickListener()
-				{
-
-					@Override
-					public void onClick(DialogInterface dialog, int which)
-					{
-						switch (which)
-						{
-							case 0:
-								String shareSinaText = "推荐个好东西给大家［" + title
-										+ "］" + Content_url
-										+ "－分享自@砾石 Android版";
-								try
-								{
-									ComponentName cmp = new ComponentName(
-											"com.sina.weibo",
-											"com.sina.weibo.EditActivity");
-									Intent intent = new Intent(
-											Intent.ACTION_SEND);
-									intent.setType("image/*");
-									// intent.putExtra(Intent.EXTRA_SUBJECT,
-									// "分享123");
-									intent.putExtra(Intent.EXTRA_TEXT,
-											shareSinaText);
-									intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-									intent.setComponent(cmp);
-									a.startActivity(intent);
-								} catch (Exception e)
-								{
-									// TODO: handle exception
-									// Toast.makeText(getApplicationContext(),
-									// "123123123231231231",
-									// Toast.LENGTH_LONG).show();
-									// 如果没有安装客户端， 调用内置SDK分享
-									LsWeiboSina.getInstance(a).share(
-											shareSinaText);
-								}
-
-								break;
-							case 1:
-								String shareWx1Text = Content_url;
-								String title1 = title;
-								String desc1 = "分享个好东西给你【" + title + "】";
-								Bitmap bmp1 = ImageCacheManager.getInstance()
-										.getBitmapFromCache(Image_Url);
-								LsWeiboWeixin.getInstance(a).getApi()
-										.handleIntent(a.getIntent(), handler);
-								LsWeiboWeixin.getInstance(a).share1(
-										shareWx1Text, title1, desc1, Image_Url,
-										SendMessageToWX.Req.WXSceneSession);
-								break;
-							case 2:
-								String shareWx2Text = Content_url;
-								String title2 = title;
-								String desc2 = "分享＃装备＃【" + title + "】";
-								Bitmap bmp2 = ImageCacheManager.getInstance()
-										.getBitmapFromCache(Image_Url);
-								LsWeiboWeixin.getInstance(a).getApi()
-										.handleIntent(a.getIntent(), handler);
-								LsWeiboWeixin.getInstance(a).share1(
-										shareWx2Text, title2, desc2, Image_Url,
-										SendMessageToWX.Req.WXSceneTimeline);
-								break;
-							case 3:
-								final Bundle params = new Bundle();
-								params.putString(QzoneShare.SHARE_TO_QQ_TITLE,
-										title);
-								params.putString(
-										QzoneShare.SHARE_TO_QQ_SUMMARY,
-										"砾石上看到［" + title + "］不错，推荐给大家。");
-								params.putString(
-										QzoneShare.SHARE_TO_QQ_TARGET_URL,
-										Content_url);
-								ArrayList<String> imageUrls = new ArrayList<String>();
-								// 图片URL
-								// if ( null != Image_Url
-								// ){imageUrls.add(Image_Url);}
-
-								params.putStringArrayList(
-										QzoneShare.SHARE_TO_QQ_IMAGE_URL,
-										imageUrls);
-								// 支持传多个imageUrl
-								tencent.shareToQzone(a, params,
-										new IUiListener()
-										{
-
-											@Override
-											public void onCancel()
-											{
-												Util2.toastMessage(a,
-														"onCancel: ");
-											}
-
-											@Override
-											public void onComplete(
-													Object response)
-											{
-												// TODO Auto-generated method
-												// stub
-												Util2.toastMessage(a,
-														"onComplete: ");
-											}
-
-											@Override
-											public void onError(UiError e)
-											{
-												// TODO Auto-generated method
-												// stub
-												Util2.toastMessage(
-														a,
-														"onComplete: "
-																+ e.errorMessage,
-														"e");
-											}
-
-										});
-								break;
-							case 4:
-								String shareWx4Text = "推荐个好东西给大家【" + title
-										+ "】" + Content_url
-										+ "－分享自@砾石 Android版";
-								LsWeiboTencent.getInstance(a).share(
-										shareWx4Text);
-								break;
-						}
-					}
-				});
 	}
 
 	/** http://club.lis99.com/actives/detail/帖子id */
