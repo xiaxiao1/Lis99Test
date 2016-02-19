@@ -405,8 +405,15 @@ public class ShareManager
 						pop.dismiss();
 						break;
 					case R.id.iv_sina:
+
 						String shareSinaText = title + finalSharedUrl + "" + topicId
 								+ shareText;
+//						新版不要加topicId
+						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
+						{
+							shareSinaText = title + finalSharedUrl + shareText;
+						}
+
 						Bitmap bitmap = ImageLoader.getInstance().loadImageSync(Image_Url);
 						LsWeiboSina.getInstance(LSBaseActivity.activity).share(
 								shareSinaText, bitmap, listener);
@@ -416,14 +423,27 @@ public class ShareManager
 
 						String shareWx4Text = shareText; //+" "+ finalSharedUrl + ""
 						QQZoneUtil.getInstance().setCallBack(listener);
+
+						String shareQQText = finalSharedUrl + topicId;
+						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
+						{
+							shareQQText = finalSharedUrl;
+						}
+
 						QQZoneUtil.getInstance().sendQQZone(
 								LSBaseActivity.activity, title, shareWx4Text,
-								finalSharedUrl + topicId, Image_Url);
+								shareQQText, Image_Url);
 						break;
 					case R.id.iv_wechat:
 						state = wechat;
 						WXEntryActivity.callBack = listener;
 						String shareWx1Text = finalSharedUrl + topicId;
+
+						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
+						{
+							shareWx1Text = finalSharedUrl;
+						}
+
 						String title1 = title;
 						String desc1 = shareText;// + finalSharedUrl + "" + topicId;
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
@@ -434,6 +454,12 @@ public class ShareManager
 						WXEntryActivity.callBack = listener;
 						state = wechat_friends;
 						String shareWx2Text = finalSharedUrl + topicId;
+
+						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
+						{
+							shareWx2Text = finalSharedUrl;
+						}
+
 						String title2 = title;
 						String desc2 = shareText;// + finalSharedUrl + "" + topicId;
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
