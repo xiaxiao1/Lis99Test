@@ -131,7 +131,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                 tvdata.setText(model.getActivitytimes());
                 tvprice.setText(model.getConsts());
 
-                if (model.getActivityimgs() != null) {
+                if (model.getActivityimgs() != null && model.getActivityimgs().size() != 0 ) {
                     bannerAdapter = new ImagePageAdapter(LSClubTopicActiveOffLine.this, model.getActivityimgs().size());
                     bannerAdapter.addImagePageAdapterListener(LSClubTopicActiveOffLine.this);
                     bannerAdapter.setImagePageClickListener(LSClubTopicActiveOffLine.this);
