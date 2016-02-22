@@ -100,6 +100,7 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
         return this.lists;
     }
 
+
     @Override
     public String getStick() {
         return this.stick;
@@ -125,11 +126,67 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
         return topic_id;
     }
 
+    /**
+     * 图片Url 地址
+     *
+     * @return
+     */
+    @Override
+    public String getImageUrl() {
+
+        String imgUrl = "";
+        if (topic_image != null && topic_image.size() >= 1 )
+        {
+            imgUrl = topic_image.get(0).image;
+        }
+        return imgUrl;
+    }
+
+    /**
+     * 分享显示标题
+     *
+     * @return
+     */
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * 分享内容
+     *
+     * @return
+     */
+    @Override
+    public String getShareTxt() {
+        return "";
+    }
+
+    /**
+     * 分享连接地址
+     *
+     * @return
+     */
+    @Override
+    public String getShareUrl() {
+        return "http://club.lis99.com/actives/detail/" + topic_id;
+    }
+
     public String active_code;
 
     @Override
     public String getNewActive() {
         return active_code;
+    }
+
+    /**
+     * 俱乐部Id
+     *
+     * @return
+     */
+    @Override
+    public String getClubId() {
+        return club_id;
     }
 
 

@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.choiceness.ActiveAllActivity;
+import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -156,7 +157,12 @@ public class LSClubFragmentNew extends LSFragment implements
 			mHandler.post(new Runnable() {
 				@Override
 				public void run() {
-					pop = ShareManager.getInstance().showPopWindoInWeb(title, content, image_url, url, webView);
+					ShareModel model = new ShareModel();
+					model.title = title;
+					model.shareTxt = content;
+					model.imageUrl = image_url;
+					model.shareUrl = url;
+					pop = ShareManager.getInstance().showPopWindoInWeb(model, webView);
 				}
 			});
 		}

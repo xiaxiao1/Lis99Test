@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ShareManager;
@@ -122,7 +123,12 @@ public class ShareWebView extends LSBaseActivity {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    pop = ShareManager.getInstance().showPopWindoInWeb(title, content, image_url, url, webView);
+                    ShareModel model = new ShareModel();
+                    model.title = title;
+                    model.shareTxt = content;
+                    model.imageUrl = image_url;
+                    model.shareUrl = url;
+                    pop = ShareManager.getInstance().showPopWindoInWeb(model, webView);
                 }
             });
         }

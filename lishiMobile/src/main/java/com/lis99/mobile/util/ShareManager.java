@@ -63,72 +63,60 @@ public class ShareManager
 
 	/** http://club.lis99.com/actives/detail/帖子id */
 	//俱乐部用到
-	private static String shareUrl = "http://club.lis99.com/actives/detail/";
-	private static String shareText = "砾石，最好玩儿的户外运动社区，我的户外大本营";
+	private static String shareUrlMain = "http://club.lis99.com/actives/detail/";
+	private static String shareTextMain = "砾石，最好玩儿的户外运动社区，我的户外大本营";
 	private static PopupWindow pop;
 
-	public PopupWindow showPopWindowInShare(
-			final ShareInterface clubhead, final String clubId,
-			final String Image_Url, final String title, final String shareTxt,
-			final String topicId, View parent,
-			final CallBack listener )
-	{
-		return showPopWindowInShare(clubhead, clubId, Image_Url, title, "", topicId, parent, listener, "" );
-	}
+//	public PopupWindow showPopWindowInShare(
+//			final ShareInterface clubhead, View parent,
+//			final CallBack listener )
+//	{
+//		return showPopWindowInShare(clubhead, clubhead.getClubId(), clubhead.getImageUrl(), clubhead.getTitle(), clubhead.getShareTxt(), clubhead.getTopicId(), parent, listener, "" );
+//	}
 
 	/**
 	 * 			网页分享调用
-	 * @param title
-	 * @param content
-	 * @param image_url
-	 * @param url
 	 * @param layout_main
 	 * @return
 	 */
-	public PopupWindow showPopWindoInWeb ( String title, String content, String image_url, String url, View layout_main )
+	public PopupWindow showPopWindoInWeb ( ShareInterface share, View layout_main )
 	{
-		return showPopWindowInShare(null, "",
-				image_url, title, content,
-				"", layout_main, null, url);
+		return showPopWindowInShare(share, layout_main, null);
 	}
 
 	/**
 	 * 分享 需要在界面关闭的时候， 调用dismiss
 	 ** 			分享popwindow
 	 * @param clubhead			帖子对象
-	 * @param clubId			俱乐部Id（管理帖子用到， 删除，置顶）
-	 * @param Image_Url			图片的Url地址
-	 * @param title				展示的标题
-	 * @param shareTxt			分享文本
-	 * @param topicId			帖子Id
 	 * @param parent			父View
 	 * @param listener			点击监听， 管理时用到, 删除，置顶
 	 */
 	public PopupWindow showPopWindowInShare(
-			final ShareInterface clubhead, final String clubId,
-			final String Image_Url, final String title, String shareTxt,
-			final String topicId, View parent,
-			final CallBack listener, String sharedUrl ) {
+			final ShareInterface clubhead, View parent,
+			final CallBack listener ) {
 		if (pop != null && pop.isShowing()) {
 			pop.dismiss();
 			return pop;
 		}
 
+		String sharedUrl = clubhead.getShareUrl();
+
 		if (TextUtils.isEmpty(sharedUrl))
 		{
-			sharedUrl = shareUrl;
+			sharedUrl = shareUrlMain;
 		}
 
 //		String content = shareTxt;
+		String shareTxt1 = clubhead.getShareTxt();
 
-		if ( TextUtils.isEmpty(shareTxt) )
+		if ( TextUtils.isEmpty(shareTxt1) )
 		{
-			shareTxt = this.shareText;
+			shareTxt1 = this.shareTextMain;
 		}
 
-		this.topicid = topicId;
+//		this.topicid = clubhead.getTopicId();
 
-		Common.log("activity=" + LSBaseActivity.activity.getClass().getName());
+//		Common.log("activity=" + LSBaseActivity.activity.getClass().getName());
 
 		// final Tencent tencent = Tencent.createInstance(C.TENCENT_APP_ID,
 		// LSBaseActivity.activity);
@@ -173,49 +161,54 @@ public class ShareManager
 
 		if (clubhead != null)
 		{
-			if ("2".equals(clubhead.getStick()))
-			{
-				iv_top.setImageResource(R.drawable.top);
-				tv_top.setText("置顶");
-			} else
-			{
-				iv_top.setImageResource(R.drawable.remove);
-				tv_top.setText("解除");
-			}
-//			显示删除  1 只有创始人
-			if ( Common.clubDelete(clubhead.getIsJoin()) )
+
+			//			显示删除, 置顶， 管理菜单  1 只有创始人, 新版活动帖没有
+			if ( Common.clubDelete(clubhead.getIsJoin()) && TextUtils.isEmpty(clubhead.getNewActive()))
 			{
 				layoutmanager.setVisibility(View.VISIBLE);
+//				置顶
+				if ("2".equals(clubhead.getStick()))
+				{
+					iv_top.setImageResource(R.drawable.top);
+					tv_top.setText("置顶");
+				} else
+				{
+					iv_top.setImageResource(R.drawable.remove);
+					tv_top.setText("解除");
+				}
+//				是否为活动帖
+				if ( Common.visibleApplyManager(clubhead))
+				{
+					iv_manager_apply.setVisibility(View.VISIBLE);
+				}
+				else
+				{
+					iv_manager_apply.setVisibility(View.GONE);
+				}
+
 			}
 			else
 			{
+				//  隐藏置顶
 				layoutmanager.setVisibility(View.GONE);
-			}
-
-			//		领队不显示置顶、删帖
-			if ( "2".equals(clubhead.getIsJoin()) )
-			{
-				layoutmanager1.setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				layoutmanager1.setVisibility(View.GONE);
-			}
-
-			//话题贴不显示 1,线下， 2线上活动
-			if ( clubhead != null && ("1".equals(clubhead.getCategory()) || "2".equals(clubhead.getCategory()) ))
-			{
-				iv_manager_apply.setVisibility(View.VISIBLE);
-//				layoutmanager1.setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				iv_manager_apply.setVisibility(View.INVISIBLE);
-				layoutmanager1.setVisibility(View.GONE);
+//				管理员只显示 ， 管理报名
+				if ( "2".equals(clubhead.getIsJoin()))
+				{
+					//话题贴不显示 1,线下， 2线上活动, 新版//				是否为活动帖
+					if (Common.visibleApplyManager(clubhead))
+					{
+						layoutmanager1.setVisibility(View.VISIBLE);
+					}
+					else
+					{
+						layoutmanager1.setVisibility(View.GONE);
+					}
+				}
 			}
 
 		}
-
+		final String shareText = shareTxt1;
+		final String title = clubhead.getTitle();
 		final String finalSharedUrl = sharedUrl;
 		OnClickListener click = new OnClickListener()
 		{
@@ -230,15 +223,9 @@ public class ShareManager
 						break;
 					case R.id.iv_sina:
 
-						String shareSinaText = title + finalSharedUrl + "" + topicId
-								+ shareText;
-//						新版不要加topicId
-						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
-						{
-							shareSinaText = title + finalSharedUrl + shareText;
-						}
+						String shareSinaText = title + finalSharedUrl + shareText;
 
-						Bitmap bitmap = ImageLoader.getInstance().loadImageSync(Image_Url);
+						Bitmap bitmap = ImageLoader.getInstance().loadImageSync(clubhead.getImageUrl());
 						LsWeiboSina.getInstance(LSBaseActivity.activity).share(
 								shareSinaText, bitmap, listener);
 
@@ -248,51 +235,37 @@ public class ShareManager
 						String shareWx4Text = shareText; //+" "+ finalSharedUrl + ""
 						QQZoneUtil.getInstance().setCallBack(listener);
 
-						String shareQQText = finalSharedUrl + topicId;
-						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
-						{
-							shareQQText = finalSharedUrl;
-						}
+						String shareQQText = finalSharedUrl;
 
 						QQZoneUtil.getInstance().sendQQZone(
 								LSBaseActivity.activity, title, shareWx4Text,
-								shareQQText, Image_Url);
+								shareQQText, clubhead.getImageUrl());
 						break;
 					case R.id.iv_wechat:
 						state = wechat;
 						WXEntryActivity.callBack = listener;
-						String shareWx1Text = finalSharedUrl + topicId;
-
-						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
-						{
-							shareWx1Text = finalSharedUrl;
-						}
+						String shareWx1Text = finalSharedUrl;
 
 						String title1 = title;
 						String desc1 = shareText;// + finalSharedUrl + "" + topicId;
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
-								.share1(shareWx1Text, title1, desc1, Image_Url,
+								.share1(shareWx1Text, title1, desc1, clubhead.getImageUrl(),
 										SendMessageToWX.Req.WXSceneSession);
 						break;
 					case R.id.iv_friend:
 						WXEntryActivity.callBack = listener;
 						state = wechat_friends;
-						String shareWx2Text = finalSharedUrl + topicId;
-
-						if ( !TextUtils.isEmpty(clubhead.getNewActive()))
-						{
-							shareWx2Text = finalSharedUrl;
-						}
+						String shareWx2Text = finalSharedUrl;
 
 						String title2 = title;
 						String desc2 = shareText;// + finalSharedUrl + "" + topicId;
 						LsWeiboWeixin.getInstance(LSBaseActivity.activity)
-								.share1(shareWx2Text, title2, desc2, Image_Url,
+								.share1(shareWx2Text, title2, desc2, clubhead.getImageUrl(),
 										SendMessageToWX.Req.WXSceneTimeline);
 						break;
 					case R.id.iv_delete:
 						LSRequestManager.getInstance().mClubTopicReplyDelete(
-								clubId, topicId, new CallBack()
+								clubhead.getClubId(), clubhead.getTopicId(), new CallBack()
 								{
 
 									@Override
@@ -314,7 +287,7 @@ public class ShareManager
 						}
 						if ("2".equals(clubhead.getStick()))
 						{
-							topTopic(clubId, topicId, new CallBack()
+							topTopic(clubhead.getClubId(), clubhead.getTopicId(), new CallBack()
 							{
 
 								@Override
@@ -333,7 +306,7 @@ public class ShareManager
 						}
 							else
 						{
-							cancelTopTopic(clubId, topicId, new CallBack()
+							cancelTopTopic(clubhead.getClubId(), clubhead.getTopicId(), new CallBack()
 							{
 
 								@Override
@@ -354,8 +327,8 @@ public class ShareManager
 					case R.id.iv_manager_apply:
 					case R.id.iv_manager_apply1:
 						Intent i = new Intent(LSBaseActivity.activity, ApplyManager.class);
-						i.putExtra("topicID", Common.string2int(topicId));
-						i.putExtra("clubID", Common.string2int(clubId));
+						i.putExtra("topicID", Common.string2int(clubhead.getTopicId()));
+						i.putExtra("clubID", Common.string2int(clubhead.getClubId()));
 						i.putExtra("NEWACTIVE", !TextUtils.isEmpty(clubhead.getNewActive()));
 
 						LSBaseActivity.activity.startActivity(i);
@@ -407,26 +380,29 @@ public class ShareManager
 		return pop;
 	}
 
-	public void share2Weichat ( String topicId, String Image_Url, String title, CallBack callBack )
+	public void share2Weichat ( ShareInterface share, CallBack callBack )
 	{
 		WXEntryActivity.callBack = callBack;
-		String shareWx1Text = shareUrl + topicId;
-		String title1 = title;
-		String desc1 = shareText;// + finalSharedUrl + "" + topicId;
+
+		String shareWx1Text = share.getShareUrl();
+
+		String title1 = share.getTitle();
+		String desc1 = share.getShareTxt();
 		LsWeiboWeixin.getInstance(LSBaseActivity.activity)
-				.share1(shareWx1Text, title1, desc1, Image_Url,
+				.share1(shareWx1Text, title1, desc1, share.getImageUrl(),
 						SendMessageToWX.Req.WXSceneSession);
 	}
 
-	public void share2Friend ( String topicId, String Image_Url, String title, CallBack callBack )
+	public void share2Friend ( ShareInterface share, CallBack callBack )
 	{
 		WXEntryActivity.callBack = callBack;
 		state = wechat_friends;
-		String shareWx2Text = shareUrl + topicId;
-		String title2 = title;
-		String desc2 = shareText;// + finalSharedUrl + "" + topicId;
+		String shareWx2Text = share.getShareUrl();
+
+		String title2 = share.getTitle();
+		String desc2 = share.getShareTxt();
 		LsWeiboWeixin.getInstance(LSBaseActivity.activity)
-				.share1(shareWx2Text, title2, desc2, Image_Url,
+				.share1(shareWx2Text, title2, desc2, share.getImageUrl(),
 						SendMessageToWX.Req.WXSceneTimeline);
 	}
 

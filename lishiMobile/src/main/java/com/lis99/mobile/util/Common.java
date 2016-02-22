@@ -18,6 +18,7 @@ import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 
@@ -156,6 +157,11 @@ public class Common {
             return true;
         }
         return false;
+    }
+//  分享菜单弹出， 判断是否需要显示管理报名
+    public static boolean visibleApplyManager ( ShareInterface s )
+    {
+        return ( s != null && ("1".equals(s.getCategory()) || "2".equals(s.getCategory()) || !TextUtils.isEmpty(s.getNewActive()) ));
     }
 
     /**

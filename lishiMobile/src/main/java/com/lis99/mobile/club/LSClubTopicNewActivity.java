@@ -372,7 +372,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                 {
                     imgUrl = infoModel.topic_image.get(0).image;
                 }
-                ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, infoModel.title, shareFandW1);
+                ShareManager.getInstance().share2Weichat(infoModel, shareFandW1);
                 break;
             case R.id.iv_friend:
                 String imgUrl1 = null;
@@ -382,7 +382,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
                     imgUrl1 = infoModel.topic_image.get(0).image;
                 }
 //				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
-                ShareManager.getInstance().share2Friend("" + topicID, imgUrl1, infoModel.title, shareFandW1);
+                ShareManager.getInstance().share2Friend(infoModel, shareFandW1);
                 break;
             default:
                 super.onClick(v);
@@ -738,9 +738,7 @@ public class LSClubTopicNewActivity  extends LSBaseActivity implements
             imgUrl = infoModel.topic_image.get(0).image;
         }
 
-        ShareManager.getInstance().showPopWindowInShare(infoModel, "" + clubID,
-                imgUrl, infoModel.title, infoModel.shareTxt,
-                "" + infoModel.topic_id, layoutMain, new CallBack() {
+        ShareManager.getInstance().showPopWindowInShare(infoModel, layoutMain, new CallBack() {
 
                     @Override
                     public void handler(MyTask mTask) {

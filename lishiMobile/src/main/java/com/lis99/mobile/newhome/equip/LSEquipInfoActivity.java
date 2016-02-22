@@ -16,6 +16,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.EquipInfoModel;
 import com.lis99.mobile.club.model.KeyValueModel;
+import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -156,8 +157,12 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
         super.rightAction();
 
         if ( model == null || model.info == null ) return;
+        ShareModel share = new ShareModel();
+        share.title = model.info.title;
+        share.imageUrl = model.info.thumb;
+        share.shareUrl = model.info.share_url;
 
-        ShareManager.getInstance().showPopWindowInShare(null, null, model.info.thumb, model.info.title, "", "", layoutMain, null, model.info.share_url);
+        ShareManager.getInstance().showPopWindowInShare(share, layoutMain, null);
 
     }
 

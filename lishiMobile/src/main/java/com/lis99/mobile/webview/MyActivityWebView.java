@@ -22,6 +22,7 @@ import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ShareManager;
@@ -83,9 +84,13 @@ public class MyActivityWebView extends LSBaseActivity
 		{
 			title = "砾石 心户外，新生活";
 		}
-		pop = ShareManager.getInstance().showPopWindowInShare(null, "",
-				image_url, title, "",
-				"", layout_main, null, url);
+		ShareModel share = new ShareModel();
+
+		share.title = title;
+		share.imageUrl = image_url;
+		share.shareUrl = url;
+
+		pop = ShareManager.getInstance().showPopWindowInShare(share, layout_main, null);
 
 	}
 
@@ -194,7 +199,12 @@ public class MyActivityWebView extends LSBaseActivity
 			mHandler.post(new Runnable() {
 				@Override
 				public void run() {
-					pop = ShareManager.getInstance().showPopWindoInWeb(title, content, image_url, url, webView);
+					ShareModel model = new ShareModel();
+					model.title = title;
+					model.shareTxt = content;
+					model.imageUrl = image_url;
+					model.shareUrl = url;
+					pop = ShareManager.getInstance().showPopWindoInWeb(model, webView);
 				}
 			});
 		}

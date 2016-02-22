@@ -264,6 +264,26 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
         return title;
     }
 
+    /**
+     * 分享内容
+     *
+     * @return
+     */
+    @Override
+    public String getShareTxt() {
+        return shareTxt;
+    }
+
+    /**
+     * 分享连接地址
+     *
+     * @return
+     */
+    @Override
+    public String getShareUrl() {
+        return ("http://m.lis99.com/club/activity/detail/"+getActivity_code());
+    }
+
     public String getActivity_code() {
         return activity_code;
     }
@@ -422,12 +442,41 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
 
     @Override
     public String getTopicId() {
-        return activity_code;
+        return getActivity_id();
+    }
+
+    /**
+     * 图片Url 地址
+     *
+     * @return
+     */
+    @Override
+    public String getImageUrl() {
+
+        String imgUrl = "";
+
+        if (getActivityimgs() == null || getActivityimgs().size() == 0) {
+
+        } else {
+            imgUrl = getActivityimgs().get(0).getImages();
+        }
+
+        return imgUrl;
     }
 
     @Override
     public String getNewActive() {
         return activity_code;
+    }
+
+    /**
+     * 俱乐部Id
+     *
+     * @return
+     */
+    @Override
+    public String getClubId() {
+        return getClubId();
     }
 
     public static class ActivityimgsEntity implements Serializable{

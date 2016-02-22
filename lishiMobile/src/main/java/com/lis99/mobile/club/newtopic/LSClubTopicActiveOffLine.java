@@ -322,7 +322,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                 if (model.getActivityimgs() != null && model.getActivityimgs().size() >= 1) {
                     imgUrl = model.getActivityimgs().get(0).getImages();
                 }
-                ShareManager.getInstance().share2Weichat("" + activity_id, imgUrl, model.getTitle(), shareFandW);
+                ShareManager.getInstance().share2Weichat(model, shareFandW);
                 break;
             case R.id.iv_friend:
                 String imgUrl1 = null;
@@ -331,7 +331,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                     imgUrl1 = model.getActivityimgs().get(0).getImages();
                 }
 //				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
-                ShareManager.getInstance().share2Friend("" + activity_id, imgUrl1, model.getTitle(), shareFandW);
+                ShareManager.getInstance().share2Friend( model, shareFandW);
                 break;
             case R.id.titleRightImage:
                 rightAction();
@@ -477,9 +477,9 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
         String shareText = model.shareTxt;
 
-        ShareManager.getInstance().showPopWindowInShare(model, "" + clubID,
+        ShareManager.getInstance().showPopWindowInShare(model,/* "" + clubID,
                 imgUrl, model.getTitle(), shareText,
-                "" + activity_id, layoutMain, null, "http://m.lis99.com/club/activity/detail/"+model.getActivity_code());
+                "" + activity_id,*/ layoutMain, null);
 
         super.rightAction();
     }
