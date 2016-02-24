@@ -210,7 +210,7 @@ public class LSEquipAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.ls_equip_free_header, null);
             holder = new ViewHolder();
-            holder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
+            holder.titleView = (TextView) convertView.findViewById(R.id.imageView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -218,9 +218,11 @@ public class LSEquipAdapter extends BaseAdapter {
 
 
         if (content.getType() == LSEquipContent.FREE_HEADER) {
-            holder.imageView.setImageResource(R.drawable.ls_equip_free_header);
+            holder.titleView.setText("福利社");
+//            holder.imageView.setImageResource(R.drawable.ls_equip_free_header);
         } else {
-            holder.imageView.setImageResource(R.drawable.ls_equip_change_header);
+            holder.titleView.setText("积分兑换");
+//            holder.imageView.setImageResource(R.drawable.ls_equip_change_header);
         }
 
         return convertView;
@@ -231,6 +233,7 @@ public class LSEquipAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.ls_equip_free_footer, null);
             holder = new ViewHolder();
+            holder.actionView = convertView.findViewById(R.id.actionView);
             holder.button = (Button) convertView.findViewById(R.id.actionButton);
             convertView.setTag(holder);
         } else {
@@ -241,7 +244,7 @@ public class LSEquipAdapter extends BaseAdapter {
         if (content.getType() == LSEquipContent.FREE_FOOTER) {
             holder.button.setText("更多免费装备");
 
-            holder.button.setOnClickListener(new View.OnClickListener() {
+            holder.actionView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(c, ClubSpecialListActivity.class);
@@ -253,7 +256,7 @@ public class LSEquipAdapter extends BaseAdapter {
         } else {
             holder.button.setText("更多换购装备");
 
-            holder.button.setOnClickListener(new View.OnClickListener() {
+            holder.actionView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 //                    商城
@@ -280,6 +283,7 @@ public class LSEquipAdapter extends BaseAdapter {
 
 
     static class ViewHolder{
+        View actionView;
         ImageView imageView, tagview;
         TextView titleView;
         TextView descView;

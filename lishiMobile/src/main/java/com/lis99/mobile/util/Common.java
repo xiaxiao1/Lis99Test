@@ -423,5 +423,15 @@ public class Common {
 
         return result;
     }
+/**  达人标签， 裁切字符串， 最多7个字 */
+    public static String getTagString ( String s )
+    {
+        if ( s.length() <= 7 )
+        {
+            return s;
+        }
+        String result = s.substring(0, 7);
+        return result;
+    }
 
 }

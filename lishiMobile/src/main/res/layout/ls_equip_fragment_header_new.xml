@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginLeft="9dp">
+
+
+        <RelativeLayout
+            android:id="@+id/welfarePanel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="76dp"
+            android:background="@drawable/equip_head_bg"
+            android:layout_marginRight="4dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/equip_equip"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/iv_equip_equip"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iv_equip_equip"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="装备库"
+                android:textColor="#525252"
+                android:textSize="15sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="性价比最高的装备推荐"
+                android:textSize="11sp"
+                android:textColor="@color/color_nine"
+                />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/evalPanel"
+            android:layout_width="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:layout_height="76dp"
+            android:background="@drawable/equip_head_bg">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/equip_out_door"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/iv_out_door"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iv_out_door"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="户外店"
+                    android:textColor="#525252"
+                    android:textSize="15sp"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="你身边的户外店"
+                    android:textSize="11sp"
+                    android:textColor="@color/color_nine"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

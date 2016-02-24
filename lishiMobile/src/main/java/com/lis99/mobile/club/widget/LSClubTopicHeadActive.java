@@ -102,7 +102,10 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 
 	//====4.0.2===
 	private  TextView lookNum;
-	private View iv_writer;
+
+	//	4.1.1
+	private TextView tv_user_tag3, tv_user_tag4;
+
 
 	public void setTopic(LSClubTopicActivity lsTopic)
 	{
@@ -151,7 +154,14 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 
 //		=======4.0.2==
 		lookNum = (TextView) v.findViewById(R.id.lookNum);
-		iv_writer = v.findViewById(R.id.iv_writer);
+
+		//		4.1.1
+		tv_user_tag3 = (TextView) v.findViewById(R.id.tv_user_tag3);
+
+		tv_user_tag4 = (TextView) v.findViewById(R.id.tv_user_tag4);
+
+		tv_user_tag3.setVisibility(GONE);
+		tv_user_tag4.setVisibility(GONE);
 
 //		=======3.5.5=======赞
 		like = new LSClubTopicHeadLike(c);
@@ -358,13 +368,24 @@ public class LSClubTopicHeadActive extends LinearLayout implements
 		}
 
 		//===4.0.2===撰稿人
-		if ( Common.isWriter(clubhead.tags))
+//		if ( Common.isWriter(clubhead.tags))
+//		{
+//			iv_writer.setVisibility(VISIBLE);
+//		}
+//		else
+//		{
+//			iv_writer.setVisibility(GONE);
+//		}
+
+		if ( clubhead.tags_name != null && clubhead.tags_name.size() != 0 )
 		{
-			iv_writer.setVisibility(VISIBLE);
-		}
-		else
-		{
-			iv_writer.setVisibility(GONE);
+			tv_user_tag3.setVisibility(VISIBLE);
+			tv_user_tag3.setText(Common.getTagString(clubhead.tags_name.get(0).title));
+			if ( clubhead.tags_name.size() > 1 )
+			{
+				tv_user_tag4.setVisibility(VISIBLE);
+				tv_user_tag4.setText(Common.getTagString(clubhead.tags_name.get(1).title));
+			}
 		}
 
 		Common.visibleReader(lookNum, clubhead.visits);

@@ -121,20 +121,20 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
         listView = (ListView) findViewById(R.id.listView);
 
 
-        headerView = inflater.inflate(R.layout.ls_equip_fragment_header, null);
+        headerView = inflater.inflate(R.layout.ls_equip_fragment_header_new, null);
         listView.addHeaderView(headerView);
 
-        ViewGroup morePanel = (ViewGroup) headerView.findViewById(R.id.morePanel);
-        addCategoryListenter(morePanel);
+//        ViewGroup morePanel = (ViewGroup) headerView.findViewById(R.id.morePanel);
+//        addCategoryListenter(morePanel);
 
         View v = headerView.findViewById(R.id.welfarePanel);
         v.setOnClickListener(this);
         v = headerView.findViewById(R.id.evalPanel);
         v.setOnClickListener(this);
-        v = headerView.findViewById(R.id.worthPanel);
-        v.setOnClickListener(this);
-        v = headerView.findViewById(R.id.outdoorPanel);
-        v.setOnClickListener(this);
+//        v = headerView.findViewById(R.id.worthPanel);
+//        v.setOnClickListener(this);
+//        v = headerView.findViewById(R.id.outdoorPanel);
+//        v.setOnClickListener(this);
 
         /*
         adapter = new LSEquipAdapter(getActivity(), loadedContents);
@@ -292,16 +292,25 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
         switch (v.getId()) {
             case R.id.welfarePanel:
             {
-                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-                intent.putExtra("tagid", 6);
-                startActivity( intent );
+//                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
+//                intent.putExtra("tagid", 6);
+//                startActivity( intent );
+
+                intent = new Intent(getActivity(), LsEquiFilterActivity.class);
+                startActivity(intent);
+
             }
             break;
             case R.id.evalPanel:
             {
-                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-                intent.putExtra("tagid", 2);
-                startActivity( intent );
+//                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
+//                intent.putExtra("tagid", 2);
+//                startActivity( intent );
+
+                intent = new Intent(getActivity(), LsBuyActivity.class);
+                intent.putExtra("shoptype", "0");
+                startActivity(intent);
+
             }
             break;
             case R.id.worthPanel:

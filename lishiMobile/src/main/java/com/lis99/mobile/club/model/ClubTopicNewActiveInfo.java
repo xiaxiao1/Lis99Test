@@ -70,6 +70,15 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     public String visits;
     public int[] tags;
 
+    public ArrayList<tagsName> tags_name;
+
+    public class tagsName
+    {
+        public String title;
+        public String tags;
+    }
+
+
     @Override
     public String getTopic_id() {
         return this.topic_id;

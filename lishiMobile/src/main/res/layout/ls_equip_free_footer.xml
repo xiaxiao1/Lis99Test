@@ -8,18 +8,24 @@
 
 
     <RelativeLayout
+        android:id="@+id/actionView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/ls_equip_section_footer_bg">
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             style="@style/ls_equip_even"
             android:background="@null"
             android:text="更多免费装备"
-            android:id="@+id/actionButton" />
+            android:id="@+id/actionButton"
+            android:textColor="#2bca63"
+            android:drawableRight="@drawable/ls_equip_even_dot"
+            android:drawablePadding="10dp"
+            />
 
 
     </RelativeLayout>
