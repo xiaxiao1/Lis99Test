@@ -3,6 +3,7 @@ package com.lis99.mobile.club;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
@@ -46,7 +47,7 @@ public class LSClubBriefActivity extends LSBaseActivity {
 	TextView founderView;
 	TextView descView;
 	ImageView roundedImageView1;
-	ImageView founderImageView;
+	ImageView founderImageView, iv_title_bg;
 	
 	LSClubBriefListAdapter listAdapter;
 	
@@ -59,6 +60,8 @@ public class LSClubBriefActivity extends LSBaseActivity {
 	public final int QUITCLUB = 299;
 	private ImageView vipStar;
 	private ScrollView scroll;
+
+	private TextView tv_leader;
 	
 	
 	private void buildOptions() {
@@ -74,6 +77,10 @@ public class LSClubBriefActivity extends LSBaseActivity {
 		setContentView(R.layout.activity_club_brief);
 		initViews();
 		setTitle("");
+
+		setLeftView(R.drawable.club_ditail_title_back);
+
+		setRightViewColor(getResources().getColor(R.color.white));
 		
 		buildOptions();
 		loadClubBriefInfo();
@@ -88,7 +95,7 @@ public class LSClubBriefActivity extends LSBaseActivity {
 		if (userID != null && !"".equals(userID)) {
 			url += "&user_id=" + userID;
 		}
-
+		Common.log(url);
 		Task task = new Task(null, url, null, C.CLUB_GET_ONE_INFO, this);
 		publishTask(task, IEvent.IO);
 
@@ -151,6 +158,17 @@ public class LSClubBriefActivity extends LSBaseActivity {
 			{
 				setRightView("已加入");
 			}
+
+			if ( "1".equals(club.getIs_lishi()))
+			{
+				tv_leader.setText("版主");
+			}
+			else
+			{
+				tv_leader.setText("领队");
+			}
+
+
 			nameView.setText(club.getTitle());
 			addressView.setText(club.getProvince() + " " + club.getCity());
 
@@ -186,9 +204,14 @@ public class LSClubBriefActivity extends LSBaseActivity {
 			descView.setText(club.getDescript());
 			
 			timeView.setText(club.getCreate_time());
-			
-			
+
 			List<LSClubAdmin> admins = club.getAdminlist();
+
+			if ( "1".equals(club.getIs_lishi()))
+			{
+				admins = club.getModerator_list();
+			}
+
 //			if (admins == null || admins.size() == 0) {
 //				admins = new ArrayList<LSClubAdmin>();
 //				LSClubAdmin admin = new LSClubAdmin();
@@ -235,6 +258,12 @@ public class LSClubBriefActivity extends LSBaseActivity {
 		vipStar = (ImageView) findViewById(R.id.vipStar);
 		scroll = (ScrollView) findViewById(R.id.scroll);
 		scroll.smoothScrollTo(0, 0);
+
+		iv_title_bg = (ImageView) findViewById(R.id.iv_title_bg);
+		iv_title_bg.setBackgroundColor(Color.parseColor("#29ca62"));
+
+		tv_leader = (TextView) findViewById(R.id.tv_leader);
+
 	}
 	
 	@Override

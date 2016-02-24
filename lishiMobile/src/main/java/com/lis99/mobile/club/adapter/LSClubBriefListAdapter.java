@@ -55,12 +55,24 @@ public class LSClubBriefListAdapter extends BaseAdapter{
 
 	@Override
 	public int getCount() {
-		return clubManagers == null ? 1 : clubManagers.size();
+		int num = clubManagers.size();
+		if ( clubManagers == null || num == 0 )
+		{
+			return 1;
+		}
+		return num % 2 == 1 ? num / 2 + 1 : num / 2;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return clubManagers.get(position);
+		return clubManagers.get(position * 2);
+	}
+
+	public Object get1Item (int position)
+	{
+		int num = position * 2 + 1;
+		if ( num >= clubManagers.size() ) return null;
+		return clubManagers.get(num);
 	}
 
 	@Override
@@ -80,32 +92,65 @@ public class LSClubBriefListAdapter extends BaseAdapter{
 			viewHolder.nameView = (TextView) convertView
 					.findViewById(R.id.managerView);
 			viewHolder.vipStar = (ImageView) convertView.findViewById(R.id.vipStar);
+
+			viewHolder.imageView1 = (ImageView) convertView
+					.findViewById(R.id.managerImageView1);
+			viewHolder.nameView1 = (TextView) convertView
+					.findViewById(R.id.managerView1);
+			viewHolder.vipStar1 = (ImageView) convertView.findViewById(R.id.vipStar1);
 			
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		if ( clubManagers == null )
+		if ( clubManagers == null || clubManagers.size() == 0 )
 		{
 			viewHolder.imageView.setVisibility(View.GONE);
 			viewHolder.vipStar.setVisibility(View.GONE);
 			viewHolder.nameView.setText("该俱乐部还没有活动领队");
+			viewHolder.nameView.setText("该俱乐部还没有版主");
+			viewHolder.imageView1.setVisibility(View.GONE);
+			viewHolder.vipStar1.setVisibility(View.GONE);
+			viewHolder.nameView.setVisibility(View.GONE);
 			return convertView;
 		}
+
+		LSClubAdmin item = (LSClubAdmin) getItem(position);
 		
-		imageLoader.displayImage(clubManagers.get(position).getHeadicon(),
+		imageLoader.displayImage(item.getHeadicon(),
 				viewHolder.imageView, options);
-		viewHolder.nameView.setText(clubManagers.get(position).getNickname());
-		viewHolder.vipStar.setVisibility("1".equals(clubManagers.get(position).getIs_vip()) ? View.VISIBLE : View.GONE);
+		viewHolder.nameView.setText(item.getNickname());
+		viewHolder.vipStar.setVisibility("1".equals(item.getIs_vip()) ? View.VISIBLE : View.GONE);
+
+		LSClubAdmin item1 = (LSClubAdmin) get1Item(position);
+
+		if ( item1 == null )
+		{
+			viewHolder.imageView1.setVisibility(View.GONE);
+			viewHolder.nameView1.setVisibility(View.GONE);
+			viewHolder.vipStar1.setVisibility(View.GONE);
+		}
+		else
+		{
+			viewHolder.imageView1.setVisibility(View.VISIBLE);
+			viewHolder.nameView1.setVisibility(View.VISIBLE);
+			viewHolder.vipStar1.setVisibility(View.VISIBLE);
+			imageLoader.displayImage(item1.getHeadicon(),
+					viewHolder.imageView1, options);
+			viewHolder.nameView1.setText(item1.getNickname());
+			viewHolder.vipStar1.setVisibility("1".equals(item1.getIs_vip()) ? View.VISIBLE : View.GONE);
+		}
+
+
 
 		return convertView;
 	}
 
 	
 	public class ViewHolder {
-		public ImageView imageView;
-		TextView nameView;
-		ImageView vipStar;
+		public ImageView imageView, imageView1;
+		TextView nameView, nameView1;
+		ImageView vipStar, vipStar1;
 	}
 }

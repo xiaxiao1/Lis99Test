@@ -31,7 +31,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="123个赞"
+                android:text="赞"
                 android:textColor="@color/color_nine"
                 android:id="@+id/tv_like"
                 />
@@ -64,7 +64,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="123个赞"
+                android:text="回复"
                 android:textColor="@color/color_nine"
                 android:id="@+id/tv_reply"
                 />

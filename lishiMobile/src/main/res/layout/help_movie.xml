@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/black"
+    >
 
 
 
@@ -18,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/star_name"
-        android:layout_marginTop="100dp"
+        android:src="@drawable/movie_icon"
+        android:layout_marginTop="120dp"
         />
 
 
@@ -32,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:onClick="startbutton"
-        android:background="@drawable/help_btn"
+        android:background="@drawable/movie_btn"
         android:layout_centerHorizontal="true"
         />
 
