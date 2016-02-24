@@ -123,6 +123,7 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
 
         headerView = inflater.inflate(R.layout.ls_equip_fragment_header_new, null);
         listView.addHeaderView(headerView);
+        listView.setAdapter(null);
 
 //        ViewGroup morePanel = (ViewGroup) headerView.findViewById(R.id.morePanel);
 //        addCategoryListenter(morePanel);

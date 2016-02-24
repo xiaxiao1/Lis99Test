@@ -170,6 +170,8 @@ public class LSActiveLineFragment extends LSFragment implements
 
         redDotUtil.setRedText(tvMassage);
 
+        list.setAdapter(null);
+
         return v;
 
     }

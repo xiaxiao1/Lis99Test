@@ -136,6 +136,8 @@ public class FragmentChoicenessList extends Fragment implements
 
         list.addHeaderView(head);
 
+        list.setAdapter(null);
+
         return v;
     }
 
