@@ -150,7 +150,13 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
             ImageLoader.getInstance().displayImage(headicon, header, options);
             nameView.setText(DataManager.getInstance().getUser().getNickname());
             getUserInfoTask();
-        } else {
+            //只有登陆后， 再获取红点。
+            getNoticeDot();
+        }
+            else
+        {
+//            关闭Loading
+            postMessage(ActivityPattern1.DISMISS_PROGRESS);
             header.setImageResource(R.drawable.ls_nologin_header_icon);
             vipView.setVisibility(View.GONE);
             nameView.setText("登录");
@@ -175,8 +181,8 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
             likeStatus = false;
 
             showOrHideViews();
+
         }
-        getNoticeDot();
     }
 
     @Override

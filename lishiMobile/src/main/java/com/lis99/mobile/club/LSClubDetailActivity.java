@@ -184,7 +184,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 
 		setTitleBarAlpha(0f);
-		setRightView(R.drawable.club_join);
+//		setRightView(R.drawable.club_join);
 		setLeftView(R.drawable.ls_club_back_icon_bg);
 		titleRightImage.setOnClickListener(this);
 
@@ -438,9 +438,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		locView.setText(clubHead.cityname);
 
 		if (clubHead.is_jion.equals("-1")) {
-			setRightView(R.drawable.club_join);
+//			setRightView(R.drawable.club_join);
 		} else{
-			setRightView(R.drawable.club_joined);
+//			setRightView(R.drawable.club_joined);
 		}
 		labelView.setText(clubHead.catename);
 
@@ -640,26 +640,27 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //			startActivity(intent);
 			startActivityForResult(intent, 998);
 			return;
-		} else if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
-			if (TextUtils.isEmpty(clubHead.is_jion)) {
-				return;
-			}
-			String userID = DataManager.getInstance().getUser().getUser_id();
-			if (TextUtils.isEmpty(userID)) {
-				Intent intent = new Intent(this, LSLoginActivity.class);
-				startActivity(intent);
-				return;
-			}
-
-			if ("-1".equals(clubHead.is_jion)) {
-				joinClub(userID);
-			} else if ("4".equals(clubHead.is_jion)){
-				quitClub(userID);
-			} else {
-				postMessage(POPUP_TOAST, "您是俱乐部管理员，不能退出俱乐部");
-			}
-			return;
 		}
+//		else if (view.getId() == R.id.addButton || view.getId() == R.id.titleRightImage ) {
+//			if (TextUtils.isEmpty(clubHead.is_jion)) {
+//				return;
+//			}
+//			String userID = DataManager.getInstance().getUser().getUser_id();
+//			if (TextUtils.isEmpty(userID)) {
+//				Intent intent = new Intent(this, LSLoginActivity.class);
+//				startActivity(intent);
+//				return;
+//			}
+//
+//			if ("-1".equals(clubHead.is_jion)) {
+//				joinClub(userID);
+//			} else if ("4".equals(clubHead.is_jion)){
+//				quitClub(userID);
+//			} else {
+//				postMessage(POPUP_TOAST, "您是俱乐部管理员，不能退出俱乐部");
+//			}
+//			return;
+//		}
 		super.onClick(view);
 	}
 
@@ -770,22 +771,22 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		{
 			if ( isBg )
 			{
-				setRightView(R.drawable.club_join);
+//				setRightView(R.drawable.club_join);
 			}
 			else
 			{
-				setRightView(R.drawable.join_null);
+//				setRightView(R.drawable.join_null);
 			}
 		}
 		else
 		{
 			if ( isBg )
 			{
-				setRightView(R.drawable.club_joined);
+//				setRightView(R.drawable.club_joined);
 			}
 			else
 			{
-				setRightView(R.drawable.joined_null);
+//				setRightView(R.drawable.joined_null);
 			}
 		}
 	}
@@ -912,13 +913,13 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				{
 					clubHead.is_jion = "-1";
 				}
-				setRightView(R.drawable.club_join);
+//				setRightView(R.drawable.club_join);
 			} else{
 				if ( clubHead != null )
 				{
 					clubHead.is_jion = "4";
 				}
-				setRightView(R.drawable.club_joined);
+//				setRightView(R.drawable.club_joined);
 			}
 		}
 		//删帖、置顶， 请求刷新, 发帖

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -23,7 +22,6 @@ import com.lis99.mobile.club.model.LSClubTag;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
-import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -149,15 +147,15 @@ public class LSClubBriefActivity extends LSBaseActivity {
 	@Override
 	public boolean handleMessage(Message msg) {
 		if (msg.what == SHOW_UI) {
-			//显示加入俱乐部
-			if ( club.getIs_jion() == -1 )
-			{
-				setRightView("加入");
-			}
-			else
-			{
-				setRightView("已加入");
-			}
+//			//显示加入俱乐部
+//			if ( club.getIs_jion() == -1 )
+//			{
+//				setRightView("加入");
+//			}
+//			else
+//			{
+//				setRightView("已加入");
+//			}
 
 			if ( "1".equals(club.getIs_lishi()))
 			{
@@ -225,16 +223,16 @@ public class LSClubBriefActivity extends LSBaseActivity {
 
 			return true;
 		}
-		else if (msg.what == JOINCLUB )
-		{
-			setRightView("已加入");
-			setresult(true);
-		}
-		else if ( msg.what == QUITCLUB )
-		{
-			setRightView("加入");
-			setresult(false);
-		}
+//		else if (msg.what == JOINCLUB )
+//		{
+//			setRightView("已加入");
+//			setresult(true);
+//		}
+//		else if ( msg.what == QUITCLUB )
+//		{
+//			setRightView("加入");
+//			setresult(false);
+//		}
 		return super.handleMessage(msg);
 	}
 	
@@ -266,28 +264,28 @@ public class LSClubBriefActivity extends LSBaseActivity {
 
 	}
 	
-	@Override
-	protected void rightAction() {
-		// TODO Auto-generated method stub
-		super.rightAction();
-		if (club == null) {
-			return;
-		}
-		String userID = DataManager.getInstance().getUser().getUser_id();
-		if (TextUtils.isEmpty(userID)) {
-			Intent intent = new Intent(this, LSLoginActivity.class);
-			startActivity(intent);
-			return;
-		}
-		
-		if (club.getIs_jion() == -1) {
-			joinClub();
-		} else if (club.getIs_jion() == 4){
-			quitClub();
-		} else {
-			postMessage(POPUP_TOAST, "您是俱乐部管理员，不能退出俱乐部");
-		}
-	}
+//	@Override
+//	protected void rightAction() {
+//		// TODO Auto-generated method stub
+//		super.rightAction();
+//		if (club == null) {
+//			return;
+//		}
+//		String userID = DataManager.getInstance().getUser().getUser_id();
+//		if (TextUtils.isEmpty(userID)) {
+//			Intent intent = new Intent(this, LSLoginActivity.class);
+//			startActivity(intent);
+//			return;
+//		}
+//
+//		if (club.getIs_jion() == -1) {
+//			joinClub();
+//		} else if (club.getIs_jion() == 4){
+//			quitClub();
+//		} else {
+//			postMessage(POPUP_TOAST, "您是俱乐部管理员，不能退出俱乐部");
+//		}
+//	}
 	
 	private void quitClub ()
 	{

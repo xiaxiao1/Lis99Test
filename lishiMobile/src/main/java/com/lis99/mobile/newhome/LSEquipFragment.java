@@ -22,8 +22,10 @@ import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LsEquiFilterActivity;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.RedDotUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,6 +76,10 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
 
     }
 
+    private View titleLeft;
+    private TextView tvMassage;
+    RedDotUtil redDotUtil = RedDotUtil.getInstance();
+
     public LSEquipFragment() {
         // Required empty public constructor
     }
@@ -120,6 +126,14 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
 
         listView = (ListView) findViewById(R.id.listView);
 
+        tvMassage = (TextView)body.findViewById(R.id.tv_massage);
+        titleLeft = body.findViewById(R.id.titleLeft);
+
+        titleLeft.setOnClickListener(this);
+
+        tvMassage.setText("");
+        tvMassage.setVisibility(View.GONE);
+
 
         headerView = inflater.inflate(R.layout.ls_equip_fragment_header_new, null);
         listView.addHeaderView(headerView);
@@ -158,6 +172,8 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
 
             }
         });
+
+        redDotUtil.setRedText(tvMassage);
 
         getEquipContents();
     }
@@ -267,6 +283,8 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
     @Override
     public boolean handleMessage(Message msg)
     {
+        redDotUtil.getRedDot();
+
         if (msg.what == SHOW_CONTENT_LIST)
         {
             adapter = new LSEquipAdapter(getActivity(), loadedContents);
@@ -290,7 +308,13 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         Intent intent = null;
-        switch (v.getId()) {
+        switch (v.getId())
+        {
+            case R.id.titleLeft:
+//                RedDotUtil.getInstance().InVisibleDot();
+                startActivity(new Intent(getActivity(), SysMassageActivity.class));
+
+                break;
             case R.id.welfarePanel:
             {
 //                intent = new Intent(getActivity(), ClubSpecialListActivity.class);

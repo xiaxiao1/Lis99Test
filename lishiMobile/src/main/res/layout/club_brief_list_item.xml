@@ -4,21 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
               android:orientation="horizontal"
+              android:gravity="center_vertical"
     >
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_weight="1"
+
         >
 
         <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_centerVertical="true"
             android:id="@+id/managerImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:scaleType="fitXY"
             android:src="@drawable/ls_nologin_header_icon"
             app:corner_radius="@dimen/user_header_corner_radius"
@@ -51,14 +52,15 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_weight="1"
         >
 
         <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_centerVertical="true"
             android:id="@+id/managerImageView1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:scaleType="fitXY"
             android:src="@drawable/ls_nologin_header_icon"
             app:corner_radius="@dimen/user_header_corner_radius"

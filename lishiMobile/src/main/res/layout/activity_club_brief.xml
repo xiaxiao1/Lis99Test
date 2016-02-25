@@ -55,7 +55,7 @@
                     app:border_color="#e8e8e8"
         			app:border_width="1px" 
         			android:layout_centerInParent="true"
-                    android:padding="3dp"
+                    android:padding="5dp"
         			/>
 
                 <TextView
@@ -82,7 +82,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:gravity="center_vertical"
                     android:paddingLeft="13dp" >
 
@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="所在地区"
-                        android:textColor="@color/text_color_blue" />
+                        android:textColor="@color/color_nine" />
 
 
                         <TextView
@@ -114,8 +114,8 @@
                     />
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
                         android:paddingLeft="13dp"
                         android:paddingRight="13dp"
                         >
@@ -126,7 +126,7 @@
                             android:layout_height="wrap_content"
                             android:singleLine="true"
                             android:text="类型"
-                            android:textColor="@color/text_color_blue"
+                            android:textColor="@color/color_nine"
                             android:id="@+id/tv_style"
                             />
 
@@ -156,8 +156,8 @@
                     />
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
                     android:paddingLeft="13dp"
                     android:paddingRight="13dp"
                     >
@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="创立时间"
-                        android:textColor="@color/text_color_blue"
+                        android:textColor="@color/color_nine"
                         android:id="@+id/tv_date"
                         />
 
@@ -196,7 +196,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:paddingLeft="13dp"
                     >
 
@@ -206,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="创始人"
-                        android:textColor="@color/text_color_blue"
+                        android:textColor="@color/color_nine"
                         android:id="@+id/tv_create"
                          />
 
@@ -216,8 +216,8 @@
                         android:layout_marginLeft="13dp"
                         android:layout_centerVertical="true"
                         android:id="@+id/founderImageView"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/ls_nologin_header_icon"
                         app:corner_radius="@dimen/user_header_corner_radius"
@@ -260,16 +260,16 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
                     android:paddingLeft="13dp"
-                    android:paddingTop="10dp" >
+                     >
 
                     <TextView
+                        android:layout_marginTop="9dp"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="领队"
-                        android:textColor="@color/text_color_blue" 
+                        android:textColor="@color/color_nine"
                         android:id="@+id/tv_leader"
                         />
 
@@ -305,22 +305,23 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="13dp"
                     android:paddingRight="13dp"
-                    android:paddingTop="10dp" >
+                    android:paddingTop="10dp"
+                    android:orientation="vertical"
+                    >
 
                     <TextView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        android:text="简介"
-                        android:textColor="@color/text_color_blue"
+                        android:text="版规"
+                        android:textColor="@color/color_nine"
                          />
 
                     <TextView
+                        android:layout_marginTop="10dp"
                         android:id="@+id/descView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="13dp"
                         android:text="@string/temp_string_long"
                         android:lineSpacingExtra="5dip"
                         android:textColor="#666"

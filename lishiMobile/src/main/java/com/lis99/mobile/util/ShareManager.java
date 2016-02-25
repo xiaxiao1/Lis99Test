@@ -228,6 +228,7 @@ public class ShareManager
 						Bitmap bitmap = ImageLoader.getInstance().loadImageSync(clubhead.getImageUrl());
 						LsWeiboSina.getInstance(LSBaseActivity.activity).share(
 								shareSinaText, bitmap, listener);
+						Common.toast("正在分享中...");
 
 						break;
 					case R.id.iv_qzone:
@@ -386,8 +387,16 @@ public class ShareManager
 
 		String shareWx1Text = share.getShareUrl();
 
+
+
 		String title1 = share.getTitle();
 		String desc1 = share.getShareTxt();
+
+		if ( TextUtils.isEmpty(desc1) )
+		{
+			desc1 = this.shareTextMain;
+		}
+
 		LsWeiboWeixin.getInstance(LSBaseActivity.activity)
 				.share1(shareWx1Text, title1, desc1, share.getImageUrl(),
 						SendMessageToWX.Req.WXSceneSession);
@@ -401,6 +410,14 @@ public class ShareManager
 
 		String title2 = share.getTitle();
 		String desc2 = share.getShareTxt();
+
+		if ( TextUtils.isEmpty(desc2) )
+		{
+			desc2 = this.shareTextMain;
+		}
+
+//		title2 = "地地人人地人夫地人夫地会人地地人人地人夫地人夫地会人地地人人地人夫地人夫地会人地地人人地人夫地人夫地会人地地人人地人夫地人夫地会人地地人人地人夫地人夫地会人地地人人地人夫地人夫地会人";
+
 		LsWeiboWeixin.getInstance(LSBaseActivity.activity)
 				.share1(shareWx2Text, title2, desc2, share.getImageUrl(),
 						SendMessageToWX.Req.WXSceneTimeline);
