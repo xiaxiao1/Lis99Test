@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ls_equip_content_item_bg"
-        android:paddingRight="5dp"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
 
@@ -103,8 +102,7 @@
             android:background="#eee"
             android:layout_below="@+id/imageView"
             android:layout_toRightOf="@+id/imageView"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
             />
 
 

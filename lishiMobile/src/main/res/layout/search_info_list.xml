@@ -47,7 +47,7 @@
             android:layout_marginTop="8dip"
             android:layout_toLeftOf="@id/btn_type"
             android:layout_toRightOf="@id/titleLeftImage"
-            android:background="@drawable/search_white_bar"
+            android:background="@drawable/search_bar"
             android:drawableLeft="@drawable/search_icon_more"
             android:drawablePadding="10dip"
             android:hint="@string/search_hint"

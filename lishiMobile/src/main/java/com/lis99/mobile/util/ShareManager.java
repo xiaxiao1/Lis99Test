@@ -183,7 +183,7 @@ public class ShareManager
 				}
 				else
 				{
-					iv_manager_apply.setVisibility(View.GONE);
+					iv_manager_apply.setVisibility(View.INVISIBLE);
 				}
 
 			}

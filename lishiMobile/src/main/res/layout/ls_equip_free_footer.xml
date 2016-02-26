@@ -9,7 +9,7 @@
         android:id="@+id/actionView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white">
+        android:background="@drawable/ls_equip_section_footer_bg">
 
         <Button
             android:layout_centerInParent="true"
@@ -23,6 +23,7 @@
             android:textColor="#2bca63"
             android:drawableRight="@drawable/ls_equip_even_dot"
             android:drawablePadding="10dp"
+            android:textSize="12sp"
             />
 
 

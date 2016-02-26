@@ -39,7 +39,8 @@ public class HelpMovieActivity extends Activity implements View.OnClickListener 
         btn.setOnClickListener(this);
 
         ivName.setVisibility(View.GONE);
-        btn.setVisibility(View.GONE);
+//        btn.setVisibility(View.GONE);
+        btn.setVisibility(View.VISIBLE);
 
         String uri = "android.resource://" + getPackageName() + "/" + R.raw.lis99_movie;
 
@@ -58,7 +59,7 @@ public class HelpMovieActivity extends Activity implements View.OnClickListener 
                 if ( ivName.getVisibility() == View.GONE )
                 {
                     ivName.setVisibility(View.VISIBLE);
-                    btn.setVisibility(View.VISIBLE);
+//                    btn.setVisibility(View.VISIBLE);
                 }
 //                Log.w("MYUTIL", "1111111111111111111");
 //                toast("play");

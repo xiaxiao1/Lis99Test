@@ -25,7 +25,6 @@ import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.ta.utdid2.android.utils.StringUtils;
 
 import java.util.ArrayList;
 /***
@@ -410,8 +409,6 @@ public class LSClubDitalAdapter extends BaseAdapter {
 
 
 			holder.titleTextView = (TextView)view.findViewById(R.id.titleTextView);
-			holder.labelTextView = (TextView)view.findViewById(R.id.labelTextView);
-			holder.locTextView = (TextView)view.findViewById(R.id.locTextView);
 			holder.timeTextView = (TextView)view.findViewById(R.id.timeTextView);
 			holder.topGapView = view.findViewById(R.id.topGapView);
 
@@ -426,10 +423,10 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		if ( item == null ) return view;
 
 
-		if (ui_level == 1) {
-			holder.topGapView.setVisibility(View.GONE);
-		} else {
+		if (ui_level == 3) {
 			holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+		} else {
+			holder.topGapView.setVisibility(View.GONE);
 		}
 
 
@@ -438,26 +435,6 @@ public class LSClubDitalAdapter extends BaseAdapter {
 
 
 		holder.titleTextView.setText(item.title);
-
-		if (!StringUtils.isEmpty(item.catename))
-		{
-			holder.labelTextView.setVisibility(View.VISIBLE);
-			holder.labelTextView.setText(item.catename);
-		}
-		else
-		{
-			holder.labelTextView.setVisibility(View.GONE);
-		}
-
-		if (StringUtils.isEmpty(item.setaddress))
-		{
-			holder.locTextView.setVisibility(View.GONE);
-		}
-		else
-		{
-			holder.locTextView.setText(item.setaddress);
-			holder.locTextView.setVisibility(View.VISIBLE);
-		}
 
 		holder.timeTextView.setText(item.starttime);
 
@@ -498,7 +475,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 	{
 
 		ImageView imageView, iv_load;
-		TextView titleTextView, labelTextView, locTextView, timeTextView;
+		TextView titleTextView, timeTextView;
 		View topGapView;
 	}
 

@@ -57,6 +57,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefreshListener, OnFooterRefreshListener{
@@ -89,10 +90,13 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	int type = -1;
 	int offset = 0;
 
-    View cicleView;
-    View joinButton;
-    View topGapView;
-    View titlePanel;
+	View cicleView;
+	View joinButton;
+	View topGapView;
+	View titlePanel;
+
+	TextView leaderTitleView;
+	View rightArrow;
 
 
 
@@ -112,9 +116,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 	HorizontalScrollView leaderPanel;
 	HorizontalScrollView tagPanel;
-    View leaderAllPanel;
-    View sep2;
-    View sep3;
+	View leaderAllPanel;
+	View sep2;
+	View sep3;
 
 	//=============2.3版本=============
 	private Map<Integer,Integer> clubIcons;
@@ -155,15 +159,15 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		buildOptions();
 
 
-        clubIcons = new HashMap<Integer, Integer>();
-        clubIcons.put(48, R.drawable.club_new_bg_48);
-        clubIcons.put(284, R.drawable.club_new_bg_284);
-        clubIcons.put(285, R.drawable.club_new_bg_285);
-        clubIcons.put(337, R.drawable.club_new_bg_337);
-        clubIcons.put(339, R.drawable.club_new_bg_339);
-        clubIcons.put(340, R.drawable.club_new_bg_340);
-        clubIcons.put(343, R.drawable.club_new_bg_343);
-        clubIcons.put(349, R.drawable.club_new_bg_349);
+		clubIcons = new HashMap<Integer, Integer>();
+		clubIcons.put(48, R.drawable.club_new_bg_48);
+		clubIcons.put(284, R.drawable.club_new_bg_284);
+		clubIcons.put(285, R.drawable.club_new_bg_285);
+		clubIcons.put(342, R.drawable.club_new_bg_337);
+		clubIcons.put(339, R.drawable.club_new_bg_339);
+		clubIcons.put(340, R.drawable.club_new_bg_340);
+		clubIcons.put(343, R.drawable.club_new_bg_343);
+		clubIcons.put(349, R.drawable.club_new_bg_349);
 
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(CLUB_TOPIC_CHANGE);
@@ -180,12 +184,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	@Override
 	protected void initViews() {
 		super.initViews();
-
-
-
 		buttonPanel = findViewById(R.id.buttonPanel);
-
-
 		//setRightView(R.drawable.club_join);
 		//titleRightImage.setOnClickListener(this);
 
@@ -200,15 +199,18 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		headerView = headViewMain;
 
 		tagPanel = (HorizontalScrollView) headerView.findViewById(R.id.tagPanel);
-        leaderPanel = (HorizontalScrollView) headerView.findViewById(R.id.leaderPanel);
-        leaderAllPanel = headerView.findViewById(R.id.leaderAllPanel);
-        sep2 = headerView.findViewById(R.id.sepView2);
-        sep3 = headerView.findViewById(R.id.sepView3);
-        cicleView = headerView.findViewById(R.id.offical_cicle);
-        joinButton = headerView.findViewById(R.id.btn_join);
-        infoPanel = headerView.findViewById(R.id.infoPanel);
-        topGapView = headerView.findViewById(R.id.topGapView);
-        titlePanel = headerView.findViewById(R.id.titlePanel);
+		leaderPanel = (HorizontalScrollView) headerView.findViewById(R.id.leaderPanel);
+		leaderAllPanel = headerView.findViewById(R.id.leaderAllPanel);
+		sep2 = headerView.findViewById(R.id.sepView2);
+		sep3 = headerView.findViewById(R.id.sepView3);
+		cicleView = headerView.findViewById(R.id.offical_cicle);
+		joinButton = headerView.findViewById(R.id.btn_join);
+		infoPanel = headerView.findViewById(R.id.infoPanel);
+		topGapView = headerView.findViewById(R.id.topGapView);
+		titlePanel = headerView.findViewById(R.id.titlePanel);
+
+		leaderTitleView = (TextView) headerView.findViewById(R.id.leaderTitleView);
+		rightArrow = headerView.findViewById(R.id.rightArrow);
 
 		ViewTreeObserver vto1 = headerView.getViewTreeObserver();
 		vto1.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -236,7 +238,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+									int position, long id) {
 				Topiclist item = null;
 				item = (Topiclist) adapter.getItem(position - 1);
 				if ( item == null ) return;
@@ -372,7 +374,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	}
 
 	private void loadClubInfo() {
-        MyHttp();
+		MyHttp();
 	}
 
 
@@ -414,49 +416,87 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 	private void initClubHead ()
 	{
-        if (clubHead.ui_levels == 3) {
-            int clubID = Common.getClubId(clubHead.club_id);
-            int resID = R.drawable.club_new_bg_default;
-            if (clubIcons.containsKey(clubID)) {
-                resID = clubIcons.get(clubID);
-            }
+		if (clubHead.ui_levels == 3) {
+			int clubID = Integer.parseInt(clubHead.club_id);
+			int resID = R.drawable.club_new_bg_default;
+			if (clubIcons.containsKey(clubID)) {
+				resID = clubIcons.get(clubID);
+			}
 			setRightView(R.drawable.new_topic_icon);
 
-            infoPanel.setBackgroundResource(resID);
-        } else {
-            topGapView.setVisibility(View.VISIBLE);
-            topPanel.setVisibility(View.GONE);
-            titlePanel.setVisibility(View.VISIBLE);
-            sep3.setVisibility(View.GONE);
-            cicleView.setVisibility(View.INVISIBLE);
-            joinButton.setVisibility(View.VISIBLE);
-            nameView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
-            descView.setTextColor(Color.rgb(0x99, 0x99, 0x99));
-            memberNumView.setVisibility(View.GONE);
-            setTitleRight(true);
-            infoPanel.setBackgroundColor(Color.WHITE);
-        }
+			infoPanel.setBackgroundResource(resID);
+
+			ClubDetailHead.Leader leader = new ClubDetailHead.Leader();
+			leader.user_id = clubHead.inituserid;
+			leader.nickname = clubHead.initnickname;
+			leader.headicon = clubHead.initheadicon;
+			if (clubHead.moderator_list == null) {
+				ArrayList<ClubDetailHead.Leader> leaders = new ArrayList<ClubDetailHead.Leader>();
+				leaders.add(leader);
+				clubHead.moderator_list = leaders;
+			} else {
+				clubHead.moderator_list.add(0, leader);
+			}
+
+			if (clubHead.moderator_list == null || clubHead.moderator_list.size() == 0) {
+				leaderAllPanel.setVisibility(View.GONE);
+				sep2.setVisibility(View.GONE);
+			} else {
+				leaderAllPanel.setVisibility(View.VISIBLE);
+				sep2.setVisibility(View.VISIBLE);
+				createLeaderHeaders(clubHead.moderator_list);
+			}
+
+		} else {
+			topGapView.setVisibility(View.VISIBLE);
+			topPanel.setVisibility(View.GONE);
+			titlePanel.setVisibility(View.VISIBLE);
+			sep3.setVisibility(View.GONE);
+			cicleView.setVisibility(View.INVISIBLE);
+			joinButton.setVisibility(View.VISIBLE);
+			rightArrow.setVisibility(View.GONE);
+			nameView.setTextColor(Color.rgb(0x66, 0x66, 0x66));
+			descView.setTextColor(Color.rgb(0x99, 0x99, 0x99));
+			memberNumView.setVisibility(View.GONE);
+			setTitleRight(true);
+			infoPanel.setBackgroundColor(Color.WHITE);
+			leaderTitleView.setText("领队");
+
+			ClubDetailHead.Leader leader = new ClubDetailHead.Leader();
+			leader.user_id = clubHead.inituserid;
+			leader.nickname = clubHead.initnickname;
+			leader.headicon = clubHead.initheadicon;
+			if (clubHead.adminlist == null) {
+				ArrayList<ClubDetailHead.Leader> leaders = new ArrayList<ClubDetailHead.Leader>();
+				leaders.add(leader);
+				clubHead.adminlist = leaders;
+			} else {
+				clubHead.adminlist.add(0, leader);
+			}
+
+			if (clubHead.adminlist == null || clubHead.adminlist.size() == 0) {
+				leaderAllPanel.setVisibility(View.GONE);
+				sep2.setVisibility(View.GONE);
+			} else {
+				leaderAllPanel.setVisibility(View.VISIBLE);
+				sep2.setVisibility(View.VISIBLE);
+				createLeaderHeaders(clubHead.adminlist);
+			}
+		}
 
 		nameView.setText(clubHead.title);
-		memberNumView.setText(""+clubHead.members);
-        descView.setText(clubHead.descript);
+		memberNumView.setText("" + clubHead.members);
+		descView.setText(clubHead.descript);
 
 
 
 
 		if ( !TextUtils.isEmpty(clubHead.images))
-		ImageLoader.getInstance().displayImage(clubHead.images,
-				headerImageView, options);
+			ImageLoader.getInstance().displayImage(clubHead.images,
+					headerImageView, options);
 
 
-		if (clubHead.moderator_list == null || clubHead.moderator_list.size() == 0) {
-			leaderAllPanel.setVisibility(View.GONE);
-			sep2.setVisibility(View.GONE);
-		} else {
-			leaderAllPanel.setVisibility(View.VISIBLE);
-			sep2.setVisibility(View.VISIBLE);
-			createLeaderHeaders();
-		}
+
 
 		if (clubHead.tags == null || clubHead.tags.size() == 0) {
 			tagPanel.setVisibility(View.GONE);
@@ -476,22 +516,22 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		super.handleTask(initiator, task, operation);
 		String result;
 		switch (initiator) {
-		case IEvent.IO:
-			if (task.getData() instanceof byte[]) {
-				result = new String((byte[]) task.getData());
-				if (((String) task.getParameter()).equals(C.CLUB_GET_INFO)) {
+			case IEvent.IO:
+				if (task.getData() instanceof byte[]) {
+					result = new String((byte[]) task.getData());
+					if (((String) task.getParameter()).equals(C.CLUB_GET_INFO)) {
 //					parserClubInfo(result);
-				} else if (((String) task.getParameter()).equals(C.CLUB_JOIN)) {
-					parserJoinClubInfo(result);
-				} else if (((String) task.getParameter()).equals(C.CLUB_QUIT)) {
-					parserQuitClubInfo(result);
-				} else if (((String) task.getParameter()).equals("moreTopic")) {
+					} else if (((String) task.getParameter()).equals(C.CLUB_JOIN)) {
+						parserJoinClubInfo(result);
+					} else if (((String) task.getParameter()).equals(C.CLUB_QUIT)) {
+						parserQuitClubInfo(result);
+					} else if (((String) task.getParameter()).equals("moreTopic")) {
 //					parserMoreClubInfo(result);
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 		postMessage(DISMISS_PROGRESS);
 	}
@@ -736,12 +776,12 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		}
 		else
 		{
-            joinButton.setEnabled(false);
+			joinButton.setEnabled(false);
 		}
 	}
 
 
-//=========
+	//=========
 	//获取所有列表
 	public void getAllList ()
 	{
@@ -749,7 +789,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		if ( page.pageNo >= page.pageSize )
 		{
 			Common.toast("没有更多帖子");
-			 return;
+			return;
 		}
 
 		String url = C.CLUB_DETAIL_LIST + clubID + "/" + "0" + "?page=" + page.getPageNo();
@@ -795,7 +835,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //		adapterActive = null;
 	}
 
-//	获取线路活动列表
+	//	获取线路活动列表
 	public void getActiveList ()
 	{
 		if ( page.pageNo >= page.pageSize )
@@ -805,26 +845,26 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		}
 		MyRequestManager.getInstance().requestGet(C.CLUB_DETAIL_LIST + clubID + "/" + "1" + "?page=" + page.getPageNo(), clubAll, new CallBack() {
 
-            @Override
-            public void handler(MyTask mTask) {
-                // TODO Auto-generated method stub
-                page.pageNo += 1;
-                clubAll = (ClubDetailList) mTask.getResultModel();
-                if (clubAll.topiclist == null) {
-                    return;
-                }
-                if (adapter == null) {
-                    page.pageSize = clubAll.totpage;
-                    adapter = new LSClubDitalAdapter(activity, clubAll.topiclist, true);
-                    if (clubHead != null) {
-                        adapter.ui_level = clubHead.ui_levels;
-                    }
-                    listView.setAdapter(adapter);
-                    return;
-                }
-                adapter.addList(clubAll.topiclist);
-            }
-        });
+			@Override
+			public void handler(MyTask mTask) {
+				// TODO Auto-generated method stub
+				page.pageNo += 1;
+				clubAll = (ClubDetailList) mTask.getResultModel();
+				if (clubAll.topiclist == null) {
+					return;
+				}
+				if (adapter == null) {
+					page.pageSize = clubAll.totpage;
+					adapter = new LSClubDitalAdapter(activity, clubAll.topiclist, true);
+					if (clubHead != null) {
+						adapter.ui_level = clubHead.ui_levels;
+					}
+					listView.setAdapter(adapter);
+					return;
+				}
+				adapter.addList(clubAll.topiclist);
+			}
+		});
 	}
 
 	@Override
@@ -886,30 +926,30 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	}
 
 
-    private void  createLeaderHeaders() {
+	private void  createLeaderHeaders(List<ClubDetailHead.Leader> leaders) {
 
-        LinearLayout ll = new LinearLayout(this);
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        ll.setLayoutParams(lp);
+		LinearLayout ll = new LinearLayout(this);
+		ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		ll.setLayoutParams(lp);
 
-        ll.setOrientation(LinearLayout.HORIZONTAL);
-        ll.setGravity(Gravity.CENTER_VERTICAL);
+		ll.setOrientation(LinearLayout.HORIZONTAL);
+		ll.setGravity(Gravity.CENTER_VERTICAL);
 
 
-        int margin = dip2px(this, 8);
-        int imageSize = dip2px(this, 27);
+		int margin = dip2px(this, 8);
+		int imageSize = dip2px(this, 27);
 		int round = dip2px(this, 4);
 
-		int size = clubHead.moderator_list.size();
+		int size = leaders.size();
 		if (size > 8) {
 			size = 9;
 		}
-        for (int i = 0; i < size; ++i) {
-            RoundedImageView ri = new RoundedImageView(this);
+		for (int i = 0; i < size; ++i) {
+			RoundedImageView ri = new RoundedImageView(this);
 			ri.setCornerRadius(round);
 			ri.setScaleType(ImageView.ScaleType.FIT_XY);
-			if (size < 8) {
-				final ClubDetailHead.Leader leader = clubHead.moderator_list.get(i);
+			if (i < 8) {
+				final ClubDetailHead.Leader leader = leaders.get(i);
 				ImageLoader.getInstance().displayImage(leader.headicon, ri, options);
 				ri.setOnClickListener(new View.OnClickListener() {
 					@Override
@@ -930,21 +970,21 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 					}
 				});
 			}
-            LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(imageSize, imageSize);
-            if (i != 0) {
-                lllp.setMargins(margin, 0, 0, 0);
-            }
-            ri.setLayoutParams(lllp);
-            ll.addView(ri);
-        }
+			LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(imageSize, imageSize);
+			if (i != 0) {
+				lllp.setMargins(margin, 0, 0, 0);
+			}
+			ri.setLayoutParams(lllp);
+			ll.addView(ri);
+		}
 
-        leaderPanel.removeAllViews();
-        leaderPanel.addView(ll);
-    }
+		leaderPanel.removeAllViews();
+		leaderPanel.addView(ll);
+	}
 
 	private void  createTags() {
 
-        tagPanel.setVisibility(View.VISIBLE);
+		tagPanel.setVisibility(View.VISIBLE);
 
 		LinearLayout ll = new LinearLayout(this);
 		ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -955,17 +995,18 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 
 		int margin = dip2px(this, 12);
+		int height = dip2px(this, 20);
 
 		for (int i = 0; i < clubHead.tags.size(); ++i) {
-            final ClubDetailHead.TagItem item = clubHead.tags.get(i);
+			final ClubDetailHead.TagItem item = clubHead.tags.get(i);
 			TextView tv = new TextView(this);
-			tv.setBackgroundResource(R.drawable.club_header_tag_bg);
+			tv.setBackgroundResource(R.drawable.club_top_header_tag_bg);
 			tv.setTextColor(Color.rgb(0xcd, 0xad, 0x76));
 			tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
 			if (item.name.length() > 7) {
-				tv.setText("   "+item.name.substring(0,7) + "..." + "   ");
+				tv.setText("    "+item.name.substring(0,7) + "..." + "    ");
 			} else {
-				tv.setText("   "+item.name+"   ");
+				tv.setText("    "+item.name+"    ");
 			}
 
 			tv.setOnClickListener(new View.OnClickListener() {
@@ -976,7 +1017,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 					startActivity(intent);
 				}
 			});
-			LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, height);
 			if (i == clubHead.tags.size() - 1) {
 				lllp.setMargins(margin, 0, margin, 0);
 			} else {

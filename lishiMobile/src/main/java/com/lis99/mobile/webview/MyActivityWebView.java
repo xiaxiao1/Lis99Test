@@ -48,6 +48,8 @@ public class MyActivityWebView extends LSBaseActivity
 
 	private ImageView titleRightImage1;
 
+	private String shareTitle;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -319,8 +321,10 @@ public class MyActivityWebView extends LSBaseActivity
 		public void onReceivedTitle(WebView view, String title) {
 			// TODO Auto-generated method stub
 			super.onReceivedTitle(view, title);
+			shareTitle = title;
 		}
-        
+
+
         
         
     }
@@ -426,13 +430,13 @@ public class MyActivityWebView extends LSBaseActivity
 				}
 
 				//如果没有title 默认添加一个， 朋友圈没有title不能分享
-				if ( TextUtils.isEmpty(title) )
+				if ( TextUtils.isEmpty(shareTitle) )
 				{
-					title = "砾石 心户外，新生活";
+					shareTitle = "砾石 心户外，新生活";
 				}
 				ShareModel share = new ShareModel();
 
-				share.title = title;
+				share.title = shareTitle;
 				share.imageUrl = image_url;
 				share.shareUrl = url;
 

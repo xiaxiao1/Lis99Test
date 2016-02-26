@@ -6,23 +6,23 @@
             <solid android:color="#e3dbd0" />
 
             <corners
-                android:bottomLeftRadius="4dp"
-                android:bottomRightRadius="4dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
                 android:topLeftRadius="0dp"
                 android:topRightRadius="0dp" />
         </shape>
     </item>
     <item
         android:bottom="1px"
-        android:left="1px"
-        android:right="1px"
+        android:left="0px"
+        android:right="0px"
         android:top="0px">
         <shape>
             <solid android:color="#fff" />
 
             <corners
-                android:bottomLeftRadius="4dp"
-                android:bottomRightRadius="4dp"
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
                 android:topLeftRadius="0dp"
                 android:topRightRadius="0dp" />
         </shape>

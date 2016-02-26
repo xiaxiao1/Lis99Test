@@ -79,7 +79,7 @@
 
         <Button
             android:id="@+id/btn_join"
-            android:visibility="gone"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -89,13 +89,22 @@
             android:onClick="onClick"
             android:background="@drawable/club_join_button_bg"/>
 
+        <ImageView
+            android:id="@+id/rightArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="17dp"
+            android:src="@drawable/club_header_right_arrow"/>
+
         <TextView
             android:id="@+id/descView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/titleView"
             android:layout_below="@+id/titleView"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:textSize="10sp"
             android:singleLine="true"
             android:layout_toLeftOf="@+id/btn_join"
@@ -122,6 +131,7 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/leaderTitleView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#525252"
