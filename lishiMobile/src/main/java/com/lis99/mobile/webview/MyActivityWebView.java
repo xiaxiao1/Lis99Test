@@ -14,6 +14,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.lis99.mobile.R;
@@ -45,6 +46,8 @@ public class MyActivityWebView extends LSBaseActivity
 
 	private View layout_main;
 
+	private ImageView titleRightImage1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -73,24 +76,24 @@ public class MyActivityWebView extends LSBaseActivity
 	protected void rightAction() {
 		super.rightAction();
 
-		if ( "积分商城".equals(title))
-		{
-			webView.reload();
-			return;
-		}
-
-		//如果没有title 默认添加一个， 朋友圈没有title不能分享
-		if ( TextUtils.isEmpty(title) )
-		{
-			title = "砾石 心户外，新生活";
-		}
-		ShareModel share = new ShareModel();
-
-		share.title = title;
-		share.imageUrl = image_url;
-		share.shareUrl = url;
-
-		pop = ShareManager.getInstance().showPopWindowInShare(share, layout_main, null);
+//		if ( "积分商城".equals(title))
+//		{
+//			webView.reload();
+//			return;
+//		}
+//
+//		//如果没有title 默认添加一个， 朋友圈没有title不能分享
+//		if ( TextUtils.isEmpty(title) )
+//		{
+//			title = "砾石 心户外，新生活";
+//		}
+//		ShareModel share = new ShareModel();
+//
+//		share.title = title;
+//		share.imageUrl = image_url;
+//		share.shareUrl = url;
+//
+//		pop = ShareManager.getInstance().showPopWindowInShare(share, layout_main, null);
 
 	}
 
@@ -109,6 +112,10 @@ public class MyActivityWebView extends LSBaseActivity
 	private void init()
 	{
 
+		titleRightImage1 = (ImageView) findViewById(R.id.titleRightImage1);
+		titleRightImage1.setOnClickListener(this);
+		titleRightImage.setOnClickListener(this);
+
 		if ( "积分商城".equals(title))
 		{
 //			setLeftView(-1);
@@ -118,10 +125,12 @@ public class MyActivityWebView extends LSBaseActivity
 			titleRightImage.setLayoutParams(lp);
 //			setRightView(R.drawable.mywebview_delete);
 			setRightView(R.drawable.club_main_refresh);
+			titleRightImage1.setVisibility(View.GONE);
 		}
 		else
 		{
 			setRightView(R.drawable.share);
+			titleRightImage1.setVisibility(View.VISIBLE);
 		}
 
 		layout_main = findViewById(R.id.layout_main);
@@ -401,4 +410,34 @@ public class MyActivityWebView extends LSBaseActivity
 		return false;
 	}
 
+	@Override
+	public void onClick(View arg0) {
+		super.onClick(arg0);
+		switch ( arg0.getId() )
+		{
+			case R.id.titleRightImage1:
+				webView.reload();
+				break;
+			case R.id.titleRightImage:
+				if ( "积分商城".equals(title))
+				{
+					webView.reload();
+					return;
+				}
+
+				//如果没有title 默认添加一个， 朋友圈没有title不能分享
+				if ( TextUtils.isEmpty(title) )
+				{
+					title = "砾石 心户外，新生活";
+				}
+				ShareModel share = new ShareModel();
+
+				share.title = title;
+				share.imageUrl = image_url;
+				share.shareUrl = url;
+
+				pop = ShareManager.getInstance().showPopWindowInShare(share, layout_main, null);
+				break;
+		}
+	}
 }

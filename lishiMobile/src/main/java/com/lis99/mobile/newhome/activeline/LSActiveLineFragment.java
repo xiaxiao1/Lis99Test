@@ -279,6 +279,16 @@ public class LSActiveLineFragment extends LSFragment implements
 
                     if ( viewBanner.getVisibility() == View.VISIBLE && model.adlist != null && model.adlist.size() != 0 )
                     {
+                        int num = model.adlist.size() - 1;
+                        for ( int i = num; i >= 0; i-- )
+                        {
+                            ActiveLineNewModel.Adlist item = model.adlist.get(i);
+                            if ( !"1".equals(item.platform))
+                            {
+                                model.adlist.remove(i);
+                                continue;
+                            }
+                        }
                         bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
                         bannerAdapter.addImagePageAdapterListener(LSActiveLineFragment.this);
                         bannerAdapter.setImagePageClickListener(LSActiveLineFragment.this);
