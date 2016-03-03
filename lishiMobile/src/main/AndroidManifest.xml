@@ -1106,9 +1106,6 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
-        <activity android:name="com.lis99.mobile.webview.MyWebViewTianJin"
-                  android:screenOrientation="portrait"
-                  android:theme="@android:style/Theme.Light.NoTitleBar" />
 
         <activity android:name="com.lis99.mobile.webview.ChoicenessRouteWebView"
                   android:screenOrientation="portrait"
@@ -1145,11 +1142,6 @@
 
         <activity android:name=".club.LSImageGralleryActivity" >
         </activity>
-
-        <!-- webview分享-->
-        <activity android:name="com.lis99.mobile.webview.ShareWebView"
-                  android:screenOrientation="portrait"
-                  android:theme="@android:style/Theme.Light.NoTitleBar" />
 
 
         <activity

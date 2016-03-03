@@ -244,6 +244,15 @@ public class LSEquipAdapter extends BaseAdapter {
         if (content.getType() == LSEquipContent.FREE_FOOTER) {
             holder.button.setText("更多免费装备");
 
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(c, ClubSpecialListActivity.class);
+                    intent.putExtra("tagid", 6);
+                    c.startActivity(intent);
+                }
+            });
+
             holder.actionView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -255,6 +264,26 @@ public class LSEquipAdapter extends BaseAdapter {
 
         } else {
             holder.button.setText("更多换购装备");
+
+
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    商城
+                    int id = 0;
+                    String Userid = DataManager.getInstance().getUser().getUser_id();
+                    if (!TextUtils.isEmpty(Userid)) {
+                        id = Integer.parseInt(Userid);
+                    }
+//				商城
+                    Intent intent = new Intent(c, MyActivityWebView.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("URL", "http://m.lis99.com/club/integralshop/goodList/" + id);
+                    bundle.putString("TITLE", "积分商城");
+                    intent.putExtras(bundle);
+                    c.startActivity(intent);
+                }
+            });
 
             holder.actionView.setOnClickListener(new View.OnClickListener() {
                 @Override
