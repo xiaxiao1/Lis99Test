@@ -320,6 +320,13 @@ public class FragmentChoicenessList extends Fragment implements
                 startActivity(intent);
                 break;
             case R.id.allButton:
+
+                if ( Common.isApkInDebug(getActivity()))
+                {
+//                    startActivity(new Intent(getActivity(), MovieActivity.class));
+                    return;
+                }
+
                 intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
                 startActivity(intent);
                 break;
@@ -346,7 +353,8 @@ public class FragmentChoicenessList extends Fragment implements
         if (bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() == 0)
             return;
 
-        ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
+        ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner,
+                ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
 
     }
 

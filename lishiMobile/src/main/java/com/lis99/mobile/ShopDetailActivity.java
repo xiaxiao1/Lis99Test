@@ -522,10 +522,10 @@ public class ShopDetailActivity extends ActivityPattern implements
 			@Override
 			public void onClick(View v) {
 				if (Fav.equals("fav")) {
-					
+
 					finish();
 				} else {
-					
+
 					finish();
 				}
 			}
@@ -631,7 +631,7 @@ public class ShopDetailActivity extends ActivityPattern implements
 												+ arrayList.get(1)
 														.getImage()
 														.toString(), iv_cx1);
-										
+
 									} else {
 										tv_cx1.setText("");
 										tv_dz1.setVisibility(View.INVISIBLE);
@@ -706,7 +706,7 @@ public class ShopDetailActivity extends ActivityPattern implements
 										tv_cx5.setText("");
 										tv_dz5.setVisibility(View.INVISIBLE);
 									}
-									
+
 
 								} else {
 									ll_dzcx.setVisibility(View.GONE);

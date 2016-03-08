@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="411"
-    android:versionName="4.1.1" >
+    android:versionCode="412"
+    android:versionName="4.1.2" >
 
 
 
@@ -1193,6 +1193,10 @@
         <!--首次启动的视频-->
         <activity android:name="com.lis99.mobile.newhome.HelpMovieActivity"
                   android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity android:name=".util.letv.MovieActivity"
+                  android:screenOrientation="landscape"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
     </application>

@@ -85,7 +85,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 	setListener();
 	initData();
 	ControllShake mShaker = new ControllShake(this);
-	
+
 	mShaker.setOnShakeListener(new OnShakeListener() {
 		public void onShake() {
 			// action while shaking
@@ -99,7 +99,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 	}
 	private void initWeibo(Bundle savedInstanceState) {
 		 // 创建微博 SDK 接口实例
-    mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, C.SINA_APP_KEY);	
+    mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, C.SINA_APP_KEY);
     if (savedInstanceState != null) {
         mWeiboShareAPI.handleWeiboResponse(getIntent(), wh);
     }
@@ -118,7 +118,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			 mWeiboShareAPI.handleWeiboResponse(intent, wh);
 				setIntent(intent);
 		        api.handleIntent(intent, this);
-		        
+
 		}
 	@SuppressLint("JavascriptInterface")
 	public void setListener() {
@@ -128,21 +128,21 @@ private String murl="http://m.lis99.com/qiangyouhui";
 		ll_gb=(LinearLayout)findViewById(R.id.ll_gb);
 		title =(TextView)findViewById(R.id.title);
 		tencent = Tencent.createInstance(C.TENCENT_APP_ID, this);
-		WebSettings setting = webView1.getSettings();  
+		WebSettings setting = webView1.getSettings();
 		setting.setJavaScriptEnabled(true);
-		setting.setDefaultTextEncodingName("GBK");//设置字符编码  
+		setting.setDefaultTextEncodingName("GBK");//设置字符编码
 		webView1.addJavascriptInterface(new WebAppInterface(QiangActivity.this), "share");
-				
+
 		webView1.loadUrl("http://m.lis99.com/qiangyouhui");
 		initData();
 	}
 
-	
+
 	public void initData() {
-		
-		
+
+
 		ll_gb.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -151,9 +151,9 @@ private String murl="http://m.lis99.com/qiangyouhui";
 		});
 		sp= new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);//第一个参数为同时播放数据流的最大个数，第二数据流类型，第三为声音质量
         music = sp.load(this, R.raw.shake_sound, 1); //把你的声音素材放到res/raw里，第2个参数即为资源文件，第3个为音乐的优先级
-		  
+
 		iv_home.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -212,8 +212,8 @@ private String murl="http://m.lis99.com/qiangyouhui";
 				result.confirm();
 				return true;
 			}
-			 public void onReceivedTitle(WebView view, String title1) {  
-	                super.onReceivedTitle(view, title1);  
+			 public void onReceivedTitle(WebView view, String title1) {
+	                super.onReceivedTitle(view, title1);
 	                if(title1.equals("收银台-高端版-支付宝")){
 	                	ll_gb.setVisibility(View.VISIBLE);
 	                	iv_home.setVisibility(View.INVISIBLE);
@@ -221,9 +221,9 @@ private String murl="http://m.lis99.com/qiangyouhui";
 	                	iv_home.setVisibility(View.VISIBLE);
 	                	ll_gb.setVisibility(View.INVISIBLE);
 	                }
-	                title.setText(title1); 
-	            } 
-			
+	                title.setText(title1);
+	            }
+
 		});
 		webView1.setWebViewClient(new WebViewClient() {
 			/*
@@ -233,25 +233,25 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				// 使用当前的WebView加载页面
-				
-				view.loadUrl(url);	
+
+				view.loadUrl(url);
 				murl=url;
 				if(!murl.equals("http://m.lis99.com/qiangyouhui/") && !murl.equals("http://m.lis99.com/qiangyouhui")){
 					iv_home.setBackgroundResource(R.drawable.back);
-					
-					android.view.ViewGroup.LayoutParams params = iv_home.getLayoutParams();  
-				    params.height=35;  
-				    params.width =30; 
-				    
-				    iv_home.setLayoutParams(params);  
-					
+
+					android.view.ViewGroup.LayoutParams params = iv_home.getLayoutParams();
+				    params.height=35;
+				    params.width =30;
+
+				    iv_home.setLayoutParams(params);
+
 				}else{
 					iv_home.setBackgroundResource(R.drawable.ls_page_home_icon);
-					
-					android.view.ViewGroup.LayoutParams params = iv_home.getLayoutParams();  
-				    params.height=80;  
-				    params.width =80;  
-				    iv_home.setLayoutParams(params);  
+
+					android.view.ViewGroup.LayoutParams params = iv_home.getLayoutParams();
+				    params.height=80;
+				    params.width =80;
+				    iv_home.setLayoutParams(params);
 				}
 				return true;
 			}
@@ -262,7 +262,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			@Override
 			public void onPageStarted(WebView view, String url,
 					Bitmap favicon) {
-				
+
 				super.onPageStarted(view, url, favicon);
 			}
 
@@ -272,7 +272,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			@Override
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
-				
+
 
 			}
 
@@ -283,7 +283,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			public void onLoadResource(WebView view, String url) {
 
 				super.onLoadResource(view, url);
-		
+
 			}
 
 			/*
@@ -298,10 +298,10 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			}
 		});
 
-	} 
-	
+	}
 
-	
+
+
 	@Override
 		public boolean onKeyDown(int keyCode, KeyEvent event) {
 			// TODO Auto-generated method stub
@@ -311,12 +311,12 @@ private String murl="http://m.lis99.com/qiangyouhui";
 				}else{
 					webView1.loadUrl("javascript:backUrl()");
 				}
-				
-				
+
+
 			}
 			return super.onKeyDown(keyCode, event);
 		}
-	
+
 	 private void onVibrator() {
 		  Vibrator vibrator = (Vibrator) QiangActivity.this
 		    .getSystemService(Context.VIBRATOR_SERVICE);
@@ -327,9 +327,9 @@ private String murl="http://m.lis99.com/qiangyouhui";
 		  }
 		  vibrator.vibrate(100L);
 		 }
-	
-	
-		 
+
+
+
 	public class WebAppInterface {
 		private Activity activity;
 
@@ -342,8 +342,8 @@ private String murl="http://m.lis99.com/qiangyouhui";
 		}
 
 	}
-		
-		 
+
+
 		  private void showShareList() {
 
 				postMessage(5, "分享到", R.array.share_items,
@@ -353,20 +353,20 @@ private String murl="http://m.lis99.com/qiangyouhui";
 							public void onClick(DialogInterface dialog, int which) {
 								switch (which) {
 								case 0:
-									
+
 									String shareText = "＃摇一摇，0元抢＃砾石帮你选APP抢优惠活动开始啦！都是高大上的装备，都是神一样的价格！手机摇一次，价格降一次，你敢摇我就敢降！记住，下手一定要快哟！"+murl;
 
 									LsWeiboSina.getInstance(QiangActivity.this)
 											.shares(shareText,null,1);
-									
+
 									break;
 								case 1:
-									
+
 									Resources res = getResources();
 									Bitmap bmp1 = BitmapFactory.decodeResource(res,
 											R.drawable.icon_ls);
-									
-						           
+
+
 									String shareWx1Text = "＃摇一摇，0元抢＃砾石帮你选APP抢优惠活动开始啦！都是高大上的装备，都是神一样的价格！手机摇一次，价格降一次，你敢摇我就敢降！记住，下手一定要快哟！"+murl;
 
 									String title1 = "";
@@ -399,10 +399,10 @@ private String murl="http://m.lis99.com/qiangyouhui";
 											.getInstance(QiangActivity.this)
 											.share(shareWx2Text, title2, desc2, bmp2,
 													SendMessageToWX.Req.WXSceneTimeline);
-									
+
 									break;
 								case 3:
-									
+
 									final Bundle params = new Bundle();
 									params.putString(QzoneShare.SHARE_TO_QQ_TITLE,
 											"摇一摇");
@@ -446,14 +446,14 @@ private String murl="http://m.lis99.com/qiangyouhui";
 
 											});
 									break;
-									
+
 								case 4:
-									
+
 									String shareWx4Text = "＃摇一摇，0元抢＃砾石帮你选APP抢优惠活动开始啦！都是高大上的装备，都是神一样的价格！手机摇一次，价格降一次，你敢摇我就敢降！记住，下手一定要快哟！"+murl;
 									LsWeiboTencent.getInstance(QiangActivity.this)
 											.shares(shareWx4Text);
-									
-									
+
+
 									break;
 								}
 							}
@@ -490,11 +490,11 @@ private String murl="http://m.lis99.com/qiangyouhui";
 				            Toast.makeText(QiangActivity.this, "取消分享", Toast.LENGTH_LONG).show();
 				            break;
 				        case WBConstants.ErrorCode.ERR_FAIL:
-				            Toast.makeText(QiangActivity.this, 
-				                    "分享失败" + "Error Message: " + arg0.errMsg, 
+				            Toast.makeText(QiangActivity.this,
+				                    "分享失败" + "Error Message: " + arg0.errMsg,
 				                    Toast.LENGTH_LONG).show();
 				            break;
-				        }		
+				        }
 				}
 			};
 			@Override
@@ -508,15 +508,15 @@ private String murl="http://m.lis99.com/qiangyouhui";
 					break;
 				default:
 					break;
-				}		
+				}
 			}
-			
+
 
 			@Override
 			public void onResp(BaseResp resp) {
 				System.out.println("获取到微信消息了...");
 				String result = "";
-				
+
 				switch (resp.errCode) {
 				case BaseResp.ErrCode.ERR_OK:
 					result = "发送成功";
@@ -535,11 +535,11 @@ private String murl="http://m.lis99.com/qiangyouhui";
 					result = "未知错误";
 					break;
 				}
-				
-				Toast.makeText(this, result, Toast.LENGTH_LONG).show();		
+
+				Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 			}
-			
-		
+
+
 		protected void showWaiting(Context context) {
 			dialogView = new Dialog(context, R.style.theme_dialog_alert);
 			dialogView.setContentView(R.layout.window_layout);
@@ -554,7 +554,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			dialogView.show();
 		}
 
-		
+
 		protected void hideDialog() {
 			if (dialogView != null) {
 				dialogView.dismiss();
@@ -570,7 +570,7 @@ private String murl="http://m.lis99.com/qiangyouhui";
 			}
 //		public void vawe(){
 //			new Thread(new Runnable() {
-//				
+//
 //				@Override
 //				public void run() {
 //					// TODO Auto-generated method stub
@@ -584,16 +584,16 @@ private String murl="http://m.lis99.com/qiangyouhui";
 //					} catch (InterruptedException e) {
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
-//					}  
+//					}
 //				}
-//				
+//
 //			});
-//			
+//
 //		}
 	public void dia(){
 		new AlertDialog.Builder(this).setTitle("您的订单尚未支付成功").setNegativeButton(
 				 "知道了", new OnClickListener() {
-					
+
 					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
 						// TODO Auto-generated method stub
@@ -603,4 +603,3 @@ private String murl="http://m.lis99.com/qiangyouhui";
 	}
 }
 
-	

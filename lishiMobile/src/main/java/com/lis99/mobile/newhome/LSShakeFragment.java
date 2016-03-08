@@ -113,9 +113,9 @@ public class LSShakeFragment extends LSFragment implements IWXAPIEventHandler,IW
 
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		body = inflater.inflate(R.layout.ls_qiang_youhui, container, false);
-		
+
 	}
-	
+
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		// 第一次同步
@@ -236,7 +236,7 @@ public class LSShakeFragment extends LSFragment implements IWXAPIEventHandler,IW
 						| murl.equals("http://m.lis99.com/qiangyouhui")) {
 					if (getLSActivity() != null) {
 						getLSActivity().toggleMenu();
-					} 
+					}
 				} else {
 					webview.loadUrl("javascript:backUrl()");
 				}
@@ -578,7 +578,7 @@ public class LSShakeFragment extends LSFragment implements IWXAPIEventHandler,IW
 		}
 	}
 
-	
+
 	@Override
 	public void onResp(BaseResp resp) {
 		String result = "";
