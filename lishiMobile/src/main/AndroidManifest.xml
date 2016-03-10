@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="412"
-    android:versionName="4.1.2" >
+    android:versionCode="413"
+    android:versionName="4.1.3" >
 
 
 
@@ -1194,9 +1194,14 @@
         <activity android:name="com.lis99.mobile.newhome.HelpMovieActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
-
+<!--    乐视视频-->
         <activity android:name=".util.letv.MovieActivity"
                   android:screenOrientation="landscape"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+<!--    新版话题帖-->
+        <activity android:name="com.lis99.mobile.club.newtopic.LSClubNewTopicListMain"
+                  android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
     </application>

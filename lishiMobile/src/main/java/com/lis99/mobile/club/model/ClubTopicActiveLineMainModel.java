@@ -476,7 +476,7 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
      */
     @Override
     public String getClubId() {
-        return getClubId();
+        return getClub_id();
     }
 
     public static class ActivityimgsEntity implements Serializable{

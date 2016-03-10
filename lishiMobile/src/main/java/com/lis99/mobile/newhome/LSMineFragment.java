@@ -424,8 +424,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        postMessage(ActivityPattern1.POPUP_PROGRESS,
-                getString(R.string.sending));
+
+//        postMessage(ActivityPattern1.POPUP_PROGRESS,
+//                getString(R.string.sending));
+
         refreshUser();
     }
 

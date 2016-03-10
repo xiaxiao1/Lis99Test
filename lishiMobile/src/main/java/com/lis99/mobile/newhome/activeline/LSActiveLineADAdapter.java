@@ -47,9 +47,18 @@ public class LSActiveLineADAdapter extends RecyclerView.Adapter<LSActiveLineADAd
         mContext = context;
         mInflater = LayoutInflater.from(context);
         this.listInfo = listInfo;
-        ActiveLineNewModel.AreaweblistEntity item = new ActiveLineNewModel.AreaweblistEntity();
-        item.setTagname("全部目的地");
-        this.listInfo.add(item);
+        if ( listInfo != null && listInfo.size() != 0 )
+        {
+            ActiveLineNewModel.AreaweblistEntity item = (ActiveLineNewModel.AreaweblistEntity) listInfo.get(listInfo.size() -1);
+
+            if ( !"全部目的地".equals(item.getTagname()) )
+            {
+                item = new ActiveLineNewModel.AreaweblistEntity();
+                item.setTagname("全部目的地");
+                this.listInfo.add(item);
+            }
+        }
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder

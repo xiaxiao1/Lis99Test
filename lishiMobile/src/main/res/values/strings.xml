@@ -124,11 +124,11 @@
 	<string name="club_detail_title">帖子详情</string>
 	<string name="club_detail_title_click">双击此处回到1楼</string>
 
-    <string name="temp_string"></string>
-    <string name="temp_string_long"></string>
+    <!--<string name="temp_string"></string>-->
+    <!--<string name="temp_string_long"></string>-->
 
-	<!--<string name="temp_string">砾石俱乐部</string>-->
-	<!--<string name="temp_string_long">砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部</string>-->
+	<string name="temp_string">砾石俱乐部</string>
+	<string name="temp_string_long">砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部砾石俱乐部</string>
 
     <string name="title_activity_lsweixin_login">LSWeixinLoginActivity</string>
     <string name="title_activity_search">SearchActivity</string>

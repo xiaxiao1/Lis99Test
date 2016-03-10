@@ -18,7 +18,7 @@ public class PopWindowData {
         HashMap<String, String> map = new HashMap<String, String>();
 
         map.put("select", "1");
-        map.put("name", "大本营");
+        map.put("name", "户外范");
         map.put("value", "48");
         alist.add(map);
 
@@ -423,6 +423,13 @@ public class PopWindowData {
         map.put("select", "0");
         map.put("name", "辽宁");
         map.put("value", "18");
+        alist.add(map);
+
+        map = new HashMap<String, String>();
+
+        map.put("select", "0");
+        map.put("name", "内蒙古");
+        map.put("value", "19");
         alist.add(map);
 
         map = new HashMap<String, String>();

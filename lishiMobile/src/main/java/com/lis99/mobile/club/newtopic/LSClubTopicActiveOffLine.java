@@ -547,6 +547,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         if (resultCode == RESULT_OK && requestCode == 997)
         {
             applyOK();
+            model.applyStatus = 1;
         }
     }
 

@@ -45,6 +45,8 @@ public class PayUtil {
     private final String WEIXINURL = "http://api.lis99.com/v4/club/wxpay";
 
     private ZFBPayModel zfbModel;
+//  订单号
+    public static String orderCode;
 
     public PayUtil ()
     {
@@ -71,6 +73,7 @@ public class PayUtil {
 
     public void payWeiXin ( String orderId )
     {
+        orderCode = orderId;
         if ( !api.isWXAppInstalled())
         {
             Toast.makeText(LSBaseActivity.activity, "未安装微信", Toast.LENGTH_LONG).show();
@@ -172,6 +175,7 @@ public class PayUtil {
 
     public void payZhiFuBao ( String orderId )
     {
+        orderCode = orderId;
 
         HashMap<String, Object> map = new HashMap<String, Object>();
 

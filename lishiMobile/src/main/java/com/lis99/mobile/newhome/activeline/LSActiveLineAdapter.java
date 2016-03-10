@@ -145,6 +145,8 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         return view;
     }
 
+    private LSActiveLineADAdapter adapter;
+
     private View getAd (final int i, View view, ViewGroup viewGroup)
     {
         ViewHolderAD viewholder = null;
@@ -166,13 +168,17 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
         if ( list != null && list.size() > 0 )
         {
 
-            final LSActiveLineADAdapter adapter = new LSActiveLineADAdapter(mContext, list);
+            if ( adapter == null )
+            {
+                adapter = new LSActiveLineADAdapter(mContext, list);
 
-            LinearLayoutManager linearLayoutM = new LinearLayoutManager(mContext);
-            linearLayoutM.setOrientation(LinearLayoutManager.HORIZONTAL);
+                LinearLayoutManager linearLayoutM = new LinearLayoutManager(mContext);
+                linearLayoutM.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-            viewholder.recyclerView.setLayoutManager(linearLayoutM);
-            viewholder.recyclerView.setAdapter(adapter);
+                viewholder.recyclerView.setLayoutManager(linearLayoutM);
+                viewholder.recyclerView.setAdapter(adapter);
+            }
+
 
             adapter.setOnItemClickLitener(new LSActiveLineADAdapter.OnItemClickLitener() {
                 @Override

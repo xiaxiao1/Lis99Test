@@ -171,7 +171,10 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
         tvlocation.setText(model.getSetaddress());
 
+        if ( model.applyStatus == 1 )
         tvtel.setText(model.getLeadermobile());
+        else
+        tvtel.setText("报名后可见");
 
         if ( model.getTripdetail() != null && model.getTripdetail().size() != 0 )
         tvjourney.setText(model.getTripdetail().get(0).getContent());

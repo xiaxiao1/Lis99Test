@@ -21,6 +21,7 @@ import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
@@ -324,7 +325,8 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( Common.isApkInDebug(getActivity()))
                 {
 //                    startActivity(new Intent(getActivity(), MovieActivity.class));
-                    return;
+                    startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
+//                    return;
                 }
 
                 intent = new Intent(getActivity(), LSSelectAllClubActivity.class);

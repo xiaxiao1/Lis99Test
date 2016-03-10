@@ -144,7 +144,7 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 
 
 //	====3.5.5=======赞列表=====
-	public ArrayList<LikeListModel> lists;
+	public ArrayList<LikeList> lists;
 
 //	====== 3.9.1===== 版主  版主（1：版主 0：非版主）
 	public String moderator;
@@ -178,7 +178,13 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 
 	@Override
 	public ArrayList<LikeListModel> getList() {
-		return this.lists;
+		ArrayList<LikeListModel> lsm = new ArrayList<LikeListModel>(lists);
+//		for ( LikeList ll : lists )
+//		{
+//			lsm.add(ll);
+//		}
+//		return lists;
+		return lsm;
 	}
 
 	@Override
@@ -286,6 +292,29 @@ public class ClubTopicDetailHead implements ShareInterface, LikeInterface, Seria
 		public int reason;
 		public String content;
 		public String createtime;
+	}
+
+	public static class LikeList extends LikeListModel
+	{
+		public int id;
+		public String headicon;
+		public int is_vip;
+
+
+		@Override
+		public int getId() {
+			return id;
+		}
+
+		@Override
+		public String getHeadIcon() {
+			return headicon;
+		}
+
+		@Override
+		public int getIsVip() {
+			return is_vip;
+		}
 	}
 
 }

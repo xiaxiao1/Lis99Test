@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.club.model.LikeInterface;
 import com.lis99.mobile.club.model.LikeListModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -92,8 +93,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 0 )
             {
                 iv_like_1.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_1, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 1 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_1, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 1 )
                 {
                     vipStar_1.setVisibility(View.VISIBLE);
                 }
@@ -105,8 +106,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 1)
             {
                 iv_like_2.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_2, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 0 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_2, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 0 )
                 {
                     vipStar_2.setVisibility(View.GONE);
                 }
@@ -118,8 +119,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 2)
             {
                 iv_like_3.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_3, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 0 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_3, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 0 )
                 {
                     vipStar_3.setVisibility(View.GONE);
                 }
@@ -131,8 +132,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 3)
             {
                 iv_like_4.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_4, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 0 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_4, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 0 )
                 {
                     vipStar_4.setVisibility(View.GONE);
                 }
@@ -144,8 +145,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 4)
             {
                 iv_like_5.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_5, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 0 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_5, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 0 )
                 {
                     vipStar_5.setVisibility(View.GONE);
                 }
@@ -157,8 +158,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 5)
             {
                 iv_like_6.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_6, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 0 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_6, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 0 )
                 {
                     vipStar_6.setVisibility(View.GONE);
                 }
@@ -170,8 +171,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 6)
             {
                 iv_like_7.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_7, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 0 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_7, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 0 )
                 {
                     vipStar_7.setVisibility(View.GONE);
                 }
@@ -183,8 +184,8 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             if ( i == 7)
             {
                 iv_like_8.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(model.headicon, iv_like_8, ImageUtil.getclub_topic_headImageOptions());
-                if ( model.is_vip == 0 )
+                ImageLoader.getInstance().displayImage(model.getHeadIcon(), iv_like_8, ImageUtil.getclub_topic_headImageOptions());
+                if ( model.getIsVip() == 0 )
                 {
                     vipStar_8.setVisibility(View.GONE);
                 }
@@ -296,56 +297,56 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
                 if ( list == null || list.size() < 1 ) return;
                 model = list.get(0);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_2:
                 if ( list == null || list.size() < 2 ) return;
                 model = list.get(1);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_3:
                 if ( list == null || list.size() < 3 ) return;
                 model = list.get(2);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_4:
                 if ( list == null || list.size() < 4 ) return;
                 model = list.get(3);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_5:
                 if ( list == null || list.size() < 5 ) return;
                 model = list.get(4);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_6:
                 if ( list == null || list.size() < 6 ) return;
                 model = list.get(5);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_7:
                 if ( list == null || list.size() < 7 ) return;
                 model = list.get(6);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_8:
                 if ( list == null || list.size() < 8 ) return;
                 model = list.get(7);
                 intent = new Intent(c, LSUserHomeActivity.class);
-                intent.putExtra("userID", ""+model.id);
+                intent.putExtra("userID", ""+model.getId());
                 c.startActivity(intent);
                 break;
             case R.id.iv_like_9:
@@ -368,7 +369,7 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
             tv_like.setText(like_num + "人赞过");
             iv_like.setImageResource(R.drawable.like_button_press);
 
-            LikeListModel item = new LikeListModel();
+            ClubTopicDetailHead.LikeList item = new ClubTopicDetailHead.LikeList();
             item.is_vip = Common.string2int(DataManager.getInstance().getUser().getIs_vip());
             item.headicon = DataManager.getInstance().getUser().getHeadicon();
             item.id = Common.string2int(DataManager.getInstance().getUser().getUser_id());

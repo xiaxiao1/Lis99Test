@@ -12,12 +12,16 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.PayUtil;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
+import java.util.HashMap;
 
 
 public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHandler{
@@ -151,6 +155,8 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
                 setTitle("支付成功");
                 layout_ok.setVisibility(View.VISIBLE);
                 layout_cancel.setVisibility(View.GONE);
+                // 发送定单号给服务器
+                sendOk2Service();
                 break;
 //                支付失败
             case -1:
@@ -170,6 +176,18 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
                 layout_cancel.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+
+    private void sendOk2Service ()
+    {
+//        PayUtil.orderCode;
+        String url = "http://api.lis99.com/v4/club/sendMobileInfo";
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("out_trade_no", PayUtil.orderCode);
+
+        MyRequestManager.getInstance().requestPostNoModel(url, map, null, null);
+
     }
 
 }

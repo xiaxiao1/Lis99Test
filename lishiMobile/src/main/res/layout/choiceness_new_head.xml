@@ -40,6 +40,46 @@
 
         <RelativeLayout
 
+            android:id="@+id/layout_club_level"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club2"
+                android:id="@+id/select_club2"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_select_club_border"
+                />
+
+            <TextView
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/select_club2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="户外范"
+                android:textColor="#525252"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+
             android:id="@+id/layout_nearby"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -73,46 +113,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="徒步露营"
-                android:textColor="#525252"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-
-            android:id="@+id/layout_club_level"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            >
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/icon_select_club2"
-                android:id="@+id/select_club2"
-                />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/icon_select_club_border"
-                />
-
-            <TextView
-                android:textSize="12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/select_club2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="大本营"
                 android:textColor="#525252"
                 />
 

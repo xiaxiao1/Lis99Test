@@ -466,4 +466,7 @@ public class C {
 //	新版线路活动    http://api.lis99.com/v5/club/lists
 	public static final String NEW_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/lists/";
 
+//	新版话题贴		http://api.lis99.com/v5/topics/detail/[page]
+	public static final String CLUB_NEW_TOPIC_LIST_MAIN = DOMAIN + "/v5/topics/detail/";
+
 }

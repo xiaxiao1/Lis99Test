@@ -90,7 +90,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
         initViews();
         if ( !CURRENTCLUB )
         {
-            setTitle("大本营");
+            setTitle("户外范");
         }
         else
         {

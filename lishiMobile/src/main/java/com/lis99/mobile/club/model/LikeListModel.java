@@ -9,10 +9,11 @@ import java.io.Serializable;
  is_vip	int	0：非vip  1：vip
 
  */
-public class LikeListModel implements Serializable {
+public abstract class LikeListModel implements Serializable {
 
-    public int id;
-    public String headicon;
-    public int is_vip;
+    abstract public int getId();
 
+    abstract public String getHeadIcon();
+
+    abstract public int getIsVip();
 }
