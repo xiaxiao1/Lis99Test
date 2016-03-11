@@ -10,13 +10,13 @@ android {
         zhuzhan {}
         tuiguang1 {}
 //        sougou {}
-//        baidu {}
+        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}
 //        gfan {}
-//        zs360 {}
-        huawei {}
+        zs360 {}
+//        huawei {}
 //        lis99test {}
 //        jinli {}
 //        xiaomi {}

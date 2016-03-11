@@ -24,7 +24,7 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
 
     public ArrayList<Taglist> taglist;
 
-    public ArrayList<LikeListModel> lists;
+    public ArrayList<ClubTopicDetailHead.LikeList> lists;
 
     public int category;
     public String catename;
@@ -106,7 +106,9 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
 
     @Override
     public ArrayList<LikeListModel> getList() {
-        return this.lists;
+        ArrayList<LikeListModel> lsm = new ArrayList<LikeListModel>(lists);
+        return lsm;
+//        return this.lists;
     }
 
 

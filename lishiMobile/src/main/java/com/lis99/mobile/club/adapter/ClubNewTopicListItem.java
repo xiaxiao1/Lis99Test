@@ -1,7 +1,9 @@
 package com.lis99.mobile.club.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.ClubSpecialListActivity;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
@@ -22,6 +25,7 @@ import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -43,9 +47,17 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
     private LSClubTopicHeadLike like;
 
+    private Drawable drawable;
+
 
     public ClubNewTopicListItem(Context c, List listItem) {
         super(c, listItem);
+
+        drawable = LSBaseActivity.activity.getResources().getDrawable(
+                R.drawable.club_tier_master);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight());
+
     }
 
     @Override
@@ -108,7 +120,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         holder.titleView.setText(item.title);
         holder.nameView.setText(item.nickname);
         holder.dateView.setText(item.createtime);
-        holder.lookNum.setText(item.browsenums);
+        holder.lookNum.setText(""+item.browsenums);
         if (!TextUtils.isEmpty(item.headicon))
             ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1,
                     ImageUtil.getclub_topic_headImageOptions());
@@ -145,6 +157,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             }
         }
 
+        holder.ivTagFloor.setTag("1楼");
+
 
         return view;
     }
@@ -156,7 +170,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         if (view == null) {
             view = View.inflate(mContext, R.layout.adapter_club_new_topic_list_item, null);
             holder = new ViewHolderInfo(view);
-            view.setTag(view);
+            view.setTag(holder);
         } else {
             holder = (ViewHolderInfo) view.getTag();
         }
@@ -174,21 +188,22 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
         if (!TextUtils.isEmpty(item.content)) {
             holder.tvInfo.setVisibility(View.VISIBLE);
-            holder.tvInfo.setText(item.content);
+//            holder.tvInfo.setText(item.content);
+            holder.tvInfo.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity)mContext, item.content));
         }
 
         if (!TextUtils.isEmpty(item.videoid) && !TextUtils.isEmpty(item.videoimg)) {
             holder.layoutIv.setVisibility(View.VISIBLE);
             holder.vedio.setVisibility(View.VISIBLE);
             ImageLoader.getInstance().displayImage(item.videoimg, holder.contentImageView,
-                    ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder
-                            .contentImageView, holder.ivLoad));
+                    ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
+                            .contentImageView));
         } else {
             if (!TextUtils.isEmpty(item.images)) {
                 holder.layoutIv.setVisibility(View.VISIBLE);
                 ImageLoader.getInstance().displayImage(item.images, holder.contentImageView,
-                        ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder
-                                .contentImageView, holder.ivLoad));
+                        ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
+                                .contentImageView ));
             }
         }
 
@@ -316,6 +331,61 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder = (ViewHolderReply) view.getTag();
         }
 
+        TopicNewListMainModel.TopicsreplylistEntity item = (TopicNewListMainModel
+                .TopicsreplylistEntity) getItem(i);
+
+        if ( item == null ) return view;
+
+        holder.layout_more.setVisibility(View.GONE);
+
+        if ( i == getCount() - 1 )
+        {
+            holder.layout_more.setVisibility(View.VISIBLE);
+            holder.layout_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    跳转到评论列表
+
+                }
+            });
+        }
+
+        if ( !TextUtils.isEmpty(item.headicon))
+        {
+            ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1,
+                    ImageUtil.getclub_topic_headImageOptions());
+        }
+
+        holder.nameView.setText(item.nickname);
+
+        if ( item.is_floor == 0 )
+        {
+            holder.nameView.setCompoundDrawables(null, null, null, null);
+        }
+        else
+        {
+            holder.nameView.setCompoundDrawables(null, null, drawable, null);
+        }
+
+        holder.dateView.setText(item.createtime);
+        holder.tvFloor.setText(item.floor);
+        holder.contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity)mContext, item.content));
+        holder.vipStar.setVisibility(View.GONE);
+
+        if ( !"0".equals(item.replyId))
+        {
+            holder.replyView.setVisibility(View.VISIBLE);
+            holder.tvReplyBody.setText("回复@ " + item.replyNickname);
+            holder.tvReplyContent.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity)mContext, item.replyContent));
+            holder.tvReplyFloor.setText(item.replyFloor+"楼");
+        }
+        else
+        {
+            holder.replyView.setVisibility(View.GONE);
+        }
+
+
+
 
 
 
@@ -344,7 +414,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private TextView tvReplyBody;
         private TextView tvReplyFloor;
         private TextView tvReplyContent;
-
+        private View layout_more;
 
         public ViewHolderReply(View view) {
             include1 = view.findViewById(R.id.include1);
@@ -367,6 +437,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             tvReplyFloor = (TextView) view.findViewById(R.id.tv_reply_floor);
             tvReplyContent = (TextView) view.findViewById(R.id.tv_reply_content);
 
+            layout_more = view.findViewById(R.id.layout_more);
+
 
         }
     }
@@ -380,10 +452,6 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private RatingBar equiRatingBar;
         private TextView equiNameView;
         private TextView tvClubName;
-        private View include1;
-        private View replyView;
-        private TextView contentView;
-
         private LinearLayout layoutTag;
         private TextView tvTag1;
         private TextView tvTag2;
@@ -401,9 +469,6 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             equiRatingBar = (RatingBar) view.findViewById(R.id.equiRatingBar);
             equiNameView = (TextView) view.findViewById(R.id.equiNameView);
             tvClubName = (TextView) view.findViewById(R.id.tv_club_name);
-            include1 = view.findViewById(R.id.include1);
-            replyView = view.findViewById(R.id.reply_view);
-            contentView = (TextView) view.findViewById(R.id.contentView);
 
             layoutTag = (LinearLayout) view.findViewById(R.id.layout_tag);
             tvTag1 = (TextView) view.findViewById(R.id.tv_tag1);

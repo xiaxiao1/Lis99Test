@@ -8,27 +8,38 @@
 
     >
 
-    <View
+    <include
+        android:id="@+id/include1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        android:id="@+id/view_reference"
-        android:visibility="invisible"
-        />
+        layout="@layout/topic_title" />
 
-    <include
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/include"
-        layout="@layout/topic_bottom_bar"
         android:layout_alignParentBottom="true"
-        />
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+
+        </LinearLayout>
+
+        </RelativeLayout>
+
 
     <com.lis99.mobile.entry.view.PullToRefreshView
         android:id="@+id/pull_refresh_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/include"
-        android:layout_below="@+id/view_reference"
+        android:layout_below="@+id/include1"
         android:background="@null"
         android:orientation="vertical" >
 
@@ -52,13 +63,5 @@
         android:layout_alignParentTop="true"
         layout="@layout/club_topic_replay_panel"
         android:visibility="gone" />
-
-    <include
-        android:id="@+id/include1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        layout="@layout/topic_title" />
 
 </RelativeLayout>

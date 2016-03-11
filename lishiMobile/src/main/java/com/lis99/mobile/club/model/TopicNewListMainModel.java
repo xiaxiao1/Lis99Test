@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by yy on 16/3/8.
  */
-public class TopicNewListMainModel extends TopicNewListMainModelEquip {
+public class TopicNewListMainModel extends TopicNewListMainModelEquip implements ShareInterface {
 
 
     /**
@@ -91,5 +91,117 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip {
         public int width;
         @SerializedName("createtime")
         public String createtime;
+        /**
+         *      是否楼主：0否，1是
+         */
+        @SerializedName("is_floor")
+        public int is_floor;
     }
+
+
+    /**
+     * 是否是置顶 2置顶， 其他 解除置顶
+     */
+    @Override
+    public String getStick() {
+        return null;
+    }
+
+    /**
+     * 是否是置顶 2置顶， 其他 解除置顶
+     *
+     * @param s
+     */
+    @Override
+    public void setStick(String s) {
+
+    }
+
+    /**
+     * 是否显示报名管理， 1线下活动， 2 线上活动， 显示管理， 其他不显示
+     */
+    @Override
+    public String getCategory() {
+        return "";
+    }
+
+    /**
+     * 创始人标记， 是否显示删除 1 创始人（显示删除）
+     */
+    @Override
+    public String getIsJoin() {
+        return null;
+    }
+
+    /**
+     * 是否为新版的线下活动贴, null 否， 不为空 是新版活动帖
+     *
+     * @return
+     */
+    @Override
+    public String getNewActive() {
+        return null;
+    }
+
+    /**
+     * 俱乐部Id
+     *
+     * @return
+     */
+    @Override
+    public String getClubId() {
+        return ""+clubId;
+    }
+
+    /**
+     * 帖子Id
+     *
+     * @return
+     */
+    @Override
+    public String getTopicId() {
+        return topicsId;
+    }
+    public String imgShareUrl;
+    /**
+     * 图片Url 地址
+     *
+     * @return
+     */
+    @Override
+    public String getImageUrl() {
+        return imgShareUrl;
+    }
+
+    /**
+     * 分享显示标题
+     *
+     * @return
+     */
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * 分享内容
+     *
+     * @return
+     */
+    @Override
+    public String getShareTxt() {
+        return sharetxt;
+    }
+
+    /**
+     * 分享连接地址
+     *
+     * @return
+     */
+    @Override
+    public String getShareUrl() {
+        return shareurl;
+    }
+
+
 }

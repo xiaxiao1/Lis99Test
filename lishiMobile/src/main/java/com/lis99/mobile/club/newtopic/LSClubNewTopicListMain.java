@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.newtopic;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,7 +21,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
-import com.lis99.mobile.util.Page;
+import com.lis99.mobile.util.ShareManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,14 +40,13 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
     private RelativeLayout layoutMain;
 
-    private Page page;
+//    private Page page;
 
     private ImageView titleRightImage, iv_weichat, iv_friend;
 
     private String topicId = "1";
 
     private TopicNewListMainModel model;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +83,13 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
     private void getList ()
     {
-        if ( page.isLastPage() )
-        {
-            return;
-        }
+//        if ( page.isLastPage() )
+//        {
+//            return;
+//        }
 
 
-        String url = C.CLUB_NEW_TOPIC_LIST_MAIN + page.getPageNo();
+        String url = C.CLUB_NEW_TOPIC_LIST_MAIN;// + page.getPageNo();
 
         HashMap<String, Object> map = new HashMap<>();
 
@@ -109,11 +109,25 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
                 if ( model == null ) return;
 
-                page.nextPage();
+//                page.nextPage();
+
+
+                if (model.topicsreplylist != null && model.topicsreplylist.size() >= 1 )
+                {
+                    for ( int i = 0; i < model.topicsreplylist.size(); i++ )
+                    {
+                        model.imgShareUrl = model.topicsdetaillist.get(i).images;
+                        if ( !TextUtils.isEmpty(model.imgShareUrl) )
+                        {
+                            break;
+                        }
+                    }
+                }
+
 
                 if ( adapter == null )
                 {
-                    page.setPageSize(model.totpage);
+//                    page.setPageSize(model.totpage);
 
                     TopicNewListMainModelTitle title = model;
 
@@ -123,26 +137,31 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
                     mList.addAll(model.topicsdetaillist);
 
+                    TopicNewListMainModelEquip equipModel = model;
+
+                    mList.add(equipModel);
+                    mList.addAll(model.topicsreplylist);
+
                     adapter = new ClubNewTopicListItem(activity, mList);
 
                     listView.setAdapter(adapter);
                 }
-                else
-                {
-                    adapter.addList(model.topicsdetaillist);
-
-                    if ( page.isLastPage() )
-                    {
-                        TopicNewListMainModelEquip equipModel = model;
-
-                        ArrayList<Object> mList = new ArrayList<Object>();
-
-                        mList.add(equipModel);
-                        mList.addAll(model.topicsreplylist);
-
-                        adapter.addList(mList);
-                    }
-                }
+//                else
+//                {
+//                    adapter.addList(model.topicsdetaillist);
+//
+//                    if ( page.isLastPage() )
+//                    {
+//                        TopicNewListMainModelEquip equipModel = model;
+//
+//                        ArrayList<Object> mList = new ArrayList<Object>();
+//
+//                        mList.add(equipModel);
+//                        mList.addAll(model.topicsreplylist);
+//
+//                        adapter.addList(mList);
+//                    }
+//                }
 
             }
         });
@@ -155,13 +174,17 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
     private void cleanList ()
     {
-        page = new Page();
+//        page = new Page();
         listView.setAdapter(null);
         adapter = null;
     }
 
     @Override
     protected void rightAction() {
+
+        ShareManager.getInstance().showPopWindowInShare(model, layoutMain, null);
+
+
         super.rightAction();
     }
 
@@ -174,23 +197,13 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                 rightAction();
                 break;
             case R.id.iv_weichat:
-//                String imgUrl = null;
-//                if ( clubhead == null ) return;
-//                if (clubhead.topic_image != null && clubhead.topic_image.size() >= 1 )
-//                {
-//                    imgUrl = clubhead.topic_image.get(0).image;
-//                }
-//                ShareManager.getInstance().share2Weichat(clubhead, shareFandW);
+
+                ShareManager.getInstance().share2Weichat(model, shareFandW);
                 break;
             case R.id.iv_friend:
-//                String imgUrl1 = null;
-//                if ( clubhead == null ) return;
-//                if (clubhead.topic_image != null && clubhead.topic_image.size() >= 1 )
-//                {
-//                    imgUrl1 = clubhead.topic_image.get(0).image;
-//                }
-////				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
-//                ShareManager.getInstance().share2Friend(clubhead, shareFandW);
+
+//				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
+                ShareManager.getInstance().share2Friend(model, shareFandW);
                 break;
         }
     }
@@ -203,7 +216,7 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
     @Override
     public void onFooterRefresh(PullToRefreshView view) {
         refreshView.onFooterRefreshComplete();
-        getList();
+//        getList();
     }
 
     @Override
@@ -212,4 +225,13 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
         cleanList();
         getList();
     }
+
+    private CallBack shareFandW = new CallBack() {
+        @Override
+        public void handler(MyTask mTask) {
+            Common.toast("分享成功");
+        }
+    };
+
+
 }

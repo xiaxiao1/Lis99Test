@@ -11,6 +11,10 @@ import java.io.Serializable;
  */
 public abstract class LikeListModel implements Serializable {
 
+//    public int id;
+//    public String headicon;
+//    public int is_vip;
+
     abstract public int getId();
 
     abstract public String getHeadIcon();

@@ -326,7 +326,7 @@ public class FragmentChoicenessList extends Fragment implements
                 {
 //                    startActivity(new Intent(getActivity(), MovieActivity.class));
                     startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
-//                    return;
+                    return;
                 }
 
                 intent = new Intent(getActivity(), LSSelectAllClubActivity.class);

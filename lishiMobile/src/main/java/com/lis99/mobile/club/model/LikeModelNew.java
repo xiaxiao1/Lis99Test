@@ -20,7 +20,7 @@ public class LikeModelNew extends BaseModel {
 
     public int likeNum;
 
-    public ArrayList<LikeListModel> lists;
+    public ArrayList<ClubTopicDetailHead.LikeList> lists;
 
 
 }

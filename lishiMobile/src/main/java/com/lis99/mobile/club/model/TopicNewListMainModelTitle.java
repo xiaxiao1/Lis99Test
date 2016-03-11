@@ -72,6 +72,10 @@ public class TopicNewListMainModelTitle extends BaseModel {
     public int attenStatus;
     @SerializedName("moderator")
     public int moderator;
+    @SerializedName("shareurl")
+    public String shareurl;
+    @SerializedName("sharetxt")
+    public String sharetxt;
 
     @SerializedName("usercatelist")
     public ArrayList<Usercatelist> usercatelist;
