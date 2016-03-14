@@ -132,7 +132,9 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 		
 		shoptype = getIntent().getStringExtra("shoptype");
 		
-		startService(new Intent("com.lis99.mobile.service.LocService"));
+//		startService(new Intent("com.lis99.mobile.service.LocService"));
+		Intent intent = new Intent(this, com.lis99.mobile.service.LocService.class);
+		startService(intent);
 		offset = 0;
 		refreshView = (PullToRefreshView) findViewById(R.id.main_pull_refresh_view);
 		refreshView.setOnHeaderRefreshListener(this);
@@ -153,7 +155,8 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 
 	@Override
 	protected void onDestroy() {
-		stopService(new Intent("com.lis99.mobile.service.LocService"));
+//		stopService(new Intent("com.lis99.mobile.service.LocService"));
+		stopService(new Intent(activity, com.lis99.mobile.service.LocService.class));
 		unregisterReceiver(myReciever);
 		super.onDestroy();
 	}
@@ -212,10 +215,10 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 			public void onClick(View arg0) {
 				relativeLayout.setVisibility(View.GONE);
 				ShopSearchDialog dialog = new ShopSearchDialog(
-						LsBuyActivity.this, shops,Latitude1,Longtitude1,
-						offset,cityid);
+						LsBuyActivity.this, shops, Latitude1, Longtitude1,
+						offset, cityid);
 				dialog.show();
-				
+
 			}
 		});
 		ll_diqu.setOnClickListener(new View.OnClickListener() {
@@ -234,55 +237,55 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+									long arg3) {
 				switch (count) {
-				case 3:
-					if (arg2 == 0) {
-						shoptype = null;
-					} else if (arg2 == 1) {
-						shoptype = "0";
-					} else if (arg2 == 2) {
-						shoptype = "1";
-					}else if(arg2 == 2){
-						shoptype = "2";
-					}
-					tv_dp.setText(arrayList.get(arg2));
-					popupWindow.dismiss();
-					popupWindow = null;
-					imageViewdianpu.setImageDrawable(getResources()
-							.getDrawable(R.drawable.hwd_arrow));
-					resetState();
-					return;
-				case 2:
-					discountOnly = false;
-					if (arg2 == 0) {
-						sorttype = null;
-					} else if (arg2 == 1) {
-						sorttype = "distance";
-					} else if (arg2 == 2) {
-						sorttype = "star";
-					} else if (arg2 == 3) {
-						sorttype = "click";
-					}else if (arg2 == 4) {
-						sorttype = "discount";
-						discountOnly = true;
-					}
-					tv_px.setText(arrayList.get(arg2));
-					popupWindow.dismiss();
-					popupWindow = null;
-					iv_px.setImageDrawable(getResources().getDrawable(
-							R.drawable.hwd_arrow));
-					resetState();
-					return;
-				case 1:
-					cityid = citys.get(arg2).getId();
-					tv_dq.setText(arrayList.get(arg2));
-					popupWindow.dismiss();
-					popupWindow = null;
-					iv_dq.setImageDrawable(getResources().getDrawable(
-							R.drawable.hwd_arrow));
-					resetState();
-					return;
+					case 3:
+						if (arg2 == 0) {
+							shoptype = null;
+						} else if (arg2 == 1) {
+							shoptype = "0";
+						} else if (arg2 == 2) {
+							shoptype = "1";
+						} else if (arg2 == 2) {
+							shoptype = "2";
+						}
+						tv_dp.setText(arrayList.get(arg2));
+						popupWindow.dismiss();
+						popupWindow = null;
+						imageViewdianpu.setImageDrawable(getResources()
+								.getDrawable(R.drawable.hwd_arrow));
+						resetState();
+						return;
+					case 2:
+						discountOnly = false;
+						if (arg2 == 0) {
+							sorttype = null;
+						} else if (arg2 == 1) {
+							sorttype = "distance";
+						} else if (arg2 == 2) {
+							sorttype = "star";
+						} else if (arg2 == 3) {
+							sorttype = "click";
+						} else if (arg2 == 4) {
+							sorttype = "discount";
+							discountOnly = true;
+						}
+						tv_px.setText(arrayList.get(arg2));
+						popupWindow.dismiss();
+						popupWindow = null;
+						iv_px.setImageDrawable(getResources().getDrawable(
+								R.drawable.hwd_arrow));
+						resetState();
+						return;
+					case 1:
+						cityid = citys.get(arg2).getId();
+						tv_dq.setText(arrayList.get(arg2));
+						popupWindow.dismiss();
+						popupWindow = null;
+						iv_dq.setImageDrawable(getResources().getDrawable(
+								R.drawable.hwd_arrow));
+						resetState();
+						return;
 				}
 			}
 		});
@@ -293,14 +296,15 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 				Intent intent = new Intent(LsBuyActivity.this, NewHomeActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
-				stopService(new Intent("com.lis99.mobile.service.LocService"));
+//				stopService(new Intent("com.lis99.mobile.service.LocService"));
+				stopService(new Intent(activity, com.lis99.mobile.service.LocService.class));
 			}
 		});
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+									long arg3) {
 				Shop shop = (Shop) lsBuyAdapter.getItem(arg2);
 				Intent intent = new Intent(LsBuyActivity.this,
 						ShopDetailActivity.class);
@@ -318,14 +322,14 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 				if (dpListBean != null) {
 					Intent intent = new Intent(LsBuyActivity.this,
 							LocActivity.class);
-					double dis=0;
-					for(int i=0;i<shops.size();i++){
-						dis+=Double.parseDouble((shops.get(i).getDistance()));
+					double dis = 0;
+					for (int i = 0; i < shops.size(); i++) {
+						dis += Double.parseDouble((shops.get(i).getDistance()));
 					}
-					dis=dis/shops.size();
-					String Dis =dis+"";
+					dis = dis / shops.size();
+					String Dis = dis + "";
 					DPListItem dpListItem = dpListBean.getData();
-					
+
 					intent.putExtra("data", dpListItem);
 					intent.putExtra("X", Latitude1);
 					intent.putExtra("Y", Longtitude1);
@@ -353,7 +357,7 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 				} else {
 					int y = getWindowManager().getDefaultDisplay().getHeight()
 							- listView.getHeight(); // linearLayout.getHeight()+
-													// relativeLayout.getHeight();
+					// relativeLayout.getHeight();
 
 					int x = getWindowManager().getDefaultDisplay().getWidth();
 					imageViewdianpu.setImageDrawable(getResources()
@@ -764,7 +768,7 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 			if (Latitude != null && !"".equals(Latitude)) {
 				Latitude1 = Latitude;
 				Longtitude1 = Longtitude;
-				stopService(new Intent("com.lis99.mobile.service.LocService"));
+				stopService(new Intent(activity, com.lis99.mobile.service.LocService.class));
 				if (!emptyString(city)) {
 					postMessage(CITY_CHANGE);
 				}
@@ -790,17 +794,22 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 	}
 
 	protected void showWaiting(Context context) {
-		dialogView = new Dialog(context, R.style.theme_dialog_alert);
-		dialogView.setContentView(R.layout.window_layout);
-		dialogView.setCancelable(true);
-		dialogView
-				.setOnCancelListener(new android.content.DialogInterface.OnCancelListener() {
-					@Override
-					public void onCancel(DialogInterface dialog) {
-						hideDialog();
-					}
-				});
-		dialogView.show();
+		try {
+			dialogView = new Dialog(context, R.style.theme_dialog_alert);
+			dialogView.setContentView(R.layout.window_layout);
+			dialogView.setCancelable(true);
+			dialogView
+					.setOnCancelListener(new android.content.DialogInterface.OnCancelListener() {
+						@Override
+						public void onCancel(DialogInterface dialog) {
+							hideDialog();
+						}
+					});
+			dialogView.show();
+		}catch (Exception e)
+		{
+
+		}
 	}
 
 	private void initOptions() {

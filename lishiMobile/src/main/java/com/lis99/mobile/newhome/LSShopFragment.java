@@ -155,7 +155,9 @@ public class LSShopFragment extends LSFragment implements
 		listenLL();
 		preferences = getActivity().getSharedPreferences(constens.CITYINFO, Context.MODE_PRIVATE);
 		
-		getActivity().startService(new Intent("com.lis99.mobile.service.LocService"));
+//		getActivity().startService(new Intent("com.lis99.mobile.service.LocService"));
+		getActivity().startService(new Intent(getActivity(), com.lis99.mobile.service.LocService.class));
+
 		registerReceiver(myReciever, intentFilter);
 		
 		
@@ -772,7 +774,8 @@ public class LSShopFragment extends LSFragment implements
 			if (Latitude != null && !"".equals(Latitude)) {
 				Latitude1 = Latitude;
 				Longtitude1 = Longtitude;
-				getActivity().stopService(new Intent("com.lis99.mobile.service.LocService"));
+//				getActivity().stopService(new Intent("com.lis99.mobile.service.LocService"));
+				getActivity().stopService(new Intent(getActivity(), com.lis99.mobile.service.LocService.class));
 				if (!emptyString(city)) {
 					postMessage(CITY_CHANGE);
 				}

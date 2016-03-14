@@ -236,6 +236,16 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
             }
         });
 
+//        edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+//                if (b) {
+//                    if ( emoticonsCover != null )
+//                    emoticonsCover.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
+
 //        final Button postButton = (Button) findViewById(R.id.post_button);
 //
 //        postButton.setOnClickListener(new OnClickListener() {

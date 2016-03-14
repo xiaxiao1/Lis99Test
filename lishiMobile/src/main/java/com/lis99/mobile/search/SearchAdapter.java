@@ -3,6 +3,7 @@ package com.lis99.mobile.search;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -14,6 +15,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.SearchMainListModel;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
@@ -501,6 +503,15 @@ public class SearchAdapter extends BaseAdapter{
 
         @Override
         public void onClick(View view) {
+
+            if ( !TextUtils.isEmpty(item.activity_code))
+            {
+                Intent intent = new Intent(mContext, LSClubTopicActiveOffLine.class);
+                intent.putExtra("topicID", item.id);
+                mContext.startActivity(intent);
+                return;
+            }
+
             Intent i = new Intent(mContext, LSClubTopicActivity.class);
             i.putExtra("topicID", item.id);
             mContext.startActivity(i);

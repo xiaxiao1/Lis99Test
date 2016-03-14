@@ -55,6 +55,8 @@ public class SearchMainListModel extends BaseModel{
         public String image;
         public String height;
         public String width;
+        //      新版活动
+        public String activity_code;
     }
 
 }

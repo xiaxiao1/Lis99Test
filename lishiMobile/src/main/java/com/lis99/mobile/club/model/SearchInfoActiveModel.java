@@ -21,7 +21,8 @@ public class SearchInfoActiveModel extends BaseModel {
         public String image;
         public int height;
         public int width;
-
+//      新版活动
+        public String activity_code;
 
     }
 

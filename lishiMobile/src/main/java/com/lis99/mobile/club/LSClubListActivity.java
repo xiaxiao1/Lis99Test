@@ -480,7 +480,8 @@ public class LSClubListActivity extends LSBaseActivity {
 				return;
 			if (firstClickCityPanel) {
 				firstClickCityPanel = false;
-				startService(new Intent("com.lis99.mobile.service.LocService"));
+//				startService(new Intent("com.lis99.mobile.service.LocService"));
+				startService(new Intent(activity, com.lis99.mobile.service.LocService.class));
 			}
 			locView.setVisibility(View.VISIBLE);
 			selectView = cityView;
@@ -683,7 +684,8 @@ public class LSClubListActivity extends LSBaseActivity {
 			if (Latitude != null && !"".equals(Latitude)) {
 				Latitude1 = Latitude;
 				Longtitude1 = Longtitude;
-				stopService(new Intent("com.lis99.mobile.service.LocService"));
+//				stopService(new Intent("com.lis99.mobile.service.LocService"));
+				stopService(new Intent(activity, com.lis99.mobile.service.LocService.class));
 //				if (!emptyString(city)) {
 //					postMessage(CITY_CHANGE);
 //				}

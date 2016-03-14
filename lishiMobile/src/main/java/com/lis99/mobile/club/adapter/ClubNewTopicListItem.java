@@ -84,7 +84,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 //        return super.getItemViewType(position);
         int num = 0;
         Object o = getItem(position);
-        if (o instanceof TopicNewListMainModelTitle) {
+        if (o instanceof TopicNewListMainModelTitle && position == 0 ) {
             num = TITLE;
         } else if (o instanceof TopicNewListMainModel.TopicsdetaillistEntity) {
             num = INFO;
@@ -196,13 +196,13 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder.layoutIv.setVisibility(View.VISIBLE);
             holder.vedio.setVisibility(View.VISIBLE);
             ImageLoader.getInstance().displayImage(item.videoimg, holder.contentImageView,
-                    ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
+                    ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
                             .contentImageView));
         } else {
             if (!TextUtils.isEmpty(item.images)) {
                 holder.layoutIv.setVisibility(View.VISIBLE);
                 ImageLoader.getInstance().displayImage(item.images, holder.contentImageView,
-                        ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
+                        ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
                                 .contentImageView ));
             }
         }

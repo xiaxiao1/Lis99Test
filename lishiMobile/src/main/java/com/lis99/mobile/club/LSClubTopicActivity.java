@@ -112,7 +112,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 //	＝＝＝＝3.5.5＝＝＝＝＝＝＝
 	private HandlerList likeCall;
 
-//	private View layout_like;
+//	private View animation;
 //	private ImageView iv_like;
 //	private TextView tv_like;
 	private Animation animation;

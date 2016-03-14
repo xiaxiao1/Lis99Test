@@ -1,11 +1,16 @@
 package com.lis99.mobile.club.newtopic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -20,8 +25,11 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.HandlerList;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.ShareManager;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +56,17 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
     private TopicNewListMainModel model;
 
+    private TextView tv_reply, tv_like, tv_reply_num;
+
+    private ImageView iv_like;
+
+    private View layout_like, layout_reply;
+
+    private Animation animation;
+
+    private HandlerList likeCall;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +74,24 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
         initViews();
 
+        animation = AnimationUtils.loadAnimation(this, R.anim.like_anim);
+
+        addCallLike();
+
+//        MyEmotionsUtil.getInstance().setVisibleEmotion(callBack);
+//        MyEmotionsUtil.getInstance().initView(this, bodyView, btn_emotion, footerForEmoticons,
+//                layoutMain);
+
+//        setTitle("123");
+
         onHeaderRefresh(refreshView);
 
     }
 
+
+
     @Override
     protected void initViews() {
-        super.initViews();
-
 
         listView = (ListView) findViewById(R.id.listView);
         layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
@@ -74,6 +103,20 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
         titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
         iv_weichat = (ImageView) findViewById(R.id.iv_weichat);
         iv_friend = (ImageView) findViewById(R.id.iv_friend);
+
+        tv_reply = (TextView) findViewById(R.id.tv_reply);
+        tv_like = (TextView) findViewById(R.id.tv_like);
+        tv_reply_num = (TextView) findViewById(R.id.tv_reply_num);
+
+        iv_like = (ImageView) findViewById(R.id.iv_like);
+
+        layout_like = findViewById(R.id.layout_like);
+        layout_reply = findViewById(R.id.layout_reply);
+
+
+        tv_reply.setOnClickListener(this);
+        layout_like.setOnClickListener(this);
+        layout_reply.setOnClickListener(this);
 
         titleRightImage.setOnClickListener(this);
         iv_weichat.setOnClickListener(this);
@@ -103,30 +146,34 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                Common.log("=============================="+mTask.getresult());
+                Common.log("==============================" + mTask.getresult());
 
                 model = (TopicNewListMainModel) mTask.getResultModel();
 
-                if ( model == null ) return;
+                if (model == null) return;
 
 //                page.nextPage();
 
 
-                if (model.topicsreplylist != null && model.topicsreplylist.size() >= 1 )
-                {
-                    for ( int i = 0; i < model.topicsreplylist.size(); i++ )
-                    {
+                if (model.topicsreplylist != null && model.topicsreplylist.size() >= 1) {
+                    for (int i = 0; i < model.topicsreplylist.size(); i++) {
                         model.imgShareUrl = model.topicsdetaillist.get(i).images;
-                        if ( !TextUtils.isEmpty(model.imgShareUrl) )
-                        {
+                        if (!TextUtils.isEmpty(model.imgShareUrl)) {
                             break;
                         }
                     }
                 }
 
+                tv_reply_num.setText(""+model.topictot);
+                tv_like.setText(""+model.likeNum);
 
-                if ( adapter == null )
-                {
+                if (model.myLikeStatus == 0) {
+                    iv_like.setImageResource(R.drawable.topic_new_like_normal);
+                } else {
+                    iv_like.setImageResource(R.drawable.topic_new_liked);
+                }
+
+                if (adapter == null) {
 //                    page.setPageSize(model.totpage);
 
                     TopicNewListMainModelTitle title = model;
@@ -191,6 +238,7 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
     @Override
     public void onClick(View arg0) {
         super.onClick(arg0);
+        Intent intent = null;
         switch (arg0.getId())
         {
             case R.id.titleRightImage:
@@ -205,7 +253,72 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 //				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
                 ShareManager.getInstance().share2Friend(model, shareFandW);
                 break;
+            case R.id.layout_like:
+                if ( model == null ) return;
+                if ( model.myLikeStatus == 1 )
+                {
+                    return;
+                }
+                if ( Common.isLogin(activity) )
+                {
+
+                    iv_like.startAnimation(animation);
+
+                    likeCall.handlerAall();
+
+                    LSRequestManager.getInstance().clubTopicLike(Common.string2int(topicId), new CallBack() {
+                        @Override
+                        public void handler(MyTask mTask) {
+                            //点赞成功
+//							likeCall.handlerAall();
+                        }
+                    });
+                }
+                break;
+            case R.id.layout_reply:
+//                跳转评论列表
+
+                break;
+            case R.id.tv_reply:
+//                调用评论
+                intent = new Intent(activity, LSClubTopicNewReply.class);
+                startActivity(intent);
+                break;
         }
+    }
+
+    public void addCallLike ()
+    {
+        likeCall = HandlerList.getInstance();
+        likeCall.addItem(new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                if (model == null) return;
+//                clubhead.LikeStatus = "1";
+                model.myLikeStatus = 1;
+                iv_like.setImageResource(R.drawable.topic_new_liked);
+                int num = model.likeNum;
+                num += 1;
+                tv_like.setText(num);
+                tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        likeCall.clean();
+//		likeCall = null;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( MyEmotionsUtil.getInstance().onKeyDown(keyCode, event) )
+        {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

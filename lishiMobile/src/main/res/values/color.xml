@@ -96,4 +96,6 @@
 	
 	<color name="text_color_green">#2bca63</color>
 
+	<color name="transparent_activity">#9000</color>
+
 </resources>

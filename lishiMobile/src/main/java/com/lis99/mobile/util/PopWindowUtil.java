@@ -29,6 +29,19 @@ public class PopWindowUtil {
 
     private static PopupWindow pop;
 
+    public static PopupWindow showTopicReply ( View parent, CallBack callBack )
+    {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            return pop;
+        }
+
+
+
+        return pop;
+    }
+
+
     /**
      * 选择发帖俱乐部
      * */

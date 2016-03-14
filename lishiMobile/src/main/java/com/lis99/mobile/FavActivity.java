@@ -47,7 +47,8 @@ private ImageView iv_home;
 	@Override
 	public void setListener() {
 		if(intent==null){
-			intent=new Intent("com.lis99.mobile.service.LocService");
+//			intent=new Intent("com.lis99.mobile.service.LocService");
+			intent = new Intent(this, com.lis99.mobile.service.LocService.class);
 		}
 		startService(intent);
 		myReciever = new MyReciever();
@@ -87,7 +88,8 @@ private ImageView iv_home;
 			@Override
 			public void onClick(View v) {
 				finish();
-				stopService(new Intent("com.lis99.mobile.service.LocService"));
+//				stopService(new Intent("com.lis99.mobile.service.LocService"));
+				stopService(new Intent(FavActivity.this, com.lis99.mobile.service.LocService.class));
 			}
 		});
 	}
