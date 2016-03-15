@@ -14,7 +14,10 @@
 
 
     <RelativeLayout
-        android:layout_margin="12dp"
+        android:id="@+id/layout_reply_quote"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/topic_item_reply_bg"
@@ -56,6 +59,7 @@
         android:hint="说点什么吧..."
         android:textColor="#666"
         android:textSize="15sp"
+        android:layout_marginTop="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         >
@@ -67,19 +71,19 @@
         android:layout_height="wrap_content"
         >
 
-        <Button
+        <ImageView
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_emotion"
-            android:background="@drawable/topic_new_reply_emotion_btn"
+            android:src="@drawable/topic_new_reply_emotion_btn"
             />
 
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_ok"
-            android:background="@drawable/topic_new_reply_btnok"
+            android:src="@drawable/topic_new_reply_btnok"
             android:layout_alignParentRight="true"
             />
 

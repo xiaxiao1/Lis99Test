@@ -245,6 +245,8 @@ public class C {
 	public static final String CLUB_EVENT_APPLYLIST = DOMAIN + "/club/clubActivityApplyList/";
 //	public static final String CLUB_ADD_TOPIC = DOMAIN + "/club/clubActivityTopic/";
 	public static final String CLUB_ADD_TOPIC = DOMAIN + "/v4/club/clubActivityTopic";
+//	新版话题， 回复http://api.lis99.com/v5/topics/topicsReply
+	public static final String CLUB_ADD_TOPIC_REPLY = DOMAIN + "/v5/topics/topicsReply/";
 	public static final String CLUB_GET_INFO = DOMAIN + "/club/getclubinfo/";
 	public static final String CLUB_TOPIC_GET_INFO = DOMAIN + "/club/getTopicInfo/";
 	public static final String CLUB_TOPIC_GET_INFO2 = DOMAIN + "/club/getClubTopicInfo/";
@@ -425,6 +427,8 @@ public class C {
 	public static final String SYS_MASSAGE_CLEANALL = DOMAIN + "/v3/user/clearNotice";
 //	新的点赞
 	public static final String CLUB_TOPIC_LIKE = DOMAIN + "/v3/topics/addLike/";
+//	新新的点赞
+	public static final String CLUB_TOPIC_LIKE_NEW = DOMAIN + "/v5/topics/addLike/";
 //  收到的赞
 	public static final String SYS_LIKE_LIST = DOMAIN + "/v3/user/likeTopic/";
 //  装备详情
@@ -468,5 +472,7 @@ public class C {
 
 //	新版话题贴		http://api.lis99.com/v5/topics/detail/[page]
 	public static final String CLUB_NEW_TOPIC_LIST_MAIN = DOMAIN + "/v5/topics/detail/";
+//	新版话题回复列表 http://api.lis99.com/v5/topics/replylists/[page]
+	public static final String CLUB_NEW_TOPIC_LIST_MAIN_REPLY = DOMAIN + "/v5/topics/replylists/";
 
 }

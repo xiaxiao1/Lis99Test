@@ -1,82 +1,70 @@
-//package com.lis99.mobile.util.letv;
+package com.lis99.mobile.util.letv;
+
+import android.content.Context;
+import android.os.Bundle;
+
+import com.letv.controller.PlayContext;
+import com.letv.controller.PlayProxy;
+import com.letv.controller.interfacev1.ILetvPlayerController;
+import com.letv.skin.utils.UIPlayContext;
+import com.letv.skin.v4.V4PlaySkin;
+import com.letv.universal.iplay.EventPlayProxy;
+import com.letv.universal.iplay.ISplayer;
+import com.letv.universal.widget.ILeVideoView;
+
+/**
+ * Created by yy on 16/3/3.
+ */
+public class LeTvUtil
+{
+
+    private ISplayer player;
+    private PlayContext playContext;
+    private ILeVideoView videoView;
+    private Context mContext;
+    private V4PlaySkin skin;
+    private UIPlayContext uicontext;
+    private ILetvPlayerController playerController;
+
+    private Bundle mBundle;
+    private String path = "";
+    private long lastPosition;
+
+    private int skinBuildType;
+
+//    private static LeTvUtil instance;
 //
-//import android.content.Context;
-//import android.os.Bundle;
-//import android.text.TextUtils;
-//import android.view.Surface;
-//import android.view.SurfaceHolder;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.RelativeLayout;
-//
-//import com.lecloud.download.control.DownloadCenter;
-//import com.lecloud.log.KLog;
-//import com.letv.controller.PlayContext;
-//import com.letv.controller.PlayProxy;
-//import com.letv.controller.imp.LetvPlayerControllerImp;
-//import com.letv.controller.interfacev1.ILetvPlayerController;
-//import com.letv.controller.interfacev1.ISplayerController;
-//import com.letv.skin.utils.UIPlayContext;
-//import com.letv.skin.v4.V4PlaySkin;
-//import com.letv.universal.iplay.EventPlayProxy;
-//import com.letv.universal.iplay.ISplayer;
-//import com.letv.universal.play.util.PlayerParamsHelper;
-//import com.letv.universal.widget.ILeVideoView;
-//import com.letv.universal.widget.ReSurfaceView;
-//
-///**
-// * Created by yy on 16/3/3.
-// */
-//public class LeTvUtil
-//{
-//
-//    private ISplayer player;
-//    private PlayContext playContext;
-//    private ILeVideoView videoView;
-//    private Context mContext;
-//    private V4PlaySkin skin;
-//    private UIPlayContext uicontext;
-//    private ILetvPlayerController playerController;
-//
-//    private Bundle mBundle;
-//    private String path = "";
-//    private long lastPosition;
-//
-//    private int skinBuildType;
-//
-////    private static LeTvUtil instance;
-////
-////    public static LeTvUtil getInstance (Context c )
-////    {
-////        this.mContext = c;
-////        if ( instance == null ) instance = new LeTvUtil();
-////        return instance;
-////    }
-//
-//
-//    /**
-//     * 乐视云点播参数设置
-//     * 没有的数值传空字符串""
-//     * @param uuid
-//     * @param vuid
-//     * @param checkCode
-//     * @param userKey
-//     * @param isPannoVideo
-//     * @return
-//     */
-//    public static Bundle setVodParams(String uuid, String vuid, String checkCode, String userKey, String playName, boolean isPannoVideo) {
-//        Bundle mBundle = new Bundle();
-//        mBundle.putInt(PlayProxy.PLAY_MODE, EventPlayProxy.PLAYER_VOD);
-//        mBundle.putString(PlayProxy.PLAY_UUID, uuid);
-//        mBundle.putString(PlayProxy.PLAY_VUID, vuid);
-//        mBundle.putString(PlayProxy.PLAY_CHECK_CODE, checkCode);
-//        mBundle.putString(PlayProxy.PLAY_PLAYNAME, playName);
-//        mBundle.putString(PlayProxy.PLAY_USERKEY, userKey);
-//        mBundle.putBoolean(PlayProxy.BUNDLE_KEY_ISPANOVIDEO, isPannoVideo);
-//        return mBundle;
+//    public static LeTvUtil getInstance (Context c )
+//    {
+//        this.mContext = c;
+//        if ( instance == null ) instance = new LeTvUtil();
+//        return instance;
 //    }
-//
-//
+
+
+    /**
+     * 乐视云点播参数设置
+     * 没有的数值传空字符串""
+     * @param uuid
+     * @param vuid
+     * @param checkCode
+     * @param userKey
+     * @param isPannoVideo
+     * @return
+     */
+    public static Bundle setVodParams(String uuid, String vuid, String checkCode, String userKey, String playName, boolean isPannoVideo) {
+        Bundle mBundle = new Bundle();
+        mBundle.putInt(PlayProxy.PLAY_MODE, EventPlayProxy.PLAYER_VOD);
+        mBundle.putString(PlayProxy.PLAY_UUID, uuid);
+        mBundle.putString(PlayProxy.PLAY_VUID, vuid);
+        mBundle.putString(PlayProxy.PLAY_CHECK_CODE, checkCode);
+        mBundle.putString(PlayProxy.PLAY_PLAYNAME, playName);
+        mBundle.putString(PlayProxy.PLAY_USERKEY, userKey);
+        mBundle.putBoolean(PlayProxy.BUNDLE_KEY_ISPANOVIDEO, isPannoVideo);
+        return mBundle;
+    }
+
+
 //    // surfaceView生命周期
 //    private SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
 //        @Override
@@ -259,44 +247,44 @@
 //            playContext.destory();
 //        }
 //    }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

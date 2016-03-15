@@ -3,7 +3,6 @@ package com.lis99.mobile.club.newtopic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -29,7 +28,6 @@ import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.ShareManager;
-import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -164,8 +162,8 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                     }
                 }
 
-                tv_reply_num.setText(""+model.topictot);
-                tv_like.setText(""+model.likeNum);
+                tv_reply_num.setText("" + model.topictot);
+                tv_like.setText("" + model.likeNum);
 
                 if (model.myLikeStatus == 0) {
                     iv_like.setImageResource(R.drawable.topic_new_like_normal);
@@ -190,6 +188,8 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                     mList.addAll(model.topicsreplylist);
 
                     adapter = new ClubNewTopicListItem(activity, mList);
+
+                    adapter.setLikeCall(likeCall);
 
                     listView.setAdapter(adapter);
                 }
@@ -266,26 +266,69 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
                     likeCall.handlerAall();
 
-                    LSRequestManager.getInstance().clubTopicLike(Common.string2int(topicId), new CallBack() {
-                        @Override
-                        public void handler(MyTask mTask) {
-                            //点赞成功
-//							likeCall.handlerAall();
-                        }
-                    });
+                    LSRequestManager.getInstance().clubTopicLikeNew(Common.string2int(topicId), null);
+
+//                    LSRequestManager.getInstance().clubTopicLike(Common.string2int(topicId), new CallBack() {
+//                        @Override
+//                        public void handler(MyTask mTask) {
+//                            //点赞成功
+////							likeCall.handlerAall();
+//                        }
+//                    });
                 }
                 break;
             case R.id.layout_reply:
 //                跳转评论列表
+                if ( model == null ) return;
+                intent = new Intent(activity, LSClubNewTopicListMainReply.class);
+                intent.putExtra("TOPICID", Common.string2int(model.topicsId));
+                intent.putExtra("CLUBID", model.clubId);
+                startActivity(intent);
 
                 break;
             case R.id.tv_reply:
 //                调用评论
+                if ( model == null ) return;
                 intent = new Intent(activity, LSClubTopicNewReply.class);
+                intent.putExtra("replyedName", "");
+                intent.putExtra("replyedcontent", "");
+                intent.putExtra("replyedfloor", "");
+                intent.putExtra("replyedId", "");
+                intent.putExtra("clubId", "" + model.clubId);
+                intent.putExtra("topicId", "" + topicId);
+//                startActivityForResult(intent, 999);
                 startActivity(intent);
+                this.overridePendingTransition(R.anim.activity_open_down_up, 0);
                 break;
         }
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+//    {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        // 回复成功， 翻页到最后一页
+//        if (resultCode == RESULT_OK && requestCode == 999)
+//        {
+//            int pagetot = data.getIntExtra("lastPage", -1);
+//            if (pagetot == -1)
+//            {
+//                return;
+//            }
+//            // 上翻页标记
+//            needup = true;
+//            cleanListUp();
+//            // 最后一页
+//            page.pageNo = pagetot;
+//            // 获取最后一页内容
+//            getReplyListUp();
+//        }
+//        // 报名
+//        else if (resultCode == RESULT_OK && requestCode == 997)
+//        {
+//            headViewActive.applyOK();
+//        }
+//    }
 
     public void addCallLike ()
     {
@@ -299,7 +342,7 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                 iv_like.setImageResource(R.drawable.topic_new_liked);
                 int num = model.likeNum;
                 num += 1;
-                tv_like.setText(num);
+                tv_like.setText(""+num);
                 tv_like.setTextColor(getResources().getColor(R.color.topic_like_color));
             }
         });
@@ -308,18 +351,11 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        cleanList();
         likeCall.clean();
 //		likeCall = null;
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ( MyEmotionsUtil.getInstance().onKeyDown(keyCode, event) )
-        {
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
     @Override
     public void onClickImage(String imageUrl) {

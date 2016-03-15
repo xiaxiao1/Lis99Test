@@ -11,6 +11,10 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
+<!--乐视-->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
 
     <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
     </uses-permission>
@@ -1199,8 +1203,12 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 <!--    乐视视频-->
         <activity android:name=".util.letv.MovieActivity"
-                  android:screenOrientation="landscape"
+                  android:configChanges="keyboard|screenSize|orientation|layoutDirection"
+                  android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <service
+            android:name="com.letv.pp.service.CdeService"
+            android:process=":cde" />
 
 <!--    新版话题帖-->
         <activity android:name="com.lis99.mobile.club.newtopic.LSClubNewTopicListMain"
@@ -1210,8 +1218,12 @@
         <activity android:name="com.lis99.mobile.club.newtopic.LSClubTopicNewReply"
                   android:theme="@style/transparent_activity"
                   android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"
                   />
-
+<!--    新话题回复列表-->
+        <activity android:name="com.lis99.mobile.club.newtopic.LSClubNewTopicListMainReply"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
 
 
     </application>

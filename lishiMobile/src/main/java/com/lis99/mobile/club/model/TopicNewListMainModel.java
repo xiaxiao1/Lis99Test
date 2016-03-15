@@ -2,6 +2,7 @@ package com.lis99.mobile.club.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,6 +64,7 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
     }
 
     public static class TopicsreplylistEntity {
+
         @SerializedName("id")
         public String id;
         @SerializedName("user_id")
@@ -96,6 +98,20 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
          */
         @SerializedName("is_floor")
         public int is_floor;
+        /**
+         *      否是版主：0否，1是
+         */
+        @SerializedName("moderator")
+        public int moderator;
+        @SerializedName("usercatelist")
+        public ArrayList<Usercatelist> usercatelist;
+
+        public static class Usercatelist
+        {
+            @SerializedName("title")
+            public String title;
+        }
+
     }
 
 

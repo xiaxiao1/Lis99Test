@@ -17,6 +17,7 @@ import com.lis99.mobile.club.model.LikeListModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.mine.LSUserHomeActivity;
+import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
@@ -47,10 +48,17 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
 
     private Animation animation;
 
+    private String likeUrl;
+
     public void setLikeCall ( HandlerList likeCall )
     {
         this.likeCall = likeCall;
         likeCall.addItem(callBack);
+    }
+
+    public void setLikeUrl (String url)
+    {
+        likeUrl = url;
     }
 
     public LSClubTopicHeadLike(Context context)
@@ -284,13 +292,22 @@ public class LSClubTopicHeadLike implements View.OnClickListener{
                     iv_like.startAnimation(animation);
 
                     likeCall.handlerAall();
-
-                    LSRequestManager.getInstance().clubTopicLike(topicid, new CallBack() {
-                        @Override
-                        public void handler(MyTask mTask) {
+//                    新版话题帖赞
+                    if (C.CLUB_TOPIC_LIKE_NEW.equals(likeUrl))
+                    {
+                        LSRequestManager.getInstance().clubTopicLikeNew(topicid, null);
+                    }
+                    else
+                    {
+                        LSRequestManager.getInstance().clubTopicLike(topicid, new CallBack() {
+                            @Override
+                            public void handler(MyTask mTask) {
 //                            likeCall.handlerAall();
-                        }
-                    });
+                            }
+                        });
+                    }
+
+
                 }
                 break;
             case R.id.iv_like_1:

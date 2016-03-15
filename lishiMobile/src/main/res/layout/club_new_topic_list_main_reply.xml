@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/layoutMain"
+
+    >
+
+    <include
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/activity_title" />
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topic_new_reply_bg"
+
+        >
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/topic_new_reply_bottom_bg"
+            android:text="发表回复..."
+            android:textColor="#c6b6a7"
+            android:id="@+id/tv_reply"
+            />
+
+    </RelativeLayout>
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:background="@color/pull_bg"
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/include"
+        android:layout_below="@+id/titlebar"
+        android:orientation="vertical" >
+
+        <ListView
+            android:background="@color/white"
+            android:id="@+id/listView"
+            android:scrollbars="none"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:listSelector="#00000000" >
+        </ListView>
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+</RelativeLayout>

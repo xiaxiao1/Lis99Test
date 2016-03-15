@@ -29,12 +29,11 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:background="@color/pull_bg"
+                android:background="@drawable/topic_tag_bg"
                 android:id="@+id/tv_tag1"
                 android:layout_marginRight="5dp"
                 android:textColor="#ff7800"
                 android:text="#游记"
-                android:padding="3dp"
                 android:textSize="12sp"
                 />
 
@@ -44,12 +43,11 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:background="@color/pull_bg"
+                android:background="@drawable/topic_tag_bg"
                 android:id="@+id/tv_tag2"
                 android:layout_marginRight="5dp"
                 android:textColor="#b59477"
                 android:text="#游记"
-                android:padding="3dp"
                 android:textSize="12sp"
                 />
 
@@ -59,11 +57,10 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:background="@color/pull_bg"
+                android:background="@drawable/topic_tag_bg"
                 android:id="@+id/tv_tag3"
                 android:textColor="#ff7800"
                 android:text="#游记游记游记游记游记游记游记"
-                android:padding="3dp"
                 android:textSize="12sp"
                 />
 

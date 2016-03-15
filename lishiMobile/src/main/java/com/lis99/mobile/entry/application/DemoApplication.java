@@ -11,6 +11,8 @@ import android.support.multidex.MultiDex;
 
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.SDKInitializer;
+import com.lecloud.config.LeCloudPlayerConfig;
+import com.letv.proxy.LeCloudProxy;
 import com.lis99.mobile.club.BaseConfig;
 import com.lis99.mobile.util.ImageLoaderOption;
 import com.lis99.mobile.util.PushManager;
@@ -129,9 +131,9 @@ public class DemoApplication extends Application
         if (getApplicationInfo().packageName.equals(processName))
         {
 
-//            LeCloudPlayerConfig.getInstance().setDeveloperMode(true).setIsApp().setUseLiveToVod
-//                    (true);
-//            LeCloudProxy.init(getApplicationContext());
+            LeCloudPlayerConfig.getInstance().setDeveloperMode(true).setIsApp().setUseLiveToVod
+                    (true);
+            LeCloudProxy.init(getApplicationContext());
 
         }
     }

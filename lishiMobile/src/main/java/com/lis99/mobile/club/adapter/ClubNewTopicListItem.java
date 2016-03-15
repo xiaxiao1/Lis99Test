@@ -20,12 +20,18 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMainReply;
 import com.lis99.mobile.club.widget.LSClubTopicHeadLike;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
+import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
+import com.lis99.mobile.util.letv.MovieActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -49,6 +55,10 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
     private Drawable drawable;
 
+    private HandlerList likeCall;
+
+    private int topicId = -1, clubId = -1;
+
 
     public ClubNewTopicListItem(Context c, List listItem) {
         super(c, listItem);
@@ -58,6 +68,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
                 drawable.getIntrinsicHeight());
 
+    }
+
+    public void setLikeCall ( HandlerList likeCall )
+    {
+        this.likeCall = likeCall;
     }
 
     @Override
@@ -113,9 +128,12 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder = (ViewHolderTitle) view.getTag();
         }
 
-        TopicNewListMainModelTitle item = (TopicNewListMainModelTitle) getItem(i);
+        final TopicNewListMainModelTitle item = (TopicNewListMainModelTitle) getItem(i);
 
         if (item == null) return view;
+
+        topicId = Common.string2int(item.topicsId);
+        clubId = item.clubId;
 
         holder.titleView.setText(item.title);
         holder.nameView.setText(item.nickname);
@@ -143,7 +161,21 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder.btnAttention.setVisibility(View.GONE);
         } else {
             holder.btnAttention.setVisibility(View.VISIBLE);
+
+            final ViewHolderTitle holder1 = holder;
+            holder.btnAttention.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.attenStatus = 1;
+                    holder1.btnAttention.setVisibility(View.GONE);
+                    if (item.userId == 0) return;
+                    LSRequestManager.getInstance().getFriendsAddAttention(item
+                            .userId, null);
+                }
+            });
+
         }
+
 
 
         if (item.usercatelist != null && item.usercatelist.size() != 0) {
@@ -175,7 +207,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder = (ViewHolderInfo) view.getTag();
         }
 
-        TopicNewListMainModel.TopicsdetaillistEntity item = (TopicNewListMainModel
+        final TopicNewListMainModel.TopicsdetaillistEntity item = (TopicNewListMainModel
                 .TopicsdetaillistEntity) getItem(i);
 
         if (item == null) return view;
@@ -210,7 +242,13 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         holder.layoutIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if ( !TextUtils.isEmpty(item.videoid) && !"0".equals(item.videoid))
+                {
 //                跳转视频
+                    Intent intent = new Intent(mContext, MovieActivity.class);
+                    intent.putExtra("VUID", item.videoid);
+                    mContext.startActivity(intent);
+                }
             }
         });
 
@@ -310,6 +348,9 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         if ( like == null )
         {
             like = new LSClubTopicHeadLike(mContext);
+            like.setLikeCall(likeCall);
+            //新版话题帖
+            like.setLikeUrl(C.CLUB_TOPIC_LIKE_NEW);
             like.InitView(view);
             like.setInfo(item);
         }
@@ -345,7 +386,10 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 @Override
                 public void onClick(View v) {
 //                    跳转到评论列表
-
+                    Intent intent = new Intent(mContext, LSClubNewTopicListMainReply.class);
+                    intent.putExtra("TOPICID", topicId);
+                    intent.putExtra("CLUBID", clubId);
+                    mContext.startActivity(intent);
                 }
             });
         }
@@ -383,9 +427,28 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         {
             holder.replyView.setVisibility(View.GONE);
         }
-
-
-
+//          版主
+        if ( item.moderator == 1 )
+        {
+            holder.ivModerator.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.ivModerator.setVisibility(View.GONE);
+        }
+        holder.tvUserTag3.setVisibility(View.GONE);
+        holder.tvUserTag4.setVisibility(View.GONE);
+//      达人标签
+        if (item.usercatelist != null && item.usercatelist.size() != 0) {
+            if (item.usercatelist.size() > 0) {
+                holder.tvUserTag3.setVisibility(View.VISIBLE);
+                holder.tvUserTag3.setText(item.usercatelist.get(0).title);
+            }
+            if (item.usercatelist.size() > 1) {
+                holder.tvUserTag4.setVisibility(View.VISIBLE);
+                holder.tvUserTag4.setText(item.usercatelist.get(1).title);
+            }
+        }
 
 
 
