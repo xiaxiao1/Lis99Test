@@ -45,6 +45,15 @@
             android:scaleType="fitCenter"
             android:src="@drawable/club_topic_default"/>
 
+        <View
+            android:layout_alignBottom="@id/contentImageView"
+            android:layout_alignTop="@id/contentImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_transprant"
+            android:background="#40000000"
+            />
+
         <ImageView
             android:id="@+id/iv_load"
             android:layout_width="wrap_content"

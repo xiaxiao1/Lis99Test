@@ -17,12 +17,14 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMainReply;
 import com.lis99.mobile.club.widget.LSClubTopicHeadLike;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -191,6 +193,26 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
         holder.ivTagFloor.setTag("1楼");
 
+        holder.tv_club_name.setText(item.clubTitle);
+
+        holder.layout_club_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LSClubDetailActivity.class);
+                intent.putExtra("clubID", item.clubId);
+                mContext.startActivity(intent);
+            }
+        });
+
+        holder.roundedImageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LSUserHomeActivity.class);
+                intent.putExtra("userID", ""+item.userId);
+                mContext.startActivity(intent);
+            }
+        });
+
 
         return view;
     }
@@ -217,6 +239,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         holder.tvInfo.setVisibility(View.GONE);
         holder.tvTitle.setVisibility(View.GONE);
         holder.vedio.setVisibility(View.GONE);
+        holder.view_transprant.setVisibility(View.GONE);
 
         if (!TextUtils.isEmpty(item.content)) {
             holder.tvInfo.setVisibility(View.VISIBLE);
@@ -227,8 +250,10 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         if (!TextUtils.isEmpty(item.videoid) && !TextUtils.isEmpty(item.videoimg)) {
             holder.layoutIv.setVisibility(View.VISIBLE);
             holder.vedio.setVisibility(View.VISIBLE);
+            holder.view_transprant.setVisibility(View.VISIBLE);
             ImageLoader.getInstance().displayImage(item.videoimg, holder.contentImageView,
-                    ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
+                    ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder
+                            .ivLoad, holder
                             .contentImageView));
         } else {
             if (!TextUtils.isEmpty(item.images)) {
@@ -372,7 +397,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder = (ViewHolderReply) view.getTag();
         }
 
-        TopicNewListMainModel.TopicsreplylistEntity item = (TopicNewListMainModel
+        final TopicNewListMainModel.TopicsreplylistEntity item = (TopicNewListMainModel
                 .TopicsreplylistEntity) getItem(i);
 
         if ( item == null ) return view;
@@ -400,6 +425,15 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                     ImageUtil.getclub_topic_headImageOptions());
         }
 
+        holder.roundedImageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LSUserHomeActivity.class);
+                intent.putExtra("userID", item.userId);
+                mContext.startActivity(intent);
+            }
+        });
+
         holder.nameView.setText(item.nickname);
 
         if ( item.is_floor == 0 )
@@ -412,11 +446,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         }
 
         holder.dateView.setText(item.createtime);
-        holder.tvFloor.setText(item.floor);
+        holder.tvFloor.setText(item.floor+"楼");
         holder.contentView.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity)mContext, item.content));
         holder.vipStar.setVisibility(View.GONE);
 
-        if ( !"0".equals(item.replyId))
+        if ( !TextUtils.isEmpty(item.replyId) && !"0".equals(item.replyId))
         {
             holder.replyView.setVisibility(View.VISIBLE);
             holder.tvReplyBody.setText("回复@ " + item.replyNickname);
@@ -478,6 +512,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private TextView tvReplyFloor;
         private TextView tvReplyContent;
         private View layout_more;
+
 
         public ViewHolderReply(View view) {
             include1 = view.findViewById(R.id.include1);
@@ -554,6 +589,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private ImageView ivLoad;
         private TextView tvDescrible;
         private ImageView vedio;
+        private View view_transprant;
 
         public ViewHolderInfo(View view) {
             tvTitle = (TextView) view.findViewById(R.id.tv_title);
@@ -563,6 +599,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             ivLoad = (ImageView) view.findViewById(R.id.iv_load);
             tvDescrible = (TextView) view.findViewById(R.id.tv_describle);
             vedio = (ImageView) view.findViewById(R.id.vedio);
+            view_transprant = view.findViewById(R.id.view_transprant);
         }
     }
 
@@ -580,6 +617,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private TextView titleView;
         private TextView dateView;
         private TextView lookNum;
+        private View layout_club_name;
+        private TextView tv_club_name;
 
         public ViewHolderTitle(View view) {
             roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
@@ -593,6 +632,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             titleView = (TextView) view.findViewById(R.id.titleView);
             dateView = (TextView) view.findViewById(R.id.dateView);
             lookNum = (TextView) view.findViewById(R.id.lookNum);
+            layout_club_name = view.findViewById(R.id.layout_club_name);
+            tv_club_name = (TextView) view.findViewById(R.id.tv_club_name);
         }
     }
 

@@ -42,6 +42,8 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
 
     private int topicId, clubId;
 
+    private LSClubNewTopicListMainReply main;
+
     public LSClubTopicImageListener lsClubTopicCommentListener;
 
     class CommentOnClickListener implements View.OnClickListener
@@ -78,16 +80,16 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
             if (v.getId() == R.id.layout_club_detail_reply)
             {
 //                replyNow(comment);
-                Intent intent = new Intent(mContext, LSClubTopicNewReply.class);
+                Intent intent = new Intent(main, LSClubTopicNewReply.class);
                 intent.putExtra("replyedName", comment.nickname);
                 intent.putExtra("replyedcontent", comment.content);
                 intent.putExtra("replyedfloor", ""+comment.floor);
                 intent.putExtra("replyedId", comment.id);
                 intent.putExtra("clubId", "" + clubId);
                 intent.putExtra("topicId", "" + topicId);
-//                startActivityForResult(intent, 999);
-                mContext.startActivity(intent);
-                ((Activity)mContext).overridePendingTransition(R.anim.activity_open_down_up, 0);
+                main.startActivityForResult(intent, 999);
+//                mContext.startActivity(intent);
+                main.overridePendingTransition(R.anim.activity_open_down_up, 0);
             }
 //            // 点赞
 //            else if (v.getId() == R.id.layout_club_detail_like)
@@ -121,10 +123,11 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
 
     }
 
-    public void setId ( int topicId, int clubId )
+    public void setId ( int topicId, int clubId, LSClubNewTopicListMainReply _main )
     {
         this.topicId = topicId;
         this.clubId = clubId;
+        this.main = _main;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -271,7 +274,7 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
 //			holder.contentImageView.setImageBitmap(null);
             holder.iv_load.setVisibility(View.GONE);
         }
-        if ("0".equals(item.replyId))
+        if ( item.replyId == 0 )
         {
             holder.reply_view.setVisibility(View.GONE);
         } else

@@ -121,6 +121,11 @@ public class LSClubTopicNewReply extends LSBaseActivity {
 
 //		Spannable sp = content.getText();
 
+        if (!Common.isLogin(activity))
+        {
+            return;
+        }
+
         String body = bodyView.getText().toString().trim();
 
         if (TextUtils.isEmpty(body))

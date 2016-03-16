@@ -65,14 +65,28 @@ public class LSClubNewTopicListMainReply  extends LSBaseActivity implements
                 intent.putExtra("replyedId", "");
                 intent.putExtra("clubId", "" + clubId);
                 intent.putExtra("topicId", "" + topicId);
-//                startActivityForResult(intent, 999);
-                startActivity(intent);
+                startActivityForResult(intent, 999);
+//                startActivity(intent);
                 activity.overridePendingTransition(R.anim.activity_open_down_up, 0);
             }
         });
 
         onHeaderRefresh(pullRefreshView);
 
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ( resultCode == RESULT_OK )
+        {
+            if ( requestCode == 999 )
+            {
+                onHeaderRefresh(null);
+            }
+        }
 
     }
 
@@ -114,7 +128,7 @@ public class LSClubNewTopicListMainReply  extends LSBaseActivity implements
             {
                 page.pageSize = model.totpage;
                 adapter = new LSClubNewTopicReplyAdapter(activity, model.topicsreplylist);
-                adapter.setId(topicId, clubId);
+                adapter.setId(topicId, clubId, LSClubNewTopicListMainReply.this);
 
 //                adapter.lsClubTopicCommentListener = LSClubTopicActivity.this;
                 listView.setAdapter(adapter);
