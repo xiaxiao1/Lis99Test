@@ -230,6 +230,6 @@ public class LSClubTopicNewReply extends LSBaseActivity {
     @Override
     public void finish() {
         super.finish();
-        this.overridePendingTransition(R.anim.activity_close_up_down, 0);
+        this.overridePendingTransition(0, R.anim.activity_close_up_down);
     }
 }

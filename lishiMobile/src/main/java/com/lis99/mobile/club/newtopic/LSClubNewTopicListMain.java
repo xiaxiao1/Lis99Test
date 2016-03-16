@@ -70,6 +70,8 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.club_new_topic_list_main);
 
+        topicId = getIntent().getStringExtra("TOPICID");
+
         initViews();
 
         animation = AnimationUtils.loadAnimation(this, R.anim.like_anim);
