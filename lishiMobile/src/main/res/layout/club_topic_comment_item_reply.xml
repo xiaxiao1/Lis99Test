@@ -12,6 +12,34 @@
         android:background="@color/color_1px_stroke"
         />
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:background="@color/pull_bg"
+        android:id="@+id/layout_club_name"
+        >
+
+        <TextView
+            android:id="@+id/tv_club_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#b59477"
+            android:text="精彩评论"
+            android:layout_centerInParent="true"
+            />
+
+
+        <View
+            android:layout_alignParentBottom="true"
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+    </RelativeLayout>
+
+
+
     <include
         android:id="@+id/include1"
         layout="@layout/club_topic_topview"

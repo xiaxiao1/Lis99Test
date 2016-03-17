@@ -27,6 +27,8 @@ public class ClubSpecialListModel extends BaseModel {
         public int user_id;
         public String headicon;
         public int is_hot;
+        public String topic_type;
+
         public ArrayList<Topicimagelist> topicimagelist;
     }
 

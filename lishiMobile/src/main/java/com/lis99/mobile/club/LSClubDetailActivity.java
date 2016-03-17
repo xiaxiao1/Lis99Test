@@ -259,6 +259,17 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 					return;
 				}
 
+//				else if ( "3".equals(item.category))
+//				{
+//					Intent intent = new Intent(activity, LSClubNewTopicListMain.class);
+//					intent.putExtra("TOPICID", "" + item.id);
+//					startActivity(intent);
+//					return;
+//				}
+
+
+
+
 				Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicActivity.class);
 				intent.putExtra("topicID", item.id);
 				startActivityForResult(intent, 998);

@@ -108,6 +108,8 @@ public class ChoicenessAdapter extends BaseAdapter
 			case 1:
 			case 2:
 			case 9:
+//				图文混排话题
+			case 10:
 				num = ACTIVE;
 				break;
 			case 5:
@@ -115,6 +117,8 @@ public class ChoicenessAdapter extends BaseAdapter
 			case 8:
 			case 3:
 			case 7:
+				//				图文混排话题
+			case 11:
 				num = IMGACTIVE;
 				break;
 			case 4:

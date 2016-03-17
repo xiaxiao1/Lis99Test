@@ -154,9 +154,9 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
 //                page.nextPage();
 
-
-                if (model.topicsreplylist != null && model.topicsreplylist.size() >= 1) {
-                    for (int i = 0; i < model.topicsreplylist.size(); i++) {
+//              分享图片获取URL
+                if (model.topicsdetaillist != null && model.topicsdetaillist.size() >= 1) {
+                    for (int i = 0; i < model.topicsdetaillist.size(); i++) {
                         model.imgShareUrl = model.topicsdetaillist.get(i).images;
                         if (!TextUtils.isEmpty(model.imgShareUrl)) {
                             break;
@@ -187,7 +187,14 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                     TopicNewListMainModelEquip equipModel = model;
 
                     mList.add(equipModel);
-                    mList.addAll(model.topicsreplylist);
+                    if ( model.topicsreplylist == null || model.topicsreplylist.size() == 0 )
+                    {
+                        mList.add("NoReply");
+                    }
+                    else
+                    {
+                        mList.addAll(model.topicsreplylist);
+                    }
 
                     adapter = new ClubNewTopicListItem(activity, mList);
 
@@ -283,6 +290,7 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 //                跳转评论列表
                 if ( model == null ) return;
                 intent = new Intent(activity, LSClubNewTopicListMainReply.class);
+                intent.putExtra("TITLE", model.title);
                 intent.putExtra("TOPICID", Common.string2int(model.topicsId));
                 intent.putExtra("CLUBID", model.clubId);
                 startActivity(intent);

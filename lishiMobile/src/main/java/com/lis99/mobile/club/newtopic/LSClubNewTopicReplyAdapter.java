@@ -185,6 +185,9 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
 
             holder.layout_tag = (LinearLayout) view.findViewById(R.id.layout_tag);
 
+//            holder.tv_club_name = (TextView) view.findViewById(R.id.tv_club_name);
+            holder.layout_club_name = view.findViewById(R.id.layout_club_name);
+
 
             view.setTag(holder);
 
@@ -203,6 +206,15 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
         holder.layout_club_detail_like.setVisibility(View.GONE);
         holder.vipStar.setVisibility(View.GONE);
         holder.tv_floor_delete.setVisibility(View.GONE);
+
+        if ( i == 0 )
+        {
+            holder.layout_club_name.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.layout_club_name.setVisibility(View.GONE);
+        }
 
         // LSClubTopicComment item = data.get(i);
         final ClubTopicNewReplyList.TopicsreplylistEntity item = (ClubTopicNewReplyList
@@ -289,10 +301,10 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
         // 1为楼主， 其他不是
         if ( 1 == item.isFloor )
         {
-            holder.nameView.setCompoundDrawables(null, null, null, null);
+            holder.nameView.setCompoundDrawables(null, null, drawable, null);
         } else
         {
-            holder.nameView.setCompoundDrawables(null, null, drawable, null);
+            holder.nameView.setCompoundDrawables(null, null, null, null);
         }
 
         holder.tv_floor.setText(item.floor + "楼");
@@ -351,6 +363,10 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
 
         //	4.1.1
         private TextView tv_user_tag3, tv_user_tag4;
+
+//        title
+        private View layout_club_name;
+//        private TextView tv_club_name;
 
     }
 

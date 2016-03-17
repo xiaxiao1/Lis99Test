@@ -44,6 +44,8 @@ public class LSClubNewTopicListMainReply  extends LSBaseActivity implements
 
     private LSClubNewTopicReplyAdapter adapter;
 
+    private String title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +54,11 @@ public class LSClubNewTopicListMainReply  extends LSBaseActivity implements
 
         topicId = getIntent().getIntExtra("TOPICID", -1);
         clubId = getIntent().getIntExtra("CLUBID", -1 );
+        title = getIntent().getStringExtra("TITLE");
 
         initViews();
+
+        setTitle(title);
 
         findViewById(R.id.include).setOnClickListener(new View.OnClickListener() {
             @Override

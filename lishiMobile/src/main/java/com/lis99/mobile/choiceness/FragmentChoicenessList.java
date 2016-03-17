@@ -18,8 +18,10 @@ import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
@@ -263,6 +265,12 @@ public class FragmentChoicenessList extends Fragment implements
                                 intent.putExtra("topicID", item.topic_id);
                                 startActivity(intent);
                             }
+                            else if ( item.type == 10 || item.type == 11 )
+                            {
+                                intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
+                                intent.putExtra("TOPICID", ""+item.topic_id);
+                                startActivity(intent);
+                            }
 
                         }
                     });
@@ -270,9 +278,6 @@ public class FragmentChoicenessList extends Fragment implements
                 } else {
                     adapter.setList(listModel.omnibuslist);
                 }
-                pull_refresh_view.onFooterRefreshComplete();
-                pull_refresh_view.onHeaderRefreshComplete();
-
             }
         });
 
@@ -322,31 +327,33 @@ public class FragmentChoicenessList extends Fragment implements
             case R.id.allButton:
 
                 //ActivityTest
-                startActivity(new Intent(getActivity(), ActivityTest.class));
+//                startActivity(new Intent(getActivity(), ActivityTest.class));
 
-//                if ( Common.isApkInDebug(getActivity()))
-//                {
-////                    startActivity(new Intent(getActivity(), MovieActivity.class));
+                if ( Common.isApkInDebug(getActivity()))
+                {
+//                    startActivity(new Intent(getActivity(), MovieActivity.class));
 //                    startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
-//                    return;
-//                }
+                    startActivity(new Intent(getActivity(), ActivityTest.class));
+                    return;
+                }
 //
-//                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
-//                startActivity(intent);
+                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
+                startActivity(intent);
+
                 break;
         }
     }
 
     @Override
     public void onFooterRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-
+        pull_refresh_view.onFooterRefreshComplete();
         getList();
 
     }
 
     @Override
     public void onHeaderRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-
+        pull_refresh_view.onHeaderRefreshComplete();
         cleanList();
         getList();
     }

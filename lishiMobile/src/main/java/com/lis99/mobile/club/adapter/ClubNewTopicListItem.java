@@ -51,7 +51,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
     private final int REPLY = 3;
 
-    private final int count = 4;
+    private final int NO_REPLY = 4;
+//  总数
+    private final int count = 5;
+
+
 
     private LSClubTopicHeadLike like;
 
@@ -60,6 +64,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     private HandlerList likeCall;
 
     private int topicId = -1, clubId = -1;
+
+    private String title;
 
 
     public ClubNewTopicListItem(Context c, List listItem) {
@@ -91,10 +97,14 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 return getEquip(i, view, viewGroup);
             case REPLY:
                 return getReply(i, view, viewGroup);
+            case NO_REPLY:
+                return getNoReply (i, view, viewGroup);
         }
+
 
         return view;
     }
+
 
     @Override
     public int getItemViewType(int position) {
@@ -110,6 +120,10 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         } else if (o instanceof TopicNewListMainModel.TopicsreplylistEntity) {
             num = REPLY;
         }
+        else if ( o instanceof String )
+        {
+            num = NO_REPLY;
+        }
 
         return num;
     }
@@ -117,6 +131,16 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     @Override
     public int getViewTypeCount() {
         return count;
+    }
+
+    private View getNoReply(int i, View view, ViewGroup viewGroup) {
+
+        if ( view == null )
+        {
+            view = View.inflate(mContext, R.layout.adapter_club_new_topic_no_reply, null);
+        }
+
+        return view;
     }
 
     //      标题
@@ -136,6 +160,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
         topicId = Common.string2int(item.topicsId);
         clubId = item.clubId;
+        title = item.title;
 
         holder.titleView.setText(item.title);
         holder.nameView.setText(item.nickname);
@@ -328,7 +353,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             int num = item.taglist.size();
             if ( num >0 )
             {
-                holder.tvTag1.setText("#"+item.taglist.get(0).tagname);
+                holder.tvTag1.setText(item.taglist.get(0).tagname);
                 holder.tvTag1.setVisibility(View.VISIBLE);
                 holder.tvTag1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -341,7 +366,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             }
             if ( num > 1)
             {
-                holder.tvTag2.setText("#"+item.taglist.get(1).tagname);
+                holder.tvTag2.setText(item.taglist.get(1).tagname);
                 holder.tvTag2.setVisibility(View.VISIBLE);
                 holder.tvTag2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -354,7 +379,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             }
             if ( num > 2 )
             {
-                holder.tvTag3.setText("#"+item.taglist.get(2).tagname);
+                holder.tvTag3.setText(item.taglist.get(2).tagname);
                 holder.tvTag3.setVisibility(View.VISIBLE);
                 holder.tvTag3.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -367,7 +392,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             }
         }
         else {
-            holder.layoutTag.setVisibility(View.INVISIBLE);
+            holder.layoutTag.setVisibility(View.GONE);
         }
 
         if ( like == null )
@@ -412,6 +437,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 public void onClick(View v) {
 //                    跳转到评论列表
                     Intent intent = new Intent(mContext, LSClubNewTopicListMainReply.class);
+                    intent.putExtra("TITLE", title);
                     intent.putExtra("TOPICID", topicId);
                     intent.putExtra("CLUBID", clubId);
                     mContext.startActivity(intent);

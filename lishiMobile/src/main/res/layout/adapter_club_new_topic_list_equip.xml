@@ -4,6 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:background="@color/white"
     >
 
     <RelativeLayout
@@ -96,7 +97,7 @@
     <TextView
         android:id="@+id/tv_club_name"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:background="@color/pull_bg"
         android:text="@string/temp_string"
         android:textColor="#b59477"

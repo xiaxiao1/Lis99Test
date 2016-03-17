@@ -403,8 +403,8 @@ public class C {
 	public static final String CLUB_MAIN_INFO = DOMAIN + "/v3/club/index";
 /**砾石专栏*/
 	public static final String CLBU_MIAN_SPECIAL = DOMAIN + "/v3/club/taglist/";
-
-	public static final String CLBU_SPECIAL_LIST_INFO = DOMAIN + "/v3/club/tagTopic/";
+//		/v5/club/tagTopic/[page]
+	public static final String CLBU_SPECIAL_LIST_INFO = DOMAIN + "/v5/club/tagTopic/";
 
 	public static final String CLUB_HOT_TOPIC = DOMAIN + "/v3/club/hottopics/";
 

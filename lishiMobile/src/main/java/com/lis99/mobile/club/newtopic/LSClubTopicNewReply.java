@@ -6,12 +6,15 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -35,7 +38,7 @@ public class LSClubTopicNewReply extends LSBaseActivity {
     private TextView tvReplyBody;
     private TextView tvReplyContent;
     private EditText bodyView;
-    private View btn_emotion;
+    private ImageView btn_emotion;
 
     private View layoutMain;
     private LinearLayout footerForEmoticons;
@@ -86,9 +89,9 @@ public class LSClubTopicNewReply extends LSBaseActivity {
         });
 
         bodyView = (EditText) findViewById(R.id.bodyView);
-        btn_emotion = findViewById(R.id.btn_emotion);
+        btn_emotion = (ImageView) findViewById(R.id.btn_emotion);
 
-
+        MyEmotionsUtil.getInstance().setVisibleEmotion(callBack);
         MyEmotionsUtil.getInstance().initView(this, bodyView, btn_emotion, footerForEmoticons,
                 layoutMain);
 
@@ -105,6 +108,8 @@ public class LSClubTopicNewReply extends LSBaseActivity {
             tvReplyContent.setText(replyedcontent);
             layout_reply_quote.setVisibility(View.VISIBLE);
         }
+
+
     }
 
     @Override
@@ -230,6 +235,19 @@ public class LSClubTopicNewReply extends LSBaseActivity {
 
         });
     }
+
+    private CallBack callBack = new CallBack() {
+        @Override
+        public void handler(MyTask mTask) {
+            if ( "GONE".equals(mTask.getresult()))
+            {
+                btn_emotion.setImageResource(R.drawable.topic_new_reply_emotion_btn);
+            }
+            else {
+                btn_emotion.setImageResource(R.drawable.topic_new_reply_ekeybody_btn);
+            }
+        }
+    };
 
 
     @Override
