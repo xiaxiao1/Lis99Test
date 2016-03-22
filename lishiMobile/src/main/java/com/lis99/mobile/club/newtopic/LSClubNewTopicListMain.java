@@ -47,7 +47,7 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
     private RelativeLayout layoutMain;
 
 //    private Page page;
-
+    
     private ImageView titleRightImage, iv_weichat, iv_friend;
 
     private String topicId = "1";

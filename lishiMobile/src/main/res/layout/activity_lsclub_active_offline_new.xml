@@ -58,6 +58,7 @@
                 android:id="@+id/viewBanner"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
+                android:visibility="gone"
                 />
 
             <TextView
@@ -367,6 +368,15 @@
 
             </RelativeLayout>
 
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/topic_active_equip_recommend"
+                android:id="@+id/include_equip"
+                />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -375,11 +385,15 @@
                 android:id="@+id/layout_readme"
                 >
 
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/club_info_join_readme"
+                android:drawableLeft="@drawable/club_info_join_readme"
+                android:text="报名须知"
+                android:textSize="13sp"
+                android:drawablePadding="10dp"
+                android:textColor="#c8bdaa"
+                android:layout_marginLeft="14dp"
                 />
 
             <com.lis99.mobile.view.MyListView

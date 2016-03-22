@@ -24,6 +24,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ShareModel;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ShareManager;
@@ -273,6 +274,7 @@ public class MyActivityWebView extends LSBaseActivity
 							intent.putExtra("topicID", topic_id);
 							LSBaseActivity.activity.startActivity(intent);
 							break;
+//						新版活动
 						case 5:
 							intent = new Intent(LSBaseActivity.activity, LSClubTopicActiveOffLine.class);
 							intent.putExtra("topicID", topic_id);
@@ -283,6 +285,12 @@ public class MyActivityWebView extends LSBaseActivity
 							intent = new Intent(LSBaseActivity.activity, LSClubTopicNewActivity.class);
 							intent.putExtra("topicID", topic_id);
 							LSBaseActivity.activity.startActivity(intent);
+							break;
+//						新版话题
+						case 6:
+							intent = new Intent(LSBaseActivity.activity, LSClubNewTopicListMain.class);
+							intent.putExtra("TOPICID", ""+topic_id);
+							startActivity(intent);
 							break;
 					}
 				}

@@ -544,6 +544,51 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
 //  3天行程
     public String tripdays;
 
+//  装备列表
+    public ArrayList<EquipRecommend> zhuangbeilist;
+
+
+    static public class EquipRecommend implements EquipRecommendInterFace
+    {
+
+
+        public String zhuangbei_id;
+
+        public String zhuangbei_image;
+
+        public String zhuangbei_title;
+
+        public int zhuangbei_star;
+
+
+        @Override
+        public String getImgUrl() {
+            return zhuangbei_image;
+        }
+
+        @Override
+        public String getTitle() {
+            return zhuangbei_title;
+        }
+
+        @Override
+        public int getStar() {
+            return zhuangbei_star;
+        }
+
+        @Override
+        public String getPrice() {
+            return null;
+        }
+
+        @Override
+        public String getId() {
+            return zhuangbei_id;
+        }
+
+
+    }
+
 
 
 

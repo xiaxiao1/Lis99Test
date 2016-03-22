@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/club_info_join_readme"
+        android:text="你可能需要"
+        android:textSize="13sp"
+        android:drawablePadding="10dp"
+        android:textColor="#c8bdaa"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/equip_recommend_bg"
+        android:layout_margin="10dp"
+        >
+
+    <RelativeLayout
+        android:id="@+id/layout_equip"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        >
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/equiImageView"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:scaleType="fitXY"
+            app:corner_radius="5px"/>
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/equiImageView"
+            >
+
+            <TextView
+                android:id="@+id/equiNameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
+                android:textColor="#c6b6a7"
+                android:textSize="12sp"/>
+
+            <RatingBar
+                android:id="@+id/equiRatingBar"
+                style="@style/ls_equip_star_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="9dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_equip1"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            >
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/equiImageView1"
+                android:layout_width="59dp"
+                android:layout_height="59dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:scaleType="fitXY"
+                app:corner_radius="5px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/equiImageView1"
+                android:layout_centerVertical="true"
+                >
+
+                <TextView
+                    android:id="@+id/equiNameView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginRight="9dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
+                    android:textColor="#c6b6a7"
+                    android:textSize="12sp"/>
+
+            <RatingBar
+                android:id="@+id/equiRatingBar1"
+                style="@style/ls_equip_star_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="9dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"/>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_equip2"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            >
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/equiImageView2"
+                android:layout_width="59dp"
+                android:layout_height="59dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:scaleType="fitXY"
+                app:corner_radius="5px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/equiImageView2"
+
+                >
+
+                <TextView
+                    android:id="@+id/equiNameView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginRight="9dp"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
+                    android:textColor="#c6b6a7"
+                    android:textSize="12sp"/>
+
+            <RatingBar
+                android:id="@+id/equiRatingBar2"
+                style="@style/ls_equip_star_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="9dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"/>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

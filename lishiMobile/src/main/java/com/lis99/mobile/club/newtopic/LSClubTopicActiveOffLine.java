@@ -16,6 +16,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.apply.LSApplayNew;
 import com.lis99.mobile.club.model.ClubTopicActiveLineMainModel;
+import com.lis99.mobile.club.model.EquipRecommendInterFace;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.club.widget.RoundedImageView;
@@ -34,12 +35,14 @@ import com.lis99.mobile.util.ShareManager;
 import com.lis99.mobile.view.MyListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by yy on 16/1/8.
  * <p/>
  * 新的线下活动帖
+ *  topicID int
  */
 public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener, View.OnClickListener,
@@ -88,7 +91,12 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     private ImageView titleRightImage, iv_weichat, iv_friend;
 
-    View title;
+    private View title;
+
+    private  ActiveLineEquipRecommend equipRecommend;
+
+    private View include_equip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,11 +140,15 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                 tvprice.setText(model.getConsts());
 
                 if (model.getActivityimgs() != null && model.getActivityimgs().size() != 0 ) {
+                    viewBanner.setVisibility(View.VISIBLE);
                     bannerAdapter = new ImagePageAdapter(LSClubTopicActiveOffLine.this, model.getActivityimgs().size());
                     bannerAdapter.addImagePageAdapterListener(LSClubTopicActiveOffLine.this);
                     bannerAdapter.setImagePageClickListener(LSClubTopicActiveOffLine.this);
                     viewBanner.setBannerAdapter(bannerAdapter);
                     viewBanner.startAutoScroll();
+                }
+                else {
+                    viewBanner.setVisibility(View.GONE);
                 }
 
                 if (model.getActivelightspot() != null && model.getActivelightspot().size() != 0) {
@@ -208,6 +220,19 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                     listjoinreadme.setAdapter(joinAdapter);
                 } else {
                     layout_readme.setVisibility(View.GONE);
+                }
+
+//                装备
+                if ( model.zhuangbeilist != null && model.zhuangbeilist.size() != 0 )
+                {
+                    include_equip.setVisibility(View.VISIBLE);
+                    equipRecommend = new ActiveLineEquipRecommend(activity);
+                    equipRecommend.init(include_equip);
+
+                    ArrayList<EquipRecommendInterFace> item = new ArrayList<EquipRecommendInterFace>(model.zhuangbeilist);
+
+                    equipRecommend.setModel(item);
+
                 }
 
                 //默认
@@ -366,6 +391,9 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
             }
         });
 
+        include_equip = findViewById(R.id.include_equip);
+        include_equip.setVisibility(View.GONE);
+
 
         layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
         btnok = (Button) findViewById(R.id.btn_ok);
@@ -394,7 +422,6 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         btndestination = (Button) findViewById(R.id.btn_destination);
 
         layout_address = findViewById(R.id.layout_address);
-
 
         pull_refresh_view = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
         pull_refresh_view.setOnFooterRefreshListener(this);
