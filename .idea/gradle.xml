@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/playerskin" />
             <option value="$PROJECT_DIR$/recyclerview" />
             <option value="$PROJECT_DIR$/weiboSDK" />
+            <option value="$PROJECT_DIR$/xutils" />
           </set>
         </option>
       </GradleProjectSettings>
