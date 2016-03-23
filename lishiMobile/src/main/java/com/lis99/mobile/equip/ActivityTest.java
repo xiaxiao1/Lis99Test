@@ -3,11 +3,13 @@ package com.lis99.mobile.equip;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
+import com.lis99.mobile.util.Common;
 
 public class ActivityTest extends Activity implements View.OnClickListener {
 
@@ -28,9 +30,15 @@ public class ActivityTest extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.button:
                 //TODO implement
+
+                String id = getEditText3().getText().toString();
 // 1214
                 Intent intent = new Intent(this, LSClubTopicActiveOffLine.class);
-                intent.putExtra("topicID", 1214);
+                if ( !TextUtils.isEmpty(id))
+                    intent.putExtra("topicID", Common.string2int(id));
+                else
+                    intent.putExtra("topicID", 1214);
+
                 startActivity(intent);
 //                Intent intent = new Intent(this, LSClubNewTopicListMain.class);
 //
