@@ -13,6 +13,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.mapapi.SDKInitializer;
 import com.lecloud.config.LeCloudPlayerConfig;
 import com.letv.proxy.LeCloudProxy;
+import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.club.BaseConfig;
 import com.lis99.mobile.util.ImageLoaderOption;
 import com.lis99.mobile.util.PushManager;
@@ -21,6 +22,9 @@ import com.umeng.analytics.MobclickAgent;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+
+
+
 
 //import com.lecloud.config.LeCloudPlayerConfig;
 //import com.letv.proxy.LeCloudProxy;
@@ -90,6 +94,18 @@ public class DemoApplication extends Application
         CrashHandler1.getInstance().init(getApplicationContext());
 //		LETV
         initLeTv();
+
+//      xUtils
+        org.xutils.x.Ext.init(this);
+        org.xutils.x.Ext.setDebug(BuildConfig.DEBUG);
+
+
+
+
+
+
+
+
     }
 
     private void getPackageIngo()

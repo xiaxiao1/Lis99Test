@@ -148,14 +148,16 @@ android {
 
 dependencies {
     compile 'com.android.support:multidex:'
+
     compile project(':weiboSDK')
     compile project(':mUList')
     compile project(':androidSDKComponent')
     compile project(':recyclerview')
     compile project(':playerskin')
+    compile project(':xutils')
+
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.google.code.gson:gson:2.2.4'
-
     compile files('libs/alipaySdk-20151112.jar')
     compile files('libs/alibaba-fastjson-1.1.40.jar')
     compile files('libs/BaiduLBS_Android.jar')
@@ -180,6 +182,6 @@ dependencies {
     compile files('libs/patchupdate.jar')
     compile files('libs/need_lib.jar')
     compile files('libs/jpush-android-2.0.5.jar')
-//    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
 
+    //    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
 }
