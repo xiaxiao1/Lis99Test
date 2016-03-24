@@ -476,4 +476,6 @@ public class C {
 //	新版话题回复列表 http://api.lis99.com/v5/topics/replylists/[page]
 	public static final String CLUB_NEW_TOPIC_LIST_MAIN_REPLY = DOMAIN + "/v5/topics/replylists/";
 
+	public static final String LINE_CATE_INFO = DOMAIN + "/v5/club/cateinfo/";
+	public static final String LINE_CATE_PAGE_HOME = DOMAIN + "/v5/club/pageHome/";
 }

@@ -50,54 +50,38 @@
 
         <RelativeLayout
             android:id="@+id/titleRight"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:layout_marginRight="15dp"
             >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true"
-                >
-
-                <ImageView
-                    android:id="@+id/titleRightImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/active_line_location"
-                    />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/text_color_black"
-                    android:text="北京"
+                    android:drawablePadding="6dp"
+                    android:drawableRight="@drawable/icon_solid_right_arrow"
+                    android:textColor="@color/text_color_green"
+                    android:text="全部分类"
                     android:textSize="12sp"
-                    android:id="@+id/tv_location"
-                    android:maxEms="4"
+                    android:id="@+id/allCate"
                     android:singleLine="true"
-                    android:ellipsize="end"
+                    android:layout_centerVertical="true"
                     />
-
-            </LinearLayout>
 
 
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/titleRight"
-            android:layout_toRightOf="@+id/titleLeft"
-            android:gravity="center"
-            android:textColor="@color/title_bar_text"
-            android:textSize="@dimen/title_text_height"
-            android:text="活动"
+            android:id="@+id/tv_location"
+            android:drawableLeft="@drawable/active_line_location"
+            android:drawablePadding="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_color_green"
+            android:textSize="16sp"
+            android:text="北京"
             />
 
     </RelativeLayout>

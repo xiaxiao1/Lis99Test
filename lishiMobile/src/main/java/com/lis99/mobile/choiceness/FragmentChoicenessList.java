@@ -18,7 +18,6 @@ import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
-import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
@@ -329,16 +328,17 @@ public class FragmentChoicenessList extends Fragment implements
                 //ActivityTest
 //                startActivity(new Intent(getActivity(), ActivityTest.class));
 
-                if ( Common.isApkInDebug(getActivity()))
-                {
+//                if ( Common.isApkInDebug(getActivity()))
+//                {
 //                    startActivity(new Intent(getActivity(), MovieActivity.class));
 //                    startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
                     startActivity(new Intent(getActivity(), ActivityTest.class));
-                    return;
-                }
-//
-                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
-                startActivity(intent);
+
+//                    return;
+//                }
+////
+//                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
+//                startActivity(intent);
 
                 break;
         }

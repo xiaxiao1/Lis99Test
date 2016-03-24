@@ -95,6 +95,7 @@ public class LSActiveLineFragment extends LSFragment implements
 
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
+        tvLocation.setOnClickListener(this);
         pull_refresh_view = (PullToRefreshView) v.findViewById(R.id.pull_refresh_view);
 //
         pull_refresh_view.setOnFooterRefreshListener(this);
@@ -327,7 +328,7 @@ public class LSActiveLineFragment extends LSFragment implements
                 startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;
-            case R.id.titleRight:
+            case R.id.tv_location:
 
                 PopWindowUtil.showActiveMainCityList(locationCityName, locationCityId, position, list, new CallBack() {
                     @Override
@@ -349,6 +350,13 @@ public class LSActiveLineFragment extends LSFragment implements
                     }
                 });
 
+                break;
+            case R.id.titleRight:
+                Intent intent = new Intent(getActivity(), LSAllLineCateActivity.class);
+                intent.putExtra("cityId", cityId);
+                intent.putExtra("latitude", Latitude);
+                intent.putExtra("longitude", Longitude);
+                startActivity(intent);
                 break;
         }
     }

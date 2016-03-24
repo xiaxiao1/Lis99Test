@@ -1226,6 +1226,18 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
 
+        <activity
+            android:name=".newhome.activeline.LSAllLineCateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+
+        <activity android:name=".newhome.activeline.LSLineCateListActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity>
+
+
     </application>
 
 
