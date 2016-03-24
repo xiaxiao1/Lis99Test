@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ClubDetailList;
 import com.lis99.mobile.club.model.ClubDetailList.Topiclist;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
@@ -23,20 +23,21 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.MyBaseAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.ArrayList;
+import java.util.List;
+
 /***
  * 			俱乐部详情
  * @author yy
  *
  */
-public class LSClubDitalAdapter extends BaseAdapter {
+public class LSClubDitalAdapter extends MyBaseAdapter {
 	
 	LayoutInflater inflater;
 
-	public ArrayList<Topiclist> topiclist;
 	//线路活动样式
 	private boolean activeList;
 	
@@ -45,13 +46,11 @@ public class LSClubDitalAdapter extends BaseAdapter {
 	private DisplayImageOptions optionshead, optionsclub, optionsBg;
 
 	private Animation animation;
-	private Context context;
 
 	public int ui_level = 1;
 	
-	public LSClubDitalAdapter(Context context, ArrayList<Topiclist> topiclist, boolean active ){
-		this.topiclist = topiclist;
-		this.context = context;
+	public LSClubDitalAdapter(Context context, List topiclist, boolean active ){
+		super(context, topiclist);
 		inflater = LayoutInflater.from(context);
 		this.activeList = active;
 		options = ImageUtil.getclub_topic_imageOptions();
@@ -63,28 +62,6 @@ public class LSClubDitalAdapter extends BaseAdapter {
 
 	}
 	
-	public void addList ( ArrayList<Topiclist> topiclist )
-	{
-		this.topiclist.addAll(topiclist);
-		notifyDataSetChanged();
-	}
-	
-	@Override
-	public int getCount() {
-		return topiclist == null ? 0 : topiclist.size();
-	}
-
-	@Override
-	public Object getItem(int position) {
-		if ( topiclist.size() <= position || position < 0 ) return null;
-		return topiclist.get(position);
-	}
-
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
-	
 	@Override
 	public int getViewTypeCount() {
 		return 5;
@@ -92,7 +69,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 	
 	@Override
 	public int getItemViewType(int position) {
-		Topiclist topic = topiclist.get(position);
+		Object o = getItem(position);
 		//线路活动
 		if ( activeList )
 		{
@@ -100,7 +77,12 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		}
 		
 //		0 | 1 为置顶的 , 2为线路活动
-		if ("0".equals(topic.stick) || "1".equals(topic.stick)) {
+//		if ("0".equals(topic.stick) || "1".equals(topic.stick)) {
+//			return 0;
+//		}
+//		置顶帖
+		if ( o instanceof ClubDetailList.Toptopiclist )
+		{
 			return 0;
 		}
 		
@@ -124,7 +106,10 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
-			Topiclist item = topiclist.get(position);
+//			Topiclist item = topiclist.get(position);
+
+			ClubDetailList.Toptopiclist item = (ClubDetailList.Toptopiclist) getItem(position);
+
 			if ( item == null ) return convertView;
 			holder.titleView.setText(item.title);
 
@@ -179,7 +164,10 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			{
 				holder = (ViewHolder) convertView.getTag();
 			}
-			Topiclist item = topiclist.get(position);
+//			Topiclist item = topiclist.get(position);
+
+			ClubDetailList.Topiclist item = (Topiclist) getItem(position);
+
 			if ( item == null ) return convertView;
 			String url = item.image;
 			if ( !TextUtils.isEmpty(url))
@@ -219,7 +207,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			
 //			LSClubTopic topic = data.get(position);
 			
-			Topiclist item = topiclist.get(position);
+			Topiclist item = (Topiclist) getItem(position);//topiclist.get(position);
 			if ( item == null ) return convertView;
 			
 			holder.titleView.setText(item.title);
@@ -264,11 +252,16 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		
 	}
 
+	@Override
+	public View setView(int i, View view, ViewGroup viewGroup) {
+		return null;
+	}
+
 	private View conifgTopicItemNewView (int position, View view, ViewGroup parent) {
 		ClubHolder holder = null;
 		if ( view == null )
 		{
-			view = View.inflate(context, R.layout.club_topic_list_item_new, null);
+			view = View.inflate(mContext, R.layout.club_topic_list_item_new, null);
 			holder = new ClubHolder();
 			holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);
 			holder.roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
@@ -293,7 +286,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			holder = (ClubHolder) view.getTag();
 		}
 
-		final Topiclist item = topiclist.get(position);
+		final Topiclist item = (Topiclist) getItem(position);//topiclist.get(position);
 		if ( item == null ) return view;
 
 		holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
@@ -347,7 +340,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		holder.roundedImageView1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Common.goUserHomeActivit((Activity)context, item.user_id);
+				Common.goUserHomeActivit((Activity)mContext, item.user_id);
 			}
 		});
 
@@ -402,7 +395,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 		ActivityHolder holder = null;
 		if ( view == null )
 		{
-			view = View.inflate(context, R.layout.club_topic_activity_item_new, null);
+			view = View.inflate(mContext, R.layout.club_topic_activity_item_new, null);
 			holder = new ActivityHolder();
 			holder.imageView = (RoundedImageView) view.findViewById(R.id.iv_bg);
 			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
@@ -419,7 +412,7 @@ public class LSClubDitalAdapter extends BaseAdapter {
 			holder = (ActivityHolder) view.getTag();
 		}
 
-		final Topiclist item = topiclist.get(position);
+		final Topiclist item = (Topiclist) getItem(position);//topiclist.get(position);
 		if ( item == null ) return view;
 
 

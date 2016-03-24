@@ -67,7 +67,7 @@ public class ClubDetailList implements Serializable{
 
 
 	 */
-	public class Topiclist
+	public static class Topiclist
 	{
 		public int id;
 		public String title;

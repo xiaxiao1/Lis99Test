@@ -240,40 +240,71 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 									int position, long id) {
-				Topiclist item = null;
-				item = (Topiclist) adapter.getItem(position - 1);
-				if ( item == null ) return;
+
+				String activity_code = null, category = null;
+				int topicId = -1;
+
+//				Topiclist item = null;
+//				item = (Topiclist) adapter.getItem(position - 1);
+//				if ( item == null ) return;
+
+				if ( adapter == null ) return;
+				Object o = adapter.getItem(position - 1);
+				if ( o == null ) return;
+
+				if ( o instanceof ClubDetailList.Toptopiclist )
+				{
+					ClubDetailList.Toptopiclist item = (ClubDetailList.Toptopiclist) o;
+					activity_code = item.activity_code;
+					category = item.category;
+					topicId = item.id;
+				}
+				else
+				{
+					ClubDetailList.Topiclist item = (Topiclist) o;
+					activity_code = item.activity_code;
+					category = item.category;
+					topicId = item.id;
+				}
+
+				if ( topicId == -1 )
+				{
+					Common.toast("帖子ID没有获取到");
+					return;
+				}
+
 
 //				新版活动帖
-				if ( !TextUtils.isEmpty(item.activity_code) && "4".equals(item.category) )
+				if ( !TextUtils.isEmpty(activity_code) && "4".equals(category) )
 				{
 					Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
-					intent.putExtra("topicID", item.id);
+					intent.putExtra("topicID", topicId);
 					startActivity(intent);
 					return;
 				}
 //				线上活动帖
-				if ( "2".equals(item.category))
+				else if ( "2".equals(category))
 				{
 					Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicNewActivity.class);
-					intent.putExtra("topicID", item.id);
+					intent.putExtra("topicID", topicId);
 					startActivityForResult(intent, 998);
 					return;
 				}
 
-				if ( "3".equals(item.category))
+				else if ( "3".equals(category))
 				{
 					Intent intent = new Intent(activity, LSClubNewTopicListMain.class);
-					intent.putExtra("TOPICID", "" + item.id);
+					intent.putExtra("TOPICID", "" + topicId);
 					startActivity(intent);
 					return;
 				}
 
-				if ( "0".equals(item.category) || "1".equals(item.category) )
+				else if ( "0".equals(category) || "1".equals(category) )
 				{
 					Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicActivity.class);
-					intent.putExtra("topicID", item.id);
+					intent.putExtra("topicID", topicId);
 					startActivityForResult(intent, 998);
+					return;
 				}
 
 
@@ -372,14 +403,16 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				initClubHead();
 				setTitle(clubHead.title);
 				if (clubHead.ui_levels == 3) {
-					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new ArrayList<Topiclist>(), false);
+					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new
+							ArrayList<Topiclist>(), false);
 					adapter.ui_level = clubHead.ui_levels;
 					listView.setAdapter(adapter);
 					getAllList();
 				} else {
 					topPanel.setVisibility(View.GONE);
 					buttonPanel.setVisibility(View.GONE);
-					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new ArrayList<Topiclist>(), true);
+					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new
+							ArrayList<Topiclist>(), true);
 					adapter.ui_level = clubHead.ui_levels;
 					listView.setAdapter(adapter);
 					getActiveList();
@@ -821,14 +854,19 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				// TODO Auto-generated method stub
 				page.pageNo += 1;
 				clubAll = (ClubDetailList) mTask.getResultModel();
-				if ( clubAll.topiclist == null )
-				{
+				if (clubAll.topiclist == null) {
 					return;
 				}
-				if ( adapter == null )
-				{
+				if (adapter == null) {
+					ArrayList<Object> infoList = new ArrayList<Object>();
+					if (clubAll.toptopiclist != null && clubAll.toptopiclist.size() != 0) {
+						infoList.addAll(clubAll.toptopiclist);
+					}
+
+					infoList.addAll(clubAll.topiclist);
+
 					page.pageSize = clubAll.totpage;
-					adapter = new LSClubDitalAdapter(activity, clubAll.topiclist, false);
+					adapter = new LSClubDitalAdapter(activity, infoList, false);
 					if (clubHead != null) {
 						adapter.ui_level = clubHead.ui_levels;
 					}
@@ -845,8 +883,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 	{
 		page = new Page();
 //		pageactive = new Page();
-		adapter = null;
 		listView.setAdapter(null);
+		adapter = null;
 //		adapterActive = null;
 	}
 
@@ -858,7 +896,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			Common.toast("没有更多帖子");
 			return;
 		}
-		MyRequestManager.getInstance().requestGet(C.CLUB_DETAIL_LIST + clubID + "/" + "1" + "?page=" + page.getPageNo(), clubAll, new CallBack() {
+		MyRequestManager.getInstance().requestGet(C.CLUB_DETAIL_LIST + clubID + "/" + "1" +
+				"?page=" + page.getPageNo(), clubAll, new CallBack() {
 
 			@Override
 			public void handler(MyTask mTask) {
@@ -869,8 +908,17 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 					return;
 				}
 				if (adapter == null) {
+
+					ArrayList<Object> infoList = new ArrayList<Object>();
+					if (clubAll.toptopiclist != null && clubAll.toptopiclist.size() != 0) {
+						infoList.addAll(clubAll.toptopiclist);
+					}
+
+					infoList.addAll(clubAll.topiclist);
+
+
 					page.pageSize = clubAll.totpage;
-					adapter = new LSClubDitalAdapter(activity, clubAll.topiclist, true);
+					adapter = new LSClubDitalAdapter(activity, infoList, true);
 					if (clubHead != null) {
 						adapter.ui_level = clubHead.ui_levels;
 					}
