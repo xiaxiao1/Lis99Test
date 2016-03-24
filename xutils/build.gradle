@@ -8,14 +8,15 @@ group = "org.xutils"
 version = "3.3.22"
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 21
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion 7
+        targetSdkVersion 21
         versionCode 20160310
         versionName version
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -103,4 +104,8 @@ bintray {
         licenses = ["Apache-2.0"]
         publish = true
     }
+}
+
+dependencies {
+    compile 'com.android.support:multidex:'
 }

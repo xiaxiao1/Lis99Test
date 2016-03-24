@@ -33,6 +33,7 @@ import com.lis99.mobile.club.adapter.LSClubDitalAdapter;
 import com.lis99.mobile.club.model.ClubDetailHead;
 import com.lis99.mobile.club.model.ClubDetailList;
 import com.lis99.mobile.club.model.ClubDetailList.Topiclist;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
@@ -243,14 +244,15 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				item = (Topiclist) adapter.getItem(position - 1);
 				if ( item == null ) return;
 
-				if ( !TextUtils.isEmpty(item.activity_code))
+//				新版活动帖
+				if ( !TextUtils.isEmpty(item.activity_code) && "4".equals(item.category) )
 				{
 					Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
 					intent.putExtra("topicID", item.id);
 					startActivity(intent);
 					return;
 				}
-
+//				线上活动帖
 				if ( "2".equals(item.category))
 				{
 					Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicNewActivity.class);
@@ -259,20 +261,22 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 					return;
 				}
 
-//				else if ( "3".equals(item.category))
-//				{
-//					Intent intent = new Intent(activity, LSClubNewTopicListMain.class);
-//					intent.putExtra("TOPICID", "" + item.id);
-//					startActivity(intent);
-//					return;
-//				}
+				if ( "3".equals(item.category))
+				{
+					Intent intent = new Intent(activity, LSClubNewTopicListMain.class);
+					intent.putExtra("TOPICID", "" + item.id);
+					startActivity(intent);
+					return;
+				}
+
+				if ( "0".equals(item.category) || "1".equals(item.category) )
+				{
+					Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicActivity.class);
+					intent.putExtra("topicID", item.id);
+					startActivityForResult(intent, 998);
+				}
 
 
-
-
-				Intent intent = new Intent(LSClubDetailActivity.this, LSClubTopicActivity.class);
-				intent.putExtra("topicID", item.id);
-				startActivityForResult(intent, 998);
 			}
 		});
 
