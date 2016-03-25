@@ -1,5 +1,7 @@
 package com.lis99.mobile.club.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -24,6 +26,11 @@ public class SearchInfoActiveModel extends BaseModel {
 //      新版活动
         public String activity_code;
 
+        /**
+         *      帖子类型：0旧版话题贴，1旧版线路活动帖, 2旧版线上活动，3新版话题贴，4新版活动贴
+         */
+        @SerializedName("category")
+        public int category;
     }
 
 

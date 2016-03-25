@@ -43,6 +43,7 @@ import java.util.HashMap;
 /**
  * Created by yy on 15/10/13.
  *  线上活动贴
+ *  topicID int
  *
  */
 public class LSClubTopicNewActivity  extends LSBaseActivity implements

@@ -370,11 +370,12 @@ public class C {
 
 	//===3.2====
 	//搜索主接口
-	public static final String SEARCH_MAIN = DOMAIN + "/v2/search/page/";
+//	public static final String SEARCH_MAIN = DOMAIN + "/v2/search/page/";
+	public static final String SEARCH_MAIN = DOMAIN + "/v5/search/page/";
 //搜索俱乐部
-	public static final String SEARCH_CLUB = DOMAIN + "/v2/search/club/";
+	public static final String SEARCH_CLUB = DOMAIN + "/v5/search/club/";
 //搜索话题， 活动
-	public static final String SEARCH_TOPIC = DOMAIN + "/v2/search/topics/";
+	public static final String SEARCH_TOPIC = DOMAIN + "/v5/search/topics/";
 
 
 

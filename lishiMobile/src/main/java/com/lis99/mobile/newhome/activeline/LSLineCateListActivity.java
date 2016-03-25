@@ -16,13 +16,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubPublish2Activity;
-import com.lis99.mobile.club.LSClubTopicActivity;
-import com.lis99.mobile.club.LSClubTopicNewActivity;
-import com.lis99.mobile.club.LSClubTopicReplyActivity;
-import com.lis99.mobile.club.LSImagePickerPreviewActivity;
-import com.lis99.mobile.club.adapter.ListAdapter;
-import com.lis99.mobile.club.model.ClubDetailList;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -33,10 +26,6 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class LSLineCateListActivity extends LSBaseActivity implements OnHeaderRefreshListener, OnFooterRefreshListener {
 
@@ -294,20 +283,20 @@ public class LSLineCateListActivity extends LSBaseActivity implements OnHeaderRe
         switch (sortView.getId()) {
 
             case R.id.priceDescView:
-                sortByPrice = 0;
+                sortByPrice = 1;
                 sortByTime = -1;
                 break;
             case R.id.priceAscView:
-                sortByPrice = 1;
+                sortByPrice = 0;
                 sortByTime = -1;
                 break;
             case R.id.timeDescView:
                 sortByPrice = -1;
-                sortByTime = 0;
+                sortByTime = 1;
                 break;
             case R.id.timeAscView:
                 sortByPrice = -1;
-                sortByTime = 1;
+                sortByTime = 0;
                 break;
 
         }
