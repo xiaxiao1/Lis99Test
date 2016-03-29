@@ -153,12 +153,23 @@ public class ClubSpecialListActivity extends LSBaseActivity implements
 					startActivity(intent);
                     return;
                 }
+                else if ( "2".equals(item.category) )
+                {
+                    Intent intent = new Intent(activity, LSClubTopicNewActivity.class);
+                    intent.putExtra("topicID", item.topic_id);
+                    startActivity(intent);
+                    return;
+                }
+                else
+                {
+                    Intent intent = new Intent(activity, LSClubTopicActivity.class);
+                    intent.putExtra("topicID", item.topic_id);
+                    startActivity(intent);
+
+                }
 
 
 
-                Intent intent = new Intent(activity, LSClubTopicActivity.class);
-                intent.putExtra("topicID", item.topic_id);
-                startActivity(intent);
             }
         });
 

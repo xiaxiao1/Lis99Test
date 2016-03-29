@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.newhome.HelpMovieActivity;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
@@ -37,6 +38,8 @@ public class LsSettingActivity extends ActivityPattern {
 			rl_pinglun, rl_huancun, rl_gengxin, rl_tuijian;
 	Button bt_tuichu;
 	TextView tv_size;
+
+	private View ls_movie;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,9 @@ public class LsSettingActivity extends ActivityPattern {
 			bt_tuichu.setVisibility(View.GONE);
 
 		}
+
+		ls_movie = findViewById(R.id.ls_movie);
+
 	}
 
 	private void setListener() {
@@ -88,13 +94,22 @@ public class LsSettingActivity extends ActivityPattern {
 		rl_gengxin.setOnClickListener(this);
 		rl_tuijian.setOnClickListener(this);
 		bt_tuichu.setOnClickListener(this);
+		ls_movie.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == iv_back.getId()) {
 			finish();
-		} else if (v.getId() == rl_userinfo.getId()) {
+		}
+//		启动视频
+		else if ( v.getId() == R.id.ls_movie )
+		{
+			Intent intent = new Intent(this, HelpMovieActivity.class);
+			intent.putExtra("ISSETTING", "ISSETTING");
+			startActivity(intent);
+		}
+		else if (v.getId() == rl_userinfo.getId()) {
 			Intent intent = new Intent(this, LsSettingInfoActivity.class);
 			startActivity(intent);
 		} else if (v.getId() == rl_share.getId()) {

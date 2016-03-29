@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ActiveMainCityListModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 
@@ -216,86 +217,91 @@ public class PopWindowUtil {
   /**
    * 选择城市
    * */
-    public static PopupWindow showActiveMainCityList ( String cityName, String cityId, int position, View parent, final CallBack callBack  )
+    public static void showActiveMainCityList ( String cityName, String cityId, final int position, final View parent, final CallBack callBack  )
     {
         if (pop != null && pop.isShowing()) {
             pop.dismiss();
-            return pop;
         }
 
-        View v = View.inflate(LSBaseActivity.activity, R.layout.active_all_times_chose, null);
-
-        View bg = v.findViewById(R.id.bg);
-
-        bg.setOnClickListener(new View.OnClickListener() {
+//        获取城市列表
+        PopWindowData.getActiveMainCityList(cityName, cityId, new CallBack() {
             @Override
-            public void onClick(View view) {
-                closePop();
-            }
-        });
+            public void handler(MyTask mTask) {
 
-        final ListView list = (ListView) v.findViewById(R.id.list);
+                ActiveMainCityListModel model = (ActiveMainCityListModel) mTask.getResultModel();
 
-        final ArrayList<HashMap<String, String>> alist = PopWindowData.getActiveCityListMain(cityName, cityId);
+                setCurrentCity(model.citylist.get(position));
 
-        currentMapCity = alist.get(0);
+                View v = View.inflate(LSBaseActivity.activity, R.layout.active_all_times_chose, null);
 
-        setMap(alist.get(position), currentMapCity);
+                View bg = v.findViewById(R.id.bg);
 
-        final ActiveAllTimesAdapter adapter = new ActiveAllTimesAdapter(LSBaseActivity.activity, alist);
+                bg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        closePop();
+                    }
+                });
 
-        list.setAdapter(adapter);
+                final ListView list = (ListView) v.findViewById(R.id.list);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (callBack != null) {
-                    HashMap<String, String> map = (HashMap<String, String>) adapter.getItem(i);
-                    setMap(map, currentMapCity);
-                    String[] values = new String[2];
-                    values[0] = alist.get(i).get("name");
-                    values[1] = alist.get(i).get("value");
-                    MyTask task = new MyTask();
-                    task.setresult(""+i);
-                    task.setResultModel(values);
-                    callBack.handler(task);
-                    closePop();
-                }
-            }
-        });
+                final ActiveCityMainList adapter = new ActiveCityMainList(LSBaseActivity.activity, model.citylist);
+
+                list.setAdapter(adapter);
+
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        if (callBack != null) {
+                            ActiveMainCityListModel.CitylistEntity map = (ActiveMainCityListModel
+                                    .CitylistEntity) adapter.getItem(i);
+                            setCurrentCity(map);
+                            String[] values = new String[2];
+                            values[0] = map.name;
+                            values[1] = map.id;
+                            MyTask task = new MyTask();
+                            task.setresult(""+i);
+                            task.setResultModel(values);
+                            callBack.handler(task);
+                            closePop();
+                        }
+                    }
+                });
 
 //        pop = new PopupWindow(v, ViewGroup.LayoutParams.FILL_PARENT,
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                Common.HEIGHT - Common.dip2px(100));
+                pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
+                        Common.HEIGHT - Common.dip2px(100));
 
-        pop.setOutsideTouchable(true);
-        pop.setBackgroundDrawable(new BitmapDrawable());
-        pop.setFocusable(true);
-        pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
-        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                pop.setOutsideTouchable(true);
+                pop.setBackgroundDrawable(new BitmapDrawable());
+                pop.setFocusable(true);
+                pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+                pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
-            @Override
-            public void onDismiss() {
-                // TODO Auto-generated method stub
-                WindowManager.LayoutParams lp = LSBaseActivity.activity
-                        .getWindow().getAttributes();
-                lp.alpha = 1.0f;
+                    @Override
+                    public void onDismiss() {
+                        // TODO Auto-generated method stub
+                        WindowManager.LayoutParams lp = LSBaseActivity.activity
+                                .getWindow().getAttributes();
+                        lp.alpha = 1.0f;
+                        LSBaseActivity.activity.getWindow().setAttributes(lp);
+                        if ( callBack != null )
+                        {
+                            callBack.handler(null);
+                        }
+                    }
+                });
+
+                WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
+                        .getAttributes();
+                lp.alpha = 0.7f;
                 LSBaseActivity.activity.getWindow().setAttributes(lp);
-                if ( callBack != null )
-                {
-                    callBack.handler(null);
-                }
+
+
             }
         });
-
-        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
-                .getAttributes();
-        lp.alpha = 0.7f;
-        LSBaseActivity.activity.getWindow().setAttributes(lp);
-
-        return pop;
     }
   /**
     *全部活动筛选
@@ -391,6 +397,27 @@ public class PopWindowUtil {
     private static HashMap<String, String> currentMap = new HashMap<String, String>();
     private static HashMap<String, String> currentMapCity = new HashMap<String, String>();
     private static HashMap<String, String> currentActiveCity = new HashMap<String, String>();
+//  当前选择的城市
+    private static ActiveMainCityListModel.CitylistEntity currentCity;
+
+//   设置选择城市
+    private static void setCurrentCity ( ActiveMainCityListModel.CitylistEntity select )
+    {
+        if ( currentCity == select ) return;
+//        第一次current为空
+        if ( currentCity == null )
+        {
+            currentCity = select;
+            currentCity.select = "1";
+        }
+        else
+        {
+            currentCity.select = "0";
+            currentCity = select;
+            currentCity.select = "1";
+        }
+    }
+
 
     private static void setMap ( HashMap<String, String> map, HashMap<String, String> cmap )
     {
@@ -461,6 +488,70 @@ public class PopWindowUtil {
         }
 
     }
+
+
+    static class ActiveCityMainList extends MyBaseAdapter
+    {
+
+        public ActiveCityMainList(Context c, ArrayList listItem) {
+            super(c, listItem);
+        }
+
+        @Override
+        public View setView(int i, View view, ViewGroup viewGroup) {
+            Holder holder = null;
+            if ( view == null )
+            {
+                view = View.inflate(mContext, R.layout.active_all_times_chose_item, null);
+                holder = new Holder();
+                holder.tv_all = (TextView) view.findViewById(R.id.tv_all);
+                holder.tv_select = (ImageView) view.findViewById(R.id.tv_select);
+                holder.iv_line = view.findViewById(iv_line);
+
+                view.setTag(holder);
+            }
+            else {
+                holder = (Holder) view.getTag();
+            }
+
+            ActiveMainCityListModel.CitylistEntity item = (ActiveMainCityListModel.CitylistEntity) getItem(i);
+            if ( item == null ) return view;
+
+            if ( "1".equals(item.select) )
+            {
+                holder.tv_select.setVisibility(View.VISIBLE);
+                holder.tv_all.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
+            }
+            else
+            {
+                holder.tv_select.setVisibility(View.INVISIBLE);
+                holder.tv_all.setTextColor(mContext.getResources().getColor(R.color.color_six));
+            }
+
+            if ( i == getCount() - 1 )
+            {
+                holder.iv_line.setVisibility(View.GONE);
+            }
+            else
+            {
+                holder.iv_line.setVisibility(View.VISIBLE);
+            }
+
+
+            holder.tv_all.setText(item.name);
+
+            return view;
+        }
+
+        class Holder
+        {
+            TextView tv_all;
+            ImageView tv_select;
+            View iv_line;
+        }
+
+    }
+
 //  线路活动筛选， 根据CityId获取cityName
     public static String[] getCityNameWithId ( String cityId )
     {

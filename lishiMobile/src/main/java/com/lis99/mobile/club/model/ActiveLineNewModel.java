@@ -29,6 +29,8 @@ public class ActiveLineNewModel extends BaseModel {
     private int total;
 //    城市ID
     public int city_id;
+//    当前城市名称
+    public String city_name;
     /**
      * id : 5
      * title : 有村架纯

@@ -1,5 +1,9 @@
 package com.lis99.mobile.util;
 
+import com.lis99.mobile.club.model.ActiveMainCityListModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -362,6 +366,46 @@ public class PopWindowData {
         return alist;
     }
 
+
+    private static ActiveMainCityListModel activeMClist;
+
+    public static void getActiveMainCityList ( final String cityName, final String cityId, final CallBack callBack )
+    {
+
+        // 如果列表获取回来后
+        if ( activeMClist != null && activeMClist.citylist != null && activeMClist.citylist.size() != 0 && callBack != null )
+        {
+            MyTask myTask = new MyTask();
+            myTask.setResultModel(activeMClist);
+            callBack.handler(myTask);
+            return;
+        }
+
+        activeMClist = new ActiveMainCityListModel();
+
+        MyRequestManager.getInstance().requestGet("http://api.lis99.com/v5/club/provlist", activeMClist, new CallBack() {
+
+            @Override
+            public void handler(MyTask mTask) {
+
+                if ( mTask != null && callBack != null )
+                {
+                    activeMClist = (ActiveMainCityListModel) mTask.getResultModel();
+
+                        ActiveMainCityListModel.CitylistEntity item = new ActiveMainCityListModel
+                                .CitylistEntity();
+                        item.id = cityId;
+                        item.name = cityName + "  GPS定位";
+                        item.select = "0";
+                        activeMClist.citylist.add(0, item);
+                    callBack.handler(mTask);
+                }
+
+
+            }
+        });
+
+    }
 
     /**活动筛选， 城市数据
      */

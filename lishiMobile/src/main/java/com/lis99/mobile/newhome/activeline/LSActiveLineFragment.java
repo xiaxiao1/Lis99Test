@@ -2,7 +2,6 @@ package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -77,7 +76,7 @@ public class LSActiveLineFragment extends LSFragment implements
 
     private View titleLeft, titleRight;
 
-    private int position;
+    private int position = 0;
     public static int cityId = -1;
     private String cityName = "北京", locationCityName = "", locationCityId = "";
 
@@ -243,16 +242,20 @@ public class LSActiveLineFragment extends LSFragment implements
                 page.nextPage();
 
                 cityId = model.city_id;
+                cityName = model.city_name;
 
-                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+                locationCityId = ""+cityId;
+                locationCityName = model.city_name;
 
-                if (TextUtils.isEmpty(locationCityId))
-                {
-                    locationCityId = ""+cityId;
-                    locationCityName = name[0];
-                }
+//                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+//
+//                if (TextUtils.isEmpty(locationCityId))
+//                {
+//                    locationCityId = ""+cityId;
+//                    locationCityName = name[0];
+//                }
 
-                tvLocation.setText(name[0]);
+                tvLocation.setText(model.city_name);
 //                position = Common.string2int(name[1]);
 
                 for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
@@ -262,7 +265,8 @@ public class LSActiveLineFragment extends LSFragment implements
 
                 if ( adapter == null ) {
                     page.setPageSize(model.getTotalpage());
-                    if (l.size() != 0)
+                    // 列表不是空， 横滑列表不是空才添加
+                    if (l.size() != 0 && model.getAreaweblist() != null && model.getAreaweblist().size() != 0)
                     {
                         if ( l.size() >=3 )
                             l.add(2, model.getAreaweblist());

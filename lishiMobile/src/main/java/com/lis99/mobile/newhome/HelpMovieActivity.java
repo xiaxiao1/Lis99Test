@@ -25,13 +25,18 @@ public class HelpMovieActivity extends Activity implements View.OnClickListener 
     private int mPositionWhenPaused = -1;
     private Button btn;
 
+    private String isStting;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager
+                .LayoutParams.FLAG_FULLSCREEN);//去掉信息
 
         setContentView(R.layout.help_movie);
+
+        isStting = getIntent().getStringExtra("ISSETTING");
 
         videoView = (VideoView) findViewById(R.id.videoView);
         ivName = (ImageView) findViewById(R.id.iv_name);
@@ -111,6 +116,12 @@ public class HelpMovieActivity extends Activity implements View.OnClickListener 
 
 
     public void startbutton() {
+
+        if ( "ISSETTING".equals(isStting))
+        {
+            finish();
+            return;
+        }
 
         Intent intent = new Intent();
         intent.setClass(this, NewHomeActivity.class);
