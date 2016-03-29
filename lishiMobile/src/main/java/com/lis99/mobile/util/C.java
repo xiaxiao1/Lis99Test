@@ -262,15 +262,16 @@ public class C {
 	public static final String LS_MINE_APPLY_INFO = DOMAIN + "/v2/user/applynotice/";
 	public static final String LS_MINE_APPLY_MANAGE = DOMAIN + "/v2/user/myTopic/";
 	public static final String LS_MINE_APPLY_INFO_CLEAR = DOMAIN + "/v2/user/clearnotice/";
-
-	public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v3/user/uinfo/";
+//	人个主页
+//	public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v3/user/uinfo/";
+public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v5/user/uinfo/";
 	public static final String LS_USER_ADD_FOLLOW  =     DOMAIN + "/v3/user/addFollow/";
 	public static final String LS_USER_CANCEL_FOLLOW =      DOMAIN +  "/v3/user/cancelFollow/";
 
 	
 	
 	public static final String COLLECTION_GET_LIST = DOMAIN + "/shop/shopDynamicInfo/";
-	
+//	我发的帖
 	public static final String USER_GET_MYTOPICS = DOMAIN + "/user/getMyTopicList/";
 	
 	/**

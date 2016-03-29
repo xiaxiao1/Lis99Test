@@ -290,7 +290,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 					startActivityForResult(intent, 998);
 					return;
 				}
-
+//				新版话题贴
 				else if ( "3".equals(category))
 				{
 					Intent intent = new Intent(activity, LSClubNewTopicListMain.class);

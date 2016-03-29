@@ -52,6 +52,8 @@ import java.util.ArrayList;
  * 帖子详情
  * 
  * @author yy
+ *
+ * int topicID
  * 
  */
 public class LSClubTopicActivity extends LSBaseActivity implements

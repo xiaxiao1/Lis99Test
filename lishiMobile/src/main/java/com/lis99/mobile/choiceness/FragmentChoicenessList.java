@@ -392,6 +392,12 @@ public class FragmentChoicenessList extends Fragment implements
                 intent.putExtra("topicID", item.id);
                 startActivity(intent);
                 break;
+//            新版话题帖
+            case 6:
+                intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
+                intent.putExtra("TOPICID", ""+item.id);
+                startActivity(intent);
+                break;
 //            线上贴
             case 2:
                 intent = new Intent(getActivity(), LSClubTopicNewActivity.class);

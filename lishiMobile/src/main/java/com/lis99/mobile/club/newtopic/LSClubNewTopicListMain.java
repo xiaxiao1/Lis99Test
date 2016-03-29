@@ -34,6 +34,11 @@ import java.util.HashMap;
 
 /**
  * Created by yy on 16/3/8.
+ * 新版话题帖
+ *
+ *  TOPICID String
+ *
+ *
  */
 public class LSClubNewTopicListMain extends LSBaseActivity implements
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener, LSClubTopicImageListener {

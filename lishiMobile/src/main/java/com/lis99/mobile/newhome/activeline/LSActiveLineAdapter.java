@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
@@ -233,9 +232,16 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(mContext, ActiveAllActivity.class);
-                i.putExtra("CITYID", LSActiveLineFragment.cityId);
-                mContext.startActivity(i);
+//                Intent i = new Intent(mContext, ActiveAllActivity.class);
+//                i.putExtra("CITYID", LSActiveLineFragment.cityId);
+//                mContext.startActivity(i);
+
+                Intent intent = new Intent(mContext, LSAllLineCateActivity.class);
+                intent.putExtra("cityId", LSActiveLineFragment.cityId);
+                intent.putExtra("latitude", LSActiveLineFragment.Latitude);
+                intent.putExtra("longitude", LSActiveLineFragment.Longitude);
+                mContext.startActivity(intent);
+
             }
         });
 
