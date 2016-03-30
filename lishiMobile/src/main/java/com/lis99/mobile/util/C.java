@@ -271,9 +271,10 @@ public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v5/user/uinfo/";
 	
 	
 	public static final String COLLECTION_GET_LIST = DOMAIN + "/shop/shopDynamicInfo/";
-//	我发的帖
-	public static final String USER_GET_MYTOPICS = DOMAIN + "/user/getMyTopicList/";
-	
+//	我发的帖   /v5/user/myPubTopics/[page]
+//	public static final String USER_GET_MYTOPICS = DOMAIN + "/user/getMyTopicList/";
+public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
+
 	/**
 	 * 活动 - 领队
 	 */
@@ -345,7 +346,7 @@ public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v5/user/uinfo/";
 	public static final String CLUB_TOPIC_INFO_LIKE = DOMAIN + "/v2/club/addLike/";
 	
 	/**回复我的*/
-	public static final String MINE_REPLY_LIST = DOMAIN + "/v2/user/replyme/";
+	public static final String MINE_REPLY_LIST = DOMAIN + "/v5/user/replyme/";
 	/**上传设备信息*/
 	public static final String UPDATA_DEVICE_INFO = DOMAIN + "/v2/user/appsInfo/";
 	/**退出登陆，调用*/
@@ -433,7 +434,7 @@ public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v5/user/uinfo/";
 //	新新的点赞
 	public static final String CLUB_TOPIC_LIKE_NEW = DOMAIN + "/v5/topics/addLike/";
 //  收到的赞
-	public static final String SYS_LIKE_LIST = DOMAIN + "/v3/user/likeTopic/";
+	public static final String SYS_LIKE_LIST = DOMAIN + "/v5/user/likeTopic/";
 //  装备详情
 	public static final String EQUIP_INFO_LIST = DOMAIN + "/v3/zhuangbei/detail/";
 //  装备评论列表

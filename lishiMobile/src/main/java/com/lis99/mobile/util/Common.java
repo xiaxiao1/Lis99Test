@@ -18,7 +18,11 @@ import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ShareInterface;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 
@@ -432,6 +436,40 @@ public class Common {
         }
         String result = s.substring(0, 7);
         return result;
+    }
+
+
+    /**
+     *      帖子类型：0话题贴，1线路活动帖 ，2线上活动帖,3 新版话题帖, 4 新版活动帖子
+     * @param c
+     * @param catgory
+     */
+    public static void goTopic ( Context c, int catgory, int topicId )
+    {
+        if ( 0 == catgory || 1 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubTopicActivity.class);
+            intent.putExtra("topicID", topicId);
+            c.startActivity(intent);
+        }
+        else if ( 2 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubTopicNewActivity.class);
+            intent.putExtra("topicID", topicId);
+            c.startActivity(intent);
+        }
+        else if ( 3 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubNewTopicListMain.class);
+            intent.putExtra("TOPICID", "" + topicId);
+            c.startActivity(intent);
+        }
+        else if ( 4 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubTopicActiveOffLine.class);
+            intent.putExtra("topicID", topicId);
+            c.startActivity(intent);
+        }
     }
 
 }

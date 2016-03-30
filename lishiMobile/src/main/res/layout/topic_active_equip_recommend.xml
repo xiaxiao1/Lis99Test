@@ -12,11 +12,12 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/club_info_join_readme"
         android:text="你可能需要"
-        android:textSize="13sp"
+        android:textSize="10sp"
         android:drawablePadding="10dp"
         android:textColor="#c8bdaa"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
         />
 
     <LinearLayout
@@ -24,7 +25,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/equip_recommend_bg"
-        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
 
     <RelativeLayout
@@ -63,7 +66,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="2"
                 android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
-                android:textColor="#c6b6a7"
+                android:textColor="#525252"
                 android:textSize="12sp"/>
 
             <RatingBar
@@ -119,7 +122,7 @@
                     android:gravity="center_vertical"
                     android:maxLines="2"
                     android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
-                    android:textColor="#c6b6a7"
+                    android:textColor="#525252"
                     android:textSize="12sp"/>
 
             <RatingBar
@@ -176,7 +179,7 @@
                     android:gravity="center_vertical"
                     android:maxLines="2"
                     android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
-                    android:textColor="#c6b6a7"
+                    android:textColor="#525252"
                     android:textSize="12sp"/>
 
             <RatingBar

@@ -1236,6 +1236,10 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
+<!--    发帖， 图文混排-->
+        <activity android:name="com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
 
 
     </application>

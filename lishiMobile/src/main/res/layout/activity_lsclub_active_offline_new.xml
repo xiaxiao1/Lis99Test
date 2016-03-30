@@ -390,10 +390,11 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/club_info_join_readme"
                 android:text="报名须知"
-                android:textSize="13sp"
+                android:textSize="10sp"
                 android:drawablePadding="10dp"
                 android:textColor="#c8bdaa"
                 android:layout_marginLeft="14dp"
+                android:gravity="center_vertical"
                 />
 
             <com.lis99.mobile.view.MyListView

@@ -289,7 +289,7 @@ public class LSActiveLineFragment extends LSFragment implements
                         for ( int i = num; i >= 0; i-- )
                         {
                             ActiveLineNewModel.Adlist item = model.adlist.get(i);
-                            if ( !"1".equals(item.platform))
+                            if ( "1".equals(item.platform))
                             {
                                 model.adlist.remove(i);
                                 continue;

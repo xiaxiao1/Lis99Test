@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicReplyActivity;
 import com.lis99.mobile.club.model.MineReplyModel.Replylist;
 import com.lis99.mobile.club.widget.RoundedImageView;
@@ -205,9 +204,13 @@ public class AdapterMineReplyItem extends BaseAdapter
 			switch ( v.getId() )
 			{
 				case R.id.nameView:
-					 intent = new Intent(main, LSClubTopicActivity.class);
-					intent.putExtra("topicID", item.topic_id);
-					main.startActivity(intent);
+					int catgrory = item.category;
+
+					Common.goTopic(main, catgrory, item.topic_id);
+
+//					 intent = new Intent(main, LSClubTopicActivity.class);
+//					intent.putExtra("topicID", item.topic_id);
+//					main.startActivity(intent);
 					break;
 				case R.id.layoutmore:
 					holder.layout1.setVisibility(View.VISIBLE);

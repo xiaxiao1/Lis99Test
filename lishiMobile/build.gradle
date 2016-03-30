@@ -5,7 +5,7 @@ android {
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
-//        ttest {}
+        ttest {}
         shichang {}
         zhuzhan {}
         tuiguang1 {}

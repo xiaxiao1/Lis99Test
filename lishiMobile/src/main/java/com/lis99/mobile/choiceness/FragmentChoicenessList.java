@@ -18,6 +18,7 @@ import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
@@ -27,7 +28,6 @@ import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
-import com.lis99.mobile.equip.ActivityTest;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
@@ -332,13 +332,13 @@ public class FragmentChoicenessList extends Fragment implements
 //                {
 //                    startActivity(new Intent(getActivity(), MovieActivity.class));
 //                    startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
-                    startActivity(new Intent(getActivity(), ActivityTest.class));
+//                    startActivity(new Intent(getActivity(), ActivityTest.class));
 
 //                    return;
 //                }
 ////
-//                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
-//                startActivity(intent);
+                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
+                startActivity(intent);
 
                 break;
         }

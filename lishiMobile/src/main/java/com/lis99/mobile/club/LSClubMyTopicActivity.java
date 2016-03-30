@@ -1,6 +1,5 @@
 package com.lis99.mobile.club;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
@@ -22,6 +21,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,11 +55,14 @@ public class LSClubMyTopicActivity extends LSBaseActivity implements OnHeaderRef
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				LSClubTopic topic = topics.get(position);
-				Intent intent = new Intent(LSClubMyTopicActivity.this, LSClubTopicActivity.class);
-				intent.putExtra("clubID", topic.getClub_id());
-				intent.putExtra("topicID", topic.getId());
-				intent.putExtra("clubName", topic.getClub_title());
-				startActivity(intent);
+
+				Common.goTopic(activity, topic.getCategory(), topic.getId());
+
+//				Intent intent = new Intent(LSClubMyTopicActivity.this, LSClubTopicActivity.class);
+//				intent.putExtra("clubID", topic.getClub_id());
+//				intent.putExtra("topicID", topic.getId());
+//				intent.putExtra("clubName", topic.getClub_title());
+//				startActivity(intent);
 			}
 		});
 		

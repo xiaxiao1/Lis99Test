@@ -51,9 +51,9 @@ public class LSUserHomeAdapter extends BaseListAdapter<LSBaseTopicModel> {
         holder.nameView.setText(info.getTopic_title());
         holder.infoView.setText("发布于 " + info.getClub_title());
 
-        if (info.getCategory() == 0) {
+        if (info.getCategory() == 0 || info.getCategory() == 3 ) {
             holder.categoryView.setImageResource(R.drawable.icon_user_home_topic);
-        } else {
+        } else if ( info.getCategory() == 1 || info.getCategory() == 4 || info.getCategory() == 2 ){
             holder.categoryView.setImageResource(R.drawable.icon_user_home_activity);
         }
 

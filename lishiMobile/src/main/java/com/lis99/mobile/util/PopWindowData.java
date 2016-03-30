@@ -383,7 +383,7 @@ public class PopWindowData {
 
         activeMClist = new ActiveMainCityListModel();
 
-        MyRequestManager.getInstance().requestGet("http://api.lis99.com/v5/club/provlist", activeMClist, new CallBack() {
+        MyRequestManager.getInstance().requestGet("http://api.lis99.com/v5/club/provinceinfo", activeMClist, new CallBack() {
 
             @Override
             public void handler(MyTask mTask) {
