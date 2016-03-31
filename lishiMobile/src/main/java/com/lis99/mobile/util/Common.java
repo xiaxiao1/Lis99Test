@@ -472,4 +472,19 @@ public class Common {
         }
     }
 
+
+    /**
+     *      Url 格式化， 如果没有添加http:// 在头上添加
+     * @param url
+     * @return
+     */
+    public static String httpUrlFomat ( String url )
+    {
+        if ( !url.startsWith("http://") )
+        {
+            url = "http://" + url;
+        }
+        return url;
+    }
+
 }

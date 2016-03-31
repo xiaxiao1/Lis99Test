@@ -56,7 +56,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
         <TextView
-            android:id="@+id/priceDescView"
+            android:id="@+id/priceAscView"
             android:height="45dp"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
             android:background="#eee"/>
 
         <TextView
-            android:id="@+id/priceAscView"
+            android:id="@+id/priceDescView"
             android:height="45dp"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
@@ -88,7 +88,7 @@
             android:background="#eee"/>
 
         <TextView
-            android:id="@+id/timeDescView"
+            android:id="@+id/timeAscView"
             android:height="45dp"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
@@ -105,7 +105,7 @@
             android:background="#eee"/>
 
         <TextView
-            android:id="@+id/timeAscView"
+            android:id="@+id/timeDescView"
             android:height="45dp"
             android:gravity="center_vertical"
             android:layout_width="match_parent"

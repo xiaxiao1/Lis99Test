@@ -108,9 +108,10 @@ public class LSLineCateListActivity extends LSBaseActivity implements OnHeaderRe
 
         sortView = (TextView) findViewById(R.id.timeDescView);
         sortView.setOnClickListener(this);
-        selectedSortView = sortView;
+
 
         sortView = (TextView) findViewById(R.id.timeAscView);
+        selectedSortView = sortView;
         sortView.setOnClickListener(this);
 
         sortTypeView = (TextView) findViewById(R.id.sortTypeView);
@@ -123,11 +124,10 @@ public class LSLineCateListActivity extends LSBaseActivity implements OnHeaderRe
             Common.toast("没有更多帖子");
             return;
         }
-        String urlStr = C.LINE_CATE_PAGE_HOME + "?prov_id=" + cityId
+        String urlStr = C.LINE_CATE_PAGE_HOME + page.getPageNo() + "?prov_id=" + cityId
                                             + "&latitude=" + latitude
                                             + "&longitude=" + longitude
-                                            + "&cate_id=" + cateId
-                                            + "&offset=" + page.getPageNo();
+                                            + "&cate_id=" + cateId;
         if (sortByPrice != -1) {
             urlStr += "&orderprice=" + sortByPrice;
         }
@@ -283,20 +283,20 @@ public class LSLineCateListActivity extends LSBaseActivity implements OnHeaderRe
         switch (sortView.getId()) {
 
             case R.id.priceDescView:
-                sortByPrice = 1;
+                sortByPrice = 2;
                 sortByTime = -1;
                 break;
             case R.id.priceAscView:
-                sortByPrice = 0;
+                sortByPrice = 1;
                 sortByTime = -1;
                 break;
             case R.id.timeDescView:
                 sortByPrice = -1;
-                sortByTime = 1;
+                sortByTime = 2;
                 break;
             case R.id.timeAscView:
                 sortByPrice = -1;
-                sortByTime = 0;
+                sortByTime = 1;
                 break;
 
         }

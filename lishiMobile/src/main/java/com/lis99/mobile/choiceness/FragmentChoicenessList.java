@@ -28,6 +28,7 @@ import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.equip.ActivityTest;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
@@ -328,14 +329,14 @@ public class FragmentChoicenessList extends Fragment implements
                 //ActivityTest
 //                startActivity(new Intent(getActivity(), ActivityTest.class));
 
-//                if ( Common.isApkInDebug(getActivity()))
-//                {
+                if ( Common.isApkInDebug(getActivity()) || "ttest".equals(DeviceInfo.CHANNELVERSION) )
+                {
 //                    startActivity(new Intent(getActivity(), MovieActivity.class));
 //                    startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
-//                    startActivity(new Intent(getActivity(), ActivityTest.class));
+                    startActivity(new Intent(getActivity(), ActivityTest.class));
 
-//                    return;
-//                }
+                    return;
+                }
 ////
                 intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
                 startActivity(intent);
