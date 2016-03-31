@@ -5,13 +5,13 @@ android {
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
-        ttest {}
+//        ttest {}
         shichang {}
         zhuzhan {}
         tuiguang1 {}
 //        sougou {}
 //        baidu {}
-//        pp{}
+        pp{}
 //        oppo {}
 //        oppo {}
 //        gfan {}
@@ -52,7 +52,7 @@ android {
 //                def releaseApkName = 'yjf-android-v' + getVersionNameFromManifest() + '-' + variant.productFlavors[0].name + '-sign-42.apk'
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.1.6.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.1.7.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('beta')){
@@ -183,5 +183,5 @@ dependencies {
     compile files('libs/need_lib.jar')
     compile files('libs/jpush-android-2.0.5.jar')
 
-    //    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
+//        compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
 }

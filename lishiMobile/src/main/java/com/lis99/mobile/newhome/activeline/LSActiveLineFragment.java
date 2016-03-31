@@ -274,11 +274,11 @@ public class LSActiveLineFragment extends LSFragment implements
                         else
                             l.add(model.getAreaweblist());
                     }
-//                    最后一页
-                    if ( page.isLastPage() )
-                    {
-                        l.add("last");
-                    }
+//                    最后一页, 查看全部活动
+//                    if ( page.isLastPage() )
+//                    {
+//                        l.add("last");
+//                    }
 
                     adapter = new LSActiveLineAdapter(getActivity(), l);
                     list.setAdapter(adapter);
@@ -307,10 +307,10 @@ public class LSActiveLineFragment extends LSFragment implements
                 else
                 {
                     //                    最后一页
-                    if ( page.isLastPage() )
-                    {
-                        l.add("last");
-                    }
+//                    if ( page.isLastPage() )
+//                    {
+//                        l.add("last");
+//                    }
 //                    adapter.addList(l);
                     adapter.setList(l);
                 }
