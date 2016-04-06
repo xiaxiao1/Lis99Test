@@ -36,6 +36,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     private TopicStringImageAdapter adapter;
 
+    private StringImageModel model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,10 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
 
         initViews();
+
+        model = new StringImageModel();
+
+        
 
 
     }

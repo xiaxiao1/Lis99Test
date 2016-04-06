@@ -24,7 +24,10 @@ import com.lis99.mobile.club.widget.ioscitychoose.ArrayWheelAdapter;
 import com.lis99.mobile.club.widget.ioscitychoose.MyAlertDialog;
 import com.lis99.mobile.club.widget.ioscitychoose.OnWheelChangedListener;
 import com.lis99.mobile.club.widget.ioscitychoose.WheelView;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.CustomProgressDialog;
+import com.lis99.mobile.model.UpdataModel;
 
 /**
  * 提示框类
@@ -51,6 +54,7 @@ public class DialogManager {
         alert(a, "提示", message);
     }
 
+    private  AlertDialog create;
     public void alert(Activity a, String title, String message) {
         AlertDialog.Builder bld = new AlertDialog.Builder(a);
         bld.setTitle(title);
@@ -61,11 +65,21 @@ public class DialogManager {
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        AlertDialog create = bld.create();
+        create = bld.create();
         create.setCanceledOnTouchOutside(false);
         create.setCancelable(false);
         create.show();
     }
+
+    public void cancleAlert ()
+    {
+        if ( create != null && create.isShowing() )
+        {
+            create.dismiss();
+        }
+    }
+
+
 
     /**
      * 启动等待对话框
@@ -365,6 +379,63 @@ public class DialogManager {
                 Uri content_url = Uri.parse(Url);
                 intent.setData(content_url);
                 LSBaseActivity.activity.startActivity(intent);
+            }
+        });
+    }
+
+    /**
+     *      应用更新提醒框
+     *      callBack result String cancel 取消， ok 确定
+      */
+
+    public void showUpdataDialog( UpdataModel model, final CallBack callBack ) {
+
+        final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.CustomDialog);
+
+        dialog.setContentView(R.layout.new_dialog_view);
+
+        dialog.show();
+
+        TextView tv_title = (TextView) dialog.findViewById(R.id.tv_title);
+
+        TextView tv_content = (TextView) dialog.findViewById(R.id.tv_content);
+
+        Button cancel = (Button) dialog.findViewById(R.id.cancel);
+
+        Button ok = (Button) dialog.findViewById(R.id.ok);
+
+        tv_content.setText(model.changelog);
+
+
+        cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog != null) dialog.dismiss();
+
+                if ( callBack != null )
+                {
+                    MyTask myTask = new MyTask();
+
+                    myTask.result = "cancel";
+
+                    callBack.handler(myTask);
+                }
+            }
+        });
+
+        ok.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog != null) dialog.dismiss();
+
+                if ( callBack != null )
+                {
+                    MyTask myTask = new MyTask();
+
+                    myTask.result = "ok";
+
+                    callBack.handler(myTask);
+                }
             }
         });
     }

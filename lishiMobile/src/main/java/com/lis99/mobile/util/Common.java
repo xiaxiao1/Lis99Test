@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -25,7 +26,9 @@ import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
+import com.lis99.mobile.newhome.NewHomeActivity;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,6 +118,17 @@ public class Common {
             }
         }
         return false;
+    }
+
+    /**
+     *      退出应用
+     */
+    public static void ExitLis ()
+    {
+        NewHomeActivity.CLOSEAPPLICATION = true;
+        Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        LSBaseActivity.activity.startActivity(i);
     }
 
     /**
@@ -486,5 +500,24 @@ public class Common {
         }
         return url;
     }
+
+
+    // 安装APK
+    public static final void installAPK(Activity activity, String fileURL) {
+        try {
+            File file = new File(fileURL);
+            Common.log("apk path = " + file.getAbsolutePath());
+            Intent intent = new Intent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setAction(Intent.ACTION_VIEW);
+            String type = "application/vnd.android.package-archive";
+            intent.setDataAndType(Uri.fromFile(file), type);
+            activity.startActivity(intent);
+        } catch (Exception e) {
+            Common.log("installAPK Exception = " + e.toString());
+        }
+    }
+
+
 
 }
