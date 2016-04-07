@@ -64,10 +64,14 @@ public class UpdataUtil {
                         if (0 == model.type) {
 
 
-                        } else {
+                        } else if ( 1 == model.type  ){
 
-                            DialogManager.getInstance().showUpdataDialog(model, upDataCallBack);
+                            DialogManager.getInstance().showUpdataDialog(model, upDataCallBack, "");
 
+                        }
+                        else if ( 2 == model.type )
+                        {
+                            DialogManager.getInstance().showUpdataDialog(model, upDataCallBack, "退出");
                         }
 
                     }
@@ -114,6 +118,7 @@ public class UpdataUtil {
             progressDialog.setMax(100);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             progressDialog.setCancelable(false);// 进度条不能回退
+            progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setTitle("下载更新");// 设置标题
             progressDialog.show();
             super.onPreExecute();

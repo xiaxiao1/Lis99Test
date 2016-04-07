@@ -70,6 +70,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 	@Override
 	public int getItemViewType(int position) {
 		Object o = getItem(position);
+
 		//线路活动
 		if ( activeList )
 		{
@@ -169,11 +170,11 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			ClubDetailList.Topiclist item = (Topiclist) getItem(position);
 
 			if ( item == null ) return convertView;
-			String url = item.image;
-			if ( !TextUtils.isEmpty(url))
-			{
-				ImageLoader.getInstance().displayImage(url, holder.newImageView, options, ImageUtil.getImageLoading(holder.iv_load, holder.newImageView));
-			}
+//			String url = item.image;
+//			if ( !TextUtils.isEmpty(url))
+//			{
+//				ImageLoader.getInstance().displayImage(url, holder.newImageView, options, ImageUtil.getImageLoading(holder.iv_load, holder.newImageView));
+//			}
 			//
 			holder.titleView.setText(item.title);
 			holder.infoView.setText(item.times );//+ "至" + item.);
@@ -299,8 +300,11 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		{
 			holder.vipStar.setVisibility(View.GONE);
 		}
-		if (!TextUtils.isEmpty(item.image))
-		ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+
+//		if ( item.image != null && item.image.size() != 0 && !TextUtils.isEmpty(item.image.get(0).image) )
+//		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+			ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+
 		if (!TextUtils.isEmpty(item.headicon))
 		ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
 
@@ -423,7 +427,9 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		}
 
 
-		ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
+//		if ( item.image != null && item.image.size() != 0 )
+//		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
+			ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
 
 
 

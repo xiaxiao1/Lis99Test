@@ -28,7 +28,6 @@ import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
-import com.lis99.mobile.model.UpdataModel;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
@@ -322,16 +321,11 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
             case R.id.layout_nearby:
 
-                if ( Common.isApkInDebug(getActivity()) || "ttest".equals(DeviceInfo.CHANNELVERSION) )
-                {
-//                    startActivity(new Intent(getActivity(), MovieActivity.class));
-//                    startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
-//                    startActivity(new Intent(getActivity(), ActivityTest.class));
-//                    UpdataUtil.getInstance().getUpData();
-                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
-
-                    return;
-                }
+//                if ( Common.isApkInDebug(getActivity()) || "ttest".equals(DeviceInfo.CHANNELVERSION) )
+//                {
+//                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
+//                    return;
+//                }
 
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
                 intent.putExtra("clubID", 284);
@@ -344,8 +338,6 @@ public class FragmentChoicenessList extends Fragment implements
 
                 if ( Common.isApkInDebug(getActivity()) || "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
-//                    startActivity(new Intent(getActivity(), MovieActivity.class));
-//                    startActivity(new Intent(getActivity(), LSClubNewTopicListMain.class));
 //                    startActivity(new Intent(getActivity(), ActivityTest.class));
                     UpdataUtil.getInstance().getUpData();
 

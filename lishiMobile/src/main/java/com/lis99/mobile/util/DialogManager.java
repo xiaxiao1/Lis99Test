@@ -388,11 +388,15 @@ public class DialogManager {
      *      callBack result String cancel 取消， ok 确定
       */
 
-    public void showUpdataDialog( UpdataModel model, final CallBack callBack ) {
+    public void showUpdataDialog( UpdataModel model, final CallBack callBack, String str ) {
 
         final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.CustomDialog);
 
         dialog.setContentView(R.layout.new_dialog_view);
+
+        dialog.setCancelable(false);
+
+        dialog.setCanceledOnTouchOutside(false);
 
         dialog.show();
 
@@ -403,6 +407,11 @@ public class DialogManager {
         Button cancel = (Button) dialog.findViewById(R.id.cancel);
 
         Button ok = (Button) dialog.findViewById(R.id.ok);
+
+        if ( !TextUtils.isEmpty(str))
+        {
+            cancel.setText(str);
+        }
 
         tv_content.setText(model.changelog);
 

@@ -84,10 +84,16 @@ public class ClubDetailList implements Serializable{
 		public String catename;
 		public String times;
 		public int is_hot;
+
+
+
+// 		4.1.9
+//		public ArrayList<Images> image;
+
 		public String image;
 
-		public int height;
-		public int width;
+		public String videoimg;
+		public int videoid;
 
 		public String setaddress;
 		public String starttime;
@@ -107,6 +113,12 @@ public class ClubDetailList implements Serializable{
 		 */
 		public String topic_code;
 
+	}
+
+
+	public static class Images
+	{
+		public String image;
 	}
 
 }

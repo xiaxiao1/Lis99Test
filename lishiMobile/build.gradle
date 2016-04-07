@@ -5,17 +5,17 @@ android {
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
-        ttest {}
-//        shichang {}
-//        zhuzhan {}
-//        tuiguang1 {}
+//        ttest {}
+        shichang {}
+        zhuzhan {}
+        tuiguang1 {}
 //        sougou {}
 //        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}
 //        gfan {}
-//        zs360 {}
+        zs360 {}
 //        huawei {}
 //        lis99test {}
 //        jinli {}
@@ -52,7 +52,7 @@ android {
 //                def releaseApkName = 'yjf-android-v' + getVersionNameFromManifest() + '-' + variant.productFlavors[0].name + '-sign-42.apk'
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.1.7.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.1.8.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('beta')){
