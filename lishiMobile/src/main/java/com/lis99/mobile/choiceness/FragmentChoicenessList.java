@@ -336,7 +336,7 @@ public class FragmentChoicenessList extends Fragment implements
                 //ActivityTest
 //                startActivity(new Intent(getActivity(), ActivityTest.class));
 
-                if ( Common.isApkInDebug(getActivity()) || "ttest".equals(DeviceInfo.CHANNELVERSION) )
+                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
 //                    startActivity(new Intent(getActivity(), ActivityTest.class));
                     UpdataUtil.getInstance().getUpData();
