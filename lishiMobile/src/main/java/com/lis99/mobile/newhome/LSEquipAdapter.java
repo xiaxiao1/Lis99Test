@@ -210,7 +210,7 @@ public class LSEquipAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.ls_equip_free_header, null);
             holder = new ViewHolder();
-            holder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
+            holder.titleView = (TextView) convertView.findViewById(R.id.imageView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -218,9 +218,11 @@ public class LSEquipAdapter extends BaseAdapter {
 
 
         if (content.getType() == LSEquipContent.FREE_HEADER) {
-            holder.imageView.setImageResource(R.drawable.ls_equip_free_header);
+            holder.titleView.setText("福利社");
+//            holder.imageView.setImageResource(R.drawable.ls_equip_free_header);
         } else {
-            holder.imageView.setImageResource(R.drawable.ls_equip_change_header);
+            holder.titleView.setText("积分兑换");
+//            holder.imageView.setImageResource(R.drawable.ls_equip_change_header);
         }
 
         return convertView;
@@ -231,6 +233,7 @@ public class LSEquipAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.ls_equip_free_footer, null);
             holder = new ViewHolder();
+            holder.actionView = convertView.findViewById(R.id.actionView);
             holder.button = (Button) convertView.findViewById(R.id.actionButton);
             convertView.setTag(holder);
         } else {
@@ -250,10 +253,39 @@ public class LSEquipAdapter extends BaseAdapter {
                 }
             });
 
+            holder.actionView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(c, ClubSpecialListActivity.class);
+                    intent.putExtra("tagid", 6);
+                    c.startActivity(intent);
+                }
+            });
+
         } else {
             holder.button.setText("更多换购装备");
 
+
             holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    商城
+                    int id = 0;
+                    String Userid = DataManager.getInstance().getUser().getUser_id();
+                    if (!TextUtils.isEmpty(Userid)) {
+                        id = Integer.parseInt(Userid);
+                    }
+//				商城
+                    Intent intent = new Intent(c, MyActivityWebView.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("URL", "http://m.lis99.com/club/integralshop/goodList/" + id);
+                    bundle.putString("TITLE", "积分商城");
+                    intent.putExtras(bundle);
+                    c.startActivity(intent);
+                }
+            });
+
+            holder.actionView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 //                    商城
@@ -280,6 +312,7 @@ public class LSEquipAdapter extends BaseAdapter {
 
 
     static class ViewHolder{
+        View actionView;
         ImageView imageView, tagview;
         TextView titleView;
         TextView descView;

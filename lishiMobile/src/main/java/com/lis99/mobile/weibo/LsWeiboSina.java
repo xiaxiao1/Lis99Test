@@ -123,7 +123,9 @@ public class LsWeiboSina{
 	}
 	
 	class AuthListener implements WeiboAuthListener {
-        
+
+
+
         @Override
         public void onComplete(Bundle values) {
         	Oauth2AccessToken mAccessToken = Oauth2AccessToken.parseAccessToken(values);

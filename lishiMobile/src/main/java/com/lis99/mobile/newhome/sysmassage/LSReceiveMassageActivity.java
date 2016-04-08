@@ -1,7 +1,6 @@
 package com.lis99.mobile.newhome.sysmassage;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +9,6 @@ import android.widget.ListView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -73,9 +71,11 @@ public class LSReceiveMassageActivity extends LSBaseActivity implements
                 SysMassageModel.Lists item = (SysMassageModel.Lists) adapter.getItem(i);
                 if (item == null) return;
 
-                Intent intent = new Intent(activity, LSClubTopicActivity.class);
-                intent.putExtra("topicID", item.topicid);
-                startActivity(intent);
+                Common.goTopic(activity, item.category, item.topicid);
+
+//                Intent intent = new Intent(activity, LSClubTopicActivity.class);
+//                intent.putExtra("topicID", item.topicid);
+//                startActivity(intent);
 
 //                Intent intent = null;
 //                switch (item.skip_type) {

@@ -24,7 +24,7 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
 
     public ArrayList<Taglist> taglist;
 
-    public ArrayList<LikeListModel> lists;
+    public ArrayList<ClubTopicDetailHead.LikeList> lists;
 
     public int category;
     public String catename;
@@ -70,6 +70,15 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     public String visits;
     public int[] tags;
 
+    public ArrayList<tagsName> tags_name;
+
+    public class tagsName
+    {
+        public String title;
+        public String tags;
+    }
+
+
     @Override
     public String getTopic_id() {
         return this.topic_id;
@@ -97,8 +106,11 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
 
     @Override
     public ArrayList<LikeListModel> getList() {
-        return this.lists;
+        ArrayList<LikeListModel> lsm = new ArrayList<LikeListModel>(lists);
+        return lsm;
+//        return this.lists;
     }
+
 
     @Override
     public String getStick() {
@@ -123,6 +135,69 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
     @Override
     public String getTopicId() {
         return topic_id;
+    }
+
+    /**
+     * 图片Url 地址
+     *
+     * @return
+     */
+    @Override
+    public String getImageUrl() {
+
+        String imgUrl = "";
+        if (topic_image != null && topic_image.size() >= 1 )
+        {
+            imgUrl = topic_image.get(0).image;
+        }
+        return imgUrl;
+    }
+
+    /**
+     * 分享显示标题
+     *
+     * @return
+     */
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * 分享内容
+     *
+     * @return
+     */
+    @Override
+    public String getShareTxt() {
+        return "";
+    }
+
+    /**
+     * 分享连接地址
+     *
+     * @return
+     */
+    @Override
+    public String getShareUrl() {
+        return "http://club.lis99.com/actives/detail/" + topic_id;
+    }
+
+    public String active_code;
+
+    @Override
+    public String getNewActive() {
+        return active_code;
+    }
+
+    /**
+     * 俱乐部Id
+     *
+     * @return
+     */
+    @Override
+    public String getClubId() {
+        return club_id;
     }
 
 

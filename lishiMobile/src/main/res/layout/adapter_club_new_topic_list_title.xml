@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+    >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/topic_title_line"
+        />
+
+    <include
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/view_line"
+        android:id="@+id/include1"
+        layout="@layout/club_topic_topview_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"/>
+
+    <View
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#eee"
+        />
+
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/titleView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lineSpacingExtra="3dip"
+        android:maxLines="2"
+        android:text="@string/temp_string_long"
+        android:textColor="#525252"
+        android:textSize="20sp"
+        />
+
+    <RelativeLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/topic_create_time"
+            android:textSize="12sp"
+            android:textColor="@color/color_nine"
+            android:text="@string/temp_string"
+            android:drawablePadding="5dp"
+            android:id="@+id/dateView"
+            />
+
+        <TextView
+            android:layout_toRightOf="@id/dateView"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/club_info_look_num"
+            android:textSize="12sp"
+            android:textColor="@color/color_nine"
+            android:text="@string/temp_string"
+            android:drawablePadding="5dp"
+            android:id="@+id/lookNum"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.lis99.mobile.search;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,7 +12,10 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.SearchInfoActiveModel;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
@@ -79,9 +83,42 @@ public class SearchInfoActiveAdapter extends MyBaseAdapter{
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext, LSClubTopicActivity.class);
-                i.putExtra("topicID", item.id);
-                mContext.startActivity(i);
+//                if ( !TextUtils.isEmpty(item.activity_code))
+//                {
+//                    Intent intent = new Intent(mContext, LSClubTopicActiveOffLine.class);
+//                    intent.putExtra("topicID", item.id);
+//                    mContext.startActivity(intent);
+//                    return;
+//                }
+//                Intent i = new Intent(mContext, LSClubTopicActivity.class);
+//                i.putExtra("topicID", item.id);
+//                mContext.startActivity(i);
+
+                if ( item.category == 0 || item.category == 1 )
+                {
+                    Intent i = new Intent(mContext, LSClubTopicActivity.class);
+                    i.putExtra("topicID", item.id);
+                    mContext.startActivity(i);
+                }
+                else if ( 2 == item.category )
+                {
+                    Intent intent = new Intent(mContext, LSClubTopicNewActivity.class);
+                    intent.putExtra("topicID", item.id);
+                    mContext.startActivity(intent);
+                }
+                else if ( 3 == item.category )
+                {
+                    Intent intent = new Intent(mContext, LSClubNewTopicListMain.class);
+                    intent.putExtra("TOPICID", "" + item.id);
+                    mContext.startActivity(intent);
+                }
+                else if ( 4 == item.category || !TextUtils.isEmpty(item.activity_code) )
+                {
+                    Intent intent = new Intent(mContext, LSClubTopicActiveOffLine.class);
+                    intent.putExtra("topicID", item.id);
+                    mContext.startActivity(intent);
+                }
+
             }
         });
 

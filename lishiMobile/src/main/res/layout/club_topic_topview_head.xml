@@ -31,10 +31,35 @@
         android:text="@string/temp_string"
          />
 
+    <ImageView
+        android:id="@+id/vipStar"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_alignRight="@id/roundedImageView1"
+        android:layout_alignBottom="@+id/roundedImageView1"
+        android:layout_marginLeft="-8dp"
+        android:src="@drawable/club_icon_v" />
+
+    <Button
+        style="@style/wrap_wrap"
+        android:layout_alignParentRight="true"
+        android:id="@+id/btn_attention"
+        android:background="@drawable/friends_no_attention"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@+id/roundedImageView1"
+        android:layout_alignBottom="@id/roundedImageView1"
+        android:layout_toLeftOf="@id/btn_attention"
+        android:gravity="center_vertical"
+        >
+
         <ImageView
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/roundedImageView1"
-            android:layout_alignBottom="@id/roundedImageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/iv_tag_floor"
@@ -46,40 +71,34 @@
             android:layout_height="wrap_content"
             android:id="@+id/iv_moderator"
             android:src="@drawable/moderator_icon"
-            android:layout_toRightOf="@id/iv_tag_floor"
             android:layout_marginLeft="5dp"
-            android:layout_alignBottom="@id/iv_tag_floor"
             />
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/iv_writer"
-            android:src="@drawable/club_info_tag_writer"
-            android:layout_toRightOf="@id/iv_moderator"
+            android:layout_height="12dp"
+            android:id="@+id/tv_user_tag3"
+            android:background="@drawable/topic_supper_tag3"
             android:layout_marginLeft="5dp"
-            android:layout_alignBottom="@id/iv_tag_floor"
+            android:textSize="9sp"
+            android:text="人要地人地要在"
+            android:textColor="@color/white"
+            android:gravity="center"
             />
 
-    <Button
-        style="@style/wrap_wrap"
-        android:layout_alignParentRight="true"
-        android:id="@+id/btn_attention"
-        android:background="@drawable/choiceness_consern"
-        android:layout_centerVertical="true"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="12dp"
+            android:id="@+id/tv_user_tag4"
+            android:background="@drawable/topic_supper_tag4"
+            android:layout_marginLeft="5dp"
+            android:textSize="9sp"
+            android:text="人要地人地要在"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
 
-    
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/vipStar"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:layout_alignRight="@id/roundedImageView1"
-        android:layout_alignBottom="@+id/roundedImageView1"
-        android:layout_marginLeft="-8dp"
-        android:src="@drawable/club_icon_v" />
-    
-    
 
 </RelativeLayout>

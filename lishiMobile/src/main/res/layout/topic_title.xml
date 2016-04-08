@@ -2,19 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/titlehead"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/title_height" >
-    
-    <ImageView style="@style/fill_fill"
+    android:layout_height="@dimen/title_height"
+    >
+    <!--android:background="@color/color_like_press_red"-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
             android:id="@+id/iv_title_bg"
-            android:background="@drawable/title_bar_bg"
+        android:background="@drawable/title_bar_bg"
             />
 
     <RelativeLayout
         android:id="@+id/titleLeft"
         android:layout_width="50dp"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" 
         android:layout_marginLeft="10dip"
         >
 
@@ -61,6 +62,7 @@
 
 
     <TextView
+        android:paddingRight="10dp"
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,6 +71,7 @@
         android:gravity="center"
         android:text=""
         android:singleLine="true"
+        android:ellipsize="end"
         android:textColor="@color/title_bar_text"
         android:textSize="@dimen/title_text_height" />
     

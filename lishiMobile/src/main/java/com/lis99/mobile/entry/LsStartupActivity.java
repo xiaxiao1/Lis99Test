@@ -25,7 +25,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.equip.ActivityTest;
-import com.lis99.mobile.newhome.HelpActivity;
+import com.lis99.mobile.newhome.HelpMovieActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.C;
@@ -80,7 +80,7 @@ public class LsStartupActivity extends ActivityPattern {
             startActivity(intent);
             finish();
         }
-
+//      推送
         if (Common.mainIsStart) {
             Intent intent = new Intent(LsStartupActivity.this,
                     NewHomeActivity.class);
@@ -120,7 +120,7 @@ public class LsStartupActivity extends ActivityPattern {
         iv_channel = (ImageView) findViewById(R.id.iv_channel);
         iv_name = (ImageView) findViewById(R.id.iv_name);
 
-        //＝＝＝＝＝＝＝＝＝＝＝启动Icon ＝＝＝＝＝＝＝＝＝＝＝
+        //＝＝＝＝＝＝＝＝＝＝＝根据渠道更换启动Icon ＝＝＝＝＝＝＝＝＝＝＝
         StartLogoOption.showStartLogoOption(iv_channel);
 
 //        animation_img = AnimationUtils.loadAnimation(this, R.anim.star_img_time);
@@ -172,7 +172,7 @@ public class LsStartupActivity extends ActivityPattern {
             //手机号登陆
         } else if ("phone".equals(accountType)) {
             if (phone != null && !"".equals(phone)) {
-                postMessage(POPUP_PROGRESS, getString(R.string.sending));
+//                postMessage(POPUP_PROGRESS, getString(R.string.sending));
                 doPhoneLoginTask(phone, password);
             }
             //微信登录
@@ -201,14 +201,14 @@ public class LsStartupActivity extends ActivityPattern {
         {
             if (account != null && !"".equals(account))
             {
-                postMessage(POPUP_PROGRESS, getString(R.string.sending));
+//                postMessage(POPUP_PROGRESS, getString(R.string.sending));
                 doLoginTask(account, password);
             }
             else
             {
                 if (token != null && !"".equals(token))
                 {
-                    postMessage(POPUP_PROGRESS, getString(R.string.sending));
+//                    postMessage(POPUP_PROGRESS, getString(R.string.sending));
                     doLoginTask(tokenaccount, tokenpassword);
                 }
             }
@@ -354,12 +354,14 @@ public class LsStartupActivity extends ActivityPattern {
             SharedPreferencesHelper.saveClientVersion(""+DeviceInfo.CLIENTVERSIONCODE);
             visible = true;
         }
-
+//        visible = true;
         if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()) || visible )
         {
 //            startActivity( new Intent(this, HelpActivity.class));
+//            intent = new Intent(LsStartupActivity.this,
+//                    HelpActivity.class);
             intent = new Intent(LsStartupActivity.this,
-                    HelpActivity.class);
+                    HelpMovieActivity.class);
 //            return;
         }
         else {
@@ -388,7 +390,7 @@ public class LsStartupActivity extends ActivityPattern {
     }
 
     private void doWechatLogin() {
-        postMessage(POPUP_PROGRESS, getString(R.string.sending));
+//        postMessage(POPUP_PROGRESS, getString(R.string.sending));
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("openid", openid);
         params.put("nickname", weixinNickName);
@@ -451,7 +453,7 @@ public class LsStartupActivity extends ActivityPattern {
             default:
                 break;
         }
-        postMessage(DISMISS_PROGRESS);
+//        postMessage(DISMISS_PROGRESS);
     }
 
     private void parserPhoneLoginInfo(String result) {
@@ -461,7 +463,7 @@ public class LsStartupActivity extends ActivityPattern {
             JsonNode data = root.get("data");
             if (!"OK".equals(errCode)) {
                 String error = data.get("error").asText();
-                postMessage(ActivityPattern1.POPUP_TOAST, error);
+//                postMessage(ActivityPattern1.POPUP_TOAST, error);
                 return;
             }
 
@@ -472,12 +474,12 @@ public class LsStartupActivity extends ActivityPattern {
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
 
-            postMessage(LOGIN_SUCCESS);
+//            postMessage(LOGIN_SUCCESS);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            postMessage(ActivityPattern1.DISMISS_PROGRESS);
+//            postMessage(ActivityPattern1.DISMISS_PROGRESS);
         }
 
     }
@@ -490,7 +492,7 @@ public class LsStartupActivity extends ActivityPattern {
             JsonNode data = root.get("data");
             if (!"OK".equals(errCode)) {
                 String error = data.get("error").asText();
-                postMessage(ActivityPattern1.POPUP_TOAST, error);
+//                postMessage(ActivityPattern1.POPUP_TOAST, error);
                 return;
             }
 
@@ -516,12 +518,12 @@ public class LsStartupActivity extends ActivityPattern {
 
             SharedPreferencesHelper.saveaccounttype(SharedPreferencesHelper.WEIXINLOGIN);
 
-            postMessage(LOGIN_SUCCESS);
+//            postMessage(LOGIN_SUCCESS);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            postMessage(ActivityPattern1.DISMISS_PROGRESS);
+//            postMessage(ActivityPattern1.DISMISS_PROGRESS);
         }
 
     }
@@ -535,10 +537,10 @@ private static final int LOGIN_SUCCESS = 200;
             if ("OK".equals(result)) {
                 DataManager.getInstance().jsonParse(params,
                         DataManager.TYPE_SIGNUP);
-                postMessage(LOGIN_SUCCESS);
+//                postMessage(LOGIN_SUCCESS);
             } else {
                 // postMessage(POPUP_TOAST, result);
-                postMessage(DISMISS_PROGRESS);
+//                postMessage(DISMISS_PROGRESS);
             }
         }
     }

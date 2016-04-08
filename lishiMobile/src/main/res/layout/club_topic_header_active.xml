@@ -76,7 +76,7 @@
                 android:lineSpacingExtra="2dip"
                 android:maxLines="2"
                 android:text="@string/temp_string_long"
-                android:textColor="@color/text_color_blue"
+                android:textColor="#525252"
                 android:textSize="20sp"
                 />
 

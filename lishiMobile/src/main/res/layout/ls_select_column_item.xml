@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="180dp"
+    android:layout_width="match_parent"
+              android:layout_height="180dp"
     android:background="@color/white"
     android:orientation="horizontal"
     android:paddingBottom="1px">
@@ -15,7 +16,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="180dp"
             android:id="@+id/columnImage1"
             android:scaleType="centerCrop"/>
 
@@ -33,7 +34,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:layout_marginBottom="5dp"
             android:text="标题"
             android:id="@+id/columnTitle1"/>
 
@@ -61,7 +61,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="180dp"
             android:id="@+id/columnImage2"
             android:scaleType="centerCrop"/>
 
@@ -87,7 +87,7 @@
             android:layout_below="@+id/columnTitle2"
             android:textSize="13sp"
             android:textColor="#2bca63"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="9dp"
             android:text="1568篇"
             android:layout_centerHorizontal="true"
             android:id="@+id/columnInfo2"/>

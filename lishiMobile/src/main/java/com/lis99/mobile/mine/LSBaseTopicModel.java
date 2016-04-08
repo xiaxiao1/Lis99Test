@@ -12,6 +12,9 @@ public class LSBaseTopicModel {
     String club_title;
     String club_id;
     String image;
+    /**
+     *      帖子类型：0话题贴，1线路活动帖 ，2线上活动帖 3 新版活动帖子 4 新版话题帖
+     */
     int category;
 
 

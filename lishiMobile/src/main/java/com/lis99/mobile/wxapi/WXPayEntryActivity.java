@@ -12,12 +12,16 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.PayUtil;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
+import java.util.HashMap;
 
 
 public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHandler{
@@ -34,7 +38,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private View layout_ok, layout_cancel;
 //<font color="red">I love android</font><br>
-    private String infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过24小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
+    private String infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
     private String infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
 
     private int state;
@@ -151,6 +155,8 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
                 setTitle("支付成功");
                 layout_ok.setVisibility(View.VISIBLE);
                 layout_cancel.setVisibility(View.GONE);
+                // 发送定单号给服务器
+                sendOk2Service();
                 break;
 //                支付失败
             case -1:
@@ -170,6 +176,18 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
                 layout_cancel.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+
+    private void sendOk2Service ()
+    {
+//        PayUtil.orderCode;
+        String url = "http://api.lis99.com/v4/club/sendMobileInfo";
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("out_trade_no", PayUtil.orderCode);
+
+        MyRequestManager.getInstance().requestPostNoModel(url, map, null, null);
+
     }
 
 }

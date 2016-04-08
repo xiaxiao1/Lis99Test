@@ -73,6 +73,14 @@ public class ClubTopicReplyList implements Serializable {
 
         //		===4.0.2=== 撰稿人
         public int[] tags;
+//        达人标签
+        public ArrayList<tagsName> tags_name;
+
+        public class tagsName
+        {
+            public String title;
+            public String tags;
+        }
 
         public class Topic_image {
             public String image;

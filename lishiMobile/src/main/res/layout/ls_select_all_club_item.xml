@@ -8,7 +8,7 @@
     <View
         android:id="@+id/topSep"
         android:layout_width="match_parent"
-        android:layout_height="7dp"/>
+        android:layout_height="3dp"/>
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,12 +45,13 @@
                 android:textSize="15sp"
                 android:text="砾石俱乐部"
                 android:singleLine="true"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="23dp"
                 android:layout_toRightOf="@+id/roundedImageView1"
                 android:layout_marginLeft="17dp"
                 />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/memberView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,8 +71,8 @@
                 android:textColor="#999999"
                 android:textSize="9sp"
                 android:text="1567个话题"
-                android:layout_below="@+id/memberView"
-                android:layout_marginTop="4dp"
+                android:layout_below="@+id/titleView"
+                android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/roundedImageView1"
                 android:layout_marginLeft="17dp"
                 />
@@ -111,12 +112,13 @@
                 android:text="砾石俱乐部"
                 android:singleLine="true"
 
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="23dp"
                 android:layout_toRightOf="@+id/roundedImageView2"
                 android:layout_marginLeft="17dp"
                 />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/memberView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,8 +138,8 @@
                 android:textColor="#999999"
                 android:textSize="9sp"
                 android:text="1567个话题"
-                android:layout_below="@+id/memberView2"
-                android:layout_marginTop="5dp"
+                android:layout_below="@+id/titleView2"
+                android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/roundedImageView2"
                 android:layout_marginLeft="17dp"
                 />

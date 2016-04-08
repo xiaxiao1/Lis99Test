@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 21
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
-//        ttest {}
+        ttest {}
         shichang {}
         zhuzhan {}
         tuiguang1 {}
@@ -52,7 +52,7 @@ android {
 //                def releaseApkName = 'yjf-android-v' + getVersionNameFromManifest() + '-' + variant.productFlavors[0].name + '-sign-42.apk'
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.1.0.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.1.9.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('beta')){
@@ -68,8 +68,7 @@ android {
 
 
 
-    // dex突破65535的限制
-//    multiDexEnabled true
+
     signingConfigs {
         debug {
             // No debug config
@@ -110,7 +109,15 @@ android {
     defaultConfig {
         applicationId "com.lis99.mobile"
         minSdkVersion 8
-        targetSdkVersion 17
+        targetSdkVersion 21
+        // dex突破65535的限制
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+        preDexLibraries false
     }
 
     buildTypes {
@@ -135,12 +142,20 @@ android {
             zipAlignEnabled true
         }
     }
+
 }
 
+
 dependencies {
+    compile 'com.android.support:multidex:'
+
     compile project(':weiboSDK')
     compile project(':mUList')
     compile project(':androidSDKComponent')
+    compile project(':recyclerview')
+    compile project(':playerskin')
+    compile project(':xutils')
+
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile files('libs/alipaySdk-20151112.jar')
@@ -166,7 +181,7 @@ dependencies {
     compile files('libs/nineoldandroids.jar')
     compile files('libs/patchupdate.jar')
     compile files('libs/need_lib.jar')
-    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
     compile files('libs/jpush-android-2.0.5.jar')
-    compile project(':recyclerview')
+
+//        compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
 }

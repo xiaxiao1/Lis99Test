@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ShareManager;
 
@@ -77,9 +78,13 @@ public class MyTestActivityWebView extends LSBaseActivity
 		{
 			title = "砾石 心户外，新生活";
 		}
-		pop = ShareManager.getInstance().showPopWindowInShare(null, "",
-				image_url, title, "",
-				"", layout_main, null, url);
+		ShareModel share = new ShareModel();
+
+		share.title = title;
+		share.imageUrl = image_url;
+		share.shareUrl = url;
+
+		pop = ShareManager.getInstance().showPopWindowInShare(share, layout_main, null);
 
 	}
 

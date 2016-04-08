@@ -18,7 +18,6 @@ import com.sina.weibo.sdk.utils.MD5;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import com.tencent.weibo.sdk.android.api.util.Util;
 
 public final class CameraUtil {
 

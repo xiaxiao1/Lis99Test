@@ -1,4 +1,6 @@
 /build
+/.idea
+/.gradle
 *.iml
 Android的项目.gitignore文件推荐这么写
 # Built application files

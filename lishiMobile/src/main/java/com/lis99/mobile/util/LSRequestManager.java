@@ -235,7 +235,8 @@ public class LSRequestManager
 				// TODO Auto-generated method stub
 				RedDotModel model = (RedDotModel) mTask.getResultModel();
 //				相加为0没有通知
-				int num = model.is_baoming + model.is_reply + model.manage_baoming + model.is_follow + model.notice + model.likeStatus;
+				int num = model.is_baoming + model.is_reply + model.manage_baoming + model
+						.is_follow + model.notice + model.likeStatus;
 				Common.log("b================" + num);
 				Common.log("model.is_reply" + model.is_reply);
 
@@ -471,7 +472,7 @@ public class LSRequestManager
 		MyRequestManager.getInstance().requestPost(C.ADD_ATTENTION, map, model, call);
 
 	}
-/**点赞*/
+	/**点赞*/
 	public void clubTopicLike ( int topicid, CallBack callBack )
 	{
 		if ( !Common.isLogin(LSBaseActivity.activity))
@@ -484,6 +485,26 @@ public class LSRequestManager
 		map.put("user_id", userID);
 
 		String url = C.CLUB_TOPIC_LIKE + topicid;
+
+		LikeModelNew model = new LikeModelNew();
+
+		MyRequestManager.getInstance().requestPostNoDialog(url, map, model, callBack);
+
+	}
+
+	/**点赞*/
+	public void clubTopicLikeNew ( int topicid, CallBack callBack )
+	{
+		if ( !Common.isLogin(LSBaseActivity.activity))
+		{
+			return;
+		}
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", userID);
+
+		String url = C.CLUB_TOPIC_LIKE_NEW + topicid;
 
 		LikeModelNew model = new LikeModelNew();
 

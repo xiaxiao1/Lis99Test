@@ -85,10 +85,10 @@ public class LSMyTopicAdapter extends BaseAdapter {
 		holder.infoView.setText(/*topic.getNickname() + " 发布于 "
 				+ */topic.getCreatedate());
 
-		if (topic.getCategory() == 0) {
-			holder.eventImageView.setVisibility(View.GONE);
-		} else {
+		if (topic.getCategory() == 1 || topic.getCategory() == 2 || topic.getCategory() == 4 ) {
 			holder.eventImageView.setVisibility(View.VISIBLE);
+		} else {
+			holder.eventImageView.setVisibility(View.GONE);
 		}
 
 		if (topic.getIs_image() == 1) {

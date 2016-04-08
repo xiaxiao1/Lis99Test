@@ -16,6 +16,7 @@ import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
@@ -64,7 +65,7 @@ public class LSActiveLineFragment extends LSFragment implements
 
     private Page page;
 
-    private double Latitude = -1, Longitude = -1;
+    public static double Latitude = -1, Longitude = -1;
 
     private ActiveLineNewModel model;
 
@@ -76,9 +77,9 @@ public class LSActiveLineFragment extends LSFragment implements
 
     private View titleLeft, titleRight;
 
-    private int position;
+    private int position = 0;
     public static int cityId = -1;
-    private String cityName = "北京";
+    private String cityName = "北京", locationCityName = "", locationCityId = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,7 @@ public class LSActiveLineFragment extends LSFragment implements
 
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
+        tvLocation.setOnClickListener(this);
         pull_refresh_view = (PullToRefreshView) v.findViewById(R.id.pull_refresh_view);
 //
         pull_refresh_view.setOnFooterRefreshListener(this);
@@ -113,6 +115,8 @@ public class LSActiveLineFragment extends LSFragment implements
         head = View.inflate(getActivity(), R.layout.active_line_head, null);
 
         viewBanner = (BannerView) head.findViewById(R.id.viewBanner);
+
+//        viewBanner.setVisibility(View.GONE);
 
         viewBanner.mViewPager.setOnTouchListener(new View.OnTouchListener() {
 
@@ -165,6 +169,10 @@ public class LSActiveLineFragment extends LSFragment implements
             }
         });
 
+        redDotUtil.setRedText(tvMassage);
+
+        list.setAdapter(null);
+
         return v;
 
     }
@@ -181,24 +189,14 @@ public class LSActiveLineFragment extends LSFragment implements
 
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        tvMassage.setVisibility(View.GONE);
-
-        RedDotUtil redDotUtil = RedDotUtil.getInstance();
-
-        redDotUtil.setRedSend(new RedDotUtil.OnRedSend() {
-            @Override
-            public void SenderSystem(int num) {
-                tvMassage.setVisibility(View.VISIBLE);
-            }
-        });
-
-        redDotUtil.getRedDot();
+    //  没有当前城市数据， 弹出提示
+    private void showNoCityDialog ()
+    {
+        DialogManager.getInstance().showActiveDialog(getActivity());
     }
+
+
+    RedDotUtil redDotUtil = RedDotUtil.getInstance();
 
     private void cleanList ()
     {
@@ -236,15 +234,30 @@ public class LSActiveLineFragment extends LSFragment implements
                 model = (ActiveLineNewModel) mTask.getResultModel();
 
                 if ( model == null ) return;
+//              没有这个省的数据，弹出提示
+                if ( model.getDefault_data() == 1 )
+                {
+                    showNoCityDialog();
+                }
 
                 page.nextPage();
 
                 cityId = model.city_id;
+                cityName = model.city_name;
 
-                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+                locationCityId = ""+cityId;
+                locationCityName = model.city_name;
 
-                tvLocation.setText(name[0]);
-                position = Common.string2int(name[1]);
+//                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+//
+//                if (TextUtils.isEmpty(locationCityId))
+//                {
+//                    locationCityId = ""+cityId;
+//                    locationCityName = name[0];
+//                }
+
+                tvLocation.setText(model.city_name);
+//                position = Common.string2int(name[1]);
 
                 for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
                 {
@@ -253,24 +266,35 @@ public class LSActiveLineFragment extends LSFragment implements
 
                 if ( adapter == null ) {
                     page.setPageSize(model.getTotalpage());
-                    if (l.size() != 0)
+                    // 列表不是空， 横滑列表不是空才添加
+                    if (l.size() != 0 && model.getAreaweblist() != null && model.getAreaweblist().size() != 0)
                     {
                         if ( l.size() >=3 )
                             l.add(2, model.getAreaweblist());
                         else
                             l.add(model.getAreaweblist());
                     }
-//                    最后一页
-                    if ( page.isLastPage() )
-                    {
-                        l.add("last");
-                    }
+//                    最后一页, 查看全部活动
+//                    if ( page.isLastPage() )
+//                    {
+//                        l.add("last");
+//                    }
 
                     adapter = new LSActiveLineAdapter(getActivity(), l);
                     list.setAdapter(adapter);
 
-                    if ( model.adlist != null )
+                    if ( viewBanner.getVisibility() == View.VISIBLE && model.adlist != null && model.adlist.size() != 0 )
                     {
+                        int num = model.adlist.size() - 1;
+                        for ( int i = num; i >= 0; i-- )
+                        {
+                            ActiveLineNewModel.Adlist item = model.adlist.get(i);
+                            if ( "1".equals(item.platform))
+                            {
+                                model.adlist.remove(i);
+                                continue;
+                            }
+                        }
                         bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
                         bannerAdapter.addImagePageAdapterListener(LSActiveLineFragment.this);
                         bannerAdapter.setImagePageClickListener(LSActiveLineFragment.this);
@@ -283,10 +307,10 @@ public class LSActiveLineFragment extends LSFragment implements
                 else
                 {
                     //                    最后一页
-                    if ( page.isLastPage() )
-                    {
-                        l.add("last");
-                    }
+//                    if ( page.isLastPage() )
+//                    {
+//                        l.add("last");
+//                    }
 //                    adapter.addList(l);
                     adapter.setList(l);
                 }
@@ -305,13 +329,13 @@ public class LSActiveLineFragment extends LSFragment implements
         switch (view.getId())
         {
             case R.id.titleLeft:
-
+//                RedDotUtil.getInstance().InVisibleDot();
                 startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;
-            case R.id.titleRight:
+            case R.id.tv_location:
 
-                PopWindowUtil.showActiveMainCityList(position, list, new CallBack() {
+                PopWindowUtil.showActiveMainCityList(locationCityName, locationCityId, position, list, new CallBack() {
                     @Override
                     public void handler(MyTask mTask) {
                         if ( mTask == null )
@@ -331,6 +355,13 @@ public class LSActiveLineFragment extends LSFragment implements
                     }
                 });
 
+                break;
+            case R.id.titleRight:
+                Intent intent = new Intent(getActivity(), LSAllLineCateActivity.class);
+                intent.putExtra("cityId", cityId);
+                intent.putExtra("latitude", Latitude);
+                intent.putExtra("longitude", Longitude);
+                startActivity(intent);
                 break;
         }
     }
@@ -392,11 +423,19 @@ public class LSActiveLineFragment extends LSFragment implements
                 startActivity(intent);
 
                 break;
+//            新版活动帖
             case 5:
                 intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
                 intent.putExtra("topicID", Common.string2int(item.url));
                 startActivity(intent);
                 break;
+//            新版话题帖
+            case 6:
+                intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
+                intent.putExtra("TOPICID", item.url);
+                startActivity(intent);
+                break;
+
         }
 
     }
@@ -464,9 +503,11 @@ public class LSActiveLineFragment extends LSFragment implements
         location.getLocation();
     }
 
-
+//    切换View 会被调用
     @Override
     public void handler() {
+
+        redDotUtil.getRedDot();
 
         ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
             @Override

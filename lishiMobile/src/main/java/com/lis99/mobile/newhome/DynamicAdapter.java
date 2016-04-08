@@ -43,8 +43,7 @@ public class DynamicAdapter extends MyBaseAdapter {
     @Override
     public View setView(int i, View view, ViewGroup viewGroup) {
         Holder holder = null;
-        if ( view == null )
-        {
+        if (view == null) {
 //            view = View.inflate(mContext, R.layout.dynamic_item, null);
             view = View.inflate(mContext, R.layout.choiceness_new_topic, null);
             holder = new Holder();
@@ -56,7 +55,7 @@ public class DynamicAdapter extends MyBaseAdapter {
             holder.tv_reply = (TextView) view.findViewById(R.id.tv_reply);
             holder.tv_name = (TextView) view.findViewById(R.id.tv_name);
 
-            holder.layout_like =  view.findViewById(R.id.layout_like);
+            holder.layout_like = view.findViewById(R.id.layout_like);
             holder.vipStar = (ImageView) view.findViewById(R.id.vipStar);
             holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
 
@@ -67,16 +66,23 @@ public class DynamicAdapter extends MyBaseAdapter {
             holder.btn_concern.setBackgroundResource(0);
             holder.btn_concern.setTextColor(mContext.getResources().getColor(R.color.color_nine));
 
+            holder.layout = view.findViewById(R.id.layout);
+
             view.setTag(holder);
-        }
-        else
-        {
+        } else {
             holder = (Holder) view.getTag();
         }
 
         final DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) getItem(i);
 
-        if ( item == null ) return view;
+        if (item == null) return view;
+
+        if (i == 0) {
+            holder.layout.setVisibility(View.VISIBLE);
+        } else
+        {
+            holder.layout.setVisibility(View.GONE);
+        }
 
         if ( item.is_vip == 0 )
         {
@@ -147,6 +153,6 @@ public class DynamicAdapter extends MyBaseAdapter {
         ImageView vipStar, iv_bg, iv_like, iv_load;
         TextView tv_name, tv_like, tv_title, tv_reply;
         Button btn_concern;
-        View layout_like;
+        View layout_like, layout;
     }
 }

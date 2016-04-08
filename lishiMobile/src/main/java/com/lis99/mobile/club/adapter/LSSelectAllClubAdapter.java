@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSClubDetailActivity;
-import com.lis99.mobile.club.model.LSClub;
 import com.lis99.mobile.club.model.LSSelectClub;
 import com.lis99.mobile.util.ImageUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -176,7 +175,7 @@ public class LSSelectAllClubAdapter extends BaseExpandableListAdapter {
         final int item1ID = item.getClub_id();
 
         holder.clubTitle1.setText(item.getClub_title());
-        holder.clubMember1.setText(item.getMembers() + "人参与");
+//        holder.clubMember1.setText(item.getMembers() + "人参与");
         holder.clubTopic1.setText(item.getTotal()+"个话题");
         if (!TextUtils.isEmpty(item.getImage()))
         {
@@ -199,7 +198,7 @@ public class LSSelectAllClubAdapter extends BaseExpandableListAdapter {
             final int item2ID = item.getClub_id();
 
             holder.clubTitle2.setText(item.getClub_title());
-            holder.clubMember2.setText(item.getMembers() + "人参与");
+//            holder.clubMember2.setText(item.getMembers() + "人参与");
             holder.clubTopic2.setText(item.getTotal()+"个话题");
             if (!TextUtils.isEmpty(item.getImage()))
             {

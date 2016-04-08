@@ -76,7 +76,7 @@ public class LsActivityItem extends ActivityPattern1 implements
 	ItemInfoAdapter adapter;
 	private int id = 1;
 	private String[] areas = new String[] { "52", "311", "244", "211" };
-	
+
 	Handler handler;
 
 	private static final int SHOW_EEROR = 213;
@@ -124,7 +124,7 @@ public class LsActivityItem extends ActivityPattern1 implements
 		StatusUtil.setStatusBar(this);
 
 		handler = new Handler();
-		
+
 //		imageLoader.init(ImageLoaderConfiguration.createDefault(this));
 
 		initWeibo(savedInstanceState);
@@ -212,7 +212,7 @@ public class LsActivityItem extends ActivityPattern1 implements
 							tv_more.setText("没有更多了");
 						}
 					});
-					
+
 				} else {
 					handler.post(new Runnable() {
 						@Override
@@ -231,7 +231,7 @@ public class LsActivityItem extends ActivityPattern1 implements
 				postMessage(POPUP_TOAST, result);
 				postMessage(SHOW_EEROR);
 			}
-		} 
+		}
 		postMessage(DISMISS_PROGRESS);
 	}
 
@@ -314,7 +314,7 @@ public class LsActivityItem extends ActivityPattern1 implements
 		mlistview = (ListView) findViewById(R.id.mlistview);
 		iv_header = (ImageView) findViewById(R.id.iv_header_pic);
 		wv_content = (TextView) findViewById(R.id.wv_content);
-		
+
 		array.put(0, bt_bj);
 		array.put(1, bt_xa);
 		array.put(2, bt_sy);
@@ -393,7 +393,7 @@ private void changeColor(int position){
 		}
 	}
 }
-	
+
 	private static class ViewHolder {
 		ImageView iv_toux;
 		TextView tv_zan, tv_number, tv_detail, tv_name;
@@ -544,7 +544,7 @@ private void changeColor(int position){
 											Util2.toastMessage(
 													LsActivityItem.this,
 													"分享成功");
-											
+
 										}
 									});
 							break;

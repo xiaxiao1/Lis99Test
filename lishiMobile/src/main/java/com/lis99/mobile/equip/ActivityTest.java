@@ -1,83 +1,96 @@
 package com.lis99.mobile.equip;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
+import android.widget.EditText;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DataHelp;
 
-public class ActivityTest extends LSBaseActivity {
+public class ActivityTest extends LSBaseActivity implements View.OnClickListener {
 
-    private AnimationDrawable animationDrawable;
-
-    private ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_activity);
 
-        setContentView(R.layout.equip_title_chose);
-
-        ImageView iv_1 = (ImageView) findViewById(R.id.iv_1);
-
-        iv_1.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                showNewVersionDialog("地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地地地人 会人地 有地有圾地肝有圾地");
-            }
-        });
-
-		img = (ImageView) findViewById(R.id.img);
-
-        img.setImageResource(R.drawable.load_image_temp_bg);
-
-		animationDrawable = (AnimationDrawable) img.getDrawable();
-
-		animationDrawable.start();
-
-
+        findViewById(R.id.button).setOnClickListener(this);
+        findViewById(R.id.button2).setOnClickListener(this);
+        findViewById(R.id.button3).setOnClickListener(this);
+        findViewById(R.id.button4).setOnClickListener(this);
     }
 
 
-    private void showNewVersionDialog(String str) {
-        AlertDialog.Builder builder = new Builder(this);
-        builder.setMessage(str);
-        builder.setTitle("新版本提示");
-        builder.setPositiveButton("去更新", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-            }
-        });
-        builder.setNegativeButton("暂不", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // 敢点暂不，就退出程序
-//				Intent intent = new Intent(Intent.ACTION_MAIN);
-//				intent.addCategory(Intent.CATEGORY_HOME);
-//				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//				startActivity(intent);
-//				android.os.Process.killProcess(Process.myPid());
-            }
-        });
-        builder.create().show();
+    private EditText getEditText3(){
+        return (EditText) findViewById(R.id.editText3);
     }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button:
+                //TODO implement
+
+                String id = getEditText3().getText().toString();
+//// 1214
+//                Intent intent = new Intent(this, LSClubTopicActiveOffLine.class);
+//                if ( !TextUtils.isEmpty(id))
+//                    intent.putExtra("topicID", Common.string2int(id));
+//                else
+//                    intent.putExtra("topicID", 1214);
+//
+//                startActivity(intent);
 
 
-    private void init() {
 
+//                Intent intent = new Intent(this, LSClubNewTopicListMain.class);
+//
+//                String id = getEditText3().getText().toString();
+//
+//                if ( !TextUtils.isEmpty(id))
+//                    intent.putExtra("TOPICID", id);
+//                else
+//                    intent.putExtra("TOPICID", "1");
+//                startActivity(intent);
+
+
+
+//                Intent intent = new Intent(activity, MyActivityWebView.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("URL", TextUtils.isEmpty(id) ? "www.baidu.com" : id);
+//                bundle.putString("TITLE", "title");
+//                bundle.putString("IMAGE_URL", "null");
+//                bundle.putInt("TOPIC_ID", 0);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+
+//                DataHelp.getInstance().search();
+
+                DataHelp.getInstance().cheange();
+
+                break;
+            case R.id.button2:
+
+                DataHelp.getInstance().add();
+
+                break;
+            case R.id.button3:
+
+//                DataHelp.getInstance().search1();
+                if ( DataHelp.getInstance().remove() )
+                {
+                    Common.toast("OK");
+                }
+
+
+                break;
+            case R.id.button4:
+
+                DataHelp.getInstance().search2();
+
+                break;
+        }
     }
-
-
 }

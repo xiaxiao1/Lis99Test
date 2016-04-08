@@ -25,8 +25,11 @@ import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.adapter.MyJoinAdapter;
 import com.lis99.mobile.club.model.MyJoinClubModel;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
@@ -257,25 +260,47 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
                                     int position, long id) {
 
                 if (position == 0) return;
-                if ( listView.getAdapter() == null ) return;
-                if ( allLine.getVisibility() == View.VISIBLE )
-                {
+                if (listView.getAdapter() == null) return;
+                if (allLine.getVisibility() == View.VISIBLE) {
+
                     LSBaseTopicModel item = topics.get(position - 1);
                     if (item == null) return;
-                    Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity.class);
-                    intent.putExtra("topicID", Integer.parseInt(item.topic_id));
-                    startActivity(intent);
-                }
-                else
-                {
-                    MyJoinClubModel.Clublist item = (MyJoinClubModel.Clublist) clubAdapter.getItem(position - 1);
+
+                    if (item.category == 0 || item.category == 1) {
+                        Intent intent = new Intent(LSUserHomeActivity.this, LSClubTopicActivity
+                                .class);
+                        intent.putExtra("topicID", Integer.parseInt(item.topic_id));
+                        startActivity(intent);
+                    }
+//                    线上活动
+                    else if (item.category == 2) {
+                        Intent intent = new Intent(activity, LSClubTopicNewActivity.class);
+                        intent.putExtra("topicID", Common.string2int(item.topic_id));
+                        startActivity(intent);
+                    }
+
+                    //                    新版话题
+                    else if (item.category == 3) {
+                        Intent intent = new Intent(activity, LSClubNewTopicListMain.class);
+                        intent.putExtra("TOPICID", item.topic_id);
+                        startActivity(intent);
+                    }
+                    //                    新版活动
+
+                    else if (item.category == 4) {
+                        Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+                        intent.putExtra("topicID", Common.string2int(item.topic_id));
+                        startActivity(intent);
+                    }
+
+                } else {
+                    MyJoinClubModel.Clublist item = (MyJoinClubModel.Clublist) clubAdapter
+                            .getItem(position - 1);
                     Intent intent = new Intent(activity, LSClubDetailActivity.class);
                     intent.putExtra("clubID", item.id);
                     startActivity(intent);
 
                 }
-
-
 
 
             }
@@ -309,24 +334,24 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
     }
 
-
+//  //      标签去掉
     private void setTags(List<String> tags)
     {
-        if (tags == null) {
-            tags = new ArrayList<String>();
-        }
-        for (int i = 0; i < tagViews.size(); ++i)
-        {
-            TextView tagView = tagViews.get(i);
-            if (tags.size() > i)
-            {
-                tagView.setVisibility(View.VISIBLE);
-                tagView.setText(tags.get(i));
-            } else
-            {
-                tagView.setVisibility(View.GONE);
-            }
-        }
+//        if (tags == null) {
+//            tags = new ArrayList<String>();
+//        }
+//        for (int i = 0; i < tagViews.size(); ++i)
+//        {
+//            TextView tagView = tagViews.get(i);
+//            if (tags.size() > i)
+//            {
+//                tagView.setVisibility(View.VISIBLE);
+//                tagView.setText(tags.get(i));
+//            } else
+//            {
+//                tagView.setVisibility(View.GONE);
+//            }
+//        }
     }
 
 
@@ -428,7 +453,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         }
 
         fansView.setText(user.getFollows() + "位粉丝");
-
+//      标签去掉
         setTags(user.getTags());
 
         if (user.isIs_follows()) {

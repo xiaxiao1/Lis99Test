@@ -62,6 +62,11 @@ public class MineReplyModel extends BaseModel
 		public int topic_id;
 		public int club_id;
 		public int replytopicid;
+
+		/**
+		 * 帖子类型：0话题贴，1线路活动帖 ，2线上活动帖,3 新版话题帖, 4 新版活动帖子
+		 */
+		public int category;
 		
 		public class Topic_image
 		{

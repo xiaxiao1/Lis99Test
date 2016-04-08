@@ -245,6 +245,8 @@ public class C {
 	public static final String CLUB_EVENT_APPLYLIST = DOMAIN + "/club/clubActivityApplyList/";
 //	public static final String CLUB_ADD_TOPIC = DOMAIN + "/club/clubActivityTopic/";
 	public static final String CLUB_ADD_TOPIC = DOMAIN + "/v4/club/clubActivityTopic";
+//	新版话题， 回复http://api.lis99.com/v5/topics/topicsReply
+	public static final String CLUB_ADD_TOPIC_REPLY = DOMAIN + "/v5/topics/topicsReply/";
 	public static final String CLUB_GET_INFO = DOMAIN + "/club/getclubinfo/";
 	public static final String CLUB_TOPIC_GET_INFO = DOMAIN + "/club/getTopicInfo/";
 	public static final String CLUB_TOPIC_GET_INFO2 = DOMAIN + "/club/getClubTopicInfo/";
@@ -260,17 +262,19 @@ public class C {
 	public static final String LS_MINE_APPLY_INFO = DOMAIN + "/v2/user/applynotice/";
 	public static final String LS_MINE_APPLY_MANAGE = DOMAIN + "/v2/user/myTopic/";
 	public static final String LS_MINE_APPLY_INFO_CLEAR = DOMAIN + "/v2/user/clearnotice/";
-
-	public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v3/user/uinfo/";
+//	人个主页
+//	public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v3/user/uinfo/";
+public static final String LS_USER_HOME_PAGE  =      DOMAIN + "/v5/user/uinfo/";
 	public static final String LS_USER_ADD_FOLLOW  =     DOMAIN + "/v3/user/addFollow/";
 	public static final String LS_USER_CANCEL_FOLLOW =      DOMAIN +  "/v3/user/cancelFollow/";
 
 	
 	
 	public static final String COLLECTION_GET_LIST = DOMAIN + "/shop/shopDynamicInfo/";
-	
-	public static final String USER_GET_MYTOPICS = DOMAIN + "/user/getMyTopicList/";
-	
+//	我发的帖   /v5/user/myPubTopics/[page]
+//	public static final String USER_GET_MYTOPICS = DOMAIN + "/user/getMyTopicList/";
+public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
+
 	/**
 	 * 活动 - 领队
 	 */
@@ -300,7 +304,9 @@ public class C {
 	/**俱乐部详情*/
 	public static final String CLUB_DETAIL_HEAD = DOMAIN + "/v4/club/detail/";
 	/**俱乐部详情列表 http://api.lis99.com/v2/club/topiclist/170/0?page=0 */
-	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v4/club/topiclist/";
+//	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v4/club/topiclist/";
+//	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v5/club/topiclist/";
+	public static final String CLUB_DETAIL_LIST = DOMAIN + "/v5/club/topiclists/";
 	/**帖子详情（HEAD）*/
 	public static final String CLUB_TOPIC_DETAIL_HEAD = DOMAIN + "/v2/club/topic/";
 //＝＝＝＝帖子详情＝＝＝＝＝＝
@@ -341,7 +347,7 @@ public class C {
 	public static final String CLUB_TOPIC_INFO_LIKE = DOMAIN + "/v2/club/addLike/";
 	
 	/**回复我的*/
-	public static final String MINE_REPLY_LIST = DOMAIN + "/v2/user/replyme/";
+	public static final String MINE_REPLY_LIST = DOMAIN + "/v5/user/replyme/";
 	/**上传设备信息*/
 	public static final String UPDATA_DEVICE_INFO = DOMAIN + "/v2/user/appsInfo/";
 	/**退出登陆，调用*/
@@ -367,11 +373,12 @@ public class C {
 
 	//===3.2====
 	//搜索主接口
-	public static final String SEARCH_MAIN = DOMAIN + "/v2/search/page/";
+//	public static final String SEARCH_MAIN = DOMAIN + "/v2/search/page/";
+	public static final String SEARCH_MAIN = DOMAIN + "/v5/search/page/";
 //搜索俱乐部
-	public static final String SEARCH_CLUB = DOMAIN + "/v2/search/club/";
+	public static final String SEARCH_CLUB = DOMAIN + "/v5/search/club/";
 //搜索话题， 活动
-	public static final String SEARCH_TOPIC = DOMAIN + "/v2/search/topics/";
+	public static final String SEARCH_TOPIC = DOMAIN + "/v5/search/topics/";
 
 
 
@@ -401,8 +408,8 @@ public class C {
 	public static final String CLUB_MAIN_INFO = DOMAIN + "/v3/club/index";
 /**砾石专栏*/
 	public static final String CLBU_MIAN_SPECIAL = DOMAIN + "/v3/club/taglist/";
-
-	public static final String CLBU_SPECIAL_LIST_INFO = DOMAIN + "/v3/club/tagTopic/";
+//		/v5/club/tagTopic/[page]
+	public static final String CLBU_SPECIAL_LIST_INFO = DOMAIN + "/v5/club/tagTopic/";
 
 	public static final String CLUB_HOT_TOPIC = DOMAIN + "/v3/club/hottopics/";
 
@@ -425,8 +432,10 @@ public class C {
 	public static final String SYS_MASSAGE_CLEANALL = DOMAIN + "/v3/user/clearNotice";
 //	新的点赞
 	public static final String CLUB_TOPIC_LIKE = DOMAIN + "/v3/topics/addLike/";
+//	新新的点赞
+	public static final String CLUB_TOPIC_LIKE_NEW = DOMAIN + "/v5/topics/addLike/";
 //  收到的赞
-	public static final String SYS_LIKE_LIST = DOMAIN + "/v3/user/likeTopic/";
+	public static final String SYS_LIKE_LIST = DOMAIN + "/v5/user/likeTopic/";
 //  装备详情
 	public static final String EQUIP_INFO_LIST = DOMAIN + "/v3/zhuangbei/detail/";
 //  装备评论列表
@@ -454,16 +463,24 @@ public class C {
 //	管理报名		http://api.lis99.com/v5/club/enrollList/[topicid]/[page]
 	public static final String MANAGER_JON_ACTIVE_LIST_NEW = DOMAIN + "/v5/club/enrollList/";
 //	http://api.lis99.com/v4/apply/pass
-	public static final String MANAGER_APPLY_PASS = DOMAIN + "/v4/apply/pass";
+	public static final String MANAGER_APPLY_PASS = DOMAIN + "/v5/club/pass";
 //http://api.lis99.com/v4/apply/refuse
-	public static final String MANAGER_APPLY_REFUSE = DOMAIN + "/v4/apply/refuse";
+	public static final String MANAGER_APPLY_REFUSE = DOMAIN + "/v5/club/refuse";
 //	我报名列表详情			http://api.lis99.com/v4/apply/orderDetail
 	public static final String MY_APPLY_DETAIL = DOMAIN + "/v4/apply/orderDetail";
 //	我报名的活动列表		http://api.lis99.com/v4/user/myApplyActivities/[page]
 	public static final String MY_APPLY_LIST = DOMAIN + "/v4/user/myApplyActivities/";
 //	http://api.lis99.com/v5/club/activity   新版活动贴
-	public static final String CLUB_TOPIC_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/activity";
+	public static final String CLUB_TOPIC_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/activitys";
 //	新版线路活动    http://api.lis99.com/v5/club/lists
-	public static final String NEW_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/lists/";
+//	public static final String NEW_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/lists/";
+	public static final String NEW_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/providActivity/";
 
+//	新版话题贴		http://api.lis99.com/v5/topics/detail/[page]
+	public static final String CLUB_NEW_TOPIC_LIST_MAIN = DOMAIN + "/v5/topics/detail/";
+//	新版话题回复列表 http://api.lis99.com/v5/topics/replylists/[page]
+	public static final String CLUB_NEW_TOPIC_LIST_MAIN_REPLY = DOMAIN + "/v5/topics/replylists/";
+
+	public static final String LINE_CATE_INFO = DOMAIN + "/v5/club/cateinfo/";
+	public static final String LINE_CATE_PAGE_HOME = DOMAIN + "/v5/club/pageHome/";
 }

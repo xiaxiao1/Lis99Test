@@ -10,6 +10,16 @@ public class LSMineApplyManageInfo {
 	String createdate;
 	int is_baoming;
 
+	public String getActivity_code() {
+		return activity_code;
+	}
+
+	public void setActivity_code(String activity_code) {
+		this.activity_code = activity_code;
+	}
+
+	String activity_code;
+
 	public String getTopic_id() {
 		return topic_id;
 	}

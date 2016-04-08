@@ -6,14 +6,75 @@
               android:background="@color/white"
               android:id="@+id/main">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/title_bar_bg"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
         >
 
+        <RelativeLayout
+            android:id="@+id/titleLeft"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            >
+
+            <ImageView
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/titleLeftImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/active_line_message"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/titleLeftImage"
+                android:layout_alignTop="@id/titleLeftImage"
+                android:layout_marginTop="-4dp"
+                android:layout_marginRight="-4dp"
+                android:textSize="0sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/icon_reddot"
+                android:id="@+id/tv_massage"
+                />
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/titleRight"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            >
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:id="@+id/titleRightImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/new_topic_icon"
+                />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            >
 
         <RelativeLayout
             android:layout_width="40dp"
@@ -27,16 +88,18 @@
                 android:text="精选"
                 android:id="@+id/tab_choiceness"
                 android:background="@null"
-                android:textColor="@color/text_color_blue"
+                android:textColor="@color/text_color_green"
                 android:textSize="16sp"
                 />
 
             <View
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/view_choiceness"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:background="@drawable/tab_line"
+                android:background="#2bca63"
                 />
 
         </RelativeLayout>
@@ -60,11 +123,13 @@
                 />
 
             <View
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/view_dynamic"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:background="@drawable/tab_line"
+                android:background="#2bca63"
                 />
 
         </RelativeLayout>
@@ -88,32 +153,20 @@
                 />
 
             <View
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/view_column"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:background="@drawable/tab_line"
+                android:background="#2bca63"
                 />
 
         </RelativeLayout>
 
+        </LinearLayout>
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/dynamic_line"
-        >
-
-        <View
-            style="@style/fill_wrap"
-            android:layout_height="8dip"
-            android:background="@color/pull_bg" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <android.support.v4.view.ViewPager

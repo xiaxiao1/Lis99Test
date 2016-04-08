@@ -203,22 +203,22 @@
                     android:layout_height="50dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:id="@+id/layout_off_line"
+                    android:id="@+id/layout_zhifubao"
                     >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_six"
-                        android:text="线下支付"
-                        android:drawableRight="@drawable/pay_off_line"
+                        android:text="支付宝　"
+                        android:drawableRight="@drawable/pay_zhifubao"
                         android:drawablePadding="10dp"
                         android:layout_centerVertical="true"
                         />
 
                     <RadioButton
                         android:layout_alignParentRight="true"
-                        android:id="@+id/radio_off_line"
+                        android:id="@+id/radio_zhifubao"
                         style="@style/wrap_wrap"
                         android:button="@drawable/club_radio_apply_man"
                         android:layout_centerVertical="true"
@@ -277,22 +277,22 @@
                     android:layout_height="50dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:id="@+id/layout_zhifubao"
+                    android:id="@+id/layout_off_line"
                     >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_six"
-                        android:text="支付宝　"
-                        android:drawableRight="@drawable/pay_zhifubao"
+                        android:text="线下支付"
+                        android:drawableRight="@drawable/pay_off_line"
                         android:drawablePadding="10dp"
                         android:layout_centerVertical="true"
                         />
 
                     <RadioButton
                         android:layout_alignParentRight="true"
-                        android:id="@+id/radio_zhifubao"
+                        android:id="@+id/radio_off_line"
                         style="@style/wrap_wrap"
                         android:button="@drawable/club_radio_apply_man"
                         android:layout_centerVertical="true"
@@ -308,6 +308,8 @@
 
 
                 </RelativeLayout>
+
+
 
             </RadioGroup>
 

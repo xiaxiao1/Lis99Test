@@ -7,8 +7,10 @@
       <module fileurl="file://$PROJECT_DIR$/androidSDKComponent/androidSDKComponent.iml" filepath="$PROJECT_DIR$/androidSDKComponent/androidSDKComponent.iml" />
       <module fileurl="file://$PROJECT_DIR$/lishiMobile/lishiMobile.iml" filepath="$PROJECT_DIR$/lishiMobile/lishiMobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/mUList/mUList.iml" filepath="$PROJECT_DIR$/mUList/mUList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/playerskin/playerskin.iml" filepath="$PROJECT_DIR$/playerskin/playerskin.iml" />
       <module fileurl="file://$PROJECT_DIR$/recyclerview/recyclerview.iml" filepath="$PROJECT_DIR$/recyclerview/recyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/weiboSDK/weiboSDK.iml" filepath="$PROJECT_DIR$/weiboSDK/weiboSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xutils/xutils.iml" filepath="$PROJECT_DIR$/xutils/xutils.iml" />
     </modules>
   </component>
 </project>

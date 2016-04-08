@@ -189,7 +189,12 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 					.findViewById(R.id.nameView);
 
 			holder.iv_moderator = convertView.findViewById(R.id.iv_moderator);
-			holder.iv_writer = convertView.findViewById(R.id.iv_writer);
+
+			//		4.1.1
+			holder.tv_user_tag3 = (TextView) convertView.findViewById(R.id.tv_user_tag3);
+
+			holder.tv_user_tag4 = (TextView) convertView.findViewById(R.id.tv_user_tag4);
+
 			// 去掉楼主
 			holder.nameView
 					.setCompoundDrawablesRelative(null, null, null, null);
@@ -254,14 +259,28 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 
 		//4.0.2===== 撰稿人
 
-		if (Common.isWriter(item.tags))
+		holder.tv_user_tag3.setVisibility(View.GONE);
+		holder.tv_user_tag4.setVisibility(View.GONE);
+
+		if ( item.tags_name != null && item.tags_name.size() != 0 )
 		{
-			holder.iv_writer.setVisibility(View.VISIBLE);
+			holder.tv_user_tag3.setVisibility(View.VISIBLE);
+			holder.tv_user_tag3.setText(Common.getTagString(item.tags_name.get(0).title));
+			if ( item.tags_name.size() > 1 )
+			{
+				holder.tv_user_tag4.setVisibility(View.VISIBLE);
+				holder.tv_user_tag4.setText(Common.getTagString(item.tags_name.get(1).title));
+			}
 		}
-		else
-		{
-			holder.iv_writer.setVisibility(View.GONE);
-		}
+
+//		if (Common.isWriter(item.tags))
+//		{
+//			holder.iv_writer.setVisibility(View.VISIBLE);
+//		}
+//		else
+//		{
+//			holder.iv_writer.setVisibility(View.GONE);
+//		}
 
 		if ( Common.isModerator(item.moderator))
 		{
@@ -418,8 +437,9 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		TextView equiNameView;
 		RatingBar equiRatingBar;
 
-		//==4.0.2==
-		View iv_writer;
+		//	4.1.1
+		private TextView tv_user_tag3, tv_user_tag4;
+
 	}
 
 	private void replyNow(Topiclist comment)

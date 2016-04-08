@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/white"
+    android:id="@+id/layout_tag"
      >
 
     <RelativeLayout
@@ -14,13 +15,11 @@
 
 
         <LinearLayout
-            android:visibility="visible"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/layout_club_detail_like"
-            android:id="@+id/layout_tag"
             >
 
             <TextView
@@ -29,12 +28,12 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:background="@color/pull_bg"
+                android:background="@drawable/topic_tag_bg"
                 android:id="@+id/tv_tag1"
                 android:layout_marginRight="5dp"
                 android:textColor="#ff7800"
                 android:text="#游记"
-                android:padding="3dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 />
 
@@ -44,13 +43,13 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:background="@color/pull_bg"
+                android:background="@drawable/topic_tag_bg"
                 android:id="@+id/tv_tag2"
                 android:layout_marginRight="5dp"
                 android:textColor="#b59477"
                 android:text="#游记"
-                android:padding="3dp"
                 android:textSize="12sp"
+                android:gravity="center"
                 />
 
             <TextView
@@ -59,11 +58,11 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:background="@color/pull_bg"
+                android:background="@drawable/topic_tag_bg"
                 android:id="@+id/tv_tag3"
                 android:textColor="#ff7800"
                 android:text="#游记游记游记游记游记游记游记"
-                android:padding="3dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 />
 

@@ -1,6 +1,7 @@
 package com.lis99.mobile.newhome.activeline;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class LSActiveLineADAdapter extends RecyclerView.Adapter<LSActiveLineADAd
 
     private LayoutInflater mInflater;
     private List<Object> listInfo;
+    private Context mContext;
 
     public interface OnItemClickLitener
     {
@@ -42,8 +44,21 @@ public class LSActiveLineADAdapter extends RecyclerView.Adapter<LSActiveLineADAd
 
 
     public LSActiveLineADAdapter(Context context, List<Object> listInfo) {
+        mContext = context;
         mInflater = LayoutInflater.from(context);
         this.listInfo = listInfo;
+        if ( listInfo != null && listInfo.size() != 0 )
+        {
+            ActiveLineNewModel.AreaweblistEntity item = (ActiveLineNewModel.AreaweblistEntity) listInfo.get(listInfo.size() -1);
+
+            if ( !"全部目的地".equals(item.getTagname()) )
+            {
+                item = new ActiveLineNewModel.AreaweblistEntity();
+                item.setTagname("全部目的地");
+                this.listInfo.add(item);
+            }
+        }
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
@@ -70,29 +85,35 @@ public class LSActiveLineADAdapter extends RecyclerView.Adapter<LSActiveLineADAd
         viewHolder.ivLoad = (ImageView) view.findViewById(R.id.iv_load);
         viewHolder.tvName = (TextView) view.findViewById(R.id.tv_name);
 
-
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
 
-
         ActiveLineNewModel.AreaweblistEntity item = (ActiveLineNewModel.AreaweblistEntity) listInfo.get(i);
 
         if ( item != null )
         {
-            viewHolder.tvName.setText(item.getTagname());
-
-            if ( !TextUtils.isEmpty(item.getImages()))
+            if ( i == listInfo.size() - 1 )
             {
-                ImageLoader.getInstance().displayImage(item.getImages(), viewHolder.ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(viewHolder.ivLoad, viewHolder.ivBg));
+                viewHolder.tvName.setText(item.getTagname());
+                viewHolder.tvName.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
+                viewHolder.ivLoad.setVisibility(View.GONE);
+                viewHolder.ivBg.setImageResource(R.drawable.active_line_ad_more);
+            }
+            else
+            {
+                viewHolder.tvName.setText(item.getTagname());
+                viewHolder.tvName.setTextColor(Color.parseColor("#525252"));
+
+                if ( !TextUtils.isEmpty(item.getImages()))
+                {
+                    ImageLoader.getInstance().displayImage(item.getImages(), viewHolder.ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(viewHolder.ivLoad, viewHolder.ivBg));
+                }
             }
 
         }
-
-
 
         if (mOnItemClickLitener != null)
         {

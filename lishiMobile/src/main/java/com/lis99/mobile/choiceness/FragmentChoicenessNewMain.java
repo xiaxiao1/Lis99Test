@@ -1,5 +1,6 @@
 package com.lis99.mobile.choiceness;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -7,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSClubPublish2Activity;
 import com.lis99.mobile.club.adapter.LSClubFragmentAdapter;
 import com.lis99.mobile.newhome.LSFragment;
+import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
+import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.ScrollTopUtil;
 
 import java.util.ArrayList;
@@ -38,7 +43,11 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     private LSSelectColumnFragment columnFragment;
     private Fragment currentFragment;
 
-    private View view_choiceness, view_dynamic, view_column, dynamic_line;
+    private View view_choiceness, view_dynamic, view_column;
+
+    private View titleLeft, titleRight;
+
+    private TextView tvMassage;
 
 
     @Override
@@ -59,7 +68,13 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_dynamic = v.findViewById(R.id.view_dynamic);
         view_column = v.findViewById(R.id.view_column);
 
-        dynamic_line = v.findViewById(R.id.dynamic_line);
+        tvMassage = (TextView)v.findViewById(R.id.tv_massage);
+
+        titleRight = v.findViewById(R.id.titleRight);
+        titleLeft = v.findViewById(R.id.titleLeft);
+
+        titleLeft.setOnClickListener(this);
+        titleRight.setOnClickListener(this);
 
         tab_choiceness.setOnClickListener(this);
         tab_Dynamic.setOnClickListener(this);
@@ -84,8 +99,9 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 //        choicenessList.init();
         selectChoiceness();
 
-        viewPager.setOnPageChangeListener( new MyPagerListener() );
+        viewPager.setOnPageChangeListener(new MyPagerListener());
 
+        redDotUtil.setRedText(tvMassage);
 
         return v;
     }
@@ -114,13 +130,24 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
                 viewPager.setCurrentItem(2, true);
 
                 break;
+            case R.id.titleLeft:
+//                RedDotUtil.getInstance().InVisibleDot();
+                startActivity(new Intent(getActivity(), SysMassageActivity.class));
+
+                break;
+            case R.id.titleRight:
+
+                Intent intent = new Intent(getActivity(), LSClubPublish2Activity.class);
+			    startActivity(intent);
+
+                break;
 
         }
     }
 
 
     private void selectChoiceness() {
-        tab_choiceness.setTextColor(getResources().getColor(R.color.text_color_blue));
+        tab_choiceness.setTextColor(getResources().getColor(R.color.text_color_green));
         tab_column.setTextColor(getResources().getColor(R.color.color_nine));
         tab_Dynamic.setTextColor(getResources().getColor(R.color.color_nine));
 
@@ -128,7 +155,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
         view_column.setVisibility(View.INVISIBLE);
         view_dynamic.setVisibility(View.INVISIBLE);
 
-        dynamic_line.setVisibility(View.GONE);
+//        dynamic_line.setVisibility(View.GONE);
 
         choicenessList.init();
 
@@ -140,13 +167,13 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     {
         tab_choiceness.setTextColor(getResources().getColor(R.color.color_nine));
         tab_column.setTextColor(getResources().getColor(R.color.color_nine));
-        tab_Dynamic.setTextColor(getResources().getColor(R.color.text_color_blue));
+        tab_Dynamic.setTextColor(getResources().getColor(R.color.text_color_green));
 
         view_dynamic.setVisibility(View.VISIBLE);
         view_column.setVisibility(View.INVISIBLE);
         view_choiceness.setVisibility(View.INVISIBLE);
 
-        dynamic_line.setVisibility(View.VISIBLE);
+//        dynamic_line.setVisibility(View.VISIBLE);
 
         dinamicList.init();
 
@@ -157,14 +184,14 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
     private void selectColumn()
     {
         tab_choiceness.setTextColor(getResources().getColor(R.color.color_nine));
-        tab_column.setTextColor(getResources().getColor(R.color.text_color_blue));
+        tab_column.setTextColor(getResources().getColor(R.color.text_color_green));
         tab_Dynamic.setTextColor(getResources().getColor(R.color.color_nine));
 
         view_dynamic.setVisibility(View.INVISIBLE);
         view_column.setVisibility(View.VISIBLE);
         view_choiceness.setVisibility(View.INVISIBLE);
 
-        dynamic_line.setVisibility(View.GONE);
+//        dynamic_line.setVisibility(View.GONE);
 
         columnFragment.init();
 
@@ -172,8 +199,12 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
     }
 
+    RedDotUtil redDotUtil = RedDotUtil.getInstance();
+
     @Override
     public void handler() {
+
+        redDotUtil.getRedDot();
 
         ScrollTopUtil.getInstance().setToTop(new ScrollTopUtil.ToTop() {
             @Override

@@ -222,7 +222,7 @@ public class LsActivityElect extends ActivityPattern1 implements
 			if(list.get(0).getCity() != null && !"未知".equals(list.get(0).getCity())){
 				zuobiao.setText(list.get(0).getCity());
 			}
-			
+
 			if (!TextUtils.isEmpty(list.get(0).getNote())) {
 				detail.setText(list.get(0).getNote());
 			}else {

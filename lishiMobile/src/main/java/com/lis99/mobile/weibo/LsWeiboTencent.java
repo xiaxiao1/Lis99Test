@@ -22,34 +22,34 @@ import com.tencent.weibo.sdk.android.network.HttpCallback;
 public class LsWeiboTencent {
 
 
-	//私有的默认构造子  
-    private LsWeiboTencent() {} 
-    //注意，这里没有final      
+	//私有的默认构造子
+    private LsWeiboTencent() {}
+    //注意，这里没有final
     private static LsWeiboTencent single=null;
-    
+
     private static Context context;
-    
+
     private String shareContent;
     private Bitmap shareBitmap;
     static boolean b=false;
     private String accessToken;// 用户访问令牌
     private WeiboAPI weiboAPI;//微博相关API
     private String requestFormat = "json";
-    
-    //静态工厂方法   
-    public synchronized  static LsWeiboTencent getInstance(Context ct) {  
+
+    //静态工厂方法
+    public synchronized  static LsWeiboTencent getInstance(Context ct) {
     	context = ct;
-         if (single == null) {    
+         if (single == null) {
              single = new LsWeiboTencent();
          }
-        return single;  
+        return single;
     }
-    
+
     public void share(String shareText){
     	share(shareText,null);
     }
-    
-	
+
+
 	public void share(String shareText,Bitmap bitmap){
 		IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.lishi99.broadcast.tencentauth");
@@ -69,7 +69,7 @@ public class LsWeiboTencent {
 			}else{
 				weiboAPI.addPic(context, shareText, requestFormat, 0d, 0d, bitmap, 0, 0, mCallBack, null, BaseVO.TYPE_JSON);
 			}
-						
+
 		}
 	}
 	public void shares(String shareText){
@@ -91,10 +91,10 @@ public class LsWeiboTencent {
 			}else{
 				weiboAPI.addPic(context, shareText, requestFormat, 0d, 0d, shareBitmap, 0, 0, mCallBack, null, BaseVO.TYPE_JSON);
 			}
-						
+
 		}
 	}
-	
+
 	private HttpCallback mCallBack = new HttpCallback() {
 		@Override
 		public void onResult(Object object) {
@@ -111,7 +111,7 @@ public class LsWeiboTencent {
 			}
 		}
 	};//回调函数
-	
+
 	private void auth(long appid, String app_secket) {
 		//注册当前应用的appid和appkeysec，并指定一个OnAuthListener
 		//OnAuthListener在授权过程中实施监听
@@ -146,7 +146,7 @@ public class LsWeiboTencent {
 			//在这里，存放到了applicationcontext中
 			@Override
 			public void onAuthPassed(String name, WeiboToken token) {
-				
+
 				Util.saveSharePersistent(context, "ACCESS_TOKEN", token.accessToken);
 				Util.saveSharePersistent(context, "EXPIRES_IN", String.valueOf(token.expiresIn));
 				Util.saveSharePersistent(context, "OPEN_ID", token.openID);
@@ -170,8 +170,8 @@ public class LsWeiboTencent {
 
 		AuthHelper.auth(context, "");
 	}
-	
-	private class MyBroadcastReciver extends BroadcastReceiver {  
+
+	private class MyBroadcastReciver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 		   String action = intent.getAction();
@@ -189,5 +189,5 @@ public class LsWeiboTencent {
 		   }
 		  }
 	}
-	
+
 }

@@ -6,10 +6,6 @@
               android:background="@color/pull_bg"
     >
 
-    <View
-        style="@style/fill_wrap"
-        android:layout_height="1px"
-        android:background="@color/color_1px_stroke" />
 
 
     <Button
@@ -29,9 +25,5 @@
         />
 
 
-    <View
-        style="@style/fill_wrap"
-        android:layout_height="1px"
-        android:background="@color/color_1px_stroke" />
 
 </LinearLayout>

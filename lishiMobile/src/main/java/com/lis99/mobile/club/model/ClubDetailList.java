@@ -7,11 +7,50 @@ public class ClubDetailList implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
-
+//	置顶
+	public ArrayList<Toptopiclist> toptopiclist;
+//	非置顶
 	public ArrayList<Topiclist> topiclist;
 	/**总页数*/
 	public int totpage;
 	public int topictot;
+
+	/**
+	 * 		id
+	 int
+	 帖子id
+	 activity_code
+	 varchar
+	 帖子编码
+	 title
+	 string
+	 帖子标题
+	 category
+	 tinyint
+	 帖子类型：0旧版话题贴，1旧版线路活动帖, 2旧版线上活动
+	 stick
+	 tinyint
+	 是否置顶：0全站置顶，1俱乐部置顶
+
+	 */
+	public static class Toptopiclist
+	{
+		public int id;
+
+		public String activity_code;
+
+		public String title;
+
+		public String category;
+
+		public String stick;
+
+
+	}
+
+
+
+
 	/**
 	 * topiclist	-------------------------------------------	帖子列表信息
 		id	int	帖子id
@@ -28,11 +67,14 @@ public class ClubDetailList implements Serializable{
 
 
 	 */
-	public class Topiclist
+	public static class Topiclist
 	{
 		public int id;
 		public String title;
 		public String stick;
+		/**
+		 * 		帖子类型：0旧版话题贴，1旧版线路活动帖, 2旧版线上活动，3新版话题贴，4新版活动贴
+		 */
 		public String category;
 		public String is_image;
 		public String createdate;
@@ -42,10 +84,17 @@ public class ClubDetailList implements Serializable{
 		public String catename;
 		public String times;
 		public int is_hot;
-		public String image;
 
-		public int height;
-		public int width;
+
+
+// 		4.1.9
+		public ArrayList<Images> image;
+		public String content;
+
+//		public String image;
+
+		public String videoimg;
+		public String videoid;
 
 		public String setaddress;
 		public String starttime;
@@ -55,8 +104,22 @@ public class ClubDetailList implements Serializable{
 		public int likeNum;
 		public int LikeStatus;
 		public String headicon;
+		/**
+		 * 		判断是否为新版活动贴: 空为旧版活动贴，非空为新版活动贴
+		 */
+		public String activity_code;
 
-		
+		/**
+		 * 		帖子编码
+		 */
+		public String topic_code;
+
+	}
+
+
+	public static class Images
+	{
+		public String image;
 	}
 
 }

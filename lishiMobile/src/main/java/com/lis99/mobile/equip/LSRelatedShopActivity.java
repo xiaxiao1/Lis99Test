@@ -49,7 +49,8 @@ public class LSRelatedShopActivity extends LSBaseActivity implements View.OnClic
 
     @Override
     protected void onDestroy() {
-        stopService(new Intent("com.lis99.mobile.service.LocService"));
+//        stopService(new Intent("com.lis99.mobile.service.LocService"));
+        stopService(new Intent(activity, com.lis99.mobile.service.LocService.class));
         unregisterReceiver(myReciever);
         super.onDestroy();
     }
@@ -60,8 +61,8 @@ public class LSRelatedShopActivity extends LSBaseActivity implements View.OnClic
             String Latitude = (String) intent.getStringExtra("X");
             String Longtitude = (String) intent.getStringExtra("Y");
 
-            stopService(new Intent("com.lis99.mobile.service.LocService"));
-
+//            stopService(new Intent("com.lis99.mobile.service.LocService"));
+            stopService(new Intent(activity, com.lis99.mobile.service.LocService.class));
             if (Latitude != null && !"".equals(Latitude)) {
                 Latitude1 = Latitude;
                 Longtitude1 = Longtitude;
@@ -82,7 +83,8 @@ public class LSRelatedShopActivity extends LSBaseActivity implements View.OnClic
         postMessage(ActivityPattern1.POPUP_PROGRESS,
                 getString(R.string.sending));
 
-        startService(new Intent("com.lis99.mobile.service.LocService"));
+//        startService(new Intent("com.lis99.mobile.service.LocService"));
+        startService(new Intent(activity, com.lis99.mobile.service.LocService.class));
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.lis99.mobile.loc");

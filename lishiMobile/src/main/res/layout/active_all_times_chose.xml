@@ -25,6 +25,8 @@
     <ListView
         style="@style/listViewStyle"
         android:id="@+id/list"
+        android:divider="#eee"
+        android:dividerHeight="1px"
         ></ListView>
 
     </LinearLayout>

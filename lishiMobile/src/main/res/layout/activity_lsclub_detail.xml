@@ -5,8 +5,14 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}"
     android:background="@color/pull_bg" >
-    
 
+    <include
+        android:id="@+id/include1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/activity_title" />
 
     <RelativeLayout
         android:id="@+id/buttonPanel"
@@ -30,13 +36,13 @@
 
 
     <com.lis99.mobile.entry.view.PullToRefreshView
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:id="@+id/pull_refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@null"
         android:orientation="vertical"
+        android:layout_below="@+id/include1"
         android:layout_above="@+id/buttonPanel">
 
 
@@ -56,73 +62,9 @@
     </com.lis99.mobile.entry.view.PullToRefreshView>
 
     
-    <include
-        android:id="@+id/include1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        layout="@layout/activity_title" />
+
     
-    <LinearLayout
-        android:id="@+id/topPanel1"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="#fff"
-        android:orientation="horizontal"
-        android:layout_below="@id/include1"
-         >
 
-        <RelativeLayout
-            android:id="@+id/allPanel1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClick" >
-
-            <TextView
-                android:id="@+id/allView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="讨论区"
-                android:textColor="@color/text_color_blue"
-                android:textSize="15sp" />
-
-            <View
-                android:id="@+id/allLine1"
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/text_color_blue" />
-        </RelativeLayout>
-        
-        
-        <RelativeLayout
-            android:id="@+id/eventPanel1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onClick" >
-
-            <TextView
-                android:id="@+id/eventView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="活动"
-                android:textColor="#666"
-                android:textSize="15sp" />
-
-            <View
-                android:id="@+id/eventLine1"
-                android:visibility="gone"
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/title_bar_bg" />
-        </RelativeLayout>
-
-       
-    </LinearLayout>
 	<View
 	    android:id="@+id/view_line"
         android:layout_width="match_parent"

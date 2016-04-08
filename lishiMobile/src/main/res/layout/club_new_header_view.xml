@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+
+    <RelativeLayout
+        android:id="@+id/topGapView"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@color/pull_bg">
+
+        <View
+            android:id="@+id/sepView0"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#e3dbd0"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/infoPanel"
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:background="@drawable/club_new_bg_default"
+        android:descendantFocusability="blocksDescendants">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/offical_cicle"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/club_official_header_circle"/>
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/roundedImageView1"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/club_icon_header_default"
+            app:border_color="#e8e8e8"
+            app:border_width="0px"
+            app:corner_radius="21dp"
+            android:background="@drawable/club_detail_head_bg"
+            />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/offical_cicle"
+            android:layout_marginLeft="12dp"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:id="@+id/numberView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/titleView"
+            android:layout_marginLeft="8dp"
+            android:textSize="12sp"
+            android:layout_alignBottom="@+id/titleView"
+            android:textColor="#fff"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/club_num_icon_new"/>
+
+        <Button
+            android:id="@+id/btn_join"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:focusable="false"
+            android:onClick="onClick"
+            android:background="@drawable/club_join_button_bg"/>
+
+        <ImageView
+            android:id="@+id/rightArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="17dp"
+            android:src="@drawable/club_header_right_arrow"/>
+
+        <TextView
+            android:id="@+id/descView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/titleView"
+            android:layout_below="@+id/titleView"
+            android:layout_marginTop="8dp"
+            android:textSize="10sp"
+            android:singleLine="true"
+            android:layout_toLeftOf="@+id/btn_join"
+            android:layout_marginRight="5dp"
+            android:textColor="#fff"/>
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/sepView1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#eee"/>
+
+    <LinearLayout
+        android:id="@+id/leaderAllPanel"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/leaderTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#525252"
+            android:textSize="11sp"
+            android:text="版主"
+            android:layout_marginLeft="12dp"
+            />
+
+
+        <HorizontalScrollView
+            android:layout_marginLeft="12dp"
+            android:id="@+id/leaderPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/sepView2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#eee"/>
+
+    <HorizontalScrollView
+        android:id="@+id/tagPanel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:scrollbars="none">
+
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/sepView3"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#eee"/>
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:background="#fff"
+        >
+
+        <RelativeLayout
+            android:id="@+id/allPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:background="@drawable/club_panel_tab"
+            >
+
+            <TextView
+                android:id="@+id/allView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="讨论区"
+                android:textColor="@color/text_color_green"
+                android:textSize="14sp" />
+
+            <View
+                android:id="@+id/allLine"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_color_green" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/eventPanel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:background="@drawable/club_panel_tab"
+            >
+
+            <TextView
+                android:id="@+id/eventView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="活动"
+                android:textColor="#999"
+                android:textSize="14sp" />
+
+            <View
+                android:id="@+id/eventLine"
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/text_color_green" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/titlePanel"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/pull_bg">
+        <View
+            android:id="@+id/sepView4"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#e3dbd0"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="线路活动"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="12dp"
+            android:textColor="#c6b6a7"/>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

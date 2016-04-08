@@ -20,9 +20,34 @@ public class LSClub {
 	String create_time;
 	String province;
 	String city;
+//	领队列表
 	List<LSClubAdmin> adminlist;
+
+	public List<LSClubAdmin> getModerator_list() {
+		return moderator_list;
+	}
+
+	public void setModerator_list(List<LSClubAdmin> moderator_list) {
+		this.moderator_list = moderator_list;
+	}
+
+	//	版主列表
+	List<LSClubAdmin> moderator_list;
 	List<LSClubTag> clubsport;
 	List<LSClubTopic> topiclist;
+
+	public String getIs_lishi() {
+		return is_lishi;
+	}
+
+	public void setIs_lishi(String is_lishi) {
+		this.is_lishi = is_lishi;
+	}
+
+	/**
+	 * is_lishi = 0 是非砾石聚乐部，1为砾石聚乐部
+	 */
+	public String is_lishi;
 	
 	int totalNum;
 	

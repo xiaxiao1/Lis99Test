@@ -80,7 +80,7 @@ public class LsActivityLines extends ActivityPattern1 implements
 			travePlan, activeIntro, activeCost, comment, address, renqizhi,
 			catename, comment_count, total_showPic, activeDiffs;
 	private String nurl = "http://www.lis99.com/yyyguide.php";
-	
+
 	View leaderPanel,introductionPanel,schedulePanel,equiSuggestion,showPanel,commentPanel;
 
 	private String status2;
@@ -410,7 +410,7 @@ public class LsActivityLines extends ActivityPattern1 implements
 		shaitu.setOnClickListener(this);
 		pinglun.setOnClickListener(this);
 		dianzan.setOnClickListener(this);
-		
+
 		leaderPanel.setOnClickListener(this);
 		introductionPanel.setOnClickListener(this);
 		equiSuggestion.setOnClickListener(this);
@@ -457,7 +457,7 @@ public class LsActivityLines extends ActivityPattern1 implements
 		mygv_szb.setAdapter(myszbGridViewAdapter);
 		mlistview.setFocusable(false);
 		mlistview.setAdapter(mylvadapter);
-		
+
 		leaderPanel = findViewById(R.id.leaderPanel);
 		introductionPanel = findViewById(R.id.introductionPanel);
 		equiSuggestion = findViewById(R.id.equiSuggestion);
@@ -480,7 +480,7 @@ public class LsActivityLines extends ActivityPattern1 implements
 
 			}
 		});
-		
+
 		mygv_szb.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -492,7 +492,7 @@ public class LsActivityLines extends ActivityPattern1 implements
 				b.putSerializable("photos", lineInfo.get(0).getShowPic());
 				intent.putExtras(b);
 				startActivity(intent);
-				
+
 			}
 		});
 	}

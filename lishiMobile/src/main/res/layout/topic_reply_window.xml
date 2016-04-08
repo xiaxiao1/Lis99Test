@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+            android:background="@color/white"
+    >
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+
+
+    <RelativeLayout
+        android:id="@+id/layout_reply_quote"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="28dp"
+                    android:background="@drawable/topic_item_reply_bg"
+                    android:padding="5dip"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            style="@style/wrap_wrap"
+            android:textColor="#c6b6a7"
+            android:text="回复@ 小春春"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="12sp"
+            android:id="@+id/tv_reply_body"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            style="@style/fill_wrap"
+            android:textColor="#c6b6a7"
+            android:text="对对对， 大家约起来吧， 我们在哪里集合啊！！！"
+            android:id="@+id/tv_reply_content"
+            android:layout_toRightOf="@id/tv_reply_body"
+            android:singleLine="true"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/bodyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:background="#fff"
+        android:gravity="top"
+        android:hint="说点什么吧..."
+        android:textColor="#525252"
+        android:textColorHint="@color/color_nine"
+        android:textSize="15sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        >
+    </EditText>
+
+    <RelativeLayout
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_emotion"
+            android:src="@drawable/topic_new_reply_emotion_btn"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_ok"
+            android:src="@drawable/topic_new_reply_btnok"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -52,6 +52,8 @@ import java.util.ArrayList;
  * 帖子详情
  * 
  * @author yy
+ *
+ * int topicID
  * 
  */
 public class LSClubTopicActivity extends LSBaseActivity implements
@@ -112,7 +114,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 //	＝＝＝＝3.5.5＝＝＝＝＝＝＝
 	private HandlerList likeCall;
 
-//	private View layout_like;
+//	private View animation;
 //	private ImageView iv_like;
 //	private TextView tv_like;
 	private Animation animation;
@@ -433,7 +435,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 				{
 					imgUrl = clubhead.topic_image.get(0).image;
 				}
-				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, shareFandW);
+				ShareManager.getInstance().share2Weichat(clubhead, shareFandW);
 				break;
 			case R.id.iv_friend:
 				String imgUrl1 = null;
@@ -443,7 +445,7 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 					imgUrl1 = clubhead.topic_image.get(0).image;
 				}
 //				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
-				ShareManager.getInstance().share2Friend("" + topicID, imgUrl1, clubhead.title, shareFandW);
+				ShareManager.getInstance().share2Friend(clubhead, shareFandW);
 				break;
 			default:
 				super.onClick(v);
@@ -842,9 +844,9 @@ public class LSClubTopicActivity extends LSBaseActivity implements
 			imgUrl = clubhead.topic_image.get(0).image;
 		}
 
-		ShareManager.getInstance().showPopWindowInShare(clubhead, "" + clubID,
-				imgUrl, clubhead.title, clubhead.shareTxt,
-				"" + clubhead.topic_id, layoutMain, new CallBack() {
+
+
+		ShareManager.getInstance().showPopWindowInShare(clubhead, layoutMain, new CallBack() {
 
 					@Override
 					public void handler(MyTask mTask) {

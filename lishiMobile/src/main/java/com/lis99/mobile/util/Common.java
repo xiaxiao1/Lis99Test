@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,15 +15,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.autoupdatesdk.BDAutoUpdateSDK;
-import com.baidu.autoupdatesdk.UICheckUpdateCallback;
 import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.model.ShareInterface;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
+import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
+import com.lis99.mobile.newhome.NewHomeActivity;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,6 +121,17 @@ public class Common {
     }
 
     /**
+     *      退出应用
+     */
+    public static void ExitLis ()
+    {
+        NewHomeActivity.CLOSEAPPLICATION = true;
+        Intent i = new Intent(LSBaseActivity.activity, NewHomeActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        LSBaseActivity.activity.startActivity(i);
+    }
+
+    /**
      * 判断用户是否已经登陆
      *
      * @param a
@@ -158,6 +175,11 @@ public class Common {
             return true;
         }
         return false;
+    }
+//  分享菜单弹出， 判断是否需要显示管理报名
+    public static boolean visibleApplyManager ( ShareInterface s )
+    {
+        return ( s != null && ("1".equals(s.getCategory()) || "2".equals(s.getCategory()) || !TextUtils.isEmpty(s.getNewActive()) ));
     }
 
     /**
@@ -334,17 +356,17 @@ public class Common {
     {
         boolean b = false;
 
-        if ( "baidu".equals(DeviceInfo.CHANNELVERSION) )
-        {
-            b = true;
-            BDAutoUpdateSDK.uiUpdateAction(LSBaseActivity.activity, new UICheckUpdateCallback() {
-
-                @Override
-                public void onCheckComplete() {
-
-                }
-            });
-        }
+//        if ( "baidu".equals(DeviceInfo.CHANNELVERSION) )
+//        {
+//            b = true;
+//            BDAutoUpdateSDK.uiUpdateAction(LSBaseActivity.activity, new UICheckUpdateCallback() {
+//
+//                @Override
+//                public void onCheckComplete() {
+//
+//                }
+//            });
+//        }
 
         return b;
     }
@@ -396,7 +418,7 @@ public class Common {
         else
         {
             tv.setVisibility(View.VISIBLE);
-            tv.setText(n + "人读过");
+            tv.setText(""+n);
         }
     }
 
@@ -410,14 +432,92 @@ public class Common {
         }
         //时间戳转化为Sting或Date
         SimpleDateFormat format =  new SimpleDateFormat("MM,dd");
-        Long time = new Long(timeS);
+        Long time = new Long(timeS+"000");
         String d = format.format(time);
 
         result = d.split(",");
 
-        System.out.println("Format To String(Date):"+d);
+//        System.out.println("Format To String(Date):"+d);
 
         return result;
     }
+/**  达人标签， 裁切字符串， 最多7个字 */
+    public static String getTagString ( String s )
+    {
+        if ( s.length() <= 7 )
+        {
+            return s;
+        }
+        String result = s.substring(0, 7);
+        return result;
+    }
+
+
+    /**
+     *      帖子类型：0话题贴，1线路活动帖 ，2线上活动帖,3 新版话题帖, 4 新版活动帖子
+     * @param c
+     * @param catgory
+     */
+    public static void goTopic ( Context c, int catgory, int topicId )
+    {
+        if ( 0 == catgory || 1 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubTopicActivity.class);
+            intent.putExtra("topicID", topicId);
+            c.startActivity(intent);
+        }
+        else if ( 2 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubTopicNewActivity.class);
+            intent.putExtra("topicID", topicId);
+            c.startActivity(intent);
+        }
+        else if ( 3 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubNewTopicListMain.class);
+            intent.putExtra("TOPICID", "" + topicId);
+            c.startActivity(intent);
+        }
+        else if ( 4 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubTopicActiveOffLine.class);
+            intent.putExtra("topicID", topicId);
+            c.startActivity(intent);
+        }
+    }
+
+
+    /**
+     *      Url 格式化， 如果没有添加http:// 在头上添加
+     * @param url
+     * @return
+     */
+    public static String httpUrlFomat ( String url )
+    {
+        if ( !url.startsWith("http://") )
+        {
+            url = "http://" + url;
+        }
+        return url;
+    }
+
+
+    // 安装APK
+    public static final void installAPK(Activity activity, String fileURL) {
+        try {
+            File file = new File(fileURL);
+            Common.log("apk path = " + file.getAbsolutePath());
+            Intent intent = new Intent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setAction(Intent.ACTION_VIEW);
+            String type = "application/vnd.android.package-archive";
+            intent.setDataAndType(Uri.fromFile(file), type);
+            activity.startActivity(intent);
+        } catch (Exception e) {
+            Common.log("installAPK Exception = " + e.toString());
+        }
+    }
+
+
 
 }

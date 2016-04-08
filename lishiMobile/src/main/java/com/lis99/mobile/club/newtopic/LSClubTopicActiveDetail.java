@@ -142,7 +142,7 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
     private void lfBtn ()
     {
         btnlf.setTextColor(getResources().getColor(R.color.text_color_green));
-        btnrg.setTextColor(getResources().getColor(R.color.color_eee));
+        btnrg.setTextColor(getResources().getColor(R.color.color_nine));
 
         list_info.setAdapter(null);
         list_info.removeHeaderView(head);
@@ -152,8 +152,10 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
     private void rgBtn ()
     {
         btnrg.setTextColor(getResources().getColor(R.color.text_color_green));
-        btnlf.setTextColor(getResources().getColor(R.color.color_eee));
+        btnlf.setTextColor(getResources().getColor(R.color.color_nine));
+        list_info.setAdapter(null);
         list_info.addHeaderView(head);
+        list_info.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         list_info.setAdapter(null);
     }
@@ -169,7 +171,10 @@ public class LSClubTopicActiveDetail extends LSBaseActivity {
 
         tvlocation.setText(model.getSetaddress());
 
-        tvtel.setText(model.getTell());
+        if ( model.applyStatus == 1 )
+        tvtel.setText(model.getLeadermobile());
+        else
+        tvtel.setText("报名后可见");
 
         if ( model.getTripdetail() != null && model.getTripdetail().size() != 0 )
         tvjourney.setText(model.getTripdetail().get(0).getContent());

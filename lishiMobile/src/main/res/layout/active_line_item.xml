@@ -60,11 +60,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="9sp"
                 android:text="12月"
                 android:layout_centerInParent="true"
-                android:paddingTop="12dp"
-                android:paddingLeft="12dp"
+                android:paddingTop="14dp"
+                android:paddingLeft="13dp"
+                android:textStyle="bold"
                 />
 
 
@@ -97,7 +98,7 @@
                 android:text="123213213"
                 android:textColor="@color/text_color_green"
 
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:id="@+id/tv_tag"
                 android:layout_gravity="center"
                 />
@@ -116,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:text="123213213"
                 android:textColor="@color/text_color_green"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:id="@+id/tv_style"
                 android:layout_gravity="center"
                 />
@@ -124,11 +125,10 @@
         </LinearLayout>
 
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_below="@id/layouttag"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:text="@string/temp_string_long"
             android:singleLine="true"
             android:ellipsize="end"

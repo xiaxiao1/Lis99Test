@@ -24,7 +24,10 @@ import com.lis99.mobile.club.widget.ioscitychoose.ArrayWheelAdapter;
 import com.lis99.mobile.club.widget.ioscitychoose.MyAlertDialog;
 import com.lis99.mobile.club.widget.ioscitychoose.OnWheelChangedListener;
 import com.lis99.mobile.club.widget.ioscitychoose.WheelView;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.CustomProgressDialog;
+import com.lis99.mobile.model.UpdataModel;
 
 /**
  * 提示框类
@@ -51,6 +54,7 @@ public class DialogManager {
         alert(a, "提示", message);
     }
 
+    private  AlertDialog create;
     public void alert(Activity a, String title, String message) {
         AlertDialog.Builder bld = new AlertDialog.Builder(a);
         bld.setTitle(title);
@@ -61,11 +65,21 @@ public class DialogManager {
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        AlertDialog create = bld.create();
+        create = bld.create();
         create.setCanceledOnTouchOutside(false);
         create.setCancelable(false);
         create.show();
     }
+
+    public void cancleAlert ()
+    {
+        if ( create != null && create.isShowing() )
+        {
+            create.dismiss();
+        }
+    }
+
+
 
     /**
      * 启动等待对话框
@@ -369,6 +383,72 @@ public class DialogManager {
         });
     }
 
+    /**
+     *      应用更新提醒框
+     *      callBack result String cancel 取消， ok 确定
+      */
+
+    public void showUpdataDialog( UpdataModel model, final CallBack callBack, String str ) {
+
+        final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.CustomDialog);
+
+        dialog.setContentView(R.layout.new_dialog_view);
+
+        dialog.setCancelable(false);
+
+        dialog.setCanceledOnTouchOutside(false);
+
+        dialog.show();
+
+        TextView tv_title = (TextView) dialog.findViewById(R.id.tv_title);
+
+        TextView tv_content = (TextView) dialog.findViewById(R.id.tv_content);
+
+        Button cancel = (Button) dialog.findViewById(R.id.cancel);
+
+        Button ok = (Button) dialog.findViewById(R.id.ok);
+
+        if ( !TextUtils.isEmpty(str))
+        {
+            cancel.setText(str);
+        }
+
+        tv_content.setText(model.changelog);
+
+
+        cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog != null) dialog.dismiss();
+
+                if ( callBack != null )
+                {
+                    MyTask myTask = new MyTask();
+
+                    myTask.result = "cancel";
+
+                    callBack.handler(myTask);
+                }
+            }
+        });
+
+        ok.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog != null) dialog.dismiss();
+
+                if ( callBack != null )
+                {
+                    MyTask myTask = new MyTask();
+
+                    myTask.result = "ok";
+
+                    callBack.handler(myTask);
+                }
+            }
+        });
+    }
+
     private void showWaiting(Context a) {
 
         if (a == null) {
@@ -399,7 +479,27 @@ public class DialogManager {
         {
 
         }
+    }
+//  线路活动，没有当前省份数据后， 提示信息
+    public void showActiveDialog ( Activity a )
+    {
+        final Dialog dialog = new Dialog(a, R.style.waitingDialog);
 
+        View view = View.inflate(a, R.layout.active_dialog_no_city, null);
+        Button btn = (Button) view.findViewById(R.id.btn_ok);
+
+        btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setContentView(view);
+
+
+        dialog.setCanceledOnTouchOutside(false);
+
+        dialog.show();
 
     }
 

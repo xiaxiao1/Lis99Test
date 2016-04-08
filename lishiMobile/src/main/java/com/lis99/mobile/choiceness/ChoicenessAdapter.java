@@ -108,6 +108,8 @@ public class ChoicenessAdapter extends BaseAdapter
 			case 1:
 			case 2:
 			case 9:
+//				图文混排话题
+			case 10:
 				num = ACTIVE;
 				break;
 			case 5:
@@ -115,6 +117,8 @@ public class ChoicenessAdapter extends BaseAdapter
 			case 8:
 			case 3:
 			case 7:
+				//				图文混排话题
+			case 11:
 				num = IMGACTIVE;
 				break;
 			case 4:
@@ -173,6 +177,10 @@ public class ChoicenessAdapter extends BaseAdapter
 			holder.iv_like = (ImageView) view.findViewById(R.id.iv_like);
 
 			holder.btn_concern = (Button) view.findViewById(R.id.btn_concern);
+
+			holder.layout = view.findViewById(R.id.layout);
+
+			holder.layout.setVisibility(View.GONE);
 			
 			view.setTag(holder);
 		}
@@ -373,7 +381,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		ImageView vipStar, iv_bg, iv_like, iv_load;
 		TextView tv_name, tv_like, tv_title, tv_reply;
 		Button btn_concern;
-		View layout_like;
+		View layout_like, layout;
 
 
 	}

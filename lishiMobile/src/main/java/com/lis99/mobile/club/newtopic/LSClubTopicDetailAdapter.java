@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -65,7 +66,7 @@ public class LSClubTopicDetailAdapter extends MyBaseAdapter {
             viewHolder.tvInfo.setText(item.getContent());
         }
 
-        if ( item.getImages() != null )
+        if (!TextUtils.isEmpty(item.getImages()))
         {
             viewHolder.layout_iv.setVisibility(View.VISIBLE);
             getWidth(viewHolder.contentImageView, viewHolder.iv_load, item.getImages());

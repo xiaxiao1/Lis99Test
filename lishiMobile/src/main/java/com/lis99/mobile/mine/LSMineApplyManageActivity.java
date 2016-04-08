@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,14 +25,13 @@ import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.Page;
-import com.lis99.mobile.view.MyListView;
 
 import java.util.List;
 
 public class LSMineApplyManageActivity extends LSBaseActivity implements
 		OnHeaderRefreshListener, OnFooterRefreshListener {
 
-	MyListView listView;
+	ListView listView;
 	LSMineApplyManageAdapter adapter;
 
 	PullToRefreshView refreshView;
@@ -58,7 +58,7 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 		refreshView.setOnHeaderRefreshListener(this);
 		refreshView.setOnFooterRefreshListener(this);
 
-		listView = (MyListView) findViewById(R.id.listView);
+		listView = (ListView) findViewById(R.id.listView);
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -74,6 +74,11 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 
 				Intent intent = new Intent(LSMineApplyManageActivity.this,
 						ApplyManager.class);
+				if (TextUtils.isEmpty(adapter.getItem(position).getActivity_code())) {
+					intent.putExtra("NEWACTIVE", false);
+				} else {
+					intent.putExtra("NEWACTIVE", true);
+				}
 				intent.putExtra("topicID", Integer.valueOf(adapter.getItem(
 						position).getTopic_id()));
 				intent.putExtra("clubID", Integer.valueOf(adapter.getItem(
@@ -81,6 +86,7 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 				intent.putExtra("clubName", adapter.getItem(
 						position).getClub_title());
 				startActivity(intent);
+
 
 				Common.log("adapter == onclick");
 

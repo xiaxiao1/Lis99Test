@@ -90,7 +90,7 @@ public class LSClubPublish2Activity extends LSBaseActivity {
         initViews();
         if ( !CURRENTCLUB )
         {
-            setTitle("大本营");
+            setTitle("户外范");
         }
         else
         {
@@ -175,6 +175,12 @@ public class LSClubPublish2Activity extends LSBaseActivity {
 
         if (TextUtils.isEmpty(body)) {
             postMessage(POPUP_TOAST, "正文不能为空");
+            return;
+        }
+
+        if ( !Common.isLogin(this))
+        {
+            postMessage(POPUP_TOAST, "请先登录");
             return;
         }
 

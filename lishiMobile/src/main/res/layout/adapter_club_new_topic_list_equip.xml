@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:id="@+id/equiPanel"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="#f7f3ec">
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/equiImageView"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:scaleType="fitXY"
+            app:corner_radius="5px"/>
+
+        <TextView
+            android:id="@+id/equiPriceView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/equiImageView"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_toRightOf="@+id/equiImageView"
+            android:text="市场价：3000元"
+            android:textColor="#c6b6a7"
+            android:textSize="12sp"/>
+
+        <RatingBar
+            android:id="@+id/equiRatingBar"
+            style="@style/ls_equip_star_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/equiPriceView"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@+id/equiImageView"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0"
+            android:stepSize="1"/>
+
+
+        <TextView
+            android:id="@+id/equiNameView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/equiRatingBar"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_toRightOf="@+id/equiImageView"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
+            android:textColor="#c6b6a7"
+            android:textSize="12sp"/>
+
+
+    </RelativeLayout>
+
+    <include
+        layout="@layout/club_topic_reply_new"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/reply_height"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dip"
+        />
+
+    <include
+        layout="@layout/club_topic_like"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_marginTop="5dp"
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"/>
+
+
+    <TextView
+        android:id="@+id/tv_club_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/pull_bg"
+        android:text="@string/temp_string"
+        android:textColor="#b59477"
+        android:textSize="12sp"
+        android:gravity="center"
+        />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"/>
+
+</LinearLayout>

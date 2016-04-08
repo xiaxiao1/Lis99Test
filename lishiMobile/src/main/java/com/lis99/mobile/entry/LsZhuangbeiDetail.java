@@ -25,7 +25,6 @@ import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.RequestParamUtil;
-import com.lis99.mobile.util.ShareManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StatusUtil;
 import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
@@ -368,7 +367,7 @@ public class LsZhuangbeiDetail extends ActivityPattern implements
 		} else if (v.getId() == iv_share.getId()) {
 //			showShareList();
 			if ( zb1 == null ) return;
-			ShareManager.getInstance().showShareList(this, zb1.getTitle(), zb1.getShare_url(), zb1.getImage());
+//			ShareManager.getInstance().showShareList(this, zb1.getTitle(), zb1.getShare_url(), zb1.getImage());
 		}
 	}
 

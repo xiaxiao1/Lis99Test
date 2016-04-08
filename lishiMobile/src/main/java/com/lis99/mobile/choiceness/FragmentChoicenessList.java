@@ -21,6 +21,7 @@ import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
@@ -37,6 +38,7 @@ import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
+import com.lis99.mobile.util.UpdataUtil;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -135,6 +137,8 @@ public class FragmentChoicenessList extends Fragment implements
 //        page = new Page();
 
         list.addHeaderView(head);
+
+        list.setAdapter(null);
 
         return v;
     }
@@ -261,6 +265,12 @@ public class FragmentChoicenessList extends Fragment implements
                                 intent.putExtra("topicID", item.topic_id);
                                 startActivity(intent);
                             }
+                            else if ( item.type == 10 || item.type == 11 )
+                            {
+                                intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
+                                intent.putExtra("TOPICID", ""+item.topic_id);
+                                startActivity(intent);
+                            }
 
                         }
                     });
@@ -268,9 +278,6 @@ public class FragmentChoicenessList extends Fragment implements
                 } else {
                     adapter.setList(listModel.omnibuslist);
                 }
-                pull_refresh_view.onFooterRefreshComplete();
-                pull_refresh_view.onHeaderRefreshComplete();
-
             }
         });
 
@@ -313,27 +320,47 @@ public class FragmentChoicenessList extends Fragment implements
                 startActivity(intent);
                 break;
             case R.id.layout_nearby:
+
+//                if ( Common.isApkInDebug(getActivity()) || "ttest".equals(DeviceInfo.CHANNELVERSION) )
+//                {
+//                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
+//                    return;
+//                }
+
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
                 intent.putExtra("clubID", 284);
                 startActivity(intent);
                 break;
             case R.id.allButton:
+
+                //ActivityTest
+//                startActivity(new Intent(getActivity(), ActivityTest.class));
+
+                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
+                {
+//                    startActivity(new Intent(getActivity(), ActivityTest.class));
+                    UpdataUtil.getInstance().getUpData();
+
+                    return;
+                }
+////
                 intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
                 startActivity(intent);
+
                 break;
         }
     }
 
     @Override
     public void onFooterRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-
+        pull_refresh_view.onFooterRefreshComplete();
         getList();
 
     }
 
     @Override
     public void onHeaderRefresh(com.lis99.mobile.entry.view.PullToRefreshView view) {
-
+        pull_refresh_view.onHeaderRefreshComplete();
         cleanList();
         getList();
     }
@@ -344,7 +371,8 @@ public class FragmentChoicenessList extends Fragment implements
         if (bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() == 0)
             return;
 
-        ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
+        ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner,
+                ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
 
     }
 
@@ -369,6 +397,12 @@ public class FragmentChoicenessList extends Fragment implements
             case 5:
                 intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
                 intent.putExtra("topicID", item.id);
+                startActivity(intent);
+                break;
+//            新版话题帖
+            case 6:
+                intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
+                intent.putExtra("TOPICID", ""+item.id);
                 startActivity(intent);
                 break;
 //            线上贴

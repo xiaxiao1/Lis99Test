@@ -16,6 +16,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.apply.LSApplayNew;
 import com.lis99.mobile.club.model.ClubTopicActiveLineMainModel;
+import com.lis99.mobile.club.model.EquipRecommendInterFace;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.club.widget.RoundedImageView;
@@ -34,12 +35,14 @@ import com.lis99.mobile.util.ShareManager;
 import com.lis99.mobile.view.MyListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by yy on 16/1/8.
  * <p/>
  * 新的线下活动帖
+ *  topicID int
  */
 public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener, View.OnClickListener,
@@ -88,7 +91,12 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     private ImageView titleRightImage, iv_weichat, iv_friend;
 
-    View title;
+    private View title;
+
+    private  ActiveLineEquipRecommend equipRecommend;
+
+    private View include_equip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +113,6 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         getInfo();
 
     }
-
 
     private void getInfo() {
         String url = C.CLUB_TOPIC_ACTIVE_LINE_MIAN;
@@ -132,12 +139,16 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                 tvdata.setText(model.getActivitytimes());
                 tvprice.setText(model.getConsts());
 
-                if (model.getActivityimgs() != null) {
+                if (model.getActivityimgs() != null && model.getActivityimgs().size() != 0 ) {
+                    viewBanner.setVisibility(View.VISIBLE);
                     bannerAdapter = new ImagePageAdapter(LSClubTopicActiveOffLine.this, model.getActivityimgs().size());
                     bannerAdapter.addImagePageAdapterListener(LSClubTopicActiveOffLine.this);
                     bannerAdapter.setImagePageClickListener(LSClubTopicActiveOffLine.this);
                     viewBanner.setBannerAdapter(bannerAdapter);
                     viewBanner.startAutoScroll();
+                }
+                else {
+                    viewBanner.setVisibility(View.GONE);
                 }
 
                 if (model.getActivelightspot() != null && model.getActivelightspot().size() != 0) {
@@ -152,11 +163,26 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                     }
                 }
 
-                if (!TextUtils.isEmpty(model.getLeaderheadicon())) {
-                    ImageLoader.getInstance().displayImage(model.getLeaderheadicon(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                if ( TextUtils.isEmpty(model.getLeader_userid()) || "0".equals(model.getLeader_userid()))
+                {
+                    if (!TextUtils.isEmpty(model.getClub_iconv())) {
+                        ImageLoader.getInstance().displayImage(model.getClub_iconv(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                    }
+//                    tvname.setText(model.getClub_title());
+                    tvname.setVisibility(View.GONE);
+                    vipStar.setVisibility(View.GONE);
+                }
+                else
+                {
+                    if (!TextUtils.isEmpty(model.getLeaderheadicon())) {
+                        ImageLoader.getInstance().displayImage(model.getLeaderheadicon(), roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                    }
+                    vipStar.setVisibility(View.VISIBLE);
+                    tvname.setVisibility(View.VISIBLE);
+                    tvname.setText(model.getLeadernickname());
                 }
 
-                tvname.setText(model.getLeadernickname());
+
 //                标签
                 if (model.getLeaderdesc() != null && model.getLeaderdesc().size() != 0) {
                     for (int ii = 0; ii < model.getLeaderdesc().size(); ii++) {
@@ -183,7 +209,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 //                ivtravelbg
 
                 if (model.getTripdetail() != null && model.getTripdetail().size() != 0) {
-                    ImageLoader.getInstance().displayImage(model.getTripdetail().get(0).getImages(), ivtravelbg, ImageUtil.getDefultImageOptions());
+                    ImageLoader.getInstance().displayImage(model.getTripdetail().get(0).getImages(), ivtravelbg, ImageUtil.getDefultTravelImageOptions());
                 }
 
                 if (model.getReportnote() != null && model.getReportnote().size() != 0) {
@@ -194,6 +220,19 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                     listjoinreadme.setAdapter(joinAdapter);
                 } else {
                     layout_readme.setVisibility(View.GONE);
+                }
+
+//                装备
+                if ( model.zhuangbeilist != null && model.zhuangbeilist.size() != 0 )
+                {
+                    include_equip.setVisibility(View.VISIBLE);
+                    equipRecommend = new ActiveLineEquipRecommend(activity);
+                    equipRecommend.init(include_equip);
+
+                    ArrayList<EquipRecommendInterFace> item = new ArrayList<EquipRecommendInterFace>(model.zhuangbeilist);
+
+                    equipRecommend.setModel(item);
+
                 }
 
                 //默认
@@ -308,7 +347,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                 if (model.getActivityimgs() != null && model.getActivityimgs().size() >= 1) {
                     imgUrl = model.getActivityimgs().get(0).getImages();
                 }
-                ShareManager.getInstance().share2Weichat("" + activity_id, imgUrl, model.getTitle(), shareFandW);
+                ShareManager.getInstance().share2Weichat(model, shareFandW);
                 break;
             case R.id.iv_friend:
                 String imgUrl1 = null;
@@ -317,14 +356,26 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                     imgUrl1 = model.getActivityimgs().get(0).getImages();
                 }
 //				ShareManager.getInstance().share2Weichat("" + topicID, imgUrl, clubhead.title, null);
-                ShareManager.getInstance().share2Friend("" + activity_id, imgUrl1, model.getTitle(), shareFandW);
+                ShareManager.getInstance().share2Friend( model, shareFandW);
                 break;
             case R.id.titleRightImage:
                 rightAction();
                 break;
             case R.id.roundedImageView1:
+
                 if ( model != null )
-                Common.goUserHomeActivit(activity, model.getUser_id());
+                {
+                    if ( TextUtils.isEmpty(model.getLeader_userid()) || "0".equals(model.getLeader_userid()) )
+                    {
+                        i = new Intent(activity, LSClubDetailActivity.class);
+                        i.putExtra("clubID", clubID);
+                        startActivity(i);
+                    }
+                    else
+                    {
+                        Common.goUserHomeActivit(activity, model.getLeader_userid());
+                    }
+                }
                 break;
         }
     }
@@ -339,6 +390,9 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
                 finish();
             }
         });
+
+        include_equip = findViewById(R.id.include_equip);
+        include_equip.setVisibility(View.GONE);
 
 
         layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
@@ -368,7 +422,6 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         btndestination = (Button) findViewById(R.id.btn_destination);
 
         layout_address = findViewById(R.id.layout_address);
-
 
         pull_refresh_view = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
         pull_refresh_view.setOnFooterRefreshListener(this);
@@ -451,9 +504,9 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
         String shareText = model.shareTxt;
 
-        ShareManager.getInstance().showPopWindowInShare(model, "" + clubID,
+        ShareManager.getInstance().showPopWindowInShare(model,/* "" + clubID,
                 imgUrl, model.getTitle(), shareText,
-                "" + model.getActivity_code(), layoutMain, null, "http://m.lis99.com/club/activity/detail/");
+                "" + activity_id,*/ layoutMain, null);
 
         super.rightAction();
     }
@@ -488,7 +541,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
     //	默认
     public void applyBtn ()
     {
-        btnok.setText("报名");
+        btnok.setText("马上报名");
 //        actionButton.setBackgroundResource(R.drawable.club_sign);
         btnok.setBackgroundResource(R.drawable.club_info_btn_ok);
         btnok.setEnabled(true);
@@ -521,6 +574,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         if (resultCode == RESULT_OK && requestCode == 997)
         {
             applyOK();
+            model.applyStatus = 1;
         }
     }
 

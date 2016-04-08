@@ -80,7 +80,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
     private IWXAPI api;
 	private void initWeibo(Bundle savedInstanceState) {
 		 // 创建微博 SDK 接口实例
-     mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, C.SINA_APP_KEY);	
+     mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, C.SINA_APP_KEY);
      if (savedInstanceState != null) {
          mWeiboShareAPI.handleWeiboResponse(getIntent(), this);
      }
@@ -95,7 +95,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 	@Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        
+
         // 从当前应用唤起微博并进行分享后，返回到当前应用时，需要在此处调用该函数
         // 来接收微博客户端返回的数据；执行成功，返回 true，并调用
         // {@link IWeiboHandler.Response#onResponse}；失败返回 false，不调用上述回调
@@ -120,7 +120,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
     	api = WXAPIFactory.createWXAPI(this, C.WEIXIN_APP_ID,true);
     	api.registerApp(C.WEIXIN_APP_ID);
     	api.handleIntent(getIntent(), this);
-		Resources res = getResources();  
+		Resources res = getResources();
 		bmp = BitmapFactory.decodeResource(res, R.drawable.ls_nologin_header_icon);
 		askId = getIntent().getStringExtra("ask_id");
 		setView();
@@ -131,9 +131,9 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 	private void getList() {
 		String url = C.WENDA_QUESTION_URL+askId;
 		Task task = new Task(null, url, null, "WENDA_QUESTION_URL", this);
-		publishTask(task, IEvent.IO);		
+		publishTask(task, IEvent.IO);
 	}
-	
+
 	@Override
 	public void handleTask(int initiator, Task task, int operation) {
 		super.handleTask(initiator, task, operation);
@@ -154,7 +154,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 		default:
 			break;
 		}
-		
+
 	}
 	private void parserReply(String params) {
 		String result = DataManager.getInstance().validateResult(params);
@@ -166,7 +166,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 			}
 		}else{
 			postMessage(DISMISS_PROGRESS);
-		}		
+		}
 	}
 	private void parserDoLike(String params) {
 		String result = DataManager.getInstance().validateResult(params);
@@ -196,7 +196,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 			}
 		}else{
 			postMessage(DISMISS_PROGRESS);
-		}		
+		}
 	}
 	List<AnswerBean> ansList;
 	@Override
@@ -243,7 +243,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 					intent.putExtra("ask_id", ansList.get(arg2).getWenda_id());
 					intent.putExtra("answer_id", ansList.get(arg2).getId());
 					LsAskDetailActivity.this.startActivity(intent);
-					
+
 				}
 			});
 			postMessage(DISMISS_PROGRESS);
@@ -262,7 +262,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 		TextView item_comment_nickname,item_comment_date,item_comment;
 	}
 	private class CommentListAdapter extends BaseAdapter {
-		
+
 		LayoutInflater inflater;
 
 		public CommentListAdapter() {
@@ -306,7 +306,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 			holder.item_comment.setText(cb.getContent());
 			return convertView;
 		}
-		
+
 	}
 	private void setView() {
 		iv_back = (ImageView) findViewById(R.id.iv_back);
@@ -328,7 +328,7 @@ public class LsAskDetailActivity extends ActivityPattern  implements IWXAPIEvent
 		AsyncLoadImageView iv_pic;
 	}
 private class WenPicAdapter extends BaseAdapter {
-		
+
 		LayoutInflater inflater;
 		List<String>   strList;
 
@@ -366,10 +366,10 @@ private class WenPicAdapter extends BaseAdapter {
 				holder=(ViewPicHolder) convertView.getTag();
 			}
 				holder.iv_pic.setImage(cb, null, null);
-				
+
 			return convertView;
 		}
-		
+
 	}
 	private void setListener() {
 		iv_back.setOnClickListener(this);
@@ -422,7 +422,7 @@ private class WenPicAdapter extends BaseAdapter {
 				intent.putExtra("unlogin", "unlogin");
 				startActivity(intent);
 			}
-			
+
 		}
 	}
 	private void doCommentTask() {
@@ -438,8 +438,8 @@ private class WenPicAdapter extends BaseAdapter {
 		params.put("user_id", DataManager.getInstance().getUser().getUser_id());
 		return RequestParamUtil.getInstance(this).getRequestParams(params);
 	}
-	
-	
+
+
 	private void doLikeTask() {
 		String url = C.MAIN_ADDLIKE_URL;
 		Task task = new Task(null, url, null, "MAIN_ADDLIKE_URL", this);
@@ -453,9 +453,9 @@ private class WenPicAdapter extends BaseAdapter {
 		params.put("user_id", DataManager.getInstance().getUser().getUser_id());
 		return RequestParamUtil.getInstance(this).getRequestParams(params);
 	}
-	
-	
-	
+
+
+
 	private void selectPic() {
 		postMessage(POPUP_DIALOG_LIST, "选择图片",
 				R.array.select_head_items,
@@ -470,7 +470,7 @@ private class WenPicAdapter extends BaseAdapter {
 							break;
 						case 1:
 							// 相册
-							BitmapUtil.doPickPhotoFromGallery(LsAskDetailActivity.this); 
+							BitmapUtil.doPickPhotoFromGallery(LsAskDetailActivity.this);
 							break;
 						}
 					}
@@ -503,7 +503,7 @@ private class WenPicAdapter extends BaseAdapter {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void showShareList() {
 		postMessage(POPUP_DIALOG_LIST, "分享到",
 				R.array.share_items,
@@ -571,7 +571,7 @@ private class WenPicAdapter extends BaseAdapter {
 					}
 				});
 	}
-	
+
 	@Override
 	public void onResponse(BaseResponse arg0) {
 		 switch (arg0.errCode) {
@@ -582,8 +582,8 @@ private class WenPicAdapter extends BaseAdapter {
 	            Toast.makeText(this, "取消分享", Toast.LENGTH_LONG).show();
 	            break;
 	        case WBConstants.ErrorCode.ERR_FAIL:
-	            Toast.makeText(this, 
-	                    "分享失败" + "Error Message: " + arg0.errMsg, 
+	            Toast.makeText(this,
+	                    "分享失败" + "Error Message: " + arg0.errMsg,
 	                    Toast.LENGTH_LONG).show();
 	            break;
 	        }
@@ -599,15 +599,15 @@ private class WenPicAdapter extends BaseAdapter {
 			break;
 		default:
 			break;
-		}		
+		}
 	}
-	
+
 
 	@Override
 	public void onResp(BaseResp resp) {
 		System.out.println("获取到微信消息了...");
 		String result = "";
-		
+
 		switch (resp.errCode) {
 		case BaseResp.ErrCode.ERR_OK:
 			result = "发送成功";
@@ -622,7 +622,7 @@ private class WenPicAdapter extends BaseAdapter {
 			result = "未知错误";
 			break;
 		}
-		
-		Toast.makeText(this, result, Toast.LENGTH_LONG).show();		
+
+		Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 	}
 }

@@ -32,7 +32,7 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="18dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             >
@@ -55,7 +55,7 @@
                 android:lineSpacingExtra="3dip"
                 android:maxLines="2"
                 android:text="@string/temp_string_long"
-                android:textColor="@color/text_color_blue"
+                android:textColor="#525252"
                 android:textSize="20sp"
                 />
 
@@ -68,7 +68,7 @@
             android:id="@+id/contentView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="18dp"
             android:text="@string/temp_string_long"
             android:textColor="#666"
             android:textIsSelectable="true"
@@ -76,7 +76,8 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
             <ImageView
                 android:id="@+id/contentImageView"

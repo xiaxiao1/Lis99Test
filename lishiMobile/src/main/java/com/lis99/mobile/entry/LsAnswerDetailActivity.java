@@ -63,7 +63,7 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
     private IWXAPI api;
 	private void initWeibo(Bundle savedInstanceState) {
 		 // 创建微博 SDK 接口实例
-     mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, C.SINA_APP_KEY);	
+     mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, C.SINA_APP_KEY);
      if (savedInstanceState != null) {
          mWeiboShareAPI.handleWeiboResponse(getIntent(), this);
      }
@@ -78,7 +78,7 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 	@Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        
+
         // 从当前应用唤起微博并进行分享后，返回到当前应用时，需要在此处调用该函数
         // 来接收微博客户端返回的数据；执行成功，返回 true，并调用
         // {@link IWeiboHandler.Response#onResponse}；失败返回 false，不调用上述回调
@@ -93,7 +93,7 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 
 		StatusUtil.setStatusBar(this);
 		initWeibo(savedInstanceState);
-		Resources res = getResources();  
+		Resources res = getResources();
 		tencent = Tencent.createInstance(C.TENCENT_APP_ID, this);
     	api = WXAPIFactory.createWXAPI(this, C.WEIXIN_APP_ID,true);
     	api.registerApp(C.WEIXIN_APP_ID);
@@ -109,9 +109,9 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 	private void getList() {
 		String url = C.WENDA_ANSWER_URL+askId + "/"+answerId;
 		Task task = new Task(null, url, null, "WENDA_ANSWER_URL", this);
-		publishTask(task, IEvent.IO);		
+		publishTask(task, IEvent.IO);
 	}
-	
+
 	@Override
 	public void handleTask(int initiator, Task task, int operation) {
 		super.handleTask(initiator, task, operation);
@@ -130,7 +130,7 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 		default:
 			break;
 		}
-		
+
 	}
 	private void parserDoLike(String params) {
 		String result = DataManager.getInstance().validateResult(params);
@@ -159,9 +159,9 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 			}
 		}else{
 			postMessage(DISMISS_PROGRESS);
-		}		
+		}
 	}
-	
+
 	@Override
 	public boolean handleMessage(Message msg) {
 		if (super.handleMessage(msg))
@@ -205,8 +205,8 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 		tv_comment.setOnClickListener(this);
 		ll_zan.setOnClickListener(this);
 	}
-	
-	
+
+
 	private void showShareList() {
 		postMessage(POPUP_DIALOG_LIST, "分享到",
 				R.array.share_items,
@@ -290,8 +290,8 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 	            Toast.makeText(this, "取消分享", Toast.LENGTH_LONG).show();
 	            break;
 	        case WBConstants.ErrorCode.ERR_FAIL:
-	            Toast.makeText(this, 
-	                    "分享失败" + "Error Message: " + arg0.errMsg, 
+	            Toast.makeText(this,
+	                    "分享失败" + "Error Message: " + arg0.errMsg,
 	                    Toast.LENGTH_LONG).show();
 	            break;
 	        }
@@ -321,7 +321,7 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 				intent.putExtra("unlogin", "unlogin");
 				startActivity(intent);
 			}
-			
+
 		}else if(v.getId() == tv_comment.getId()){
 			Intent intent = new Intent(this,LsWendaCommentActivity.class);
 			intent.putExtra("id", adb.getAnswer().getId());
@@ -342,7 +342,7 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 		params.put("user_id", DataManager.getInstance().getUser().getUser_id());
 		return RequestParamUtil.getInstance(this).getRequestParams(params);
 	}
-	
+
 	@Override
 	public void onReq(BaseReq req) {
 		switch (req.getType()) {
@@ -354,15 +354,15 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 			break;
 		default:
 			break;
-		}		
+		}
 	}
-	
+
 
 	@Override
 	public void onResp(BaseResp resp) {
 		System.out.println("获取到微信消息了...");
 		String result = "";
-		
+
 		switch (resp.errCode) {
 		case BaseResp.ErrCode.ERR_OK:
 			result = "发送成功";
@@ -377,8 +377,8 @@ public class LsAnswerDetailActivity extends ActivityPattern  implements IWXAPIEv
 			result = "未知错误";
 			break;
 		}
-		
-		Toast.makeText(this, result, Toast.LENGTH_LONG).show();		
+
+		Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 	}
-	
+
 }

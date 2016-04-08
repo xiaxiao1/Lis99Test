@@ -57,12 +57,16 @@
             <com.lis99.mobile.club.widget.BannerView
                 android:id="@+id/viewBanner"
                 android:layout_width="match_parent"
-                android:layout_height="155dp"
+                android:layout_height="220dp"
+                android:visibility="gone"
                 />
 
             <TextView
                 android:layout_marginTop="10dp"
-                android:padding="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="6dp"
                 android:id="@+id/titleView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -70,13 +74,15 @@
                 android:lineSpacingExtra="3dip"
                 android:maxLines="2"
                 android:textColor="@color/text_color_black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="10dp"
                 >
 
                 <ImageView
@@ -116,7 +122,7 @@
                     android:textColor="@color/text_color_black"
                     android:text="0"
                     android:id="@+id/tv_price"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     />
 
@@ -144,8 +150,8 @@
                 android:layout_height="wrap_content">
 
                 <com.lis99.mobile.view.MyListView
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/list_highlights"
@@ -153,6 +159,7 @@
                     android:visibility="gone"
                     android:divider="@null"
                     android:dividerHeight="0px"
+                    android:listSelector="#00000000"
                     ></com.lis99.mobile.view.MyListView>
 
                 <TextView
@@ -194,11 +201,11 @@
 
 
                 <com.lis99.mobile.club.widget.RoundedImageView
-                    android:padding="10dp"
+                    android:padding="6dp"
                     android:layout_centerVertical="true"
                     android:id="@+id/roundedImageView1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_alignParentLeft="true"
                     android:src="@drawable/ls_nologin_header_icon"
                     android:scaleType="fitXY"
@@ -221,14 +228,14 @@
             </RelativeLayout>
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="9dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_name"
-                android:textSize="12sp"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/text_color_black"
                 android:text="四哥"
+                android:textSize="13sp"
                 />
 
             <LinearLayout
@@ -236,62 +243,67 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="9dp"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textColor="#c6b6a7"
                     android:text="颜值高颜值高"
                     android:background="@drawable/club_info_tags_bg"
-                    android:maxEms="5"
+                    android:maxEms="7"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:id="@+id/tv_tags1"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textColor="#c6b6a7"
                     android:text="颜值高颜值高"
                     android:background="@drawable/club_info_tags_bg"
-                    android:maxEms="5"
+                    android:maxEms="7"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:id="@+id/tv_tags2"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textColor="#c6b6a7"
                     android:text="颜值高颜值高"
                     android:background="@drawable/club_info_tags_bg"
-                    android:maxEms="5"
+                    android:maxEms="7"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:id="@+id/tv_tags3"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textColor="#c6b6a7"
                     android:text="颜值高颜值高"
                     android:background="@drawable/club_info_tags_bg"
-                    android:maxEms="5"
+                    android:maxEms="7"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:id="@+id/tv_tags4"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     />
 
             </LinearLayout>
@@ -305,7 +317,8 @@
                 android:text="@string/temp_string"
                 android:textColor="#2bca63"
                 android:drawablePadding="5dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="9dp"
+                android:textSize="10sp"
                 />
 
 
@@ -320,7 +333,7 @@
                     android:adjustViewBounds="true"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
-                    android:layout_height="155dp"
+                    android:layout_height="160dp"
                     android:id="@+id/iv_travel_bg"
                     />
 
@@ -355,30 +368,46 @@
 
             </RelativeLayout>
 
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/topic_active_equip_recommend"
+                android:id="@+id/include_equip"
+                />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:id="@+id/layout_readme"
                 >
 
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/club_info_join_readme"
+                android:drawableLeft="@drawable/club_info_join_readme"
+                android:text="报名须知"
+                android:textSize="10sp"
+                android:drawablePadding="10dp"
+                android:textColor="#c8bdaa"
+                android:layout_marginLeft="14dp"
+                android:gravity="center_vertical"
                 />
 
             <com.lis99.mobile.view.MyListView
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/list_join_readme"
                 android:scrollbars="none"
                 android:divider="@null"
                 android:dividerHeight="0px"
+                android:listSelector="#00000000"
                 ></com.lis99.mobile.view.MyListView>
 
             </LinearLayout>
@@ -398,7 +427,7 @@
                 <ImageView
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
-                    android:layout_height="155dp"
+                    android:layout_height="220dp"
                     android:id="@+id/iv_destination_bg"
                     />
 

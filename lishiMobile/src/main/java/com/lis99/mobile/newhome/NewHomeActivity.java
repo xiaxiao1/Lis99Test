@@ -65,6 +65,7 @@ import com.lis99.mobile.util.PushManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.StatusUtil;
 import com.lis99.mobile.util.StringUtil;
+import com.lis99.mobile.util.UpdataUtil;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -246,11 +247,14 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 
         initViews();
         initListeners();
-        if ( !Common.isBDUpdata() )
-        {
+//        if ( !Common.isBDUpdata() )
+//        {
 //        检测更新
-            getCheckTask();
-        }
+            UpdataUtil.getInstance().getUpData();
+        //百度更新
+            Common.isBDUpdata();
+//            getCheckTask();
+//        }
 
         // 注册 百度地图SDK 广播监听者
         IntentFilter iFilter = new IntentFilter();

@@ -94,7 +94,9 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
     //====4.0.2===
     private  TextView lookNum;
-    private View iv_writer;
+
+    //	4.1.1
+    private TextView tv_user_tag3, tv_user_tag4;
 
     public void setInstance (LSClubTopicNewActivity main)
     {
@@ -131,7 +133,14 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
 
         //		=======4.0.2==
         lookNum = (TextView) v.findViewById(R.id.lookNum);
-        iv_writer = v.findViewById(R.id.iv_writer);
+
+        //		4.1.1
+        tv_user_tag3 = (TextView) v.findViewById(R.id.tv_user_tag3);
+
+        tv_user_tag4 = (TextView) v.findViewById(R.id.tv_user_tag4);
+
+        tv_user_tag3.setVisibility(GONE);
+        tv_user_tag4.setVisibility(GONE);
 
 
         iv_moderator = v.findViewById(R.id.iv_moderator);
@@ -198,13 +207,24 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
         titleView.setText(model.title);
 
         //===4.0.2===撰稿人
-        if ( Common.isWriter(model.tags))
+//        if ( Common.isWriter(model.tags))
+//        {
+//            iv_writer.setVisibility(VISIBLE);
+//        }
+//        else
+//        {
+//            iv_writer.setVisibility(GONE);
+//        }
+
+        if ( model.tags_name != null && model.tags_name.size() != 0 )
         {
-            iv_writer.setVisibility(VISIBLE);
-        }
-        else
-        {
-            iv_writer.setVisibility(GONE);
+            tv_user_tag3.setVisibility(VISIBLE);
+            tv_user_tag3.setText(Common.getTagString(model.tags_name.get(0).title));
+            if ( model.tags_name.size() > 1 )
+            {
+                tv_user_tag4.setVisibility(VISIBLE);
+                tv_user_tag4.setText(Common.getTagString(model.tags_name.get(1).title));
+            }
         }
 
         Common.visibleReader(lookNum, model.visits);

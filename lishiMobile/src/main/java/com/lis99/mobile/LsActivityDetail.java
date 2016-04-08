@@ -180,40 +180,40 @@ public class LsActivityDetail extends ActivityPattern1 implements
 		/*
 		 * CookieSyncManager syncManager =
 		 * CookieSyncManager.createInstance(this); syncManager.sync();
-		 * 
-		 * 
+		 *
+		 *
 		 * userBean = DataManager.getInstance().getUser(); user_id =
 		 * userBean.getUser_id(); email = userBean.getEmail(); sn =
 		 * userBean.getSn(); password = SharedPreferencesHelper.getValue(this,
 		 * C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.PASSWORD);
-		 * 
+		 *
 		 * cookieManager = CookieManager.getInstance();
-		 * 
+		 *
 		 * cookieManager.setCookie("http://m.lis99.com/qiangyouhui/activity",
 		 * "user_id=" + user_id);
-		 * 
+		 *
 		 * syncManager.sync();
-		 * 
-		 * 
+		 *
+		 *
 		 * WebSettings setting = webView.getSettings();
 		 * setting.setJavaScriptEnabled(true);
-		 * 
+		 *
 		 * setting.setSavePassword(false); setting.setSaveFormData(false); // //
 		 * 设置webview不适用缓存 setting.setCacheMode(WebSettings.LOAD_NO_CACHE);
-		 * 
+		 *
 		 * setting.setDefaultTextEncodingName("utf-8");
-		 * 
+		 *
 		 * // WebView.setWebChromeClient(new MyWebChromeClient()); new
 		 * Thread(new Runnable() {
-		 * 
+		 *
 		 * @Override public void run() { String url =
 		 * "http://m.lis99.com/qiangyouhui/doLogin"; String data = null; data =
 		 * "email=" + email + "&" + "password=" + password;
-		 * 
+		 *
 		 * System.out.println(password +
 		 * "--------------------------------------" +
 		 * DataManager.getInstance().isLogin_flag());
-		 * 
+		 *
 		 * DataCleanManager.cleanDatabaseByName(getApplicationContext(),
 		 * "webview.db");
 		 * DataCleanManager.cleanDatabaseByName(getApplicationContext(),
@@ -221,7 +221,7 @@ public class LsActivityDetail extends ActivityPattern1 implements
 		 * password != null && !"".equals(user_id) && !"".equals(password) &&
 		 * password.trim() != "") { // 判断这里的登录情况 //
 		 * ,区别是app登录的还是webview返回cookie里的-----------------------------------
-		 * 
+		 *
 		 * webView.postUrl(url, EncodingUtils.getBytes(data, "base64"));
 		 * System.out.println("已经登录了"); } else if
 		 * (DataManager.getInstance().isLogin_flag() &&
