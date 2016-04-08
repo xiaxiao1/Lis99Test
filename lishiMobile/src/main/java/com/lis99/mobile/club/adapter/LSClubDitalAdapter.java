@@ -304,6 +304,73 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		holder.ivBg4.setVisibility(View.INVISIBLE);
 		holder.ivBg5.setVisibility(View.INVISIBLE);
 
+
+		if ( item.is_follow == 1 )
+		{
+			holder.btnConcern.setVisibility(View.GONE);
+		}
+		else
+		{
+			holder.btnConcern.setVisibility(View.VISIBLE);
+		}
+
+
+		final ViewHolderTopicImages finalHolder = holder;
+		holder.btnConcern.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				int id = Common.string2int(item.user_id);
+
+				if ( id == -1 ) return;
+
+				LSRequestManager.getInstance().getFriendsAddAttention(id, new CallBack() {
+					@Override
+					public void handler(MyTask mTask) {
+						finalHolder.btnConcern.setVisibility(View.GONE);
+						item.is_follow = 1;
+					}
+				});
+
+			}
+		});
+
+
+        if ( item.LikeStatus == 1 )
+        {
+            finalHolder.iv_like.setImageResource(R.drawable.like_btn_2);
+        }
+        else
+        {
+            finalHolder.iv_like.setImageResource(R.drawable.like_btn_1);
+        }
+
+		holder.layout_like.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if ( item.LikeStatus == 1 ) return;
+
+				if ( !Common.isLogin(LSBaseActivity.activity))
+				{
+					return;
+				}
+
+				item.LikeStatus = 1;
+
+				item.likeNum += 1;
+
+				finalHolder.tvLike.setText(""+item.likeNum);
+
+				finalHolder.iv_like.setImageResource(R.drawable.like_button_press);
+
+//				finalHolder.iv_like.startAnimation(animation);
+
+				LSRequestManager.getInstance().clubTopicLike(item.id,null);
+			}
+		});
+
+
+
 		if (!TextUtils.isEmpty(item.headicon))
 			ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
 
@@ -626,6 +693,8 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		private TextView tvCreate;
 		private TextView tvLike;
 		private TextView tvReply;
+		private LinearLayout layout_like;
+		private ImageView iv_like;
 
 		public ViewHolderTopicImages(View view) {
 			roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
@@ -650,6 +719,8 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			tvCreate = (TextView) view.findViewById(R.id.tv_create);
 			tvLike = (TextView) view.findViewById(R.id.tv_like);
 			tvReply = (TextView) view.findViewById(R.id.tv_reply);
+			layout_like = (LinearLayout) view.findViewById(R.id.layout_like);
+			iv_like = (ImageView) view.findViewById(R.id.iv_like);
 		}
 	}
 

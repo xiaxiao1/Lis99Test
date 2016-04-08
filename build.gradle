@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:2.0.0'
 //        classpath ':proguard:'///指定本地刚刚编译的文件
         classpath 'proguard.io:proguard:5.0'
 //        XUTILS
