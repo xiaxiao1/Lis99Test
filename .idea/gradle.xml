@@ -20,6 +20,19 @@
             <option value="$PROJECT_DIR$/xutils" />
           </set>
         </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/androidSDK" />
+            <option value="$PROJECT_DIR$/androidSDKComponent" />
+            <option value="$PROJECT_DIR$/lishiMobile" />
+            <option value="$PROJECT_DIR$/mUList" />
+            <option value="$PROJECT_DIR$/playerskin" />
+            <option value="$PROJECT_DIR$/recyclerview" />
+            <option value="$PROJECT_DIR$/weiboSDK" />
+            <option value="$PROJECT_DIR$/xutils" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>

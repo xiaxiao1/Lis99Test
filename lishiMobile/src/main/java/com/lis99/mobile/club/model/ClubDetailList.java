@@ -88,12 +88,13 @@ public class ClubDetailList implements Serializable{
 
 
 // 		4.1.9
-//		public ArrayList<Images> image;
+		public ArrayList<Images> image;
+		public String content;
 
-		public String image;
+//		public String image;
 
 		public String videoimg;
-		public int videoid;
+		public String videoid;
 
 		public String setaddress;
 		public String starttime;

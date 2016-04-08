@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -64,19 +65,13 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 	
 	@Override
 	public int getViewTypeCount() {
-		return 5;
+		return 6;
 	}
 	
 	@Override
 	public int getItemViewType(int position) {
 		Object o = getItem(position);
 
-		//线路活动
-		if ( activeList )
-		{
-			return  4;
-		}
-		
 //		0 | 1 为置顶的 , 2为线路活动
 //		if ("0".equals(topic.stick) || "1".equals(topic.stick)) {
 //			return 0;
@@ -86,6 +81,18 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		{
 			return 0;
 		}
+
+		//线路活动
+		if ( activeList )
+		{
+			return  4;
+		}
+//		讨论区
+		if ( !activeList )
+		{
+			return 5;
+		}
+
 		
 		return ui_level != 3 ? 1 : 3;
 	}
@@ -186,6 +193,11 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		} else if (type == 4) {
 			return conifgTopicActivityItemNewView(position, convertView, parent);
 		}
+//		讨论区
+		else if ( type == 5 )
+		{
+			return TopicItemNewTopic (position, convertView, parent);
+		}
 		  else {
 			ViewHolder holder = null;
 			if (convertView == null) {
@@ -257,6 +269,118 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 	public View setView(int i, View view, ViewGroup viewGroup) {
 		return null;
 	}
+//	新的讨论区
+	private View TopicItemNewTopic (int position, View view, ViewGroup parent) {
+
+		ViewHolderTopicImages holder = null;
+
+		if ( view == null )
+		{
+			view = View.inflate(mContext, R.layout.club_topic_item_images, null);
+
+			holder = new ViewHolderTopicImages(view);
+
+			view.setTag(holder);
+
+		}
+		else
+		{
+			holder = (ViewHolderTopicImages) view.getTag();
+		}
+
+		final Topiclist item = (Topiclist) getItem(position);
+
+		if ( item == null ) return view;
+
+		holder.layoutImg.setVisibility(View.GONE);
+		holder.layoutImg1.setVisibility(View.GONE);
+		holder.layoutIv.setVisibility(View.GONE);
+		holder.vipStar.setVisibility(View.GONE);
+
+		holder.ivBg.setVisibility(View.INVISIBLE);
+		holder.ivBg1.setVisibility(View.INVISIBLE);
+		holder.ivBg2.setVisibility(View.INVISIBLE);
+		holder.ivBg3.setVisibility(View.INVISIBLE);
+		holder.ivBg4.setVisibility(View.INVISIBLE);
+		holder.ivBg5.setVisibility(View.INVISIBLE);
+
+		if (!TextUtils.isEmpty(item.headicon))
+			ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
+
+		holder.tvTitle.setText(item.title);
+		holder.tvContent.setText(item.content);
+		holder.tvLike.setText("" + item.likeNum);
+		holder.tvName.setText(item.nickname);
+		holder.tvCreate.setText(item.createdate);
+
+		if (TextUtils.isEmpty(item.replytot))
+		{
+			holder.tvReply.setText( "0则回复" );
+		}
+		else
+		{
+			holder.tvReply.setText(item.replytot + "则回复" );
+		}
+
+		if ( "0".equals(item.videoid) || TextUtils.isEmpty(item.videoid) )
+		{
+			if ( item.image != null )
+			{
+				int num = item.image.size();
+
+				if ( num >= 1 )
+				{
+					holder.layoutImg.setVisibility(View.VISIBLE);
+					holder.ivBg.setVisibility(View.VISIBLE);
+					ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.ivBg, ImageUtil.getDefultImageOptions());
+				}
+				if ( num >= 2 )
+				{
+					holder.ivBg1.setVisibility(View.VISIBLE);
+					ImageLoader.getInstance().displayImage(item.image.get(1).image, holder.ivBg1, ImageUtil.getDefultImageOptions());
+				}
+				if ( num >= 3 )
+				{
+					holder.ivBg2.setVisibility(View.VISIBLE);
+					ImageLoader.getInstance().displayImage(item.image.get(2).image, holder.ivBg2, ImageUtil.getDefultImageOptions());
+				}
+				if ( num >= 4 )
+				{
+					holder.layoutImg1.setVisibility(View.VISIBLE);
+					holder.ivBg3.setVisibility(View.VISIBLE);
+					ImageLoader.getInstance().displayImage(item.image.get(3).image, holder.ivBg3, ImageUtil.getDefultImageOptions());
+				}
+				if ( num >= 5 )
+				{
+					holder.ivBg4.setVisibility(View.VISIBLE);
+					ImageLoader.getInstance().displayImage(item.image.get(4).image, holder.ivBg4, ImageUtil.getDefultImageOptions());
+				}
+				if ( num >= 6 )
+				{
+					holder.ivBg5.setVisibility(View.VISIBLE);
+					ImageLoader.getInstance().displayImage(item.image.get(5).image, holder.ivBg5, ImageUtil.getDefultImageOptions());
+				}
+			}
+
+		}
+		else
+		{
+			holder.layoutIv.setVisibility(View.VISIBLE);
+
+			if ( !TextUtils.isEmpty(item.videoimg))
+			{
+				ImageLoader.getInstance().displayImage(item.videoimg, holder.contentImageView,
+						optionsBg, ImageUtil.getImageLoading(holder.ivLoad, holder
+								.contentImageView));
+			}
+
+		}
+
+
+
+
+		return view;
+	}
 
 	private View conifgTopicItemNewView (int position, View view, ViewGroup parent) {
 		ClubHolder holder = null;
@@ -301,9 +425,9 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			holder.vipStar.setVisibility(View.GONE);
 		}
 
-//		if ( item.image != null && item.image.size() != 0 && !TextUtils.isEmpty(item.image.get(0).image) )
-//		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
-			ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+		if ( item.image != null && item.image.size() != 0 && !TextUtils.isEmpty(item.image.get(0).image) )
+		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
+//			ImageLoader.getInstance().displayImage(item.image, holder.iv_bg, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
 
 		if (!TextUtils.isEmpty(item.headicon))
 		ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
@@ -427,9 +551,9 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		}
 
 
-//		if ( item.image != null && item.image.size() != 0 )
-//		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
-			ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
+		if ( item.image != null && item.image.size() != 0 )
+		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
+//			ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
 
 
 
@@ -478,5 +602,55 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		View topGapView;
 	}
 
+
+	protected class ViewHolderTopicImages {
+		private RoundedImageView roundedImageView1;
+		private ImageView vipStar;
+		private TextView tvName;
+		private Button btnConcern;
+		private TextView tvTitle;
+		private TextView tvContent;
+		private LinearLayout layoutImg;
+		private RoundedImageView ivBg;
+		private RoundedImageView ivBg1;
+		private RoundedImageView ivBg2;
+		private LinearLayout layoutImg1;
+		private RoundedImageView ivBg3;
+		private RoundedImageView ivBg4;
+		private RoundedImageView ivBg5;
+		private RelativeLayout layoutIv;
+		private ImageView contentImageView;
+		private View viewTransprant;
+		private ImageView ivLoad;
+		private ImageView vedio;
+		private TextView tvCreate;
+		private TextView tvLike;
+		private TextView tvReply;
+
+		public ViewHolderTopicImages(View view) {
+			roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
+			vipStar = (ImageView) view.findViewById(R.id.vipStar);
+			tvName = (TextView) view.findViewById(R.id.tv_name);
+			btnConcern = (Button) view.findViewById(R.id.btn_concern);
+			tvTitle = (TextView) view.findViewById(R.id.tv_title);
+			tvContent = (TextView) view.findViewById(R.id.tv_content);
+			layoutImg = (LinearLayout) view.findViewById(R.id.layout_img);
+			ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+			ivBg1 = (RoundedImageView) view.findViewById(R.id.iv_bg1);
+			ivBg2 = (RoundedImageView) view.findViewById(R.id.iv_bg2);
+			layoutImg1 = (LinearLayout) view.findViewById(R.id.layout_img1);
+			ivBg3 = (RoundedImageView) view.findViewById(R.id.iv_bg3);
+			ivBg4 = (RoundedImageView) view.findViewById(R.id.iv_bg4);
+			ivBg5 = (RoundedImageView) view.findViewById(R.id.iv_bg5);
+			layoutIv = (RelativeLayout) view.findViewById(R.id.layout_iv);
+			contentImageView = (ImageView) view.findViewById(R.id.contentImageView);
+			viewTransprant = (View) view.findViewById(R.id.view_transprant);
+			ivLoad = (ImageView) view.findViewById(R.id.iv_load);
+			vedio = (ImageView) view.findViewById(R.id.vedio);
+			tvCreate = (TextView) view.findViewById(R.id.tv_create);
+			tvLike = (TextView) view.findViewById(R.id.tv_like);
+			tvReply = (TextView) view.findViewById(R.id.tv_reply);
+		}
+	}
 
 }

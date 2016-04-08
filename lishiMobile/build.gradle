@@ -10,7 +10,7 @@ android {
         zhuzhan {}
         tuiguang1 {}
 //        sougou {}
-//        baidu {}
+        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}

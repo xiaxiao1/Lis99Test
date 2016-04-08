@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:background="#fff"
     android:descendantFocusability="blocksDescendants"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
 
     <RelativeLayout
@@ -99,7 +100,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="180dp"
         android:orientation="horizontal"
         android:id="@+id/layout_img"
         android:layout_marginTop="10dp"
@@ -152,7 +153,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="180dp"
         android:orientation="horizontal"
         android:id="@+id/layout_img1"
         android:paddingLeft="10dp"
@@ -275,18 +276,27 @@
             android:layout_alignParentRight="true"
             >
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/like_btn_1"
+                android:paddingRight="5dp"
+                />
+
             <TextView
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#999"
                 android:id="@+id/tv_like"
-                android:drawableLeft="@drawable/like_btn_1"
-                android:drawablePadding="5dp"
                 android:text="@string/temp_string"
                 />
 
             <TextView
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
