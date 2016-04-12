@@ -1,4 +1,4 @@
-package com.lis99.mobile.club.topicstrimg;
+package com.lis99.mobile.util.dbhelp;
 
 import com.lis99.mobile.club.model.BaseModel;
 
@@ -42,5 +42,11 @@ public class StringImageChildModel extends BaseModel {
      */
     @Column(name = "isEditing")
     public int isEditing;
+
+    @Column(name = "title")
+    public String title;
+
+    @Column(name = "imgInfo")
+    public byte[] imgInfo;
 
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.dbhelp.StringImageChildModel;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 //    可以删除的
     private final int IMG_STRING_NOMAL = 1;
 //    不可以删除的
-    private final int IMS_STRING_NO_REMOVE = 2;
+    private final int IMG_STRING_NO_REMOVE = 2;
 
     private final int COUNT = 3;
 
@@ -45,6 +46,20 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             return TITLE;
         }
 
+        StringImageChildModel item = (StringImageChildModel) getItem(position);
+
+        if ( item != null )
+        {
+            if ( item.isEditing == 0 )
+            {
+                return IMG_STRING_NOMAL;
+            }
+            else
+            {
+                return IMG_STRING_NO_REMOVE;
+            }
+        }
+
 
         return TITLE;
     }
@@ -56,7 +71,21 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
     @Override
     public View setView(int i, View view, ViewGroup viewGroup) {
-        return null;
+
+        int num = getItemViewType(i);
+
+        switch ( num )
+        {
+            case TITLE:
+                return getTitle(i, view);
+            case IMG_STRING_NOMAL:
+                return getAddImageStringNomal(i, view);
+            case IMG_STRING_NO_REMOVE:
+                return getAddImageStringNoRemove(i, view);
+            default:
+                return getTitle(i, view);
+        }
+
     }
 
 //  标题
@@ -93,7 +122,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             holder = (ViewHolderNomal) view.getTag();
         }
 
-        holder.layoutAdded.setVisibility(View.GONE);
+//        holder.layoutAdded.setVisibility(View.GONE);
 
 
 

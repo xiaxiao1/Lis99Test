@@ -30,7 +30,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private IWXAPI api;
 
-    private TextView tv_pay_type, tv_info;
+    private TextView tv_pay_type, tv_info, tv_content;
 
     private Button btn_ok, btn_ok1;
 
@@ -38,8 +38,10 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private View layout_ok, layout_cancel;
 //<font color="red">I love android</font><br>
-    private String infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
-    private String infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系010-57730746</font>";
+    private String infoZFB; // = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系"+getResources().getString(R.string.tel)+"</font>";
+    private String infoWX; // = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系"+getResources().getString(R.string.tel)+"</font>";
+
+    private String infoOk; // = "希望您玩得愉快\\n如果您需要帮助 请联系"+getResources().getString(R.string.tel);
 
     private int state;
 
@@ -54,6 +56,12 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
         super.initViews();
 
+        infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系"+getResources().getString(R.string.tel)+"</font>";
+
+        infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系"+getResources().getString(R.string.tel)+"</font>";
+
+        infoOk = "希望您玩得愉快\n如果您需要帮助 请联系"+getResources().getString(R.string.tel);
+
         setTitle("支付结果");
 
         layout_ok = findViewById(R.id.layout_ok);
@@ -63,6 +71,8 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
         tv_pay_type = (TextView) findViewById(R.id.tv_pay_type);
 
         tv_info = (TextView) findViewById(R.id.tv_info);
+
+        tv_content = (TextView) findViewById(R.id.tv_content);
 
         btn_ok1 = (Button) findViewById(R.id.btn_ok1);
 
@@ -153,6 +163,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 //                支付成功
             case 0:
                 setTitle("支付成功");
+                tv_content.setText(infoOk);
                 layout_ok.setVisibility(View.VISIBLE);
                 layout_cancel.setVisibility(View.GONE);
                 // 发送定单号给服务器

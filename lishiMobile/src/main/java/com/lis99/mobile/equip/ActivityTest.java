@@ -7,7 +7,7 @@ import android.widget.EditText;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.Common;
-import com.lis99.mobile.util.DataHelp;
+import com.lis99.mobile.util.dbhelp.DataHelp;
 
 public class ActivityTest extends LSBaseActivity implements View.OnClickListener {
 

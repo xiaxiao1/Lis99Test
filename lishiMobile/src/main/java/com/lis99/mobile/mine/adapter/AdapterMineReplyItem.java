@@ -17,6 +17,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicReplyActivity;
 import com.lis99.mobile.club.model.MineReplyModel.Replylist;
+import com.lis99.mobile.club.newtopic.LSClubTopicNewReply;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -237,6 +238,21 @@ public class AdapterMineReplyItem extends BaseAdapter
 					});
 					break;
 				case R.id.layout_club_detail_reply:
+//					新版话题贴
+					if ( item.category == 3 )
+					{
+						intent = new Intent(main, LSClubTopicNewReply.class);
+						intent.putExtra("replyedName", ""+item.nickname);
+						intent.putExtra("replyedcontent", ""+item.topic_content);
+						intent.putExtra("replyedfloor", ""+item.floor);
+						intent.putExtra("replyedId", ""+item.replytopicid);
+						intent.putExtra("clubId", "" + item.club_id);
+						intent.putExtra("topicId", "" + item.topic_id);
+//                startActivityForResult(intent, 999);
+						main.startActivity(intent);
+						return;
+					}
+
 					 intent = new Intent(main, LSClubTopicReplyActivity.class);
 					intent.putExtra("replyedName", item.nickname);
 					intent.putExtra("replyedcontent", item.topic_content);

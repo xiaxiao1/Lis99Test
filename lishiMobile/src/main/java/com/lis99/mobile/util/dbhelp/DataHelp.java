@@ -1,10 +1,9 @@
-package com.lis99.mobile.util;
+package com.lis99.mobile.util.dbhelp;
 
 import android.os.Build;
 
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.topicstrimg.StringImageChildModel;
-import com.lis99.mobile.club.topicstrimg.StringImageModel;
+import com.lis99.mobile.util.Common;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import org.xutils.DbManager;
@@ -30,7 +29,7 @@ public class DataHelp {
         daoConfig.setDbName("mytest.db");
         daoConfig.setDbDir(StorageUtils.getOwnCacheDirectory(
                 LSBaseActivity.activity.getApplicationContext(), "lishi99/cache"));
-        daoConfig.setDbVersion(6);
+        daoConfig.setDbVersion(1);
         daoConfig.setDbOpenListener(new DbManager.DbOpenListener() {
             @Override
             public void onDbOpened(DbManager db) {
@@ -43,31 +42,30 @@ public class DataHelp {
             @Override
             public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
 
-                Common.log("newVersion == " + newVersion + "\noldVersion == " + oldVersion);
+//                Common.log("newVersion == " + newVersion + "\noldVersion == " + oldVersion);
 
-                switch (newVersion) {
-//                     数据库升级， 增加字段
-                    case 2:
-                        try {
-                            db.addColumn(StringImageChildModel.class, "img");
-                            db.addColumn(StringImageChildModel.class, "content");
-                            db.addColumn(StringImageChildModel.class, "isEditing");
-                        } catch (DbException e) {
-                            e.printStackTrace();
-                            Common.log("db Updata Error = " + e.toString());
-                        }
-                        break;
-                    case 5:
-                        try {
-                            db.addColumn(StringImageModel.class, "isPass");
-                            Common.log("db Updata OK ====  5 ");
-                        } catch (DbException e) {
-                            e.printStackTrace();
-                            Common.log("db Updata Error = " + e.toString());
-                        }
-                        break;
-                }
-
+//                if ( newVersion >= 2 && oldVersion < 2 )
+//                {
+//                    try {
+//                        db.addColumn(StringImageChildModel.class, "img");
+//                        db.addColumn(StringImageChildModel.class, "content");
+//                        db.addColumn(StringImageChildModel.class, "isEditing");
+//                    } catch (DbException e) {
+//                        e.printStackTrace();
+//                        Common.log("db Updata Error = " + e.toString());
+//                    }
+//                }
+//
+//                if ( newVersion >= 5 && oldVersion < 5 )
+//                {
+//                    try {
+//                        db.addColumn(StringImageModel.class, "isPass");
+//                        Common.log("db Updata OK ====  5 ");
+//                    } catch (DbException e) {
+//                        e.printStackTrace();
+//                        Common.log("db Updata Error = " + e.toString());
+//                    }
+//                }
 
             }
         });

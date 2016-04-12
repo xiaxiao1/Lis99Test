@@ -41,7 +41,6 @@ import com.lis99.mobile.application.data.VersionBean;
 import com.lis99.mobile.choiceness.FragmentChoicenessNewMain;
 import com.lis99.mobile.club.LSClubFragment;
 import com.lis99.mobile.club.LSClubFragmentNew;
-import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.PushModel;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
@@ -816,13 +815,21 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         sendPush(model);
     }
 
+    /**
+     *      推送， 执行推送命令
+     * @param model
+     */
     private void sendPush(PushModel model) {
         //打开帖子
         if (model.type == 2) {
             tab.onTabClick(tab.CHOICENESS);
-            Intent i = new Intent(this, LSClubTopicActivity.class);
-            i.putExtra("topicID", model.topic_id);
-            startActivity(i);
+//            Intent i = new Intent(this, LSClubTopicActivity.class);
+//            i.putExtra("topicID", model.topic_id);
+//            startActivity(i);
+
+            Common.goTopic(this, model.category, model.topic_id);
+
+
         }
 //				个人中心报名通知
         else if (model.type == 3) {

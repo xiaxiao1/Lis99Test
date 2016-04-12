@@ -194,7 +194,17 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
 
         tv_pay_phone = (TextView) findViewById(R.id.tv_pay_phone);
 
+        tv_pay_phone.setText("如果您有支付方面的疑问，敬请致电："+getResources().getString(R.string.tel));
+
         tv_title = (TextView) findViewById(R.id.tv_title);
+
+        tv_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common.goTopic(activity, Common.string2int(model.category), Common.string2int(model.topic_id));
+            }
+        });
+
         tv_pay = (TextView) findViewById(R.id.tv_pay);
         tv_pay_all = (TextView) findViewById(R.id.tv_pay_all);
         tv_join_state = (TextView) findViewById(R.id.tv_join_state);
@@ -250,7 +260,7 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
         tv_pay_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-57730746"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+getResources().getString(R.string.tel)));
                 startActivity(intent);
             }
         });

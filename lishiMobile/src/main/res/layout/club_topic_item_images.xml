@@ -21,7 +21,6 @@
             app:border_width="0px"
             android:layout_marginLeft="10dp"
             app:corner_radius="5dp"
-            android:background="@color/pull_bg"
             android:layout_centerVertical="true" />
 
         <ImageView
@@ -82,7 +81,10 @@
         android:ellipsize="end"
         android:id="@+id/tv_title"
         android:textColor="#525252"
-        android:padding="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
         />
 
     <TextView
