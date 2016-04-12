@@ -209,11 +209,13 @@ public class MyHttpClient {
 			HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
 			HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);
 			HttpProtocolParams.setUseExpectContinue(params, true);
-			HttpProtocolParams
-					.setUserAgent(
-							params,
-							"Mozilla/5.0(Linux;U;Android 2.2.1;en-us;Nexus One Build.FRG83) "
-									+ "AppleWebKit/553.1(KHTML,like Gecko) Version/4.0 Mobile Safari/533.1");
+
+//			HttpProtocolParams
+//					.setUserAgent(
+//							params,
+//							"Mozilla/5.0(Linux;U;Android 2.2.1;en-us;Nexus One Build.FRG83) "
+//									+ "AppleWebKit/553.1(KHTML,like Gecko) Version/4.0 Mobile Safari/533.1");
+
 			// 超时设置
 			/* 从连接池中取连接的超时 */
 			ConnManagerParams.setTimeout(params, TIME_OUT);

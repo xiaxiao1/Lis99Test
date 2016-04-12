@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@color/white"
+    >
 
 
     <RelativeLayout
@@ -32,7 +34,7 @@
     </RelativeLayout>
 
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         >
@@ -67,7 +69,6 @@
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:id="@+id/iv_image"
-            android:src="@drawable/club_info_data_icon"
             />
 
             <ImageView

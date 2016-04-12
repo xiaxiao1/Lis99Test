@@ -1,4 +1,4 @@
-package com.lis99.mobile.club.topicstrimg;
+package com.lis99.mobile.util.dbhelp;
 
 import com.lis99.mobile.club.model.BaseModel;
 
@@ -31,8 +31,11 @@ public class StringImageModel extends BaseModel {
     @Column(name = "istest")
     public int istest;
 
-    @Column(name = "info")
-    public ArrayList<StringImageChildModel> info;
+    @Column(name = "topicId")
+    public String topicId;
+
+    @Column(name = "item")
+    public ArrayList<StringImageChildModel> item;
 
     public List<StringImageChildModel> getChildern (DbManager db ) throws DbException
     {

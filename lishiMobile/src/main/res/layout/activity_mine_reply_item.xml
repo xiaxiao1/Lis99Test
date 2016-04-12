@@ -112,7 +112,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone" 
+            android:visibility="gone"
             android:id="@+id/layout1"
             style="@style/fill_wrap"
             android:orientation="vertical"

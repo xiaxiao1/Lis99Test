@@ -361,11 +361,21 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 				finalHolder.tvLike.setText(""+item.likeNum);
 
-				finalHolder.iv_like.setImageResource(R.drawable.like_button_press);
+				finalHolder.iv_like.setImageResource(R.drawable.like_btn_2);
 
 //				finalHolder.iv_like.startAnimation(animation);
 
-				LSRequestManager.getInstance().clubTopicLike(item.id,null);
+//                新版话题用新接口，其他用老点赞接口
+                if ( "3".equals(item.category))
+                {
+                    LSRequestManager.getInstance().clubTopicLikeNew(item.id, null);
+                }
+                else
+                {
+                    LSRequestManager.getInstance().clubTopicLike(item.id,null);
+                }
+
+
 			}
 		});
 
@@ -382,11 +392,11 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 		if (TextUtils.isEmpty(item.replytot))
 		{
-			holder.tvReply.setText( "0则回复" );
+			holder.tvReply.setText( "0" );
 		}
 		else
 		{
-			holder.tvReply.setText(item.replytot + "则回复" );
+			holder.tvReply.setText(item.replytot + "" );
 		}
 
 		if ( "0".equals(item.videoid) || TextUtils.isEmpty(item.videoid) )
@@ -579,7 +589,18 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 				finalHolder.iv_like.startAnimation(animation);
 
-				LSRequestManager.getInstance().clubTopicLike(item.id,null);
+//				LSRequestManager.getInstance().clubTopicLike(item.id,null);
+
+                //                新版话题用新接口，其他用老点赞接口
+                if ( "3".equals(item.category))
+                {
+                    LSRequestManager.getInstance().clubTopicLikeNew(item.id, null);
+                }
+                else
+                {
+                    LSRequestManager.getInstance().clubTopicLike(item.id,null);
+                }
+
 			}
 		});
 

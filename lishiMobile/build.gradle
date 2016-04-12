@@ -6,9 +6,9 @@ android {
     //多渠道
     productFlavors {
         ttest {}
-        shichang {}
-        zhuzhan {}
-        tuiguang1 {}
+//        shichang {}
+//        zhuzhan {}
+//        tuiguang1 {}
 //        sougou {}
 //        baidu {}
 //        pp{}

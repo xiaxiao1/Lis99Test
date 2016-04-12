@@ -2,6 +2,7 @@ package com.lis99.mobile.club.topicstrimg;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,6 +15,10 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.PopWindowUtil;
+import com.lis99.mobile.util.dbhelp.StringImageChildModel;
+import com.lis99.mobile.util.dbhelp.StringImageModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by yy on 16/3/29.
@@ -45,16 +50,39 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         setContentView(R.layout.topic_img_string_main);
 
 
+        model = (StringImageModel) getIntent().getSerializableExtra("DATA_MODEL");
+
+        if ( model == null && savedInstanceState != null )
+        {
+            model = (StringImageModel) savedInstanceState.getSerializable("DATA_MODEL");
+        }
+
+        if ( model == null )
+        {
+            model = new StringImageModel();
+        }
+
+
+        if ( model.item == null || model.item.size() == 0 )
+        {
+            model.item = new ArrayList<>();
+            //title
+            StringImageChildModel item = new StringImageChildModel();
+            model.item.add(item);
+            //图文
+            item = new StringImageChildModel();
+            model.item.add(item);
+        }
 
         initViews();
 
-        model = new StringImageModel();
-
-        
-
-
     }
 
+//    发布
+    @Override
+    protected void rightAction() {
+        super.rightAction();
+    }
 
     @Override
     protected void initViews() {
@@ -72,6 +100,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
         title.setOnClickListener(this);
 
+        adapter = new TopicStringImageAdapter(activity, model.item);
+
+        list.setAdapter(adapter);
 
     }
 
@@ -111,10 +142,25 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     }
 
-//  结束前保存
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            return true;
+        }
+
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    //  结束前保存
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putSerializable("DATA_MODEL", model);
     }
 //  打开后读取
 //    @Override

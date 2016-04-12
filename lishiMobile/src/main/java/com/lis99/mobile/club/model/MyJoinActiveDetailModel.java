@@ -26,6 +26,10 @@ public class MyJoinActiveDetailModel extends BaseModel {
 
     public String ordercode;
 
+    public String topic_id;
+
+    public String category;
+
     public ArrayList<Apply_info> apply_info;
 
     public class Apply_info extends BaseModel
@@ -38,6 +42,8 @@ public class MyJoinActiveDetailModel extends BaseModel {
         public String consts;
         public String credentials;
         public String phone;
+
+
 
     }
 
