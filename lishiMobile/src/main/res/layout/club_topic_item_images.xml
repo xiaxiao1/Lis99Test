@@ -102,6 +102,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layout_img0"
+        android:layout_margin="10dp"
+        >
+
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:background="@color/pull_bg"
+            android:id="@+id/iv_bg0"
+            app:corner_radius="0px"
+            app:border_width="0px"
+            android:layout_weight="2"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_weight="3"
+            />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="110dp"
         android:orientation="horizontal"
         android:id="@+id/layout_img"

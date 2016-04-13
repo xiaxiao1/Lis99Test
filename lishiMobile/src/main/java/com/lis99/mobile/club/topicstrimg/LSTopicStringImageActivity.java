@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSImagePicker;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
@@ -102,6 +103,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
         adapter = new TopicStringImageAdapter(activity, model.item);
 
+        adapter.setMain(this);
+
         list.setAdapter(adapter);
 
     }
@@ -142,6 +145,35 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        ArrayList<String> uris = (ArrayList<String>) intent.getStringArrayListExtra("uris");
+        if (uris != null && uris.size() > 0) {
+//            url = uris.get(0);
+            if ( model.item != null && index != -1 && adapter != null )
+            {
+                String uri = uris.get(0);
+                model.item.get(index).img = uri;
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+    }
+
+    private int index = -1;
+
+    /**
+     *      添加图片
+     */
+    protected void addImage ( int index )
+    {
+        this.index = index;
+        // 相册
+        Intent intent = new Intent(activity, LSImagePicker.class);
+        intent.putExtra("CLASSNAME", this.getComponentName().getClassName());
+        startActivity(intent);
+    }
 
 
     @Override
@@ -162,6 +194,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         super.onSaveInstanceState(outState);
         outState.putSerializable("DATA_MODEL", model);
     }
+
 //  打开后读取
 //    @Override
 //    protected void onRestoreInstanceState(Bundle savedInstanceState) {

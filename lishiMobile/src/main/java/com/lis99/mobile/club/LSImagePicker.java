@@ -68,6 +68,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
 
     TextView title;
 
+    private String className;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -75,6 +76,8 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_lsimage_picker);
 
         isReply = getIntent().getBooleanExtra("isReply", false);
+
+        className = getIntent().getStringExtra("CLASSNAME");
 
         okButton = (Button) findViewById(R.id.okButton);
         previewButton = (Button) findViewById(R.id.preview);
@@ -342,6 +345,13 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                     } else {
                         intent = new Intent(this, LSClubPublish2Activity.class);
                     }
+
+                    if ( !TextUtils.isEmpty(className))
+                    {
+                        intent = new Intent();
+                        intent.setClassName(this, className);
+                    }
+
                     intent.putExtra("uris", selectedUri);
                     startActivity(intent);
                     finish();
