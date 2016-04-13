@@ -1674,6 +1674,24 @@ public class ImageUtil
 	}
 
 	/**
+	 * 		根据文件名删除图片
+	 * @param c
+	 * @param name
+     * @return
+     */
+	public static boolean deleteNativeImg ( Context c, String name ) {
+		File f = getImageFileNative(c, name);
+		if (f != null && f.exists())
+		{
+			return f.delete();
+		}
+
+		return false;
+	}
+
+
+
+	/**
 	 * 		保存广告
 	 * @param imgUrl
 	 */

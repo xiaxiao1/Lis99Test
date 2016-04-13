@@ -292,6 +292,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 		if ( item == null ) return view;
 
+		holder.layoutImg0.setVisibility(View.GONE);
 		holder.layoutImg.setVisibility(View.GONE);
 		holder.layoutImg1.setVisibility(View.GONE);
 		holder.layoutIv.setVisibility(View.GONE);
@@ -303,6 +304,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		holder.ivBg3.setVisibility(View.INVISIBLE);
 		holder.ivBg4.setVisibility(View.INVISIBLE);
 		holder.ivBg5.setVisibility(View.INVISIBLE);
+
 
 
 		if ( item.is_follow == 1 )
@@ -404,38 +406,46 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			if ( item.image != null )
 			{
 				int num = item.image.size();
-
-				if ( num >= 1 )
+//				只有一张图片的情况
+				if ( num == 1 )
 				{
-					holder.layoutImg.setVisibility(View.VISIBLE);
-					holder.ivBg.setVisibility(View.VISIBLE);
-					ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.ivBg, ImageUtil.getDefultImageOptions());
+					holder.layoutImg0.setVisibility(View.VISIBLE);
+					ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.ivbg0, ImageUtil.getDefultImageOptions());
 				}
-				if ( num >= 2 )
+				else
 				{
-					holder.ivBg1.setVisibility(View.VISIBLE);
-					ImageLoader.getInstance().displayImage(item.image.get(1).image, holder.ivBg1, ImageUtil.getDefultImageOptions());
-				}
-				if ( num >= 3 )
-				{
-					holder.ivBg2.setVisibility(View.VISIBLE);
-					ImageLoader.getInstance().displayImage(item.image.get(2).image, holder.ivBg2, ImageUtil.getDefultImageOptions());
-				}
-				if ( num >= 4 )
-				{
-					holder.layoutImg1.setVisibility(View.VISIBLE);
-					holder.ivBg3.setVisibility(View.VISIBLE);
-					ImageLoader.getInstance().displayImage(item.image.get(3).image, holder.ivBg3, ImageUtil.getDefultImageOptions());
-				}
-				if ( num >= 5 )
-				{
-					holder.ivBg4.setVisibility(View.VISIBLE);
-					ImageLoader.getInstance().displayImage(item.image.get(4).image, holder.ivBg4, ImageUtil.getDefultImageOptions());
-				}
-				if ( num >= 6 )
-				{
-					holder.ivBg5.setVisibility(View.VISIBLE);
-					ImageLoader.getInstance().displayImage(item.image.get(5).image, holder.ivBg5, ImageUtil.getDefultImageOptions());
+					if ( num >= 1 )
+					{
+						holder.layoutImg.setVisibility(View.VISIBLE);
+						holder.ivBg.setVisibility(View.VISIBLE);
+						ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.ivBg, ImageUtil.getDefultImageOptions());
+					}
+					if ( num >= 2 )
+					{
+						holder.ivBg1.setVisibility(View.VISIBLE);
+						ImageLoader.getInstance().displayImage(item.image.get(1).image, holder.ivBg1, ImageUtil.getDefultImageOptions());
+					}
+					if ( num >= 3 )
+					{
+						holder.ivBg2.setVisibility(View.VISIBLE);
+						ImageLoader.getInstance().displayImage(item.image.get(2).image, holder.ivBg2, ImageUtil.getDefultImageOptions());
+					}
+					if ( num >= 4 )
+					{
+						holder.layoutImg1.setVisibility(View.VISIBLE);
+						holder.ivBg3.setVisibility(View.VISIBLE);
+						ImageLoader.getInstance().displayImage(item.image.get(3).image, holder.ivBg3, ImageUtil.getDefultImageOptions());
+					}
+					if ( num >= 5 )
+					{
+						holder.ivBg4.setVisibility(View.VISIBLE);
+						ImageLoader.getInstance().displayImage(item.image.get(4).image, holder.ivBg4, ImageUtil.getDefultImageOptions());
+					}
+					if ( num >= 6 )
+					{
+						holder.ivBg5.setVisibility(View.VISIBLE);
+						ImageLoader.getInstance().displayImage(item.image.get(5).image, holder.ivBg5, ImageUtil.getDefultImageOptions());
+					}
 				}
 			}
 
@@ -716,6 +726,8 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		private TextView tvReply;
 		private LinearLayout layout_like;
 		private ImageView iv_like;
+		private LinearLayout layoutImg0;
+		private ImageView ivbg0;
 
 		public ViewHolderTopicImages(View view) {
 			roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
@@ -742,6 +754,9 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			tvReply = (TextView) view.findViewById(R.id.tv_reply);
 			layout_like = (LinearLayout) view.findViewById(R.id.layout_like);
 			iv_like = (ImageView) view.findViewById(R.id.iv_like);
+
+			ivbg0 = (ImageView) view.findViewById(R.id.iv_bg0);
+			layoutImg0 = (LinearLayout) view.findViewById(R.id.layout_img0);
 		}
 	}
 

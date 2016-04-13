@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.topicstrimg;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -31,10 +34,17 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
     private LayoutInflater layoutInflater;
 
+    private LSTopicStringImageActivity main;
+
     public TopicStringImageAdapter(Context c, List listItem) {
         super(c, listItem);
 
         this.layoutInflater = LayoutInflater.from(c);
+    }
+
+    public void setMain ( LSTopicStringImageActivity _main )
+    {
+        main = _main;
     }
 
 
@@ -109,7 +119,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         return view;
     }
     //可删除的图文混排
-    private View getAddImageStringNomal ( int i, View view )
+    private View getAddImageStringNomal (final int i, View view )
     {
         ViewHolderNomal holder = null;
         if (view == null) {
@@ -122,8 +132,62 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             holder = (ViewHolderNomal) view.getTag();
         }
 
-//        holder.layoutAdded.setVisibility(View.GONE);
+        holder.layoutAdded.setVisibility(View.GONE);
 
+        final StringImageChildModel item = (StringImageChildModel) getItem(i);
+
+        if ( item == null ) return view;
+
+        final ViewHolderNomal finalHolder = holder;
+
+        if (TextUtils.isEmpty(item.img))
+        {
+            holder.layoutAdded.setVisibility(View.GONE);
+            holder.layoutAdd.setVisibility(View.VISIBLE);
+            holder.layoutAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    main.addImage(i);
+                }
+            });
+        }
+        else
+        {
+            holder.layoutAdd.setVisibility(View.GONE);
+            holder.layoutAdded.setVisibility(View.VISIBLE);
+//            删除按钮
+            holder.ivRemove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finalHolder.layoutAdded.setVisibility(View.GONE);
+                    finalHolder.layoutAdd.setVisibility(View.VISIBLE);
+                    finalHolder.ivImage.setImageBitmap(null);
+                    item.img = null;
+
+                }
+            });
+
+            if ( item.img.startsWith("/"))
+            {
+                item.img = "file://" + item.img;
+            }
+            ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
+                    .getDefultTravelImageOptions());
+
+//            if ( holder.ivImage.getTag(1) != item.id )
+//            {
+//                Bitmap b = ImageUtil.Bytes2Bimap(item.imgInfo);
+//                holder.ivImage.setImageBitmap(b);
+//                holder.ivImage.setTag(1, item.id);
+//                holder.ivImage.setTag(2, b);
+
+//            }
+//            else
+//            {
+//                holder.ivImage.setImageBitmap((Bitmap) holder.ivImage.getTag(2));
+//            }
+
+        }
 
 
         return view;
