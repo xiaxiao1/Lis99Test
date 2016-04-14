@@ -44,7 +44,7 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:layout_weight="1"
-            android:background="@color/text_color_blue"
+            android:background="@color/text_color_green"
             />
 
         <Button

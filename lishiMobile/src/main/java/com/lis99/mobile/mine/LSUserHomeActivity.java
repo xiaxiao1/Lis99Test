@@ -731,8 +731,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         else if ( view.getId() == R.id.allPanel1 || view.getId() == R.id.allPanel )
         {
             view_line.setVisibility(View.VISIBLE);
-            allView.setTextColor(getResources().getColor(R.color.text_color_blue));
-            allView1.setTextColor(getResources().getColor(R.color.text_color_blue));
+            allView.setTextColor(getResources().getColor(R.color.text_color_green));
+            allView1.setTextColor(getResources().getColor(R.color.text_color_green));
             eventView.setTextColor(getResources().getColor(R.color.color_six));
             eventView1.setTextColor(getResources().getColor(R.color.color_six));
             allLine.setVisibility(View.VISIBLE);
@@ -756,8 +756,8 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         else if ( view.getId() == R.id.eventPanel || view.getId() == R.id.eventPanel1 )
         {
             view_line.setVisibility(View.GONE);
-            eventView.setTextColor(getResources().getColor(R.color.text_color_blue));
-            eventView1.setTextColor(getResources().getColor(R.color.text_color_blue));
+            eventView.setTextColor(getResources().getColor(R.color.text_color_green));
+            eventView1.setTextColor(getResources().getColor(R.color.text_color_green));
             allView.setTextColor(getResources().getColor(R.color.color_six));
             allView1.setTextColor(getResources().getColor(R.color.color_six));
             allLine.setVisibility(View.GONE);

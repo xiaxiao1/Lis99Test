@@ -185,6 +185,7 @@
                     android:src="@drawable/mine_icon_topic" />
 
                 <TextView
+                    android:id="@+id/tv_my_topic"
                     android:layout_toRightOf="@id/iv_my_topic"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
@@ -203,9 +204,8 @@
                     android:src="@drawable/mine_icon_right_arrow" />
 
                 <View
-
                     android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@id/iv_my_topic"
+                    android:layout_alignLeft="@id/tv_my_topic"
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="#eee" />
@@ -231,6 +231,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_my_join"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/iv_my_join"
                     android:layout_width="wrap_content"
@@ -261,7 +262,7 @@
 
                 <View
                     android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@id/iv_my_join"
+                    android:layout_alignLeft="@id/tv_my_join"
                     android:layout_width="fill_parent"
                     android:layout_height="1px"
                     android:background="#eee" />
@@ -288,6 +289,7 @@
                     android:src="@drawable/my_join_club" />
 
                 <TextView
+                    android:id="@+id/tv_join_club"
                     android:layout_toRightOf="@id/iv_join_club"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
@@ -308,7 +310,7 @@
 
                 <View
                     android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@id/iv_join_club"
+                    android:layout_alignLeft="@id/tv_join_club"
                     android:layout_width="fill_parent"
                     android:layout_height="1px"
                     android:background="#eee" />
