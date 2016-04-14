@@ -292,6 +292,8 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 		if ( item == null ) return view;
 
+		holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+
 		holder.layoutImg0.setVisibility(View.GONE);
 		holder.layoutImg.setVisibility(View.GONE);
 		holder.layoutImg1.setVisibility(View.GONE);
@@ -383,7 +385,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 
 
-		if (!TextUtils.isEmpty(item.headicon))
+//		if (!TextUtils.isEmpty(item.headicon))
 			ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
 
 		holder.tvTitle.setText(item.title);
@@ -728,8 +730,12 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		private ImageView iv_like;
 		private LinearLayout layoutImg0;
 		private ImageView ivbg0;
+		private View topGapView;
 
 		public ViewHolderTopicImages(View view) {
+
+			topGapView = view.findViewById(R.id.topGapView);
+
 			roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
 			vipStar = (ImageView) view.findViewById(R.id.vipStar);
 			tvName = (TextView) view.findViewById(R.id.tv_name);

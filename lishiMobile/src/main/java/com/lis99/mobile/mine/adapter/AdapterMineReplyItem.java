@@ -129,7 +129,7 @@ public class AdapterMineReplyItem extends BaseAdapter
 		String nikename = item.nickname + "在 ";
 		String titleEnd = " 中回复了我";
 		SpannableString title = new SpannableString(nikename + item.topic_title + titleEnd);
-		title.setSpan(new ForegroundColorSpan(main.getResources().getColor(R.color.text_color_blue)), nikename.length(), title.length() - titleEnd.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		title.setSpan(new ForegroundColorSpan(main.getResources().getColor(R.color.text_color_green)), nikename.length(), title.length() - titleEnd.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		holder.nameView.setText(title);
 		holder.dateView.setText(item.createtime);
 		holder.tv_floor.setText(item.floor + "楼");

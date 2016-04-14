@@ -4,12 +4,12 @@ import android.os.Build;
 
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.Common;
-import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import org.xutils.DbManager;
 import org.xutils.ex.DbException;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +30,11 @@ public class DataHelp {
 
         daoConfig = new DbManager.DaoConfig();
         daoConfig.setDbName(DBNAME);
-        daoConfig.setDbDir(StorageUtils.getOwnCacheDirectory(
-                LSBaseActivity.activity.getApplicationContext(), "lishi99/cache"));
+//        daoConfig.setDbDir(StorageUtils.getOwnCacheDirectory(
+//                LSBaseActivity.activity.getApplicationContext(), "lishi99/cache"));
+        File file = new File(LSBaseActivity.activity.getCacheDir(), "lishi99/cache");
+        if ( !file.exists()) file.mkdirs();
+        daoConfig.setDbDir(file);
         daoConfig.setDbVersion(1);
         daoConfig.setDbOpenListener(new DbManager.DbOpenListener() {
             @Override
@@ -86,7 +89,7 @@ public class DataHelp {
      *      获取草稿箱列表（没有过期的）
      * @return
      */
-    public ArrayList<StringImageModel> searchDraft() {
+    synchronized public ArrayList<StringImageModel> searchDraft() {
 
 
         try {
@@ -108,7 +111,7 @@ public class DataHelp {
     }
 
 
-    public boolean addDraft( StringImageModel parent ) {
+    synchronized public boolean addDraft( StringImageModel parent ) {
 //        StringImageModel parent = new StringImageModel();
 //        parent.title = "title" + System.currentTimeMillis();
         try {
@@ -120,7 +123,7 @@ public class DataHelp {
         return true;
     }
 
-    public boolean removeDraft ( StringImageModel parent )
+    synchronized public boolean removeDraft ( StringImageModel parent )
     {
         try {
                 db.delete(parent);
@@ -131,7 +134,7 @@ public class DataHelp {
         return true;
     }
 
-    public boolean addItem ( StringImageChildModel childModel )
+    synchronized public boolean addItem ( StringImageChildModel childModel )
     {
         try {
             db.saveOrUpdate(childModel);
@@ -144,7 +147,7 @@ public class DataHelp {
         return true;
     }
 
-    public boolean removeItem ( StringImageChildModel childModel )
+    synchronized public boolean removeItem ( StringImageChildModel childModel )
     {
         try {
             db.delete(childModel);
@@ -155,7 +158,7 @@ public class DataHelp {
         return true;
     }
 
-    public ArrayList<StringImageChildModel> searchItemInDraft ( StringImageModel parent ) {
+    synchronized public ArrayList<StringImageChildModel> searchItemInDraft ( StringImageModel parent ) {
 
         try {
             ArrayList<StringImageChildModel> childModels = (ArrayList<StringImageChildModel>) parent.getChildernWithTopicId(db);
