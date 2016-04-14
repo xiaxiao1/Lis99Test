@@ -5,10 +5,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,12 +35,17 @@ public class LSImagePickerPreviewActivity extends FragmentActivity implements Ch
     boolean isReply;
     protected ImageView titleLeftImage;
 
+    private String className;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lsimage_picker_preview);
 
         isReply = getIntent().getBooleanExtra("isReply", false);
+
+        className = getIntent().getStringExtra("CLASSNAME");
+
         viewPager = (ViewPager) findViewById(R.id.gallery);
 
         okButton = (Button) findViewById(R.id.okButton);
@@ -187,6 +192,13 @@ public class LSImagePickerPreviewActivity extends FragmentActivity implements Ch
                 } else {
                     intent = new Intent(this, LSClubPublish2Activity.class);
                 }
+
+                if ( !TextUtils.isEmpty(className))
+                {
+                    intent = new Intent();
+                    intent.setClassName(this, className);
+                }
+
                 intent.putExtra("uris", selectedUris);
                 startActivity(intent);
                 finish();

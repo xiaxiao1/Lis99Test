@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
@@ -98,6 +99,8 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
     }
 
+
+
 //  标题
     private View getTitle ( int i, View view )
     {
@@ -162,7 +165,16 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                     finalHolder.layoutAdded.setVisibility(View.GONE);
                     finalHolder.layoutAdd.setVisibility(View.VISIBLE);
                     finalHolder.ivImage.setImageBitmap(null);
+                    if ( ImageUtil.deleteNativeImg(item.img) )
+                    {
+                        Common.toast("OK");
+                    }
+                    else
+                    {
+                        Common.toast("ERROR");
+                    }
                     item.img = null;
+                    removeAt(i);
 
                 }
             });

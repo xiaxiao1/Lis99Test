@@ -143,6 +143,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
 
                 intent.putExtra("selectedSize", selectSize);
                 intent.putExtra("isReply", isReply);
+                intent.putExtra("CLASSNAME", className);
                 startActivityForResult(intent, PREVIEW);
 
             }
@@ -330,6 +331,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                     intent.putExtra("selectUri", selectedUri);
                     intent.putExtra("position", 0);
                     intent.putExtra("isReply", isReply);
+                    intent.putExtra("CLASSNAME", className);
                     startActivityForResult(intent, PREVIEW);
                 }
                 break;

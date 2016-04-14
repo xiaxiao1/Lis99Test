@@ -73,7 +73,7 @@ public class ActivityTest extends LSBaseActivity implements View.OnClickListener
                 break;
             case R.id.button2:
 
-                DataHelp.getInstance().add();
+//                DataHelp.getInstance().add();
 
                 break;
             case R.id.button3:

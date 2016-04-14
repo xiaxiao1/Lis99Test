@@ -42,5 +42,10 @@ public class StringImageModel extends BaseModel {
         return db.selector(StringImageChildModel.class).where("parentId", "=", this.id).findAll();
     }
 
+    public List<StringImageChildModel> getChildernWithTopicId (DbManager db ) throws DbException
+    {
+        return db.selector(StringImageChildModel.class).where("topicId", "=", this.topicId).findAll();
+    }
+
 
 }

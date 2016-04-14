@@ -1675,12 +1675,15 @@ public class ImageUtil
 
 	/**
 	 * 		根据文件名删除图片
-	 * @param c
 	 * @param name
      * @return
      */
-	public static boolean deleteNativeImg ( Context c, String name ) {
-		File f = getImageFileNative(c, name);
+	public static boolean deleteNativeImg ( String name ) {
+		if ( name.startsWith("file://"))
+		{
+			name = name.replace("file://", "");
+		}
+		File f = new File (name);
 		if (f != null && f.exists())
 		{
 			return f.delete();
@@ -1781,5 +1784,56 @@ public class ImageUtil
 		}
 		return bitmap;
 	}
+
+	/**
+	 * 		保存Bitmap 到指定file
+	 * @param file
+	 * @param bitmap
+     * @return
+     */
+	public static boolean saveImageNative( File file, Bitmap bitmap )
+	{
+		if ( file == null || bitmap == null ) return false;
+		try {
+			FileOutputStream foutp = new FileOutputStream(file);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, foutp);
+			foutp.flush();
+			foutp.close();
+			bitmap = null;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 		保存图片从选择的位置，保存到指定位置
+	 * @param url
+	 * @return
+     */
+	public static String saveTopicImg ( Context c, String url )
+	{
+		Bitmap b = getUpdataBitmap(url);
+
+		int start = url.lastIndexOf("/");
+		int end = url.lastIndexOf(".");
+		String name = url.substring(start + 1, end);
+
+		File fileNative = getImageFileNative(c, name);
+
+		if ( saveImageNative(fileNative, b))
+		{
+			return fileNative.getAbsolutePath();
+		}
+		return url;
+	}
+
+
+
 
 }

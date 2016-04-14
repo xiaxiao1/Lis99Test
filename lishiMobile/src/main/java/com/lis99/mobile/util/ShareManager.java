@@ -191,8 +191,8 @@ public class ShareManager
 			{
 				//  隐藏置顶
 				layoutmanager.setVisibility(View.GONE);
-//				管理员只显示 ， 管理报名
-				if ( "2".equals(clubhead.getIsJoin()))
+//				管理员只显示 ， 管理报名, 创始人管理报名
+				if ( "2".equals(clubhead.getIsJoin()) || "1".equals(clubhead.getIsJoin()) )
 				{
 					//话题贴不显示 1,线下， 2线上活动, 新版//				是否为活动帖
 					if (Common.visibleApplyManager(clubhead))

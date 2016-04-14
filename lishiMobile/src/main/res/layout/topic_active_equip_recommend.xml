@@ -16,7 +16,7 @@
         android:drawablePadding="10dp"
         android:textColor="#c8bdaa"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="14dp"
         android:gravity="center_vertical"
         />
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/equip_recommend_bg"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         >
