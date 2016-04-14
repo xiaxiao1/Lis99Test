@@ -20,6 +20,9 @@ public class StringImageChildModel extends BaseModel {
         return db.findById(StringImageModel.class, parentId);
     }
 
+    @Column(name = "topicId")
+    public String topicId;
+
     @Column(name = "parentId")
     public int parentId;
 

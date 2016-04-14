@@ -15,7 +15,6 @@ import android.widget.ListView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
-import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
@@ -41,7 +40,6 @@ import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.webview.MyActivityWebView;
-import com.lis99.mobile.wxapi.WXPayEntryActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.HashMap;
@@ -318,18 +316,18 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
             case R.id.layout_lis_special:
 
-                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-                {
-//                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
-
-                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
-
-                    intent.putExtra("CODE", -2);
-
-                    startActivity(intent);
-
-                    return;
-                }
+//                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
+//                {
+////                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
+//
+//                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
+//
+//                    intent.putExtra("CODE", -2);
+//
+//                    startActivity(intent);
+//
+//                    return;
+//                }
 
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
                 intent.putExtra("clubID", 285);
@@ -337,18 +335,18 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
             case R.id.layout_nearby:
 
-                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-                {
-//                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
-
-                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
-
-                    intent.putExtra("CODE", -1);
-
-                    startActivity(intent);
-
-                    return;
-                }
+//                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
+//                {
+////                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
+//
+//                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
+//
+//                    intent.putExtra("CODE", -1);
+//
+//                    startActivity(intent);
+//
+//                    return;
+//                }
 
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
                 intent.putExtra("clubID", 284);
@@ -371,10 +369,6 @@ public class FragmentChoicenessList extends Fragment implements
 //                    intent.putExtra("CODE", 0);
 //
 //                    startActivity(intent);
-
-
-
-
                     return;
                 }
 ////

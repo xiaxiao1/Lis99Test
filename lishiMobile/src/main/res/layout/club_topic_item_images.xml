@@ -112,7 +112,7 @@
         <com.lis99.mobile.club.widget.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:background="@color/pull_bg"
             android:id="@+id/iv_bg0"
@@ -122,6 +122,7 @@
             />
 
         <View
+
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_weight="3"

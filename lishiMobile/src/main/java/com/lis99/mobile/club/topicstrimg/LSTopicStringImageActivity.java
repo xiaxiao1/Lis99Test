@@ -15,6 +15,7 @@ import com.lis99.mobile.club.LSImagePicker;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
 import com.lis99.mobile.util.dbhelp.StringImageModel;
@@ -153,8 +154,16 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 //            url = uris.get(0);
             if ( model.item != null && index != -1 && adapter != null )
             {
+//              设置图片地址
                 String uri = uris.get(0);
-                model.item.get(index).img = uri;
+
+                model.item.get(index).img = ImageUtil.saveTopicImg(this, uri);
+
+//                model.item.get(index).img = uri;
+//              增加一条
+                StringImageChildModel item = new StringImageChildModel();
+                model.item.add(item);
+
                 adapter.notifyDataSetChanged();
             }
         }
