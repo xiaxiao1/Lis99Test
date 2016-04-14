@@ -130,20 +130,20 @@ public class MyFriendsActivity extends ActivityPattern1 implements ViewPager.OnP
         btn_fans.setBackgroundResource(R.drawable.friends_title_center_unselect);
         btn_recommend.setBackgroundResource(R.drawable.friends_title_right_select);
 
-        btn_attention.setTextColor(getResources().getColor(R.color.text_color_blue));
-        btn_fans.setTextColor(getResources().getColor(R.color.text_color_blue));
+        btn_attention.setTextColor(getResources().getColor(R.color.text_color_green));
+        btn_fans.setTextColor(getResources().getColor(R.color.text_color_green));
         btn_recommend.setTextColor(getResources().getColor(R.color.white));
     }
 
     private void clickFans ()
     {
         btn_attention.setBackgroundResource(R.drawable.friends_title_left_unselect);
-        btn_fans.setBackgroundResource(R.color.text_color_blue);
+        btn_fans.setBackgroundResource(R.color.text_color_green);
         btn_recommend.setBackgroundResource(R.drawable.friends_title_right_unselect);
 
-        btn_attention.setTextColor(getResources().getColor(R.color.text_color_blue));
+        btn_attention.setTextColor(getResources().getColor(R.color.text_color_green));
         btn_fans.setTextColor(getResources().getColor(R.color.white));
-        btn_recommend.setTextColor(getResources().getColor(R.color.text_color_blue));
+        btn_recommend.setTextColor(getResources().getColor(R.color.text_color_green));
     }
 
     private void clickAttention ()
@@ -153,8 +153,8 @@ public class MyFriendsActivity extends ActivityPattern1 implements ViewPager.OnP
         btn_recommend.setBackgroundResource(R.drawable.friends_title_right_unselect);
 
         btn_attention.setTextColor(getResources().getColor(R.color.white));
-        btn_fans.setTextColor(getResources().getColor(R.color.text_color_blue));
-        btn_recommend.setTextColor(getResources().getColor(R.color.text_color_blue));
+        btn_fans.setTextColor(getResources().getColor(R.color.text_color_green));
+        btn_recommend.setTextColor(getResources().getColor(R.color.text_color_green));
     }
 
 
