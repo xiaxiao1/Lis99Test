@@ -17,6 +17,7 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.PopWindowUtil;
+import com.lis99.mobile.util.dbhelp.DataHelp;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
 import com.lis99.mobile.util.dbhelp.StringImageModel;
 
@@ -70,9 +71,11 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             model.item = new ArrayList<>();
             //title
             StringImageChildModel item = new StringImageChildModel();
+            item.topicId = model.topicId;
             model.item.add(item);
             //图文
             item = new StringImageChildModel();
+            item.topicId = model.topicId;
             model.item.add(item);
         }
 
@@ -157,12 +160,19 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 //              设置图片地址
                 String uri = uris.get(0);
 
-                model.item.get(index).img = ImageUtil.saveTopicImg(this, uri);
+                StringImageChildModel childModel = model.item.get(index);
+
+                childModel.img = ImageUtil.saveTopicImg(this, uri);
+
+                DataHelp.getInstance().addChild(childModel);
 
 //                model.item.get(index).img = uri;
 //              增加一条
                 StringImageChildModel item = new StringImageChildModel();
+                item.topicId = model.topicId;
                 model.item.add(item);
+
+
 
                 adapter.notifyDataSetChanged();
             }
@@ -189,8 +199,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-            return true;
+            Common.toast("内容保存草稿箱");
+            return super.onKeyDown(keyCode, event);
         }
 
 

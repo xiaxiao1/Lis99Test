@@ -403,18 +403,18 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				initClubHead();
 				setTitle(clubHead.title);
 				if (clubHead.ui_levels == 3) {
-					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new
-							ArrayList<Topiclist>(), false);
-					adapter.ui_level = clubHead.ui_levels;
-					listView.setAdapter(adapter);
+//					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new
+//							ArrayList<Topiclist>(), false);
+//					adapter.ui_level = clubHead.ui_levels;
+//					listView.setAdapter(adapter);
 					getAllList();
 				} else {
 					topPanel.setVisibility(View.GONE);
 					buttonPanel.setVisibility(View.GONE);
-					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new
-							ArrayList<Topiclist>(), true);
-					adapter.ui_level = clubHead.ui_levels;
-					listView.setAdapter(adapter);
+//					adapter = new LSClubDitalAdapter(LSClubDetailActivity.this, new
+//							ArrayList<Topiclist>(), true);
+//					adapter.ui_level = clubHead.ui_levels;
+//					listView.setAdapter(adapter);
 					getActiveList();
 				}
 			}

@@ -34,6 +34,9 @@ public class StringImageModel extends BaseModel {
     @Column(name = "topicId")
     public String topicId;
 
+    @Column(name = "clubId")
+    public String clubId;
+
     @Column(name = "item")
     public ArrayList<StringImageChildModel> item;
 

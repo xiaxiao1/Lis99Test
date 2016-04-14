@@ -1820,16 +1820,19 @@ public class ImageUtil
 	{
 		Bitmap b = getUpdataBitmap(url);
 
+//		Common.log("b.widht="+b.getWidth() + "\nb.height="+b.getHeight());
+
 		int start = url.lastIndexOf("/");
 		int end = url.lastIndexOf(".");
 		String name = url.substring(start + 1, end);
 
 		File fileNative = getImageFileNative(c, name);
 
-		if ( saveImageNative(fileNative, b))
+		if ( b != null && saveImageNative(fileNative, b))
 		{
 			return fileNative.getAbsolutePath();
 		}
+
 		return url;
 	}
 
