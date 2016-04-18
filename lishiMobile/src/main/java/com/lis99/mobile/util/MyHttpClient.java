@@ -82,7 +82,7 @@ public class MyHttpClient {
 
 			if ( status == HttpStatus.SC_OK )
 			{
-				result = EntityUtils.toString(response.getEntity(), "UTF-8");
+				result = EntityUtils.toString(response.getEntity());
 			}
 
 		}
@@ -130,7 +130,7 @@ public class MyHttpClient {
 			
 			if ( responce.getStatusLine().getStatusCode() == HttpStatus.SC_OK )
 			{
-				result = EntityUtils.toString(responce.getEntity(), "UTF-8");
+				result = EntityUtils.toString(responce.getEntity());
 			}
 			
 		} 
@@ -167,7 +167,7 @@ public class MyHttpClient {
 			//连接成功
 			if ( responceCode == HttpStatus.SC_OK )
 			{
-				result = EntityUtils.toString(response.getEntity(), "UTF-8");
+				result = EntityUtils.toString(response.getEntity());
 			}
 			
 			

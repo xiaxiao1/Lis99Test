@@ -1,6 +1,7 @@
 package com.lis99.mobile.util;
 
 import android.os.AsyncTask;
+import android.os.Build;
 
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.MyTask;
@@ -34,7 +35,9 @@ public class MyRequest{
 			return;
 		}
 		MyAsync myAsync = new MyAsync();
-		myAsync.executeOnExecutor(myExecutor, "");
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			myAsync.executeOnExecutor(myExecutor, "");
+		}
 //		new MyAsync().execute("");
 	}
 	
@@ -111,7 +114,8 @@ public class MyRequest{
 				break;
 			}
 			Common.log("Httpresult="+Result);
-			
+			Common.log("Httpresult="+Common.convert(Result));
+
 			return Result;
 		}
 	}

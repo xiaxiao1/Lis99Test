@@ -20,8 +20,8 @@ public class StringImageChildModel extends BaseModel {
         return db.findById(StringImageModel.class, parentId);
     }
 
-    @Column(name = "topicId")
-    public String topicId;
+//    @Column(name = "topicId")
+//    public String topicId;
 
     @Column(name = "parentId")
     public int parentId;
@@ -46,8 +46,8 @@ public class StringImageChildModel extends BaseModel {
     @Column(name = "isEditing")
     public int isEditing;
 
-    @Column(name = "title")
-    public String title;
+//    @Column(name = "title")
+//    public String title;
 
     @Column(name = "imgInfo")
     public byte[] imgInfo;

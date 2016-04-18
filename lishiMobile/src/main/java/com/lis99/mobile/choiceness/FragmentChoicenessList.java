@@ -335,8 +335,8 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
             case R.id.layout_nearby:
 
-//                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-//                {
+                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
+                {
 ////                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
 //
 //                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
@@ -345,8 +345,12 @@ public class FragmentChoicenessList extends Fragment implements
 //
 //                    startActivity(intent);
 //
-//                    return;
-//                }
+
+                    Common.log("this time == "+Common.getTime());
+
+                    return;
+
+                }
 
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
                 intent.putExtra("clubID", 284);

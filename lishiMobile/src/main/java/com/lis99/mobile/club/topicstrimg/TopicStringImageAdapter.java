@@ -1,7 +1,9 @@
 package com.lis99.mobile.club.topicstrimg;
 
 import android.content.Context;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,13 +111,19 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             view = layoutInflater.inflate(R.layout.topic_img_string_title_adapter, null);
             holder = new ViewHolderTitle(view);
             view.setTag(holder);
+            holder.editInfo.setTag(i);
+            new EditListener(holder.editInfo, null);
+
         }
         else
         {
             holder = (ViewHolderTitle) view.getTag();
+            holder.editInfo.setTag(i);
         }
 
+        StringImageChildModel item = (StringImageChildModel) getItem(i);
 
+        holder.editInfo.setText(item.content);
 
 
 
@@ -129,10 +137,13 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             view = layoutInflater.inflate(R.layout.topic_img_string_adapter, null);
             holder = new ViewHolderNomal(view);
             view.setTag(holder);
+            holder.editInfo.setTag(i);
+            new EditListener(holder.editInfo, holder.ivPen);
         }
         else
         {
             holder = (ViewHolderNomal) view.getTag();
+            holder.editInfo.setTag(i);
         }
 
         holder.layoutAdded.setVisibility(View.GONE);
@@ -142,6 +153,10 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         if ( item == null ) return view;
 
         final ViewHolderNomal finalHolder = holder;
+
+        holder.editInfo.setText(item.content);
+
+
 
         if (TextUtils.isEmpty(item.img))
         {
@@ -184,7 +199,10 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                 item.img = "file://" + item.img;
             }
             ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
-                    .getDefultTravelImageOptions());
+                    .getDefultImageOptions());
+
+
+
 
 //            if ( holder.ivImage.getTag(1) != item.id )
 //            {
@@ -220,6 +238,12 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         }
 
 
+        StringImageChildModel item = (StringImageChildModel) getItem(i);
+
+        holder.tvInfo.setText(item.content);
+
+        ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
+                .getDefultImageOptions());
 
 
         return view;
@@ -266,6 +290,82 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             ivImage = (ImageView) view.findViewById(R.id.iv_image);
         }
     }
+
+
+    class EditListener
+    {
+        private StringImageChildModel childModel;
+        private EditText et;
+        private TextWatcher tw;
+        private View view;
+
+        public EditListener( EditText et, View view ) {
+            this.et = et;
+            this.view = view;
+            listener();
+        }
+
+        private void listener ()
+        {
+
+            tw = new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                    Common.log("before content == "+s.toString());
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                    childModel.content = s.toString();
+//                    Common.log("changed content == "+s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    int position = (int) et.getTag();
+                    childModel = (StringImageChildModel) getItem(position);
+                    childModel.content = s.toString();
+                    if ( view == null ) return;
+                    if ( !TextUtils.isEmpty(childModel.content))
+                    {
+                        view.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        view.setVisibility(View.VISIBLE);
+                    }
+//                    Common.log("after content == "+childModel.content);
+
+                }
+            };
+
+            et.addTextChangedListener(tw);
+
+//            et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//                @Override
+//                public void onFocusChange(View v, boolean hasFocus) {
+//                    if ( hasFocus )
+//                    {
+//                        Common.log("content has foucs = "+childModel.content);
+//                        et.addTextChangedListener(tw);
+//                    }
+//                    else
+//                    {
+//                        Common.log("content no foucs = "+childModel.content);
+//                        et.removeTextChangedListener(tw);
+//
+//                    }
+//                }
+//            });
+
+        }
+
+
+    }
+
+
+
+
 
 
 }

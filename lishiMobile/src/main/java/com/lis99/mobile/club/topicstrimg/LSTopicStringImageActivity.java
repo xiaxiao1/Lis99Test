@@ -2,6 +2,7 @@ package com.lis99.mobile.club.topicstrimg;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,6 +43,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     private int clubID, topicId;
 
+    private String clubName;
+
     private TopicStringImageAdapter adapter;
 
     private StringImageModel model;
@@ -55,7 +58,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
         model = (StringImageModel) getIntent().getSerializableExtra("DATA_MODEL");
 
-        if ( model == null && savedInstanceState != null )
+        if ( savedInstanceState != null )
         {
             model = (StringImageModel) savedInstanceState.getSerializable("DATA_MODEL");
         }
@@ -63,23 +66,53 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         if ( model == null )
         {
             model = new StringImageModel();
+
+            clubID = getIntent().getIntExtra("clubID", 48);
+            clubName = getIntent().getStringExtra("clubName");
+
+            if (TextUtils.isEmpty(clubName))
+            {
+                clubName = "户外范";
+            }
+
+            //        添加
+            model.clubId = ""+clubID;
+            model.clubName = clubName;
+            DataHelp.getInstance().addDraft(model);
+
+        }
+        else
+        {
+            clubID = Common.string2int(model.clubId);
+            clubName = model.clubName;
         }
 
+//        Common.log("parentId="+model.id);
+//      查找刚刚添加的
+//        model = DataHelp.getInstance().getDraftsAt();
+
+//        Common.log("parentId="+model.id);
+
+        model.item = DataHelp.getInstance().searchItemInDraft(model);
 
         if ( model.item == null || model.item.size() == 0 )
         {
             model.item = new ArrayList<>();
             //title
             StringImageChildModel item = new StringImageChildModel();
-            item.topicId = model.topicId;
+            item.parentId = model.id;
             model.item.add(item);
             //图文
             item = new StringImageChildModel();
-            item.topicId = model.topicId;
+            item.parentId = model.id;
             model.item.add(item);
         }
 
+
+
         initViews();
+
+        setTitle(model.clubName);
 
     }
 
@@ -136,9 +169,14 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
                         clubID = Common.string2int(values[1]);
 
-                        title.setText(values[0]);
+                        clubName = values[0];
+
+                        title.setText(clubName);
 
                         position = Integer.parseInt(mTask.getresult());
+
+                        model.clubName = clubName;
+                        model.clubId = ""+clubID;
 
                     }
                 });
@@ -163,13 +201,33 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                 StringImageChildModel childModel = model.item.get(index);
 
                 childModel.img = ImageUtil.saveTopicImg(this, uri);
+//                保存上一条图片到数据库, 条件可编辑状态的
+                StringImageChildModel childAdd = model.item.get(index-1);
+                if ( childAdd != null && childAdd.isEditing == 0 )
+                {
+//                    DataHelp.getInstance().addChild(childAdd);
 
-                DataHelp.getInstance().addChild(childModel);
+                    DataHelp.getInstance().addItem(childAdd);
+
+                    String title = model.item.get(0).content;
+                    String content = model.item.get(1).content;
+
+                    if ( !TextUtils.isEmpty(title))
+                    {
+                        model.title = title;
+                    }
+                    if ( !TextUtils.isEmpty(content))
+                    {
+                        model.content = content;
+                    }
+                    DataHelp.getInstance().addDraft(model);
+
+                }
 
 //                model.item.get(index).img = uri;
 //              增加一条
                 StringImageChildModel item = new StringImageChildModel();
-                item.topicId = model.topicId;
+                item.parentId = model.id;
                 model.item.add(item);
 
 
@@ -194,17 +252,47 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         startActivity(intent);
     }
 
+//  保存所有数据
+    private void saveAll ()
+    {
+        if ( model.item != null && model.item.size() >= 2 )
+        {
+            String title = model.item.get(0).content;
+            String content = model.item.get(1).content;
+
+            if ( !TextUtils.isEmpty(title))
+            {
+                model.title = title;
+            }
+            if ( !TextUtils.isEmpty(content))
+            {
+                model.content = content;
+            }
+            DataHelp.getInstance().addDraft(model);
+        }
+
+        DataHelp.getInstance().addItemAll(model.item);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            saveAll();
             Common.toast("内容保存草稿箱");
             return super.onKeyDown(keyCode, event);
         }
 
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+//      保存所有数据
+        saveAll();
+
     }
 
     //  结束前保存
@@ -214,7 +302,13 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         outState.putSerializable("DATA_MODEL", model);
     }
 
-//  打开后读取
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        setResult(RESULT_OK);
+    }
+
+    //  打开后读取
 //    @Override
 //    protected void onRestoreInstanceState(Bundle savedInstanceState) {
 //        super.onRestoreInstanceState(savedInstanceState);

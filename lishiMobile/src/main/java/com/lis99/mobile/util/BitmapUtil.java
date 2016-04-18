@@ -367,7 +367,7 @@ public class BitmapUtil {
 		else
 			return k;
 	}
-	
+
 	/**
 	 * 获取屏幕宽和高
 	 */

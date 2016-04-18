@@ -314,6 +314,52 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/layout_drafts"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_drafts"
+                    android:layout_marginRight="13sp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/my_join_club" />
+
+                <TextView
+                    android:id="@+id/tv_drafts"
+                    android:layout_toRightOf="@id/iv_drafts"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="草稿箱"
+                    android:textColor="#666"
+                    android:textSize="14sp" />
+
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@id/tv_drafts"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+
+            </RelativeLayout>
+
 
             <RelativeLayout
                 android:id="@+id/layout_friends"

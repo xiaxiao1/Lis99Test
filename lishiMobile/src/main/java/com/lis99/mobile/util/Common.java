@@ -30,6 +30,7 @@ import com.lis99.mobile.newhome.NewHomeActivity;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -518,6 +519,49 @@ public class Common {
         }
     }
 
+    /**
+     *  Unicode 转汉字
+     * @param utfString
+     * @return
+     */
+    public static String convert(String utfString){
+        if ( !"ttest".equals(DeviceInfo.CHANNELVERSION) )
+        {
+            return utfString;
+        }
+
+        if ( TextUtils.isEmpty(utfString) )
+        {
+            return utfString;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int i = -1;
+        int pos = 0;
+
+        while((i=utfString.indexOf("\\u", pos)) != -1){
+            sb.append(utfString.substring(pos, i));
+            if(i+5 < utfString.length()){
+                pos = i+6;
+                sb.append((char)Integer.parseInt(utfString.substring(i+2, i+6), 16));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     *      获取当前时间
+     * @return
+     */
+    public static String getTime ()
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+        Date now = new Date();
+        return format.format(now);
+
+
+    }
 
 
 }
