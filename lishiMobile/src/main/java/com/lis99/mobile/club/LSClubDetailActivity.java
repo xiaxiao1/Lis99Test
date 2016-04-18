@@ -457,7 +457,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		}
 		Intent intent = new Intent(LSClubDetailActivity.this, LSClubPublish2Activity.class);
 		intent.putExtra("clubID", clubID);
-		intent.putExtra("CURRENTCLUB", true);
+		intent.putExtra("clubName", clubHead.title);
+//		intent.putExtra("CURRENTCLUB", true);
 //			startActivity(intent);
 		startActivityForResult(intent, 998);
 	}
@@ -735,8 +736,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				return;
 			}
 			Intent intent = new Intent(LSClubDetailActivity.this, LSClubPublish2Activity.class);
+			intent.putExtra("clubName", clubHead.title);
 			intent.putExtra("clubID", clubID);
-			intent.putExtra("CURRENTCLUB", true);
+//			intent.putExtra("CURRENTCLUB", true);
 //			startActivity(intent);
 			startActivityForResult(intent, 998);
 			return;
@@ -820,11 +822,13 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		if (clubHead == null ) return;
 		if ( "-1".equals(clubHead.is_jion))
 		{
-			joinButton.setEnabled(true);
+//			joinButton.setEnabled(true);
+			joinButton.setBackgroundResource(R.drawable.club_join_new);
 		}
 		else
 		{
-			joinButton.setEnabled(false);
+//			joinButton.setEnabled(false);
+			joinButton.setBackgroundResource(R.drawable.club_joined_new);
 		}
 	}
 

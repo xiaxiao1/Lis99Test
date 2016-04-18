@@ -503,5 +503,37 @@ public class DialogManager {
 
     }
 
+    /**
+     *      草稿箱
+     * @param a
+     * @param callBack
+     */
+    public void showDraftDialog (Activity a, final CallBack callBack)
+    {
+        CharSequence[] chars = {"删除本条", "清空草稿箱"};
+        AlertDialog builder = new AlertDialog.Builder(a)
+                .setItems(chars, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if ( callBack == null ) return;
+                        MyTask myTask = new MyTask();
+                        switch (which)
+                        {
+                            case 0:
+                                myTask.result = "0";
+                                callBack.handler(myTask);
+                                break;
+                            case 1:
+                                myTask.result = "1";
+                                callBack.handler(myTask);
+                                break;
+                        }
+                    }
+                })
+                .show();
+
+
+    }
+
 
 }

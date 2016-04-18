@@ -23,6 +23,12 @@ public class StringImageModel extends BaseModel {
     public String title;
 
     /**
+     *      内容
+     */
+    @Column(name = "content")
+    public String content;
+
+    /**
      *      是否是过期了， 0 没有， 1过期了
      */
     @Column(name = "isPass")
@@ -31,11 +37,20 @@ public class StringImageModel extends BaseModel {
     @Column(name = "istest")
     public int istest;
 
-    @Column(name = "topicId")
-    public String topicId;
+//    @Column(name = "topicId")
+//    public String topicId;
 
     @Column(name = "clubId")
     public String clubId;
+
+    @Column(name = "clubName")
+    public String clubName;
+
+    /**
+     *      编辑时间
+     */
+    @Column(name = "editTime")
+    public String editTime;
 
     @Column(name = "item")
     public ArrayList<StringImageChildModel> item;
@@ -45,10 +60,10 @@ public class StringImageModel extends BaseModel {
         return db.selector(StringImageChildModel.class).where("parentId", "=", this.id).findAll();
     }
 
-    public List<StringImageChildModel> getChildernWithTopicId (DbManager db ) throws DbException
-    {
-        return db.selector(StringImageChildModel.class).where("topicId", "=", this.topicId).findAll();
-    }
+//    public List<StringImageChildModel> getChildernWithTopicId (DbManager db ) throws DbException
+//    {
+//        return db.selector(StringImageChildModel.class).where("topicId", "=", this.topicId).findAll();
+//    }
 
 
 }

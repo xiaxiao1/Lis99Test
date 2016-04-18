@@ -4,12 +4,12 @@ import android.os.Build;
 
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.Common;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import org.xutils.DbManager;
 import org.xutils.ex.DbException;
 import org.xutils.x;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +30,13 @@ public class DataHelp {
 
         daoConfig = new DbManager.DaoConfig();
         daoConfig.setDbName(DBNAME);
-//        daoConfig.setDbDir(StorageUtils.getOwnCacheDirectory(
-//                LSBaseActivity.activity.getApplicationContext(), "lishi99/cache"));
-        File file = new File(LSBaseActivity.activity.getCacheDir(), "lishi99/cache");
-        if ( !file.exists()) file.mkdirs();
-        daoConfig.setDbDir(file);
+        daoConfig.setDbDir(StorageUtils.getOwnCacheDirectory(
+                LSBaseActivity.activity.getApplicationContext(), "lishi99/cache"));
+
+//        File file = new File(LSBaseActivity.activity.getCacheDir(), "lishi99/cache");
+//        if ( !file.exists()) file.mkdirs();
+//        daoConfig.setDbDir(file);
+
         daoConfig.setDbVersion(1);
         daoConfig.setDbOpenListener(new DbManager.DbOpenListener() {
             @Override
@@ -105,19 +107,37 @@ public class DataHelp {
 
         } catch (DbException e) {
             e.printStackTrace();
+            Common.log("searchDraftError="+e.toString());
             return null;
         }
 
     }
 
+    synchronized public StringImageModel getDraftsAt (  )
+    {
+        long count = 0;
+        try {
+            count = db.selector(StringImageModel.class).count();
+//            return db.selector(StringImageModel.class).where("id", "in", count).findFirst();
+            return db.selector(StringImageModel.class).orderBy("id", true).findFirst();
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     synchronized public boolean addDraft( StringImageModel parent ) {
 //        StringImageModel parent = new StringImageModel();
 //        parent.title = "title" + System.currentTimeMillis();
+
+//      添加编辑时间
+        parent.editTime = Common.getTime();
+
         try {
             db.saveOrUpdate(parent);
         } catch (DbException e) {
             e.printStackTrace();
+            Common.log("addDraft Error="+e.toString());
             return false;
         }
         return true;
@@ -129,6 +149,7 @@ public class DataHelp {
                 db.delete(parent);
         } catch (DbException e) {
             e.printStackTrace();
+            Common.log("remove Draft Error="+e.toString());
             return false;
         }
         return true;
@@ -142,6 +163,34 @@ public class DataHelp {
         catch (Exception e)
         {
             e.toString();
+            Common.log("addItem Error="+e.toString());
+            return false;
+        }
+        return true;
+    }
+
+    synchronized public boolean addItemAll ( List<StringImageChildModel> childModel )
+    {
+        try {
+            db.saveOrUpdate(childModel);
+        }
+        catch (Exception e)
+        {
+            e.toString();
+            Common.log("addItem Error="+e.toString());
+            return false;
+        }
+        return true;
+    }
+
+    synchronized public boolean cleanAll ()
+    {
+        try {
+            db.dropTable(StringImageModel.class);
+            db.dropTable(StringImageChildModel.class);
+        } catch (DbException e) {
+            e.printStackTrace();
+            Common.log("cleanAll Error="+e.toString());
             return false;
         }
         return true;
@@ -153,6 +202,7 @@ public class DataHelp {
             db.delete(childModel);
         } catch (DbException e) {
             e.printStackTrace();
+            Common.log("remove Item Error="+e.toString());
             return false;
         }
         return true;
@@ -161,10 +211,12 @@ public class DataHelp {
     synchronized public ArrayList<StringImageChildModel> searchItemInDraft ( StringImageModel parent ) {
 
         try {
-            ArrayList<StringImageChildModel> childModels = (ArrayList<StringImageChildModel>) parent.getChildernWithTopicId(db);
+//            ArrayList<StringImageChildModel> childModels = (ArrayList<StringImageChildModel>) parent.getChildernWithTopicId(db);
+            ArrayList<StringImageChildModel> childModels = (ArrayList<StringImageChildModel>) parent.getChildern(db);
             return childModels;
         } catch (DbException e) {
             e.printStackTrace();
+            Common.log("search Item Error="+e.toString());
             return null;
         }
     }
@@ -249,7 +301,7 @@ public class DataHelp {
 
 
         try {
-            StringImageModel parent = db.selector(StringImageModel.class).findFirst();
+            StringImageModel parent = db.selector(StringImageModel.class).where("id", "in", new int[]{childModel.parentId}).findFirst();
 
             if ( parent != null )
             {
@@ -267,7 +319,7 @@ public class DataHelp {
             }
             else
             {
-                Common.log("parent search id in 1, 3, is null");
+                Common.log("parent search topicId is null");
             }
 
 
@@ -275,6 +327,10 @@ public class DataHelp {
 
 
         } catch (DbException e) {
+            e.printStackTrace();
+        }
+        catch (IllegalArgumentException e )
+        {
             e.printStackTrace();
         }
 

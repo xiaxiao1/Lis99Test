@@ -1242,7 +1242,11 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:launchMode="singleTask"
             />
-
+<!--    草稿箱-->
+        <activity android:name="com.lis99.mobile.club.topicstrimg.DraftsListActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  />
 
 
     </application>
