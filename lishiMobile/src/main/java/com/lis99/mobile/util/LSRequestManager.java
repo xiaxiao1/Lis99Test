@@ -121,7 +121,7 @@ public class LSRequestManager
 				UpdataInfoModel info = (UpdataInfoModel) mTask.getResultModel();
 				DemoApplication.LOGIN_ID = info.login_id;
 				Common.log("Login_id======="+info.login_id);
-				Common.toast("Login_id========="+info.login_id);
+//				Common.toast("Login_id========="+info.login_id);
 
 			}
 		});
