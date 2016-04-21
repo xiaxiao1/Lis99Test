@@ -158,6 +158,9 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 //		stopService(new Intent("com.lis99.mobile.service.LocService"));
 		stopService(new Intent(activity, com.lis99.mobile.service.LocService.class));
 		unregisterReceiver(myReciever);
+
+		dialogView = null;
+
 		super.onDestroy();
 	}
 
@@ -787,7 +790,7 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 
 	protected void hideDialog() {
 
-		if (dialogView != null) {
+		if (dialogView != null && dialogView.isShowing()) {
 			dialogView.dismiss();
 			dialogView = null;
 		}

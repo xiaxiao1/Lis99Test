@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.autoupdatesdk.BDAutoUpdateSDK;
+import com.baidu.autoupdatesdk.UICheckUpdateCallback;
 import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -379,7 +381,7 @@ public class Common {
 //
 //                }
 //            });
-//        }
+        }
 
         return b;
     }
@@ -573,6 +575,15 @@ public class Common {
         return format.format(now);
 
 
+    }
+
+    public static boolean isTest ()
+    {
+        if ( "ttest".equals(DeviceInfo.CHANNELVERSION))
+        {
+            return true;
+        }
+        return false;
     }
 
 
