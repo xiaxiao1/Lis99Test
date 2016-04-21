@@ -368,6 +368,10 @@ public class FragmentChoicenessList extends Fragment implements
 
                     startActivity(new Intent(getActivity(), LSTopicStringImageActivity.class));
 
+//                    Common.log("MAC = "+DeviceInfo.getMacAddress());
+
+//                    LSRequestManager.getInstance().upDataInfo();
+
 //                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
 //
 //                    intent.putExtra("CODE", 0);

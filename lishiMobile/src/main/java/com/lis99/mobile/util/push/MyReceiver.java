@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.lis99.mobile.club.model.PushModel;
 import com.lis99.mobile.entry.LsStartupActivity;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ParserUtil;
 import com.lis99.mobile.util.PushManager;
 
@@ -42,7 +43,9 @@ public class MyReceiver extends BroadcastReceiver {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
             Log.d(TAG, "[MyReceiver] 接收Registration Id : " + regId);
             //send the Registration Id to your server...
-//            保存Token
+//          保存Token
+            Log.w("MYUTIL", "regId =＝＝＝＝＝＝＝＝＝=====" + regId);
+            Common.toast("regId =＝＝＝＝＝＝＝＝＝=====" + regId);
             if (PushManager.getInstance().getPushInstance() != null) {
                 PushManager.getInstance().getPushInstance().setToken(regId);
             }

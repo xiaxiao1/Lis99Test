@@ -1,5 +1,6 @@
 package com.lis99.mobile.club.topicstrimg;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.lis99.mobile.util.dbhelp.StringImageModel;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class DraftsListAdapter extends MyBaseAdapter {
 
         holder.tv_club_name.setText(item.clubName);
 
-        holder.tv_content.setText(item.content);
+        holder.tv_content.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity)mContext, item.content));
 
         holder.tv_create.setText(item.editTime);
 

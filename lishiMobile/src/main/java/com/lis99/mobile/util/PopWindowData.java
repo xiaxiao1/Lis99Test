@@ -54,6 +54,16 @@ public class PopWindowData {
         map.put("value", "285");
         alist.add(map);
 
+        if ( "ttest".equals(DeviceInfo.CHANNELVERSION))
+        {
+            map = new HashMap<String, String>();
+
+            map.put("select", "0");
+            map.put("name", "测试俱乐部");
+            map.put("value", "190");
+            alist.add(map);
+        }
+
         return alist;
     }
 

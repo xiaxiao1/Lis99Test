@@ -18,8 +18,10 @@ import com.lis99.mobile.club.model.MyJoinClubModel;
 import com.lis99.mobile.club.model.NearbyModel;
 import com.lis99.mobile.club.model.QQLoginModel;
 import com.lis99.mobile.club.model.RedDotModel;
+import com.lis99.mobile.club.model.UpdataInfoModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.entry.mobel.LSRegistModel;
 import com.lis99.mobile.newhome.LSTab;
 
@@ -85,7 +87,7 @@ public class LSRequestManager
 	/**上传用户信息*/
 	public void upDataInfo ()
 	{
-		String Token = SharedPreferencesHelper.getPushToken();
+		String Token = SharedPreferencesHelper.getJPushToken();//getPushToken();
 		if ( TextUtils.isEmpty(Token)) return;
 		String userid = DataManager.getInstance().getUser().getUser_id();
 
@@ -95,7 +97,7 @@ public class LSRequestManager
 		}
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		BaseModel model = new BaseModel();
+		final UpdataInfoModel model = new UpdataInfoModel();
 		map.put("os_version", DeviceInfo.SDKVERSIONCODE);
 		map.put("os_name", "Android");
 		map.put("channel_number", DeviceInfo.CHANNELVERSION);
@@ -103,11 +105,26 @@ public class LSRequestManager
 		map.put("device_token", Token);
 		map.put("imei", DeviceInfo.IMEI);
 		map.put("userid", TextUtils.isEmpty(userid) ? "0" : userid);
+		map.put("mac", DeviceInfo.getMacAddress());
+		map.put("equipment_brand", DeviceInfo.MANUFACTURER);
+		map.put("equipment_num", DeviceInfo.MODEL);
+
+		Common.log("Post upDataInfo =========");
+
 //		Common.toast("Login userId=" + userid + "\n token=" + Token);
 //		Common.log("Login userId=" + userid + "\n token=" + Token);
 //		Toast.makeText(DemoApplication.getInstance().getApplicationContext(), "Login userId=" + userid + "\n token=" + Token, Toast.LENGTH_SHORT).show();
 		String url = C.UPDATA_DEVICE_INFO;
-		MyRequestManager.getInstance().requestPostNoDialog(url, map, model, null);
+		MyRequestManager.getInstance().requestPostNoDialog(url, map, model, new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				UpdataInfoModel info = (UpdataInfoModel) mTask.getResultModel();
+				DemoApplication.LOGIN_ID = info.login_id;
+				Common.log("Login_id======="+info.login_id);
+				Common.toast("Login_id========="+info.login_id);
+
+			}
+		});
 	}
 	/**
 	 * 			登陆
@@ -211,7 +228,7 @@ public class LSRequestManager
 	{
 		// TODO Auto-generated method stub
 		BaseModel model = new BaseModel();
-		String token = SharedPreferencesHelper.getPushToken();
+		String token = SharedPreferencesHelper.getJPushToken();//getPushToken();
 		String UserId = DataManager.getInstance().getUser().getUser_id();
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();

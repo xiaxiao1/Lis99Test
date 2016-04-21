@@ -72,6 +72,7 @@
                     />
 
                 <EditText
+                    android:hint="仅用于购买保险、办理住宿"
                     android:id="@+id/idNumView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

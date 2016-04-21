@@ -400,7 +400,7 @@ public class LSLoginActivity extends LSBaseActivity {
                 finish();
                 break;
             case THIRDLOGIN_SUCCESS1: {
-                LSRequestManager.getInstance().upDataInfo();
+
                 Intent intent = new Intent(LSLoginActivity.this,
                         LsImproveInfoActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -482,8 +482,11 @@ public class LSLoginActivity extends LSBaseActivity {
 
             DataManager.getInstance().setUser(u);
             DataManager.getInstance().setLogin_flag(true);
-        //保存到本地
+
+            //保存到本地
             saveThirdUserMeg(DataManager.getInstance().getUser());
+//          上传设备信息
+            LSRequestManager.getInstance().upDataInfo();
 
             //            微信登陆
             if ( "1".equals(is_new))
@@ -523,6 +526,8 @@ public class LSLoginActivity extends LSBaseActivity {
         CallBack callBack = new CallBack() {
             @Override
             public void handler(MyTask mTask) {
+//                上传设备信息
+                LSRequestManager.getInstance().upDataInfo();
                 finish();
             }
         };
@@ -538,6 +543,8 @@ public class LSLoginActivity extends LSBaseActivity {
         CallBack call = new CallBack() {
             @Override
             public void handler(MyTask mTask) {
+//                上传设备信息
+                LSRequestManager.getInstance().upDataInfo();
                 finish();
             }
         };

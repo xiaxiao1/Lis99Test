@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:id="@+id/list_parent"
+    >
 
 
     <RelativeLayout
@@ -79,12 +82,60 @@
         style="@style/listViewStyle"
         android:background="@color/pull_bg"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
         android:dividerHeight="0px"
         android:divider="@null"
         android:id="@+id/list"
         ></ListView>
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="#e3dbd0"
+        />
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f9f9f9"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
 
+
+        <LinearLayout
+            android:id="@+id/bottomBar_emotion"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/addEmotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/emotion_face"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="#e3dbd0"
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/footer_for_emoticons"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_height"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
 
 </LinearLayout>

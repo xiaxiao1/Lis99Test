@@ -194,7 +194,7 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
 
         tv_pay_phone = (TextView) findViewById(R.id.tv_pay_phone);
 
-        tv_pay_phone.setText("如果您有支付方面的疑问，敬请致电："+getResources().getString(R.string.tel));
+        tv_pay_phone.setText("如果您有支付方面的疑问，敬请致电："+getResources().getString(R.string.tel)+"(工作日9:00-18:00)");
 
         tv_title = (TextView) findViewById(R.id.tv_title);
 

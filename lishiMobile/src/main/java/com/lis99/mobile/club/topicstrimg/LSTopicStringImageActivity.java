@@ -5,24 +5,40 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSImagePicker;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.entry.ActivityPattern1;
+import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.dbhelp.DataHelp;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
 import com.lis99.mobile.util.dbhelp.StringImageModel;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yy on 16/3/29.
@@ -37,7 +53,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     private TextView button1;
     private TextView title;
     private ImageView dot;
-    private ListView list;
+    protected ListView list;
 
     private int position = 0;
 
@@ -48,6 +64,16 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     private TopicStringImageAdapter adapter;
 
     private StringImageModel model;
+
+    //表情
+    protected ImageView addEmotion;
+    protected View bottomBar_emotion;
+
+    protected LinearLayout emoticonsCover;
+
+    protected View parentLayout;
+
+    private int listHeight = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,19 +138,207 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
         initViews();
 
+        getListHeight();
+
         setTitle(model.clubName);
 
+    }
+
+    protected  void getListHeight ()
+    {
+        ViewTreeObserver vto = list.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                if ( listHeight != 0 && listHeight != list.getHeight() )
+                {
+                    list.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    if ( adapter != null )
+                        list.setSelection(adapter.getPosition());
+                }
+
+                Common.log("list Height = "+list.getHeight());
+                if ( listHeight == 0 ) listHeight = list.getHeight();
+
+            }
+        });
     }
 
 //    发布
     @Override
     protected void rightAction() {
         super.rightAction();
+
+        String title = model.title.toString().trim();//titleView.getText().toString().trim();
+//        String body = bodyView.getText().toString().trim();
+
+        if (TextUtils.isEmpty(title)) {
+            postMessage(POPUP_TOAST, "标题不能为空");
+            return;
+        }
+
+//        if (TextUtils.isEmpty(body)) {
+//            postMessage(POPUP_TOAST, "正文不能为空");
+//            return;
+//        }
+
+        if ( !Common.isLogin(this))
+        {
+            postMessage(POPUP_TOAST, "请先登录");
+            return;
+        }
+
+        String userID = DataManager.getInstance().getUser().getUser_id();
+
+        List<String> contents = new ArrayList<>();
+
+        List<byte[]> files = new ArrayList<>();
+
+        for ( int i = 1; i < model.item.size(); i++ )
+        {
+            StringImageChildModel item = model.item.get(i);
+
+
+            if ( !TextUtils.isEmpty(item.img))
+            {
+                String path = item.img.replace("file://", "");
+                File file = new File(path);
+
+                if ( file.exists() )
+                {
+                    Common.log("file path = " + file.getAbsolutePath());
+                }
+                else
+                {
+                    Common.log("not found path = " + path);
+                }
+
+
+//                files.add(FileUtil.readFileByBytes(path));
+            }
+            else
+            {
+//                File file = new File("");
+                files.add(new byte[]{});
+            }
+
+            contents.add(item.content);
+
+        }
+
+        if ( true ) return;
+
+
+        AsyncHttpClient client = new AsyncHttpClient();
+
+
+        RequestParams params = new RequestParams();
+        params.put("club_id", clubID);
+        params.put("user_id", userID);
+        params.put("title", title);
+        params.put("source", DeviceInfo.PLATFORM);
+        params.put("content", contents);
+        params.put("thumb", files);
+
+//        params.put("content", body);
+//        params.put("category", 0);
+//        params.put("parentid", 0);
+//        if (bitmap != null)
+//            params.put("thumb", new ByteArrayInputStream(BitmapUtil.bitampToByteArray(bitmap)), "image.jpg");
+
+        client.post(C.REPLY_NEW_TOPIC_STRING_IMAGE, params, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+                postMessage(ActivityPattern1.POPUP_PROGRESS,
+                        getString(R.string.sending));
+            }
+
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                String errorCode = response.optString("status", "");
+                if ("OK".equals(errorCode)) {
+                    postMessage(POPUP_TOAST, "发布成功");
+
+
+
+//					LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LSClubPublish2Activity.this);
+//					Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
+//					lbm.sendBroadcast(intent);
+
+                    String data = response.optString("data", "");
+                    if (!TextUtils.isEmpty(data)) {
+                        try {
+                            JSONObject j = new JSONObject(data);
+
+                            int category = j.optInt("category", -1);
+                            topicId = j.optInt("topicid", -1);
+                            if (category != -1 && topicId != -1) {
+//                                if (category == 2) {
+//                                    Intent in = new Intent(activity, LSClubTopicNewActivity.class);
+//                                    in.putExtra("topicID", topicId);
+//                                    startActivity(in);
+//                                } else {
+//                                    Intent in = new Intent(activity, LSClubTopicActivity.class);
+//                                    in.putExtra("topicID", topicId);
+//                                    startActivity(in);
+//                                }
+                                Common.goTopic(activity, category, topicId);
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    setResult(RESULT_OK);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString,
+                                  Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+
+                Common.log("Http Post Fail responseString="+responseString);
+
+            }
+
+            @Override
+            public void onFinish() {
+                postMessage(DISMISS_PROGRESS);
+            }
+
+        });
+
     }
 
     @Override
     protected void initViews() {
         super.initViews();
+
+
+        //表情
+
+        addEmotion = (ImageView) findViewById(R.id.addEmotion);
+
+        bottomBar_emotion = findViewById(R.id.bottomBar_emotion);
+
+        bottomBar_emotion.setOnClickListener(this);
+
+        emoticonsCover = (LinearLayout) findViewById(R.id.footer_for_emoticons);
+
+        parentLayout = findViewById(R.id.list_parent);
+
+        bottomBar_emotion.setVisibility(View.GONE);
 
 
         titlehead = (RelativeLayout) findViewById(R.id.titlehead);
@@ -275,10 +489,20 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     }
 
     @Override
+    protected void leftAction() {
+        Common.toast("内容保存草稿箱");
+        sendResult();
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+        if (MyEmotionsUtil.getInstance().onKeyDown(keyCode, event)) {
+            return true;
+        }
+
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            saveAll();
+            sendResult();
             Common.toast("内容保存草稿箱");
             return super.onKeyDown(keyCode, event);
         }
@@ -291,7 +515,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     protected void onStop() {
         super.onStop();
 //      保存所有数据
-        saveAll();
+//        saveAll();
 
     }
 
@@ -302,10 +526,19 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         outState.putSerializable("DATA_MODEL", model);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    private void sendResult()
+    {
+        saveAll();
         setResult(RESULT_OK);
+        finish();
+    }
+
+    protected void visibleEmotionBar ( boolean b )
+    {
+        if ( b )
+        bottomBar_emotion.setVisibility(View.VISIBLE);
+        else
+            bottomBar_emotion.setVisibility(View.GONE);
     }
 
     //  打开后读取
