@@ -56,11 +56,11 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
         super.initViews();
 
-        infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系"+getResources().getString(R.string.tel)+"</font>";
+        infoZFB = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系\n"+getResources().getString(R.string.tel)+"(工作日9:00-18:00)</font>";
 
-        infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系"+getResources().getString(R.string.tel)+"</font>";
+        infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系\n"+getResources().getString(R.string.tel)+"(工作日9:00-18:00)</font>";
 
-        infoOk = "希望您玩得愉快\n如果您需要帮助 请联系"+getResources().getString(R.string.tel);
+        infoOk = "希望您玩得愉快\n如果您需要帮助 请联系"+getResources().getString(R.string.tel)+"(工作日9:00-18:00)";
 
         setTitle("支付结果");
 

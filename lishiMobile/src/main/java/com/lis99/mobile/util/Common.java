@@ -44,7 +44,7 @@ public class Common {
     private static String TAG = "MYUTIL";
 
     public static void log(String str) {
-        if (BuildConfig.LOG_DEBUG)
+        if ("ttest".equals(DeviceInfo.CHANNELVERSION))
         Log.w(TAG, str);
     }
 
@@ -148,6 +148,18 @@ public class Common {
         }
         return true;
     }
+
+    /**
+     *      拨打电话
+     * @param number
+     */
+    public static void telPhone ( String number )
+    {
+//        Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+number));
+        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+number));
+        LSBaseActivity.activity.startActivity(intent);
+    }
+
 
     public static int dip2px(float dipValue) {
         return (int) (dipValue * scale + 0.5f);

@@ -1,6 +1,8 @@
 package com.lis99.mobile.club.widget.applywidget;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -170,12 +172,24 @@ public class ApplyManagerItem extends MyBaseAdapter {
         holder.btn_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LSRequestManager.getInstance().managerApplyRefuse(topicId, clubId, item.applyid, new CallBack() {
-                    @Override
-                    public void handler(MyTask mTask) {
-                        main.onHeaderRefresh(null);
-                    }
-                });
+
+                new AlertDialog.Builder(mContext).setTitle("据绝此报名")
+                        .setMessage("确认拒绝此报名？")
+                        .setNegativeButton("返回", null)
+                        .setPositiveButton("拒绝", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                LSRequestManager.getInstance().managerApplyRefuse(topicId, clubId, item.applyid, new CallBack() {
+                                    @Override
+                                    public void handler(MyTask mTask) {
+                                        main.onHeaderRefresh(null);
+                                    }
+                                });
+                            }
+                        })
+                        .create().show();
+
             }
         });
 

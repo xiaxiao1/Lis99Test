@@ -213,7 +213,7 @@ public class SharedPreferencesHelper {
 		cleanClientVersion();
 
 //		========JPush========
-		removeJPushToken();
+//		removeJPushToken();
 
 	}
 
@@ -428,27 +428,30 @@ public class SharedPreferencesHelper {
 		removeBase("isvip");
 	}
 	
-	public static void savePushToken ( String token )
-	{
-		saveBase("PUSHTOKEN", token);
-	}
-	public static String getPushToken ()
-	{
-		String Token = getBase("PUSHTOKEN", "");
-		if ( TextUtils.isEmpty(Token) && PushManager.getInstance().getPushInstance() != null )
-		{
-			Token = PushManager.getInstance().getPushInstance().getToken();
-		}
-		return Token;
-	}
+//	public static void savePushToken ( String token )
+//	{
+//		saveBase("PUSHTOKEN", token);
+//	}
+//	public static String getPushToken ()
+//	{
+//		String Token = getBase("PUSHTOKEN", "");
+//		if ( TextUtils.isEmpty(Token) && PushManager.getInstance().getPushInstance() != null )
+//		{
+//			Token = PushManager.getInstance().getPushInstance().getToken();
+//		}
+//		return Token;
+//	}
 	
-	public static void removePushToken ()
-	{
-		removeBase("PUSHTOKEN");
+//	public static void removePushToken ()
+//	{
+//		removeBase("PUSHTOKEN");
+//	}
+
+
+	public static void saveJPushToken (String token ){
+		Common.log("===============SAVE JPUSH = "+token);
+		saveBase("JPUSHTOKEN", token);
 	}
-
-
-	public static void saveJPushToken (String token ){saveBase("JPUSHTOKEN", token);}
 
 	public static  String getJPushToken ()
 	{
@@ -460,10 +463,10 @@ public class SharedPreferencesHelper {
 		return token;
 	}
 
-	public static void removeJPushToken ()
-	{
-		removeBase("JPUSHTOKEN");
-	}
+//	public static void removeJPushToken ()
+//	{
+//		removeBase("JPUSHTOKEN");
+//	}
 
 	public static void saveQQSex ( String sex )
 	{

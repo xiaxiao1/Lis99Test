@@ -127,6 +127,7 @@ public class LsRegistActivity extends ActivityPattern {
 //			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME, Context.MODE_PRIVATE, C.PASSWORD,password);
 			SharedPreferencesHelper.saveUserName(email);
 			SharedPreferencesHelper.saveUserPass(password);
+			LSRequestManager.getInstance().upDataInfo();
 			Toast.makeText(this, "注册成功", 0).show();
 			Intent intent = new Intent(this,NewHomeActivity.class);
 //			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

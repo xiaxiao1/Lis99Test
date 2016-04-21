@@ -21,6 +21,7 @@ import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.ParserUtil;
 import com.lis99.mobile.util.PayUtil;
@@ -284,6 +285,10 @@ public class LSApplyEnterActivity extends LSBaseActivity {
         super.onClick(arg0);
         switch (arg0.getId()) {
             case R.id.btn_ok:
+
+                //            上传设备信息
+                LSRequestManager.getInstance().upDataInfo();
+
                 if ( bModel != null && !TextUtils.isEmpty(bModel.ordercode) )
                 {
                     goPayNow();

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="419"
-    android:versionName="4.1.9" >
+    android:versionCode="420"
+    android:versionName="4.2.0" >
 
 
 
@@ -1241,6 +1241,7 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:launchMode="singleTask"
+                  android:windowSoftInputMode="adjustResize"
             />
 <!--    草稿箱-->
         <activity android:name="com.lis99.mobile.club.topicstrimg.DraftsListActivity"

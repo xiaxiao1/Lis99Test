@@ -13,10 +13,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.dbhelp.DataHelp;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -28,9 +32,9 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
 
     private final int TITLE = 0;
-//    可以删除的
+    //    可以删除的
     private final int IMG_STRING_NOMAL = 1;
-//    不可以删除的
+    //    不可以删除的
     private final int IMG_STRING_NO_REMOVE = 2;
 
     private final int COUNT = 3;
@@ -38,6 +42,18 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
     private LayoutInflater layoutInflater;
 
     private LSTopicStringImageActivity main;
+
+    private int position = 0;
+
+    private EditText currentEdit;
+
+    public int getPosition ()
+    {
+        Common.log("getPosition======");
+        if ( currentEdit != null )
+        currentEdit.requestFocus();
+        return position;
+    }
 
     public TopicStringImageAdapter(Context c, List listItem) {
         super(c, listItem);
@@ -103,7 +119,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
 
 
-//  标题
+    //  标题
     private View getTitle ( int i, View view )
     {
         ViewHolderTitle holder = null;
@@ -154,7 +170,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
         final ViewHolderNomal finalHolder = holder;
 
-        holder.editInfo.setText(item.content);
+        holder.editInfo.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
 
 
 
@@ -182,12 +198,15 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                     finalHolder.ivImage.setImageBitmap(null);
                     if ( ImageUtil.deleteNativeImg(item.img) )
                     {
-                        Common.toast("OK");
+//                        Common.toast("OK");
                     }
                     else
                     {
-                        Common.toast("ERROR");
+//                        Common.toast("ERROR");
                     }
+
+                    DataHelp.getInstance().removeItem(item);
+
                     item.img = null;
                     removeAt(i);
 
@@ -240,7 +259,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
         StringImageChildModel item = (StringImageChildModel) getItem(i);
 
-        holder.tvInfo.setText(item.content);
+        holder.tvInfo.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
 
         ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
                 .getDefultImageOptions());
@@ -251,7 +270,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
 
 
-//  标题
+    //  标题
     protected class ViewHolderTitle {
         private EditText editInfo;
 
@@ -260,7 +279,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         }
     }
 
-//  可修改内容的
+    //  可修改内容的
     protected class ViewHolderNomal {
         private EditText editInfo;
         private ImageView ivPen;
@@ -280,7 +299,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             ivRemove = (ImageView) view.findViewById(R.id.iv_remove);
         }
     }
-//  不可修改内容的
+    //  不可修改内容的
     protected class ViewHolderNoRemove {
         private TextView tvInfo;
         private ImageView ivImage;
@@ -308,6 +327,9 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         private void listener ()
         {
 
+            MyEmotionsUtil.getInstance().setVisibleEmotion(callBack);
+//            MyEmotionsUtil.getInstance().initView(main, et, main.bottomBar_emotion, main.emoticonsCover, main.parentLayout);
+
             tw = new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -334,12 +356,82 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                     {
                         view.setVisibility(View.VISIBLE);
                     }
-//                    Common.log("after content == "+childModel.content);
+                    Common.log("after content == "+position+childModel.content);
 
                 }
             };
 
             et.addTextChangedListener(tw);
+
+//            et.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int position = (int) et.getTag();
+//                    Common.log("onFocusChange true"+position);
+//                        if ( position == 0 )
+//                        {
+//                            MyEmotionsUtil.getInstance().dismissPopupWindow();
+//                            main.visibleEmotionBar(false);
+//                        }
+//                        else
+//                        {
+//                            main.visibleEmotionBar(true);
+//                        }
+//                }
+//            });
+
+//            et.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//
+//                    TopicStringImageAdapter.this.position = position;
+//
+//                    currentEdit = et;
+//
+//                    main.getListHeight();
+//
+//                    Common.log("on Click Listener");
+//
+//                    return false;
+//                }
+//            });
+
+//            et.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//
+//                }
+//            });
+
+
+            et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if (b) {
+                        int position = (int) et.getTag();
+//                        main.list.setSelection(position);
+
+                        Common.log("onFocusChange true"+position);
+                        if ( position == 0 )
+                        {
+                            MyEmotionsUtil.getInstance().dismissPopupWindow();
+                            main.visibleEmotionBar(false);
+//                            view.requestFocus();
+                        }
+                        else
+                        {
+                            main.visibleEmotionBar(true);
+//                            view.requestFocus();
+                        }
+                    }
+                    else
+                    {
+                        int position = (int) et.getTag();
+                        Common.log("onFocusChange false"+position);
+                    }
+                }
+            });
 
 //            et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //                @Override
@@ -363,7 +455,16 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
     }
 
-
+    private CallBack callBack = new CallBack() {
+        @Override
+        public void handler(MyTask mTask) {
+            if ("GONE".equals(mTask.getresult())) {
+                main.addEmotion.setImageResource(R.drawable.emotion_face);
+            } else {
+                main.addEmotion.setImageResource(R.drawable.emotion_keybody);
+            }
+        }
+    };
 
 
 

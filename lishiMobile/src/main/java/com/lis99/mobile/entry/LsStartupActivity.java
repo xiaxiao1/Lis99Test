@@ -41,7 +41,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import java.util.HashMap;
 
-public class LsStartupActivity extends ActivityPattern {
+public class LsStartupActivity extends ActivityPatternStartUp {
 
     LinearLayout ll_startup;
     String account;

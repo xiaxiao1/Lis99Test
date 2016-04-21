@@ -38,6 +38,8 @@ public class DemoApplication extends Application
     private BDLocation location;
     public int versionCode;
     public String versionName;
+//  设备信息列表id
+    public static int LOGIN_ID;
 
     public static WeakReference<Bitmap> publishBitmap;
 

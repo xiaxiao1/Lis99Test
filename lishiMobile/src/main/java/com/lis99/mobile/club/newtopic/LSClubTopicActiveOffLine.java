@@ -2,6 +2,7 @@ package com.lis99.mobile.club.newtopic;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -97,6 +98,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     private View include_equip;
 
+    private TextView tv_tel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -382,6 +384,20 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     private void initialize() {
 
+        tv_tel = (TextView) findViewById(R.id.tv_tel);
+
+        final String tel = getResources().getString(R.string.tel);
+
+        String telInfo = "<font color=\"#525252\">免费咨询电话</font><font color=\"#2bca63\">" + tel + "</font><font color=\"#525252\">(工作日9:00-18:00)</font>";
+
+        tv_tel.setText(Html.fromHtml(telInfo));
+
+        tv_tel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common.telPhone(tel);
+            }
+        });
 
         View titleLeft = findViewById(R.id.titleLeft);
         titleLeft.setOnClickListener(new View.OnClickListener() {
@@ -489,6 +505,8 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
         roundedImageView1.setOnClickListener(this);
 
     }
+
+
 
     @Override
     protected void rightAction() {

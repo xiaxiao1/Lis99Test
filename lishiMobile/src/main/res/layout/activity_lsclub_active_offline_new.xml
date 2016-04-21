@@ -412,6 +412,55 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="14dp"
+                android:id="@+id/layout_tel"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/active_tel_icon"
+                    android:text="活动咨询"
+                    android:textSize="10sp"
+                    android:drawablePadding="10dp"
+                    android:textColor="#c8bdaa"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center_vertical"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="14dp"
+                    >
+
+                    <ImageView
+                        android:layout_marginTop="7dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/list_dot_in_club_topic"
+                        android:layout_marginRight="10dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_tel"
+                        android:textColor="@color/text_color_black"
+                        android:text="@string/temp_string"
+                        android:lineSpacingExtra="6dp"
+                        android:textSize="13sp"
+                        />
+
+                </LinearLayout>
+                </LinearLayout>
+
             <include android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      layout="@layout/list_line"
@@ -422,6 +471,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/layout_address"
+                android:visibility="gone"
                 >
 
                 <ImageView
