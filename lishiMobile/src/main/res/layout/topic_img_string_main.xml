@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
@@ -79,6 +80,7 @@
 
 
     <ListView
+        android:transcriptMode="normal"
         style="@style/listViewStyle"
         android:background="@color/pull_bg"
         android:layout_width="fill_parent"
@@ -94,13 +96,6 @@
         android:layout_height="2px"
         android:background="#e3dbd0"
         />
-    <LinearLayout
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f9f9f9"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal" >
 
 
         <LinearLayout
@@ -123,7 +118,6 @@
         </LinearLayout>
 
 
-    </LinearLayout>
     <View
         android:layout_width="fill_parent"
         android:layout_height="2px"

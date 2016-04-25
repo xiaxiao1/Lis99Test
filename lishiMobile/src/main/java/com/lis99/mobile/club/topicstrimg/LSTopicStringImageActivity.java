@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,6 +21,7 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
+import com.lis99.mobile.util.FileUtil;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.dbhelp.DataHelp;
@@ -39,6 +39,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.view.KeyEvent.KEYCODE_BACK;
 
 /**
  * Created by yy on 16/3/29.
@@ -73,8 +75,6 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     protected View parentLayout;
 
-    private int listHeight = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +89,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             model = (StringImageModel) savedInstanceState.getSerializable("DATA_MODEL");
         }
 
+//        发帖
         if ( model == null )
         {
             model = new StringImageModel();
@@ -119,6 +120,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
 //        Common.log("parentId="+model.id);
 
+
         model.item = DataHelp.getInstance().searchItemInDraft(model);
 
         if ( model.item == null || model.item.size() == 0 )
@@ -135,43 +137,85 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         }
 
 
+//        最后一条， 图片应该是空的， 不是的话， 增加一条空的
+        if ( model.item != null && model.item.size() != 0 )
+        {
+//            有添加过数据， 清空图片不存在的项目
+            if ( model.item.size() > 2 )
+            {
+                for ( int i = 1; i < model.item.size() - 1; i++ )
+                {
+                    StringImageChildModel item = model.item.get(i);
+                    if ( TextUtils.isEmpty(item.img) )
+                    {
+                        model.item.remove(item);
+                        DataHelp.getInstance().removeItem(item);
+                    }
+
+                }
+            }
+//          判断最后一项是否为空， 不是添加空
+            if ( model.item.size() == 1 || !TextUtils.isEmpty(model.item.get(model.item.size() - 1).img) )
+            {
+                //图文
+                StringImageChildModel item = new StringImageChildModel();
+                item.parentId = model.id;
+                model.item.add(item);
+            }
+
+        }
 
         initViews();
 
-        getListHeight();
+//        getListHeight();
 
         setTitle(model.clubName);
 
     }
 
-    protected  void getListHeight ()
-    {
-        ViewTreeObserver vto = list.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
+    int currentHeight = 0, sendHeight;
 
-                if ( listHeight != 0 && listHeight != list.getHeight() )
-                {
-                    list.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                    if ( adapter != null )
-                        list.setSelection(adapter.getPosition());
-                }
-
-                Common.log("list Height = "+list.getHeight());
-                if ( listHeight == 0 ) listHeight = list.getHeight();
-
-            }
-        });
-    }
+//    protected  void getListHeight ()
+//    {
+//
+//        ViewTreeObserver vto = list.getViewTreeObserver();
+//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//
+//                currentHeight = list.getHeight();
+//
+//                if ( currentHeight != listHeight )
+//                {
+//                    sendHeight = currentHeight;
+//                }
+//
+//                if ( listHeight != 0 && currentHeight == sendHeight )
+//                {
+//                    list.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//                    if ( adapter != null )
+//                        list.smoothScrollToPosition(adapter.childHeight);
+//                }
+//
+//                Common.log("list Height = "+list.getHeight());
+//                if ( listHeight == 0 ) listHeight = list.getHeight();
+//
+//            }
+//        });
+//    }
 
 //    发布
     @Override
     protected void rightAction() {
         super.rightAction();
 
-        String title = model.title.toString().trim();//titleView.getText().toString().trim();
+        String title = model.title;//titleView.getText().toString().trim();
 //        String body = bodyView.getText().toString().trim();
+
+        if (TextUtils.isEmpty(title) && model.item != null && model.item.size() != 0 ) {
+
+            title = model.item.get(0).content;
+        }
 
         if (TextUtils.isEmpty(title)) {
             postMessage(POPUP_TOAST, "标题不能为空");
@@ -193,7 +237,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
         List<String> contents = new ArrayList<>();
 
-        List<byte[]> files = new ArrayList<>();
+        List<String> files = new ArrayList<>();
+        List<String> fileName = new ArrayList<>();
 
         for ( int i = 1; i < model.item.size(); i++ )
         {
@@ -207,27 +252,31 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
                 if ( file.exists() )
                 {
-                    Common.log("file path = " + file.getAbsolutePath());
+                    files.add(FileUtil.readFileByBytes(path));
+                    String name = item.img.substring(item.img.lastIndexOf("."), item.img.length());
+                    fileName.add(name);
+
                 }
                 else
                 {
                     Common.log("not found path = " + path);
+                    files.add("");
+                    fileName.add("");
                 }
 
 
-//                files.add(FileUtil.readFileByBytes(path));
+
             }
             else
             {
 //                File file = new File("");
-                files.add(new byte[]{});
+                files.add("");
+                fileName.add("");
             }
 
             contents.add(item.content);
 
         }
-
-        if ( true ) return;
 
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -240,6 +289,21 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         params.put("source", DeviceInfo.PLATFORM);
         params.put("content", contents);
         params.put("thumb", files);
+        params.put("ext", fileName);
+
+//        if ( files.size() != 0 )
+//        {
+//            Bitmap b = BitmapFactory.decodeByteArray(files.get(0), 0, files.get(0).length);
+//            if ( b == null )
+//            {
+//                Common.toast("b ==== null");
+//                return;
+//            }
+//            iv.setImageBitmap(b);
+//            Common.toast("b !!!!!!!!==== null");
+//        }
+//
+//        if ( true) return;
 
 //        params.put("content", body);
 //        params.put("category", 0);
@@ -262,7 +326,11 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                 if ("OK".equals(errorCode)) {
                     postMessage(POPUP_TOAST, "发布成功");
 
-
+                    for (StringImageChildModel info : model.item )
+                    {
+                        DataHelp.getInstance().removeItem(info);
+                    }
+                    DataHelp.getInstance().removeDraft(model);
 
 //					LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LSClubPublish2Activity.this);
 //					Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
@@ -324,7 +392,6 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     @Override
     protected void initViews() {
         super.initViews();
-
 
         //表情
 
@@ -490,8 +557,11 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     @Override
     protected void leftAction() {
-        Common.toast("内容保存草稿箱");
-        sendResult();
+//        Common.toast("内容保存草稿箱");
+//        sendResult();
+
+        onKeyDown(KeyEvent.KEYCODE_BACK, new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
+
     }
 
     @Override
@@ -501,7 +571,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             return true;
         }
 
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KEYCODE_BACK) {
             sendResult();
             Common.toast("内容保存草稿箱");
             return super.onKeyDown(keyCode, event);

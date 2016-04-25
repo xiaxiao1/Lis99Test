@@ -548,7 +548,7 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
     public ArrayList<EquipRecommend> zhuangbeilist;
 
 
-    static public class EquipRecommend implements EquipRecommendInterFace
+    static public class EquipRecommend implements EquipRecommendInterFace, Serializable
     {
 
 

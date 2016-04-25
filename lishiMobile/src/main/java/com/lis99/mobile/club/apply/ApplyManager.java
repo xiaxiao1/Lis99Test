@@ -211,6 +211,10 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
         }
 
         String url = C.MANAGER_JON_ACTIVE_LIST + topic_id + "/" + currentPage.getPageNo();
+        if ( NEWACTIVE )
+        {
+            url = C.MANAGER_JON_ACTIVE_LIST_NEW + topic_id + "/" + currentPage.getPageNo();
+        }
 
         HashMap<String, Object> map = new HashMap<String, Object>();
 

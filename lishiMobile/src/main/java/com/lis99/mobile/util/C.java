@@ -485,4 +485,5 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String LINE_CATE_PAGE_HOME = DOMAIN + "/v5/club/pageHome/";
 //	新版图文混排发帖		http://api.lis99.com/v5/topics/pubTopics
 	public static final String REPLY_NEW_TOPIC_STRING_IMAGE = DOMAIN + "/v5/topics/pubTopics";
+//public static final String REPLY_NEW_TOPIC_STRING_IMAGE = DOMAIN + "/v5/topics/upfiles";
 }

@@ -1,16 +1,27 @@
 package com.lis99.mobile.equip;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.util.Common;
-import com.lis99.mobile.util.dbhelp.DataHelp;
+import com.lis99.mobile.util.MyBaseAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActivityTest extends LSBaseActivity implements View.OnClickListener {
 
+
+    private ListView list;
+    private View parent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,76 +32,135 @@ public class ActivityTest extends LSBaseActivity implements View.OnClickListener
         findViewById(R.id.button2).setOnClickListener(this);
         findViewById(R.id.button3).setOnClickListener(this);
         findViewById(R.id.button4).setOnClickListener(this);
+
+        list = (ListView) findViewById(R.id.list);
+
+        parent = findViewById(R.id.parent);
+
+        ViewTreeObserver vto = parent.getViewTreeObserver();
+
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+            }
+        });
+
+
+        ArrayList<String> al = new ArrayList<>();
+        for ( int i = 0; i < 20; i++ )
+        {
+            String s = "测试" + i;
+            al.add(s);
+        }
+
+        myAdapter a = new myAdapter(activity, al);
+
+        list.setAdapter(a);
+
+
+
     }
 
 
-    private EditText getEditText3(){
-        return (EditText) findViewById(R.id.editText3);
-    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
-                //TODO implement
 
-                String id = getEditText3().getText().toString();
-//// 1214
-//                Intent intent = new Intent(this, LSClubTopicActiveOffLine.class);
-//                if ( !TextUtils.isEmpty(id))
-//                    intent.putExtra("topicID", Common.string2int(id));
-//                else
-//                    intent.putExtra("topicID", 1214);
-//
-//                startActivity(intent);
-
-
-
-//                Intent intent = new Intent(this, LSClubNewTopicListMain.class);
-//
-//                String id = getEditText3().getText().toString();
-//
-//                if ( !TextUtils.isEmpty(id))
-//                    intent.putExtra("TOPICID", id);
-//                else
-//                    intent.putExtra("TOPICID", "1");
-//                startActivity(intent);
-
-
-
-//                Intent intent = new Intent(activity, MyActivityWebView.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("URL", TextUtils.isEmpty(id) ? "www.baidu.com" : id);
-//                bundle.putString("TITLE", "title");
-//                bundle.putString("IMAGE_URL", "null");
-//                bundle.putInt("TOPIC_ID", 0);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
-
-//                DataHelp.getInstance().search();
-
-                DataHelp.getInstance().cheange();
 
                 break;
             case R.id.button2:
 
-//                DataHelp.getInstance().add();
 
                 break;
             case R.id.button3:
 
-//                DataHelp.getInstance().search1();
-                if ( DataHelp.getInstance().remove() )
-                {
-                    Common.toast("OK");
-                }
 
 
                 break;
             case R.id.button4:
 
-                DataHelp.getInstance().search2();
 
                 break;
         }
     }
+
+    static class myAdapter extends MyBaseAdapter {
+        public myAdapter(Context c, List listItem) {
+            super(c, listItem);
+        }
+
+        EditText newEt;
+        int index = -1;
+
+        @Override
+        public View setView(int i, View view, ViewGroup viewGroup) {
+            Holder holder = null;
+            if ( view == null )
+            {
+                view = View.inflate(activity, R.layout.test_lit_item, null);
+                holder = new Holder(view);
+                view.setTag(holder);
+            }
+            else
+            {
+                holder = (Holder) view.getTag();
+//                if ( newEt != null )
+//                {
+//                    newEt.requestFocus();
+//                }
+            }
+
+            holder.tv.setText(getItem(i).toString());
+
+            holder.et.setTag(i+"");
+
+
+            final Holder finalHolder = holder;
+            holder.et.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    if ( event.getAction() == MotionEvent.ACTION_UP )
+                    {
+                        index = Integer.parseInt(finalHolder.et.getTag().toString());
+                        newEt = (EditText) v;
+                    }
+
+                    return false;
+                }
+            });
+
+            holder.et.clearFocus();
+
+            if ( index != -1 && index == i )
+            {
+                holder.et.requestFocus();
+            }
+
+//            if ( newEt != null )
+//            {
+//                newEt.requestFocus();
+//            }
+
+
+
+            return view;
+        }
+
+        static class Holder
+        {
+            TextView tv;
+            EditText et;
+
+            public Holder(View view) {
+                tv = (TextView) view.findViewById(R.id.tv);
+                et = (EditText) view.findViewById(R.id.et);
+            }
+        }
+
+    }
+
+
 }

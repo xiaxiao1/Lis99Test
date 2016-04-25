@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="420"
-    android:versionName="4.2.0" >
+    android:versionCode="421"
+    android:versionName="4.2.1" >
 
 
 
@@ -968,7 +968,9 @@
         <activity
             android:name=".equip.ActivityTest"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustResize"
+            />
         <!-- 专题页 -->
         <activity
             android:name=".choiceness.SubjectActivity"
@@ -1241,7 +1243,7 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:launchMode="singleTask"
-                  android:windowSoftInputMode="adjustResize"
+                  android:windowSoftInputMode="adjustPan"
             />
 <!--    草稿箱-->
         <activity android:name="com.lis99.mobile.club.topicstrimg.DraftsListActivity"

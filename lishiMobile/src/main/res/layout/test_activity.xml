@@ -2,12 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+            android:id="@+id/parent"
+    >
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"/>
+        android:id="@+id/editText3"
+        android:text="111111111"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:id="@+id/list"
+        ></ListView>
 
 
     <LinearLayout
@@ -44,6 +55,5 @@
             />
 
     </LinearLayout>
-
 
 </LinearLayout>
