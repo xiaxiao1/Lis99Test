@@ -5,10 +5,12 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -152,12 +154,24 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                 return getAddImageStringNoRemove(i, view);
             case EDIT_INFO:
                 return getEditInfo(i, view);
+            case NULL_VIEW:
+                return getNullView(view);
             default:
                 return getTitle(i, view);
         }
 
     }
-
+//空View
+    private View getNullView (View view)
+    {
+        if ( view == null )
+        {
+            LinearLayout l = new LinearLayout(mContext);
+            l.setBackgroundResource(R.color.white);//mContext.getResources().getColor(R.color.white));
+            return l;
+        }
+        return view;
+    }
 
     //  输入内容
     private View getEditInfo ( int i, View view )
@@ -168,7 +182,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             view = View.inflate(mContext, R.layout.topic_edit_info_adapter, null );
             holder = new ViewEditHolder(view);
             holder.editInfo.setTag(i);
-            new EditListener(holder.editInfo, holder.ivPen, view);
+            new EditListener(holder.editInfo, holder.ivPen);
             view.setTag(holder);
 
         }
@@ -182,16 +196,22 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
         if ( item == null ) return view;
 
-//        没有图片， 不显示输入框
-        if ( TextUtils.isEmpty(item.img) )
+        holder.editInfo.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
+
+        holder.editInfo.clearFocus();
+
+        if ( position == i )
         {
-            view.setVisibility(View.GONE);
+            holder.editInfo.requestFocus();
+
+
+            if (!TextUtils.isEmpty(holder.editInfo.getText().toString()))
+            {
+                holder.editInfo.setSelection(holder.editInfo.getText().toString().length());
+            }
+
         }
-        else
-        {
-            view.setVisibility(View.VISIBLE);
-            holder.editInfo.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
-        }
+
 
         return view;
     }
@@ -205,7 +225,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             holder = new ViewHolderTitle(view);
             view.setTag(holder);
             holder.editInfo.setTag(i);
-            new EditListener(holder.editInfo, null, view);
+            new EditListener(holder.editInfo, null);
 
         }
         else
@@ -218,6 +238,19 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
         holder.editInfo.setText(item.content);
 
+
+        holder.editInfo.clearFocus();
+
+        if ( position == i )
+        {
+            holder.editInfo.requestFocus();
+
+            if (!TextUtils.isEmpty(holder.editInfo.getText().toString()))
+            {
+                holder.editInfo.setSelection(holder.editInfo.getText().toString().length());
+            }
+
+        }
 
 
         return view;
@@ -266,17 +299,17 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                     finalHolder.layoutAdded.setVisibility(View.GONE);
                     finalHolder.layoutAdd.setVisibility(View.VISIBLE);
                     finalHolder.ivImage.setImageBitmap(null);
-                    if ( ImageUtil.deleteNativeImg(item.img) )
-                    {
+//                    if ( ImageUtil.deleteNativeImg(item.img) )
+//                    {
 //                        Common.toast("OK");
-                    }
-                    else
-                    {
+//                    }
+//                    else
+//                    {
 //                        Common.toast("ERROR");
-                    }
+//                    }
 
                     DataHelp.getInstance().removeItem(item);
-
+                    item.content = "";
                     item.img = null;
                     removeAt(getItemIndexWithPosition(i));
 
@@ -375,13 +408,11 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         private StringImageChildModel childModel;
         private EditText et;
         private TextWatcher tw;
-        private View view;
-        private View viewParent;
+        private View viewPen;
 
-        public EditListener( EditText et, View view, View view1 ) {
+        public EditListener( EditText et, View view ) {
             this.et = et;
-            this.view = view;
-            this.viewParent = view1;
+            this.viewPen = view;
 
             listener();
         }
@@ -406,14 +437,14 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                     int position = (int) et.getTag();
                     childModel = (StringImageChildModel) getItem(position);
                     childModel.content = s.toString();
-                    if ( view == null ) return;
+                    if ( viewPen == null ) return;
                     if ( !TextUtils.isEmpty(childModel.content))
                     {
-                        view.setVisibility(View.GONE);
+                        viewPen.setVisibility(View.GONE);
                     }
                     else
                     {
-                        view.setVisibility(View.VISIBLE);
+                        viewPen.setVisibility(View.VISIBLE);
                     }
 //                    Common.log("onTextChanged content == "+position+childModel.content);
 
@@ -428,48 +459,31 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
             et.addTextChangedListener(tw);
 
-//            et.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position = (int) et.getTag();
-//                    Common.log("onFocusChange true"+position);
-//                        if ( position == 0 )
-//                        {
-//                            MyEmotionsUtil.getInstance().dismissPopupWindow();
-//                            main.visibleEmotionBar(false);
-//                        }
-//                        else
-//                        {
-//                            main.visibleEmotionBar(true);
-//                        }
-//                }
-//            });
+            et.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
 
-//            et.setOnTouchListener(new View.OnTouchListener() {
-//                @Override
-//                public boolean onTouch(View v, MotionEvent event) {
-//
-//                    if ( event.getAction() == MotionEvent.ACTION_UP )
-//                    {
-//                        TopicStringImageAdapter.this.position = position;
-//
-//                        currentEdit = et;
-//
-//                        childHeight = viewParent.getHeight();
-//
-//                        Common.log("childHieght == "+childHeight);
-//
-//                        main.getListHeight();
-//
-//
-//
-////                        Common.log("on Click Listener list scroll ====="+main.list.getHeight() + "\nview top ==="+viewParent.getTop());
-//
-//
-//                    }
-//                    return false;
-//                }
-//            });
+                    if ( event.getAction() == MotionEvent.ACTION_UP )
+                    {
+                        position = (int) et.getTag();
+
+                        currentEdit = et;
+
+                        if ( position == 0 )
+                        {
+                            MyEmotionsUtil.getInstance().dismissPopupWindow();
+                            main.visibleEmotionBar(false);
+                        }
+                        else
+                        {
+                            MyEmotionsUtil.getInstance().initView(et);
+                            main.visibleEmotionBar(true);
+                        }
+
+                    }
+                    return false;
+                }
+            });
 
 //            et.setOnClickListener(new View.OnClickListener() {
 //                @Override

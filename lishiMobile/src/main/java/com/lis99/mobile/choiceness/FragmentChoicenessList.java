@@ -23,12 +23,12 @@ import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
+import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
-import com.lis99.mobile.equip.ActivityTest;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
@@ -363,10 +363,10 @@ public class FragmentChoicenessList extends Fragment implements
 
                 if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
-                    startActivity(new Intent(getActivity(), ActivityTest.class));
+//                    startActivity(new Intent(getActivity(), ActivityTest.class));
 //                    UpdataUtil.getInstance().getUpData();
 
-//                    startActivity(new Intent(getActivity(), LSTopicStringImageActivity.class));
+                    startActivity(new Intent(getActivity(), LSTopicStringImageActivity.class));
 
 //                    Common.log("MAC = "+DeviceInfo.getMacAddress());
 

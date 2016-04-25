@@ -1243,7 +1243,7 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:launchMode="singleTask"
-                  android:windowSoftInputMode="adjustPan"
+                  android:windowSoftInputMode="adjustResize"
             />
 <!--    草稿箱-->
         <activity android:name="com.lis99.mobile.club.topicstrimg.DraftsListActivity"

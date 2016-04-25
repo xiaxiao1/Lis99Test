@@ -118,6 +118,11 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 
     }
 
+    public void initView ( EditText edit )
+    {
+        this.edit = edit;
+    }
+
     /**
      *          初始化输入法
      * @param c
@@ -298,9 +303,9 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
 
             @Override
             public void onDismiss() {
-                emoticonsCover.setVisibility(LinearLayout.GONE);
-                edit.setFocusable(true);
-                edit.setFocusableInTouchMode(true);
+                emoticonsCover.setVisibility(View.GONE);
+//                edit.setFocusable(true);
+//                edit.setFocusableInTouchMode(true);
                 Common.showSoftInput(c, edit);
                 if (callBack != null) {
                     MyTask m = new MyTask();

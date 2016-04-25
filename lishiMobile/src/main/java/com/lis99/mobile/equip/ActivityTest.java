@@ -106,10 +106,6 @@ public class ActivityTest extends LSBaseActivity implements View.OnClickListener
             else
             {
                 holder = (Holder) view.getTag();
-//                if ( newEt != null )
-//                {
-//                    newEt.requestFocus();
-//                }
             }
 
             holder.tv.setText(getItem(i).toString());
