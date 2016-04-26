@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.CheckBoxChange;
 import com.lis99.mobile.club.adapter.LSImagePickerPreviewAdapter;
+import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 
 import java.util.ArrayList;
 
@@ -190,7 +191,7 @@ public class LSImagePickerPreviewActivity extends FragmentActivity implements Ch
                 if (isReply) {
                     intent = new Intent(this, LSClubTopicReplyActivity.class);
                 } else {
-                    intent = new Intent(this, LSClubPublish2Activity.class);
+                    intent = new Intent(this, LSTopicStringImageActivity.class);
                 }
 
                 if ( !TextUtils.isEmpty(className))

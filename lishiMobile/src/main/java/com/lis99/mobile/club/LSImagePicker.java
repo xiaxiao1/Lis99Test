@@ -31,6 +31,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.CustomCursorLoader;
 import com.lis99.mobile.club.adapter.ListAdapter;
 import com.lis99.mobile.club.adapter.onCheckboxChange;
+import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.LoadFileImageView;
 
 import java.util.ArrayList;
@@ -345,7 +346,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                     if (isReply) {
                         intent = new Intent(this, LSClubTopicReplyActivity.class);
                     } else {
-                        intent = new Intent(this, LSClubPublish2Activity.class);
+                        intent = new Intent(this, LSTopicStringImageActivity.class);
                     }
 
                     if ( !TextUtils.isEmpty(className))

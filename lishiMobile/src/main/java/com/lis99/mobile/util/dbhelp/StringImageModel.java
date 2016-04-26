@@ -54,6 +54,11 @@ public class StringImageModel extends BaseModel {
 
     @Column(name = "item")
     public ArrayList<StringImageChildModel> item;
+    /**
+     *      是否为追加内容
+     */
+    @Column(name = "isAdd")
+    public boolean isAdd;
 
     public List<StringImageChildModel> getChildern (DbManager db ) throws DbException
     {

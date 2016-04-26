@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.LSClubPublish2Activity;
 import com.lis99.mobile.club.adapter.LSClubFragmentAdapter;
+import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.RedDotUtil;
@@ -137,7 +137,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
                 break;
             case R.id.titleRight:
 
-                Intent intent = new Intent(getActivity(), LSClubPublish2Activity.class);
+                Intent intent = new Intent(getActivity(), LSTopicStringImageActivity.class);
 			    startActivity(intent);
 
                 break;

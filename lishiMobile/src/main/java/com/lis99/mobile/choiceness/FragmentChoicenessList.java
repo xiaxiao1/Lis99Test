@@ -378,7 +378,13 @@ public class FragmentChoicenessList extends Fragment implements
 //                    startActivity(new Intent(getActivity(), ActivityTest.class));
 //                    UpdataUtil.getInstance().getUpData();
 
-                    startActivity(new Intent(getActivity(), LSTopicStringImageActivity.class));
+                    intent = new Intent(getActivity(), LSTopicStringImageActivity.class);
+                    intent.putExtra("ADD", true);
+                    intent.putExtra("clubID", 0);
+                    intent.putExtra("clubName", "这是标题");//clubHead.title);
+                    intent.putExtra("TITLE", "这是标题2");
+
+                    startActivity(intent);
 
 //                    Common.log("MAC = "+DeviceInfo.getMacAddress());
 

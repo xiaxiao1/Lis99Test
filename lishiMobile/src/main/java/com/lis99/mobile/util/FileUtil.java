@@ -14,10 +14,19 @@ import java.io.InputStream;
  */
 public class FileUtil {
 
+    /**
+     *  主目录
+     */
     public static String filePath = "";
+    /**
+     *      数据库目录
+     */
     public static String cachePath = "";
+/*图片目录*/
     public static String imgPath = "";
+    /*错误日志目录*/
     public static String crashPath = "";
+    /*草稿箱图片目录*/
     public static String dbImgPath = "";
 
 
@@ -26,7 +35,7 @@ public class FileUtil {
         filePath = StorageUtils.getOwnCacheDirectory(
                 context.getApplicationContext(), "lishi99").getPath();
 
-        cachePath = filePath + "/cache";
+        cachePath = context.getFilesDir() + "/cache";
 
         imgPath = filePath + "/image";
 

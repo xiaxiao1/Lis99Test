@@ -238,20 +238,28 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
         holder.editInfo.setText(item.content);
 
-
-        holder.editInfo.clearFocus();
-
-        if ( position == i )
+        if ( main.getIsAdd() )
         {
-            holder.editInfo.requestFocus();
-
-            if (!TextUtils.isEmpty(holder.editInfo.getText().toString()))
-            {
-                holder.editInfo.setSelection(holder.editInfo.getText().toString().length());
-            }
-
+            holder.editInfo.clearFocus();
+            holder.editInfo.setClickable(false);
+            holder.editInfo.setFocusable(false);
+            holder.editInfo.setFocusableInTouchMode(false);
         }
+        else
+        {
+            holder.editInfo.clearFocus();
 
+            if ( position == i )
+            {
+                holder.editInfo.requestFocus();
+
+                if (!TextUtils.isEmpty(holder.editInfo.getText().toString()))
+                {
+                    holder.editInfo.setSelection(holder.editInfo.getText().toString().length());
+                }
+
+            }
+        }
 
         return view;
     }

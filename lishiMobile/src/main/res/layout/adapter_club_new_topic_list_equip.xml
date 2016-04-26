@@ -81,6 +81,15 @@
         android:layout_marginTop="15dip"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topic_new_add_info_btn"
+        android:id="@+id/btn_add"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        />
+
     <include
         layout="@layout/club_topic_like"
         android:layout_width="fill_parent"

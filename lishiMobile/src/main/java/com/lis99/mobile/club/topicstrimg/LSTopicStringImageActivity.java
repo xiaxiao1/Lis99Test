@@ -75,6 +75,10 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     protected View parentLayout;
 
+    private boolean isAdd;
+
+    private String titleInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +101,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             clubID = getIntent().getIntExtra("clubID", 48);
             clubName = getIntent().getStringExtra("clubName");
 
+            isAdd = getIntent().getBooleanExtra("ADD", false);
+            titleInfo = getIntent().getStringExtra("TITLE");
+
             if (TextUtils.isEmpty(clubName))
             {
                 clubName = "户外范";
@@ -105,6 +112,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             //        添加
             model.clubId = ""+clubID;
             model.clubName = clubName;
+            model.isAdd = isAdd;
+
             DataHelp.getInstance().addDraft(model);
 
         }
@@ -112,6 +121,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         {
             clubID = Common.string2int(model.clubId);
             clubName = model.clubName;
+            isAdd = model.isAdd;
         }
 
 //        Common.log("parentId="+model.id);
@@ -129,6 +139,12 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             //title
             StringImageChildModel item = new StringImageChildModel();
             item.parentId = model.id;
+
+            if ( !TextUtils.isEmpty(titleInfo) )
+            {
+                item.content = titleInfo;
+            }
+
             model.item.add(item);
             //图文
             item = new StringImageChildModel();
@@ -172,37 +188,11 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         setTitle(model.clubName);
 
     }
-
-    int currentHeight = 0, sendHeight;
-
-//    protected  void getListHeight ()
-//    {
-//
-//        ViewTreeObserver vto = list.getViewTreeObserver();
-//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//
-//                currentHeight = list.getHeight();
-//
-//                if ( currentHeight != listHeight )
-//                {
-//                    sendHeight = currentHeight;
-//                }
-//
-//                if ( listHeight != 0 && currentHeight == sendHeight )
-//                {
-//                    list.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-//                    if ( adapter != null )
-//                        list.smoothScrollToPosition(adapter.childHeight);
-//                }
-//
-//                Common.log("list Height = "+list.getHeight());
-//                if ( listHeight == 0 ) listHeight = list.getHeight();
-//
-//            }
-//        });
-//    }
+//    是否为追加
+    protected boolean getIsAdd ()
+    {
+        return isAdd;
+    }
 
 //    发布
     @Override
@@ -417,13 +407,21 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         dot = (ImageView) findViewById(R.id.dot);
         list = (ListView) findViewById(R.id.list);
 
-        title.setOnClickListener(this);
-
         adapter = new TopicStringImageAdapter(activity, model.item);
 
         adapter.setMain(this);
 
         list.setAdapter(adapter);
+
+//        标题不可更改
+        if ( isAdd )
+        {
+            dot.setVisibility(View.GONE);
+        }
+        else
+        {
+            title.setOnClickListener(this);
+        }
 
     }
 

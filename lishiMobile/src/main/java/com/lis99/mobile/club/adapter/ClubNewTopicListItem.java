@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
@@ -22,6 +23,7 @@ import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMainReply;
+import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.LSClubTopicHeadLike;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.mine.LSUserHomeActivity;
@@ -183,26 +185,50 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder.ivModerator.setVisibility(View.GONE);
         }
 
-//      关注
-        if (item.attenStatus == 1) {
-            holder.btnAttention.setVisibility(View.GONE);
-        } else {
-            holder.btnAttention.setVisibility(View.VISIBLE);
+        String userId = DataManager.getInstance().getUser().getUser_id();
 
-            final ViewHolderTitle holder1 = holder;
+//        发帖人是自己， 显示追加内容
+        if ( !TextUtils.isEmpty(userId) && userId.equals(""+item.userId) )
+        {
+            holder.btnAttention.setBackgroundResource(R.drawable.topic_new_add_info_btn);
+            holder.btnAttention.setVisibility(View.VISIBLE);
             holder.btnAttention.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    item.attenStatus = 1;
-                    holder1.btnAttention.setVisibility(View.GONE);
-                    if (item.userId == 0) return;
-                    LSRequestManager.getInstance().getFriendsAddAttention(item
-                            .userId, null);
+
+                    Intent intent = new Intent(mContext, LSTopicStringImageActivity.class);
+                    intent.putExtra("clubID", item.clubId);//clubID);
+                    intent.putExtra("clubName", item.clubTitle);//clubHead.title);
+                    intent.putExtra("ADD", true);
+                    intent.putExtra("TITLE", item.title);
+                    mContext.startActivity(intent);
+
                 }
             });
-
         }
+        else
+        {
+            //      关注
+            if (item.attenStatus == 1) {
+                holder.btnAttention.setVisibility(View.GONE);
+            } else {
+                holder.btnAttention.setBackgroundResource(R.drawable.friends_no_attention);
+                holder.btnAttention.setVisibility(View.VISIBLE);
 
+                final ViewHolderTitle holder1 = holder;
+                holder.btnAttention.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        item.attenStatus = 1;
+                        holder1.btnAttention.setVisibility(View.GONE);
+                        if (item.userId == 0) return;
+                        LSRequestManager.getInstance().getFriendsAddAttention(item
+                                .userId, null);
+                    }
+                });
+
+            }
+        }
 
 
         if (item.usercatelist != null && item.usercatelist.size() != 0) {
@@ -319,6 +345,30 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         final TopicNewListMainModelEquip item = (TopicNewListMainModelEquip) getItem(i);
 
         if (item == null) return view;
+
+        String userId = DataManager.getInstance().getUser().getUser_id();
+
+        if ( !TextUtils.isEmpty(userId) && userId.equals(""+item.userId) )
+        {
+            holder.btn_add.setVisibility(View.VISIBLE);
+            holder.btn_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(mContext, LSTopicStringImageActivity.class);
+                    intent.putExtra("clubID", item.clubId);//clubID);
+                    intent.putExtra("clubName", item.clubTitle);//clubHead.title);
+                    intent.putExtra("ADD", true);
+                    intent.putExtra("TITLE", item.title);
+                    mContext.startActivity(intent);
+
+                }
+            });
+        }
+        else
+        {
+            holder.btn_add.setVisibility(View.GONE);
+        }
 
         if (item.zhuangbei_id != 0) {
             holder.equiPanel.setVisibility(View.VISIBLE);
@@ -583,6 +633,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
         private LSClubTopicHeadLike like;
 
+        private Button btn_add;
+
 
 
 
@@ -601,6 +653,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
             like = new LSClubTopicHeadLike(mContext);
             like.InitView(view);
+
+            btn_add = (Button) view.findViewById(R.id.btn_add);
 
         }
     }

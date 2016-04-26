@@ -35,6 +35,7 @@ import com.lis99.mobile.club.model.ClubDetailList;
 import com.lis99.mobile.club.model.ClubDetailList.Topiclist;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
+import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
@@ -455,7 +456,8 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			startActivity(intent);
 			return;
 		}
-		Intent intent = new Intent(LSClubDetailActivity.this, LSClubPublish2Activity.class);
+//		Intent intent = new Intent(LSClubDetailActivity.this, LSClubPublish2Activity.class);
+		Intent intent = new Intent(LSClubDetailActivity.this, LSTopicStringImageActivity.class);
 		intent.putExtra("clubID", clubID);
 		intent.putExtra("clubName", clubHead.title);
 //		intent.putExtra("CURRENTCLUB", true);
@@ -735,7 +737,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 				startActivity(intent);
 				return;
 			}
-			Intent intent = new Intent(LSClubDetailActivity.this, LSClubPublish2Activity.class);
+			Intent intent = new Intent(LSClubDetailActivity.this, LSTopicStringImageActivity.class);
 			intent.putExtra("clubName", clubHead.title);
 			intent.putExtra("clubID", clubID);
 //			intent.putExtra("CURRENTCLUB", true);
