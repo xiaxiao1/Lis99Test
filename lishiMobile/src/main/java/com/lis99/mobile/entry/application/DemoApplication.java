@@ -15,6 +15,7 @@ import com.lecloud.config.LeCloudPlayerConfig;
 import com.letv.proxy.LeCloudProxy;
 import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.club.BaseConfig;
+import com.lis99.mobile.util.FileUtil;
 import com.lis99.mobile.util.ImageLoaderOption;
 import com.lis99.mobile.util.PushManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -83,6 +84,9 @@ public class DemoApplication extends Application
 
 //		DemoApplication.initImageLoader(this, opt);
 //		initImageLoader(this, opt);
+
+        //        设置文件保存路径
+        FileUtil.setFilePath(this);
 
         //	设置ImageLoader 属性
         ImageLoaderOption.init(this);

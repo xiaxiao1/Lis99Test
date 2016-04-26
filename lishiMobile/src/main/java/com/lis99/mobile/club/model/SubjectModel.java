@@ -72,6 +72,8 @@ public class SubjectModel extends BaseModel
 		public String headicon;
 		public int is_vip;
 		public String createdate;
+/**		type == 12  帖子类型（0:旧版话题帖子 3：新版话题帖子）*/
+		public int category;
 	}
 	
 	

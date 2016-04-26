@@ -1635,7 +1635,7 @@ public class ImageUtil
 	private static File getImageFileNative ( Context c, String name )
 	{
 //		String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/lis99/";
-		String path = c.getFilesDir() + "/lis99/";
+		String path = FileUtil.dbImgPath;//c.getFilesDir() + "/lis99/";
 		File f = new File(path);
 		if ( !f.exists() )
 		{

@@ -4,13 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.IPackageStatsObserver;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageStats;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -23,12 +18,16 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.newhome.HelpMovieActivity;
+import com.lis99.mobile.util.DialogManager;
+import com.lis99.mobile.util.FileSizeUtil;
+import com.lis99.mobile.util.FileUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LoginCallBackManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.StatusUtil;
+import com.lis99.mobile.util.dbhelp.DataHelp;
 
-import java.lang.reflect.Method;
+import java.io.File;
 
 public class LsSettingActivity extends ActivityPattern {
 
@@ -48,7 +47,8 @@ public class LsSettingActivity extends ActivityPattern {
 		StatusUtil.setStatusBar(this);
 		setView();
 		setListener();
-		getpkginfo("com.lis99.mobile");
+//		getpkginfo("com.lis99.mobile");
+		tv_size.setText(FileSizeUtil.getAutoFileOrFilesSize(FileUtil.imgPath));
 	}
 
 	private void setView() {
@@ -140,7 +140,10 @@ public class LsSettingActivity extends ActivityPattern {
 							 */
 							DataCleanManager
 									.cleanInternalCache(LsSettingActivity.this);
-							getpkginfo("com.lis99.mobile");
+							DataCleanManager.deleteFilesByDirectory(new File(FileUtil.imgPath));
+
+//							getpkginfo("com.lis99.mobile");
+							tv_size.setText(FileSizeUtil.getAutoFileOrFilesSize(FileUtil.imgPath));
 						}
 					}, true, "取消", null);
 		} else if (v.getId() == rl_gengxin.getId()) {
@@ -150,211 +153,116 @@ public class LsSettingActivity extends ActivityPattern {
 			Intent intent = new Intent(this, LsSettingRecommendActivity.class);
 			startActivity(intent);
 		} else if (v.getId() == bt_tuichu.getId()) {
-//通知接口， 退出登陆
-			LoginCallBackManager.getInstance().handler();
 
-			//调用退出登陆接口
-			LSRequestManager.getInstance().Logout();
-			
-			DataManager.getInstance().setLogin_flag(false);
-			DataManager.getInstance().setUser(null);
-			
-			CookieSyncManager cookieSyncMngr =
-		            CookieSyncManager.createInstance(this);
-		        CookieManager cookieManager = CookieManager.getInstance();
-		        cookieManager.removeAllCookie();
-		        CookieSyncManager.getInstance().sync();
-			
-			
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.ACCOUNT, "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.PASSWORD, "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.TOKEN, "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.TOKEN_ACCOUNT, "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.TOKEN_PASSWORD, "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.TENCENT_OPEN_ID, "");
+			DialogManager.getInstance().startAlert(this, "提示", "退出会清空草稿箱", true, "退出", new OnClickListener() {
+
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					logOut();
+				}
+			}, true, "取消", null);
+		}
+	}
+
+	private void logOut ()
+	{
+		//通知接口， 退出登陆
+		LoginCallBackManager.getInstance().handler();
+
+		//调用退出登陆接口
+		LSRequestManager.getInstance().Logout();
+
+		DataManager.getInstance().setLogin_flag(false);
+		DataManager.getInstance().setUser(null);
+
+		CookieSyncManager cookieSyncMngr =
+				CookieSyncManager.createInstance(this);
+		CookieManager cookieManager = CookieManager.getInstance();
+		cookieManager.removeAllCookie();
+		CookieSyncManager.getInstance().sync();
+//		清空本地缓存
+		DataHelp.getInstance().cleanAll();
+
+		SharedPreferencesHelper.cleanUserInfo();
+
+
+
+
+		finish();
+	}
+
+
+//	private static final String ATTR_PACKAGE_STATS = "PackageStats";
+//	private Handler mHandler = new Handler() {
+//		public void handleMessage(Message msg) {
+//			switch (msg.what) {
+//			case 1:
+//				String infoString = "";
+//				PackageStats newPs = msg.getData().getParcelable(
+//						ATTR_PACKAGE_STATS);
+//				// if (newPs!=null) {
+//				// infoString+="应用程序大小: "+formatFileSize(newPs.codeSize);
+//				// infoString+="\n数据大小: "+formatFileSize(newPs.dataSize);
+//				infoString += "" + formatFileSize(newPs.cacheSize);
+//				// }
+//				tv_size.setText(infoString);
+//				break;
+//			default:
+//				break;
+//			}
+//		}
+//	};
 //
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.TENCENT_EXPIRES_IN, "");
+//	public void getpkginfo(String pkg) {
+//		PackageManager pm = getPackageManager();
+//		try {
+//			Method getPackageSizeInfo = pm.getClass().getMethod(
+//					"getPackageSizeInfo", String.class,
+//					IPackageStatsObserver.class);
+//			getPackageSizeInfo.invoke(pm, pkg, new PkgSizeObserver());
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//	}
 //
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, C.TENCENT_ACCESS_TOKEN, "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, "accounttype", "");
+//	class PkgSizeObserver extends IPackageStatsObserver.Stub {
+//		public void onGetStatsCompleted(PackageStats pStats, boolean succeeded) {
+//			Message msg = mHandler.obtainMessage(1);
+//			Bundle data = new Bundle();
+//			data.putParcelable(ATTR_PACKAGE_STATS, pStats);
+//			msg.setData(data);
+//			mHandler.sendMessage(msg);
 //
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, "nickname", "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, "user_id", "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, "headicon", "");
-//			SharedPreferencesHelper.putValue(this, C.CONFIG_FILENAME,
-//					Context.MODE_PRIVATE, "sn", "");
-			
-
-			SharedPreferencesHelper.cleanUserInfo();
-			
-			
-			
-			
-			finish();
-		}
-	}
-
-	/*
-	 * public static void cleanInternalCache(Context context) {
-	 * deleteFilesByDirectory(context.getCacheDir()); }
-	 *//**
-	 * 清除本应用所有数据库(/data/data/com.xxx.xxx/databases)
-	 * 
-	 * @param context
-	 */
-	/*
-	 * public static void cleanDatabases(Context context) {
-	 * deleteFilesByDirectory(new File("/data/data/" + context.getPackageName()
-	 * + "/databases")); }
-	 *//**
-	 * 清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs)
-	 * 
-	 * @param context
-	 */
-	/*
-	 * public static void cleanSharedPreference(Context context) {
-	 * deleteFilesByDirectory(new File("/data/data/" + context.getPackageName()
-	 * + "/shared_prefs")); }
-	 *//**
-	 * 按名字清除本应用数据库
-	 * 
-	 * @param context
-	 * @param dbName
-	 */
-	/*
-	 * public static void cleanDatabaseByName(Context context, String dbName) {
-	 * context.deleteDatabase(dbName); }
-	 *//**
-	 * 清除/data/data/com.xxx.xxx/files下的内容
-	 * 
-	 * @param context
-	 */
-	/*
-	 * public static void cleanFiles(Context context) {
-	 * deleteFilesByDirectory(context.getFilesDir()); }
-	 *//**
-	 * 清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache)
-	 * 
-	 * @param context
-	 */
-	/*
-	 * public static void cleanExternalCache(Context context) { if
-	 * (Environment.getExternalStorageState().equals(
-	 * Environment.MEDIA_MOUNTED)) {
-	 * deleteFilesByDirectory(context.getExternalCacheDir()); } }
-	 *//**
-	 * 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除
-	 * 
-	 * @param filePath
-	 */
-	/*
-	 * public static void cleanCustomCache(String filePath) {
-	 * deleteFilesByDirectory(new File(filePath)); }
-	 *//**
-	 * 清除本应用所有的数据
-	 * 
-	 * @param context
-	 * @param filepath
-	 */
-	/*
-	 * public static void cleanApplicationData(Context context, String...
-	 * filepath) { cleanInternalCache(context); cleanExternalCache(context);
-	 * cleanDatabases(context); cleanSharedPreference(context);
-	 * cleanFiles(context); for (String filePath : filepath) {
-	 * cleanCustomCache(filePath); } }
-	 *//**
-	 * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理
-	 * 
-	 * @param directory
-	 */
-	/*
-	 * private static void deleteFilesByDirectory(File directory) { if
-	 * (directory != null && directory.exists() && directory.isDirectory()) {
-	 * for (File item : directory.listFiles()) { item.delete(); } } }
-	 */
-
-	private static final String ATTR_PACKAGE_STATS = "PackageStats";
-	private Handler mHandler = new Handler() {
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case 1:
-				String infoString = "";
-				PackageStats newPs = msg.getData().getParcelable(
-						ATTR_PACKAGE_STATS);
-				// if (newPs!=null) {
-				// infoString+="应用程序大小: "+formatFileSize(newPs.codeSize);
-				// infoString+="\n数据大小: "+formatFileSize(newPs.dataSize);
-				infoString += "" + formatFileSize(newPs.cacheSize);
-				// }
-				tv_size.setText(infoString);
-				break;
-			default:
-				break;
-			}
-		}
-	};
-
-	public void getpkginfo(String pkg) {
-		PackageManager pm = getPackageManager();
-		try {
-			Method getPackageSizeInfo = pm.getClass().getMethod(
-					"getPackageSizeInfo", String.class,
-					IPackageStatsObserver.class);
-			getPackageSizeInfo.invoke(pm, pkg, new PkgSizeObserver());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
-	class PkgSizeObserver extends IPackageStatsObserver.Stub {
-		public void onGetStatsCompleted(PackageStats pStats, boolean succeeded) {
-			Message msg = mHandler.obtainMessage(1);
-			Bundle data = new Bundle();
-			data.putParcelable(ATTR_PACKAGE_STATS, pStats);
-			msg.setData(data);
-			mHandler.sendMessage(msg);
-
-		}
-	}
-
-	/**
-	 * 获取文件大小
-	 * 
-	 * @param length
-	 * @return
-	 */
-	public static String formatFileSize(long length) {
-		String result = null;
-		int sub_string = 0;
-		if (length >= 1073741824) {
-			sub_string = String.valueOf((float) length / 1073741824).indexOf(
-					".");
-			result = ((float) length / 1073741824 + "000").substring(0,
-					sub_string + 3) + "GB";
-		} else if (length >= 1048576) {
-			sub_string = String.valueOf((float) length / 1048576).indexOf(".");
-			result = ((float) length / 1048576 + "000").substring(0,
-					sub_string + 3) + "MB";
-		} else if (length >= 1024) {
-			sub_string = String.valueOf((float) length / 1024).indexOf(".");
-			result = ((float) length / 1024 + "000").substring(0,
-					sub_string + 3) + "KB";
-		} else if (length < 1024)
-			result = Long.toString(length) + "B";
-		return result;
-	}
+//		}
+//	}
+//
+//	/**
+//	 * 获取文件大小
+//	 *
+//	 * @param length
+//	 * @return
+//	 */
+//	public static String formatFileSize(long length) {
+//		String result = null;
+//		int sub_string = 0;
+//		if (length >= 1073741824) {
+//			sub_string = String.valueOf((float) length / 1073741824).indexOf(
+//					".");
+//			result = ((float) length / 1073741824 + "000").substring(0,
+//					sub_string + 3) + "GB";
+//		} else if (length >= 1048576) {
+//			sub_string = String.valueOf((float) length / 1048576).indexOf(".");
+//			result = ((float) length / 1048576 + "000").substring(0,
+//					sub_string + 3) + "MB";
+//		} else if (length >= 1024) {
+//			sub_string = String.valueOf((float) length / 1024).indexOf(".");
+//			result = ((float) length / 1024 + "000").substring(0,
+//					sub_string + 3) + "KB";
+//		} else if (length < 1024)
+//			result = Long.toString(length) + "B";
+//		return result;
+//	}
 
 	public static void openWebURL(Context context, String inURL) {
 		Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(inURL));

@@ -2,14 +2,15 @@ package com.lis99.mobile.util.dbhelp;
 
 import android.os.Build;
 
-import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.entry.DataCleanManager;
 import com.lis99.mobile.util.Common;
-import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.lis99.mobile.util.FileUtil;
 
 import org.xutils.DbManager;
 import org.xutils.ex.DbException;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,7 @@ public class DataHelp {
 
         daoConfig = new DbManager.DaoConfig();
         daoConfig.setDbName(DBNAME);
-        daoConfig.setDbDir(StorageUtils.getOwnCacheDirectory(
-                LSBaseActivity.activity.getApplicationContext(), "lishi99/cache"));
+        daoConfig.setDbDir(new File(FileUtil.cachePath));
 
 //        File file = new File(LSBaseActivity.activity.getCacheDir(), "lishi99/cache");
 //        if ( !file.exists()) file.mkdirs();
@@ -188,6 +188,9 @@ public class DataHelp {
         try {
             db.dropTable(StringImageModel.class);
             db.dropTable(StringImageChildModel.class);
+//            删除草稿箱图片
+            DataCleanManager.deleteFilesByDirectory(new File(FileUtil.dbImgPath));
+
         } catch (DbException e) {
             e.printStackTrace();
             Common.log("cleanAll Error="+e.toString());

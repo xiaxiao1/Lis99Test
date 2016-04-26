@@ -360,6 +360,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String ADD_COMMENT = DOMAIN + "/v3/zhuangbei/addComment/";
 	/**精选-专题*/
 	public static final String CHOIECNESS_SUBJECT = DOMAIN + "/v2/club/topicSpecialList/";
+	/**专题 V2*/
+	public static final String CHOIECNESS_SUBJECT12 = DOMAIN + "/v4/club/topicSpecialList/";
 	
 	//========装备＝＝＝＝
 	//户外店

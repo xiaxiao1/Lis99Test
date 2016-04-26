@@ -15,6 +15,7 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.SubjectModel;
 import com.lis99.mobile.club.model.SubjectModel.Topiclist;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -59,6 +60,8 @@ public class SubjectActivity extends LSBaseActivity implements
 
 	private View view_reference;
 
+	private int type;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -68,6 +71,8 @@ public class SubjectActivity extends LSBaseActivity implements
 		initViews();
 		title = getIntent().getStringExtra("TITLE");
 		ID = getIntent().getStringExtra("ID");
+
+		type = getIntent().getIntExtra("TYPE", -1);
 
 		view_reference = findViewById(R.id.view_reference);
 
@@ -98,7 +103,21 @@ public class SubjectActivity extends LSBaseActivity implements
 				// TODO Auto-generated method stub
 				if (adapter == null || arg2 == 0)
 					return;
+
 				Topiclist item = (Topiclist) adapter.getItem(arg2 - 1);
+
+				if ( type == 12 )
+				{
+//					新版话题贴
+					if ( item.category == 3 )
+					{
+						Intent intent = new Intent(activity, LSClubNewTopicListMain.class);
+						intent.putExtra("TOPICID", ""+item.topic_id);
+						startActivity(intent);
+						return;
+					}
+				}
+
 				Intent intent = new Intent(activity, LSClubTopicActivity.class);
 				intent.putExtra("topicID", item.topic_id);
 				startActivity(intent);
@@ -178,6 +197,13 @@ public class SubjectActivity extends LSBaseActivity implements
 		}
 		model = new SubjectModel();
 		String url = C.CHOIECNESS_SUBJECT + ID + "/" + page.pageNo;
+
+		if ( type == 12 )
+		{
+			url = C.CHOIECNESS_SUBJECT12  + ID + "/" + page.pageNo;
+		}
+
+
 		MyRequestManager.getInstance().requestGet(url, model, new CallBack()
 		{
 

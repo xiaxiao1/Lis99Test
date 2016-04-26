@@ -18,8 +18,8 @@ import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.newhome.NewHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
+import com.lis99.mobile.util.FileUtil;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -211,11 +211,12 @@ public class CrashHandler1 implements UncaughtExceptionHandler, Callback {
             String fileName = "crash-" + time + "-" + timestamp + ".log";
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 //				String path = "/sdcard/crash/";
-                String path = Environment.getExternalStorageDirectory().toString() + "/lis99/Crash/";
-                File dir = new File(path);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
+
+                String path = FileUtil.crashPath;//Environment.getExternalStorageDirectory().toString() + "/lis99/Crash/";
+//                File dir = new File(path);
+//                if (!dir.exists()) {
+//                    dir.mkdirs();
+//                }
                 FileOutputStream fos = new FileOutputStream(path + fileName);
                 fos.write(sb.toString().getBytes());
                 fos.close();

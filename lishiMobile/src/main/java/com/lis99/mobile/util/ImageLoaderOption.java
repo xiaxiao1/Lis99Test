@@ -11,7 +11,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
 
@@ -25,8 +24,10 @@ public class ImageLoaderOption {
     {
         ImageLoader imageLoader = ImageLoader.getInstance();
 
-        File cacheDir = StorageUtils.getOwnCacheDirectory(
-                context.getApplicationContext(), "lishi99");
+//        File cacheDir = StorageUtils.getOwnCacheDirectory(
+//                context.getApplicationContext(), "lishi99");
+
+        File cacheDir = new File(FileUtil.imgPath);
 
         DisplayImageOptions opt = new DisplayImageOptions.Builder()
                 .cacheInMemory(true).cacheOnDisc(true).considerExifParams(true)

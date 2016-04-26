@@ -76,6 +76,8 @@ public class ApplyManagerItem extends MyBaseAdapter {
             holder.btn_out = (Button) view.findViewById(R.id.btn_out);
             holder.iv_pay_state = (ImageView) view.findViewById(R.id.iv_pay_state);
             holder.tv_pay_state = (TextView) view.findViewById(R.id.tv_pay_state);
+            holder.view_wait = view.findViewById(R.id.view_wait);
+
 
             view.setTag(holder);
         } else {
@@ -140,11 +142,14 @@ public class ApplyManagerItem extends MyBaseAdapter {
 
         holder.list.setAdapter(adapter);
 
+        holder.view_wait.setVisibility(View.GONE);
 
         if (type == 0)
         {
             holder.btn_ok.setVisibility(View.GONE);
-            holder.btn_out.setVisibility(View.VISIBLE);
+            holder.btn_out.setVisibility(View.GONE);
+            holder.view_wait.setVisibility(View.VISIBLE);
+
         }
         else if ( type == 1 )
         {
@@ -235,6 +240,8 @@ public class ApplyManagerItem extends MyBaseAdapter {
 
         ImageView iv_pay_state;
         TextView tv_pay_state;
+
+        View view_wait;
 
     }
 

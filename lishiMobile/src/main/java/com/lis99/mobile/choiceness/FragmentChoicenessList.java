@@ -230,7 +230,9 @@ public class FragmentChoicenessList extends Fragment implements
                         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                                 long arg3) {
 
-
+                            /**
+                             * 精选类型(1: 线下活动帖有文字，2：话题帖有文字 3：URL 4：专题 5: 线下活动帖无文字  6：话题帖无文字  7：标签 8：线上活动 9:线上活动帖有文字 10:新版话题无文字 11：新版话题有文字 12：专题V2)
+                             */
                             if (adapter == null) return;
                             ChoicenessModel.Omnibuslist item = (ChoicenessModel.Omnibuslist) adapter.getItem(arg2 - 1);
                             if (item == null) return;
@@ -269,6 +271,16 @@ public class FragmentChoicenessList extends Fragment implements
                             {
                                 intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
                                 intent.putExtra("TOPICID", ""+item.topic_id);
+                                startActivity(intent);
+                            }
+                            else if ( item.type == 12 )
+                            {
+                                intent = new Intent(getActivity(), SubjectActivity.class);
+                                intent.putExtra("TITLE", item.title);
+                                intent.putExtra("ID", item.id);
+                                intent.putExtra("TYPE", 12);
+                                Common.log("item.id=" + item.id);
+
                                 startActivity(intent);
                             }
 
@@ -335,8 +347,8 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
             case R.id.layout_nearby:
 
-                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-                {
+//                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
+//                {
 ////                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
 //
 //                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
@@ -346,11 +358,11 @@ public class FragmentChoicenessList extends Fragment implements
 //                    startActivity(intent);
 //
 
-                    Common.log("this time == "+Common.getTime());
+//                    Common.log("this time == "+Common.getTime());
 
-                    return;
+//                    return;
 
-                }
+//                }
 
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
                 intent.putExtra("clubID", 284);

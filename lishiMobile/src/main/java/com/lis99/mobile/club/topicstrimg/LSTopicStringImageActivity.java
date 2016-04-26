@@ -511,12 +511,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                 item.parentId = model.id;
                 model.item.add(item);
 
-
-
                 adapter.notifyDataSetChanged();
             }
         }
-
     }
 
     private int index = -1;
@@ -570,6 +567,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         if (MyEmotionsUtil.getInstance().onKeyDown(keyCode, event)) {
             return true;
         }
+
+        Common.hideSoftInput(activity);
 
         if (keyCode == KEYCODE_BACK) {
             sendResult();

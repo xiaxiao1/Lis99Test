@@ -84,6 +84,7 @@
                 android:background="@drawable/apply_manager_out_btn"
                 android:id="@+id/btn_out"
                 android:layout_marginLeft="20dp"
+                android:visibility="gone"
                 />
 
             <Button
@@ -93,7 +94,35 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/apply_manager_ok_btn"
                 android:id="@+id/btn_ok"
+                android:visibility="gone"
                 />
+
+            <LinearLayout
+                android:id="@+id/view_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="right"
+                android:layout_alignParentRight="true"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#525252"
+                    android:text="请等待对方支付费用"
+                    />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#525252"
+                    android:text="逾期未支付的报名将被系统拒绝"
+                    />
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 
