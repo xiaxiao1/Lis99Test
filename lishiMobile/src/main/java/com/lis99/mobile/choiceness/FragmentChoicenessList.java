@@ -375,6 +375,9 @@ public class FragmentChoicenessList extends Fragment implements
 
                 if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
+
+
+//                    startActivity(new Intent(getActivity(), FragmentChoicenessList.class));
 //                    startActivity(new Intent(getActivity(), ActivityTest.class));
 //                    UpdataUtil.getInstance().getUpData();
 
@@ -383,7 +386,6 @@ public class FragmentChoicenessList extends Fragment implements
                     intent.putExtra("clubID", 0);
                     intent.putExtra("clubName", "这是标题");//clubHead.title);
                     intent.putExtra("TITLE", "这是标题2");
-
                     startActivity(intent);
 
 //                    Common.log("MAC = "+DeviceInfo.getMacAddress());

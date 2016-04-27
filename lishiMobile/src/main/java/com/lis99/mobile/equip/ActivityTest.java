@@ -2,6 +2,7 @@ package com.lis99.mobile.equip;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,9 +131,15 @@ public class ActivityTest extends LSBaseActivity implements View.OnClickListener
 
             holder.et.clearFocus();
 
-            if ( index != -1 && index == i )
+            if ( index == i )
             {
                 holder.et.requestFocus();
+
+                if(!TextUtils.isEmpty(holder.et.getText().toString()))
+                {
+                    holder.et.setSelection(holder.et.getText().toString().length());
+                }
+
             }
 
 //            if ( newEt != null )

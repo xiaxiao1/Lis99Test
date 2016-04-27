@@ -308,6 +308,7 @@ public class Common {
      * @param a
      */
     public static void hideSoftInput(Activity a ) {
+
         View view = a.getWindow().peekDecorView();
             if (view != null) {
                 InputMethodManager inputmanger = (InputMethodManager) a.getSystemService(Context.INPUT_METHOD_SERVICE);

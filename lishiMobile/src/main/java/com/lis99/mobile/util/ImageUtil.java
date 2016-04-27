@@ -1796,7 +1796,7 @@ public class ImageUtil
 		if ( file == null || bitmap == null ) return false;
 		try {
 			FileOutputStream foutp = new FileOutputStream(file);
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, foutp);
+			bitmap.compress(Bitmap.CompressFormat.PNG, 100, foutp);
 			foutp.flush();
 			foutp.close();
 			bitmap = null;

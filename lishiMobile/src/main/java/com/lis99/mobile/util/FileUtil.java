@@ -84,7 +84,7 @@ public class FileUtil {
      * @param fileName
      * @return
      */
-    public static String readFileByBytes(String fileName) {
+    public static String readFileToString(String fileName) {
         String result = "";
         File file = new File(fileName);
         InputStream in = null;
@@ -100,8 +100,37 @@ public class FileUtil {
 
 
             result = Base64.encode(b);
-
             return result;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     *      获取文件的byte[]
+     * @param fileName
+     * @return
+     */
+    public static byte[] readFileByBytess(String fileName) {
+//        String result = "";
+        File file = new File(fileName);
+        InputStream in = null;
+        try {
+            // 一次读一个字节
+            in = new FileInputStream(file);
+            int tempbyte;
+            byte[] b = new byte[in.available()];
+            while ((tempbyte = in.read(b)) != -1) {
+//                System.out.write(tempbyte);
+            }
+            in.close();
+
+
+//            result = Base64.encode(b);
+
+            return b;
 
         } catch (IOException e) {
             e.printStackTrace();

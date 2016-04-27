@@ -40,8 +40,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.view.KeyEvent.KEYCODE_BACK;
-
 /**
  * Created by yy on 16/3/29.
  */
@@ -78,6 +76,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     private boolean isAdd;
 
     private String titleInfo;
+//    加上标题一共6条数据
+    private int max = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +103,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
             isAdd = getIntent().getBooleanExtra("ADD", false);
             titleInfo = getIntent().getStringExtra("TITLE");
+            topicId = getIntent().getIntExtra("topicId", 0);
 
             if (TextUtils.isEmpty(clubName))
             {
@@ -113,6 +114,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             model.clubId = ""+clubID;
             model.clubName = clubName;
             model.isAdd = isAdd;
+            model.topicId = ""+topicId;
 
             DataHelp.getInstance().addDraft(model);
 
@@ -122,6 +124,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             clubID = Common.string2int(model.clubId);
             clubName = model.clubName;
             isAdd = model.isAdd;
+            topicId = Common.string2int(model.topicId);
         }
 
 //        Common.log("parentId="+model.id);
@@ -171,7 +174,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                 }
             }
 //          判断最后一项是否为空， 不是添加空
-            if ( model.item.size() == 1 || !TextUtils.isEmpty(model.item.get(model.item.size() - 1).img) )
+            if ( model.item.size() < max && (model.item.size() == 1 || !TextUtils.isEmpty(model.item.get(model.item.size() - 1).img)) )
             {
                 //图文
                 StringImageChildModel item = new StringImageChildModel();
@@ -242,7 +245,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
                 if ( file.exists() )
                 {
-                    files.add(FileUtil.readFileByBytes(path));
+                    String info = FileUtil.readFileToString(path);
+                    files.add(info);
                     String name = item.img.substring(item.img.lastIndexOf("."), item.img.length());
                     fileName.add(name);
 
@@ -264,44 +268,59 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                 fileName.add("");
             }
 
-            contents.add(item.content);
+            contents.add(TextUtils.isEmpty(item.content) ? "" : item.content);
 
         }
-
+////      如果最后一条是空， 删除
+//        if ( fileName.size() > 0 && contents.size() > 0 )
+//        {
+//            int fnum = fileName.size() - 1;
+//            int cnum = contents.size() - 1;
+//
+//            if ( fnum == cnum )
+//            {
+//                String str = files.get(fnum) + fileName.get(fnum) + contents.get(fnum);
+//                if ( TextUtils.isEmpty(str) )
+//                {
+//                    fileName.remove(fnum);
+//                    files.remove(fnum);
+//                    contents.remove(fnum);
+//                }
+//            }
+//        }
 
         AsyncHttpClient client = new AsyncHttpClient();
 
+        RequestParams params = null;
 
-        RequestParams params = new RequestParams();
-        params.put("club_id", clubID);
-        params.put("user_id", userID);
-        params.put("title", title);
-        params.put("source", DeviceInfo.PLATFORM);
-        params.put("content", contents);
-        params.put("thumb", files);
-        params.put("ext", fileName);
+        if ( isAdd )
+        {
+            params = getAddTopic(userID, files, contents, fileName);
+        }
+        else
+        {
+            params = getNewTopic(title, userID, files, contents, fileName);
+        }
 
-//        if ( files.size() != 0 )
-//        {
-//            Bitmap b = BitmapFactory.decodeByteArray(files.get(0), 0, files.get(0).length);
-//            if ( b == null )
-//            {
-//                Common.toast("b ==== null");
-//                return;
-//            }
-//            iv.setImageBitmap(b);
-//            Common.toast("b !!!!!!!!==== null");
-//        }
-//
-//        if ( true) return;
+        try {
 
-//        params.put("content", body);
-//        params.put("category", 0);
-//        params.put("parentid", 0);
-//        if (bitmap != null)
-//            params.put("thumb", new ByteArrayInputStream(BitmapUtil.bitampToByteArray(bitmap)), "image.jpg");
+            Common.log("params == "+params.toString());
+        }catch (Exception e)
+        {
+            Common.log(""+e.toString());
+        }
 
-        client.post(C.REPLY_NEW_TOPIC_STRING_IMAGE, params, new JsonHttpResponseHandler() {
+
+        String url = C.REPLY_NEW_TOPIC_STRING_IMAGE;
+        if ( isAdd )
+        {
+            url = C.REPLY_NEW_TOPIC_STRING_IMAGE_ADD;
+        }
+
+        client.post(url,
+                params,
+                new JsonHttpResponseHandler()
+                {
 
             @Override
             public void onStart() {
@@ -316,15 +335,14 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                 if ("OK".equals(errorCode)) {
                     postMessage(POPUP_TOAST, "发布成功");
 
+                    Common.log("发布成功");
+
                     for (StringImageChildModel info : model.item )
                     {
                         DataHelp.getInstance().removeItem(info);
                     }
                     DataHelp.getInstance().removeDraft(model);
 
-//					LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(LSClubPublish2Activity.this);
-//					Intent intent = new Intent(LSClubDetailActivity.CLUB_TOPIC_CHANGE);
-//					lbm.sendBroadcast(intent);
 
                     String data = response.optString("data", "");
                     if (!TextUtils.isEmpty(data)) {
@@ -354,6 +372,10 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                     setResult(RESULT_OK);
                     finish();
                 }
+                else
+                {
+                    Common.log("Post Error ="+response.toString());
+                }
             }
 
             @Override
@@ -370,13 +392,37 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
             }
 
-            @Override
+                    @Override
             public void onFinish() {
                 postMessage(DISMISS_PROGRESS);
             }
 
         });
 
+    }
+
+    private RequestParams getNewTopic ( String title, String userId, List<String> files, List<String> content, List<String> filename )
+    {
+        RequestParams params = new RequestParams();
+        params.put("club_id", clubID);
+        params.put("user_id", userId);
+        params.put("title", title);
+        params.put("source", DeviceInfo.PLATFORM);
+        params.put("ext", filename);
+        params.put("content", content);
+        params.put("thumb", files);
+        return params;
+    }
+
+    private RequestParams getAddTopic ( String userId, List<String> files, List<String> content, List<String> filename )
+    {
+        RequestParams params = new RequestParams();
+        params.put("user_id", userId);
+        params.put("topic_id", topicId);
+        params.put("ext", filename);
+        params.put("content", content);
+        params.put("thumb", files);
+        return params;
     }
 
     @Override
@@ -505,9 +551,15 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
 //                model.item.get(index).img = uri;
 //              增加一条
-                StringImageChildModel item = new StringImageChildModel();
-                item.parentId = model.id;
-                model.item.add(item);
+
+//                小于规定数量， 增加一条
+                if ( model.item.size() < max )
+                {
+                    StringImageChildModel item = new StringImageChildModel();
+                    item.parentId = model.id;
+                    model.item.add(item);
+                }
+
 
                 adapter.notifyDataSetChanged();
             }
@@ -566,9 +618,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             return true;
         }
 
-        Common.hideSoftInput(activity);
-
-        if (keyCode == KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Common.hideSoftInput(activity);
             sendResult();
             Common.toast("内容保存草稿箱");
             return super.onKeyDown(keyCode, event);
@@ -578,13 +629,6 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-//      保存所有数据
-//        saveAll();
-
-    }
 
     //  结束前保存
     @Override

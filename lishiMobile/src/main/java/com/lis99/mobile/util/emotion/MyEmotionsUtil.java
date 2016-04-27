@@ -517,6 +517,7 @@ public class MyEmotionsUtil implements EmoticonsGridAdapter.KeyClickListener {
         return temp;
     }
 
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ( popupWindow == null ) return false;
         if (popupWindow.isShowing()) {

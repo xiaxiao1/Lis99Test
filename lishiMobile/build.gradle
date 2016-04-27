@@ -137,7 +137,7 @@ android {
             shrinkResources true
             signingConfig signingConfigs.release
             // 是否混淆
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
             zipAlignEnabled true
         }

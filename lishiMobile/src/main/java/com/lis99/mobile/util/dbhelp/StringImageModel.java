@@ -37,8 +37,8 @@ public class StringImageModel extends BaseModel {
     @Column(name = "istest")
     public int istest;
 
-//    @Column(name = "topicId")
-//    public String topicId;
+    @Column(name = "topicId")
+    public String topicId;
 
     @Column(name = "clubId")
     public String clubId;

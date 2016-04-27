@@ -198,6 +198,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
                     Intent intent = new Intent(mContext, LSTopicStringImageActivity.class);
                     intent.putExtra("clubID", item.clubId);//clubID);
+                    intent.putExtra("topicId", Common.string2int(item.topicsId));
                     intent.putExtra("clubName", item.clubTitle);//clubHead.title);
                     intent.putExtra("ADD", true);
                     intent.putExtra("TITLE", item.title);
@@ -357,6 +358,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
                     Intent intent = new Intent(mContext, LSTopicStringImageActivity.class);
                     intent.putExtra("clubID", item.clubId);//clubID);
+                    intent.putExtra("topicId", Common.string2int(item.topicsId));
                     intent.putExtra("clubName", item.clubTitle);//clubHead.title);
                     intent.putExtra("ADD", true);
                     intent.putExtra("TITLE", item.title);

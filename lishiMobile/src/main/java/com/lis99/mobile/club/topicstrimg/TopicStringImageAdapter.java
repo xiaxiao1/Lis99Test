@@ -50,7 +50,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
     private int position = -1;
 
-    private EditText currentEdit;
+//    private EditText currentEdit;
 
 
     public TopicStringImageAdapter(Context c, List listItem) {
@@ -475,7 +475,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                     {
                         position = (int) et.getTag();
 
-                        currentEdit = et;
+//                        currentEdit = et;
 
                         if ( position == 0 )
                         {
@@ -487,6 +487,8 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                             MyEmotionsUtil.getInstance().initView(et);
                             main.visibleEmotionBar(true);
                         }
+
+                        MyEmotionsUtil.getInstance().onKeyDown(0, null);
 
                     }
                     return false;
