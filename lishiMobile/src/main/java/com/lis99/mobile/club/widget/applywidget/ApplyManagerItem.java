@@ -147,8 +147,7 @@ public class ApplyManagerItem extends MyBaseAdapter {
         if (type == 0)
         {
             holder.btn_ok.setVisibility(View.GONE);
-            holder.btn_out.setVisibility(View.GONE);
-            holder.view_wait.setVisibility(View.VISIBLE);
+            holder.btn_out.setVisibility(View.VISIBLE);
 
         }
         else if ( type == 1 )
@@ -160,6 +159,13 @@ public class ApplyManagerItem extends MyBaseAdapter {
         {
             holder.btn_ok.setVisibility(View.VISIBLE);
             holder.btn_out.setVisibility(View.VISIBLE);
+        }
+
+        if ( item.pay_status == 0 )
+        {
+            holder.btn_ok.setVisibility(View.GONE);
+            holder.btn_out.setVisibility(View.GONE);
+            holder.view_wait.setVisibility(View.VISIBLE);
         }
 
         holder.btn_ok.setOnClickListener(new View.OnClickListener() {

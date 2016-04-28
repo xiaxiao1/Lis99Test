@@ -121,6 +121,8 @@ public class ChoicenessAdapter extends BaseAdapter
 			case 11:
 				num = IMGACTIVE;
 				break;
+//			新专题
+			case 12:
 			case 4:
 				num = SUBJECT;
 				break;
