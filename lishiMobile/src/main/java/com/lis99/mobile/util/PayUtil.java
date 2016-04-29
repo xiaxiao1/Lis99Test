@@ -96,7 +96,7 @@ public class PayUtil {
         map.put("user_id", userId);
 
 
-        MyRequestManager.getInstance().requestPostNoModel(WEIXINURL, map, null, new CallBack() {
+        MyRequestManager.getInstance().requestPostNoModel(/*WEIXINURL*/"http://pays.lis99.com/topicsappweixin/jspay", map, null, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 String result = mTask.getresult();

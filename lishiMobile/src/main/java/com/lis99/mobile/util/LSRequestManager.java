@@ -375,7 +375,8 @@ public class LSRequestManager
 	{
 		CallBack call = new CallBack() {
 			@Override
-			public void handler(MyTask mTask) {
+			public void handler(MyTask mTask)
+			{
 				QQLoginModel model = (QQLoginModel) mTask.getResultModel();
 				UserBean u = new UserBean();
 				u.setHeadicon(model.headicon);

@@ -134,7 +134,11 @@ public class ThirdLogin {
 
             initmTencent();
 
+            if ( Common.isTest())
+                Common.toast("openid = "+openid);
+
             if (!TextUtils.isEmpty(openid)) {
+
                 SharedPreferencesHelper.saveQQOpenId(openid);
             }
             updateUserInfo();
@@ -277,6 +281,9 @@ public class ThirdLogin {
         requestParams.add("access_token", api_token);
         api_uid = mAccessToken.getUid();
         requestParams.add("uid", api_uid);
+
+        if ( Common.isTest())
+        Common.toast("api_uid="+api_uid);
 
         SharedPreferencesHelper.saveSinaUid(api_uid);
 

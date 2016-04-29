@@ -21,6 +21,7 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LsImproveInfoActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.LoginCallBackManager;
@@ -294,6 +295,9 @@ public class LSLoginActivity extends LSBaseActivity {
                 openid = root.get("openid").asText();
                 unionid = root.get("unionid").asText();
                 expires_in = root.get("expires_in").asInt();
+
+                if ( Common.isTest())
+                Common.toast("unionid="+unionid);
 
                 SharedPreferencesHelper.saveWeixinOpenID(openid);
                 SharedPreferencesHelper.saveWeixinToken(weixin_access_token);
