@@ -104,8 +104,7 @@ public class ThirdLogin {
         }
     }
 
-
-    private IUiListener loginListener = new IUiListener() {
+    public IUiListener loginListener = new IUiListener() {
         @Override
         public void onComplete(Object o) {
             if (null == o) {

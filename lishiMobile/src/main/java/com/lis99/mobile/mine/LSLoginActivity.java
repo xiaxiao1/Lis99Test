@@ -30,9 +30,11 @@ import com.lis99.mobile.util.SharedPreferencesHelper;
 import com.lis99.mobile.util.ThirdLogin;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.tencent.connect.common.Constants;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.tauth.Tencent;
 
 import org.apache.http.Header;
 
@@ -210,6 +212,14 @@ public class LSLoginActivity extends LSBaseActivity {
                 finish();
             }
         }
+
+//            QQ登录， 在内存不足的机器上， 需要用到
+        if(requestCode == Constants.REQUEST_LOGIN) {
+            Tencent.onActivityResultData(requestCode,resultCode,data,ThirdLogin.getInstance().loginListener);
+        }
+
+
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -423,7 +433,8 @@ public class LSLoginActivity extends LSBaseActivity {
                 Intent intent = new Intent(this, LSWeixinLoginActivity.class);
                 intent.putExtra("nickName", weixinNickName);
                 intent.putExtra("openID", openid);
-                intent.putExtra("openID", "obEKXuBn0N8uZDnfcmbQ1u47LCzI");
+                intent.putExtra("unionid", unionid);
+//                intent.putExtra("openID", "obEKXuBn0N8uZDnfcmbQ1u47LCzI");
                 intent.putExtra("headerUrl", weixinHeader);
                 intent.putExtra("sex", weixinSex);
                 startActivityForResult(intent, 1001);

@@ -1,10 +1,13 @@
 package com.lis99.mobile.entry;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.CookieManager;
@@ -40,6 +43,7 @@ public class LsSettingActivity extends ActivityPattern {
 
 	private View ls_movie;
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +52,9 @@ public class LsSettingActivity extends ActivityPattern {
 		setView();
 		setListener();
 //		getpkginfo("com.lis99.mobile");
-		tv_size.setText(FileSizeUtil.getAutoFileOrFilesSize(FileUtil.imgPath));
+
+		new MyTask ().execute("");
+
 	}
 
 	private void setView() {
@@ -143,7 +149,12 @@ public class LsSettingActivity extends ActivityPattern {
 							DataCleanManager.deleteFilesByDirectory(new File(FileUtil.imgPath));
 
 //							getpkginfo("com.lis99.mobile");
-							tv_size.setText(FileSizeUtil.getAutoFileOrFilesSize(FileUtil.imgPath));
+//							tv_size.setText(FileSizeUtil.getAutoFileOrFilesSize(FileUtil.imgPath));
+
+							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+								new MyTask ().execute("");
+							}
+
 						}
 					}, true, "取消", null);
 		} else if (v.getId() == rl_gengxin.getId()) {
@@ -190,6 +201,46 @@ public class LsSettingActivity extends ActivityPattern {
 
 
 		finish();
+	}
+
+	class MyTask extends AsyncTask
+	{
+		/**
+		 * <p>Runs on the UI thread after {@link #doInBackground}. The
+		 * specified result is the value returned by {@link #doInBackground}.</p>
+		 * <p/>
+		 * <p>This method won't be invoked if the task was cancelled.</p>
+		 *
+		 * @param o The result of the operation computed by {@link #doInBackground}.
+		 * @see #onPreExecute
+		 * @see #doInBackground
+		 * @see #onCancelled(Object)
+		 */
+		@Override
+		protected void onPostExecute(Object o) {
+			super.onPostExecute(o);
+			String result = (String) o;
+			tv_size.setText(result);
+		}
+
+		/**
+		 * Override this method to perform a computation on a background thread. The
+		 * specified parameters are the parameters passed to {@link #execute}
+		 * by the caller of this task.
+		 * <p/>
+		 * This method can call {@link #publishProgress} to publish updates
+		 * on the UI thread.
+		 *
+		 * @param params The parameters of the task.
+		 * @return A result, defined by the subclass of this task.
+		 * @see #onPreExecute()
+		 * @see #onPostExecute
+		 * @see #publishProgress
+		 */
+		@Override
+		protected Object doInBackground(Object[] params) {
+			return FileSizeUtil.getAutoFileOrFilesSize(FileUtil.imgPath);
+		}
 	}
 
 

@@ -34,11 +34,14 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
     int sex;
     String headerUrl;
     String openID;
+    String unionid;
 
     ImageView headerView;
     EditText nickNameView;
 
     private static final int LOGIN_SUCCESS = 200;
+
+    private View iv_back;
 
 
     private void buildOptions(){
@@ -57,6 +60,7 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
         openID = getIntent().getStringExtra("openID");
         headerUrl = getIntent().getStringExtra("headerUrl");
         sex = getIntent().getIntExtra("sex", 1);
+        unionid = getIntent().getStringExtra("unionid");
 
         setContentView(R.layout.activity_ls_weixin_login);
 
@@ -75,6 +79,14 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
         ImageLoader.getInstance().displayImage(headerUrl, headerView, options);
         nickNameView.setText(nickName);
 
+        iv_back = findViewById(R.id.iv_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
 
@@ -90,6 +102,8 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
         params.put("nickname", nickName);
         params.put("sex", sex);
         params.put("headimgurl", headerUrl);
+        params.put("unionid", unionid);
+
         Task task = new Task(null, C.WEIXIN_LOGIN, C.HTTP_POST, C.WEIXIN_LOGIN,
                 this);
         task.setPostData(RequestParamUtil.getInstance(this)
