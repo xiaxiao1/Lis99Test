@@ -1,5 +1,6 @@
 package com.lis99.mobile.club.topicstrimg;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,8 +22,10 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.FileUtil;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.dbhelp.DataHelp;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
@@ -337,11 +340,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
                     Common.log("发布成功");
 
-                    for (StringImageChildModel info : model.item )
-                    {
-                        DataHelp.getInstance().removeItem(info);
-                    }
-                    DataHelp.getInstance().removeDraft(model);
+                    removeAll();
+//                  加入俱乐部
+                    LSRequestManager.getInstance().addClub(""+clubID, null);
 
 
                     String data = response.optString("data", "");
@@ -580,6 +581,19 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         startActivity(intent);
     }
 
+    private void removeAll ()
+    {
+        if ( model.item != null )
+        {
+            for (StringImageChildModel info : model.item )
+            {
+                DataHelp.getInstance().removeItem(info);
+            }
+        }
+
+        DataHelp.getInstance().removeDraft(model);
+    }
+
 //  保存所有数据
     private void saveAll ()
     {
@@ -620,8 +634,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Common.hideSoftInput(activity);
-            sendResult();
-            Common.toast("内容保存草稿箱");
+//            sendResult();
+            showSaveDialog();
             return super.onKeyDown(keyCode, event);
         }
 
@@ -635,6 +649,25 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("DATA_MODEL", model);
+    }
+
+    private void showSaveDialog ()
+    {
+        DialogManager.getInstance().startAlert(this, "保存", "内容是否保存草稿箱", true, "确定", new DialogInterface.OnClickListener() {
+
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sendResult();
+                Common.toast("内容保存草稿箱");
+            }
+        }, true, "取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                removeAll();
+                finish();
+            }
+        });
     }
 
     private void sendResult()

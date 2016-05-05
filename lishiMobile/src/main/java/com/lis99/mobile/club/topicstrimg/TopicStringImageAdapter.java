@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.topicstrimg;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.lis99.mobile.util.dbhelp.DataHelp;
@@ -304,9 +306,15 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             holder.ivRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finalHolder.layoutAdded.setVisibility(View.GONE);
-                    finalHolder.layoutAdd.setVisibility(View.VISIBLE);
-                    finalHolder.ivImage.setImageBitmap(null);
+
+                    DialogManager.getInstance().startAlert(main, "删除", "将要删除这张图片及配文，确定吗?", true, "删除", new DialogInterface.OnClickListener() {
+
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finalHolder.layoutAdded.setVisibility(View.GONE);
+                            finalHolder.layoutAdd.setVisibility(View.VISIBLE);
+                            finalHolder.ivImage.setImageBitmap(null);
 //                    if ( ImageUtil.deleteNativeImg(item.img) )
 //                    {
 //                        Common.toast("OK");
@@ -316,10 +324,13 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 //                        Common.toast("ERROR");
 //                    }
 
-                    DataHelp.getInstance().removeItem(item);
-                    item.content = "";
-                    item.img = null;
-                    removeAt(getItemIndexWithPosition(i));
+                            DataHelp.getInstance().removeItem(item);
+                            item.content = "";
+                            item.img = null;
+                            removeAt(getItemIndexWithPosition(i));
+                        }
+                    }, true, "保留", null);
+
 
                 }
             });

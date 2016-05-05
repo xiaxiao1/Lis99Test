@@ -202,7 +202,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                     intent.putExtra("clubName", item.clubTitle);//clubHead.title);
                     intent.putExtra("ADD", true);
                     intent.putExtra("TITLE", item.title);
-                    mContext.startActivity(intent);
+//                    mContext.startActivity(intent);
+                    ((Activity)mContext).startActivityForResult(intent, 999);
 
                 }
             });
@@ -362,7 +363,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                     intent.putExtra("clubName", item.clubTitle);//clubHead.title);
                     intent.putExtra("ADD", true);
                     intent.putExtra("TITLE", item.title);
-                    mContext.startActivity(intent);
+//                    mContext.startActivity(intent);
+                    ((Activity)mContext).startActivityForResult(intent, 999);
 
                 }
             });

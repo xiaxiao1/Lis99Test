@@ -364,6 +364,22 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+//        刷新
+        if ( resultCode == RESULT_OK )
+        {
+            if ( requestCode == 999 )
+            {
+                onHeaderRefresh(refreshView);
+            }
+        }
+
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         cleanList();
