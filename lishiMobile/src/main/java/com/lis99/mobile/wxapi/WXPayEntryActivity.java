@@ -192,7 +192,9 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
     private void sendOk2Service ()
     {
 //        PayUtil.orderCode;
-        String url = "http://api.lis99.com/v4/club/sendMobileInfo";
+//        String url = "http://api.lis99.com/v4/club/sendMobileInfo";
+
+        String url = "http://pays.lis99.com/sendmobileinfo/jsmobile";
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("out_trade_no", PayUtil.orderCode);

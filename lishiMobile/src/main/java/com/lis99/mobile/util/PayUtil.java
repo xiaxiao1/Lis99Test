@@ -40,9 +40,17 @@ public class PayUtil {
 //                                                                          C380BEC2BFD727A4B6845133519F3AD6
     private String appId, partnerId, prepayId, nonceStr, timeStamp, sign; //= "26f33f45de7f2a851319b647a28a5cdb";
 
-    private final String ZFBURL = "http://api.lis99.com/v4/club/ordersinfo";
+//    private final String ZFBURL = "http://api.lis99.com/v4/club/ordersinfo";
+    private final String ZFBURL = "http://pays.lis99.com/topicsappalipay/jspay";
 
-    private final String WEIXINURL = "http://api.lis99.com/v4/club/wxpay";
+
+//    private final String WEIXINURL = "http://api.lis99.com/v4/club/wxpay";
+    private final String WEIXINURL = "http://pays.lis99.com/topicsappweixin/jspay";
+
+    private final int PAYZFBTYPE = 2;
+    private final int PAYWXTYPE = 3;
+
+
 
     private ZFBPayModel zfbModel;
 //  订单号
@@ -94,9 +102,9 @@ public class PayUtil {
 
         map.put("orderCode", orderId);
         map.put("user_id", userId);
+        map.put("paymethod", PAYWXTYPE);
 
-
-        MyRequestManager.getInstance().requestPostNoModel(/*WEIXINURL*/"http://pays.lis99.com/topicsappweixin/jspay", map, null, new CallBack() {
+        MyRequestManager.getInstance().requestPostNoModel(WEIXINURL, map, null, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 String result = mTask.getresult();
@@ -191,6 +199,7 @@ public class PayUtil {
 
         map.put("orderCode", orderId);
         map.put("user_id", userId);
+        map.put("paymethod", PAYZFBTYPE);
 
         MyRequestManager.getInstance().requestPostNoModel(ZFBURL, map, zfbModel, new CallBack() {
             @Override
