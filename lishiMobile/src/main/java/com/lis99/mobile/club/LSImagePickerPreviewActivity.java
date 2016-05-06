@@ -200,6 +200,7 @@ public class LSImagePickerPreviewActivity extends FragmentActivity implements Ch
                     intent.setClassName(this, className);
                 }
 
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("uris", selectedUris);
                 startActivity(intent);
                 finish();

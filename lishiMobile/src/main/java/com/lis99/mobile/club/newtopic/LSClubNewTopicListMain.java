@@ -205,6 +205,8 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
                     adapter.setLikeCall(likeCall);
 
+                    adapter.setMain(LSClubNewTopicListMain.this);
+
                     listView.setAdapter(adapter);
                 }
 //                else

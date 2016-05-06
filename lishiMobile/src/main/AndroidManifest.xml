@@ -1242,7 +1242,7 @@
         <activity android:name="com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
-                  android:launchMode="singleTask"
+                  android:launchMode="singleTop"
                   android:windowSoftInputMode="adjustResize"
             />
 <!--    草稿箱-->

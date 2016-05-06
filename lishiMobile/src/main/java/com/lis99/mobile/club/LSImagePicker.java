@@ -354,7 +354,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                         intent = new Intent();
                         intent.setClassName(this, className);
                     }
-
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("uris", selectedUri);
                     startActivity(intent);
                     finish();

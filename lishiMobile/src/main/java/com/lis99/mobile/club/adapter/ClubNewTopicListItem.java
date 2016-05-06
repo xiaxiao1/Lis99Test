@@ -22,6 +22,7 @@ import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
+import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMainReply;
 import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.LSClubTopicHeadLike;
@@ -68,6 +69,16 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     private int topicId = -1, clubId = -1;
 
     private String title;
+
+    public LSClubNewTopicListMain getMain() {
+        return main;
+    }
+
+    public void setMain(LSClubNewTopicListMain main) {
+        this.main = main;
+    }
+
+    private LSClubNewTopicListMain main;
 
 
     public ClubNewTopicListItem(Context c, List listItem) {
@@ -203,7 +214,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                     intent.putExtra("ADD", true);
                     intent.putExtra("TITLE", item.title);
 //                    mContext.startActivity(intent);
-                    ((Activity)mContext).startActivityForResult(intent, 999);
+                    main.startActivityForResult(intent, 999);
 
                 }
             });
@@ -364,7 +375,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                     intent.putExtra("ADD", true);
                     intent.putExtra("TITLE", item.title);
 //                    mContext.startActivity(intent);
-                    ((Activity)mContext).startActivityForResult(intent, 999);
+                    main.startActivityForResult(intent, 999);
 
                 }
             });
