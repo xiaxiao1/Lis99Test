@@ -76,12 +76,21 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
 
     }
 
-    private View titleLeft;
+//    private View titleLeft;
     private TextView tvMassage;
     RedDotUtil redDotUtil = RedDotUtil.getInstance();
 
     public LSEquipFragment() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    protected void leftAction() {
+        super.leftAction();
+
+        startActivity(new Intent(getActivity(), SysMassageActivity.class));
+
     }
 
 
@@ -116,7 +125,7 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
 
     @Override
     protected void initViews(ViewGroup container) {
-        super.initViews(container);
+//        super.initViews(container);
 
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         body = inflater.inflate(R.layout.fragment_lsequip, container, false);
@@ -127,9 +136,9 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
         listView = (ListView) findViewById(R.id.listView);
 
         tvMassage = (TextView)body.findViewById(R.id.tv_massage);
-        titleLeft = body.findViewById(R.id.titleLeft);
+//        titleLeft = body.findViewById(R.id.titleLeft);
 
-        titleLeft.setOnClickListener(this);
+//        titleLeft.setOnClickListener(this);
 
         tvMassage.setText("");
         tvMassage.setVisibility(View.GONE);
@@ -310,11 +319,11 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
         Intent intent = null;
         switch (v.getId())
         {
-            case R.id.titleLeft:
-//                RedDotUtil.getInstance().InVisibleDot();
-                startActivity(new Intent(getActivity(), SysMassageActivity.class));
-
-                break;
+//            case R.id.titleLeft:
+////                RedDotUtil.getInstance().InVisibleDot();
+//                startActivity(new Intent(getActivity(), SysMassageActivity.class));
+//
+//                break;
             case R.id.welfarePanel:
             {
 //                intent = new Intent(getActivity(), ClubSpecialListActivity.class);

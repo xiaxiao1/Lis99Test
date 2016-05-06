@@ -43,6 +43,7 @@ public class FileSizeUtil {
         File file = new File(filePath);
         long blockSize = 0;
         try {
+//            blockSize = file.length();
             if (file.isDirectory()) {
                 blockSize = getFileSizes(file);
             } else {
@@ -50,7 +51,7 @@ public class FileSizeUtil {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Common.log("获取文件大小,获取失败!");
+            Common.log("获取文件大小,获取失败!"+e.toString());
         }
         return FormetFileSize(blockSize);
     }
@@ -65,9 +66,18 @@ public class FileSizeUtil {
     private static long getFileSize(File file) throws Exception {
         long size = 0;
         if (file.exists()) {
-            FileInputStream fis = null;
-            fis = new FileInputStream(file);
-            size = fis.available();
+            try
+            {
+                FileInputStream fis = null;
+                fis = new FileInputStream(file);
+                size = fis.available();
+                fis.close();
+            }
+            catch (Exception e)
+            {
+                Common.log("获取文件大小流有问题"+e.toString());
+            }
+
         } else {
             file.createNewFile();
             Common.log("获取文件大小,文件不存在!");

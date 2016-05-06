@@ -225,15 +225,6 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
         v = findViewById(R.id.layout_drafts);
         v.setOnClickListener(this);
 
-        if ( Common.isTest())
-        {
-            v.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            v.setVisibility(View.GONE);
-        }
-
         managePanel = findViewById(R.id.managePanel);
         managePanel.setVisibility(View.GONE);
 

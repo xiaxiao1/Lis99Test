@@ -23,7 +23,6 @@ import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
-import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
@@ -373,32 +372,32 @@ public class FragmentChoicenessList extends Fragment implements
                 //ActivityTest
 //                startActivity(new Intent(getActivity(), ActivityTest.class));
 
-                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-                {
-
-
-//                    startActivity(new Intent(getActivity(), FragmentChoicenessList.class));
-//                    startActivity(new Intent(getActivity(), ActivityTest.class));
-//                    UpdataUtil.getInstance().getUpData();
-
-                    intent = new Intent(getActivity(), LSTopicStringImageActivity.class);
-                    intent.putExtra("ADD", true);
-                    intent.putExtra("clubID", 0);
-                    intent.putExtra("clubName", "这是标题");//clubHead.title);
-                    intent.putExtra("TITLE", "这是标题2");
-                    startActivity(intent);
-
-//                    Common.log("MAC = "+DeviceInfo.getMacAddress());
-
-//                    LSRequestManager.getInstance().upDataInfo();
-
-//                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
+//                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
+//                {
 //
-//                    intent.putExtra("CODE", 0);
 //
-//                    startActivity(intent);
-                    return;
-                }
+////                    startActivity(new Intent(getActivity(), FragmentChoicenessList.class));
+////                    startActivity(new Intent(getActivity(), ActivityTest.class));
+////                    UpdataUtil.getInstance().getUpData();
+//
+////                    intent = new Intent(getActivity(), LSTopicStringImageActivity.class);
+////                    intent.putExtra("ADD", true);
+////                    intent.putExtra("clubID", 0);
+////                    intent.putExtra("clubName", "这是标题");//clubHead.title);
+////                    intent.putExtra("TITLE", "这是标题2");
+////                    startActivity(intent);
+//
+////                    Common.log("MAC = "+DeviceInfo.getMacAddress());
+//
+////                    LSRequestManager.getInstance().upDataInfo();
+//
+////                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
+////
+////                    intent.putExtra("CODE", 0);
+////
+////                    startActivity(intent);
+//                    return;
+//                }
 ////
                 intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
                 startActivity(intent);

@@ -230,7 +230,9 @@ public class ThirdLogin {
             return false;
         } else if(SystemUtils.checkMobileQQ(var1)) {
             return true;
-        } else {
+        }
+        else
+        {
             Toast.makeText(var1, "已安装的QQ版本不支持登陆", 0).show();
             return false;
         }
