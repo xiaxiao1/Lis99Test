@@ -328,6 +328,9 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                             item.content = "";
                             item.img = null;
                             removeAt(getItemIndexWithPosition(i));
+
+                            main.isNeedAdd();
+
                         }
                     }, true, "保留", null);
 

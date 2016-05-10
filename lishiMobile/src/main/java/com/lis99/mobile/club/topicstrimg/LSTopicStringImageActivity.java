@@ -2,6 +2,7 @@ package com.lis99.mobile.club.topicstrimg;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -17,7 +18,6 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSImagePicker;
 import com.lis99.mobile.engine.base.CallBack;
-import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -483,8 +483,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             case R.id.title:
                 dot.setImageResource(R.drawable.topic_club_up_dot);
                 PopWindowUtil.showTopicClub(position, title, new CallBack() {
+
                     @Override
-                    public void handler(MyTask mTask) {
+                    public void handler(com.lis99.mobile.engine.base.MyTask mTask) {
 
                         dot.setImageResource(R.drawable.topic_club_down_dot);
 
@@ -513,58 +514,95 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     }
 
+    //选择图片列表
+    private ArrayList<String> uris;
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        ArrayList<String> uris = (ArrayList<String>) intent.getStringArrayListExtra("uris");
-        if (uris != null && uris.size() > 0) {
+        uris = (ArrayList<String>) intent.getStringArrayListExtra("uris");
+
+        new MyTask().execute("");
+
+    }
+//  添加选择图片
+    protected void addImage (  )
+    {
+        if (uris != null && uris.size() > 0 && model.item != null && index != -1 && adapter != null ) {
 //            url = uris.get(0);
-            if ( model.item != null && index != -1 && adapter != null )
+
+            for ( int i = 0 ; i < uris.size(); i++ )
             {
-//              设置图片地址
-                String uri = uris.get(0);
-
-                StringImageChildModel childModel = model.item.get(index);
-
-                childModel.img = ImageUtil.saveTopicImg(this, uri);
-//                保存上一条图片到数据库, 条件可编辑状态的
-                StringImageChildModel childAdd = model.item.get(index-1);
-                if ( childAdd != null && childAdd.isEditing == 0 )
+                if ( i == 0 )
                 {
-//                    DataHelp.getInstance().addChild(childAdd);
+                    //              设置图片地址
+                    String uri = uris.get(0);
 
-                    DataHelp.getInstance().addItem(childAdd);
+                    StringImageChildModel childModel = model.item.get(index);
 
-                    String title = model.item.get(0).content;
-                    String content = model.item.get(1).content;
+                    childModel.img = ImageUtil.saveTopicImg(this, uri);
 
-                    if ( !TextUtils.isEmpty(title))
+                    //                保存上一条图片到数据库, 条件可编辑状态的
+                    StringImageChildModel childAdd = model.item.get(index-1);
+                    if ( childAdd != null && childAdd.isEditing == 0 )
                     {
-                        model.title = title;
+
+                        DataHelp.getInstance().addItem(childAdd);
                     }
-                    if ( !TextUtils.isEmpty(content))
-                    {
-                        model.content = content;
-                    }
-                    DataHelp.getInstance().addDraft(model);
+//                  保存本条数据
+                    DataHelp.getInstance().addItem(childModel);
 
                 }
-
-//                model.item.get(index).img = uri;
-//              增加一条
-
-//                小于规定数量， 增加一条
-                if ( model.item.size() < max )
+                else
                 {
-                    StringImageChildModel item = new StringImageChildModel();
-                    item.parentId = model.id;
-                    model.item.add(item);
+                    //              设置图片地址
+                    String uri = uris.get(i);
+
+                    StringImageChildModel childModel = new StringImageChildModel();
+
+                    childModel.img = ImageUtil.saveTopicImg(this, uri);
+
+                    model.item.add(childModel);
+//                  保存本条数据
+                    DataHelp.getInstance().addItem(childModel);
+
                 }
-
-
-                adapter.notifyDataSetChanged();
             }
+
+//            保存标题内容
+            String title = model.item.get(0).content;
+            String content = model.item.get(1).content;
+
+            if ( !TextUtils.isEmpty(title))
+            {
+                model.title = title;
+            }
+            if ( !TextUtils.isEmpty(content))
+            {
+                model.content = content;
+            }
+            DataHelp.getInstance().addDraft(model);
+
+//                isNeedAdd();
+
         }
+    }
+
+/**
+ *  检查是否需要显示增加一条
+  */
+    protected void isNeedAdd ()
+    {
+        //                小于规定数量， 增加一条
+        if ( model.item.size() < max && !TextUtils.isEmpty(model.item.get(model.item.size() - 1).img) )
+        {
+            StringImageChildModel item = new StringImageChildModel();
+            item.parentId = model.id;
+            model.item.add(item);
+        }
+
+
+        adapter.notifyDataSetChanged();
     }
 
     private int index = -1;
@@ -578,6 +616,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         // 相册
         Intent intent = new Intent(activity, LSImagePicker.class);
         intent.putExtra("CLASSNAME", this.getComponentName().getClassName());
+        //可选择的总数
+        LSImagePicker.MAX_COUNT = max - index;
         startActivity(intent);
     }
 
@@ -665,6 +705,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 removeAll();
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -690,4 +731,63 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 //    protected void onRestoreInstanceState(Bundle savedInstanceState) {
 //        super.onRestoreInstanceState(savedInstanceState);
 //    }
+
+
+    class MyTask extends AsyncTask
+    {
+
+        /**
+         * Runs on the UI thread before {@link #doInBackground}.
+         *
+         * @see #onPostExecute
+         * @see #doInBackground
+         */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            DialogManager.getInstance().startWaiting(activity, null, "图片加载中...");
+        }
+
+        /**
+         * <p>Runs on the UI thread after {@link #doInBackground}. The
+         * specified result is the value returned by {@link #doInBackground}.</p>
+         * <p/>
+         * <p>This method won't be invoked if the task was cancelled.</p>
+         *
+         * @param o The result of the operation computed by {@link #doInBackground}.
+         * @see #onPreExecute
+         * @see #doInBackground
+         * @see #onCancelled(Object)
+         */
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            DialogManager.getInstance().stopWaitting();
+            isNeedAdd();
+
+        }
+
+        /**
+         * Override this method to perform a computation on a background thread. The
+         * specified parameters are the parameters passed to {@link #execute}
+         * by the caller of this task.
+         * <p/>
+         * This method can call {@link #publishProgress} to publish updates
+         * on the UI thread.
+         *
+         * @param params The parameters of the task.
+         * @return A result, defined by the subclass of this task.
+         * @see #onPreExecute()
+         * @see #onPostExecute
+         * @see #publishProgress
+         */
+        @Override
+        protected Object doInBackground(Object[] params) {
+
+            addImage();
+            return null;
+        }
+    }
+
+
 }

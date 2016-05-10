@@ -31,7 +31,6 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.CustomCursorLoader;
 import com.lis99.mobile.club.adapter.ListAdapter;
 import com.lis99.mobile.club.adapter.onCheckboxChange;
-import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.LoadFileImageView;
 
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
     private HashSet<String> totalUri = new HashSet<String>();
     private Integer selectedId;
     private int PREVIEW = 1;
-    public static int MAX_COUNT = 1;
+    public static int MAX_COUNT = 5;
     private int selectSize = 0;
 
     Button previewButton;
@@ -346,15 +345,16 @@ public class LSImagePicker extends FragmentActivity implements LoaderManager.Loa
                     if (isReply) {
                         intent = new Intent(this, LSClubTopicReplyActivity.class);
                     } else {
-                        intent = new Intent(this, LSTopicStringImageActivity.class);
+//                        intent = new Intent(this, LSTopicStringImageActivity.class);
                     }
 
                     if ( !TextUtils.isEmpty(className))
                     {
                         intent = new Intent();
                         intent.setClassName(this, className);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                     intent.putExtra("uris", selectedUri);
                     startActivity(intent);
                     finish();
