@@ -330,6 +330,7 @@ public class LSActiveLineFragment extends LSFragment implements
         {
             case R.id.titleLeft:
 //                RedDotUtil.getInstance().InVisibleDot();
+                if ( Common.isLogin(getActivity()) )
                 startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;

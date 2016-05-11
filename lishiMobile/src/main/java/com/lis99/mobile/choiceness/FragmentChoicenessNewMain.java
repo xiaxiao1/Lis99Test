@@ -15,6 +15,7 @@ import com.lis99.mobile.club.adapter.LSClubFragmentAdapter;
 import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.ScrollTopUtil;
 
@@ -132,6 +133,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
                 break;
             case R.id.titleLeft:
 //                RedDotUtil.getInstance().InVisibleDot();
+                if ( Common.isLogin(getActivity()))
                 startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;

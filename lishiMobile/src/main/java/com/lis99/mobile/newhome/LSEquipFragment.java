@@ -88,7 +88,7 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
     @Override
     protected void leftAction() {
         super.leftAction();
-
+        if ( Common.isLogin(getActivity()))
         startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
     }
