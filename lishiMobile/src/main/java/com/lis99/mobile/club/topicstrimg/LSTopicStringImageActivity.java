@@ -573,6 +573,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
                     childModel.img = ImageUtil.saveTopicImg(this, uri);
 
+                    childModel.parentId = model.id;
+
                     model.item.add(childModel);
 //                  保存本条数据
                     DataHelp.getInstance().addItem(childModel);
