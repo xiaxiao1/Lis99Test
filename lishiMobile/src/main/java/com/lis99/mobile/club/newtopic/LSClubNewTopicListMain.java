@@ -98,6 +98,9 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
     @Override
     protected void initViews() {
 
+
+        findViewById(R.id.titleLeft).setOnClickListener(this);
+
         listView = (ListView) findViewById(R.id.listView);
         layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
 
@@ -257,6 +260,9 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
         Intent intent = null;
         switch (arg0.getId())
         {
+            case R.id.titleLeft:
+                finish();
+                break;
             case R.id.titleRightImage:
                 rightAction();
                 break;

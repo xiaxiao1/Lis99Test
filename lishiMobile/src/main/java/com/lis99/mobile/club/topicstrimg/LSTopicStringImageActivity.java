@@ -18,7 +18,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSImagePicker;
 import com.lis99.mobile.engine.base.CallBack;
-import com.lis99.mobile.entry.ActivityPattern1;
+import com.lis99.mobile.entry.view.CustomProgressDialog;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DeviceInfo;
@@ -81,6 +81,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
     private String titleInfo;
 //    加上标题一共6条数据
     private int max = 6;
+//    等待提示
+    private CustomProgressDialog customProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -327,8 +329,15 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
             @Override
             public void onStart() {
-                postMessage(ActivityPattern1.POPUP_PROGRESS,
-                        getString(R.string.sending));
+//                postMessage(ActivityPattern1.POPUP_PROGRESS,
+//                        getString(R.string.sending));
+                		if (customProgressDialog == null) {
+			customProgressDialog = CustomProgressDialog.getInstance(activity);
+		}
+		if (customProgressDialog != null
+				&& customProgressDialog.isShow() == false) {
+			customProgressDialog.popup(this, activity, "提示", "正在上传...");
+		}
             }
 
 
@@ -395,7 +404,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
                     @Override
             public void onFinish() {
-                postMessage(DISMISS_PROGRESS);
+//                postMessage(DISMISS_PROGRESS);
+                        if ( customProgressDialog != null && customProgressDialog.isShowing() )
+                            customProgressDialog.cancel();
             }
 
         });

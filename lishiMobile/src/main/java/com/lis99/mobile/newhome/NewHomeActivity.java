@@ -829,7 +829,6 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 
             Common.goTopic(this, model.category, model.topic_id);
 
-
         }
 //				个人中心报名通知
         else if (model.type == 3) {

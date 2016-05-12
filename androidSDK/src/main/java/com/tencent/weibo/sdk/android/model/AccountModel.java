@@ -65,5 +65,5 @@ public class AccountModel {
 	public void setNike(String nike) {
 		this.nike = nike;
 	}
-	
+
 }
