@@ -26,5 +26,17 @@ public class LSRegistModel implements Serializable
 	public String is_vip;
 	public String tags;
 	public String token;
-	
+
+
+	@Override
+	public String toString() {
+		return "LSRegistModel{" +
+				"user_id='" + user_id + '\'' +
+				", nickname='" + nickname + '\'' +
+				", headicon='" + headicon + '\'' +
+				", is_vip='" + is_vip + '\'' +
+				", tags='" + tags + '\'' +
+				", token='" + token + '\'' +
+				'}';
+	}
 }

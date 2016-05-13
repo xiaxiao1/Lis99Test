@@ -1,63 +1,49 @@
 package com.lis99.mobile.equip;
 
-import android.content.Context;
+import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.MotionEvent;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.http.Header;
+import org.json.JSONObject;
 
 public class ActivityTest extends LSBaseActivity implements View.OnClickListener {
 
 
-    private ListView list;
-    private View parent;
+    private TextView text3;
+    private ImageView iv;
+
+    private AlertDialog al;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity);
 
+        text3 = (TextView) findViewById(R.id.Text3);
+        text3.setMovementMethod(new ScrollingMovementMethod());
+        iv = (ImageView) findViewById(R.id.iv);
+
         findViewById(R.id.button).setOnClickListener(this);
+        findViewById(R.id.button1).setOnClickListener(this);
         findViewById(R.id.button2).setOnClickListener(this);
         findViewById(R.id.button3).setOnClickListener(this);
-        findViewById(R.id.button4).setOnClickListener(this);
-
-        list = (ListView) findViewById(R.id.list);
-
-        parent = findViewById(R.id.parent);
-
-        ViewTreeObserver vto = parent.getViewTreeObserver();
-
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-
-            }
-        });
 
 
-        ArrayList<String> al = new ArrayList<>();
-        for ( int i = 0; i < 20; i++ )
-        {
-            String s = "测试" + i;
-            al.add(s);
-        }
-
-        myAdapter a = new myAdapter(activity, al);
-
-        list.setAdapter(a);
 
 
 
@@ -68,102 +54,150 @@ public class ActivityTest extends LSBaseActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
+                httpGet();
 
+                break;
 
+            case R.id.button1:
+
+                httpPost();
                 break;
             case R.id.button2:
 
-
+                getImage();
                 break;
+
             case R.id.button3:
 
-
-
+                aNR();
                 break;
-            case R.id.button4:
 
-
-                break;
         }
     }
 
-    static class myAdapter extends MyBaseAdapter {
-        public myAdapter(Context c, List listItem) {
-            super(c, listItem);
+
+
+
+    private void aNR ()
+    {
+
+        try {
+            Thread.sleep(24000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        EditText newEt;
-        int index = -1;
+    }
 
-        @Override
-        public View setView(int i, View view, ViewGroup viewGroup) {
-            Holder holder = null;
-            if ( view == null )
-            {
-                view = View.inflate(activity, R.layout.test_lit_item, null);
-                holder = new Holder(view);
-                view.setTag(holder);
+
+    private void httpGet()
+    {
+
+        String url = C.CLUB_DETAIL_HEAD + "190";
+
+        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+
+        asyncHttpClient.setTimeout(20000);
+
+        Common.log("asyncHttpClient.getConnectTimeout()=="+asyncHttpClient.getConnectTimeout());
+
+        asyncHttpClient.get(this, url, new AsyncHttpResponseHandler()
+        {
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                al = new AlertDialog.Builder(ActivityTest.this).setTitle("提示").setMessage("loading...").show();
             }
-            else
-            {
-                holder = (Holder) view.getTag();
+
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                String result = null;
+                result = new String(bytes).toString();
+                result = Common.convert(result);
+                Common.log("result = "+result);
+                text3.setText(result);
+
             }
 
-            holder.tv.setText(getItem(i).toString());
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                Common.log("Error = "+throwable.toString());
+                text3.setText(throwable.toString());
+            }
 
-            holder.et.setTag(i+"");
+            @Override
+            public void onFinish() {
+                if ( al != null && al.isShowing() )
+                {
+                    al.cancel();
+                }
+                super.onFinish();
+            }
+        });
+
+    }
 
 
-            final Holder finalHolder = holder;
-            holder.et.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
+    private void httpPost ()
+    {
 
-                    if ( event.getAction() == MotionEvent.ACTION_UP )
-                    {
-                        index = Integer.parseInt(finalHolder.et.getTag().toString());
-                        newEt = (EditText) v;
+        String url = C.LS_SIGNIN;
+
+        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+
+        RequestParams params = new RequestParams();
+        params.put("email", "yy-cj@163.com");
+        params.put("pwd", "");
+
+        asyncHttpClient.post(this, url, params, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Common.log("response="+response.toString());
+
+                text3.setText(response.toString());
+
+
+            }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String
+                            responseString, Throwable throwable) {
+
+                        text3.setText(throwable.toString());
+
+                        super.onFailure(statusCode, headers, responseString, throwable);
                     }
 
-                    return false;
-                }
-            });
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        al = new AlertDialog.Builder(ActivityTest.this).setTitle("提示").setMessage("loading...").show();
+                    }
 
-            holder.et.clearFocus();
+                    @Override
+                    public void onFinish() {
+                        if ( al != null && al.isShowing() )
+                        {
+                            al.cancel();
+                        }
+                        super.onFinish();
+                    }
 
-            if ( index == i )
-            {
-                holder.et.requestFocus();
-
-                if(!TextUtils.isEmpty(holder.et.getText().toString()))
-                {
-                    holder.et.setSelection(holder.et.getText().toString().length());
-                }
-
-            }
-
-//            if ( newEt != null )
-//            {
-//                newEt.requestFocus();
-//            }
-
-
-
-            return view;
         }
 
-        static class Holder
-        {
-            TextView tv;
-            EditText et;
+        );
 
-            public Holder(View view) {
-                tv = (TextView) view.findViewById(R.id.tv);
-                et = (EditText) view.findViewById(R.id.et);
-            }
-        }
 
     }
+
+    private void getImage()
+    {
+        ImageLoader.getInstance().displayImage("http://i1.lis99.com/upload/photo/7/1/2/140-140_71d1c619574b8bb13c311915719b53e2.jpg", iv);
+    }
+
+
 
 
 }

@@ -52,30 +52,41 @@ public class MyRequest{
 			{
 				DialogManager.getInstance().stopWaitting();
 			}
+
 			if ( result == null )
 			{
 //				Common.toast("拉取失败");
 //				Common.log("result==null");
 				return;
 			}
-			String res = result.toString();
-			if ( result != null && mTask != null )
+
+			//没有生成解析类
+			if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
 			{
-				//jason 数据
-				mTask.setresult(res);
-//				jason解析类
-				if ( mTask.getResultModel() != null )
-				{
-					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
-				}
-				//没有生成解析类
-				if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
-				{
-					return;
-				}
-				if ( mTask.getCallBack() != null )
-				mTask.getCallBack().handler(mTask);
+				return;
 			}
+			if ( mTask.getCallBack() != null )
+				mTask.getCallBack().handler(mTask);
+
+
+//			String res = result.toString();
+//			if ( result != null && mTask != null )
+//			{
+//				//jason 数据
+//				mTask.setresult(res);
+////				jason解析类
+//				if ( mTask.getResultModel() != null )
+//				{
+//					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
+//				}
+//				//没有生成解析类
+//				if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
+//				{
+//					return;
+//				}
+//				if ( mTask.getCallBack() != null )
+//				mTask.getCallBack().handler(mTask);
+//			}
 			
 			
 		}
@@ -99,24 +110,45 @@ public class MyRequest{
 		@Override
 		protected Object doInBackground(Object... params) {
 			// TODO Auto-generated method stub
-			String Result = null;
+			String result = null;
 			Common.log("HttpURL="+mTask.getUrl());
 			switch ( mTask.getRequestState() )
 			{
 			case MyTask.POST:
-				Result = http.HttpPost(mTask.getUrl(), mTask.getMap());
+				result = http.HttpPost(mTask.getUrl(), mTask.getMap());
 				break;
 			case MyTask.GET:
-				Result = http.HttpGet(mTask.getUrl());
+				result = http.HttpGet(mTask.getUrl());
 				break;
 			case MyTask.IMAGE:
-				Result = http.HttpImage(mTask.getUrl(), mTask.getMap());
+				result = http.HttpImage(mTask.getUrl(), mTask.getMap());
 				break;
 			}
-			Common.log("Httpresult="+Result);
-			Common.log("Httpresult="+Common.convert(Result));
+//			Common.log("Httpresult="+result);
+			Common.log("Httpresult="+Common.convert(result));
 
-			return Result;
+			if ( result == null )
+			{
+//				Common.toast("拉取失败");
+//				Common.log("result==null");
+				return null;
+			}
+			String res = result.toString();
+			if ( result != null && mTask != null )
+			{
+				//jason 数据
+				mTask.setresult(res);
+//				jason解析类
+				if ( mTask.getResultModel() != null )
+				{
+					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
+				}
+			}
+
+
+
+
+			return result;
 		}
 	}
 	

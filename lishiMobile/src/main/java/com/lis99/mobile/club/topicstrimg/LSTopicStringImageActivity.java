@@ -322,6 +322,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             url = C.REPLY_NEW_TOPIC_STRING_IMAGE_ADD;
         }
 
+//        超时时间
+        client.setTimeout(20000);
+
         client.post(url,
                 params,
                 new JsonHttpResponseHandler()

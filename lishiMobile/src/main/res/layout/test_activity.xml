@@ -6,20 +6,6 @@
             android:id="@+id/parent"
     >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText3"
-        android:text="111111111"
-        />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:id="@+id/list"
-        ></ListView>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,33 +13,53 @@
         android:orientation="horizontal"
         >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="search"
-        android:id="@+id/button"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add"
-        android:id="@+id/button2"
-        />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get"
+            android:id="@+id/button"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="remove"
-            android:id="@+id/button3"
-            />
+            android:text="post"
+            android:id="@+id/button1"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cheange"
-            android:id="@+id/button4"
-            />
+            android:text="Image"
+            android:id="@+id/button2"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ANR"
+            android:id="@+id/button3"/>
+
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:id="@+id/Text3"
+        android:text="111111111"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarFadeDuration="1000"
+        />
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv"
+        android:src="@drawable/icon_ls"
+        />
+
+
+
 
 </LinearLayout>
