@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:textColorHint="#525252"
-        android:hint="正文"
+        android:hint="标题"
         android:textColor="#525252"
         android:id="@+id/edit_info"
         android:textSize="20sp"
