@@ -21,12 +21,14 @@
         android:src="@drawable/active_all_is_chosed"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dip"
+        android:layout_marginRight="14dip"
         android:id="@+id/tv_select"
 
         />
 
     <View
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="#eee"

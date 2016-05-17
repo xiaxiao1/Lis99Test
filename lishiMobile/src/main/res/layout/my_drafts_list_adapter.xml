@@ -33,7 +33,7 @@
         android:textSize="12sp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/temp_string_long"
+        android:text="@string/temp_string"
         android:textColor="#bebebe"
         android:id="@+id/tv_content"
         />

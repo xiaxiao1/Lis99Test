@@ -21,6 +21,7 @@
             android:hint="正文"
             android:textColor="#525252"
             android:id="@+id/edit_info"
+            android:textSize="14sp"
             />
 
         <ImageView

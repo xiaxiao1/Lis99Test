@@ -25,6 +25,7 @@ import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -389,7 +390,8 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, optionshead);
 
 		holder.tvTitle.setText(item.title);
-		holder.tvContent.setText(item.content);
+//		holder.tvContent.setText(item.content);
+		holder.tvContent.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity) mContext, item.content));
 		holder.tvLike.setText("" + item.likeNum);
 		holder.tvName.setText(item.nickname);
 		holder.tvCreate.setText(item.createdate);

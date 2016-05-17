@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000000"
-        android:alpha="0.2"
+        android:alpha="0.5"
         android:id="@+id/bg"
         />
 
@@ -24,6 +24,8 @@
     <ListView
         style="@style/listViewStyle"
         android:id="@+id/list"
+        android:divider="@null"
+        android:dividerHeight="0px"
         ></ListView>
 
     </LinearLayout>
