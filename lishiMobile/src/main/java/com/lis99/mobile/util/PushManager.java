@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.lis99.mobile.club.model.PushModel;
-import com.lis99.mobile.util.push.JPush;
 import com.lis99.mobile.util.push.PushBase;
 
 import java.util.Set;
@@ -36,11 +35,15 @@ public class PushManager
 
 	public PushBase push;
 
+	private PushManagerF pushF;
+
 	public PushManager ()
 	{
 		if ( push == null )
 		{
-			push = new JPush();
+//			push = new JPush();
+			pushF = new PushManagerJPush();
+			push = pushF.create();
 		}
 	}
 

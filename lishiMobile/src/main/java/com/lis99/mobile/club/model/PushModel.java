@@ -6,7 +6,7 @@ import java.io.Serializable;
 			2 => '启动App打开某个帖',
 			3 => '个人中心里的报名通知',
 			4 => '个人中心里的我发布的活动'
-			type = 3;
+
 			以下两个字段在类型是2的时候才有用，否则都是0
 			"topid_id" = 0;
 			"category" = 0

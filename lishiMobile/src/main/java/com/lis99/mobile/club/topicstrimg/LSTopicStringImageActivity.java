@@ -215,11 +215,6 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             title = model.item.get(0).content;
         }
 
-        if (TextUtils.isEmpty(title)) {
-            postMessage(POPUP_TOAST, "标题不能为空");
-            return;
-        }
-
 //        if (TextUtils.isEmpty(body)) {
 //            postMessage(POPUP_TOAST, "正文不能为空");
 //            return;
@@ -230,6 +225,13 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             postMessage(POPUP_TOAST, "请先登录");
             return;
         }
+
+
+        if (TextUtils.isEmpty(title)) {
+            postMessage(POPUP_TOAST, "标题不能为空");
+            return;
+        }
+
 
         String userID = DataManager.getInstance().getUser().getUser_id();
 
@@ -294,8 +296,6 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 //            }
 //        }
 
-        AsyncHttpClient client = new AsyncHttpClient();
-
         RequestParams params = null;
 
         if ( isAdd )
@@ -304,8 +304,25 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
         }
         else
         {
+
+//            如果发布图片没有正文补充文字“分享图片”如果没有图片也没有正文，提示编辑正文。
+            String strc = contents.get(0);
+            String imgPath = files.get(0);
+            if ( TextUtils.isEmpty(imgPath) && TextUtils.isEmpty(strc) )
+            {
+                Common.toast("请编辑正文");
+                return;
+            }
+            else if ( TextUtils.isEmpty(strc))
+            {
+                contents.set(0, "分享图片");
+            }
+
+
             params = getNewTopic(title, userID, files, contents, fileName);
         }
+
+        AsyncHttpClient client = new AsyncHttpClient();
 
         try {
 

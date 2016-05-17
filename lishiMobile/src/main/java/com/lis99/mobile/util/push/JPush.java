@@ -1,8 +1,8 @@
 package com.lis99.mobile.util.push;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 
@@ -29,7 +29,7 @@ public class JPush implements PushBase {
 
     @Override
     public void init(Context c ) {
-        Common.log("init Jpush");
+        Log.w("MYUTIL", "init Jpush");
             JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
             JPushInterface.init(c);     		// 初始化 JPush
 
