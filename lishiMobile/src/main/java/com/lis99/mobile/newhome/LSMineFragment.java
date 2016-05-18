@@ -91,7 +91,13 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
     private ImageView titleRightImage, titleLeftImage;
     private boolean isAttention;
 
-    private View v_friend_arrow, v_applyinfo_arrow, v_reply_arrow, v_applymanager_arrow, iv_friendDot;
+    private View v_friend_arrow, v_applyinfo_arrow, v_reply_arrow, v_applymanager_arrow, iv_friendDot,
+//            我的福利
+            v_benefit_arrow, iv_benefitDot,
+//              我的优惠券
+            v_coupon_arrow, iv_couponDot;
+
+    private boolean isBenefit, isCoupon;
 
     //=====3.5.2=======
 //	签到
@@ -181,6 +187,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
 //赞
             likeStatus = false;
 
+            isBenefit = false;
+
+            isCoupon = false;
+
             showOrHideViews();
 
         }
@@ -225,6 +235,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
         v = findViewById(R.id.layout_drafts);
         v.setOnClickListener(this);
 
+        v = findViewById(R.id.layout_benefit);
+        v.setOnClickListener(this);
+
         managePanel = findViewById(R.id.managePanel);
         managePanel.setVisibility(View.GONE);
 
@@ -263,6 +276,16 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
         titleRightImage = (ImageView) findViewById(R.id.titleRightImage);
         titleRightImage.setImageResource(R.drawable.mine_icon_setting);
         titleRightImage.setOnClickListener(this);
+
+
+        v_benefit_arrow = findViewById(R.id.v_benefit_arrow);
+        iv_benefitDot = findViewById(R.id.iv_benefitDot);
+
+        v_coupon_arrow = findViewById(R.id.v_coupon_arrow);
+        iv_couponDot = findViewById(R.id.iv_couponDot);
+
+
+
 
         iv_friendDot = findViewById(R.id.iv_friendDot);
 
@@ -459,8 +482,11 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
         v_applymanager_arrow.setVisibility(haveApply ? View.GONE : View.VISIBLE);
         v_sys_arrow.setVisibility(isSysMassage ? View.GONE : View.VISIBLE);
         v_like_arrow.setVisibility(likeStatus ? View.GONE : View.VISIBLE);
-
         v_my_join_arrow.setVisibility(haveApplyInfo ? View.GONE : View.VISIBLE);
+
+        v_benefit_arrow.setVisibility( isBenefit ? View.GONE : View.VISIBLE);
+        v_coupon_arrow.setVisibility( isCoupon ? View.GONE : View.VISIBLE);
+
 
 
         //红点
@@ -472,8 +498,10 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
                 : View.GONE);
         iv_sysDot.setVisibility(isSysMassage ? View.VISIBLE : View.GONE);
         likeDot.setVisibility(likeStatus ? View.VISIBLE : View.GONE);
-
         iv_joinDot.setVisibility(haveApplyInfo ? View.VISIBLE : View.GONE);
+
+        iv_benefitDot.setVisibility(isBenefit ? View.VISIBLE : View.GONE);
+        iv_couponDot.setVisibility( isCoupon ? View.VISIBLE : View.GONE);
 
     }
 
@@ -609,9 +637,20 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
             else if (v.getId() == R.id.layout_join_club) {
                 startActivity(new Intent(getActivity(), MyJoinClubActivity.class));
             }
+//            草稿箱
             else if ( v.getId() == R.id.layout_drafts )
             {
                 startActivity(new Intent(getActivity(), DraftsListActivity.class));
+            }
+//            我的福利
+            else if ( v.getId() == R.id.layout_benefit )
+            {
+
+            }
+//            我的优惠券
+            else if ( v.getId() == R.id.layout_coupon )
+            {
+
             }
         }
 //		UserId == null

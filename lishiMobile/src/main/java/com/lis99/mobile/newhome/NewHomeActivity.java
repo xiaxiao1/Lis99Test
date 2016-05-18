@@ -41,6 +41,7 @@ import com.lis99.mobile.application.data.VersionBean;
 import com.lis99.mobile.choiceness.FragmentChoicenessNewMain;
 import com.lis99.mobile.club.LSClubFragment;
 import com.lis99.mobile.club.LSClubFragmentNew;
+import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.PushModel;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
@@ -65,6 +66,7 @@ import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.StatusUtil;
 import com.lis99.mobile.util.StringUtil;
 import com.lis99.mobile.util.UpdataUtil;
+import com.lis99.mobile.webview.MyActivityWebView;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -846,6 +848,37 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
                 Common.log("push error tab == null");
             }
         }
+//        审核报名
+        else if ( model.type == 5 )
+        {
+            if (tab != null)
+            {
+                tab.onTabClick(tab.EVENT);
+            }
+            else
+            {
+                Common.log("push error tab == null");
+            }
+        }
+//        订单详情
+        else if ( model.type == 6 )
+        {
+            Intent intent = new Intent(this, MyJoinActiveInfoActivity.class);
+            intent.putExtra("ORDERID", model.order_id);
+            startActivity(intent);
+        }
+        else if ( model.type == 7 && !TextUtils.isEmpty(model.url))
+        {
+            Intent intent = new Intent(this, MyActivityWebView.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("URL", model.url);
+//            bundle.putString("TITLE", item.title);
+//            bundle.putString("IMAGE_URL", item.image);
+//            bundle.putInt("TOPIC_ID", item.topic_id);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+
     }
 
     private class GetDataTask extends AsyncTask<Void, Void, String[]> {

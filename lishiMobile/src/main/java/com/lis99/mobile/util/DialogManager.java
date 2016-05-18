@@ -388,7 +388,7 @@ public class DialogManager {
      *      callBack result String cancel 取消， ok 确定
       */
 
-    public void showUpdataDialog( UpdataModel model, final CallBack callBack, String str ) {
+    public void showUpdataDialog(UpdataModel model, final CallBack callBack, String str ) {
 
         final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.CustomDialog);
 
@@ -534,6 +534,72 @@ public class DialogManager {
 
 
     }
+
+    /**
+     *          收货地址
+     * @param a
+     * @param name
+     * @param num
+     * @param address
+     */
+    public void showAddressEnter (Activity a, String name, String num, String address, final CallBack callBack )
+    {
+        final Dialog dialogAddress = new Dialog(a, R.style.addressDialog);
+
+        dialogAddress.setCanceledOnTouchOutside(false);
+
+        View view = View.inflate(a, R.layout.my_benefit_address_dialog, null);
+
+        TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
+
+        TextView tv_num = (TextView) view.findViewById(R.id.tv_num);
+
+        TextView tv_address = (TextView) view.findViewById(R.id.tv_address);
+
+        Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
+
+        Button btn_ok = (Button) view.findViewById(R.id.btn_ok);
+
+        tv_name.setText("姓名："+name);
+        tv_num.setText("手机："+num);
+        tv_address.setText(address);
+
+        btn_ok.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogAddress.dismiss();
+                if ( callBack != null )
+                {
+                    callBack.handler(null);
+                }
+            }
+        });
+
+        btn_cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogAddress.dismiss();
+            }
+        });
+
+        dialogAddress.setContentView(view);
+
+        dialogAddress.show();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
