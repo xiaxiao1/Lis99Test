@@ -16,7 +16,6 @@ import org.apache.http.conn.params.ConnManagerParams;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
@@ -227,8 +226,9 @@ public class MyHttpClient {
 			SchemeRegistry schReg = new SchemeRegistry();
 			schReg.register(new Scheme("http", PlainSocketFactory
 					.getSocketFactory(), 80));
-			schReg.register(new Scheme("https", SSLSocketFactory
-					.getSocketFactory(), 443));
+//			schReg.register(new Scheme("https", SSLSocketFactory
+//					.getSocketFactory(), 443));
+			schReg.register(new Scheme("https", SSLTrustAllSocketFactory.getSocketFactory(), 443));
 
 			// 使用线程安全的连接管理来创建HttpClient
 			ClientConnectionManager conMgr = new ThreadSafeClientConnManager(

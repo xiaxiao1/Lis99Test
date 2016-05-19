@@ -28,7 +28,6 @@ import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
-import com.lis99.mobile.equip.ActivityTest;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
@@ -376,9 +375,18 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
 
+                    MyRequestManager.getInstance().requestGetNoModel("https://apis.lis99.com/v4/club/topiclist/190", null, new CallBack() {
+
+
+                        @Override
+                        public void handler(MyTask mTask) {
+                            Common.log("mTask ="+mTask.getresult());
+                        }
+                    });
+
 
 //                    startActivity(new Intent(getActivity(), FragmentChoicenessList.class));
-                    startActivity(new Intent(getActivity(), ActivityTest.class));
+//                    startActivity(new Intent(getActivity(), ActivityTest.class));
 //                    UpdataUtil.getInstance().getUpData();
 
 //                    intent = new Intent(getActivity(), LSTopicStringImageActivity.class);
