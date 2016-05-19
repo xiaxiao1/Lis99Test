@@ -24,7 +24,6 @@ import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
-import com.lis99.mobile.equip.ActivityTest;
 import com.lis99.mobile.newhome.HelpMovieActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.NewHomeActivity;
@@ -59,8 +58,6 @@ public class LsStartupActivity extends ActivityPatternStartUp {
     String unionid;
 
 
-    private boolean test = false;
-
     private ImageView iv_img;
     private ImageView iv_channel;
     private ImageView iv_bg;
@@ -74,16 +71,14 @@ public class LsStartupActivity extends ActivityPatternStartUp {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LSBaseActivity.activity = this;
-        if (test) {
-            Intent intent = new Intent(LsStartupActivity.this,
-                    ActivityTest.class);
-            startActivity(intent);
-            finish();
-        }
+
 //      推送
         if (Common.mainIsStart) {
             Intent intent = new Intent(LsStartupActivity.this,
                     NewHomeActivity.class);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
             //传送push信息
             intent.putExtra(PushManager.TAG, PushManager.getInstance().getPushModel(LsStartupActivity.this.getIntent()));
             startActivity(intent);

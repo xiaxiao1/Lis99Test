@@ -539,6 +539,21 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
     public void doAction()
     {
+
+//        if ( true )
+//        {
+//            PushModel p = new PushModel();
+//            p.type = 3;
+//
+//            Intent i = new Intent();
+//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            i.putExtra(PushManager.TAG, p);
+//            i.setClass(activity,
+//                    LsStartupActivity.class);
+//            startActivity(i);
+//            return;
+//        }
+
         String userID = DataManager.getInstance().getUser().getUser_id();
         if (TextUtils.isEmpty(userID))
         {

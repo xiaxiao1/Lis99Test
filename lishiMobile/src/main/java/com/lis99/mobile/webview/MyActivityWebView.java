@@ -183,7 +183,7 @@ public class MyActivityWebView extends LSBaseActivity
         }
 
 		/**
-		 * 			跳转到全部活动页
+		 * 			跳转到全部活动页(活动筛选)
 		 */
 		@JavascriptInterface
 		public void  goActiveMain()
