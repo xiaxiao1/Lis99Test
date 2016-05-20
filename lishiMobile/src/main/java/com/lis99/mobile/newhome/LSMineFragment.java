@@ -237,11 +237,12 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
 //      福利
         v = findViewById(R.id.layout_benefit);
         v.setOnClickListener(this);
-        v.setVisibility(View.GONE);
+
+
 //        优惠券
         v = findViewById(R.id.layout_coupon);
         v.setOnClickListener(this);
-        v.setVisibility(View.GONE);
+
 
         managePanel = findViewById(R.id.managePanel);
         managePanel.setVisibility(View.GONE);
