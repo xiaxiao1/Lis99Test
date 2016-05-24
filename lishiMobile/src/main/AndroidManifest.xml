@@ -1252,6 +1252,18 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   />
 
+        <!--设置 福利-->
+        <activity android:name="com.lis99.mobile.newhome.sysmassage.MyBenefitActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+        <!--收货地址-->
+        <activity android:name="com.lis99.mobile.newhome.sysmassage.MyBenefitAddAddress"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
+
+
 
     </application>
 

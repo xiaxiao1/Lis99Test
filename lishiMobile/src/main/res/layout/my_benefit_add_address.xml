@@ -13,6 +13,19 @@
         android:layout_height="50dp"
         layout="@layout/activity_title" />
 
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/list_line"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/benefit_address_title_line"
+        />
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="收货人姓名："
-            android:textColor="@color/text_color_blue"
+            android:textColor="@color/color_nine"
             />
 
         <EditText
@@ -46,6 +59,7 @@
             android:background="@null"
             android:id="@+id/et_name"
             android:singleLine="true"
+            android:textColor="#525252"
             />
 
     </LinearLayout>
@@ -69,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="手机号："
-                android:textColor="@color/text_color_blue"
+                android:textColor="@color/color_nine"
                 />
 
             <EditText
@@ -80,6 +94,8 @@
                 android:phoneNumber="true"
                 android:id="@+id/et_num"
                 android:singleLine="true"
+                android:textColor="#525252"
+                android:maxLength="11"
                 />
 
         </LinearLayout>
@@ -103,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="收货地址："
-                android:textColor="@color/text_color_blue"
+                android:textColor="@color/color_nine"
                 />
 
             <EditText
@@ -113,6 +129,7 @@
                 android:background="@null"
                 android:id="@+id/et_address"
                 android:singleLine="true"
+                android:textColor="#525252"
                 />
 
         </LinearLayout>

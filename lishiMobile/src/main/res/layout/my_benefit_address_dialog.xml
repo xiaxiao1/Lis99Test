@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/club_topic_time_bg"
+              android:background="@drawable/benefit_enter_bg"
     >
 
 
@@ -14,10 +14,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="请核对收货信息"
-        android:textColor="@color/black"
+        android:textColor="#525252"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:drawableLeft="@drawable/my_market"
+        android:drawableLeft="@drawable/icon_benefit_dialog_title"
         android:drawablePadding="10dp"
         />
 
@@ -97,6 +97,7 @@
             android:text="取消"
             android:textColor="@color/text_color_green"
             android:id="@+id/btn_cancel"
+            android:background="@drawable/benefit_dialog_btn_bg"
             />
 
 
@@ -107,6 +108,7 @@
             android:text="确认"
             android:textColor="@color/text_color_green"
             android:id="@+id/btn_ok"
+            android:background="@drawable/benefit_dialog_btn_bg"
             />
 
 

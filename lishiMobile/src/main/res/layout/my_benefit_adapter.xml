@@ -2,42 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:padding="10dp"
+              android:background="@color/pull_bg"
+    >
 
 
-    <include
-        android:id="@+id/include1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        layout="@layout/activity_title" />
-
-    <com.lis99.mobile.entry.view.PullToRefreshView
-        android:layout_alignParentLeft="true"
-        android:id="@+id/pull_refresh_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@null"
-        android:orientation="vertical"
-        android:layout_below="@+id/include1"
-        android:layout_above="@+id/buttonPanel">
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_benefit_item_bg"
+        android:id="@+id/view_bg"
+        >
 
 
-        <ListView
-            android:background="@color/pull_bg"
-            android:id="@+id/listView"
-            android:scrollbars="none"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:cacheColorHint="#00000000"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:listSelector="#00000000"
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/iv_icon"
+            android:layout_centerVertical="true"
+            />
+
+
+        <LinearLayout
+            android:layout_toRightOf="@id/iv_icon"
+            android:layout_marginLeft="10dp"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
             >
-        </ListView>
 
-    </com.lis99.mobile.entry.view.PullToRefreshView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_title"
+                android:textColor="#525252"
+                android:text="@string/temp_string_long"
+                android:maxLines="2"
+                android:ellipsize="end"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_content"
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
+                android:textColor="@color/color_nine"
+                android:text="@string/temp_string"
+                />
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_benefit_have"
+            android:id="@+id/btn_ok"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
 
 
 </LinearLayout>

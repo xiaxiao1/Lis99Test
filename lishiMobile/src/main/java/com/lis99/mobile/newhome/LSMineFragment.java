@@ -35,6 +35,7 @@ import com.lis99.mobile.mine.LSMineApplyActivity;
 import com.lis99.mobile.mine.LSMineApplyManageActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.sysmassage.LSReceiveMassageActivity;
+import com.lis99.mobile.newhome.sysmassage.MyBenefitActivity;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -242,6 +243,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
 //        优惠券
         v = findViewById(R.id.layout_coupon);
         v.setOnClickListener(this);
+        v.setVisibility(View.GONE);
 
 
         managePanel = findViewById(R.id.managePanel);
@@ -651,7 +653,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
 //            我的福利
             else if ( v.getId() == R.id.layout_benefit )
             {
-
+                startActivity(new Intent (getActivity(), MyBenefitActivity.class));
             }
 //            我的优惠券
             else if ( v.getId() == R.id.layout_coupon )
