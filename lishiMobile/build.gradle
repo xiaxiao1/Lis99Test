@@ -52,7 +52,7 @@ android {
 //                def releaseApkName = 'yjf-android-v' + getVersionNameFromManifest() + '-' + variant.productFlavors[0].name + '-sign-42.apk'
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.2.4.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.2.5.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if(variant.buildType.name.equals('beta')){
@@ -137,7 +137,8 @@ android {
             shrinkResources true
             signingConfig signingConfigs.release
             // 是否混淆
-            minifyEnabled false
+//            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
             zipAlignEnabled true
         }

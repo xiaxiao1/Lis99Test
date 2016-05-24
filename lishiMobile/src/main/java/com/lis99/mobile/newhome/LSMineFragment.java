@@ -19,7 +19,6 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubMyTopicActivity;
 import com.lis99.mobile.club.MyJoinClubActivity;
-import com.lis99.mobile.club.apply.MyJoinActiveActivity;
 import com.lis99.mobile.club.topicstrimg.DraftsListActivity;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
@@ -31,8 +30,11 @@ import com.lis99.mobile.entry.LsSettingActivity;
 import com.lis99.mobile.entry.LsUserLikeActivity;
 import com.lis99.mobile.mine.ActivityReplyMine;
 import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.mine.LSMineActivityActivity;
 import com.lis99.mobile.mine.LSMineApplyActivity;
 import com.lis99.mobile.mine.LSMineApplyManageActivity;
+import com.lis99.mobile.mine.LSUnCommentActivityActivity;
+import com.lis99.mobile.mine.LSUnpayActivityActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.sysmassage.LSReceiveMassageActivity;
 import com.lis99.mobile.newhome.sysmassage.MyBenefitActivity;
@@ -327,6 +329,13 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
 
         iv_joinDot = findViewById(R.id.iv_joinDot);
         v_my_join_arrow = findViewById(R.id.v_my_join_arrow);
+
+//        v = findViewById(R.id.myActivityPanel);
+//        v.setOnClickListener(this);
+        v = findViewById(R.id.unpayActivityPanel);
+        v.setOnClickListener(this);
+        v = findViewById(R.id.unpayCommentPanel);
+        v.setOnClickListener(this);
 
         RedDotUtil.getInstance().setRedText(v_sys_arrow);
 
@@ -636,14 +645,27 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
                 Intent intent = new Intent(getActivity(),
                         LSReceiveMassageActivity.class);
                 startActivity(intent);
-            } else if (v.getId() == R.id.layout_my_join) {
-                Intent intent = new Intent(getActivity(),
-                        MyJoinActiveActivity.class);
-                startActivity(intent);
+            }
+//            我报名的活动
+            else if (v.getId() == R.id.layout_my_join) {
+//                Intent intent = new Intent(getActivity(),
+//                        MyJoinActiveActivity.class);
+//                startActivity(intent);
+
+                startActivity(new Intent(getActivity(), LSMineActivityActivity.class));
+
             }
 //			我加入的俱乐部
             else if (v.getId() == R.id.layout_join_club) {
                 startActivity(new Intent(getActivity(), MyJoinClubActivity.class));
+            }
+//            else if (v.getId() == R.id.myActivityPanel) {
+//                startActivity(new Intent(getActivity(), LSMineActivityActivity.class));
+//            }
+            else if (v.getId() == R.id.unpayActivityPanel) {
+                startActivity(new Intent(getActivity(), LSUnpayActivityActivity.class));
+            } else if (v.getId() == R.id.unpayCommentPanel) {
+                startActivity(new Intent(getActivity(), LSUnCommentActivityActivity.class));
             }
 //            草稿箱
             else if ( v.getId() == R.id.layout_drafts )

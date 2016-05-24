@@ -211,110 +211,6 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layout_my_join"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="13dp"
-
-                >
-
-                <ImageView
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mine_icon_my_join"
-                    android:id="@+id/iv_my_join"
-                    android:layout_marginRight="13dp"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_my_join"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/iv_my_join"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我报名的活动"
-                    android:textColor="#666"
-                    android:textSize="14sp"
-                    />
-
-                <ImageView
-                    android:id="@+id/v_my_join_arrow"
-                    android:layout_marginRight="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/mine_icon_right_arrow" />
-
-                <ImageView
-                    android:layout_marginRight="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/iv_joinDot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_reddot"
-                    />
-
-                <View
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@id/tv_my_join"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:background="#eee" />
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/layout_join_club"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="13dp"
-                >
-
-                <ImageView
-                    android:id="@+id/iv_join_club"
-                    android:layout_marginRight="13sp"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/my_join_club" />
-
-                <TextView
-                    android:id="@+id/tv_join_club"
-                    android:layout_toRightOf="@id/iv_join_club"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我加入的俱乐部"
-                    android:textColor="#666"
-                    android:textSize="14sp" />
-
-
-                <ImageView
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/mine_icon_right_arrow" />
-
-
-                <View
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@id/tv_join_club"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:background="#eee" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/layout_drafts"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -775,6 +671,222 @@
 
 
             </RelativeLayout>
+
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/pull_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="15dp"
+                android:text="活动"
+                android:textColor="#c6b6a7"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke" />
+
+            <RelativeLayout
+                android:id="@+id/layout_join_club"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_join_club"
+                    android:layout_marginRight="13sp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/my_join_club" />
+
+                <TextView
+                    android:id="@+id/tv_join_club"
+                    android:layout_toRightOf="@id/iv_join_club"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我加入的俱乐部"
+                    android:textColor="#666"
+                    android:textSize="14sp" />
+
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@id/tv_join_club"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_my_join"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+
+                >
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_my_join"
+                    android:id="@+id/iv_my_join"
+                    android:layout_marginRight="13dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_my_join"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_my_join"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我报名的活动"
+                    android:textColor="#666"
+                    android:textSize="14sp"
+                    />
+
+                <ImageView
+                    android:id="@+id/v_my_join_arrow"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/iv_joinDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_reddot"
+                    />
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@id/tv_my_join"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/unpayActivityPanel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+                >
+
+                <ImageView
+                    android:layout_marginRight="13dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_unpayActivity_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_mine_needpay" />
+
+                <TextView
+                    android:id="@+id/tv_unpayActivity"
+                    android:layout_toRightOf="@id/iv_unpayActivity_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="待支付的活动"
+                    android:textColor="#666"
+                    android:textSize="14sp" />
+
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+                <View
+                    android:layout_alignLeft="@id/tv_unpayActivity"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/unpayCommentPanel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:paddingLeft="13dp"
+                >
+
+                <ImageView
+                    android:layout_marginRight="13dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_unCommentActivity_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_mine_applyinfo" />
+
+                <TextView
+                    android:id="@+id/tv_unCommentActivity"
+                    android:layout_toRightOf="@id/iv_unCommentActivity_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="待评价的活动"
+                    android:textColor="#666"
+                    android:textSize="14sp" />
+
+
+                <ImageView
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/mine_icon_right_arrow" />
+
+                <View
+                    android:visibility="gone"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#eee" />
+
+            </RelativeLayout>
+
 
             <View
                 android:layout_alignParentBottom="true"

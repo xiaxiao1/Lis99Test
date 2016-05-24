@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="112dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/mine_myactivity_image_bg"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:maxLines="2"
+            android:textSize="13sp"
+            android:text="2015千岛湖国际露营展"
+            android:lineSpacingExtra="6dp"
+            android:textColor="#525252"/>
+
+        <TextView
+            android:id="@+id/timeView"
+            android:layout_below="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="10sp"
+            android:text="2015-01-01报名"
+            android:textColor="#999999"/>
+
+        <TextView
+            android:id="@+id/commentStatusView"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/mine_myactivity_status_bg"
+            android:textColor="#8a867b"
+            android:textSize="11sp"
+            android:text="待审核"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/payStatusView"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/commentStatusView"
+            android:background="@drawable/mine_myactivity_status_bg"
+            android:textColor="#8a867b"
+            android:layout_marginLeft="10dp"
+            android:textSize="11sp"
+            android:text="待支付"
+            android:gravity="center"
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="12dp"
+        android:id="@+id/sepHalf"
+        android:layout_alignParentBottom="true"
+        android:background="#eee"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:id="@+id/sepAll"
+        android:layout_alignParentBottom="true"
+        android:background="#eee"/>
+
+
+
+</RelativeLayout>

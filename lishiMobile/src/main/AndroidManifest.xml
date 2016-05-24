@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="424"
-    android:versionName="4.2.4" >
+    android:versionCode="425"
+    android:versionName="4.2.5" >
 
 
 
@@ -1263,8 +1263,27 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
 
+        <activity
+            android:name=".mine.LSMineActivityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
 
+        <activity
+            android:name=".mine.LSMyActivityDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
 
+        <activity android:name=".mine.LSUnpayActivityActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity>
+
+        <activity android:name=".mine.LSUnCommentActivityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity>
     </application>
 
 
