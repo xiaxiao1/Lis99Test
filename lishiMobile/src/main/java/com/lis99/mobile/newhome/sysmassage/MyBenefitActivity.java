@@ -1,8 +1,10 @@
 package com.lis99.mobile.newhome.sysmassage;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,10 +16,22 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.BenefitListModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
+import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
+import com.lis99.mobile.webview.MyActivityWebView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,6 +46,8 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
     private Page page;
 
     private MyBenefitAdapter adapter;
+
+    private BenefitListModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,18 +79,109 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                if ( adapter == null ) return;
+                BenefitListModel.BenefitItem item = (BenefitListModel.BenefitItem) adapter.getItem(position);
+                if ( item == null ) return;
+
+                Intent intent = null;
+//                积分
+                if ( item.type == 2 )
+                {
+                    intent = new Intent(activity, MyBenefitInfoActivity.class);
+                    intent.putExtra("OBJECT", item);
+                    startActivityForResult(intent, 999);
+                }
+//                装备
+                else if ( item.type == 1 )
+                {
+                    intent = new Intent(activity, MyActivityWebView.class);
+
+                    intent.putExtra("URL", C.MY_BENEFIT_INFO_M + item.id + "/" + item.welfare_id + "/" + Common.getUserId());
+
+                    intent.putExtra("TITLE", "我的福利");
+
+                    intent.putExtra("OBJECT", item);
+
+//                    startActivity(intent);
+                    startActivityForResult(intent, 999);
+                }
+
+
+
             }
         });
 
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( resultCode != RESULT_OK ) return;
+        //刷新列表
+        if ( requestCode == 999 )
+        {
+            onHeaderRefresh(refreshView);
+        }
+
+    }
+
     private void getList() {
+
+        if ( page.isLastPage() )
+        {
+            return;
+        }
+
+        String userId = Common.getUserId();
+
+        if (TextUtils.isEmpty(userId))
+        {
+            return;
+        }
+
+        String url = C.MY_BENEFIT_LIST + page.getPageNo();
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("user_id", userId);
+
+        model = new BenefitListModel();
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+
+                if ( mTask == null ) return;
+                model = (BenefitListModel) mTask.getResultModel();
+                if ( model == null ) return;
+
+                page.nextPage();
+
+                if ( adapter == null )
+                {
+                    page.setPageSize(model.welfarePage);
+                    adapter = new MyBenefitAdapter(activity, model.lists);
+                    listView.setAdapter(adapter);
+                }
+                else
+                {
+                    adapter.addList(model.lists);
+                }
+
+
+
+            }
+        });
+
+
+
 
     }
 
     private void cleanList() {
         page = new Page();
+        listView.setAdapter(null);
         if ( adapter != null )
             adapter.clean();
         adapter = null;
@@ -95,12 +202,14 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
 
     class MyBenefitAdapter extends MyBaseAdapter {
 
+        private BenefitListModel.BenefitItem currentItem;
+
         public MyBenefitAdapter(Context c, List listItem) {
             super(c, listItem);
         }
 
         @Override
-        public View setView(int i, View view, ViewGroup viewGroup) {
+        public View setView(final int i, View view, ViewGroup viewGroup) {
 
             ViewHolder holder = null;
             if (view == null) {
@@ -115,47 +224,46 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
                 holder = (ViewHolder) view.getTag();
             }
 
-            if ( true )
-            {
-                holder.view_bg.setBackgroundResource(R.drawable.my_benefit_item_bg);
-            }
-            else
-            {
-                holder.view_bg.setBackgroundResource(R.drawable.my_benefit_item_bg_pass);
-            }
+            final BenefitListModel.BenefitItem item = (BenefitListModel.BenefitItem) getItem(i);
 
-            switch ( 0 )
+            if ( item == null ) return view;
+
+            holder.tv_title.setText(item.title);
+            holder.tv_content.setText(item.enddate);
+
+
+            switch (item.flag )
             {
                 case 1:
-                    holder.btn_ok.setBackgroundResource(R.drawable.btn_benefit_have);
-                    break;
-                case 2:
+                    holder.view_bg.setBackgroundResource(R.drawable.my_benefit_item_bg_pass);
                     holder.btn_ok.setBackgroundResource(R.drawable.btn_benefit_had);
                     break;
-                case 3:
+                case 2:
+                    holder.view_bg.setBackgroundResource(R.drawable.my_benefit_item_bg_pass);
                     holder.btn_ok.setBackgroundResource(R.drawable.btn_benefit_pass);
                     break;
-                default:
+                case 3:
+                    holder.view_bg.setBackgroundResource(R.drawable.my_benefit_item_bg);
                     holder.btn_ok.setBackgroundResource(R.drawable.btn_benefit_have);
                     break;
             }
 
-            switch ( 0 )
+            switch ( item.type )
             {
                 case 1:
-                    holder.iv_icon.setImageResource(R.drawable.icon_benefit_integral);
+                    ImageLoader.getInstance().displayImage(item.thumb, holder.iv_icon, ImageUtil.getDefultImageOptions());
                     break;
                 case 2:
-                    holder.iv_icon.setImageResource(R.drawable.icon_benefit_coupon_out);
+                    holder.iv_icon.setImageResource(R.drawable.icon_benefit_integral);
                     break;
                 case 3:
-                    holder.iv_icon.setImageResource(R.drawable.icon_benefit_coupon_my);
+                    holder.iv_icon.setImageResource(R.drawable.icon_benefit_coupon_out);
                     break;
                 case 4:
-//                    ImageLoader.getInstance().displayImage();
+                    holder.iv_icon.setImageResource(R.drawable.icon_benefit_coupon_my);
                     break;
                 default:
-                    holder.btn_ok.setBackgroundResource(R.drawable.btn_benefit_have);
+
                     break;
             }
 
@@ -166,13 +274,65 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
             holder.btn_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(activity, MyBenefitAddAddress.class);
-                    startActivity(intent);
+
+                    if ( item.flag != 3 ) return;
+
+                    if ( item.type == 2  )
+                    {
+                        currentItem = item;
+
+                        HashMap<String, Object> map = new HashMap<>();
+
+                        String userId = Common.getUserId();
+
+                        map.put("user_id", userId);
+                        map.put("welfare_id", item.welfare_id);
+                        map.put("type", item.type);
+                        map.put("platfrom", "Android");
+
+                        LSRequestManager.getInstance().getIntegral(map, callBack);
+                    }
+                    else if ( item.type == 1 )
+                    {
+                        Intent intent = new Intent(activity, MyBenefitAddAddress.class);
+                        intent.putExtra("OBJECT", item);
+                        startActivityForResult(intent, 999);
+                    }
+
+
+
                 }
             });
 
             return view;
         }
+
+
+        CallBack callBack = new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+
+                if ( mTask  == null || mTask.getResultModel() == null )
+                {
+                    Common.toast("抱歉，领取积分失败，请稍后重试");
+                    return;
+                }
+
+                String content = String.format("您已成功领取%s积分。", currentItem.content);
+                DialogManager.getInstance().startAlert(activity, "领取积分", content, true, "确定", new DialogInterface.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        currentItem.flag = 1;
+                        MyBenefitAdapter.this.notifyDataSetChanged();
+                    }
+                }, false, "", null);
+
+
+            }
+        };
+
 
         public class ViewHolder {
             public View rootView;

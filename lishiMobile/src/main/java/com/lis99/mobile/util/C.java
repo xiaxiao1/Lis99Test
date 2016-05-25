@@ -497,4 +497,25 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 //	新版图文混排追加内容		地址：http://api.lis99.com/v5/topics/appendTopics
 	public static final String REPLY_NEW_TOPIC_STRING_IMAGE_ADD = DOMAIN + "/v5/topics/appendTopics";
 //public static final String REPLY_NEW_TOPIC_STRING_IMAGE = DOMAIN + "/v5/topics/upfiles";
+
+//	我的福利列表 http://api.lis99.com/v5/user/welfareList/[page]
+	public static final String MY_BENEFIT_LIST = DOMAIN + "/v5/user/welfareList/";
+//	领取积分			http://api.lis99.com/v5/user/getWelfare
+	public static final String My_BENEFIT_INTEGRAL = DOMAIN + "/v5/user/getWelfare";
+//	福利详情M页				http://m.lis99.com/club/welfare/welfareDetail/[id]/[welfare_id]/[user_id]
+	public static final String MY_BENEFIT_INFO_M = "http://m.lis99.com/club/welfare/welfareDetail/";
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+

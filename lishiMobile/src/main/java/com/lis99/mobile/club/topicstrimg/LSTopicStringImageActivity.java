@@ -26,6 +26,7 @@ import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.FileUtil;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LSRequestManager;
+import com.lis99.mobile.util.LSScoreManager;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.dbhelp.DataHelp;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
@@ -391,6 +392,9 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 //                                    in.putExtra("topicID", topicId);
 //                                    startActivity(in);
 //                                }
+//                                增加积分
+                                LSScoreManager.getInstance().sendScore(LSScoreManager.pubtopics, "" + topicId);
+
                                 Common.goTopic(activity, category, topicId);
                             }
 

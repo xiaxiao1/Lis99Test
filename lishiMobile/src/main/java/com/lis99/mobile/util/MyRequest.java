@@ -60,33 +60,24 @@ public class MyRequest{
 				return;
 			}
 
-			//没有生成解析类
-			if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
+			String res = result.toString();
+			if ( result != null && mTask != null )
 			{
-				return;
-			}
-			if ( mTask.getCallBack() != null )
+				//jason 数据
+				mTask.setresult(res);
+//				jason解析类
+				if ( mTask.getResultModel() != null )
+				{
+					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
+				}
+				//没有生成解析类
+				if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
+				{
+					return;
+				}
+				if ( mTask.getCallBack() != null )
 				mTask.getCallBack().handler(mTask);
-
-
-//			String res = result.toString();
-//			if ( result != null && mTask != null )
-//			{
-//				//jason 数据
-//				mTask.setresult(res);
-////				jason解析类
-//				if ( mTask.getResultModel() != null )
-//				{
-//					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
-//				}
-//				//没有生成解析类
-//				if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
-//				{
-//					return;
-//				}
-//				if ( mTask.getCallBack() != null )
-//				mTask.getCallBack().handler(mTask);
-//			}
+			}
 			
 			
 		}
@@ -126,27 +117,6 @@ public class MyRequest{
 			}
 //			Common.log("Httpresult="+result);
 			Common.log("Httpresult="+Common.convert(result));
-
-			if ( result == null )
-			{
-//				Common.toast("拉取失败");
-//				Common.log("result==null");
-				return null;
-			}
-			String res = result.toString();
-			if ( result != null && mTask != null )
-			{
-				//jason 数据
-				mTask.setresult(res);
-//				jason解析类
-				if ( mTask.getResultModel() != null )
-				{
-					mTask.setResultModel(ParserUtil.getParserResult(res, mTask.getResultModel(), mTask));
-				}
-			}
-
-
-
 
 			return result;
 		}

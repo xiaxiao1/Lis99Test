@@ -1284,6 +1284,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
+        <!--福利详情-->
+        <activity android:name="com.lis99.mobile.newhome.sysmassage.MyBenefitInfoActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
     </application>
 
 

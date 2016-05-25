@@ -42,14 +42,23 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:padding="10dp"
+                android:padding="20dp"
                 >
 
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/benefit_info_readme"
+                    />
+
                 <TextView
+                    android:paddingTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12321321123"
+                    android:textColor="#525252"
+                    android:id="@+id/tv_readme"
                     />
 
 

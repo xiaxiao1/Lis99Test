@@ -12,9 +12,14 @@ import android.widget.Toast;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.BenefitListModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
+import com.lis99.mobile.util.LSRequestManager;
+
+import java.util.HashMap;
 
 /**
  * Created by yy on 16/5/18.
@@ -36,11 +41,21 @@ public class MyBenefitAddAddress extends LSBaseActivity implements View.OnClickL
     private EditText et_address;
     private Button btn_ok;
 
+    private BenefitListModel.BenefitItem info;
+
+    private String name;
+
+    private String num;
+
+    private String address;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.my_benefit_add_address);
+
+        info = (BenefitListModel.BenefitItem) getIntent().getSerializableExtra("OBJECT");
 
         initViews();
 
@@ -84,19 +99,25 @@ public class MyBenefitAddAddress extends LSBaseActivity implements View.OnClickL
 
     private void submit() {
         // validate
-        String name = et_name.getText().toString().trim();
+        name = et_name.getText().toString().trim();
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "姓名不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String num = et_num.getText().toString().trim();
+        num = et_num.getText().toString().trim();
         if (TextUtils.isEmpty(num)) {
             Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String address = et_address.getText().toString().trim();
+        if ( num.length() != 11 )
+        {
+            Toast.makeText(this, "手机号格式错误", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        address = et_address.getText().toString().trim();
         if (TextUtils.isEmpty(address)) {
             Toast.makeText(this, "地址不能为空", Toast.LENGTH_SHORT).show();
             return;
@@ -114,6 +135,27 @@ public class MyBenefitAddAddress extends LSBaseActivity implements View.OnClickL
     private CallBack callBack = new CallBack() {
         @Override
         public void handler(MyTask mTask) {
+
+            HashMap<String, Object> map = new HashMap<>();
+
+            String userId = Common.getUserId();
+
+            map.put("user_id", userId);
+            map.put("welfare_id", info.welfare_id);
+            map.put("type", info.type);
+            map.put("platfrom", "Android");
+            map.put("username", name);
+            map.put("phone", num);
+            map.put("address", address);
+
+
+            LSRequestManager.getInstance().getIntegral(map, new CallBack() {
+                @Override
+                public void handler(MyTask mTask) {
+                    MyBenefitAddAddress.this.setResult(RESULT_OK);
+                    finish();
+                }
+            });
 
         }
     };

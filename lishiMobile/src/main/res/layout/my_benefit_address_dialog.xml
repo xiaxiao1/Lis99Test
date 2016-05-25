@@ -3,9 +3,17 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/benefit_enter_bg"
+
     >
 
+
+    <LinearLayout
+        android:background="@drawable/benefit_enter_bg"
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        >
 
     <TextView
         android:paddingTop="20dp"
@@ -114,5 +122,5 @@
 
         </RelativeLayout>
 
-
+    </LinearLayout>
 </LinearLayout>

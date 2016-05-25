@@ -56,6 +56,10 @@ private static final String URL = C.DOMAIN + "/v3/user/newIncrUserPoints";
     public static final String delreplytopicbynoimg = "delreplytopicbynoimg";
     //活动贴被删报名获得的积分需要扣除(取消)
     public static final String delactivetopicenrollpoints = "delactivetopicenrollpoints";
+    //新版话题贴回复
+    public static final String replytopicsnoimg = "replytopicsnoimg";
+    //新版话题贴发布
+    public static final String pubtopics = "pubtopics";
 
 
     public static LSScoreManager getInstance ()

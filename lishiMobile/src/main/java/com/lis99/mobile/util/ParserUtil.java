@@ -104,10 +104,6 @@ public class ParserUtil {
 					}
 				}
 			}
-//			else
-//			{
-//				Common.toast(errCode);
-//			}
 			return null;
 		}
 		String data = json.get("data").toString();

@@ -18,14 +18,13 @@
         android:id="@+id/pull_refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@null"
+        android:background="@color/pull_bg"
         android:orientation="vertical"
         android:layout_below="@+id/include1"
         android:layout_above="@+id/buttonPanel">
 
 
         <ListView
-            android:background="@color/pull_bg"
             android:id="@+id/listView"
             android:scrollbars="none"
             android:layout_width="match_parent"

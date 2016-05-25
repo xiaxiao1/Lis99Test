@@ -23,9 +23,11 @@ import com.lis99.mobile.choiceness.ActiveAllActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.model.BenefitListModel;
 import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
+import com.lis99.mobile.newhome.sysmassage.MyBenefitAddAddress;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ShareManager;
 
@@ -51,6 +53,8 @@ public class MyActivityWebView extends LSBaseActivity
 
 	private String shareTitle;
 
+	private Object obj;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -68,6 +72,8 @@ public class MyActivityWebView extends LSBaseActivity
 		image_url = getIntent().getStringExtra("IMAGE_URL");
 
 		topic_id = getIntent().getIntExtra("TOPIC_ID", 0);
+
+		obj = getIntent().getSerializableExtra("OBJECT");
 
 		initViews();
 		setTitle(title);
@@ -121,7 +127,7 @@ public class MyActivityWebView extends LSBaseActivity
 		titleRightImage1.setOnClickListener(this);
 		titleRightImage.setOnClickListener(this);
 
-		if ( "积分商城".equals(title))
+		if ( "积分商城".equals(title) || "我的福利".equals(title))
 		{
 //			setLeftView(-1);
 			ViewGroup.LayoutParams lp = titleRightImage.getLayoutParams();// new RelativeLayout.LayoutParams(Common.px2dip(30), Common.px2dip(30));
@@ -299,6 +305,28 @@ public class MyActivityWebView extends LSBaseActivity
 			});
 		}
 
+//		福利收货地址
+		@JavascriptInterface
+		public void getBenefit ()
+		{
+
+			mHandler.post(new Runnable() {
+				@Override
+				public void run() {
+
+					Intent intent = new Intent(activity, MyBenefitAddAddress.class);
+
+					BenefitListModel.BenefitItem item = (BenefitListModel.BenefitItem) obj;
+
+					intent.putExtra("OBJECT", item);
+
+					startActivityForResult(intent, 999);
+
+				}
+			});
+
+		}
+
         
     }
 	
@@ -375,9 +403,11 @@ public class MyActivityWebView extends LSBaseActivity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+//		关闭页面
 		if ( requestCode == 999 )
 		{
-
+			setResult(RESULT_OK);
+			finish();
 		}
 
 
@@ -433,7 +463,7 @@ public class MyActivityWebView extends LSBaseActivity
 				webView.reload();
 				break;
 			case R.id.titleRightImage:
-				if ( "积分商城".equals(title))
+				if ( "积分商城".equals(title) || "我的福利".equals(title))
 				{
 					webView.reload();
 					return;

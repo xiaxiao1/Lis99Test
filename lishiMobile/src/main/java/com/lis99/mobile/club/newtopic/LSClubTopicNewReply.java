@@ -201,18 +201,9 @@ public class LSClubTopicNewReply extends LSBaseActivity {
                         e.printStackTrace();
                     }
                     postMessage(POPUP_TOAST, "发布成功");
-//					closeReplyPanel();
-//					offset = 0;
-//					loadTopicInfo2(true);
 
-//                    if ( bitmap == null )
-//                    {
-                        LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbynoimg, topicId);
-//                    }
-//                    else
-//                    {
-//                        LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicbyimg, topicId);
-//                    }
+//                    回帖加积分
+                    LSScoreManager.getInstance().sendScore(LSScoreManager.replytopicsnoimg, topicId);
 
                     Intent intent = new Intent();
                     intent.putExtra("lastPage", pageNo);

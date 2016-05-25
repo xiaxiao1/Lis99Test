@@ -5,6 +5,7 @@
               android:layout_height="match_parent"
               android:padding="10dp"
               android:background="@color/pull_bg"
+              android:descendantFocusability="blocksDescendants"
     >
 
 
@@ -27,7 +28,7 @@
         <LinearLayout
             android:layout_toRightOf="@id/iv_icon"
             android:layout_marginLeft="10dp"
-            android:layout_width="140dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:orientation="vertical"
@@ -63,6 +64,7 @@
             android:layout_centerVertical="true"
             android:background="@drawable/btn_benefit_have"
             android:id="@+id/btn_ok"
+            android:focusable="false"
             />
 
 

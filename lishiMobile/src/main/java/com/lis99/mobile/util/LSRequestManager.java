@@ -607,5 +607,17 @@ public class LSRequestManager
 		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
 	}
 
+
+	/***        领取积分 */
+	public void getIntegral (HashMap<String, Object> map, CallBack callBack )
+	{
+		String url = C.My_BENEFIT_INTEGRAL;
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
+
+
+	}
 	
 }
