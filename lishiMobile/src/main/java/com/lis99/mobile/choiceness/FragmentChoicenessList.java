@@ -375,7 +375,7 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
 
-                    MyRequestManager.getInstance().requestGetNoModel("https://apis.lis99.com/v4/club/topiclist/190", null, new CallBack() {
+                    MyRequestManager.getInstance().requestGetNoModel("https://apis.lis99.com/main/test", null, new CallBack() {
 
 
                         @Override

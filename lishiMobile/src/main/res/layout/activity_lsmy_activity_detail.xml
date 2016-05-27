@@ -160,7 +160,7 @@
                     android:layout_height="1px"
                     android:background="#e3dbd0"/>
 
-            <ListView
+            <com.lis99.mobile.view.MyListView
                 android:background="@color/white"
                 android:id="@+id/list"
                 android:scrollbars="none"
@@ -170,7 +170,7 @@
                 android:dividerHeight="0px"
                 android:divider="@null"
                 android:listSelector="#00000000" >
-            </ListView>
+            </com.lis99.mobile.view.MyListView>
 
 
                 <View
