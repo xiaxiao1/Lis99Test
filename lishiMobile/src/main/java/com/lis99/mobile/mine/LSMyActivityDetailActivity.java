@@ -1,5 +1,6 @@
 package com.lis99.mobile.mine;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -461,4 +462,23 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
             buttonView.setTextColor(Color.parseColor("#999999"));
         }
     }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        String str = intent.getStringExtra("CLOSE");
+        if (!TextUtils.isEmpty(str)) {
+            sendResult();
+        }
+
+    }
+
+    private void sendResult() {
+        setResult(RESULT_OK);
+        finish();
+    }
+
+
 }

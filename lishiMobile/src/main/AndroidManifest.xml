@@ -1272,6 +1272,7 @@
         <activity
             android:name=".mine.LSMyActivityDetailActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
 

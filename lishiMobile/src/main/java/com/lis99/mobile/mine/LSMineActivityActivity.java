@@ -102,7 +102,8 @@ public class LSMineActivityActivity extends LSBaseActivity implements PullToRefr
                             LSMyActivity item = (LSMyActivity) model.lists.get(i - 1);
                             Intent intent = new Intent(LSMineActivityActivity.this, LSMyActivityDetailActivity.class);
                             intent.putExtra("orderID", item.orderid);
-                            startActivity(intent);
+//                            startActivity(intent);
+                            startActivityForResult(intent, 999);
                         }
                     });
 
@@ -142,4 +143,16 @@ public class LSMineActivityActivity extends LSBaseActivity implements PullToRefr
     public void onClick(View arg0) {
         super.onClick(arg0);
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( resultCode == RESULT_OK && requestCode == 999 )
+        {
+            onHeaderRefresh(pull_refresh_view);
+        }
+    }
+
+
 }
