@@ -14,7 +14,10 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.newtopic.series.model.ApplyManagerSeriesModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyBaseAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -26,7 +29,7 @@ import java.util.HashMap;
  */
 public class ApplySeriesManagerItem extends MyBaseAdapter {
 //  0:已确认， 1：已拒绝， 2：待确认
-    private int type;//, clubId, topicId;
+    private int type, topicId;//, clubId;
     private ApplyManagerSeries main;
 
     private String[] names = new String[]{
@@ -57,11 +60,11 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         super(c, listItem);
     }
 
-    public void setType ( int t, ApplyManagerSeries mMain )
+    public void setType ( int t, int tId, ApplyManagerSeries mMain )
     {
         type = t;
 //        clubId = cId;
-//        topicId = tId;
+        topicId = tId;
         main = mMain;
     }
 
@@ -180,12 +183,12 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         holder.btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                LSRequestManager.getInstance().managerApplyPass(topicId, clubId, item.applyid, new CallBack() {
-//                    @Override
-//                    public void handler(MyTask mTask) {
-//                        main.onHeaderRefresh(null);
-//                    }
-//                });
+                LSRequestManager.getInstance().managerApplaySeriesPass(topicId, new CallBack() {
+                    @Override
+                    public void handler(MyTask mTask) {
+                        main.onHeaderRefresh(null);
+                    }
+                });
             }
         });
 
@@ -200,12 +203,12 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-//                                LSRequestManager.getInstance().managerApplyRefuse(topicId, clubId, item.applyid, new CallBack() {
-//                                    @Override
-//                                    public void handler(MyTask mTask) {
-//                                        main.onHeaderRefresh(null);
-//                                    }
-//                                });
+                                LSRequestManager.getInstance().managerApplaySeriesRefuse(topicId, new CallBack() {
+                                    @Override
+                                    public void handler(MyTask mTask) {
+                                        main.onHeaderRefresh(null);
+                                    }
+                                });
                             }
                         })
                         .create().show();

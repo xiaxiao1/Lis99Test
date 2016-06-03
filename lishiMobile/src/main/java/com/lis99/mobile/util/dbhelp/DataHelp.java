@@ -211,6 +211,25 @@ public class DataHelp {
         return true;
     }
 
+    synchronized public boolean removeItem ( StringImageModel parent )
+    {
+        try {
+//            db.delete(childModel);
+            ArrayList<StringImageChildModel> childModels = (ArrayList<StringImageChildModel>) parent.getChildern(db);
+            for (StringImageChildModel info : childModels )
+            {
+                db.delete(info);
+            }
+
+
+        } catch (DbException e) {
+            e.printStackTrace();
+            Common.log("remove Item Error="+e.toString());
+            return false;
+        }
+        return true;
+    }
+
     synchronized public ArrayList<StringImageChildModel> searchItemInDraft ( StringImageModel parent ) {
 
         try {

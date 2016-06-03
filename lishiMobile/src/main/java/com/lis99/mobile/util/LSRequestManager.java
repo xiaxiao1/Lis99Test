@@ -620,14 +620,38 @@ public class LSRequestManager
 
 	}
 
-	public void managerApplaySeriesPass ()
+	/**
+	 * 		系列活动报名通过
+	 */
+	public void managerApplaySeriesPass ( int id, CallBack callBack )
 	{
+		String userId = Common.getUserId();
+
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("id", id);
+		map.put("user_id", userId);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(C.ACTIVE_SERIES_APPLY_PASS, map, model, callBack);
 
 	}
-
-	public void managerApplaySeriesRefuse ()
+	/**
+	 * 		系列活动报名拒绝
+	 */
+	public void managerApplaySeriesRefuse ( int id, CallBack callBack )
 	{
+		String userId = Common.getUserId();
 
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("id", id);
+		map.put("user_id", userId);
+
+		BaseModel model = new BaseModel();
+
+		MyRequestManager.getInstance().requestPost(C.ACTIVE_SERIES_APPLY_PASS, map, model, callBack);
 	}
 
 

@@ -82,7 +82,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         clubID = getIntent().getIntExtra("clubID", 0);
         batchID = getIntent().getIntExtra("batchID", 0);
 
-        jonNum = LSApplayNew.updata.size();
+        jonNum = LSApplaySeriesNew.updata.size();
 
         getList();
 
@@ -257,7 +257,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
                 for (int i = 0; i < jonNum; i++) {
                     HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("name", LSApplayNew.updata.get(i).name);
+                    map.put("name", LSApplaySeriesNew.updata.get(i).name);
                     item.add(map);
                 }
 
@@ -323,7 +323,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
         String url = C.ADD_ACTIVE_SERIES_LINE;
 
-        String OrderList = ParserUtil.getGsonString(LSApplayNew.updata);
+        String OrderList = ParserUtil.getGsonString(LSApplaySeriesNew.updata);
         OrderList = ParserUtil.getJsonArrayWithName("lists", OrderList);
         Common.log("OrderList==" + OrderList);
         HashMap<String, Object> map = new HashMap<String, Object>();

@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:textColorHint="#525252"
+        android:textColorHint="#999"
         android:hint="标题"
         android:textColor="#525252"
         android:id="@+id/edit_info"

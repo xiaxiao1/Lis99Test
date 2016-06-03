@@ -310,7 +310,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
                     if (adapterEnter == null) {
                         pageEnter.setPageSize(model.totPage);
                         adapterEnter = new ApplySeriesManagerItem(activity, model.applylist);
-                        adapterEnter.setType(0, ApplyManagerSeries.this);
+                        adapterEnter.setType(0, topic_id, ApplyManagerSeries.this);
                         list.setAdapter(adapterEnter);
                     }
                     else
@@ -321,7 +321,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
                     if (adapterRefuse == null) {
                         pageRefuse.setPageSize(model.totPage);
                         adapterRefuse = new ApplySeriesManagerItem(activity, model.applylist);
-                        adapterRefuse.setType(1, ApplyManagerSeries.this);
+                        adapterRefuse.setType(1, topic_id, ApplyManagerSeries.this);
                         list.setAdapter(adapterRefuse);
                     } else {
                         adapterRefuse.addList(model.applylist);
@@ -330,7 +330,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
                     if (adapterNeed == null) {
                         pageNeed.setPageSize(model.totPage);
                         adapterNeed = new ApplySeriesManagerItem(activity, model.applylist);
-                        adapterNeed.setType(2, ApplyManagerSeries.this);
+                        adapterNeed.setType(2, topic_id, ApplyManagerSeries.this);
                         list.setAdapter(adapterNeed);
                     } else {
                         adapterNeed.addList(model.applylist);

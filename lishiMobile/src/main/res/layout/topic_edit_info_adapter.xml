@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:background="@null"
-            android:textColorHint="#525252"
+            android:textColorHint="#999"
             android:hint="正文"
             android:textColor="#525252"
             android:id="@+id/edit_info"

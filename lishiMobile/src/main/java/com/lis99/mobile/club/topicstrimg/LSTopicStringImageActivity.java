@@ -376,26 +376,17 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
 
                     String data = response.optString("data", "");
+                    Common.log("result="+data);
                     if (!TextUtils.isEmpty(data)) {
                         try {
                             JSONObject j = new JSONObject(data);
 
-                            int category = j.optInt("category", -1);
-                            topicId = j.optInt("topicid", -1);
-                            if (category != -1 && topicId != -1) {
-//                                if (category == 2) {
-//                                    Intent in = new Intent(activity, LSClubTopicNewActivity.class);
-//                                    in.putExtra("topicID", topicId);
-//                                    startActivity(in);
-//                                } else {
-//                                    Intent in = new Intent(activity, LSClubTopicActivity.class);
-//                                    in.putExtra("topicID", topicId);
-//                                    startActivity(in);
-//                                }
+                            topicId = j.optInt("topics_id", -1);
+                            if ( topicId != -1) {
 //                                增加积分
                                 LSScoreManager.getInstance().sendScore(LSScoreManager.pubtopics, "" + topicId);
 
-                                Common.goTopic(activity, category, topicId);
+                                Common.goTopic(activity, 3, topicId);
                             }
 
                         } catch (Exception e) {
@@ -660,15 +651,17 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
     private void removeAll ()
     {
-        if ( model.item != null )
-        {
-            for (StringImageChildModel info : model.item )
-            {
-                DataHelp.getInstance().removeItem(info);
-            }
-        }
-
+//        if ( model.item != null )
+//        {
+//            for (StringImageChildModel info : model.item )
+//            {
+//                DataHelp.getInstance().removeItem(info);
+//            }
+//        }
         DataHelp.getInstance().removeDraft(model);
+
+        DataHelp.getInstance().removeItem(model);
+
     }
 
 //  保存所有数据
