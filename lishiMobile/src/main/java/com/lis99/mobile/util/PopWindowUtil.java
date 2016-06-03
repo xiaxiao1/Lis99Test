@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.ActiveMainCityListModel;
+import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
+import com.lis99.mobile.club.newtopic.series.model.ManagerSeriesLineListModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 
@@ -591,6 +594,194 @@ public class PopWindowUtil {
 
         return name;
     }
+
+
+    /**
+     *      选择系列活动报名列表
+     * */
+    public static PopupWindow showActiveSeriesLine (int position, View parent, TopicSeriesBatchsListModel modelBatch, final CallBack callBack  )
+    {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            return pop;
+        }
+
+        View v = View.inflate(LSBaseActivity.activity, R.layout.pop_active_series_line, null);
+
+        View bg = v.findViewById(R.id.bg);
+
+        Button btn_ok = (Button) v.findViewById(R.id.btn_ok);
+
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closePop();
+            }
+        });
+
+        final ListView list = (ListView) v.findViewById(R.id.list);
+
+        final PopListAdapter.TopicActiveSeriesLineAdapter adapter = new PopListAdapter
+                .TopicActiveSeriesLineAdapter(LSBaseActivity.activity, modelBatch.batchList);
+
+        adapter.setPosition(position);
+
+        list.setAdapter(adapter);
+
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (callBack != null) {
+                    MyTask task = new MyTask();
+                    task.setresult("" + adapter.getPosition());
+//                task.setResultModel(values);
+                    callBack.handler(task);
+                    closePop();
+                }
+
+            }
+        });
+
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                    TopicSeriesBatchsListModel.BatchListEntity item = (TopicSeriesBatchsListModel
+                            .BatchListEntity) adapter.getItem(i);
+                    if ( item.isEnd == 1 || item.isBaoming == 1 ) return;
+
+                    adapter.setPosition(i);
+            }
+        });
+
+//        pop = new PopupWindow(v, ViewGroup.LayoutParams.FILL_PARENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
+                Common.HEIGHT - Common.dip2px(200));
+
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setFocusable(true);
+        pop.showAtLocation(parent, Gravity.BOTTOM, 0, Common.dip2px(50));
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                // TODO Auto-generated method stub
+//                WindowManager.LayoutParams lp = LSBaseActivity.activity
+//                        .getWindow().getAttributes();
+//                lp.alpha = 1.0f;
+//                LSBaseActivity.activity.getWindow().setAttributes(lp);
+                if ( callBack != null )
+                {
+                    callBack.handler(null);
+                }
+            }
+        });
+
+//        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
+//                .getAttributes();
+//        lp.alpha = 0.7f;
+//        LSBaseActivity.activity.getWindow().setAttributes(lp);
+
+        return pop;
+    }
+
+    /**
+     *      选择系列活动管理报名列表
+     * */
+    public static PopupWindow showActiveSeriesLineManager (int position, View parent, ManagerSeriesLineListModel model, final CallBack callBack  )
+    {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            return pop;
+        }
+
+        View v = View.inflate(LSBaseActivity.activity, R.layout.pop_active_series_line_manager, null);
+
+        View bg = v.findViewById(R.id.bg);
+
+        Button btn_ok = (Button) v.findViewById(R.id.btn_ok);
+
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closePop();
+            }
+        });
+
+        final ListView list = (ListView) v.findViewById(R.id.list);
+
+        final PopListAdapter.TopicActiveSeriesLineManagerAdapter adapter = new PopListAdapter
+                .TopicActiveSeriesLineManagerAdapter(LSBaseActivity.activity, model.batchList);
+
+        adapter.setPosition(position);
+
+        list.setAdapter(adapter);
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (callBack != null) {
+                    MyTask task = new MyTask();
+                    task.setresult(""+adapter.getPosition());
+                    callBack.handler(task);
+                    closePop();
+                }
+
+            }
+        });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                adapter.setPosition(i);
+            }
+        });
+
+//        pop = new PopupWindow(v, ViewGroup.LayoutParams.FILL_PARENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
+                Common.HEIGHT - Common.dip2px(200));
+
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setFocusable(true);
+        pop.showAtLocation(parent, Gravity.BOTTOM, 0, Common.dip2px(50));
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                // TODO Auto-generated method stub
+//                WindowManager.LayoutParams lp = LSBaseActivity.activity
+//                        .getWindow().getAttributes();
+//                lp.alpha = 1.0f;
+//                LSBaseActivity.activity.getWindow().setAttributes(lp);
+                if ( callBack != null )
+                {
+                    callBack.handler(null);
+                }
+            }
+        });
+
+//        WindowManager.LayoutParams lp = LSBaseActivity.activity.getWindow()
+//                .getAttributes();
+//        lp.alpha = 0.7f;
+//        LSBaseActivity.activity.getWindow().setAttributes(lp);
+
+        return pop;
+    }
+
+
+
+
+
 
 
     public static void closePop ()

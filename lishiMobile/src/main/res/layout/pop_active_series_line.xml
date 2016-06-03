@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="match_parent"
+
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:alpha="0.2"
+        android:id="@+id/bg"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/club_info_btn_ok"
+        android:id="@+id/btn_ok"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:text="下一步"
+        />
+
+    <LinearLayout
+        android:layout_above="@id/btn_ok"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/solid_bottom_bg"
+        android:paddingBottom="3dip"
+        >
+
+        <TextView
+            android:paddingTop="20dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择出发日期"
+            android:textColor="@color/text_color_green"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/series_date_icon"
+            android:drawablePadding="10dp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eee"
+            android:layout_margin="10dp"
+            />
+
+    <ListView
+        style="@style/listViewStyle"
+        android:id="@+id/list"
+        android:divider="#eee"
+        android:dividerHeight="1px"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        ></ListView>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -15,7 +15,7 @@
         android:id="@+id/btn_ok"
         android:layout_alignParentBottom="true"
         android:textColor="@color/white"
-        android:text="马上报名"
+        android:text="我想去玩"
         />
 
     <View

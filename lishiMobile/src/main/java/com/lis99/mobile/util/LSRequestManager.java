@@ -619,5 +619,18 @@ public class LSRequestManager
 
 
 	}
+
+	public void managerApplaySeriesPass ()
+	{
+
+	}
+
+	public void managerApplaySeriesRefuse ()
+	{
+
+	}
+
+
+
 	
 }

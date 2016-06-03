@@ -19,6 +19,7 @@ import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.LSSelectAllClubActivity;
+import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
@@ -375,36 +376,28 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
 
-                    MyRequestManager.getInstance().requestGetNoModel("https://apis.lis99.com/main/test", null, new CallBack() {
+
+                    HashMap<String, Object> map = new HashMap<>();
+
+                    map.put("action", "pubtopics");
+                    map.put("user_id", "290811");
+                    map.put("version", "999");
+                    map.put("platform", "Android");
+                    map.put("channel", "zs360");
+                    map.put("topicid", "123");
+
+                    String url = C.DOMAIN + "/v3/user/newIncrUserPoints";
+
+                    MyRequestManager.getInstance().requestPost(url, map, new BaseModel(), new CallBack() {
 
 
                         @Override
                         public void handler(MyTask mTask) {
-                            Common.log("mTask ="+mTask.getresult());
+
                         }
                     });
 
 
-//                    startActivity(new Intent(getActivity(), FragmentChoicenessList.class));
-//                    startActivity(new Intent(getActivity(), ActivityTest.class));
-//                    UpdataUtil.getInstance().getUpData();
-
-//                    intent = new Intent(getActivity(), LSTopicStringImageActivity.class);
-//                    intent.putExtra("ADD", true);
-//                    intent.putExtra("clubID", 0);
-//                    intent.putExtra("clubName", "这是标题");//clubHead.title);
-//                    intent.putExtra("TITLE", "这是标题2");
-//                    startActivity(intent);
-
-//                    Common.log("MAC = "+DeviceInfo.getMacAddress());
-
-//                    LSRequestManager.getInstance().upDataInfo();
-
-//                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
-//
-//                    intent.putExtra("CODE", 0);
-//
-//                    startActivity(intent);
                     return;
                 }
 ////

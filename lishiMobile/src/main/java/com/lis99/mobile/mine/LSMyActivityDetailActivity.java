@@ -433,6 +433,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                     return;
                 }
                 commentView.setVisibility(View.GONE);
+                Common.toast("感谢您的评价");
                 getData();
             }
         });

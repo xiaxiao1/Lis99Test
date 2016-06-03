@@ -127,7 +127,8 @@ public class PayUtil {
                         return;
                     }
 
-
+//                    积分
+                    WXPayEntryActivity.Integral = jo.optString("points");
 
                     appId = jo.optString("appid");
 
@@ -140,6 +141,8 @@ public class PayUtil {
                     timeStamp = jo.optString("timestamp");
 
                     sign = jo.optString("sign");
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -210,6 +213,9 @@ public class PayUtil {
 //                    Common.toast("获取订单信息失败");
                     return;
                 }
+
+                //                    积分
+                WXPayEntryActivity.Integral = zfbModel.points;
 
                 // 订单
                 String orderInfo = getOrderInfo(zfbModel.subject, zfbModel.body, zfbModel.total_fee);

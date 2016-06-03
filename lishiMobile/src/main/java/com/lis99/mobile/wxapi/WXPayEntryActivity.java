@@ -5,15 +5,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.PayUtil;
+import com.lis99.mobile.webview.MyActivityWebView;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -47,6 +50,8 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     private final int sZFB = 1;
     private final int sWX = 2;
+//  支付成功后， 返回的积分
+    public static String Integral = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
         infoWX = "<font color=\"#73706e\">请在“</font><font color=\"#ff7800\">我----我报名的活动</font><font color=\"#73706e\">”中继续完成支付。<br>超过2小时未支付，报名将被拒绝，需要重新报名。<br>如果您需要帮助，请联系\n"+getResources().getString(R.string.tel)+"(工作日9:00-18:00)</font>";
 
-        infoOk = "希望您玩得愉快\n如果您需要帮助 请联系"+getResources().getString(R.string.tel)+"(工作日9:00-18:00)";
+        infoOk = "恭喜获得"+ Integral +"个社区积分，积分可以换购装备\n如果您需要帮助 请联系"+getResources().getString(R.string.tel)+"(工作日9:00-18:00)";
 
         setTitle("支付结果");
 
@@ -82,6 +87,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
             @Override
             public void onClick(View view) {
                 onBackPressed();
+                finish();
             }
         });
 
@@ -90,6 +96,10 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
             public void onClick(View view) {
 
                 onBackPressed();
+                goMaket();
+                finish();
+
+
             }
         });
 
@@ -109,6 +119,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
     protected void leftAction() {
         super.leftAction();
         onBackPressed();
+        finish();
     }
 
     @Override
@@ -141,7 +152,7 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+//        super.onBackPressed();
         if ( PayBackA != null )
         {
             Intent intent = new Intent(activity, PayBackA.getClass());
@@ -153,8 +164,27 @@ public class WXPayEntryActivity extends LSBaseActivity implements IWXAPIEventHan
         {
             PayBackA = null;
         }
-        finish();
+
+//        finish();
     }
+
+//  跳转积分商城
+    private void goMaket ()
+    {
+        int id = 0;
+        String Userid = DataManager.getInstance().getUser().getUser_id();
+        if (!TextUtils.isEmpty(Userid)) {
+            id = Integer.parseInt(Userid);
+        }
+//				商城
+        Intent intent = new Intent(activity, MyActivityWebView.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("URL", "http://m.lis99.com/club/integralshop/goodList/" + id);
+        bundle.putString("TITLE", "积分商城");
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
 
     private void setPayStatus ( int code )
     {

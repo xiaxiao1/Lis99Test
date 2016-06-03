@@ -140,6 +140,8 @@ public class C {
 	
 	/** 服务器地址 */
 	public static final String DOMAIN = "http://api.lis99.com";
+//	HTTPS 地址
+	private static final String DOMAINS = "https://apis.lis99.com";
 	/** 首屏-焦点图 */
 	public static final String MAIN_BANNER_URL = DOMAIN + "/main/banner/";
 	/** 装备-热门装备 */
@@ -508,6 +510,26 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 
 
 
+
+
+
+//	==============HTTPS============
+	//	https://apis.lis99.com/activity/detail/新版系列活动贴
+	public static final String CLUB_TOPIC_ACTIVE_SERIES_LINE_MIAN = DOMAINS + "/activity/detail/";
+//https://apis.lis99.com/activity/batchs/	系列活动报名列表
+	public static final String CLUB_TOPIC_ACTIVE_SERIES_LINE_LIST = DOMAINS + "/activity/batchs/";
+//	https://apis.lis99.com/activity/applybatchs/
+	public static final String MANAGER_SERIES_LINE_JOIN_LIST = DOMAINS + "/activity/applybatchs/";
+//	https://apis.lis99.com/activity/enrollList/[page]
+	public static final String MANAGER_SERIES_LINE_JOIN = DOMAINS + "/activity/enrollList/";
+//	https://apis.lis99.com/activity/enroll	添加活动报名信息接口
+	public static final String ADD_ACTIVE_SERIES_LINE = DOMAINS+"/activity/enroll";
+//	https://apis.lis99.com/activity/applyEnroll/2631	获取报名填写信息
+	public static final String ACTIVE_SERIES_APPLY_LIST = DOMAINS + "/activity/applyEnroll/";
+//	https://apis.lis99.com/activity/refuse/		系列活动拒绝
+	public static final String ACTIVE_SERIES_APPLY_REFUSE = DOMAINS + "/activity/refuse/";
+//	地址：https://apis.lis99.com/activity/pass/		系列活动通过
+	public static final String ACTIVE_SERIES_APPLY_PASS = DOMAINS + "/activity/pass/";
 
 
 

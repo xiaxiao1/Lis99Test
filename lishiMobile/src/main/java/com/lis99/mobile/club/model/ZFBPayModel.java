@@ -29,5 +29,7 @@ public class ZFBPayModel extends  BaseModel{
 
     public String return_url;
 
+    public String points;
+
 
 }

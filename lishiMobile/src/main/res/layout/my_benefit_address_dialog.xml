@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="请核对收货信息"
         android:textColor="#525252"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:drawableLeft="@drawable/icon_benefit_dialog_title"
         android:drawablePadding="10dp"

@@ -281,8 +281,16 @@ public class ChoicenessAdapter extends BaseAdapter
 				finalHolder.iv_like.setImageResource(R.drawable.like_button_press);
 
 				finalHolder.iv_like.startAnimation(animation);
+//				新版话题帖
+				if ( item.type == 10 || item.type == 11 )
+				{
+					LSRequestManager.getInstance().clubTopicLikeNew(item.topic_id,null);
+				}
+				else
+				{
+					LSRequestManager.getInstance().clubTopicLike(item.topic_id,null);
+				}
 
-				LSRequestManager.getInstance().clubTopicLike(item.topic_id,null);
 			}
 		});
 		
