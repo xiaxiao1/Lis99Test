@@ -216,6 +216,7 @@ public class DataHelp {
         try {
 //            db.delete(childModel);
             ArrayList<StringImageChildModel> childModels = (ArrayList<StringImageChildModel>) parent.getChildern(db);
+            if ( childModels == null || childModels.size() == 0 ) return true;
             for (StringImageChildModel info : childModels )
             {
                 db.delete(info);
