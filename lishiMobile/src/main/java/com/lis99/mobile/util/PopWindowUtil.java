@@ -624,9 +624,9 @@ public class PopWindowUtil {
         final PopListAdapter.TopicActiveSeriesLineAdapter adapter = new PopListAdapter
                 .TopicActiveSeriesLineAdapter(LSBaseActivity.activity, modelBatch.batchList);
 
-        adapter.setPosition(position);
-
         list.setAdapter(adapter);
+
+        adapter.setPosition(position);
 
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -719,9 +719,9 @@ public class PopWindowUtil {
         final PopListAdapter.TopicActiveSeriesLineManagerAdapter adapter = new PopListAdapter
                 .TopicActiveSeriesLineManagerAdapter(LSBaseActivity.activity, model.batchList);
 
-        adapter.setPosition(position);
-
         list.setAdapter(adapter);
+
+        adapter.setPosition(position);
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override

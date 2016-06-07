@@ -45,6 +45,7 @@ public class PopListAdapter {
 
         public void setPosition(int position) {
             this.position = position;
+            this.notifyDataSetChanged();
         }
 
 
@@ -158,6 +159,7 @@ public class PopListAdapter {
 
         public void setPosition(int position) {
             this.position = position;
+            this.notifyDataSetChanged();
         }
 
         private int position = -1;

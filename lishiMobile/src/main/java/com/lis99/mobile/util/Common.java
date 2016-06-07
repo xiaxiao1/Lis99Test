@@ -24,6 +24,7 @@ import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
+import com.lis99.mobile.club.newtopic.series.LSClubTopicActiveSeries;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.NewHomeActivity;
@@ -192,7 +193,7 @@ public class Common {
 //  分享菜单弹出， 判断是否需要显示管理报名
     public static boolean visibleApplyManager ( ShareInterface s )
     {
-        return ( s != null && ("1".equals(s.getCategory()) || "2".equals(s.getCategory()) || !TextUtils.isEmpty(s.getNewActive()) ));
+        return ( s != null && ("1".equals(s.getCategory()) || "2".equals(s.getCategory()) || !TextUtils.isEmpty(s.getNewActive()) || "999".equals(s.getCategory()) ));
     }
 
     /**
@@ -469,7 +470,7 @@ public class Common {
 
 
     /**
-     *      帖子类型：0话题贴，1线路活动帖 ，2线上活动帖,3 新版话题帖, 4 新版活动帖子
+     *      帖子类型：0话题贴，1线路活动帖 ，2线上活动帖,3 新版话题帖, 4 新版活动帖子, 5系列活动帖
      * @param c
      * @param catgory
      */
@@ -496,6 +497,12 @@ public class Common {
         else if ( 4 == catgory )
         {
             Intent intent = new Intent(c, LSClubTopicActiveOffLine.class);
+            intent.putExtra("topicID", topicId);
+            c.startActivity(intent);
+        }
+        else if ( 5 == catgory )
+        {
+            Intent intent = new Intent(c, LSClubTopicActiveSeries.class);
             intent.putExtra("topicID", topicId);
             c.startActivity(intent);
         }

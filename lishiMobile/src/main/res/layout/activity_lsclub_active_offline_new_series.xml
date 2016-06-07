@@ -94,19 +94,18 @@
                     />
 
                 <TextView
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_color_black"
-                    android:text="元/人"
+                    android:textColor="@color/color_nine"
+                    android:text=" 起"
                     android:id="@+id/tv"
                     />
 
                 <TextView
-
-                    android:layout_toLeftOf="@id/tv"
                     android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color_black"
@@ -128,6 +127,7 @@
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:paddingRight="10dp"
+                    android:text="2016-2017\n每周5出发，亲子有优惠"
                     />
 
 

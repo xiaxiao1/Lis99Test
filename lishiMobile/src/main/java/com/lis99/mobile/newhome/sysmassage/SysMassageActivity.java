@@ -10,13 +10,13 @@ import android.widget.ListView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.apply.ApplyManager;
 import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -85,10 +85,12 @@ public class SysMassageActivity extends LSBaseActivity implements
                         break;
                     case 7:
 
-                        intent = new Intent(activity, ApplyManager.class);
-                        intent.putExtra("topicID", item.topicid);
-                        intent.putExtra("clubID", item.club_id);
-                        startActivity(intent);
+                        ActivityUtil.goActiveManager(item.topicid, item.club_id);
+
+//                        intent = new Intent(activity, ApplyManager.class);
+//                        intent.putExtra("topicID", item.topicid);
+//                        intent.putExtra("clubID", item.club_id);
+//                        startActivity(intent);
                         break;
                     case 6:
                         intent = new Intent(activity, MyJoinActiveInfoActivity.class);

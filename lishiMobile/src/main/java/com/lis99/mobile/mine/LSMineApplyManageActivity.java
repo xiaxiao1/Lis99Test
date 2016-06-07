@@ -1,6 +1,5 @@
 package com.lis99.mobile.mine;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.apply.ApplyManager;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
@@ -22,6 +20,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.mine.adapter.LSMineApplyManageAdapter;
 import com.lis99.mobile.newhome.LSFragment;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.Page;
@@ -72,20 +71,25 @@ public class LSMineApplyManageActivity extends LSBaseActivity implements
 					return;
 				}
 
-				Intent intent = new Intent(LSMineApplyManageActivity.this,
-						ApplyManager.class);
-				if (TextUtils.isEmpty(adapter.getItem(position).getActivity_code())) {
-					intent.putExtra("NEWACTIVE", false);
-				} else {
-					intent.putExtra("NEWACTIVE", true);
-				}
-				intent.putExtra("topicID", Integer.valueOf(adapter.getItem(
-						position).getTopic_id()));
-				intent.putExtra("clubID", Integer.valueOf(adapter.getItem(
+//				Intent intent = new Intent(LSMineApplyManageActivity.this,
+//						ApplyManager.class);
+//				if (TextUtils.isEmpty(adapter.getItem(position).getActivity_code())) {
+//					intent.putExtra("NEWACTIVE", false);
+//				} else {
+//					intent.putExtra("NEWACTIVE", true);
+//				}
+//				intent.putExtra("topicID", Integer.valueOf(adapter.getItem(
+//						position).getTopic_id()));
+//				intent.putExtra("clubID", Integer.valueOf(adapter.getItem(
+//						position).getClub_id()));
+//				intent.putExtra("clubName", adapter.getItem(
+//						position).getClub_title());
+//				startActivity(intent);
+
+				ActivityUtil.goActiveManager(Integer.valueOf(adapter.getItem(
+						position).getTopic_id()), Integer.valueOf(adapter.getItem(
 						position).getClub_id()));
-				intent.putExtra("clubName", adapter.getItem(
-						position).getClub_title());
-				startActivity(intent);
+
 
 
 				Common.log("adapter == onclick");

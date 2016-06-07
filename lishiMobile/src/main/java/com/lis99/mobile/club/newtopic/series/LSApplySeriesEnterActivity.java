@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.apply.LSApplayNew;
 import com.lis99.mobile.club.model.OrderInfoModel;
 import com.lis99.mobile.club.model.PayEnterOrderModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -82,7 +81,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         clubID = getIntent().getIntExtra("clubID", 0);
         batchID = getIntent().getIntExtra("batchID", 0);
 
-        jonNum = LSApplaySeriesNew.updata.size();
+        jonNum = LSApplySeriesNew.updata.size();
 
         getList();
 
@@ -257,7 +256,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
                 for (int i = 0; i < jonNum; i++) {
                     HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("name", LSApplaySeriesNew.updata.get(i).name);
+                    map.put("name", LSApplySeriesNew.updata.get(i).name);
                     item.add(map);
                 }
 
@@ -323,7 +322,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
         String url = C.ADD_ACTIVE_SERIES_LINE;
 
-        String OrderList = ParserUtil.getGsonString(LSApplaySeriesNew.updata);
+        String OrderList = ParserUtil.getGsonString(LSApplySeriesNew.updata);
         OrderList = ParserUtil.getJsonArrayWithName("lists", OrderList);
         Common.log("OrderList==" + OrderList);
         HashMap<String, Object> map = new HashMap<String, Object>();

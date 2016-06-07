@@ -45,7 +45,8 @@ import java.util.HashMap;
 /**
  * Created by yy on 16/1/8.
  * <p/>
- * 新的线下活动帖
+ * 系列活动帖
+ *  int topicID
  *  topicID int
  */
 public class LSClubTopicActiveSeries extends LSBaseActivity implements
@@ -106,7 +107,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 //  批次信息
     private TopicSeriesBatchsListModel modelBatch;
 
-    private int activePosition = -1;
+    private int activePosition = 0;
 
 
     @Override
@@ -147,7 +148,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
                 clubID = model.clubId;
 
                 titleView.setText(model.getTitle());
-                tvdata.setText(model.activitytimes);
+                tvdata.setText(model.activitytimes+"\n"+model.batchDesc);
                 tvprice.setText(model.consts);
 
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
@@ -215,7 +216,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 
                 clubname.setText(model.clubTitle);
 
-                tvtraveltag.setText(model.batchTotal+"批次");
+                tvtraveltag.setText(model.batchTotal+" 批次");
 
 //                ivtravelbg
 
@@ -552,11 +553,11 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
     private void getSeriesList ()
     {
 
-        if ( modelBatch != null && modelBatch.batchList != null && modelBatch.batchList.size() != 0 )
-        {
-            showBacthList();
-            return;
-        }
+//        if ( modelBatch != null && modelBatch.batchList != null && modelBatch.batchList.size() != 0 )
+//        {
+//            showBacthList();
+//            return;
+//        }
 
         String url = C.CLUB_TOPIC_ACTIVE_SERIES_LINE_LIST;
 
@@ -599,7 +600,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 
                 TopicSeriesBatchsListModel.BatchListEntity item = modelBatch.batchList.get(activePosition);
 
-                Intent intent = new Intent(activity, LSApplaySeriesNew.class);
+                Intent intent = new Intent(activity, LSApplySeriesNew.class);
                 intent.putExtra("clubID", clubID);
                 intent.putExtra("batchID", item.batchId);
                 intent.putExtra("topicID", activity_id);

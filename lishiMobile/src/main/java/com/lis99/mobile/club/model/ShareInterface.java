@@ -13,7 +13,7 @@ public interface ShareInterface {
     /**  是否是置顶 2置顶， 其他 解除置顶  */
     public void setStick (String s);
 
-/**  是否显示报名管理， 1线下活动， 2 线上活动， 显示管理， 其他不显示*/
+/**  是否显示报名管理， 1线下活动， 2 线上活动，999 系列活动 ， 显示管理， 其他不显示*/
     public String getCategory ();
 /**    创始人标记， 是否显示删除 1 创始人（显示删除）*/
     public String getIsJoin ();

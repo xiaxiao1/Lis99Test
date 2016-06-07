@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by yy on 15/11/18.
  */
-public abstract class LSApplaySeriesNew extends LSBaseActivity {
+public class LSApplySeriesNew extends LSBaseActivity {
 
     private ListView list;
 
@@ -275,9 +275,6 @@ public abstract class LSApplaySeriesNew extends LSBaseActivity {
                             listmodel.items.add("0");
 //                            QQ
                             listmodel.items.add("0");
-//                              没用
-                            listmodel.items.add("0");
-
                             //                            邮寄地址
                             listmodel.items.add("0");
                             //                            居住城市
@@ -297,8 +294,6 @@ public abstract class LSApplaySeriesNew extends LSBaseActivity {
                 });
 
     }
-
-    abstract public String getUrl ();
 
     @Override
     protected void onDestroy() {

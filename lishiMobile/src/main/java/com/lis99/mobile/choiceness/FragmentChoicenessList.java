@@ -19,11 +19,11 @@ import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.LSSelectAllClubActivity;
-import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
+import com.lis99.mobile.club.newtopic.series.LSClubTopicActiveSeries;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
@@ -376,26 +376,10 @@ public class FragmentChoicenessList extends Fragment implements
                 if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
                 {
 
+                    intent = new Intent(getActivity(), LSClubTopicActiveSeries.class);
+                    intent.putExtra("topicID", 3380);
+                    startActivity(intent);
 
-                    HashMap<String, Object> map = new HashMap<>();
-
-                    map.put("action", "pubtopics");
-                    map.put("user_id", "290811");
-                    map.put("version", "999");
-                    map.put("platform", "Android");
-                    map.put("channel", "zs360");
-                    map.put("topicid", "123");
-
-                    String url = C.DOMAIN + "/v3/user/newIncrUserPoints";
-
-                    MyRequestManager.getInstance().requestPost(url, map, new BaseModel(), new CallBack() {
-
-
-                        @Override
-                        public void handler(MyTask mTask) {
-
-                        }
-                    });
 
 
                     return;

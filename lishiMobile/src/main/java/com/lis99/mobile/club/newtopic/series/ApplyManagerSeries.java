@@ -56,7 +56,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
     private View view_series;
     private TextView tv1, tv2;
 
-    private int positionSeries = -1;
+    private int positionSeries = 0;
 
     private ManagerSeriesLineListModel modelSeries;
 
@@ -244,7 +244,18 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
 
                 positionSeries = Integer.parseInt(mTask.getresult());
 
-                batch_id = modelSeries.batchList.get(positionSeries).batchId;
+                ManagerSeriesLineListModel.BatchListEntity item = modelSeries.batchList.get(positionSeries);
+
+                batch_id = item.batchId;
+
+                if ( positionSeries == 0 )
+                {
+                    tv1.setText("全部批次");
+                }
+                else
+                {
+                    tv1.setText("第"+positionSeries+"批，"+item.starttime+"~"+item.endtime);
+                }
 
                 getList();
             }
@@ -302,7 +313,11 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
 
                 btn_enter.setText("已确认（" + model.applyPass + "）");
                 btn_refuse.setText("已拒绝（" + model.applyRefuse + "）");
-                btn_need_enter.setText("待确认（" + model.applyAudit + "）");
+                btn_need_enter.setText("待审核（" + model.applyAudit + "）");
+
+                tv1.setText("全部批次");
+                tv2.setText("共"+model.applyTotPeople+"个用户，"+model.applyTotal+"个报名信息");
+
 
                 tv_title.setText(model.title);
 

@@ -1291,6 +1291,33 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
+        <!--系列活动-->
+        <activity android:name="com.lis99.mobile.club.newtopic.series.LSClubTopicActiveSeries"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <activity android:name="com.lis99.mobile.club.newtopic.series.LSClubTopicActiveDetailSeries"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+
+        <activity android:name="com.lis99.mobile.club.newtopic.series.LSApplySeriesNew"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+
+        <activity android:name="com.lis99.mobile.club.newtopic.series.LSApplySeriesEnterActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  android:launchMode="singleTask"
+            />
+
+        <activity android:name="com.lis99.mobile.club.newtopic.series.ApplyManagerSeries"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+
+
     </application>
 
 

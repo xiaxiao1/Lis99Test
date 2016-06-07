@@ -259,11 +259,11 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     }
 
     /**
-     * 是否显示报名管理， 1线下活动， 2 线上活动， 显示管理， 其他不显示
+     * 是否显示报名管理， 1线下活动， 2 线上活动，999 系列活动 ， 显示管理， 其他不显示
      */
     @Override
     public String getCategory() {
-        return "1";
+        return "999";
     }
 
     /**
