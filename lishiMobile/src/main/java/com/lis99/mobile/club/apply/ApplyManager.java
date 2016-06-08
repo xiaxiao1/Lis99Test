@@ -12,12 +12,12 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.model.ApplyManagerModel;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.applywidget.ApplyManagerItem;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 
@@ -171,9 +171,12 @@ public class ApplyManager extends LSBaseActivity implements com.lis99.mobile.ent
             case R.id.tv_title:
                 if ( NEWACTIVE )
                 {
-                    Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
-                    intent.putExtra("topicID", topic_id);
-                    startActivity(intent);
+//                    Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+//                    intent.putExtra("topicID", topic_id);
+//                    startActivity(intent);
+
+                    Common.goTopic(activity, 4, topic_id);
+
                 }
                 else
                 {

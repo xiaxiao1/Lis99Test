@@ -13,7 +13,6 @@ import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.SearchInfoTopicModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyBaseAdapter;
 
@@ -97,9 +96,11 @@ public class SearchInfoTopicAdapter extends MyBaseAdapter {
                 }
                 else if ( 4 == item.category )
                 {
-                    Intent intent = new Intent(mContext, LSClubTopicActiveOffLine.class);
-                    intent.putExtra("topicID", item.id);
-                    mContext.startActivity(intent);
+//                    Intent intent = new Intent(mContext, LSClubTopicActiveOffLine.class);
+//                    intent.putExtra("topicID", item.id);
+//                    mContext.startActivity(intent);
+
+                    Common.goTopic(mContext, 4, item.id);
                 }
 
             }

@@ -34,7 +34,6 @@ import com.lis99.mobile.club.model.ClubDetailHead;
 import com.lis99.mobile.club.model.ClubDetailList;
 import com.lis99.mobile.club.model.ClubDetailList.Topiclist;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.topicstrimg.LSTopicStringImageActivity;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
@@ -278,9 +277,12 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //				新版活动帖
 				if ( !TextUtils.isEmpty(activity_code) && "4".equals(category) )
 				{
-					Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
-					intent.putExtra("topicID", topicId);
-					startActivity(intent);
+//					Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+//					intent.putExtra("topicID", topicId);
+//					startActivity(intent);
+
+					Common.goTopic(activity, 4, topicId);
+
 					return;
 				}
 //				线上活动帖

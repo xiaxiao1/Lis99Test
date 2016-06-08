@@ -651,7 +651,7 @@ public class LSRequestManager
 
 		BaseModel model = new BaseModel();
 
-		MyRequestManager.getInstance().requestPost(C.ACTIVE_SERIES_APPLY_PASS, map, model, callBack);
+		MyRequestManager.getInstance().requestPost(C.ACTIVE_SERIES_APPLY_REFUSE, map, model, callBack);
 	}
 
 

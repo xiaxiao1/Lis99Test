@@ -1,6 +1,5 @@
 package com.lis99.mobile.choiceness;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.ActiveAllCity;
 import com.lis99.mobile.club.model.ActiveAllModel;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -119,9 +117,12 @@ public class ActiveAllActivity extends LSBaseActivity implements
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if ( adapter == null || adapter.getTopicId(i) == -1 ) return;
-                Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
-                intent.putExtra("topicID", adapter.getTopicId(i));
-                startActivity(intent);
+//                Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+//                intent.putExtra("topicID", adapter.getTopicId(i));
+//                startActivity(intent);
+
+                Common.goTopic(activity, 4, adapter.getTopicId(i));
+
             }
         });
 

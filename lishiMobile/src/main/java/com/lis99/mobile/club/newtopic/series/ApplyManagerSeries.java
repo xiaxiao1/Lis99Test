@@ -92,6 +92,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
         tv1 = (TextView) findViewById(R.id.tv1);
         tv2 = (TextView) findViewById(R.id.tv2);
 
+        tv1.setText("全部批次");
 
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setOnClickListener(this);
@@ -257,7 +258,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
                     tv1.setText("第"+positionSeries+"批，"+item.starttime+"~"+item.endtime);
                 }
 
-                getList();
+                onHeaderRefresh(pull_refresh_view);
             }
         });
     }
@@ -315,7 +316,6 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
                 btn_refuse.setText("已拒绝（" + model.applyRefuse + "）");
                 btn_need_enter.setText("待审核（" + model.applyAudit + "）");
 
-                tv1.setText("全部批次");
                 tv2.setText("共"+model.applyTotPeople+"个用户，"+model.applyTotal+"个报名信息");
 
 

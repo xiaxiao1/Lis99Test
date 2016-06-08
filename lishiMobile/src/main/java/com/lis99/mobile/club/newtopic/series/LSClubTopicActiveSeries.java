@@ -148,7 +148,14 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
                 clubID = model.clubId;
 
                 titleView.setText(model.getTitle());
-                tvdata.setText(model.activitytimes+"\n"+model.batchDesc);
+                if ( TextUtils.isEmpty(model.batchDesc))
+                {
+                    tvdata.setText(model.activitytimes);
+                }
+                else
+                {
+                    tvdata.setText(model.activitytimes+"\n"+model.batchDesc);
+                }
                 tvprice.setText(model.consts);
 
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {

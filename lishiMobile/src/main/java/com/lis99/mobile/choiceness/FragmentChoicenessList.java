@@ -22,7 +22,6 @@ import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.newtopic.series.LSClubTopicActiveSeries;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
@@ -436,9 +435,12 @@ public class FragmentChoicenessList extends Fragment implements
                 break;
 //            线下贴
             case 5:
-                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
-                intent.putExtra("topicID", item.id);
-                startActivity(intent);
+//                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+//                intent.putExtra("topicID", item.id);
+//                startActivity(intent);
+
+                Common.goTopic(getActivity(), 4, item.id);
+
                 break;
 //            新版话题帖
             case 6:

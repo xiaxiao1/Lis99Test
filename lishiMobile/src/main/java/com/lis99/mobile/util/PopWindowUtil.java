@@ -661,7 +661,7 @@ public class PopWindowUtil {
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                Common.HEIGHT - Common.dip2px(200));
+                ViewGroup.LayoutParams.MATCH_PARENT);
 
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
@@ -748,7 +748,7 @@ public class PopWindowUtil {
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                Common.HEIGHT - Common.dip2px(200));
+                ViewGroup.LayoutParams.MATCH_PARENT);
 
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());

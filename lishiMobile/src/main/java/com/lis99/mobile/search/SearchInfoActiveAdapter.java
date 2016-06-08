@@ -15,7 +15,6 @@ import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.SearchInfoActiveModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
@@ -114,9 +113,12 @@ public class SearchInfoActiveAdapter extends MyBaseAdapter{
                 }
                 else if ( 4 == item.category || !TextUtils.isEmpty(item.activity_code) )
                 {
-                    Intent intent = new Intent(mContext, LSClubTopicActiveOffLine.class);
-                    intent.putExtra("topicID", item.id);
-                    mContext.startActivity(intent);
+//                    Intent intent = new Intent(mContext, LSClubTopicActiveOffLine.class);
+//                    intent.putExtra("topicID", item.id);
+//                    mContext.startActivity(intent);
+
+                    Common.goTopic(mContext, 4, item.id);
+
                 }
 
             }

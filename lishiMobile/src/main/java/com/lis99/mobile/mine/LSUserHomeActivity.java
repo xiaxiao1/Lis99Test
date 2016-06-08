@@ -29,7 +29,6 @@ import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.adapter.MyJoinAdapter;
 import com.lis99.mobile.club.model.MyJoinClubModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.IEvent;
@@ -288,9 +287,12 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
                     //                    新版活动
 
                     else if (item.category == 4) {
-                        Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
-                        intent.putExtra("topicID", Common.string2int(item.topic_id));
-                        startActivity(intent);
+//                        Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+//                        intent.putExtra("topicID", Common.string2int(item.topic_id));
+//                        startActivity(intent);
+
+                        Common.goTopic(activity, 4, Common.string2int(item.topic_id));
+
                     }
 
                 } else {

@@ -1,6 +1,5 @@
 package com.lis99.mobile.newhome.activeline;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -84,9 +82,12 @@ public class LSLineCateListActivity extends LSBaseActivity implements OnHeaderRe
                 if (item == null) return;
 
                 if (!TextUtils.isEmpty(item.activity_code)) {
-                    Intent intent = new Intent(LSLineCateListActivity.this, LSClubTopicActiveOffLine.class);
-                    intent.putExtra("topicID", item.id);
-                    startActivity(intent);
+//                    Intent intent = new Intent(LSLineCateListActivity.this, LSClubTopicActiveOffLine.class);
+//                    intent.putExtra("topicID", item.id);
+//                    startActivity(intent);
+
+                    Common.goTopic(activity, 4, item.id);
+
                 }
 
             }

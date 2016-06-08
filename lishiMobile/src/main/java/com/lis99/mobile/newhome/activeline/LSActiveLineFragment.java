@@ -17,7 +17,6 @@ import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
@@ -158,12 +157,15 @@ public class LSActiveLineFragment extends LSFragment implements
                 {
                     ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) o;
 
-                    Intent intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
-//                    activity_id = getIntent().getIntExtra("topicID", 0);
-                    int num = Common.string2int(item.getId());
-                    intent.putExtra("topicID", num);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+////                    activity_id = getIntent().getIntExtra("topicID", 0);
+//                    int num = Common.string2int(item.getId());
+//                    intent.putExtra("topicID", num);
+//                    startActivity(intent);
 
+                    int num = Common.string2int(item.getId());
+
+                    Common.goTopic(getActivity(), 4, num);
 
                 }
             }
@@ -426,9 +428,12 @@ public class LSActiveLineFragment extends LSFragment implements
                 break;
 //            新版活动帖
             case 5:
-                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
-                intent.putExtra("topicID", Common.string2int(item.url));
-                startActivity(intent);
+//                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+//                intent.putExtra("topicID", Common.string2int(item.url));
+//                startActivity(intent);
+
+                Common.goTopic(getActivity(), 4, Common.string2int(item.url));
+
                 break;
 //            新版话题帖
             case 6:

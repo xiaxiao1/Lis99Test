@@ -16,12 +16,12 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.adapter.ClubSpecialListItemAdapter;
 import com.lis99.mobile.club.model.ClubSpecialListModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
@@ -140,9 +140,13 @@ public class ClubSpecialListActivity extends LSBaseActivity implements
 
                 if ( !TextUtils.isEmpty(item.activity_code))
                 {
-                    Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
-                    intent.putExtra("topicID", item.topic_id);
-                    startActivity(intent);
+//                    Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
+//                    intent.putExtra("topicID", item.topic_id);
+//                    startActivity(intent);
+
+                    Common.goTopic(activity, 4, item.topic_id);
+
+
                     return;
                 }
 //                新版话题帖

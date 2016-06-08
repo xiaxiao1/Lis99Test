@@ -183,7 +183,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         holder.btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LSRequestManager.getInstance().managerApplaySeriesPass(topicId, new CallBack() {
+                LSRequestManager.getInstance().managerApplaySeriesPass(item.orderid, new CallBack() {
                     @Override
                     public void handler(MyTask mTask) {
                         main.onHeaderRefresh(null);
@@ -203,7 +203,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                LSRequestManager.getInstance().managerApplaySeriesRefuse(topicId, new CallBack() {
+                                LSRequestManager.getInstance().managerApplaySeriesRefuse(item.orderid, new CallBack() {
                                     @Override
                                     public void handler(MyTask mTask) {
                                         main.onHeaderRefresh(null);

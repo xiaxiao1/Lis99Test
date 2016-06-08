@@ -26,7 +26,6 @@ import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.BenefitListModel;
 import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.LSClubTopicActiveOffLine;
 import com.lis99.mobile.newhome.sysmassage.MyBenefitAddAddress;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ShareManager;
@@ -284,9 +283,12 @@ public class MyActivityWebView extends LSBaseActivity
 							break;
 //						新版活动
 						case 5:
-							intent = new Intent(LSBaseActivity.activity, LSClubTopicActiveOffLine.class);
-							intent.putExtra("topicID", topic_id);
-							LSBaseActivity.activity.startActivity(intent);
+//							intent = new Intent(LSBaseActivity.activity, LSClubTopicActiveOffLine.class);
+//							intent.putExtra("topicID", topic_id);
+//							LSBaseActivity.activity.startActivity(intent);
+
+							Common.goTopic(activity, 4, topic_id);
+
 							break;
 //            线上贴
 						case 2:
