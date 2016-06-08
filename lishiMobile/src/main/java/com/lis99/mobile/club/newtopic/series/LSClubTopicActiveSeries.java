@@ -107,7 +107,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 //  批次信息
     private TopicSeriesBatchsListModel modelBatch;
 
-    private int activePosition = 0;
+    private int activePosition = -1;
 
 
     @Override
@@ -541,6 +541,12 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 //            return;
 //        }
 
+//        if ( true )
+//        {
+//            Intent intent = new Intent(activity, WXPayEntryActivity.class);
+//            startActivity(intent);
+//            return;
+//        }
 
 
 
@@ -605,7 +611,17 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 
                 activePosition = Integer.parseInt(mTask.getresult());
 
+                if ( activePosition == -1 )
+                {
+                    return;
+                }
+
                 TopicSeriesBatchsListModel.BatchListEntity item = modelBatch.batchList.get(activePosition);
+
+                if ( item.isBaoming == 1 || item.isEnd == 1 )
+                {
+                    return;
+                }
 
                 Intent intent = new Intent(activity, LSApplySeriesNew.class);
                 intent.putExtra("clubID", clubID);

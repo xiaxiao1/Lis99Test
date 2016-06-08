@@ -97,7 +97,7 @@ public class PopListAdapter {
             {
 //                默认
                 case 1:
-                    holder.iv_icon.setImageResource(0);
+                    holder.iv_icon.setImageBitmap(null);
                     holder.tv_1.setTextColor(mContext.getResources().getColor(R.color.text_color_black) );
                     holder.tv_2.setTextColor(mContext.getResources().getColor(R.color.text_color_black) );
                     String str = "<font color=#525252>活动价格　</font><font color=#ff7800>" + item.price + "/"+item.describe + "</font>";
