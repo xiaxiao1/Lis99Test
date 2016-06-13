@@ -661,12 +661,12 @@ public class PopWindowUtil {
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
+                Common.HEIGHT - Common.dip2px(200));
 
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
         pop.setFocusable(true);
-        pop.showAtLocation(parent, Gravity.BOTTOM, 0, Common.dip2px(50));
+        pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
@@ -748,12 +748,12 @@ public class PopWindowUtil {
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
+                Common.HEIGHT - Common.dip2px(200));
 
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
         pop.setFocusable(true);
-        pop.showAtLocation(parent, Gravity.BOTTOM, 0, Common.dip2px(50));
+        pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override

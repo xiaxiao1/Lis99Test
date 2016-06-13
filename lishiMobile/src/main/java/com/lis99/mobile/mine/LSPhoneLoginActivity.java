@@ -120,9 +120,11 @@ public class LSPhoneLoginActivity extends LSBaseActivity {
 			nickName = data.get("nickname").asText();
 			u.setNickname(nickName);
 			u.setMobile(userName);
+			u.setHeadicon(data.get("headicon").asText());
+
 			DataManager.getInstance().setUser(u);
 			DataManager.getInstance().setLogin_flag(true);
-			
+
 			postMessage(LOGIN_SUCCESS);
 			
 		} catch (Exception e) {
@@ -153,7 +155,7 @@ public class LSPhoneLoginActivity extends LSBaseActivity {
 					return;
 				}	
 				
-				login();;
+				login();
 				
 				return;
 			

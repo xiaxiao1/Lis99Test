@@ -154,9 +154,9 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
                 }
                 else
                 {
-                    tvdata.setText(model.activitytimes+"\n"+model.batchDesc);
+                    tvdata.setText(model.activitytimes+" 共" + model.batchTotal+"批次" +"\n"+model.batchDesc);
                 }
-                tvprice.setText(model.consts);
+                tvprice.setText("¥ "+model.consts);
 
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
                     viewBanner.setVisibility(View.VISIBLE);
