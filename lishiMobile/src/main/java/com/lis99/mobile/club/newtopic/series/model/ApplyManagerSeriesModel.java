@@ -101,6 +101,10 @@ public class ApplyManagerSeriesModel extends BaseModel {
             public String headicon;
             @SerializedName("createdate")
             public String createdate;
+
+            @SerializedName("batch_id")
+            public int batch_id;
+
             /**
              * name : 振宇
              * mobile : 13703846258

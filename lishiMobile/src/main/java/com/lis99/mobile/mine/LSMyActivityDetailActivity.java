@@ -100,6 +100,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
         super.initViews();
 
         titleView = (TextView) findViewById(R.id.titleView);
+        titleView.setOnClickListener(this);
         priceView = (TextView) findViewById(R.id.priceView);
         totalView = (TextView) findViewById(R.id.totalView);
         orderIDView = (TextView) findViewById(R.id.orderIDView);
@@ -239,7 +240,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
 
                 titleView.setText(activity.title);
                 priceView.setText(activity.consts + "元 ×" + (activity.apply_info == null ? 0 : activity.apply_info.size()));
-                totalView.setText("费用总计" + activity.totprice + "元");
+                totalView.setText("第"+ activity.batch +"批 费用总计" + activity.totprice + "元");
 
                 orderIDView.setText(activity.ordercode);
 
@@ -321,6 +322,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 if (activity.star > 0) {
                     myCommentPanel.setVisibility(View.VISIBLE);
                     myRateBar.setRating(activity.star);
+                    if ( !TextUtils.isEmpty(activity.comment) )
                     myCommentView.setText("“" + activity.comment + "”");
                 } else {
                     myCommentPanel.setVisibility(View.GONE);
@@ -451,7 +453,9 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
             case R.id.commentButton:
                 this.commentView.setVisibility(View.VISIBLE);
                 break;
-
+            case R.id.titleView:
+                Common.goTopic(this, 4, activity.topic_id);
+                break;
         }
     }
 

@@ -73,28 +73,31 @@
             android:id="@+id/bottombar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="10dp"
             >
 
             <Button
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/apply_manager_out_btn"
+                android:layout_width="50dp"
+                android:layout_height="22dp"
+                android:background="@drawable/apply_manager_refuse"
                 android:id="@+id/btn_out"
                 android:layout_marginLeft="20dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
 
             <Button
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/btn_out"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/apply_manager_ok_btn"
+                android:layout_width="50dp"
+                android:layout_height="22dp"
+                android:background="@drawable/apply_manager_enter"
                 android:id="@+id/btn_ok"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
 
             <LinearLayout
@@ -104,6 +107,7 @@
                 android:orientation="vertical"
                 android:gravity="right"
                 android:layout_alignParentRight="true"
+                android:visibility="gone"
                 >
 
                 <TextView
@@ -111,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#525252"
                     android:text="请等待对方支付费用"
+                    android:textSize="12sp"
                     />
 
                 <TextView
@@ -119,6 +124,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#525252"
                     android:text="逾期未支付的报名将被系统拒绝"
+                    android:textSize="12sp"
                     />
 
             </LinearLayout>

@@ -192,6 +192,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("topic_id", topicID);
+        map.put("batch_id", batchID);
 
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {

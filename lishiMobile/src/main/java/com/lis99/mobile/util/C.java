@@ -463,8 +463,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String RECOMMEND_CLUB_LIST = DOMAIN + "/v4/club/recommendClubList";
 //	获取订单信息， 支付方式等
 	public static final String GET_ORDER_INFO = DOMAIN + "/v4/apply/applyInfoDetail";
-	//	获取订单信息， 支付方式等新版  http://api.lis99.com/v5/club/applyInfoDetail
-	public static final String GET_ORDER_INFO_NEW = DOMAIN + "/v5/club/applyInfoDetail";
+//	//	获取订单信息， 支付方式等新版  http://api.lis99.com/v5/club/applyInfoDetail
+//	public static final String GET_ORDER_INFO_NEW = DOMAIN + "/v5/club/applyInfoDetail";
 //	提交报名订单
 	public static final String SUBMIT_ORDER_INFO = DOMAIN + "/v4/apply/enroll";
 //	提交报名订单 （新版线下活动帖） http://api.lis99.com/v5/club/enroll
@@ -531,7 +531,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 //	地址：https://apis.lis99.com/activity/pass/		系列活动通过
 	public static final String ACTIVE_SERIES_APPLY_PASS = DOMAINS + "/activity/pass/";
 
-
+	//	获取订单信息， 支付方式等新版  http://api.lis99.com/v5/club/applyInfoDetail
+	public static final String GET_ORDER_INFO_NEW = DOMAINS + "/Activity/applyInfoDetail";
 
 
 

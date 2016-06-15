@@ -209,6 +209,20 @@
 
     </style>
 
+    <style name="commentRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratebar_comment</item>
+        <item name="android:minHeight">25dip</item>
+        <item name="android:maxHeight">25dip</item>
+
+    </style>
+
+    <style name="commentRatingBar2" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratebar_comment_2</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+
+    </style>
+
 
     <style name="ls_equip_star_reply" parent="@android:style/Widget.RatingBar">
 

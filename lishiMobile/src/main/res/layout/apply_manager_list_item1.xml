@@ -13,7 +13,8 @@
         android:id="@+id/tv_name"
         android:textColor="#c6b6a7"
         android:text="真实姓名："
-        android:layout_weight="3"
+        android:layout_weight="4"
+        android:textSize="12sp"
         />
 
     <TextView
@@ -23,6 +24,7 @@
         android:id="@+id/tv_value"
         android:textColor="#c6b6a7"
         android:text="辛虹"
+        android:textSize="12sp"
         />
 
 </LinearLayout>

@@ -394,7 +394,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		holder.tvContent.setText(MyEmotionsUtil.getInstance().getTextWithEmotion((Activity) mContext, item.content));
 		holder.tvLike.setText("" + item.likeNum);
 		holder.tvName.setText(item.nickname);
-		holder.tvCreate.setText(item.createdate);
+		holder.tvCreate.setText(item.update_time);
 
 		if (TextUtils.isEmpty(item.replytot))
 		{

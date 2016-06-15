@@ -147,7 +147,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
 
                     onHeaderRefresh(pull_refresh_view);
 
-                btn_enter.setTextColor(getResources().getColor(R.color.text_color_blue));
+                btn_enter.setTextColor(getResources().getColor(R.color.text_color_green));
                 btn_refuse.setTextColor(getResources().getColor(R.color.color_nine));
                 btn_need_enter.setTextColor(getResources().getColor(R.color.color_nine));
 
@@ -162,7 +162,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
 
 
                 btn_enter.setTextColor(getResources().getColor(R.color.color_nine));
-                btn_refuse.setTextColor(getResources().getColor(R.color.text_color_blue));
+                btn_refuse.setTextColor(getResources().getColor(R.color.text_color_green));
                 btn_need_enter.setTextColor(getResources().getColor(R.color.color_nine));
 
                 break;
@@ -177,7 +177,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
 
                 btn_enter.setTextColor(getResources().getColor(R.color.color_nine));
                 btn_refuse.setTextColor(getResources().getColor(R.color.color_nine));
-                btn_need_enter.setTextColor(getResources().getColor(R.color.text_color_blue));
+                btn_need_enter.setTextColor(getResources().getColor(R.color.text_color_green));
 
                 break;
             case R.id.tv_title:

@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_1"
             android:text="第 1 批　　2016"
+            android:textSize="13sp"
             />
 
 
@@ -41,7 +42,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_2"
             android:text="集合日期　2016"
-            android:paddingTop="10dp"
+            android:paddingTop="7dp"
+            android:textSize="13sp"
             />
 
         <TextView
@@ -49,7 +51,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_3"
             android:text="活动价格　850"
-            android:paddingTop="10dp"
+            android:paddingTop="7dp"
+            android:textSize="13sp"
             />
 
 

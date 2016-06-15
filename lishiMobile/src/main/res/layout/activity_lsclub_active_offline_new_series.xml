@@ -66,7 +66,7 @@
                 android:paddingTop="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/titleView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 >
 
                 <ImageView
-                    android:layout_centerVertical="true"
+                    android:paddingTop="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/club_info_data_icon"
@@ -94,7 +94,7 @@
                     />
 
                 <TextView
-                    android:layout_centerVertical="true"
+                    android:paddingTop="2dp"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,7 +104,6 @@
                     />
 
                 <TextView
-                    android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,9 +115,9 @@
                     />
 
                 <TextView
+                    android:paddingTop="1dp"
                     android:layout_toLeftOf="@id/tv_price"
                     android:layout_toRightOf="@id/iv"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,7 +126,7 @@
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:paddingRight="10dp"
-                    android:text="2016-2017\n每周5出发，亲子有优惠"
+                    android:text="@string/temp_string"
                     />
 
 

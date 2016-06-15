@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+    <com.lis99.mobile.club.widget.RoundedImageView
         android:id="@+id/imageView"
         android:layout_width="112dp"
         android:layout_height="80dp"
@@ -11,7 +12,9 @@
         android:layout_marginTop="18dp"
         android:layout_marginBottom="18dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/mine_myactivity_image_bg"/>
+        app:border_color="#f8f3ed"
+        app:border_width="1px"
+        app:corner_radius="5px"/>
 
 
     <RelativeLayout
@@ -29,7 +32,7 @@
             android:maxLines="2"
             android:textSize="13sp"
             android:text="2015千岛湖国际露营展"
-            android:lineSpacingExtra="6dp"
+            android:lineSpacingExtra="5dp"
             android:textColor="#525252"/>
 
         <TextView

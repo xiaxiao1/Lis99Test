@@ -121,8 +121,11 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         for ( int n = 0; n < item.applyinfoList.size(); n++ )
         {
 
-            list.add("报名信息" + (n + 1));
             HashMap<String, String> map = item.applyinfoList.get(n);
+
+            String batchId = String.format("（第%s批）", item.batch_id);
+
+            list.add("报名信息" + (n + 1) + batchId);
 
             ArrayList<HashMap<String, String>> ilist = new ArrayList<HashMap<String, String>>();
 

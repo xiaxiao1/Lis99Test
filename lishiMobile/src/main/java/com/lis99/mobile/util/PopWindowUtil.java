@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -610,6 +611,10 @@ public class PopWindowUtil {
 
         View bg = v.findViewById(R.id.bg);
 
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.layout);
+
+        layout.getLayoutParams().height = Common.HEIGHT - Common.dip2px(200);
+
         Button btn_ok = (Button) v.findViewById(R.id.btn_ok);
 
         bg.setOnClickListener(new View.OnClickListener() {
@@ -626,7 +631,16 @@ public class PopWindowUtil {
 
         list.setAdapter(adapter);
 
-        adapter.setPosition(position);
+//        如果只有一条， 并且是可以报名， 默认选中
+        if ( position == -1 && modelBatch.batchList.size() == 1 && modelBatch.batchList.get(0).isEnd != 1 && modelBatch.batchList.get(0).isBaoming != 1 )
+        {
+            adapter.setPosition(0);
+        }
+        else
+        {
+            adapter.setPosition(position);
+        }
+
 
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -661,7 +675,7 @@ public class PopWindowUtil {
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                Common.HEIGHT - Common.dip2px(200));
+                ViewGroup.LayoutParams.MATCH_PARENT);
 
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());
@@ -702,6 +716,10 @@ public class PopWindowUtil {
         }
 
         View v = View.inflate(LSBaseActivity.activity, R.layout.pop_active_series_line_manager, null);
+
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.layout);
+
+        layout.getLayoutParams().height = Common.HEIGHT - Common.dip2px(200);
 
         View bg = v.findViewById(R.id.bg);
 
@@ -748,7 +766,7 @@ public class PopWindowUtil {
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
 
         pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
-                Common.HEIGHT - Common.dip2px(200));
+                ViewGroup.LayoutParams.MATCH_PARENT);
 
         pop.setOutsideTouchable(true);
         pop.setBackgroundDrawable(new BitmapDrawable());

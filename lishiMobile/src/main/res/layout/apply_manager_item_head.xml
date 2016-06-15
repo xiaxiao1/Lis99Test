@@ -33,6 +33,7 @@
             android:textColor="@color/color_six"
             android:text="@string/temp_string"
             android:id="@+id/tv_name"
+            android:textSize="12sp"
             />
 
         <TextView

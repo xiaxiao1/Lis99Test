@@ -84,7 +84,8 @@ public class ClubDetailList implements Serializable{
 		public String catename;
 		public String times;
 		public int is_hot;
-
+//		最后回复时间
+		public String update_time;
 
 
 // 		4.1.9

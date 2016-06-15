@@ -21,6 +21,8 @@ public class LSMyActivity {
     public int star;
     public int flag;
 
+    public int batch;
+
     public double consts;
     public double totprice;
 

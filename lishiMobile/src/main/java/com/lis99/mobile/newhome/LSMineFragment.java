@@ -336,7 +336,7 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
         v.setOnClickListener(this);
         v = findViewById(R.id.unpayCommentPanel);
         v.setOnClickListener(this);
-        v.setVisibility(View.GONE);
+//        v.setVisibility(View.GONE);
 
         RedDotUtil.getInstance().setRedText(v_sys_arrow);
 

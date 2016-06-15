@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000000"
-        android:alpha="0.2"
+        android:alpha="0.5"
         android:id="@+id/bg"
         />
 
@@ -24,24 +24,23 @@
         />
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_above="@id/btn_ok"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/solid_bottom_bg"
-        android:paddingBottom="3dip"
         >
 
         <TextView
-            android:paddingTop="20dp"
+            android:paddingTop="15dp"
             android:layout_gravity="center"
             android:gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="选择出发日期"
             android:textColor="@color/text_color_green"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:textSize="16dp"
             android:drawableLeft="@drawable/series_date_icon"
             android:drawablePadding="10dp"
             />
@@ -50,7 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="#eee"
-            android:layout_margin="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
 
     <ListView
