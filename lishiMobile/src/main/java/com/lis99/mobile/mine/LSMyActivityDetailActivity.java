@@ -239,8 +239,8 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 personTitleView.setText("报名人员（共" + (activity.apply_info == null ? 0 : activity.apply_info.size()) + "）");
 
                 titleView.setText(activity.title);
-                priceView.setText(activity.consts + "元 ×" + (activity.apply_info == null ? 0 : activity.apply_info.size()));
-                totalView.setText("第"+ activity.batch +"批 费用总计" + activity.totprice + "元");
+                priceView.setText("第"+ activity.batch +"批,"+activity.consts + "元 ×" + (activity.apply_info == null ? 0 : activity.apply_info.size()));
+                totalView.setText("费用总计" + activity.totprice + "元");
 
                 orderIDView.setText(activity.ordercode);
 
