@@ -86,7 +86,7 @@
                 >
 
                 <ImageView
-                    android:paddingTop="3dp"
+                    android:paddingTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/club_info_data_icon"
@@ -94,7 +94,7 @@
                     />
 
                 <TextView
-                    android:paddingTop="2dp"
+                    android:paddingTop="3dp"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                     />
 
                 <TextView
-                    android:paddingTop="1dp"
+                    android:paddingTop="2dp"
                     android:layout_toLeftOf="@id/tv_price"
                     android:layout_toRightOf="@id/iv"
                     android:layout_marginLeft="10dp"
