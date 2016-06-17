@@ -611,7 +611,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 
                 activePosition = Integer.parseInt(mTask.getresult());
 
-                if ( activePosition == -1 )
+                if ( activePosition == -1 || modelBatch ==null || modelBatch.batchList == null && modelBatch.batchList.size() == 0 )
                 {
                     return;
                 }
