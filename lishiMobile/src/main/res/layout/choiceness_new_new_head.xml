@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/choiceness_fragment_title_bar" />
+
+    <com.lis99.mobile.club.widget.BannerView
+        android:id="@+id/viewBanner"
+        android:layout_width="match_parent"
+        android:layout_height="235dp"/>
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="12dp"
+        android:background="@color/pull_bg" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/special_day_icon"
+                android:textSize="@dimen/text_large"
+              android:textColor="@color/text_color_black"
+              android:text="每日专栏"
+              android:drawablePadding="6dp"
+              android:layout_gravity="center_horizontal"
+              android:padding="20dp"
+    />
+
+    <com.lis99.mobile.view.MyListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/s_list"
+        android:dividerHeight="0px"
+        android:divider="@null"
+    />
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:padding="20dp"
+              android:textColor="@color/text_color_green"
+              android:layout_gravity="center_horizontal"
+              android:text="查看砾石全部专栏"
+              android:id="@+id/tv_all_special"
+    />
+
+    <include    android:layout_width="match_parent" android:layout_height="wrap_content"
+                layout="@layout/list_line"
+                />
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:drawableLeft="@drawable/community_star"
+              android:textSize="@dimen/text_large"
+              android:textColor="@color/text_color_black"
+              android:text="社区明星"
+              android:drawablePadding="6dp"
+              android:layout_gravity="center_horizontal"
+              android:padding="20dp"
+    />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scrollbars="none"
+        android:id="@+id/recyclerView"
+        android:layout_gravity="center_vertical"
+    />
+
+    <include android:layout_width="match_parent" android:layout_height="wrap_content"
+             layout="@layout/list_line" android:layout_marginTop="20dp" />
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:drawableLeft="@drawable/hot_talk_icon"
+              android:textSize="@dimen/text_large"
+              android:textColor="@color/text_color_black"
+              android:text="热门讨论区"
+              android:drawablePadding="6dp"
+              android:layout_gravity="center_horizontal"
+              android:padding="20dp"
+    />
+
+
+    <com.lis99.mobile.view.MyListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/hot_list"
+        android:dividerHeight="1px"
+        android:divider="@color/color_eee"
+    />
+
+    <include android:layout_width="match_parent" android:layout_height="wrap_content"
+             layout="@layout/list_line" android:layout_marginTop="16dp" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:drawableLeft="@drawable/chois_icon"
+              android:textSize="@dimen/text_large"
+              android:textColor="@color/text_color_black"
+              android:text="社区精选"
+              android:drawablePadding="6dp"
+              android:layout_gravity="center_horizontal"
+              android:padding="20dp"
+    />
+
+</LinearLayout>

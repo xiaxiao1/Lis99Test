@@ -82,6 +82,7 @@
 	<dimen name="club_detail_head_height">160dip</dimen>
 	
 	<dimen name="login_margin">40dip</dimen>
+
 	<dimen name="text_small">12sp</dimen>
 	<dimen name="text_large">16sp</dimen>
 	
@@ -100,4 +101,6 @@
     <dimen name="keyboard_height">230dip</dimen>
     <dimen name="width">120dp</dimen>
     <dimen name="height">60dp</dimen>
+
+    
 </resources>

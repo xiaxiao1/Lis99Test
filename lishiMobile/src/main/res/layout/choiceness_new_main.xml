@@ -77,7 +77,7 @@
             >
 
         <RelativeLayout
-            android:layout_width="40dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             >
 
@@ -85,7 +85,7 @@
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="精选"
+                android:text="发现"
                 android:id="@+id/tab_choiceness"
                 android:background="@null"
                 android:textColor="@color/text_color_green"
@@ -106,7 +106,7 @@
 
 
         <RelativeLayout
-            android:layout_width="40dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             >
@@ -115,7 +115,7 @@
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="关注"
+                android:text="讨论区"
                 android:id="@+id/tab_Dynamic"
                 android:background="@null"
                 android:textColor="@color/color_nine"
@@ -136,7 +136,7 @@
 
 
         <RelativeLayout
-            android:layout_width="40dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             >
@@ -145,7 +145,7 @@
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="专栏"
+                android:text="关注"
                 android:id="@+id/tab_column"
                 android:background="@null"
                 android:textColor="@color/color_nine"

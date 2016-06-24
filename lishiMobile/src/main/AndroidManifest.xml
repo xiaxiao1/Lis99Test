@@ -1316,7 +1316,14 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
-
+        <!--专栏列表-->
+        <activity android:name="com.lis99.mobile.choiceness.SpecialActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <!--专栏详情-->
+        <activity android:name="com.lis99.mobile.choiceness.SpecialInfoActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
 
     </application>
 

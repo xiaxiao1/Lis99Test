@@ -13,7 +13,7 @@ import com.lis99.mobile.util.StatusUtil;
 public abstract class LSBaseActivity extends ActivityPattern {
 
     protected final static int SHOW_UI = 2001;
-    ImageView iv_title_bg;
+    protected ImageView iv_title_bg;
     protected ImageView titleLeftImage;
     protected ImageView titleRightImage;
     protected TextView titleRightText;

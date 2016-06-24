@@ -3,6 +3,7 @@ package com.lis99.mobile.choiceness;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -11,18 +12,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.choiceness.adapter.CommunityStarAdapter;
+import com.lis99.mobile.choiceness.adapter.HotTalkAdapter;
+import com.lis99.mobile.choiceness.adapter.SpecialAdapter;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
-import com.lis99.mobile.club.LSSelectAllClubActivity;
 import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.model.ChoicenessModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.series.LSClubTopicActiveSeries;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
@@ -38,6 +41,7 @@ import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
+import com.lis99.mobile.view.MyListView;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -60,7 +64,6 @@ public class FragmentChoicenessList extends Fragment implements
     private Page page;
 
     private BannerView bannerView;
-    private View layout_club_level, layout_leader_level, layout_hot_topic, layout_lis_special, layout_nearby, allButton;
 
     private ImagePageAdapter bannerAdapter;
 
@@ -69,6 +72,23 @@ public class FragmentChoicenessList extends Fragment implements
     private ChoicenessModel listModel;
 
     private View include_search;
+
+//    下面是改版新加的
+    private MyListView sList;
+    private TextView tvAllSpecial;
+    private RecyclerView recyclerView;
+    private MyListView hotList;
+//  专栏
+    private SpecialAdapter specialAdapter;
+//  社区明星
+    private CommunityStarAdapter communityStarAdapter;
+//  热门讨论区
+    private HotTalkAdapter hotTalkAdapter;
+
+
+
+
+
 
     public FragmentChoicenessList() {
         page = new Page();
@@ -87,8 +107,9 @@ public class FragmentChoicenessList extends Fragment implements
         list = (ListView) v.findViewById(R.id.list);
 
 
-        head = View.inflate(getActivity(), R.layout.choiceness_new_head, null);
+        head = View.inflate(getActivity(), R.layout.choiceness_new_new_head, null);
 
+               initHead(head);
 
         bannerView = (BannerView) head.findViewById(R.id.viewBanner);
 
@@ -116,22 +137,10 @@ public class FragmentChoicenessList extends Fragment implements
             }
         });
 
-        layout_nearby =  head.findViewById(R.id.layout_nearby);
-        layout_club_level =  head.findViewById(R.id.layout_club_level);
-        layout_leader_level =  head.findViewById(R.id.layout_leader_level);
-        layout_hot_topic =  head.findViewById(R.id.layout_hot_topic);
-        layout_lis_special =  head.findViewById(R.id.layout_lis_special);
         include_search = head.findViewById(R.id.include_search);
-               allButton = head.findViewById(R.id.allButton);
-               allButton.setOnClickListener(this);
 
         include_search.setOnClickListener(this);
 
-        layout_lis_special.setOnClickListener(this);
-        layout_hot_topic.setOnClickListener(this);
-        layout_leader_level.setOnClickListener(this);
-        layout_club_level.setOnClickListener(this);
-        layout_nearby.setOnClickListener(this);
 
 //        page = new Page();
 
@@ -140,6 +149,15 @@ public class FragmentChoicenessList extends Fragment implements
         list.setAdapter(null);
 
         return v;
+    }
+
+//    新加入的
+    private void initHead (View head)
+    {
+        sList = (MyListView) head.findViewById(R.id.s_list);
+        tvAllSpecial = (TextView) head.findViewById(R.id.tv_all_special);
+        recyclerView = (RecyclerView) head.findViewById(R.id.recyclerView);
+        hotList = (MyListView) head.findViewById(R.id.hot_list);
     }
 
     public void init() {
@@ -309,85 +327,7 @@ public class FragmentChoicenessList extends Fragment implements
                 startActivity(new Intent(getActivity(), SearchActivity.class));
 //                startActivity(new Intent(getActivity(), MyTest.class));
                 break;
-            //线路活动
-            case R.id.layout_club_level:
-                intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", 48);
-                startActivity(intent);
-                break;
-            case R.id.layout_leader_level:
-                intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", 349);
-                startActivity(intent);
-                break;
-            case R.id.layout_hot_topic:
-                intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", 342);
-                startActivity(intent);
-                break;
-            case R.id.layout_lis_special:
 
-//                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-//                {
-////                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
-//
-//                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
-//
-//                    intent.putExtra("CODE", -2);
-//
-//                    startActivity(intent);
-//
-//                    return;
-//                }
-
-                intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", 285);
-                startActivity(intent);
-                break;
-            case R.id.layout_nearby:
-
-//                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-//                {
-////                    Common.installAPK(getActivity(), UpdataUtil.getInstance().getStorage() + new UpdataModel().appName);
-//
-//                    intent = new Intent(LSBaseActivity.activity, WXPayEntryActivity.class);
-//
-//                    intent.putExtra("CODE", -1);
-//
-//                    startActivity(intent);
-//
-
-//                    Common.log("this time == "+Common.getTime());
-
-//                    return;
-
-//                }
-
-                intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", 284);
-                startActivity(intent);
-                break;
-            case R.id.allButton:
-
-                //ActivityTest
-//                startActivity(new Intent(getActivity(), ActivityTest.class));
-
-                if ( "ttest".equals(DeviceInfo.CHANNELVERSION) )
-                {
-
-                    intent = new Intent(getActivity(), LSClubTopicActiveSeries.class);
-                    intent.putExtra("topicID", 3380);
-                    startActivity(intent);
-
-
-
-                    return;
-                }
-////
-                intent = new Intent(getActivity(), LSSelectAllClubActivity.class);
-                startActivity(intent);
-
-                break;
         }
     }
 

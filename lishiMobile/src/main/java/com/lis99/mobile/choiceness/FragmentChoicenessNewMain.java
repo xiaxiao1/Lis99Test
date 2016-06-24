@@ -41,7 +41,9 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
     private FragmentDinamicList dinamicList;
 
-    private LSSelectColumnFragment columnFragment;
+    private FragmentAllClub allClub;
+
+//    private LSSelectColumnFragment columnFragment;
     private Fragment currentFragment;
 
     private View view_choiceness, view_dynamic, view_column;
@@ -85,10 +87,14 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
         dinamicList = new FragmentDinamicList();
 
-        columnFragment = new LSSelectColumnFragment();
+//        columnFragment = new LSSelectColumnFragment();
+
+        allClub = new FragmentAllClub();
+
         fList.add(choicenessList);
+        fList.add(allClub);
         fList.add(dinamicList);
-        fList.add(columnFragment);
+//        fList.add(columnFragment);
 
         adapter = new LSClubFragmentAdapter(getFragmentManager(), fList);
 
@@ -177,9 +183,9 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
 //        dynamic_line.setVisibility(View.VISIBLE);
 
-        dinamicList.init();
+        allClub.init();
 
-        currentFragment = dinamicList;
+        currentFragment = allClub;
 
     }
 
@@ -195,9 +201,13 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
 //        dynamic_line.setVisibility(View.GONE);
 
-        columnFragment.init();
+//        columnFragment.init();
+//
+//        currentFragment = columnFragment;
 
-        currentFragment = columnFragment;
+        dinamicList.init();
+
+        currentFragment = dinamicList;
 
     }
 
@@ -216,7 +226,7 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
                 } else if (currentFragment == dinamicList) {
                     dinamicList.scrollToTop();
                 } else {
-                    columnFragment.scrollToTop();
+                    allClub.scrollToTop();
                 }
             }
         });
