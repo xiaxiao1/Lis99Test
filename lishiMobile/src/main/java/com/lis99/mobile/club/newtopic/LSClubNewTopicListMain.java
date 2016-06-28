@@ -391,6 +391,7 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
     protected void onDestroy() {
         super.onDestroy();
         cleanList();
+        if ( likeCall != null )
         likeCall.clean();
 //		likeCall = null;
     }

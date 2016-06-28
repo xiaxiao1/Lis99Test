@@ -85,6 +85,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 //    等待提示
     private CustomProgressDialog customProgressDialog;
 
+    private boolean isSending;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -205,7 +207,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 
 //    发布
     @Override
-    protected void rightAction() {
+    synchronized protected void rightAction() {
         super.rightAction();
 
         String title = model.title;//titleView.getText().toString().trim();
@@ -226,6 +228,13 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             postMessage(POPUP_TOAST, "请先登录");
             return;
         }
+
+        if ( isSending )
+        {
+            Common.toast("正在上传中...");
+            return;
+        }
+
 
 
         if (TextUtils.isEmpty(title)) {
@@ -340,6 +349,8 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             url = C.REPLY_NEW_TOPIC_STRING_IMAGE_ADD;
         }
 
+        isSending = true;
+
 //        超时时间
         client.setTimeout(20000);
 
@@ -420,6 +431,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                     @Override
             public void onFinish() {
 //                postMessage(DISMISS_PROGRESS);
+                        isSending = false;
                         if ( customProgressDialog != null && customProgressDialog.isShowing() )
                             customProgressDialog.cancel();
             }

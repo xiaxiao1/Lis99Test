@@ -50,6 +50,8 @@ public class LSClubTopicNewReply extends LSBaseActivity {
     private View layout_reply_quote;
 
     private int pageNo = -1;
+//    是否正在发送
+    private boolean isSending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,13 +124,19 @@ public class LSClubTopicNewReply extends LSBaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    protected void publish()
+    synchronized protected void publish()
     {
 
 //		Spannable sp = content.getText();
 
         if (!Common.isLogin(activity))
         {
+            return;
+        }
+
+        if ( isSending )
+        {
+            Common.toast("正在上传中...");
             return;
         }
 
@@ -168,6 +176,8 @@ public class LSClubTopicNewReply extends LSBaseActivity {
 //                    "thumb",
 //                    new ByteArrayInputStream(BitmapUtil
 //                            .bitampToByteArray(bitmap)), "image.jpg");
+
+        isSending = true;
 
         client.post(C.CLUB_ADD_TOPIC_REPLY, params, new JsonHttpResponseHandler()
         {
@@ -222,6 +232,7 @@ public class LSClubTopicNewReply extends LSBaseActivity {
             @Override
             public void onFinish()
             {
+                isSending = false;
                 postMessage(DISMISS_PROGRESS);
             }
 
