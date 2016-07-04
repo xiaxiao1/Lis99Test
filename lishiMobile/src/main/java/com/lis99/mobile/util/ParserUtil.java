@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.newhome.LSFragment;
 
@@ -38,7 +39,7 @@ public class ParserUtil {
 	
 	public static Object getGosnParser ( String result, Object o )
 	{
-		Common.log("parserResult="+result);
+//		Common.log("parserResult="+result);
 		Gson gson = new Gson();
 		o = gson.fromJson(result, o.getClass());
 		return o;
@@ -101,6 +102,7 @@ public class ParserUtil {
 					if ( task.isShowErrorTost() )
 					{
 						Common.toast(errorstr);
+						Common.log("resultError="+errorstr);
 					}
 				}
 			}
@@ -109,11 +111,19 @@ public class ParserUtil {
 		String data = json.get("data").toString();
 //		data = getUTF8(data);
 		o = getGosnParser(data, o);
-		} catch (Exception e) {
+//			Common.log("Httpresult="+Common.convert(result));
+			Common.log("Httpresult="+result);
+		}
+		catch ( JsonSyntaxException e )
+		{
+			Common.log("parser error ="+e.getMessage());
+			return null;
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			Common.log("parser error ="+e.toString());
-			Common.log(result);
-//			Common.toast(result);
+//			Common.log(result);
+			Common.toast(result);
 			e.printStackTrace();
 			return null;
 		}

@@ -2,13 +2,17 @@ package com.lis99.mobile.choiceness.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ChoicenessBannerModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.ImageUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -18,7 +22,7 @@ import java.util.List;
 public class HotTalkRecycler extends RecyclerView.Adapter<HotTalkRecycler.MyHolder> {
 
     private LayoutInflater mInflater;
-    private List<Object> listInfo;
+    private List<?> listInfo;
     private Context mContext;
 
     public interface OnItemClickLitener
@@ -34,7 +38,7 @@ public class HotTalkRecycler extends RecyclerView.Adapter<HotTalkRecycler.MyHold
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 
-    public HotTalkRecycler(List<Object> listInfo, Context mContext) {
+    public HotTalkRecycler(List<?> listInfo, Context mContext) {
         this.listInfo = listInfo;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
@@ -53,6 +57,21 @@ public class HotTalkRecycler extends RecyclerView.Adapter<HotTalkRecycler.MyHold
     @Override
     public void onBindViewHolder(final MyHolder myHolder, final int i) {
 
+        ChoicenessBannerModel.HotlistEntity.HlistEntity item = (ChoicenessBannerModel
+                .HotlistEntity.HlistEntity) listInfo.get(i);
+
+        if ( item == null ) return;
+
+        myHolder.title.setText(item.title);
+        myHolder.tvNikeName.setText(item.nickname);
+        if ( !TextUtils.isEmpty(item.images))
+        {
+            ImageLoader.getInstance().displayImage(item.images, myHolder.roundedImageView, ImageUtil.getDefultImageOptions());
+        }
+        if ( !TextUtils.isEmpty(item.headicon))
+        {
+            ImageLoader.getInstance().displayImage(item.headicon, myHolder.ivHead, ImageUtil.getclub_topic_headImageOptions());
+        }
 
 
 
@@ -73,7 +92,8 @@ public class HotTalkRecycler extends RecyclerView.Adapter<HotTalkRecycler.MyHold
 
     @Override
     public int getItemCount() {
-        return 0;
+        if ( listInfo == null ) return 0;
+        return listInfo.size();
     }
 
     static class MyHolder extends RecyclerView.ViewHolder

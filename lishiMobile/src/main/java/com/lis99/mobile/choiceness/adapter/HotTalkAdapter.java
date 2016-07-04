@@ -1,12 +1,15 @@
 package com.lis99.mobile.choiceness.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ChoicenessBannerModel;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyBaseAdapter;
 
 import java.util.List;
@@ -32,7 +35,34 @@ public class HotTalkAdapter extends MyBaseAdapter {
     private void initializeViews(Object object, ViewHolder holder) {
         //TODO implement
 
-        HotTalkRecycler adapter = new HotTalkRecycler(null, mContext);
+        final ChoicenessBannerModel.HotlistEntity item = (ChoicenessBannerModel.HotlistEntity) object;
+
+        holder.title.setText(item.title);
+
+        if (item.hlist == null || item.hlist.size() == 0)
+        {
+            holder.recyclerView.setVisibility(View.GONE);
+            return;
+        }
+
+        HotTalkRecycler adapter = new HotTalkRecycler(item.hlist, mContext);
+
+        LinearLayoutManager linearLayoutM = new LinearLayoutManager(mContext);
+        linearLayoutM.setOrientation(LinearLayoutManager.HORIZONTAL);
+        holder.recyclerView.setLayoutManager(linearLayoutM);
+        holder.recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickLitener(new HotTalkRecycler.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ChoicenessBannerModel.HotlistEntity.HlistEntity info = item.hlist.get(position);
+                if ( info == null ) return;
+                int category = info.category;
+                int topicId = info.id;
+                Common.goTopic(mContext, category, topicId);
+            }
+        });
+
 
     }
 

@@ -3,6 +3,7 @@ package com.lis99.mobile.choiceness;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -108,6 +109,7 @@ public class FragmentChoicenessList extends Fragment implements
 
 
         head = View.inflate(getActivity(), R.layout.choiceness_new_new_head, null);
+               head.setVisibility(View.GONE);
 
                initHead(head);
 
@@ -156,7 +158,13 @@ public class FragmentChoicenessList extends Fragment implements
     {
         sList = (MyListView) head.findViewById(R.id.s_list);
         tvAllSpecial = (TextView) head.findViewById(R.id.tv_all_special);
+        tvAllSpecial.setOnClickListener(this);
+
         recyclerView = (RecyclerView) head.findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutM = new LinearLayoutManager(getActivity());
+        linearLayoutM.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutM);
+
         hotList = (MyListView) head.findViewById(R.id.hot_list);
     }
 
@@ -167,8 +175,9 @@ public class FragmentChoicenessList extends Fragment implements
     }
 
     private void getList() {
+
         if (bannerAdapter == null) {
-            String url = C.CHOICENESS_AD_BANNER;
+            String url = C.COMMUNITY_AD_MAIN;
 
             HashMap<String, Object> map = new HashMap<String, Object>();
 
@@ -183,11 +192,79 @@ public class FragmentChoicenessList extends Fragment implements
                 public void handler(MyTask mTask) {
                     bannerModel = (ChoicenessBannerModel) mTask.getResultModel();
 
-                    bannerAdapter = new ImagePageAdapter(getActivity(), bannerModel.lists.size());
+                    if ( bannerModel == null ) return;
+                    head.setVisibility(View.VISIBLE);
+
+                    bannerAdapter = new ImagePageAdapter(getActivity(), bannerModel.adlist.size());
                     bannerAdapter.addImagePageAdapterListener(FragmentChoicenessList.this);
                     bannerAdapter.setImagePageClickListener(FragmentChoicenessList.this);
                     bannerView.setBannerAdapter(bannerAdapter);
                     bannerView.startAutoScroll();
+
+//                    专栏
+                    if ( bannerModel.daylist != null && bannerModel.daylist.size() != 0 )
+                    {
+                        specialAdapter = new SpecialAdapter(getActivity(), bannerModel.daylist);
+                        sList.setAdapter(specialAdapter);
+                        sList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                ChoicenessBannerModel.DaylistEntity item = (ChoicenessBannerModel
+                                        .DaylistEntity) parent.getAdapter().getItem(position);
+                                if ( item == null ) return;
+
+                                int category = item.category;
+                                int topicId = item.topicId;
+
+                                Common.goTopic(getActivity(), category, topicId);
+                            }
+                        });
+                    }
+
+
+                    //                    社区明星
+                    if ( bannerModel.startlist != null && bannerModel.startlist.size() != 0 )
+                    {
+                        ChoicenessBannerModel.StartlistEntity star = new ChoicenessBannerModel
+                                .StartlistEntity();
+                        star.nickname = "查看全部";
+                        bannerModel.startlist.add(star);
+
+
+
+                        communityStarAdapter = new CommunityStarAdapter(bannerModel.startlist, getActivity());
+                        recyclerView.setAdapter(communityStarAdapter);
+                        communityStarAdapter.setmOnItemClickLitener(new CommunityStarAdapter.OnItemClickLitener() {
+
+
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                if ( position == bannerModel.startlist.size() - 1 )
+                                {
+                                    startActivity(new Intent(getActivity(), CommunityStarActivity.class));
+                                    return;
+                                }
+
+                                ChoicenessBannerModel.StartlistEntity item = bannerModel.startlist.get(position);
+                                if ( item == null ) return;
+                                Common.goUserHomeActivit(getActivity(), ""+item.userId);
+                            }
+                        });
+
+                    }
+
+
+
+//                    热门讨论区
+                    if ( bannerModel.hotlist != null && bannerModel.hotlist.size() != 0 )
+                    {
+                        hotTalkAdapter = new HotTalkAdapter(getActivity(), bannerModel.hotlist);
+                        hotList.setAdapter(hotTalkAdapter);
+                    }
+
+
+
                 }
             });
         }
@@ -209,7 +286,7 @@ public class FragmentChoicenessList extends Fragment implements
         if (TextUtils.isEmpty(userId)) {
             userId = "0";
         }
-        String url = C.CHOICENESS_NEW_LIST + page.getPageNo() + "/" + userId;
+        String url = C.COMMUNITY_LIST_MAIN + page.getPageNo() + "/" + userId;
         listModel = new ChoicenessModel();
 
         MyRequestManager.getInstance().requestGet(url, listModel, new CallBack() {
@@ -327,8 +404,11 @@ public class FragmentChoicenessList extends Fragment implements
                 startActivity(new Intent(getActivity(), SearchActivity.class));
 //                startActivity(new Intent(getActivity(), MyTest.class));
                 break;
-
+            case R.id.tv_all_special:
+                startActivity(new Intent(getActivity(), SpecialActivity.class));
+                break;
         }
+
     }
 
     @Override
@@ -348,22 +428,22 @@ public class FragmentChoicenessList extends Fragment implements
     @Override
     public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
 
-        if (bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() == 0)
+        if (bannerModel == null || bannerModel.adlist == null || bannerModel.adlist.size() == 0)
             return;
 
-        ImageLoader.getInstance().displayImage(bannerModel.lists.get(position).image, banner,
+        ImageLoader.getInstance().displayImage(bannerModel.adlist.get(position).image, banner,
                 ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
 
     }
 
     @Override
     public void onClick(int index) {
-        if (bannerModel == null || bannerModel.lists == null || bannerModel.lists.size() <= index)
+        if (bannerModel == null || bannerModel.adlist == null || bannerModel.adlist.size() <= index)
             return;
 
         Intent intent = null;
 
-        ChoicenessBannerModel.Lists item = bannerModel.lists.get(index);
+        ChoicenessBannerModel.AdlistEntity item = bannerModel.adlist.get(index);
 
         switch (item.type) {
 //            话题
@@ -378,8 +458,8 @@ public class FragmentChoicenessList extends Fragment implements
 //                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
 //                intent.putExtra("topicID", item.id);
 //                startActivity(intent);
-
-                Common.goTopic(getActivity(), 4, item.id);
+                int id = Common.string2int(item.id);
+                Common.goTopic(getActivity(), 4, id);
 
                 break;
 //            新版话题帖

@@ -219,5 +219,15 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
         return shareurl;
     }
 
+    /**
+     * 帖子类型
+     *
+     * @return 0, 其他， 1， 线上
+     */
+    @Override
+    public int getType() {
+        return 0;
+    }
+
 
 }

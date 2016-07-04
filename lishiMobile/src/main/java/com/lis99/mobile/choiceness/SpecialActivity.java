@@ -8,7 +8,6 @@ import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.choiceness.adapter.SpecialMainAdapter;
-import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.LSClubSpecialList;
 import com.lis99.mobile.engine.base.CallBack;
@@ -47,6 +46,8 @@ public class SpecialActivity extends LSBaseActivity implements
 
         setTitle("全部专栏");
 
+        onHeaderRefresh(pullRefreshView);
+
     }
 
     @Override
@@ -68,7 +69,7 @@ public class SpecialActivity extends LSBaseActivity implements
 
                 if ( item == null ) return;
 
-                Intent intent = new Intent(activity, ClubSpecialListActivity.class);
+                Intent intent = new Intent(activity, SpecialInfoActivity.class);
                 intent.putExtra("tagid", item.id);
                 startActivity(intent);
 
@@ -84,7 +85,7 @@ public class SpecialActivity extends LSBaseActivity implements
         {
             return;
         }
-        String url = C.CLBU_MIAN_SPECIAL + page.pageNo;
+        String url = C.COMMUNITY_SPECIAL_MAIN + page.pageNo;
         model = new LSClubSpecialList();
 
         MyRequestManager.getInstance().requestGet(url, model, new CallBack() {

@@ -57,7 +57,7 @@ public class SpecialMainAdapter extends MyBaseAdapter {
         ImageLoader.getInstance().displayImage(item.images, holder.iv_bg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.iv_load, holder.iv_bg));
 
         holder.tv_title.setText(item.name);
-        holder.tv_info.setText(item.name);
+        holder.tv_info.setText(item.title);
 
 
         return view;

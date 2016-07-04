@@ -440,7 +440,7 @@ public class LSRequestManager
 		MyRequestManager.getInstance().requestPost(C.CLUB_JOIN, map, model, call);
 
 	}
-	/**关注， 推荐关注， 动态， 我-》好友-》推荐关注*/
+	/** 推荐关注列表， 动态， 我-》好友-》推荐关注*/
 	public void getFriendsAttentionRecommend ( int page, CallBack call )
 	{
 		String userID = DataManager.getInstance().getUser().getUser_id();

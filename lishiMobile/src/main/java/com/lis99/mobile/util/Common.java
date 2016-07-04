@@ -505,6 +505,14 @@ public class Common {
             intent.putExtra("topicID", topicId);
             c.startActivity(intent);
         }
+        else if ( -1 == catgory )
+        {
+            Common.toast("帖子类型获取失败");
+        }
+        else if ( -1 == topicId )
+        {
+            Common.toast("帖子获取失败");
+        }
     }
 
 

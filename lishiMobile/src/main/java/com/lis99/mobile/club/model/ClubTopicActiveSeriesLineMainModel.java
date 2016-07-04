@@ -352,4 +352,14 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
         return ("http://m.lis99.com/club/activity/detail/"+activityCode);
     }
 
+    /**
+     * 帖子类型
+     *
+     * @return 0, 其他， 1， 线上
+     */
+    @Override
+    public int getType() {
+        return 0;
+    }
+
 }

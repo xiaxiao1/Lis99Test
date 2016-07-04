@@ -1,5 +1,6 @@
 package com.lis99.mobile.util;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.apply.ApplyManager;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.engine.base.CallBack;
@@ -326,7 +328,19 @@ public class ShareManager
 					case R.id.iv_manager_apply:
 					case R.id.iv_manager_apply1:
 
-						ActivityUtil.goActiveManager(Common.string2int(clubhead.getTopicId()), Common.string2int(clubhead.getClubId()));
+						if ( clubhead.getType() == 0 )
+						{
+							ActivityUtil.goActiveManager(Common.string2int(clubhead.getTopicId()), Common.string2int(clubhead.getClubId()));
+						}
+						//线上活动管理报名
+						else if ( clubhead.getType() == 1 )
+						{
+							Intent i = new Intent(LSBaseActivity.activity, ApplyManager.class);
+							i.putExtra("topicID", Common.string2int(clubhead.getTopicId()));
+							i.putExtra("clubID", Common.string2int(clubhead.getClubId()));
+							LSBaseActivity.activity.startActivity(i);
+						}
+
 ////						系列活动
 //						if ( "999".equals(clubhead.getCategory()))
 //						{

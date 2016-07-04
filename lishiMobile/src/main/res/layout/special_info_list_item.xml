@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+              android:orientation="vertical"
+              android:gravity="center_horizontal"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        >
+
+        <com.lis99.mobile.club.widget.RoundedImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:corner_radius="0px"
+            android:adjustViewBounds="true"
+            app:border_width="0px"
+            />
+
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/iv_load"
+            android:src="@drawable/load_image_temp_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:padding="2dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/roundedImageView1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ls_nologin_header_icon"
+        android:scaleType="fitXY"
+        app:corner_radius="50dp"
+        app:border_color="#e8e8e8"
+        app:border_width="1px"
+        android:background="@drawable/special_info_head_bg"
+        android:layout_marginTop="-30dp"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="@color/color_nine"
+              android:textSize="@dimen/text_small"
+              android:padding="10dp"
+              android:id="@+id/tv_nikeName"
+              android:text="@string/temp_string"
+    />
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textColor="@color/text_color_black"
+              android:textSize="@dimen/text_large"
+              android:id="@+id/tv_title"
+              android:text="@string/temp_string"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:paddingRight="10dp"
+              android:paddingLeft="10dp"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textColor="@color/color_nine"
+              android:textSize="@dimen/text_small"
+              android:id="@+id/tv_content"
+              android:text="@string/temp_string_long"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:padding="10dp"
+    />
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                  android:gravity="center_horizontal"
+    >
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/special_like_icon"
+                  android:text="@string/temp_string"
+                  android:textSize="@dimen/text_small"
+                  android:textColor="@color/color_nine"
+                  android:id="@+id/tv_likeNum"
+                  android:layout_marginRight="15dp"
+                  android:drawablePadding="6dp"
+
+        />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:drawableLeft="@drawable/special_reply_icon"
+                  android:text="@string/temp_string"
+                  android:textSize="@dimen/text_small"
+                  android:textColor="@color/color_nine"
+                  android:id="@+id/tv_replyNum"
+                  android:drawablePadding="6dp"
+        />
+
+    </LinearLayout>
+
+
+    <include
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/list_line"
+        android:id="@+id/line"
+        android:layout_alignParentBottom="true"
+        />
+
+</LinearLayout>

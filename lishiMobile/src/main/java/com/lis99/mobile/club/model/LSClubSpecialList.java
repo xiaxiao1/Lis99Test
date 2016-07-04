@@ -13,15 +13,17 @@ public class LSClubSpecialList extends BaseModel {
 
     public ArrayList<Taglist> taglist;
 
-    public class Taglist
+    public static class Taglist
     {
         public int id;
-
+//      主标题
         public String name;
 
         public String images;
 
         public int topicTotal;
+//      复标题
+        public String title;
 
     }
 

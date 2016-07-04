@@ -284,6 +284,16 @@ public class ClubTopicActiveLineMainModel extends BaseModel implements ShareInte
         return ("http://m.lis99.com/club/activity/detail/"+getActivity_code());
     }
 
+    /**
+     * 帖子类型
+     *
+     * @return 0, 其他， 1， 线上
+     */
+    @Override
+    public int getType() {
+        return 0;
+    }
+
     public String getActivity_code() {
         return activity_code;
     }

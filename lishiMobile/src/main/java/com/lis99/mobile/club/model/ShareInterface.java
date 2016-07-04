@@ -60,5 +60,11 @@ public interface ShareInterface {
      */
     public String getShareUrl ();
 
+    /**
+     *      帖子类型
+     * @return      0, 其他， 1， 线上
+     */
+    public int getType();
+
 
 }

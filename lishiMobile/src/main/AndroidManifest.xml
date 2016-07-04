@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="428"
-    android:versionName="4.2.8" >
+    android:versionCode="430"
+    android:versionName="4.3.0" >
 
 
 
@@ -1322,6 +1322,10 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
         <!--专栏详情-->
         <activity android:name="com.lis99.mobile.choiceness.SpecialInfoActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <!--社区明星-->
+        <activity android:name="com.lis99.mobile.choiceness.CommunityStarActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 

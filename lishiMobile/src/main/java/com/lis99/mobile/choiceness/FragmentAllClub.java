@@ -73,6 +73,7 @@ public class FragmentAllClub extends Fragment{
 
     public void init ()
     {
+        if ( djClubs == null )
         loadClubList();
     }
 

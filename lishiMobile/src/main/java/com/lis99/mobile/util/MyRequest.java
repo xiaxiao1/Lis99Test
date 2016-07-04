@@ -116,7 +116,7 @@ public class MyRequest{
 				break;
 			}
 //			Common.log("Httpresult="+result);
-			Common.log("Httpresult="+Common.convert(result));
+//			Common.log("Httpresult="+Common.convert(result));
 
 			return result;
 		}

@@ -533,6 +533,16 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 
 	//	获取订单信息， 支付方式等新版  http://api.lis99.com/v5/club/applyInfoDetail
 	public static final String GET_ORDER_INFO_NEW = DOMAINS + "/Activity/applyInfoDetail";
+//	社区首页			https://apis.lis99.com/main/fpage
+	public static final String COMMUNITY_AD_MAIN = DOMAINS + "/main/fpage";
+//	社区列表			https://apis.lis99.com/main/omnibusList/[page]/[user_id]
+	public static final String COMMUNITY_LIST_MAIN = DOMAINS + "/main/omnibusList/";
+//	全部专栏			https://apis.lis99.com/columns/index/[page]
+	public static final String COMMUNITY_SPECIAL_MAIN = DOMAINS + "/columns/index/";
+//	专栏详情			https://apis.lis99.com/columns/detail/[page]
+	public static final String COMMUNITY_SPECIAL_INFO_MAIN = DOMAINS + "/columns/detail/";
+//	社区明星详情		https://apis.lis99.com/main/startlist/0
+	public static final String COMMUNITY_STAR_INFO_LIST = DOMAINS + "/main/startlist/";
 
 
 

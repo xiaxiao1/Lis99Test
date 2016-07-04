@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app = "http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:gravity="center_horizontal"
+    >
+
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:padding="2dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/roundedImageView1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ls_nologin_header_icon"
+        android:scaleType="fitXY"
+        app:corner_radius="50dp"
+        app:border_color="#e8e8e8"
+        app:border_width="1px"
+        android:background="@drawable/community_star_icon_bg"
+    />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/friends_no_attention"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/btn_attention"
+        android:layout_marginLeft="10dp"
+    />
+
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                    android:orientation="vertical"
+                  android:layout_toRightOf="@id/roundedImageView1"
+                  android:layout_toLeftOf="@id/btn_attention"
+                  android:gravity="center_vertical"
+                  android:layout_marginLeft="10dp"
+    >
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+        >
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:maxEms="4"
+                      android:singleLine="true"
+                      android:ellipsize="end"
+                      android:textColor="@color/text_color_black"
+                      android:text="@string/temp_string"
+                      android:id="@+id/tv_nikeName"
+            />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:layout_marginLeft="6dp"
+                      android:maxEms="5"
+                      android:maxLines="1"
+                      android:textColor="@color/white"
+                      android:textSize="@dimen/text_small"
+                      android:background="@drawable/community_star_10"
+                      android:text="@string/temp_string_long"
+                      android:id="@+id/tv_tag1"
+                      android:paddingLeft="3dp"
+                      android:paddingRight="3dp"
+            />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:layout_marginLeft="6dp"
+                      android:maxEms="5"
+                      android:maxLines="1"
+                      android:textColor="@color/white"
+                      android:textSize="@dimen/text_small"
+                      android:background="@drawable/community_star_10"
+                      android:text="@string/temp_string_long"
+                      android:id="@+id/tv_tag2"
+                      android:paddingLeft="3dp"
+                      android:paddingRight="3dp"
+            />
+
+
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textColor="@color/color_nine"
+                  android:textSize="@dimen/text_small"
+                  android:singleLine="true"
+                  android:ellipsize="end"
+                  android:text="@string/temp_string_long"
+                  android:id="@+id/tv_content"
+                  android:paddingTop="10dp"
+        />
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:paddingTop="10dp"
+        >
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_marginLeft="6dp"
+                      android:textColor="@color/color_nine"
+                      android:textSize="@dimen/text_small"
+                      android:text="@string/temp_string"
+                      android:id="@+id/tv_likeNum"
+            />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_marginLeft="12dp"
+                      android:textColor="@color/color_nine"
+                      android:textSize="@dimen/text_small"
+                      android:text="@string/temp_string"
+                      android:id="@+id/tv_replyNum"
+            />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

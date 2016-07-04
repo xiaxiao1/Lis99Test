@@ -1,7 +1,6 @@
 package com.lis99.mobile.choiceness;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,12 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.choiceness.adapter.SpecialInfoListAdapter;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
-import com.lis99.mobile.club.LSClubTopicNewActivity;
-import com.lis99.mobile.club.adapter.ClubSpecialListItemAdapter;
-import com.lis99.mobile.club.model.ClubSpecialListModel;
-import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
+import com.lis99.mobile.club.model.SpecialInfoModel;
+import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -48,17 +45,21 @@ public class SpecialInfoActivity extends LSBaseActivity  implements
 
     private View head;
 
-    private ClubSpecialListItemAdapter adapter;
+    private SpecialInfoListAdapter adapter;
 
-    private ClubSpecialListModel model;
+    private SpecialInfoModel model;
 
     private int tagid;
 
-    private ImageView iv_bg, iv_load;
-
-    private TextView tv_title;
-
     private float HeadAdHeight = 1;
+
+    //
+
+    private RoundedImageView ivBg;
+    private ImageView ivLoad;
+    private TextView tvTitle;
+    private TextView tvInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class SpecialInfoActivity extends LSBaseActivity  implements
         pull_refresh_view.setOnHeaderRefreshListener(this);
         pull_refresh_view.setOnFooterRefreshListener(this);
 
-        head = View.inflate(activity, R.layout.ls_club_special_item, null);
+        head = View.inflate(activity, R.layout.special_list_head, null);
 
         ViewTreeObserver vto1 = head.getViewTreeObserver();
         vto1.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -105,9 +106,10 @@ public class SpecialInfoActivity extends LSBaseActivity  implements
             }
         });
 
-        iv_bg = (ImageView) head.findViewById(R.id.iv_bg);
-        iv_load = (ImageView) head.findViewById(R.id.iv_load);
-        tv_title = (TextView) head.findViewById(R.id.tv_title);
+        ivBg = (RoundedImageView) head.findViewById(R.id.iv_bg);
+        ivLoad = (ImageView) head.findViewById(R.id.iv_load);
+        tvTitle = (TextView) head.findViewById(R.id.tv_title);
+        tvInfo = (TextView) head.findViewById(R.id.tv_info);
 
 
         listView.addHeaderView(head);
@@ -139,44 +141,13 @@ public class SpecialInfoActivity extends LSBaseActivity  implements
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if ( adapter == null ) return;
                 if ( i == 0 ) return;
-                ClubSpecialListModel.Topiclist item = (ClubSpecialListModel.Topiclist) adapter.getItem(i - 1);
+                SpecialInfoModel.TopiclistEntity item = (SpecialInfoModel.TopiclistEntity) adapter.getItem(i - 1);
                 if ( item == null ) return;
 
-                if ( !TextUtils.isEmpty(item.activity_code))
-                {
-//                    Intent intent = new Intent(activity, LSClubTopicActiveOffLine.class);
-//                    intent.putExtra("topicID", item.topic_id);
-//                    startActivity(intent);
+                int category = item.category;
+                int topic_id = item.topicId;
 
-                    Common.goTopic(activity, 4, item.topic_id);
-
-
-                    return;
-                }
-//                新版话题帖
-                else if ( "2".equals(item.topic_type) )
-                {
-                    Intent intent = new Intent(activity, LSClubNewTopicListMain.class);
-                    intent.putExtra("TOPICID", "" + item.topic_id);
-                    startActivity(intent);
-                    return;
-                }
-                else if ( "2".equals(item.category) )
-                {
-                    Intent intent = new Intent(activity, LSClubTopicNewActivity.class);
-                    intent.putExtra("topicID", item.topic_id);
-                    startActivity(intent);
-                    return;
-                }
-                else
-                {
-                    Intent intent = new Intent(activity, LSClubTopicActivity.class);
-                    intent.putExtra("topicID", item.topic_id);
-                    startActivity(intent);
-
-                }
-
-
+                Common.goTopic(activity, category, topic_id);
 
             }
         });
@@ -196,30 +167,31 @@ public class SpecialInfoActivity extends LSBaseActivity  implements
             return;
         }
 
-        model = new ClubSpecialListModel();
+        model = new SpecialInfoModel();
 
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("tagid", tagid);
 
-        String url = C.CLBU_SPECIAL_LIST_INFO + page.pageNo;
+        String url = C.COMMUNITY_SPECIAL_INFO_MAIN + page.pageNo;
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                model = (ClubSpecialListModel) mTask.getResultModel();
+                model = (SpecialInfoModel) mTask.getResultModel();
                 page.nextPage();
 
                 if (adapter == null) {
                     page.setPageSize(model.totalpage);
 
-                    if (!TextUtils.isEmpty(model.taginfo.tag_images)) {
-                        ImageLoader.getInstance().displayImage(model.taginfo.tag_images, iv_bg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(iv_load, iv_bg));
+                    if (!TextUtils.isEmpty(model.taginfo.tagImages)) {
+                        ImageLoader.getInstance().displayImage(model.taginfo.tagImages, ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(ivLoad, ivBg));
                     }
-                    tv_title.setText(model.taginfo.name);
+                    tvTitle.setText(model.taginfo.name);
+//                    tvInfo.setText("");
                     setTitle(model.taginfo.name);
 
-                    adapter = new ClubSpecialListItemAdapter(activity, model.topiclist);
+                    adapter = new SpecialInfoListAdapter(activity, model.topiclist);
 
                     AnimationAdapter animationAdapter = new CardsAnimationAdapter(adapter);
                     animationAdapter.setAbsListView(listView);

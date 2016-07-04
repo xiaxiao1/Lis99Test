@@ -183,6 +183,16 @@ public class ClubTopicNewActiveInfo extends BaseModel implements ShareInterface,
         return "http://club.lis99.com/actives/detail/" + topic_id;
     }
 
+    /**
+     * 帖子类型
+     *
+     * @return 0, 其他， 1， 线上
+     */
+    @Override
+    public int getType() {
+        return 1;
+    }
+
     public String active_code;
 
     @Override
