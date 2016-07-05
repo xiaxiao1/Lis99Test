@@ -96,8 +96,14 @@ public class CommunityStarActivity extends LSBaseActivity implements
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            if ( model == null || model.lists == null || model.lists.size() == 0 ) return;
-                             String userid = ""+model.lists.get(position).userId;
+                            if ( adapter == null ) return;
+
+//                            if ( model == null || model.lists == null || model.lists.size() == 0 ) return;
+//                             String userid = ""+model.lists.get(position).userId;
+                            final CommunityInfoModel.ListsEntity item = (CommunityInfoModel
+                                    .ListsEntity) adapter.getItem(position);
+                            if ( item == null ) return;
+                            String userid = ""+item.userId;
                             if ( TextUtils.isEmpty(userid))
                             {
                                 return;

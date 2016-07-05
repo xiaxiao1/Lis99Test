@@ -77,7 +77,7 @@
               android:drawableLeft="@drawable/community_star"
               android:textSize="@dimen/text_large"
               android:textColor="@color/text_color_black"
-              android:text="社区明星"
+              android:text="明星作者"
               android:drawablePadding="6dp"
               android:layout_gravity="center_horizontal"
               android:padding="20dp"
@@ -97,10 +97,10 @@
 
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:drawableLeft="@drawable/hot_talk_icon"
+              android:drawableLeft="@drawable/chois_icon"
               android:textSize="@dimen/text_large"
               android:textColor="@color/text_color_black"
-              android:text="热门讨论区"
+              android:text="热门专题"
               android:drawablePadding="6dp"
               android:layout_gravity="center_horizontal"
               android:paddingTop="20dp"
@@ -122,10 +122,10 @@
              layout="@layout/list_line" android:layout_marginTop="16dp" />
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:drawableLeft="@drawable/chois_icon"
+              android:drawableLeft="@drawable/hot_talk_icon"
               android:textSize="@dimen/text_large"
               android:textColor="@color/text_color_black"
-              android:text="社区精选"
+              android:text="热门讨论区"
               android:drawablePadding="6dp"
               android:layout_gravity="center_horizontal"
               android:padding="20dp"

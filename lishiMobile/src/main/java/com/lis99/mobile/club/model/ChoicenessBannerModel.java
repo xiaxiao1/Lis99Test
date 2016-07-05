@@ -151,4 +151,40 @@ public class ChoicenessBannerModel extends BaseModel {
             public String headicon;
         }
     }
+
+    @SerializedName("omlist")
+    public ArrayList<OmListEntiry> omlist;
+
+    public static class OmListEntiry
+    {
+        @SerializedName("id")
+        public int id;
+        @SerializedName("reply_num")
+        public int reply_num;
+        @SerializedName("user_id")
+        public int user_id;
+        @SerializedName("nickname")
+        public String nickname;
+        @SerializedName("topic_id")
+        public int topic_id;
+        @SerializedName("title")
+        public String title;
+        @SerializedName("subhead")
+        public String subhead;
+        @SerializedName("club_title")
+        public String club_title;
+
+        @SerializedName("imagelist")
+
+        public ArrayList<ImageListEntity> imagelist;
+
+    }
+
+    public static class ImageListEntity
+    {
+        @SerializedName("images")
+        public String images;
+    }
+
+
 }
