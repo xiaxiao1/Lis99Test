@@ -189,15 +189,14 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 					.findViewById(R.id.nameView);
 
 			holder.iv_moderator = convertView.findViewById(R.id.iv_moderator);
+			holder.ivFloor = convertView.findViewById(R.id.iv_tag_floor);
 
 			//		4.1.1
 			holder.tv_user_tag3 = (TextView) convertView.findViewById(R.id.tv_user_tag3);
 
 			holder.tv_user_tag4 = (TextView) convertView.findViewById(R.id.tv_user_tag4);
 
-			// 去掉楼主
-			holder.nameView
-					.setCompoundDrawablesRelative(null, null, null, null);
+
 			holder.imageView = (ImageView) convertView
 					.findViewById(R.id.roundedImageView1);
 			holder.contentImageView = (ImageView) convertView
@@ -355,10 +354,10 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 		// 1为楼主， 其他不是
 		if ("1".equals(item.is_lander))
 		{
-			holder.nameView.setCompoundDrawables(null, null, null, null);
+			holder.ivFloor.setVisibility(View.VISIBLE);
 		} else
 		{
-			holder.nameView.setCompoundDrawables(null, null, drawable, null);
+			holder.ivFloor.setVisibility(View.GONE);
 		}
 
 		holder.tv_floor.setText(item.floor + "楼");
@@ -406,6 +405,7 @@ public class LSClubTopicCommentAdapter extends BaseAdapter
 	static class ViewHolder
 	{
 		View iv_moderator;
+		View ivFloor;
 		ImageView imageView;
 		ImageView contentImageView;
 		TextView nameView;

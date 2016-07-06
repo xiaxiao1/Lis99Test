@@ -1,136 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff" 
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#fff">
 
     <com.lis99.mobile.club.widget.RoundedImageView
-        android:layout_centerVertical="true"
         android:id="@+id/roundedImageView1"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/ls_nologin_header_icon"
+        android:layout_centerVertical="true"
         android:scaleType="fitXY"
-        app:corner_radius="5dp"
+        android:src="@drawable/ls_nologin_header_icon"
         app:border_color="#e8e8e8"
-        app:border_width="1px"/>
-    
-    <RelativeLayout 
+        app:border_width="1px"
+        app:corner_radius="14dp" />
+
+    <RelativeLayout
         android:id="@+id/layout"
         style="@style/fill_wrap"
-        android:orientation="vertical"
-        android:layout_toRightOf="@+id/roundedImageView1"
-        android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
-        >
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/roundedImageView1"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/layout_main"
-            >
-        
-        <TextView
-        android:id="@+id/nameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textSize="13sp"
-        android:textColor="#666"
-        android:text="@string/temp_string"
-        android:drawablePadding="4dip"
-        android:drawableRight="@drawable/club_tier_master"
-         />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_centerVertical="true"
+            <TextView
+                android:id="@+id/nameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/iv_moderator"
-                android:src="@drawable/moderator_icon"
+                android:drawablePadding="4dip"
+                android:singleLine="true"
+                android:text="@string/temp_string"
+                android:textColor="#666"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/iv_tag_floor"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+                android:text="楼主"
+                android:textColor="@color/white"
                 android:layout_toRightOf="@id/nameView"
-                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:textSize="9sp"
+                android:background="@drawable/topic_new_bg_host"
                 />
 
             <TextView
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/iv_moderator"
+                android:id="@+id/iv_moderator"
                 android:layout_width="wrap_content"
                 android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+                android:text="版主"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@id/iv_tag_floor"
+                android:layout_centerVertical="true"
+                android:textSize="9sp"
+                android:background="@drawable/topic_new_bg_moderator"
+                />
+
+            <TextView
                 android:id="@+id/tv_user_tag3"
-                android:background="@drawable/topic_supper_tag3"
-                android:layout_marginLeft="5dp"
-                android:textSize="8sp"
-                android:text="砾石砾石砾石砾"
-                android:textColor="@color/white"
-                android:gravity="center"
-                />
-
-            <TextView
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/tv_user_tag3"
                 android:layout_width="wrap_content"
                 android:layout_height="12dp"
-                android:id="@+id/tv_user_tag4"
-                android:background="@drawable/topic_supper_tag4"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:textSize="8sp"
+                android:layout_toRightOf="@id/iv_moderator"
+                android:background="@drawable/topic_supper_tag3"
+                android:gravity="center"
                 android:text="砾石砾石砾石砾"
                 android:textColor="@color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/tv_user_tag4"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_user_tag3"
+                android:background="@drawable/topic_supper_tag4"
                 android:gravity="center"
-                />
+                android:text="砾石砾石砾石砾"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
 
         </RelativeLayout>
 
-    <TextView
-        android:layout_marginTop="-3dp"
-        android:layout_below="@id/layout_main"
-        android:id="@+id/dateView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textSize="12sp"
-        android:textColor="#999"
-        android:text="@string/temp_string" />
-    
-    <TextView 
-        style="@style/wrap_wrap"
-        android:text="2楼"
-        android:textColor="#999"
-        android:layout_alignBottom="@+id/dateView"
-        android:layout_alignParentRight="true"
-        android:id="@+id/tv_floor"
-        android:textSize="12sp"
-        />
-    
-    <TextView 
-        android:visibility="gone"
-        style="@style/wrap_wrap"
-        android:text="删除"
-        android:textSize="12sp"
-        android:textColor="#fe7a60"
-        android:layout_alignTop="@+id/nameView"
-        android:layout_alignParentRight="true"
-        android:id="@+id/tv_floor_delete"
-        />
-        
-    </RelativeLayout>
-    
-    
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_main"
+            android:layout_marginTop="-3dp"
+            android:singleLine="true"
+            android:text="@string/temp_string"
+            android:textColor="#999"
+            android:textSize="12sp" />
 
-    
+        <TextView
+            android:id="@+id/tv_floor"
+            style="@style/wrap_wrap"
+            android:layout_alignBottom="@+id/dateView"
+            android:layout_alignParentRight="true"
+            android:text="2楼"
+            android:textColor="#999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_floor_delete"
+            style="@style/wrap_wrap"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/nameView"
+            android:text="删除"
+            android:textColor="#fe7a60"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
 
     <ImageView
         android:id="@+id/vipStar"
         android:layout_width="8dp"
         android:layout_height="8dp"
-        android:layout_alignRight="@id/roundedImageView1"
         android:layout_alignBottom="@+id/roundedImageView1"
+        android:layout_alignRight="@id/roundedImageView1"
         android:layout_marginLeft="-8dp"
         android:src="@drawable/club_icon_v" />
-    
-    
+
 
 </RelativeLayout>

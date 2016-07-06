@@ -26,11 +26,13 @@ import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.NativeEntityUtil;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,6 +43,22 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
     Drawable drawable;
 
     private int topicId, clubId;
+
+    static HashMap<String, Integer> tagBackgrounds = new HashMap<>();
+
+    static {
+//        tagBackgrounds.put("潜水员", R.drawable.label_bg_qianshui);
+//        tagBackgrounds.put("攀冰狂人", R.drawable.label_bg_panbing);
+//        tagBackgrounds.put("岩壁舞者", R.drawable.label_bg_yanbi);
+//        tagBackgrounds.put("装备玩家", R.drawable.label_bg_zhuangbei);
+//        tagBackgrounds.put("光影大师", R.drawable.label_bg_guangying);
+//        tagBackgrounds.put("徒步行者", R.drawable.label_bg_tubu);
+//        tagBackgrounds.put("企业官方帐号", R.drawable.label_bg_qiye);
+//        tagBackgrounds.put("潜白色瘾君子", R.drawable.label_bg_baise);
+//        tagBackgrounds.put("山友", R.drawable.label_bg_shanyou);
+//        tagBackgrounds.put("老司机", R.drawable.label_bg_laosiji);
+        tagBackgrounds = NativeEntityUtil.getInstance().getCommunityStarTags();
+    }
 
     private LSClubNewTopicListMainReply main;
 
@@ -144,6 +162,8 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
                     .findViewById(R.id.nameView);
 
             holder.iv_moderator = view.findViewById(R.id.iv_moderator);
+            holder.ivFloor = view.findViewById(R.id.iv_tag_floor);
+
 
             //		4.1.1
             holder.tv_user_tag3 = (TextView) view.findViewById(R.id.tv_user_tag3);
@@ -230,10 +250,28 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
         {
             holder.tv_user_tag3.setVisibility(View.VISIBLE);
             holder.tv_user_tag3.setText(Common.getTagString(item.usercatelist.get(0).title));
+
+
+            holder.tv_user_tag3.setVisibility(View.VISIBLE);
+            String tag = Common.getTagString(item.usercatelist.get(0).title);
+            holder.tv_user_tag3.setText(tag);
+            if (tagBackgrounds.containsKey(tag)) {
+                holder.tv_user_tag3.setBackgroundResource(tagBackgrounds.get(tag));
+            } else {
+                holder.tv_user_tag3.setBackgroundResource(R.drawable.label_bg_default);
+            }
+
+
             if ( item.usercatelist.size() > 1 )
             {
                 holder.tv_user_tag4.setVisibility(View.VISIBLE);
-                holder.tv_user_tag4.setText(Common.getTagString(item.usercatelist.get(1).title));
+                tag = Common.getTagString(item.usercatelist.get(1).title);
+                holder.tv_user_tag4.setText(tag);
+                if (tagBackgrounds.containsKey(tag)) {
+                    holder.tv_user_tag4.setBackgroundResource(tagBackgrounds.get(tag));
+                } else {
+                    holder.tv_user_tag4.setBackgroundResource(R.drawable.label_bg_default);
+                }
             }
         }
 
@@ -301,10 +339,10 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
         // 1为楼主， 其他不是
         if ( 1 == item.isFloor )
         {
-            holder.nameView.setCompoundDrawables(null, null, drawable, null);
+            holder.ivFloor.setVisibility(View.VISIBLE);
         } else
         {
-            holder.nameView.setCompoundDrawables(null, null, null, null);
+            holder.ivFloor.setVisibility(View.GONE);
         }
 
         holder.tv_floor.setText(item.floor + "楼");
@@ -336,6 +374,7 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
     static class ViewHolder
     {
         View iv_moderator;
+        View ivFloor;
         ImageView imageView;
         ImageView contentImageView;
         TextView nameView;

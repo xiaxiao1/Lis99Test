@@ -11,8 +11,8 @@
         layout="@layout/club_topic_topview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:layout_marginTop="10dp"/>
 
     <include
@@ -20,8 +20,8 @@
         layout="@layout/club_reply_view"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="12dp"
         android:layout_marginTop="10dip"
         />
 
@@ -30,8 +30,8 @@
         android:id="@+id/contentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="12dp"
         android:layout_marginTop="10dip"
         android:text="@string/temp_string_long"
         android:textColor="#666"
@@ -54,16 +54,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/layout_more"
+        android:gravity="center_horizontal"
         >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="更多评论"
-        android:textColor="@color/text_color_green"
-        android:textSize="12sp"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="更多评论"
+            android:layout_centerHorizontal="true"
+            android:drawablePadding="6dp"
+            android:drawableLeft="@drawable/icon_topic_more_comment"
+            android:textColor="@color/text_color_green"
+            android:textSize="12sp"
+            />
+
+
 
         <include
             android:layout_width="match_parent"

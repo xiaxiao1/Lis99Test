@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="@color/white"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/equiPanel"
@@ -24,7 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="7dp"
             android:scaleType="fitXY"
-            app:corner_radius="5px"/>
+            app:corner_radius="5px" />
 
         <TextView
             android:id="@+id/equiPriceView"
@@ -36,7 +35,7 @@
             android:layout_toRightOf="@+id/equiImageView"
             android:text="市场价：3000元"
             android:textColor="#c6b6a7"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <RatingBar
             android:id="@+id/equiRatingBar"
@@ -50,7 +49,7 @@
             android:isIndicator="true"
             android:numStars="5"
             android:rating="0"
-            android:stepSize="1"/>
+            android:stepSize="1" />
 
 
         <TextView
@@ -66,58 +65,497 @@
             android:maxLines="2"
             android:text="市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价市场价"
             android:textColor="#c6b6a7"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tagTitleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="29dp"
+        android:text="相关标签"
+        android:textColor="#999"
+        android:textSize="11sp" />
 
     <include
         layout="@layout/club_topic_reply_new"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/reply_height"
         android:layout_marginBottom="10dip"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dip"
-        />
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="10dp" />
+
+    <RelativeLayout
+        android:id="@+id/hostInfoPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eee" />
+
+        <RelativeLayout
+            android:id="@+id/hostInfoHeaderPanel"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/topic_header_decorate">
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/hostInfoHeaderView"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                app:border_color="#eee"
+                app:border_width="1px"
+                app:corner_radius="32dp" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/hostInfoNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/hostInfoHeaderPanel"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/hostInfoHeaderPanel"
+            android:text="会飞的猪"
+            android:textColor="#525252"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/hostInfoNameView"
+            android:layout_marginBottom="2dp"
+            android:layout_toRightOf="@+id/hostInfoNameView"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/hostInfoModerator"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+                android:text="版主"
+                android:textColor="@color/white"
+                android:textSize="9sp"
+                android:background="@drawable/topic_new_bg_moderator"
+                />
+
+            <TextView
+                android:id="@+id/hostInfoTag1"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/topic_supper_tag3"
+                android:gravity="center"
+                android:text="人要地人地要在"
+                android:textColor="@color/white"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/hostInfoTag2"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/topic_supper_tag4"
+                android:gravity="center"
+                android:text="人要地人地要在"
+                android:textColor="@color/white"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/hostInfoTag3"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/topic_supper_tag4"
+                android:gravity="center"
+                android:text="人要地人地要在"
+                android:textColor="@color/white"
+                android:textSize="9sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hostInfoDescView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/hostInfoNameView"
+            android:layout_below="@+id/hostInfoNameView"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="想要飞的更高"
+            android:textColor="#999"
+            android:textSize="11sp" />
+
+
+        <TextView
+            android:id="@+id/hostInfoDataView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/hostInfoNameView"
+            android:layout_below="@+id/hostInfoDescView"
+            android:layout_marginTop="8dp"
+            android:text="粉丝数10  |  帖子数99"
+            android:textColor="#999"
+            android:textSize="11sp" />
+
+    </RelativeLayout>
 
     <Button
+        android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/topic_new_add_info_btn"
-        android:id="@+id/btn_add"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        />
+        android:layout_marginTop="28dp"
+        android:background="@drawable/topic_new_add_info_btn" />
 
-    <include
-        layout="@layout/club_topic_like"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:layout_marginTop="10dip"
+            android:background="@color/color_1px_stroke" />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="8dip"
+            android:background="@color/pull_bg" />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <TextView
+            android:id="@+id/tv_like_new"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:text="人赞过"
+            android:textColor="@color/color_nine"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_like_0"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/topic_like_bg" />
+
+                <ImageView
+                    android:id="@+id/iv_like_new"
+                    style="@style/wrap_wrap"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/topic_like_hand" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_1"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_1"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_1"
+                    android:layout_alignRight="@id/iv_like_1"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_2"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_2"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_2"
+                    android:layout_alignRight="@id/iv_like_2"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_3"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_3"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_3"
+                    android:layout_alignRight="@id/iv_like_3"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_4"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_4"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_4"
+                    android:layout_alignRight="@id/iv_like_4"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_5"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_5"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_5"
+                    android:layout_alignRight="@id/iv_like_5"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_6"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_6"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_6"
+                    android:layout_alignRight="@id/iv_like_6"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_7"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_7"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_7"
+                    android:layout_alignRight="@id/iv_like_7"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <com.lis99.mobile.club.widget.RoundedImageView
+
+                    android:id="@+id/iv_like_8"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ls_nologin_header_icon"
+                    app:border_color="#e8e8e8"
+                    app:border_width="1px"
+                    app:corner_radius="14dp" />
+
+                <ImageView
+                    android:id="@+id/vipStar_8"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_alignBottom="@id/iv_like_8"
+                    android:layout_alignRight="@id/iv_like_8"
+                    android:layout_marginLeft="-8dp"
+                    android:src="@drawable/club_icon_v" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageView
+
+                    android:id="@+id/iv_like_9"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/topic_like_more_new"
+
+                    />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <View
-        android:layout_marginTop="5dp"
         style="@style/fill_wrap"
         android:layout_height="1px"
-        android:background="@color/color_1px_stroke"/>
+        android:background="@color/color_1px_stroke" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/pull_bg" />
+
+    <View
+        style="@style/fill_wrap"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke" />
 
 
     <TextView
         android:id="@+id/tv_club_name"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/pull_bg"
-        android:text="@string/temp_string"
-        android:textColor="#b59477"
-        android:textSize="12sp"
+        android:layout_height="68dp"
+        android:background="#fff"
         android:gravity="center"
-        />
+        android:text="@string/temp_string"
+        android:textColor="#525252"
+        android:textSize="17sp" />
 
-    <View
-        style="@style/fill_wrap"
-        android:layout_height="1px"
-        android:background="@color/color_1px_stroke"/>
 
 </LinearLayout>

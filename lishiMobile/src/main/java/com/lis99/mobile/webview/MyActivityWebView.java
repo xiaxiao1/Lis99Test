@@ -126,7 +126,7 @@ public class MyActivityWebView extends LSBaseActivity
 		titleRightImage1.setOnClickListener(this);
 		titleRightImage.setOnClickListener(this);
 
-		if ( "积分商城".equals(title) || "我的福利".equals(title))
+		if ( "积分商城".equals(title) || "我的福利".equals(title) || image_url == null || image_url.length() == 0)
 		{
 //			setLeftView(-1);
 			ViewGroup.LayoutParams lp = titleRightImage.getLayoutParams();// new RelativeLayout.LayoutParams(Common.px2dip(30), Common.px2dip(30));

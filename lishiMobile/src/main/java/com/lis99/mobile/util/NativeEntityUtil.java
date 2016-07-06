@@ -29,17 +29,16 @@ public class NativeEntityUtil {
 
         communityStarTags = new HashMap<>();
 
-        communityStarTags.put("白色瘾君子", R.drawable.community_star_0);
-        communityStarTags.put("光影大师", R.drawable.community_star_1);
-        communityStarTags.put("老司机", R.drawable.community_star_2);
-        communityStarTags.put("攀冰狂人", R.drawable.community_star_3);
-        communityStarTags.put("企业账号", R.drawable.community_star_4);
-        communityStarTags.put("潜水员", R.drawable.community_star_5);
-        communityStarTags.put("山友", R.drawable.community_star_6);
-        communityStarTags.put("徒步行者", R.drawable.community_star_7);
-        communityStarTags.put("岩壁舞者", R.drawable.community_star_8);
-        communityStarTags.put("装备玩家", R.drawable.community_star_9);
-        communityStarTags.put("默认色值", R.drawable.community_star_10);
+        communityStarTags.put("潜水员", R.drawable.label_bg_qianshui);
+        communityStarTags.put("攀冰狂人", R.drawable.label_bg_panbing);
+        communityStarTags.put("岩壁舞者", R.drawable.label_bg_yanbi);
+        communityStarTags.put("装备玩家", R.drawable.label_bg_zhuangbei);
+        communityStarTags.put("光影大师", R.drawable.label_bg_guangying);
+        communityStarTags.put("徒步行者", R.drawable.label_bg_tubu);
+        communityStarTags.put("企业官方帐号", R.drawable.label_bg_qiye);
+        communityStarTags.put("潜白色瘾君子", R.drawable.label_bg_baise);
+        communityStarTags.put("山友", R.drawable.label_bg_shanyou);
+        communityStarTags.put("老司机", R.drawable.label_bg_laosiji);
 
         return communityStarTags;
     }

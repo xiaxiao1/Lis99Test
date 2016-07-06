@@ -488,7 +488,7 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String NEW_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/providActivity/";
 
 //	新版话题贴		http://api.lis99.com/v5/topics/detail/[page]
-	public static final String CLUB_NEW_TOPIC_LIST_MAIN = DOMAIN + "/v5/topics/detail/";
+	public static final String CLUB_NEW_TOPIC_LIST_MAIN = DOMAINS + "/topics/detail/";
 //	新版话题回复列表 http://api.lis99.com/v5/topics/replylists/[page]
 	public static final String CLUB_NEW_TOPIC_LIST_MAIN_REPLY = DOMAIN + "/v5/topics/replylists/";
 

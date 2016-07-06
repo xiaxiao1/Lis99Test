@@ -77,6 +77,83 @@ public class TopicNewListMainModelTitle extends BaseModel {
     @SerializedName("sharetxt")
     public String sharetxt;
 
+
+    public int is_show_user;
+    public int is_jingpin;
+    public String is_jingpin_con;
+    public String note;
+    public int totfans;
+    public int tottopics;
+
+    public String areaname;
+    public String areaurl;
+    public int areaid;
+
+
+    public int getIs_show_user() {
+        return is_show_user;
+    }
+
+    public void setIs_show_user(int is_show_user) {
+        this.is_show_user = is_show_user;
+    }
+
+    public int getIs_jingpin() {
+        return is_jingpin;
+    }
+
+    public void setIs_jingpin(int is_jingpin) {
+        this.is_jingpin = is_jingpin;
+    }
+
+    public String getIs_jingpin_con() {
+        return is_jingpin_con;
+    }
+
+    public void setIs_jingpin_con(String is_jingpin_con) {
+        this.is_jingpin_con = is_jingpin_con;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public int getTotfans() {
+        return totfans;
+    }
+
+    public void setTotfans(int totfans) {
+        this.totfans = totfans;
+    }
+
+    public int getTottopics() {
+        return tottopics;
+    }
+
+    public void setTottopics(int tottopics) {
+        this.tottopics = tottopics;
+    }
+
+    public String getAreaname() {
+        return areaname;
+    }
+
+    public void setAreaname(String areaname) {
+        this.areaname = areaname;
+    }
+
+    public int getAreaid() {
+        return areaid;
+    }
+
+    public void setAreaid(int areaid) {
+        this.areaid = areaid;
+    }
+
     @SerializedName("usercatelist")
     public ArrayList<Usercatelist> usercatelist;
 

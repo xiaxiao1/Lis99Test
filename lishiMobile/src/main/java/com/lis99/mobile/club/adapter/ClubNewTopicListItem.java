@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,18 +34,37 @@ import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
-import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.lis99.mobile.util.NativeEntityUtil;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.lis99.mobile.util.letv.MovieActivity;
+import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by yy on 16/3/8.
  */
 public class ClubNewTopicListItem extends MyBaseAdapter {
+
+
+    static HashMap<String, Integer> tagBackgrounds = new HashMap<>();
+
+    static {
+//        tagBackgrounds.put("潜水员", R.drawable.label_bg_qianshui);
+//        tagBackgrounds.put("攀冰狂人", R.drawable.label_bg_panbing);
+//        tagBackgrounds.put("岩壁舞者", R.drawable.label_bg_yanbi);
+//        tagBackgrounds.put("装备玩家", R.drawable.label_bg_zhuangbei);
+//        tagBackgrounds.put("光影大师", R.drawable.label_bg_guangying);
+//        tagBackgrounds.put("徒步行者", R.drawable.label_bg_tubu);
+//        tagBackgrounds.put("企业官方帐号", R.drawable.label_bg_qiye);
+//        tagBackgrounds.put("潜白色瘾君子", R.drawable.label_bg_baise);
+//        tagBackgrounds.put("山友", R.drawable.label_bg_shanyou);
+//        tagBackgrounds.put("老司机", R.drawable.label_bg_laosiji);
+        tagBackgrounds = NativeEntityUtil.getInstance().getCommunityStarTags();
+    }
 
     private final int TITLE = 0;
 
@@ -178,13 +198,10 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         holder.titleView.setText(item.title);
         holder.nameView.setText(item.nickname);
         holder.dateView.setText(item.createtime);
-        holder.lookNum.setText(""+item.browsenums);
         if (!TextUtils.isEmpty(item.headicon))
             ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1,
                     ImageUtil.getclub_topic_headImageOptions());
 
-        holder.tvUserTag3.setVisibility(View.GONE);
-        holder.tvUserTag4.setVisibility(View.GONE);
         //版主
         holder.ivModerator.setVisibility(View.GONE);
         //说以后不要了， 先隐藏吧， 万一呢
@@ -196,68 +213,39 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder.ivModerator.setVisibility(View.GONE);
         }
 
-        String userId = DataManager.getInstance().getUser().getUser_id();
-
-//        发帖人是自己， 显示追加内容
-        if ( !TextUtils.isEmpty(userId) && userId.equals(""+item.userId) )
-        {
-            holder.btnAttention.setBackgroundResource(R.drawable.topic_new_add_info_btn);
-            holder.btnAttention.setVisibility(View.VISIBLE);
-            holder.btnAttention.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent intent = new Intent(mContext, LSTopicStringImageActivity.class);
-                    intent.putExtra("clubID", item.clubId);//clubID);
-                    intent.putExtra("topicId", Common.string2int(item.topicsId));
-                    intent.putExtra("clubName", item.clubTitle);//clubHead.title);
-                    intent.putExtra("ADD", true);
-                    intent.putExtra("TITLE", item.title);
-//                    mContext.startActivity(intent);
-                    main.startActivityForResult(intent, 999);
-
-                }
-            });
-        }
-        else
-        {
-            //      关注
-            if (item.attenStatus == 1) {
-                holder.btnAttention.setVisibility(View.GONE);
-            } else {
-                holder.btnAttention.setBackgroundResource(R.drawable.friends_no_attention);
-                holder.btnAttention.setVisibility(View.VISIBLE);
-
-                final ViewHolderTitle holder1 = holder;
-                holder.btnAttention.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        item.attenStatus = 1;
-                        holder1.btnAttention.setVisibility(View.GONE);
-                        if (item.userId == 0) return;
-                        LSRequestManager.getInstance().getFriendsAddAttention(item
-                                .userId, null);
-                    }
-                });
-
-            }
-        }
-
-
+        holder.tvUserTag3.setVisibility(View.GONE);
+        holder.tvUserTag4.setVisibility(View.GONE);
         if (item.usercatelist != null && item.usercatelist.size() != 0) {
             if (item.usercatelist.size() > 0) {
                 holder.tvUserTag3.setVisibility(View.VISIBLE);
-                holder.tvUserTag3.setText(item.usercatelist.get(0).title);
+                String tag = item.usercatelist.get(0).title;
+                holder.tvUserTag3.setText(tag);
+                if (tagBackgrounds.containsKey(tag)) {
+                    holder.tvUserTag3.setBackgroundResource(tagBackgrounds.get(tag));
+                } else {
+                    holder.tvUserTag3.setBackgroundResource(R.drawable.label_bg_default);
+                }
             }
             if (item.usercatelist.size() > 1) {
                 holder.tvUserTag4.setVisibility(View.VISIBLE);
-                holder.tvUserTag4.setText(item.usercatelist.get(1).title);
+                String tag = item.usercatelist.get(1).title;
+                holder.tvUserTag4.setText(tag);
+                if (tagBackgrounds.containsKey(tag)) {
+                    holder.tvUserTag4.setBackgroundResource(tagBackgrounds.get(tag));
+                } else {
+                    holder.tvUserTag3.setBackgroundResource(R.drawable.label_bg_default);
+                }
             }
         }
 
+        if (item.moderator == 1) {
+            holder.tvUserTag4.setVisibility(View.GONE);
+        }
+
+
         holder.ivTagFloor.setTag("1楼");
 
-        holder.tv_club_name.setText(item.clubTitle);
+        holder.tv_club_name.setText("发布于  " + item.clubTitle);
 
         holder.layout_club_name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,6 +265,37 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             }
         });
 
+
+        if (item.is_jingpin == 1) {
+            holder.specialPanel.setVisibility(View.VISIBLE);
+            String special = item.is_jingpin_con;
+            if (special.length() > 4) {
+                special = special.substring(0, 4);
+            }
+            holder.specialTitle.setText(special);
+        } else {
+            holder.specialPanel.setVisibility(View.GONE);
+        }
+
+        if (item.areaid == 0) {
+            holder.destinationPanel.setVisibility(View.GONE);
+        } else {
+            holder.destinationPanel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(mContext, MyActivityWebView.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("URL", item.areaurl);
+                    bundle.putString("TITLE", item.areaname);
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
+
+                }
+            });
+            holder.destinationPanel.setVisibility(View.VISIBLE);
+            holder.destinationName.setText(item.areaname);
+        }
 
         return view;
     }
@@ -411,6 +430,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
         if ( item.taglist != null && item.taglist.size() != 0 )
         {
+            holder.tagTitleView.setVisibility(View.VISIBLE);
             holder.layoutTag.setVisibility(View.VISIBLE);
             holder.tvTag1.setVisibility(View.INVISIBLE);
             holder.tvTag2.setVisibility(View.INVISIBLE);
@@ -457,8 +477,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             }
         }
         else {
+            holder.tagTitleView.setVisibility(View.GONE);
             holder.layoutTag.setVisibility(View.GONE);
         }
+
+
 
         if ( like == null )
         {
@@ -470,7 +493,70 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             like.setInfo(item);
         }
 
-        holder.tvClubName.setText("精彩评论（"+ item.topictot +"）");
+        if (item.is_show_user == 1) {
+            holder.hostInfoPanel.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(item.headicon))
+                ImageLoader.getInstance().displayImage(item.headicon, holder.hostInfoHeaderView,
+                        ImageUtil.getclub_topic_headImageOptions());
+            holder.hostInfoDescView.setText(item.note);
+            holder.hostInfoDataView.setText("粉丝数" + item.totfans + "  |  帖子数" + item.tottopics);
+
+            holder.hostInfoNameView.setText(item.nickname);
+
+            holder.hostInfoModerator.setVisibility(View.GONE);
+            if (item.moderator == 1) {
+                holder.hostInfoModerator.setVisibility(View.VISIBLE);
+            } else {
+                holder.hostInfoModerator.setVisibility(View.GONE);
+            }
+
+
+            holder.hostInfoTag1.setVisibility(View.GONE);
+            holder.hostInfoTag2.setVisibility(View.GONE);
+            holder.hostInfoTag3.setVisibility(View.GONE);
+            if (item.usercatelist != null && item.usercatelist.size() != 0) {
+                if (item.usercatelist.size() > 0) {
+                    holder.hostInfoTag1.setVisibility(View.VISIBLE);
+                    String tag = item.usercatelist.get(0).title;
+                    holder.hostInfoTag1.setText(tag);
+                    if (tagBackgrounds.containsKey(tag)) {
+                        holder.hostInfoTag1.setBackgroundResource(tagBackgrounds.get(tag));
+                    } else {
+                        holder.hostInfoTag1.setBackgroundResource(R.drawable.label_bg_default);
+                    }
+                }
+                if (item.usercatelist.size() > 1) {
+                    holder.hostInfoTag2.setVisibility(View.VISIBLE);
+                    String tag = item.usercatelist.get(1).title;
+                    holder.hostInfoTag2.setText(tag);
+                    if (tagBackgrounds.containsKey(tag)) {
+                        holder.hostInfoTag2.setBackgroundResource(tagBackgrounds.get(tag));
+                    } else {
+                        holder.hostInfoTag2.setBackgroundResource(R.drawable.label_bg_default);
+                    }
+                }
+
+                if (item.moderator == 0 && item.usercatelist.size() > 2) {
+                    holder.hostInfoTag3.setVisibility(View.VISIBLE);
+                    String tag = item.usercatelist.get(2).title;
+                    holder.hostInfoTag3.setText(tag);
+                    if (tagBackgrounds.containsKey(tag)) {
+                        holder.hostInfoTag3.setBackgroundResource(tagBackgrounds.get(tag));
+                    } else {
+                        holder.hostInfoTag3.setBackgroundResource(R.drawable.label_bg_default);
+                    }
+                }
+            }
+        } else {
+            holder.hostInfoPanel.setVisibility(View.GONE);
+        }
+
+        if (item.topictot > 0) {
+            holder.tvClubName.setVisibility(View.VISIBLE);
+            holder.tvClubName.setText("精彩评论（"+ item.topictot +"）");
+        } else {
+            holder.tvClubName.setVisibility(View.GONE);
+        }
 
         return view;
     }
@@ -529,11 +615,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
         if ( item.is_floor == 0 )
         {
-            holder.nameView.setCompoundDrawables(null, null, null, null);
+            holder.ivFloor.setVisibility(View.GONE);
         }
         else
         {
-            holder.nameView.setCompoundDrawables(null, null, drawable, null);
+            holder.ivFloor.setVisibility(View.VISIBLE);
         }
 
         holder.dateView.setText(item.createtime);
@@ -567,11 +653,24 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         if (item.usercatelist != null && item.usercatelist.size() != 0) {
             if (item.usercatelist.size() > 0) {
                 holder.tvUserTag3.setVisibility(View.VISIBLE);
-                holder.tvUserTag3.setText(item.usercatelist.get(0).title);
+                String tag = item.usercatelist.get(0).title;
+                holder.tvUserTag3.setText(tag);
+                if (tagBackgrounds.containsKey(tag)) {
+                    holder.tvUserTag3.setBackgroundResource(tagBackgrounds.get(tag));
+                } else {
+                    holder.tvUserTag3.setBackgroundResource(R.drawable.label_bg_default);
+                }
+
             }
             if (item.usercatelist.size() > 1) {
                 holder.tvUserTag4.setVisibility(View.VISIBLE);
-                holder.tvUserTag4.setText(item.usercatelist.get(1).title);
+                String tag = item.usercatelist.get(1).title;
+                holder.tvUserTag4.setText(tag);
+                if (tagBackgrounds.containsKey(tag)) {
+                    holder.tvUserTag4.setBackgroundResource(tagBackgrounds.get(tag));
+                } else {
+                    holder.tvUserTag4.setBackgroundResource(R.drawable.label_bg_default);
+                }
             }
         }
 
@@ -591,7 +690,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private RelativeLayout layout;
         private RelativeLayout layoutMain;
         private TextView nameView;
-        private ImageView ivModerator;
+        private View ivFloor;
+        private View ivModerator;
         private TextView tvUserTag3;
         private TextView tvUserTag4;
         private TextView dateView;
@@ -614,7 +714,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             layout = (RelativeLayout) view.findViewById(R.id.layout);
             layoutMain = (RelativeLayout) view.findViewById(R.id.layout_main);
             nameView = (TextView) view.findViewById(R.id.nameView);
-            ivModerator = (ImageView) view.findViewById(R.id.iv_moderator);
+            ivModerator = view.findViewById(R.id.iv_moderator);
+            ivFloor = view.findViewById(R.id.iv_tag_floor);
             tvUserTag3 = (TextView) view.findViewById(R.id.tv_user_tag3);
             tvUserTag4 = (TextView) view.findViewById(R.id.tv_user_tag4);
             dateView = (TextView) view.findViewById(R.id.dateView);
@@ -646,12 +747,22 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private TextView tvTag2;
         private TextView tvTag3;
 
+        private TextView tagTitleView;
+
+        private View hostInfoPanel;
+        private RoundedImageView hostInfoHeaderView;
+        private TextView hostInfoNameView;
+        private View hostInfoModerator;
+        private TextView hostInfoTag1;
+        private TextView hostInfoTag2;
+        private TextView hostInfoTag3;
+        private TextView hostInfoDescView;
+        private TextView hostInfoDataView;
+
+
         private LSClubTopicHeadLike like;
 
         private Button btn_add;
-
-
-
 
         public ViewHolderEquip(View view) {
             equiPanel = (RelativeLayout) view.findViewById(R.id.equiPanel);
@@ -671,6 +782,18 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
             btn_add = (Button) view.findViewById(R.id.btn_add);
 
+
+            tagTitleView = (TextView) view.findViewById(R.id.tagTitleView);
+
+            hostInfoPanel = view.findViewById(R.id.hostInfoPanel);
+            hostInfoHeaderView = (RoundedImageView) view.findViewById(R.id.hostInfoHeaderView);
+            hostInfoNameView = (TextView) view.findViewById(R.id.hostInfoNameView);
+            hostInfoModerator = view.findViewById(R.id.hostInfoModerator);
+            hostInfoTag1 = (TextView) view.findViewById(R.id.hostInfoTag1);
+            hostInfoTag2 = (TextView) view.findViewById(R.id.hostInfoTag2);
+            hostInfoTag3 = (TextView) view.findViewById(R.id.hostInfoTag3);
+            hostInfoDescView = (TextView) view.findViewById(R.id.hostInfoDescView);
+            hostInfoDataView = (TextView) view.findViewById(R.id.hostInfoDataView);
         }
     }
 
@@ -704,31 +827,41 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private RoundedImageView roundedImageView1;
         private TextView nameView;
         private ImageView vipStar;
-        private Button btnAttention;
-        private ImageView ivTagFloor;
-        private ImageView ivModerator;
+        private View ivTagFloor;
+        private View ivModerator;
         private TextView tvUserTag3;
         private TextView tvUserTag4;
         private TextView titleView;
         private TextView dateView;
-        private TextView lookNum;
         private View layout_club_name;
         private TextView tv_club_name;
+
+        private View destinationPanel;
+        private TextView destinationName;
+
+        private View specialPanel;
+        private TextView specialTitle;
+
+
 
         public ViewHolderTitle(View view) {
             roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
             nameView = (TextView) view.findViewById(R.id.nameView);
             vipStar = (ImageView) view.findViewById(R.id.vipStar);
-            btnAttention = (Button) view.findViewById(R.id.btn_attention);
-            ivTagFloor = (ImageView) view.findViewById(R.id.iv_tag_floor);
-            ivModerator = (ImageView) view.findViewById(R.id.iv_moderator);
+            ivTagFloor =  view.findViewById(R.id.iv_tag_floor);
+            ivModerator = view.findViewById(R.id.iv_moderator);
             tvUserTag3 = (TextView) view.findViewById(R.id.tv_user_tag3);
             tvUserTag4 = (TextView) view.findViewById(R.id.tv_user_tag4);
             titleView = (TextView) view.findViewById(R.id.titleView);
             dateView = (TextView) view.findViewById(R.id.dateView);
-            lookNum = (TextView) view.findViewById(R.id.lookNum);
             layout_club_name = view.findViewById(R.id.layout_club_name);
             tv_club_name = (TextView) view.findViewById(R.id.tv_club_name);
+
+            destinationPanel = view.findViewById(R.id.destinationPanel);
+            destinationName = (TextView) view.findViewById(R.id.destinationName);
+
+            specialPanel = view.findViewById(R.id.specialPanel);
+            specialTitle = (TextView) view.findViewById(R.id.specialTitle);
         }
     }
 
