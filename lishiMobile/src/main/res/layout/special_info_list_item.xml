@@ -36,7 +36,7 @@
 
 
     <com.lis99.mobile.club.widget.RoundedImageView
-        android:padding="2dp"
+        android:padding="1dp"
         android:layout_centerVertical="true"
         android:id="@+id/roundedImageView1"
         android:layout_width="40dp"
@@ -45,7 +45,7 @@
         android:src="@drawable/ls_nologin_header_icon"
         android:scaleType="fitXY"
         app:corner_radius="50dp"
-        app:border_color="#e8e8e8"
+        app:border_color="#ffffff"
         app:border_width="1px"
         android:background="@drawable/special_info_head_bg"
         android:layout_marginTop="-20dp"
@@ -54,7 +54,7 @@
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:textColor="@color/color_nine"
               android:textSize="@dimen/text_small"
-              android:padding="10dp"
+              android:padding="8dp"
               android:id="@+id/tv_nikeName"
               android:text="@string/temp_string"
     />
@@ -79,6 +79,7 @@
               android:ellipsize="end"
               android:maxLines="2"
               android:padding="10dp"
+              android:lineSpacingExtra="3dp"
     />
 
     <LinearLayout android:layout_width="match_parent"

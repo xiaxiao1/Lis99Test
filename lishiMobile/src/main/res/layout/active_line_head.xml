@@ -4,84 +4,16 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/list_line"
-    />
-
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/viewBanner"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        />
+    />
 
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/list_line"
-        />
-
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:padding="20dp"
-              android:textColor="@color/text_color_black"
-              android:textSize="@dimen/text_large"
-              android:text="@string/temp_string_long"
-              android:maxLines="1"
-              android:ellipsize="end"
     />
-
-
-    <com.lis99.mobile.view.MyListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:id="@+id/s_list"
-        android:dividerHeight="0px"
-        android:divider="@null"
-    />
-
-
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:drawablePadding="6dp"
-              android:drawableLeft="@drawable/active_new_main_head_supper_icon"
-              android:padding="20dp"
-              android:textColor="@color/text_color_black"
-              android:textSize="@dimen/text_large"
-              android:text="超级领队"
-              android:maxLines="1"
-              android:ellipsize="end"
-    />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="135dp"
-        android:scrollbars="none"
-        android:id="@+id/recyclerView"
-        android:layout_gravity="center_vertical"
-        android:overScrollMode="never"
-    />
-
-    <include
-        layout="@layout/list_line"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:drawablePadding="6dp"
-              android:layout_gravity="center"
-              android:drawableLeft="@drawable/active_new_main_native_icon"
-              android:padding="20dp"
-              android:textColor="@color/text_color_black"
-              android:textSize="@dimen/text_large"
-              android:text="本地活动"
-              android:maxLines="1"
-              android:ellipsize="end"
-    />
-
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.lis99.mobile.util;
 
 import com.lis99.mobile.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,8 +14,10 @@ import java.util.HashMap;
 public class NativeEntityUtil {
 
     private static NativeEntityUtil instance;
-
+//  达人标签
     private HashMap<String, Integer> communityStarTags;
+
+    private ArrayList<HashMap<String, String>> activeBanner;
 
     public static NativeEntityUtil getInstance ()
     {
@@ -43,6 +46,18 @@ public class NativeEntityUtil {
         return communityStarTags;
     }
 
+
+    public ArrayList<HashMap<String, String>> getActiveBanner ()
+    {
+        if ( activeBanner != null ) return activeBanner;
+        activeBanner = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+
+
+
+
+        return null;
+    }
 
 
 }

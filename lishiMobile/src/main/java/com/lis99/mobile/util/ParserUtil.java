@@ -116,14 +116,12 @@ public class ParserUtil {
 		}
 		catch ( JsonSyntaxException e )
 		{
-			Common.log("parser error ="+e.getMessage());
+			Common.log("parser error ="+e.getMessage()+"\n"+result);
 			return null;
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			Common.log("parser error ="+e.toString());
-//			Common.log(result);
-			Common.toast(result);
+			Common.log("parser error1 ="+e.getMessage()+"\n"+result);
 			e.printStackTrace();
 			return null;
 		}

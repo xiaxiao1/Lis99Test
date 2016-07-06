@@ -2,10 +2,14 @@ package com.lis99.mobile.club.widget.ioscitychoose;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.lis99.mobile.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,67 +17,94 @@ import java.util.List;
  */
 public class GridPageAdapter extends PagerAdapter {
 
-    private List<GridView> gList;
-    private Context mContext;
+    private List<View> banners;
+    private GridPageAdapterListener mListener;
 
-    public GridPageAdapter(List<GridView> gList, Context mContext) {
-        this.gList = gList;
-        this.mContext = mContext;
+    public static interface GridPageClickListener{
+        public void onClick(int index);
     }
 
-    /**
-     * Return the number of views available.
-     */
+    private GridPageClickListener gridPageClickListener;
+
+
+
+    public GridPageClickListener getImagePageClickListener() {
+        return gridPageClickListener;
+    }
+
+    public void setGridPageClickListener(
+            GridPageClickListener imagePageClickListener) {
+        this.gridPageClickListener = imagePageClickListener;
+    }
+
+    public GridPageAdapter (Context context, int pageCount) {
+        banners = new ArrayList<View>(pageCount);
+        initBanners(context, pageCount);
+    }
+
+    public void addGridPageAdapterListener(
+            GridPageAdapterListener imagePageAdapterListener) {
+        mListener = imagePageAdapterListener;
+    }
+
+    private void initBanners(Context context, int pageCount) {
+        pageCount = pageCount + 2;
+        for (int index = 0; index < pageCount; index++) {
+//			ImageView imageView = new ImageView(context);
+//			imageView.setScaleType(ScaleType.FIT_XY);
+            View v = View.inflate(context, R.layout.grid_in_active_banner, null);
+            banners.add(v);
+        }
+    }
+
     @Override
     public int getCount() {
-        return gList.size();
+        return banners.size();
     }
 
-    /**
-     * Determines whether a page View is associated with a specific key object
-     * as returned by {@link #instantiateItem(ViewGroup, int)}. This method is
-     * required for a PagerAdapter to function properly.
-     *
-     * @param view   Page View to check for association with <code>object</code>
-     * @param object Object to check for association with <code>view</code>
-     * @return true if <code>view</code> is associated with the key object <code>object</code>
-     */
     @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;
+    public boolean isViewFromObject(View arg0, Object arg1) {
+        return arg0 == arg1;
     }
 
-    /**
-     * Remove a page for the given position.  The adapter is responsible
-     * for removing the view from its container, although it only must ensure
-     * this is done by the time it returns from {@link #finishUpdate(ViewGroup)}.
-     *
-     * @param container The containing View from which the page will be removed.
-     * @param position  The page position to be removed.
-     * @param object    The same object that was returned by
-     *                  {@link #instantiateItem(View, int)}.
-     */
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        super.destroyItem(container, position, object);
-        container.removeView(gList.get(position));
+        container.removeView((View) object);
     }
 
-    /**
-     * Create the page for the given position.  The adapter is responsible
-     * for adding the view to the container given here, although it only
-     * must ensure this is done by the time it returns from
-     * {@link #finishUpdate(ViewGroup)}.
-     *
-     * @param container The containing View in which the page will be shown.
-     * @param position  The page position to be instantiated.
-     * @return Returns an Object representing the new page.  This does not
-     * need to be a View, but can be some other container of the page.
-     */
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        super.instantiateItem(container, position);
-        container.addView(gList.get(position));
-        return gList.get(position);
+    public Object instantiateItem(View container,int position) {
+        View banner = banners.get(position);
+
+        GridView grid = (GridView) banner.findViewById(R.id.grid);
+
+        if (mListener != null) {
+            int index = position;
+            if (position == 0) {
+                mListener.dispalyImage(grid, getCount() - 2 - 1);
+                index = getCount() - 2 - 1;
+            } else if (position == getCount() - 1) {
+                mListener.dispalyImage(grid, 0);
+                index = 0;
+            } else {
+                mListener.dispalyImage(grid, position - 1);
+                index = position - 1;
+            }
+            final int realIndex = index;
+            banner.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (gridPageClickListener != null) {
+                        gridPageClickListener.onClick(realIndex);
+                    }
+                }
+            });
+        }
+        ((ViewPager) container).addView(banner);
+        return banner;
+    }
+
+    public interface GridPageAdapterListener {
+        void dispalyImage(GridView gridView, int position);
     }
 }

@@ -176,7 +176,6 @@ public class FragmentChoicenessList extends Fragment implements
 
     private void getList() {
 
-        if (bannerAdapter == null) {
             String url = C.COMMUNITY_AD_MAIN;
 
             HashMap<String, Object> map = new HashMap<String, Object>();
@@ -290,14 +289,9 @@ public class FragmentChoicenessList extends Fragment implements
 
                 }
             });
-        }
 
 //        getInfo();
 
-//        ImagePageAdapter adapter = new ImagePageAdapter(getActivity(), model.banners.size());
-//        adapter.addImagePageAdapterListener(LSClubFragment.this);
-//        adapter.setImagePageClickListener(LSClubFragment.this);
-//        bannerView.setBannerAdapter(adapter);
     }
 
 //    private void getInfo() {
@@ -416,16 +410,16 @@ public class FragmentChoicenessList extends Fragment implements
 //        page = new Page();
 //        adapter = null;
 //        list.setAdapter(null);
-
-        list.setAdapter(null);
-        hotList.setAdapter(null);
-        sList.setAdapter(null);
 //        bannerView.setBannerAdapter(null);
 
+
+//        list.setAdapter(null);
+//        hotList.setAdapter(null);
+//        sList.setAdapter(null);
 //        bannerAdapter = null;
-        communityStarAdapter = null;
-        hotTalkAdapter = null;
-        specialAdapter = null;
+//        communityStarAdapter = null;
+//        hotTalkAdapter = null;
+//        specialAdapter = null;
 
 
     }
@@ -479,12 +473,14 @@ public class FragmentChoicenessList extends Fragment implements
 
         ChoicenessBannerModel.AdlistEntity item = bannerModel.adlist.get(index);
 
+        int id = Common.string2int(item.id);
+
         switch (item.type) {
 //            话题
             case 0:
             case 1:
                 intent = new Intent(getActivity(), LSClubTopicActivity.class);
-                intent.putExtra("topicID", item.id);
+                intent.putExtra("topicID", id);
                 startActivity(intent);
                 break;
 //            线下贴
@@ -492,20 +488,19 @@ public class FragmentChoicenessList extends Fragment implements
 //                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
 //                intent.putExtra("topicID", item.id);
 //                startActivity(intent);
-                int id = Common.string2int(item.id);
                 Common.goTopic(getActivity(), 4, id);
 
                 break;
 //            新版话题帖
             case 6:
                 intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
-                intent.putExtra("TOPICID", ""+item.id);
+                intent.putExtra("TOPICID", ""+id);
                 startActivity(intent);
                 break;
 //            线上贴
             case 2:
                 intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
-                intent.putExtra("topicID", item.id);
+                intent.putExtra("topicID", id);
                 startActivity(intent);
                 break;
 //            URL
@@ -522,7 +517,7 @@ public class FragmentChoicenessList extends Fragment implements
 //            俱乐部
             case 4:
                 intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", Common.string2int(item.id));
+                intent.putExtra("clubID", id);
                 startActivity(intent);
 
                 break;

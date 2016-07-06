@@ -7,18 +7,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.LSClubDetailActivity;
-import com.lis99.mobile.club.LSClubTopicActivity;
-import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
-import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.widget.BannerView;
-import com.lis99.mobile.club.widget.ImagePageAdapter;
+import com.lis99.mobile.club.widget.ioscitychoose.GridActiveAdapter;
+import com.lis99.mobile.club.widget.ioscitychoose.GridPageAdapter;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
@@ -30,15 +27,12 @@ import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
-import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.ScrollTopUtil;
-import com.lis99.mobile.webview.MyActivityWebView;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +40,10 @@ import java.util.List;
 /**
  * Created by yy on 16/1/14.
  */
-public class LSActiveLineNewFragment extends LSFragment implements
-        PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener, View.OnClickListener,
-        LSSelectAdapter.OnSelectItemClickListener, ImagePageAdapter.ImagePageAdapterListener, ImagePageAdapter.ImagePageClickListener, ScrollTopUtil.ToTop {
+public class LSActiveLineNewFragment extends LSFragment implements View.OnClickListener,
+        GridPageAdapter.GridPageAdapterListener, GridPageAdapter.GridPageClickListener,
+        PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener,
+        LSSelectAdapter.OnSelectItemClickListener, ScrollTopUtil.ToTop {
 
     private TextView tvMassage;
     private TextView tvLocation;
@@ -56,7 +51,7 @@ public class LSActiveLineNewFragment extends LSFragment implements
     private PullToRefreshView pull_refresh_view;
 
     private BannerView viewBanner;
-//    private ImagePageAdapter bannerAdapter;
+    private GridPageAdapter gadapter;
 
     private LocationUtil location;
 
@@ -108,7 +103,7 @@ public class LSActiveLineNewFragment extends LSFragment implements
         tvMassage.setVisibility(View.GONE);
 
 
-        head = View.inflate(getActivity(), R.layout.active_line_head, null);
+        head = View.inflate(getActivity(), R.layout.active_line_new_head, null);
 
         viewBanner = (BannerView) head.findViewById(R.id.viewBanner);
 
@@ -230,88 +225,92 @@ public class LSActiveLineNewFragment extends LSFragment implements
         MyRequestManager.getInstance().requestGet(url, model, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                model = (ActiveLineNewModel) mTask.getResultModel();
 
-                if ( model == null ) return;
-//              没有这个省的数据，弹出提示
-                if ( model.getDefault_data() == 1 )
-                {
-                    showNoCityDialog();
-                }
+                gadapter = new GridPageAdapter(getActivity(), 1);
+                viewBanner.setBannerAdapter(gadapter);
 
-                page.nextPage();
-
-                cityId = model.city_id;
-                cityName = model.city_name;
-
-                locationCityId = ""+cityId;
-                locationCityName = model.city_name;
-
-//                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+//                model = (ActiveLineNewModel) mTask.getResultModel();
 //
-//                if (TextUtils.isEmpty(locationCityId))
+//                if ( model == null ) return;
+////              没有这个省的数据，弹出提示
+//                if ( model.getDefault_data() == 1 )
 //                {
-//                    locationCityId = ""+cityId;
-//                    locationCityName = name[0];
+//                    showNoCityDialog();
 //                }
-
-                tvLocation.setText(model.city_name);
-//                position = Common.string2int(name[1]);
-
-                for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
-                {
-                    l.add(item);
-                }
-
-                if ( adapter == null ) {
-                    page.setPageSize(model.getTotalpage());
-                    // 列表不是空， 横滑列表不是空才添加
-                    if (l.size() != 0 && model.getAreaweblist() != null && model.getAreaweblist().size() != 0)
-                    {
-                        if ( l.size() >=3 )
-                            l.add(2, model.getAreaweblist());
-                        else
-                            l.add(model.getAreaweblist());
-                    }
-//                    最后一页, 查看全部活动
-//                    if ( page.isLastPage() )
+//
+//                page.nextPage();
+//
+//                cityId = model.city_id;
+//                cityName = model.city_name;
+//
+//                locationCityId = ""+cityId;
+//                locationCityName = model.city_name;
+//
+////                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+////
+////                if (TextUtils.isEmpty(locationCityId))
+////                {
+////                    locationCityId = ""+cityId;
+////                    locationCityName = name[0];
+////                }
+//
+//                tvLocation.setText(model.city_name);
+////                position = Common.string2int(name[1]);
+//
+//                for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
+//                {
+//                    l.add(item);
+//                }
+//
+//                if ( adapter == null ) {
+//                    page.setPageSize(model.getTotalpage());
+//                    // 列表不是空， 横滑列表不是空才添加
+//                    if (l.size() != 0 && model.getAreaweblist() != null && model.getAreaweblist().size() != 0)
 //                    {
-//                        l.add("last");
+//                        if ( l.size() >=3 )
+//                            l.add(2, model.getAreaweblist());
+//                        else
+//                            l.add(model.getAreaweblist());
 //                    }
-
-                    adapter = new LSActiveLineAdapter(getActivity(), l);
-                    list.setAdapter(adapter);
-
-                    if ( viewBanner.getVisibility() == View.VISIBLE && model.adlist != null && model.adlist.size() != 0 )
-                    {
-                        int num = model.adlist.size() - 1;
-                        for ( int i = num; i >= 0; i-- )
-                        {
-                            ActiveLineNewModel.Adlist item = model.adlist.get(i);
-                            if ( "1".equals(item.platform))
-                            {
-                                model.adlist.remove(i);
-                                continue;
-                            }
-                        }
-//                        bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
-//                        bannerAdapter.addImagePageAdapterListener(LSActiveLineNewFragment.this);
-//                        bannerAdapter.setImagePageClickListener(LSActiveLineNewFragment.this);
-//                        viewBanner.setBannerAdapter(bannerAdapter);
-                    }
-
-
-                }
-                else
-                {
-                    //                    最后一页
-//                    if ( page.isLastPage() )
+////                    最后一页, 查看全部活动
+////                    if ( page.isLastPage() )
+////                    {
+////                        l.add("last");
+////                    }
+//
+//                    adapter = new LSActiveLineAdapter(getActivity(), l);
+//                    list.setAdapter(adapter);
+//
+//                    if ( viewBanner.getVisibility() == View.VISIBLE && model.adlist != null && model.adlist.size() != 0 )
 //                    {
-//                        l.add("last");
+//                        int num = model.adlist.size() - 1;
+//                        for ( int i = num; i >= 0; i-- )
+//                        {
+//                            ActiveLineNewModel.Adlist item = model.adlist.get(i);
+//                            if ( "1".equals(item.platform))
+//                            {
+//                                model.adlist.remove(i);
+//                                continue;
+//                            }
+//                        }
+////                        bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
+////                        bannerAdapter.addImagePageAdapterListener(LSActiveLineNewFragment.this);
+////                        bannerAdapter.setImagePageClickListener(LSActiveLineNewFragment.this);
+////                        viewBanner.setBannerAdapter(bannerAdapter);
 //                    }
-//                    adapter.addList(l);
-                    adapter.setList(l);
-                }
+//
+//
+//                }
+//                else
+//                {
+//                    //                    最后一页
+////                    if ( page.isLastPage() )
+////                    {
+////                        l.add("last");
+////                    }
+////                    adapter.addList(l);
+//                    adapter.setList(l);
+//                }
 
 
 
@@ -364,76 +363,76 @@ public class LSActiveLineNewFragment extends LSFragment implements
         PopWindowUtil.closePop();
     }
 
-    @Override
-    public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
-
-        if ( model == null || model.adlist == null || model.adlist.size() <= position ) return;
-        ActiveLineNewModel.Adlist adlist = model.adlist.get(position);
-        ImageLoader.getInstance().displayImage(adlist.images, banner, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(iv_load, banner));
-
-    }
-
-    @Override
-    public void onClick(int index) {
-
-        if ( model == null || model.adlist == null || model.adlist.size() <= index ) return;
-
-        Intent intent = null;
-
-        ActiveLineNewModel.Adlist item = model.adlist.get(index);
-
-        switch (item.type) {
-//            话题
-//            线下贴
-            case 0:
-            case 1:
-                intent = new Intent(getActivity(), LSClubTopicActivity.class);
-                intent.putExtra("topicID", Common.string2int(item.url));
-                startActivity(intent);
-                break;
-//            线上贴
-            case 2:
-                intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
-                intent.putExtra("topicID", Common.string2int(item.url));
-                startActivity(intent);
-                break;
-//            URL
-            case 3:
-                intent = new Intent(getActivity(), MyActivityWebView.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("URL", item.url);
-                bundle.putString("TITLE", item.title);
-                bundle.putString("IMAGE_URL", item.images);
-                bundle.putInt("TOPIC_ID", 0);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                break;
-//            俱乐部
-            case 4:
-                intent = new Intent(getActivity(), LSClubDetailActivity.class);
-                intent.putExtra("clubID", Common.string2int(item.url));
-                startActivity(intent);
-
-                break;
-//            新版活动帖
-            case 5:
-//                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+//    @Override
+//    public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
+//
+//        if ( model == null || model.adlist == null || model.adlist.size() <= position ) return;
+//        ActiveLineNewModel.Adlist adlist = model.adlist.get(position);
+//        ImageLoader.getInstance().displayImage(adlist.images, banner, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(iv_load, banner));
+//
+//    }
+//
+//    @Override
+//    public void onClick(int index) {
+//
+//        if ( model == null || model.adlist == null || model.adlist.size() <= index ) return;
+//
+//        Intent intent = null;
+//
+//        ActiveLineNewModel.Adlist item = model.adlist.get(index);
+//
+//        switch (item.type) {
+////            话题
+////            线下贴
+//            case 0:
+//            case 1:
+//                intent = new Intent(getActivity(), LSClubTopicActivity.class);
 //                intent.putExtra("topicID", Common.string2int(item.url));
 //                startActivity(intent);
-
-                Common.goTopic(getActivity(), 4, Common.string2int(item.url));
-
-                break;
-//            新版话题帖
-            case 6:
-                intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
-                intent.putExtra("TOPICID", item.url);
-                startActivity(intent);
-                break;
-
-        }
-
-    }
+//                break;
+////            线上贴
+//            case 2:
+//                intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
+//                intent.putExtra("topicID", Common.string2int(item.url));
+//                startActivity(intent);
+//                break;
+////            URL
+//            case 3:
+//                intent = new Intent(getActivity(), MyActivityWebView.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("URL", item.url);
+//                bundle.putString("TITLE", item.title);
+//                bundle.putString("IMAGE_URL", item.images);
+//                bundle.putInt("TOPIC_ID", 0);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//                break;
+////            俱乐部
+//            case 4:
+//                intent = new Intent(getActivity(), LSClubDetailActivity.class);
+//                intent.putExtra("clubID", Common.string2int(item.url));
+//                startActivity(intent);
+//
+//                break;
+////            新版活动帖
+//            case 5:
+////                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+////                intent.putExtra("topicID", Common.string2int(item.url));
+////                startActivity(intent);
+//
+//                Common.goTopic(getActivity(), 4, Common.string2int(item.url));
+//
+//                break;
+////            新版话题帖
+//            case 6:
+//                intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
+//                intent.putExtra("TOPICID", item.url);
+//                startActivity(intent);
+//                break;
+//
+//        }
+//
+//    }
 
     @Override
     public void onFooterRefresh(PullToRefreshView view) {
@@ -518,5 +517,21 @@ public class LSActiveLineNewFragment extends LSFragment implements
     }
 
 
+    @Override
+    public void dispalyImage(GridView gridView, int position) {
+        GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), null);
+        gridView.setAdapter(gridadapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            }
+        });
+
+    }
+
+    @Override
+    public void onClick(int index) {
+
+    }
 }

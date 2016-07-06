@@ -48,6 +48,7 @@ public class MyRequest{
 		protected void onPostExecute(Object result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			Common.log("ResponceHttpURL="+mTask.getUrl());
 			if ( mTask.isShowDialog())
 			{
 				DialogManager.getInstance().stopWaitting();
@@ -102,7 +103,7 @@ public class MyRequest{
 		protected Object doInBackground(Object... params) {
 			// TODO Auto-generated method stub
 			String result = null;
-			Common.log("HttpURL="+mTask.getUrl());
+			Common.log("RequestHttpURL="+mTask.getUrl());
 			switch ( mTask.getRequestState() )
 			{
 			case MyTask.POST:

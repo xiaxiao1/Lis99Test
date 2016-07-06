@@ -6,7 +6,7 @@
               android:layout_height="wrap_content"
 >
 
-    <LinearLayout android:layout_width="100dp" android:layout_height="135dp"
+    <LinearLayout android:layout_width="80dp" android:layout_height="135dp"
                   android:orientation="vertical"
                   android:gravity="center_horizontal"
     >
@@ -20,8 +20,8 @@
         android:padding="2dp"
         android:layout_centerVertical="true"
         android:id="@+id/roundedImageView1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:src="@drawable/ls_nologin_header_icon"
         android:scaleType="fitXY"
@@ -36,8 +36,8 @@
         android:padding="2dp"
         android:layout_centerVertical="true"
         android:id="@+id/forground"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:src="@drawable/community_forground"
         android:scaleType="fitXY"
@@ -76,7 +76,7 @@
               android:maxEms="5"
               android:text="@string/temp_string"
               android:textColor="@color/white"
-              android:textSize="@dimen/text_small"
+              android:textSize="9sp"
               android:background="@drawable/community_star_tag_bg"
     />
 
