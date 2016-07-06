@@ -11,7 +11,7 @@
 
     <View
         style="@style/fill_wrap"
-        android:layout_height="8dip"
+        android:layout_height="10dip"
         android:background="@color/pull_bg" />
 
     <View

@@ -62,7 +62,6 @@
                 android:text="@string/temp_string"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
                 />
 
             <TextView
@@ -85,12 +84,31 @@
 
     </RelativeLayout>
 
-    <include
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/list_line"
-        android:id="@+id/line"
-        android:layout_alignParentBottom="true"
-        />
+
+    <LinearLayout
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:id="@+id/line"
+                  android:layout_alignParentBottom="true"
+    >
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="5dip"
+            android:background="@color/pull_bg" />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

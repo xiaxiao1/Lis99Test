@@ -15,11 +15,11 @@
         <com.lis99.mobile.club.widget.RoundedImageView
             android:layout_centerVertical="true"
             android:id="@+id/roundedImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:src="@drawable/ls_nologin_header_icon"
             android:scaleType="fitXY"
-            app:corner_radius="5dp"
+            app:corner_radius="3dp"
             app:border_color="#e8e8e8"
             app:border_width="1px"/>
 

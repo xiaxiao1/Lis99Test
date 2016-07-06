@@ -79,8 +79,8 @@
     <!--<color name="text_color_blue">#49a34b</color>-->
 	<color name="text_color_blue">#73706e</color>
     <color name="pull_bg">#f7f3ec</color>
-    <color name="color_1px_stroke">#e3dbd0</color>
-    
+    <!--<color name="color_1px_stroke">#e3dbd0</color>-->
+	<color name="color_1px_stroke">#eee</color>
     
     
     <color name="color_shadow">#6036322a</color>

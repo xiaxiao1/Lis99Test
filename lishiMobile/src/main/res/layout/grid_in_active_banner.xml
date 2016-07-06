@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <com.lis99.mobile.newhome.activeline.LSWrapGridView
+        android:layout_width="match_parent" android:layout_height="200dp"
+                android:scrollbars="none"
+              android:fadingEdge="none"
+              android:overScrollMode="never"
+              android:numColumns="3"
+              android:columnWidth="90dp"
+              android:stretchMode="columnWidth"
+              android:gravity="center"
+              android:id="@+id/grid"
+    >
+
+    </com.lis99.mobile.newhome.activeline.LSWrapGridView>
+
+
+</LinearLayout>

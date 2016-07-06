@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pull_bg"
+    >
+
+
+    <RelativeLayout
+                    android:id="@+id/titlehead"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:background="@drawable/title_bar_bg" >
+
+        <RelativeLayout
+            android:id="@+id/titleLeft"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            >
+
+            <ImageView
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/titleLeftImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/active_line_message"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/titleLeftImage"
+                android:layout_alignTop="@id/titleLeftImage"
+                android:layout_marginTop="-4dp"
+                android:layout_marginRight="-4dp"
+                android:textSize="0sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/icon_reddot"
+                android:id="@+id/tv_massage"
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:drawableLeft="@drawable/active_line_location"
+            android:drawablePadding="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_color_green"
+            android:textSize="16sp"
+            android:text="北京"
+            />
+
+    </RelativeLayout>
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pull_bg"
+        android:orientation="vertical"
+        >
+
+        <ListView
+            style="@style/listViewStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:dividerHeight="0px"
+            android:divider="@null"
+            android:id="@+id/list"
+            ></ListView>
+
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+</LinearLayout>

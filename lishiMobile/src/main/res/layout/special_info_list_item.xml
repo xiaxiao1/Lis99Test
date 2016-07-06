@@ -39,8 +39,8 @@
         android:padding="2dp"
         android:layout_centerVertical="true"
         android:id="@+id/roundedImageView1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:src="@drawable/ls_nologin_header_icon"
         android:scaleType="fitXY"
@@ -48,7 +48,7 @@
         app:border_color="#e8e8e8"
         app:border_width="1px"
         android:background="@drawable/special_info_head_bg"
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="-20dp"
     />
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"

@@ -18,8 +18,8 @@
         android:padding="2dp"
         android:layout_centerVertical="true"
         android:id="@+id/roundedImageView1"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:src="@drawable/ls_nologin_header_icon"
         android:scaleType="fitXY"
@@ -112,15 +112,20 @@
         >
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:layout_marginLeft="6dp"
                       android:textColor="@color/color_nine"
                       android:textSize="@dimen/text_small"
                       android:text="@string/temp_string"
                       android:id="@+id/tv_likeNum"
             />
 
+            <View android:layout_width="2px" android:layout_height="10dp"
+                  android:background="#d4d4d4"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_gravity="center_vertical"
+                  />
+
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:layout_marginLeft="12dp"
                       android:textColor="@color/color_nine"
                       android:textSize="@dimen/text_small"
                       android:text="@string/temp_string"
