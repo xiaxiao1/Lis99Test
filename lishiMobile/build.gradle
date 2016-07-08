@@ -7,7 +7,7 @@ android {
     productFlavors {
         ttest {}
 //        shichang {}
-//        zhuzhan {}
+        zhuzhan {}
 //        tuiguang1 {}
 //        sougou {}
 //        baidu {}

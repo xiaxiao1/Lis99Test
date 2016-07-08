@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ActiveBannerInfoModel;
 import com.lis99.mobile.util.MyBaseAdapter;
 
 import java.util.List;
@@ -32,6 +33,12 @@ public class GridActiveAdapter extends MyBaseAdapter {
 
     private void initializeViews(Object object, ViewHolder holder) {
         //TODO implement
+        ActiveBannerInfoModel item = (ActiveBannerInfoModel) object;
+
+        holder.ivImg.setImageResource(item.resultId);
+        holder.tvName.setText(item.name);
+
+
     }
 
     protected class ViewHolder {

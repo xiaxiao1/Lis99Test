@@ -32,6 +32,14 @@ public class BannerView extends RelativeLayout {
 	private List<View> mIndicater;
 	private boolean mIsBorderAnimation = false;// the border of viewppager has
 												// animation
+	private int[] dot;
+
+//	设置原点
+	public void setDot(int select, int nomal ) {
+		dot = new int[2];
+		dot[0] = select;
+		dot[1] = nomal;
+	}
 
 	public BannerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -120,6 +128,10 @@ public class BannerView extends RelativeLayout {
 		mIndicateLayout = (LinearLayout) rootView
 				.findViewById(R.id.indicateLayout);
 		mHandler = new PollingHandler();
+
+		setDot(R.drawable.club_banner_dot_select, R.drawable.club_banner_dot);
+
+
 	}
 
 	public void setBannerAdapter(PagerAdapter pagerAdapter) {
@@ -145,12 +157,13 @@ public class BannerView extends RelativeLayout {
 			
 			indicateView.setLayoutParams(layoutParams);
 //			indicateView.setBackgroundColor(Color.WHITE);
-			indicateView.setBackgroundResource(R.drawable.club_banner_dot);
+			indicateView.setBackgroundResource(dot[1]);
 			mIndicater.add(indicateView);
 			mIndicateLayout.addView(indicateView);
 		}
 //		mIndicateLayout.getChildAt(0).setBackgroundColor(Color.rgb(0x2a, 0xcb, 0xc3));
-		mIndicateLayout.getChildAt(0).setBackgroundResource(R.drawable.club_banner_dot_select);
+
+		mIndicateLayout.getChildAt(0).setBackgroundResource(dot[0]);
 		mViewPager.setOnPageChangeListener(new BannerChangeListener());
 		mViewPager.setCurrentItem(1); // 设置当前pager为1，即开始时就可以向右活动
 	}
@@ -199,8 +212,8 @@ public class BannerView extends RelativeLayout {
 	private void updateIndicater(int indicaterOldPositon, int indicaterPositon) {
 //		mIndicater.get(indicaterOldPositon).setBackgroundColor(Color.WHITE);
 //		mIndicater.get(indicaterPositon).setBackgroundColor(Color.rgb(0x2a, 0xcb, 0xc3));
-		mIndicater.get(indicaterOldPositon).setBackgroundResource(R.drawable.club_banner_dot);
-		mIndicater.get(indicaterPositon).setBackgroundResource(R.drawable.club_banner_dot_select);
+		mIndicater.get(indicaterOldPositon).setBackgroundResource(dot[1]);
+		mIndicater.get(indicaterPositon).setBackgroundResource(dot[0]);
 	}
 
 	@SuppressLint("HandlerLeak")

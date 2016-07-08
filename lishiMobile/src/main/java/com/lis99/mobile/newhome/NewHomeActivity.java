@@ -55,6 +55,7 @@ import com.lis99.mobile.entry.view.AsyncLoadImageView;
 import com.lis99.mobile.entry.view.SlidingMenuView;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.newhome.activeline.LSActiveLineFragment;
+import com.lis99.mobile.newhome.activeline.LSActiveLineNewFragment;
 import com.lis99.mobile.util.BitmapUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -132,6 +133,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
     private LSClubFragmentNew clubFragmentNew;
     //新线路活动
     private LSActiveLineFragment activeFragment;
+    //新.新线路活动
+    private LSActiveLineNewFragment activeNewFragment;
 
     public static boolean CLOSEAPPLICATION = false;
 
@@ -158,23 +161,18 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 //                        switchContent(equiFragment);
                     break;
                 case LSTab.CLUB:
-//                    if (clubFragment == null) {
-//                        clubFragment = new LSClubFragment();
-//                    }
-//                    switchContent(clubFragment);
-//                    if ( clubFragmentNew == null )
-//                    {
-//                        clubFragmentNew = new LSClubFragmentNew();
-//                    }
-//                    clubFragmentNew.handler();
-//                    switchContent(clubFragmentNew);
-
                     if ( activeFragment == null )
                     {
                         activeFragment = new LSActiveLineFragment();
                     }
                     activeFragment.handler();
                     switchContent(activeFragment);
+//                    if ( activeNewFragment == null )
+//                    {
+//                        activeNewFragment = new LSActiveLineNewFragment();
+//                    }
+//                    activeNewFragment.handler();
+//                    switchContent(activeNewFragment);
 
                     break;
                 case LSTab.CHOICENESS:
@@ -279,7 +277,7 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 //        控制点的是哪个Tab
         if (model == null) {
 //			tab.onTabClick(tab.SELECT);
-			tab.onTabClick(tab.CHOICENESS);
+			tab.onTabClick(tab.CLUB);
 		}
 		else
 		{
@@ -824,7 +822,7 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
     private void sendPush(PushModel model) {
         //打开帖子
         if (model.type == 2) {
-            tab.onTabClick(tab.CHOICENESS);
+            tab.onTabClick(tab.CLUB);
 //            Intent i = new Intent(this, LSClubTopicActivity.class);
 //            i.putExtra("topicID", model.topic_id);
 //            startActivity(i);

@@ -1,6 +1,7 @@
 package com.lis99.mobile.util;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ActiveBannerInfoModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class NativeEntityUtil {
 //  达人标签
     private HashMap<String, Integer> communityStarTags;
 
-    private ArrayList<HashMap<String, String>> activeBanner;
+    private ArrayList<ActiveBannerInfoModel> activeBanner;
 
     public static NativeEntityUtil getInstance ()
     {
@@ -47,16 +48,61 @@ public class NativeEntityUtil {
     }
 
 
-    public ArrayList<HashMap<String, String>> getActiveBanner ()
+    public ArrayList<ActiveBannerInfoModel> getActiveBanner ()
     {
         if ( activeBanner != null ) return activeBanner;
         activeBanner = new ArrayList<>();
-        HashMap<String, String> map = new HashMap<>();
+        ActiveBannerInfoModel item = new ActiveBannerInfoModel();
+
+        item.id = 0;
+        item.name = "目的地";
+        item.resultId = R.drawable.active_new_main_head_supper_icon;
+        activeBanner.add(item);
 
 
+        item = new ActiveBannerInfoModel();
+        item.id = 0;
+        item.name = "附近的活动";
+        item.resultId = R.drawable.active_new_main_native_icon;
+        activeBanner.add(item);
 
+        item = new ActiveBannerInfoModel();
+        item.id = 202;
+        item.name = "徒步";
+        item.resultId = 0;
+        activeBanner.add(item);
 
-        return null;
+        item = new ActiveBannerInfoModel();
+        item.id = 223;
+        item.name = "登山";
+        item.resultId = 0;
+        activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 225;
+        item.name = "深度游";
+        item.resultId = 0;
+        activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 224;
+        item.name = "摄影";
+        item.resultId = 0;
+        activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 227;
+        item.name = "亲子户外";
+        item.resultId = 0;
+        activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 204;
+        item.name = "攀岩";
+        item.resultId = 0;
+        activeBanner.add(item);
+
+        return activeBanner;
     }
 
 

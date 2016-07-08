@@ -11,11 +11,12 @@
                 android:scrollbars="none"
               android:fadingEdge="none"
               android:overScrollMode="never"
-              android:numColumns="3"
-              android:columnWidth="90dp"
+              android:numColumns="4"
+              android:columnWidth="60dp"
               android:stretchMode="columnWidth"
               android:gravity="center"
               android:id="@+id/grid"
+              android:listSelector="#00000000"
     >
 
     </com.lis99.mobile.newhome.activeline.LSWrapGridView>

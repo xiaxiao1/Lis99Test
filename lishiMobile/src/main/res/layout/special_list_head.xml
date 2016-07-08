@@ -20,6 +20,7 @@
             app:corner_radius="0px"
             android:adjustViewBounds="true"
             app:border_width="0px"
+            android:src="@drawable/special_head_nomal"
             />
 
         <com.lis99.mobile.club.widget.RoundedImageView

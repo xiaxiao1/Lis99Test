@@ -48,7 +48,8 @@ public class GridPageAdapter extends PagerAdapter {
     }
 
     private void initBanners(Context context, int pageCount) {
-        pageCount = pageCount + 2;
+        int page = pageCount % 8 == 0 ? pageCount / 8 : pageCount / 8 + 1;
+        pageCount = page + 2;
         for (int index = 0; index < pageCount; index++) {
 //			ImageView imageView = new ImageView(context);
 //			imageView.setScaleType(ScaleType.FIT_XY);

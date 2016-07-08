@@ -2,8 +2,8 @@ package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ActiveBannerInfoModel;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ioscitychoose.GridActiveAdapter;
@@ -23,19 +24,18 @@ import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.newhome.LSSelectAdapter;
 import com.lis99.mobile.newhome.LSSelectContent;
 import com.lis99.mobile.newhome.LSSelectItem;
+import com.lis99.mobile.newhome.activeline.adapter.ActiveMainRecommendAdapter;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
-import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LocationUtil;
-import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.NativeEntityUtil;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.ScrollTopUtil;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yy on 16/1/14.
@@ -65,8 +65,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
     private LSActiveLineAdapter adapter;
 
-    private List<Object> l = new ArrayList<Object>();
-
     private View v;
 
     private View titleLeft;
@@ -74,6 +72,15 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     private int position = 0;
     public static int cityId = -1;
     private String cityName = "北京", locationCityName = "", locationCityId = "";
+
+
+//    Grid信息
+    private ArrayList<ActiveBannerInfoModel> gridList;
+
+    private ListView s_list;
+    private RecyclerView recyclerView;
+    private ActiveMainRecommendAdapter recommendAdapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,60 +113,40 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         head = View.inflate(getActivity(), R.layout.active_line_new_head, null);
 
         viewBanner = (BannerView) head.findViewById(R.id.viewBanner);
+        viewBanner.setDot(R.drawable.active_banner_grid_dot_select, R.drawable.active_banner_grid_nomal_dot);
 
 //        viewBanner.setVisibility(View.GONE);
 
-        viewBanner.mViewPager.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        viewBanner.stopAutoScroll();
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        viewBanner.stopAutoScroll();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        viewBanner.startAutoScroll();
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
-                }
-                return false;
-            }
-        });
+//        viewBanner.mViewPager.setOnTouchListener(new View.OnTouchListener() {
+//
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                v.getParent().requestDisallowInterceptTouchEvent(true);
+//
+//                switch (event.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        viewBanner.stopAutoScroll();
+//                        break;
+//                    case MotionEvent.ACTION_MOVE:
+//                        viewBanner.stopAutoScroll();
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                    case MotionEvent.ACTION_CANCEL:
+//                        viewBanner.startAutoScroll();
+//                        v.getParent().requestDisallowInterceptTouchEvent(false);
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
 
         list.addHeaderView(head);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if ( model == null || model.getActivitylist() == null || model.getActivitylist().size() == 0 || adapter == null )
-                {
-                    return;
-                }
 
-
-                Object o = adapter.getItem(i - 1);
-                if ( o instanceof  ActiveLineNewModel.ActivitylistEntity )
-                {
-                    ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) o;
-
-//                    Intent intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
-////                    activity_id = getIntent().getIntExtra("topicID", 0);
-//                    int num = Common.string2int(item.getId());
-//                    intent.putExtra("topicID", num);
-//                    startActivity(intent);
-
-                    int num = Common.string2int(item.getId());
-
-                    Common.goTopic(getActivity(), 4, num);
-
-                }
             }
         });
 
@@ -197,7 +184,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         page = new Page();
         list.setAdapter(null);
         adapter = null;
-        l = new ArrayList<Object>();
     }
 
 
@@ -205,117 +191,125 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     {
 //        if ( latitude == -1 ) return;
 
-        if ( page.isLastPage())
+        if ( gridList == null )
         {
-            return;
+            gridList = NativeEntityUtil.getInstance().getActiveBanner();
         }
 
-        String url = "";
-        if ( cityId == -1 )
-        {
-             url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?latitude="+latitude+"&longitude="+longitude;
-        }
-        else
-        {
-            url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?city_id="+cityId;
-        }
+        gadapter = new GridPageAdapter(getActivity(), gridList.size());
+        gadapter.setGridPageClickListener(this);
+        gadapter.addGridPageAdapterListener(this);
+        viewBanner.setBannerAdapter(gadapter);
 
-        model = new ActiveLineNewModel();
 
-        MyRequestManager.getInstance().requestGet(url, model, new CallBack() {
-            @Override
-            public void handler(MyTask mTask) {
-
-                gadapter = new GridPageAdapter(getActivity(), 1);
-                viewBanner.setBannerAdapter(gadapter);
-
-//                model = (ActiveLineNewModel) mTask.getResultModel();
+//        if ( page.isLastPage())
+//        {
+//            return;
+//        }
 //
-//                if ( model == null ) return;
-////              没有这个省的数据，弹出提示
-//                if ( model.getDefault_data() == 1 )
-//                {
-//                    showNoCityDialog();
-//                }
+//        String url = "";
+//        if ( cityId == -1 )
+//        {
+//             url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?latitude="+latitude+"&longitude="+longitude;
+//        }
+//        else
+//        {
+//            url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?city_id="+cityId;
+//        }
 //
-//                page.nextPage();
+//        model = new ActiveLineNewModel();
 //
-//                cityId = model.city_id;
-//                cityName = model.city_name;
+//        MyRequestManager.getInstance().requestGet(url, model, new CallBack() {
+//            @Override
+//            public void handler(MyTask mTask) {
 //
-//                locationCityId = ""+cityId;
-//                locationCityName = model.city_name;
+//                gadapter = new GridPageAdapter(getActivity(), 1);
+//                viewBanner.setBannerAdapter(gadapter);
 //
-////                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+////                model = (ActiveLineNewModel) mTask.getResultModel();
 ////
-////                if (TextUtils.isEmpty(locationCityId))
+////                if ( model == null ) return;
+//////              没有这个省的数据，弹出提示
+////                if ( model.getDefault_data() == 1 )
 ////                {
-////                    locationCityId = ""+cityId;
-////                    locationCityName = name[0];
+////                    showNoCityDialog();
 ////                }
-//
-//                tvLocation.setText(model.city_name);
-////                position = Common.string2int(name[1]);
-//
-//                for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
-//                {
-//                    l.add(item);
-//                }
-//
-//                if ( adapter == null ) {
-//                    page.setPageSize(model.getTotalpage());
-//                    // 列表不是空， 横滑列表不是空才添加
-//                    if (l.size() != 0 && model.getAreaweblist() != null && model.getAreaweblist().size() != 0)
-//                    {
-//                        if ( l.size() >=3 )
-//                            l.add(2, model.getAreaweblist());
-//                        else
-//                            l.add(model.getAreaweblist());
-//                    }
-////                    最后一页, 查看全部活动
-////                    if ( page.isLastPage() )
+////
+////                page.nextPage();
+////
+////                cityId = model.city_id;
+////                cityName = model.city_name;
+////
+////                locationCityId = ""+cityId;
+////                locationCityName = model.city_name;
+////
+//////                String[] name = PopWindowUtil.getMainCityNameWithId(""+cityId);
+//////
+//////                if (TextUtils.isEmpty(locationCityId))
+//////                {
+//////                    locationCityId = ""+cityId;
+//////                    locationCityName = name[0];
+//////                }
+////
+////                tvLocation.setText(model.city_name);
+//////                position = Common.string2int(name[1]);
+////
+////                for ( ActiveLineNewModel.ActivitylistEntity item : model.getActivitylist())
+////                {
+////                    l.add(item);
+////                }
+////
+////                if ( adapter == null ) {
+////                    page.setPageSize(model.getTotalpage());
+////                    // 列表不是空， 横滑列表不是空才添加
+////                    if (l.size() != 0 && model.getAreaweblist() != null && model.getAreaweblist().size() != 0)
 ////                    {
-////                        l.add("last");
+////                        if ( l.size() >=3 )
+////                            l.add(2, model.getAreaweblist());
+////                        else
+////                            l.add(model.getAreaweblist());
 ////                    }
-//
-//                    adapter = new LSActiveLineAdapter(getActivity(), l);
-//                    list.setAdapter(adapter);
-//
-//                    if ( viewBanner.getVisibility() == View.VISIBLE && model.adlist != null && model.adlist.size() != 0 )
-//                    {
-//                        int num = model.adlist.size() - 1;
-//                        for ( int i = num; i >= 0; i-- )
-//                        {
-//                            ActiveLineNewModel.Adlist item = model.adlist.get(i);
-//                            if ( "1".equals(item.platform))
-//                            {
-//                                model.adlist.remove(i);
-//                                continue;
-//                            }
-//                        }
-////                        bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
-////                        bannerAdapter.addImagePageAdapterListener(LSActiveLineNewFragment.this);
-////                        bannerAdapter.setImagePageClickListener(LSActiveLineNewFragment.this);
-////                        viewBanner.setBannerAdapter(bannerAdapter);
-//                    }
-//
-//
-//                }
-//                else
-//                {
-//                    //                    最后一页
-////                    if ( page.isLastPage() )
+//////                    最后一页, 查看全部活动
+//////                    if ( page.isLastPage() )
+//////                    {
+//////                        l.add("last");
+//////                    }
+////
+////                    adapter = new LSActiveLineAdapter(getActivity(), l);
+////                    list.setAdapter(adapter);
+////
+////                    if ( viewBanner.getVisibility() == View.VISIBLE && model.adlist != null && model.adlist.size() != 0 )
 ////                    {
-////                        l.add("last");
+////                        int num = model.adlist.size() - 1;
+////                        for ( int i = num; i >= 0; i-- )
+////                        {
+////                            ActiveLineNewModel.Adlist item = model.adlist.get(i);
+////                            if ( "1".equals(item.platform))
+////                            {
+////                                model.adlist.remove(i);
+////                                continue;
+////                            }
+////                        }
+//////                        bannerAdapter = new ImagePageAdapter(getActivity(), model.adlist.size());
+//////                        bannerAdapter.addImagePageAdapterListener(LSActiveLineNewFragment.this);
+//////                        bannerAdapter.setImagePageClickListener(LSActiveLineNewFragment.this);
+//////                        viewBanner.setBannerAdapter(bannerAdapter);
 ////                    }
-////                    adapter.addList(l);
-//                    adapter.setList(l);
-//                }
-
-
-
-            }
-        });
+////
+////
+////                }
+////                else
+////                {
+////                    //                    最后一页
+//////                    if ( page.isLastPage() )
+//////                    {
+//////                        l.add("last");
+//////                    }
+//////                    adapter.addList(l);
+////                    adapter.setList(l);
+////                }
+//            }
+//        });
 
 
 
@@ -475,17 +469,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                 location.setGlocation(null);
 
-//                if ( latitude == 0 )
-//                {
-//                    return;
-//                }
-//                getClubHomePageList(latitude, longitude);
-
                 Latitude = latitude;
                 Longitude = longitude;
-
-//                LSActiveLineFragment.this.cityName = cityName;
-//                tvLocation.setText(cityName);
 
                 getList(latitude, longitude);
 
@@ -519,12 +504,27 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
     @Override
     public void dispalyImage(GridView gridView, int position) {
-        GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), null);
+
+        if ( gridList == null )
+        {
+            gridList = NativeEntityUtil.getInstance().getActiveBanner();
+        }
+
+        ArrayList<ActiveBannerInfoModel> item = new ArrayList<>();
+        int star = position * 8;
+
+        for ( int i = star; i < gridList.size() && i < star + 8; i++ )
+        {
+            item.add(gridList.get(i));
+        }
+
+        final GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), item);
         gridView.setAdapter(gridadapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
+                Common.toast(""+item.id);
             }
         });
 
