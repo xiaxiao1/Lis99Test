@@ -1,12 +1,15 @@
 package com.lis99.mobile.newhome.activeline.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ActiveMainHeadModel;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyBaseAdapter;
 
 import java.util.List;
@@ -34,11 +37,19 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
     private void initializeViews(Object object, ViewHolder holder) {
         //TODO implement
 
-        ActiveMainRecommendRecycler recycler = new ActiveMainRecommendRecycler(null, mContext);
+        final ActiveMainHeadModel.HotlistEntity item = (ActiveMainHeadModel.HotlistEntity) object;
+        if ( item == null ) return;
+        holder.title.setText(item.title);
+
+        if ( item.actlist == null ) return;
+
+        ActiveMainRecommendRecycler recycler = new ActiveMainRecommendRecycler(item.actlist, mContext);
         holder.recyclerView.setAdapter(recycler);
         recycler.setOnItemClickLitener(new MyBaseRecycler.OnItemClickLitener() {
             @Override
             public void onItemClick(int position) {
+                int topicId = item.actlist.get(position).topicId;
+                Common.goTopic(mContext, 4, topicId);
 
             }
         });
@@ -52,6 +63,8 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
         public ViewHolder(View view) {
             title = (TextView) view.findViewById(R.id.title);
             recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(
+                    mContext, LinearLayoutManager.HORIZONTAL, false));
         }
     }
 }

@@ -21,13 +21,14 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="260dp"
         android:scrollbars="none"
         android:id="@+id/recyclerView"
         android:layout_gravity="center_vertical"
         android:layoutDirection="ltr"
         android:layout_marginBottom="18dp"
         android:overScrollMode="never"
+        android:paddingLeft="10dp"
     />
 
 

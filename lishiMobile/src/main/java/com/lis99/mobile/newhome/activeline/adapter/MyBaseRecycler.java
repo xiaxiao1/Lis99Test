@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class MyBaseRecycler<M extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<M> {
 
-    private List<?> list;
+    protected List<?> list;
     protected Context mContext;
 
     public interface OnItemClickLitener
@@ -45,6 +45,11 @@ public abstract class MyBaseRecycler<M extends RecyclerView.ViewHolder> extends 
                 mOnItemClickLitener.onItemClick(i);
             }
         });
+    }
+
+    public Object getItem ( int i )
+    {
+        return ( list == null || list.size() == 0 ) ? null : list.get(i);
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.destination.model.DestinationTwoModel;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.ClubTopicInfoLike;
 import com.lis99.mobile.club.model.EquipAppraiseModel;
@@ -653,6 +654,24 @@ public class LSRequestManager
 
 		MyRequestManager.getInstance().requestPost(C.ACTIVE_SERIES_APPLY_REFUSE, map, model, callBack);
 	}
+
+//	目的地2级列表
+	public void getDestinationTwoList (int id, final CallBack callBack )
+	{
+		String url = C.DESTINATION_LIST_TWO;
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+
+		DestinationTwoModel model = new DestinationTwoModel();
+		MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				if ( callBack != null )
+					callBack.handler(mTask);
+			}
+		});
+	}
+
 
 
 

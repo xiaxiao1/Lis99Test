@@ -543,8 +543,12 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String COMMUNITY_SPECIAL_INFO_MAIN = DOMAINS + "/columns/detail/";
 //	社区明星详情		https://apis.lis99.com/main/startlist/0
 	public static final String COMMUNITY_STAR_INFO_LIST = DOMAINS + "/main/startlist/";
-
-
+//	活动首页头部信息 	https://apis.lis99.com/activity/fpage
+	public static final String ACTIVE_NEW_MAIN_HEAD = DOMAINS + "/activity/fpage";
+	//目的地1级列表 	https://apis.lis99.com/destination/oneLevelDestination
+	public static final String DESTINATION_LIST_ONE = DOMAINS + "/destination/oneLevelDestination";
+//	目的地2级列表 	https://apis.lis99.com/destination/secondLevelDestination
+	public static final String DESTINATION_LIST_TWO = DOMAINS + "/destination/secondLevelDestination";
 
 }
 

@@ -22,21 +22,9 @@
         layout="@layout/list_line"
     />
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:padding="20dp"
-              android:textColor="@color/text_color_black"
-              android:textSize="@dimen/text_large"
-              android:text="@string/temp_string_long"
-              android:maxLines="1"
-              android:ellipsize="end"
-    />
-
-
     <com.lis99.mobile.view.MyListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:id="@+id/s_list"
         android:dividerHeight="0px"
         android:divider="@null"
@@ -57,11 +45,12 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="300dp"
         android:scrollbars="none"
-        android:id="@+id/recyclerView"
+        android:id="@+id/recycler_supper_leader"
         android:layout_gravity="center_vertical"
         android:overScrollMode="never"
+        android:paddingLeft="10dp"
     />
 
     <include

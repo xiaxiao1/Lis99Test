@@ -18,5 +18,12 @@ public class ActivityUtil {
         intent.putExtra("clubID", clubId);
         LSBaseActivity.activity.startActivity(intent);
     }
+//  跳转目的地详情
+    public static void goDestinationInfo (  int desId )
+    {
+        Intent intent = new Intent(LSBaseActivity.activity, ApplyManagerSeries.class);
+        intent.putExtra("topicID", desId);
+        LSBaseActivity.activity.startActivity(intent);
+    }
 
 }

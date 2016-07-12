@@ -161,18 +161,18 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 //                        switchContent(equiFragment);
                     break;
                 case LSTab.CLUB:
-                    if ( activeFragment == null )
-                    {
-                        activeFragment = new LSActiveLineFragment();
-                    }
-                    activeFragment.handler();
-                    switchContent(activeFragment);
-//                    if ( activeNewFragment == null )
+//                    if ( activeFragment == null )
 //                    {
-//                        activeNewFragment = new LSActiveLineNewFragment();
+//                        activeFragment = new LSActiveLineFragment();
 //                    }
-//                    activeNewFragment.handler();
-//                    switchContent(activeNewFragment);
+//                    activeFragment.handler();
+//                    switchContent(activeFragment);
+                    if ( activeNewFragment == null )
+                    {
+                        activeNewFragment = new LSActiveLineNewFragment();
+                    }
+                    activeNewFragment.handler();
+                    switchContent(activeNewFragment);
 
                     break;
                 case LSTab.CHOICENESS:

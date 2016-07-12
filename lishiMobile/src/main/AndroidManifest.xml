@@ -8,7 +8,7 @@
 
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
 <!--乐视-->
@@ -1326,6 +1326,10 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
         <!--社区明星-->
         <activity android:name="com.lis99.mobile.choiceness.CommunityStarActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <!--目的地列表-->
+        <activity android:name="com.lis99.mobile.club.destination.DestinationMainActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
