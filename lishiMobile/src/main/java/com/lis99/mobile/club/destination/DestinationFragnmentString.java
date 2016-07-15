@@ -43,6 +43,7 @@ public class DestinationFragnmentString extends LSFragment {
     public void setId (String id )
     {
         this.id = id;
+        cleanList();
         getList();
     }
 
@@ -67,7 +68,8 @@ public class DestinationFragnmentString extends LSFragment {
 
     private void cleanList ()
     {
-
+        if ( exList != null ) exList.setAdapter(null);
+        if ( adapter != null ) adapter = null;
     }
 
 

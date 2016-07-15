@@ -4,14 +4,19 @@ import android.content.Context;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.filter.model.NearbyFilterModel;
 import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
 import com.lis99.mobile.club.newtopic.series.model.ManagerSeriesLineListModel;
+import com.lis99.mobile.view.MyGridView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -225,8 +230,226 @@ public class PopListAdapter {
 
     }
 
+//  附近活动排序
+    public static class NearByActiveTime extends MyBaseAdapter {
+
+        private int postion;
+
+        public NearByActiveTime(Context c, List listItem) {
+            super(c, listItem);
+        }
+
+        public void setposition(int postion)
+        {
+            this.postion = postion;
+        }
+
+        public int getPostion()
+        {
+            return postion;
+        }
+
+        @Override
+        public View setView(int i, View view, ViewGroup viewGroup) {
+
+            if (view == null) {
+                view = View.inflate(mContext, R.layout.pop_window_nearby_time_item, null);
+                view.setTag(new ViewHolder(view));
+            }
+            initializeViews(getItem(i), (ViewHolder) view.getTag(),i);
+            return view;
+        }
+
+        private void initializeViews(Object object, ViewHolder holder, int i) {
+            //TODO implement
+            HashMap<String, String> map = (HashMap<String, String>) object;
+            holder.tvAll.setText(map.get("name"));
+            if ( postion == i )
+            {
+                holder.tvAll.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
+            }
+            else
+            {
+                holder.tvAll.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
+            }
 
 
+        }
+
+        protected class ViewHolder {
+            private TextView tvAll;
+
+            public ViewHolder(View view) {
+                tvAll = (TextView) view.findViewById(R.id.tv_all);
+            }
+        }
+    }
+//  附近活动筛选
+    public static class NearbyFilter extends MyBaseAdapter
+    {
+
+        private List<NearbyFilterGrid> adapters;
+
+        public NearbyFilter(Context c, List listItem) {
+            super(c, listItem);
+            adapters = new ArrayList<NearbyFilterGrid>();
+        }
+
+        public HashMap<String, String> getSelect ()
+        {
+            HashMap<String, String> map = new HashMap<>();
+            for ( int i = 0; i < listItem.size(); i++ )
+            {
+                NearbyFilterModel.SievenlistEntity item = (NearbyFilterModel.SievenlistEntity) getItem(i);
+                map.put(""+item.id, adapters.get(i).getSelectId());
+            }
+            return map;
+        }
+
+        public void reSetSelect ()
+        {
+            for ( NearbyFilterGrid grid : adapters )
+            {
+                grid.resetSelect();
+            }
+        }
+
+        @Override
+        public View setView(int i, View view, ViewGroup viewGroup) {
+            if (view == null) {
+                view = View.inflate(mContext,R.layout.nearby_filter_list_item, null);
+                view.setTag(new ViewHolder(view));
+            }
+            initializeViews(getItem(i), (ViewHolder) view.getTag());
+            return view;
+        }
+
+        private void initializeViews(Object object, ViewHolder holder) {
+            //TODO implement
+            NearbyFilterModel.SievenlistEntity item = (NearbyFilterModel.SievenlistEntity) object;
+            if ( item == null ) return;
+            holder.title.setText(item.name);
+            if ( item.lists != null )
+            {
+                final NearbyFilterGrid adapter = new NearbyFilterGrid(mContext, item.lists);
+                holder.grid.setAdapter(adapter);
+                adapters.add(adapter);
+
+                holder.grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        NearbyFilterModel.SievenlistEntity.ListsEntity item = (NearbyFilterModel
+                                .SievenlistEntity.ListsEntity) adapter.getItem(position);
+                        int select = adapter.getSelect();
+                        if ( item == null || select == position ) return;
+
+                        item.isSelect = 1;
+
+                        if ( select != -1 )
+                        {
+                            item = (NearbyFilterModel
+                                    .SievenlistEntity.ListsEntity) adapter.getItem(select);
+                            item.isSelect = 0;
+                        }
+                        adapter.notifyDataSetChanged();
+
+
+                    }
+                });
+
+            }
+
+        }
+
+        protected class ViewHolder {
+            private TextView title;
+            private MyGridView grid;
+
+            public ViewHolder(View view) {
+                title = (TextView) view.findViewById(R.id.title);
+                grid = (MyGridView) view.findViewById(R.id.grid);
+            }
+        }
+    }
+    //  附近活动筛选
+    public static class NearbyFilterGrid extends MyBaseAdapter
+    {
+
+        public NearbyFilterGrid(Context c, List listItem) {
+            super(c, listItem);
+        }
+
+        private int select = -1;
+
+        public int getSelect() {
+            return select;
+        }
+
+        public void setSelect(int select) {
+            this.select = select;
+        }
+//      重置选择
+        public void resetSelect ()
+        {
+
+            if ( select != -1 )
+            {
+                NearbyFilterModel.SievenlistEntity.ListsEntity item = (NearbyFilterModel
+                        .SievenlistEntity.ListsEntity) getItem(select);
+                item.isSelect = 0;
+                notifyDataSetChanged();
+            }
+        }
+//      获取选择的Id
+        public String getSelectId ()
+        {
+            if ( select != -1 )
+            {
+                NearbyFilterModel.SievenlistEntity.ListsEntity item = (NearbyFilterModel
+                        .SievenlistEntity.ListsEntity) getItem(select);
+                return ""+item.id;
+            }
+            return "";
+        }
+
+        @Override
+        public View setView(int i, View view, ViewGroup viewGroup) {
+            if (view == null) {
+                view = View.inflate(mContext, R.layout.nearby_filter_grid_item, null);
+                view.setTag(new ViewHolder(view));
+            }
+            initializeViews(getItem(i), (ViewHolder) view.getTag(), i);
+            return view;
+        }
+
+        private void initializeViews(Object object, ViewHolder holder, int i) {
+            //TODO implement
+            NearbyFilterModel.SievenlistEntity.ListsEntity item = (NearbyFilterModel
+                    .SievenlistEntity.ListsEntity) object;
+
+            if ( item == null ) return;
+            holder.name.setText(item.name);
+
+            if ( item.isSelect == 1 )
+            {
+                setSelect(i);
+                holder.name.setBackgroundResource(R.drawable.destination_select);
+            }
+            else
+            {
+                holder.name.setBackgroundResource(R.drawable.destination_nomal);
+            }
+
+        }
+
+        protected class ViewHolder {
+            private TextView name;
+
+            public ViewHolder(View view) {
+                name = (TextView) view.findViewById(R.id.name);
+            }
+        }
+    }
 
 
 

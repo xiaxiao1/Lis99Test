@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.filter.model.NearbyFilterModel;
 import com.lis99.mobile.club.model.ActiveMainCityListModel;
 import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
 import com.lis99.mobile.club.newtopic.series.model.ManagerSeriesLineListModel;
@@ -24,6 +25,7 @@ import com.lis99.mobile.engine.base.MyTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static com.lis99.mobile.R.id.iv_line;
 
@@ -796,7 +798,148 @@ public class PopWindowUtil {
         return pop;
     }
 
+    public static PopupWindow showNearbyActiveTime (int position, View parent, final CallBack callBack  )
+    {
+        return showNearbyActive(position, parent, NativeEntityUtil.getInstance().getNearbyActiveTime(), callBack);
+    }
 
+    public static PopupWindow showNearbyActivePrice (int position, View parent, final CallBack callBack  )
+    {
+        return showNearbyActive(position, parent, NativeEntityUtil.getInstance().getNearbyActivePrice(), callBack);
+    }
+
+    private static PopupWindow showNearbyActive (int position, View parent, ArrayList<HashMap<String, String>> ilist, final CallBack callBack  )
+    {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            return pop;
+        }
+
+        View v = View.inflate(LSBaseActivity.activity, R.layout.pop_window_nearby_active_time, null);
+
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.layout);
+
+//        layout.getLayoutParams().height = Common.HEIGHT - Common.dip2px(200);
+
+        View bg = v.findViewById(R.id.bg);
+
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closePop();
+            }
+        });
+
+        final ListView list = (ListView) v.findViewById(R.id.list);
+
+        final PopListAdapter.NearByActiveTime adapter = new PopListAdapter.NearByActiveTime(LSBaseActivity.activity, ilist);
+
+        list.setAdapter(adapter);
+
+        adapter.setposition(position);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if ( callBack != null )
+                {
+                    MyTask myTask = new MyTask();
+                    myTask.setresult(""+position);
+                    callBack.handler(myTask);
+                }
+                closePop();
+            }
+        });
+
+        pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setFocusable(true);
+//        pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        pop.showAsDropDown(parent);
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                // TODO Auto-generated method stub
+                if ( callBack != null )
+                {
+                    callBack.handler(null);
+                }
+            }
+        });
+
+        return pop;
+    }
+
+
+    public static PopupWindow showNearbyFilter(List<Integer> types, View parent,
+                                               NearbyFilterModel model, final CallBack callBack)
+    {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            return pop;
+        }
+
+        View v = View.inflate(LSBaseActivity.activity, R.layout.nearby_filter_main, null);
+
+        final ListView list = (ListView) v.findViewById(R.id.exList);
+
+        Button btnReset = (Button) v.findViewById(R.id.btn_reset);
+        Button btnOk = (Button) v.findViewById(R.id.btn_ok);
+
+        final PopListAdapter.NearbyFilter adapter = new PopListAdapter.NearbyFilter(LSBaseActivity.activity, model.sievenlist);
+
+        list.setAdapter(adapter);
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( adapter != null )
+                {
+                    adapter.reSetSelect();
+                }
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closePop();
+                if ( adapter == null || callBack == null ) return;
+                MyTask myTask = new MyTask();
+                myTask.setResultModel(adapter.getSelect());
+                callBack.handler(myTask);
+
+            }
+        });
+
+
+        pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        pop.setFocusable(true);
+//        pop.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        pop.showAsDropDown(parent);
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                // TODO Auto-generated method stub
+                if ( callBack != null )
+                {
+                    callBack.handler(null);
+                }
+            }
+        });
+
+        return pop;
+    }
 
 
 

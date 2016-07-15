@@ -1332,6 +1332,10 @@
         <activity android:name="com.lis99.mobile.club.destination.DestinationMainActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <!--附近的活动-->
+        <activity android:name="com.lis99.mobile.club.filter.FilterMainActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar" />
 
     </application>
 

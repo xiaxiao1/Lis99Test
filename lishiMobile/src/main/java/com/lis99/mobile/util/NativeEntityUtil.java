@@ -69,40 +69,74 @@ public class NativeEntityUtil {
         item = new ActiveBannerInfoModel();
         item.id = 202;
         item.name = "徒步";
-        item.resultId = 0;
+        item.resultId = R.drawable.active_new_banner_onfoot;
         activeBanner.add(item);
 
         item = new ActiveBannerInfoModel();
         item.id = 223;
         item.name = "登山";
-        item.resultId = 0;
-        activeBanner.add(item);
-
-        item = new ActiveBannerInfoModel();
-        item.id = 225;
-        item.name = "深度游";
-        item.resultId = 0;
-        activeBanner.add(item);
-
-        item = new ActiveBannerInfoModel();
-        item.id = 224;
-        item.name = "摄影";
-        item.resultId = 0;
-        activeBanner.add(item);
-
-        item = new ActiveBannerInfoModel();
-        item.id = 227;
-        item.name = "亲子户外";
-        item.resultId = 0;
+        item.resultId = R.drawable.active_new_banner_hill;
         activeBanner.add(item);
 
         item = new ActiveBannerInfoModel();
         item.id = 204;
         item.name = "攀岩";
-        item.resultId = 0;
+        item.resultId = R.drawable.active_new_banner_rock;
         activeBanner.add(item);
 
+        item = new ActiveBannerInfoModel();
+        item.id = 224;
+        item.name = "摄影";
+        item.resultId = R.drawable.active_new_banner_photo;
+        activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 225;
+        item.name = "深度游";
+        item.resultId = R.drawable.active_new_banner_deep;
+        activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 227;
+        item.name = "亲子户外";
+        item.resultId = R.drawable.active_new_banner_child;
+        activeBanner.add(item);
+
+
+
         return activeBanner;
+    }
+
+    public ArrayList<HashMap<String, String>> getNearbyActiveTime ()
+    {
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", "由近及远");
+        map.put("id", "1");
+        list.add(map);
+
+        map = new HashMap<>();
+        map.put("name", "由远及近");
+        map.put("id", "2");
+        list.add(map);
+
+        return list;
+    }
+
+    public ArrayList<HashMap<String, String>> getNearbyActivePrice ()
+    {
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", "由底到高");
+        map.put("id", "1");
+        list.add(map);
+
+        map = new HashMap<>();
+        map.put("name", "由高到底");
+        map.put("id", "2");
+        list.add(map);
+
+        return list;
     }
 
 

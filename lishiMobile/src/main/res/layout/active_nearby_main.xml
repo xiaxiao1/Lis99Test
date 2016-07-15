@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pull_bg"
+    >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/activity_title" />
+
+
+    <LinearLayout
+        android:layout_below="@id/include1"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_height"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:id="@+id/bottombar"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/layout_tab_data"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出发日期"
+                android:id="@+id/tv_data"
+                android:textColor="@color/text_color_black"
+                android:layout_marginRight="8dip"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nearby_sort_nomal"
+                android:id="@+id/iv_data"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/layout_tab_city"
+            >
+
+            <TextView
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:text="费用"
+                android:textColor="@color/text_color_black"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/tv_city"
+                android:layout_marginRight="8dip"
+                android:gravity="center_horizontal"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nearby_sort_nomal"
+                android:id="@+id/iv_city"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/layout_tab_type"
+            >
+
+            <TextView
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:text="筛选"
+                android:textColor="@color/text_color_black"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/tv_type"
+                android:layout_marginRight="8dip"
+                android:gravity="center_horizontal"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nearby_filter_nomal"
+                android:id="@+id/iv_type"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1px"
+          android:background="@color/color_eee"
+          android:id="@+id/line"
+          android:layout_below="@id/bottombar"
+          />
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:layout_below="@id/line"
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:orientation="vertical"
+        >
+
+        <ListView
+            style="@style/listViewStyle"
+            android:background="@color/pull_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:dividerHeight="0px"
+            android:divider="@null"
+            android:id="@+id/list"
+            ></ListView>
+
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+</RelativeLayout>

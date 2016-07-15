@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.destination.DestinationMainActivity;
+import com.lis99.mobile.club.filter.FilterMainActivity;
 import com.lis99.mobile.club.model.ActiveBannerInfoModel;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.model.ActiveMainHeadModel;
@@ -459,7 +460,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
-                Common.toast(""+item.id);
+//                Common.toast(""+item.id);
 //                目的地
                 if ( position == 0 )
                 {
@@ -469,11 +470,15 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 //                附近的活动
                 else if ( position == 1 )
                 {
-
+//                    FilterMainActivity
+                    Intent intent = new Intent(getActivity(), FilterMainActivity.class);
+                    startActivity(intent);
                 }
                 else
                 {
-
+                    Intent intent = new Intent(getActivity(), FilterMainActivity.class);
+                    intent.putExtra("TAGID", item.id);
+                    startActivity(intent);
                 }
             }
         });

@@ -68,6 +68,8 @@ public class ActiveMainHeadModel extends BaseModel {
             public String activityCode;
             @SerializedName("harddesc")
             public String harddesc;
+            @SerializedName("cate_name")
+            public String cate_name;
             @SerializedName("price")
             public String price;
             @SerializedName("images")

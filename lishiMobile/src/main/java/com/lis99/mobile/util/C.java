@@ -549,6 +549,12 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String DESTINATION_LIST_ONE = DOMAINS + "/destination/oneLevelDestination";
 //	目的地2级列表 	https://apis.lis99.com/destination/secondLevelDestination
 	public static final String DESTINATION_LIST_TWO = DOMAINS + "/destination/secondLevelDestination";
+//	附近的活动列表    https://apis.lis99.com/main/nearby
+	public static final String NEARBY_MAIN_LIST = DOMAINS + "/main/activityfilter/";
+//	附近的活动筛选	https://apis.lis99.com/main/filterinfo/[type]
+	public static final String NEARBY_FILTER = DOMAINS + "/main/filterinfo/";
+//	筛选列表 			https://apis.lis99.com/main/activityfilter
+	public static final String NEARBY_MAIN_LIST_FILTER = DOMAINS + "/main/nearby/";
 
 }
 

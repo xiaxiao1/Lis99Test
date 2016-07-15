@@ -33,7 +33,7 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
                 .ActlistEntity) list.get(i);
         if ( item == null ) return false;
         vHolder.title.setText(item.topicTitle);
-        vHolder.content.setText(item.harddesc);
+        vHolder.content.setText(item.cate_name + item.harddesc);
         vHolder.price.setText(item.price);
         if ( !TextUtils.isEmpty(item.images))
         {
