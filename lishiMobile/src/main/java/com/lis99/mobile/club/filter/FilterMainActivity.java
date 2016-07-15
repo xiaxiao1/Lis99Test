@@ -45,7 +45,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
     private PullToRefreshView pullRefreshView;
     private ListView list;
 
-    private int dataPosition, pricePosition;
+    private int dataPosition = 0, pricePosition = -1;
     private Page page;
 
     private FilterAdapter adapter;
@@ -66,7 +66,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
     static {
         modelMap = new HashMap<>();
 
-        modelMap.put("3", "");
+        modelMap.put("3", "typetags");
         modelMap.put("7", "pricetags");
         modelMap.put("8", "difftags");
         modelMap.put("9999", "rangetags");
@@ -100,6 +100,11 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
         {
             activeType = 2;
         }
+
+        dataPosition = 0;
+        pricePosition = -1;
+
+        selectTabUp(tvData, ivData);
 
         getLocation();
 
@@ -141,11 +146,9 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
         switch ( arg0.getId())
         {
             case R.id.layout_tab_data:
-                selectTab(tvData, ivData);
                 PopWindowUtil.showNearbyActiveTime(dataPosition, line, dataCallBack);
                 break;
             case R.id.layout_tab_city:
-                selectTab(tvCity, ivCity);
                 PopWindowUtil.showNearbyActivePrice(pricePosition, line, priceCallBack);
                 break;
             case R.id.layout_tab_type:
@@ -191,11 +194,21 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
     private CallBack dataCallBack = new CallBack() {
         @Override
         public void handler(MyTask mTask) {
-            unSelectTab(tvData, ivData);
+//            unSelectTab(tvData, ivData);
 
             if ( mTask != null )
             {
+                unSelectTab(tvCity, ivCity);
+                pricePosition = -1;
                 dataPosition = Common.string2int(mTask.getresult());
+                if ( dataPosition == 0 )
+                {
+                    selectTabUp(tvData, ivData);
+                }
+                else
+                {
+                    selectTabDown(tvData, ivData);
+                }
                 onHeaderRefresh(pullRefreshView);
             }
         }
@@ -204,11 +217,21 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
     private CallBack priceCallBack = new CallBack() {
         @Override
         public void handler(MyTask mTask) {
-            unSelectTab(tvCity, ivCity);
+//            unSelectTab(tvCity, ivCity);
 
             if ( mTask != null )
             {
+                unSelectTab(tvData, ivData);
+                dataPosition = -1;
                 pricePosition = Common.string2int(mTask.getresult());
+                if ( pricePosition == 0 )
+                {
+                    selectTabUp(tvCity, ivCity);
+                }
+                else
+                {
+                    selectTabDown(tvCity, ivCity);
+                }
                 onHeaderRefresh(pullRefreshView);
             }
 
@@ -297,8 +320,14 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
         }
         map.put("latitude", Latitude);
         map.put("longitude", Longitude);
-        map.put("ordertime", NativeEntityUtil.getInstance().getNearbyActiveTime().get(dataPosition).get("id"));
-        map.put("orderprice", NativeEntityUtil.getInstance().getNearbyActivePrice().get(pricePosition).get("id"));
+        if ( dataPosition != -1 )
+        {
+            map.put("ordertime", NativeEntityUtil.getInstance().getNearbyActiveTime().get(dataPosition).get("id"));
+        }
+        if ( pricePosition != -1 )
+        {
+            map.put("orderprice", NativeEntityUtil.getInstance().getNearbyActivePrice().get(pricePosition).get("id"));
+        }
 
         map = getFilterMap(map);
 
@@ -350,12 +379,16 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
     }
 
 
-
-
-    private void selectTab ( TextView tv, ImageView iv )
+    private void selectTabDown ( TextView tv, ImageView iv )
     {
         tv.setTextColor(getResources().getColor(R.color.text_color_green));
-        iv.setImageResource(R.drawable.nearby_sort_select);
+        iv.setImageResource(R.drawable.nearby_sort_select_down);
+    }
+
+    private void selectTabUp ( TextView tv, ImageView iv )
+    {
+        tv.setTextColor(getResources().getColor(R.color.text_color_green));
+        iv.setImageResource(R.drawable.nearby_select_up);
     }
 
     private void unSelectTab ( TextView tv, ImageView iv )
@@ -363,6 +396,8 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
         tv.setTextColor(getResources().getColor(R.color.text_color_black));
         iv.setImageResource(R.drawable.nearby_sort_nomal);
     }
+
+
 
     private void selectFilter ( TextView tv, ImageView iv )
     {
