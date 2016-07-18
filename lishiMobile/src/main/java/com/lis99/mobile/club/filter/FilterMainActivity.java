@@ -2,6 +2,7 @@ package com.lis99.mobile.club.filter;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -344,6 +345,17 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
                     page.setPageSize(listModel.totalpage);
                     adapter = new FilterAdapter(activity, listModel.lists);
                     list.setAdapter(adapter);
+                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if ( adapter == null ) return;
+                            NearbyListMainModel.ListsEntity item = (NearbyListMainModel
+                                    .ListsEntity) adapter.getItem(position);
+
+                            Common.goTopic(activity, 4, Common.string2int(item.id));
+
+                        }
+                    });
                 }
                 else
                 {
