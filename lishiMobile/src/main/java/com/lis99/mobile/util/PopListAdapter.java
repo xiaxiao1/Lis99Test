@@ -301,7 +301,14 @@ public class PopListAdapter {
             for ( int i = 0; i < listItem.size(); i++ )
             {
                 NearbyFilterModel.SievenlistEntity item = (NearbyFilterModel.SievenlistEntity) getItem(i);
-                map.put(""+item.id, adapters.get(i).getSelectId());
+                if ( adapters.size() <= i )
+                {
+                    map.put(""+item.id, "");
+                }
+                else
+                {
+                    map.put(""+item.id, adapters.get(i).getSelectId());
+                }
             }
             return map;
         }

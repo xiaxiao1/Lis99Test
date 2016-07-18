@@ -51,7 +51,7 @@ public class DestinationStringAdapter extends MyBaseAdapter {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DestinationTwoModel.DestlistEntity.DestlistsEntity item = (DestinationTwoModel
                         .DestlistEntity.DestlistsEntity) adapter.getItem(position);
-                ActivityUtil.goDestinationInfo(item.destId);
+                ActivityUtil.goDestinationInfo(item.tagId, item.destId);
             }
         });
 

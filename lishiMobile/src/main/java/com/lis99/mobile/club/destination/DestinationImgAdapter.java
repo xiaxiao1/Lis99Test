@@ -50,7 +50,7 @@ public class DestinationImgAdapter extends MyBaseAdapter {
                 DestinationTwoModel.DestlistEntity.DestlistsEntity item = (DestinationTwoModel
                         .DestlistEntity.DestlistsEntity) adapter.getItem(position);
 
-                ActivityUtil.goDestinationInfo(item.destId);
+                ActivityUtil.goDestinationInfo(item.tagId, item.destId);
             }
         });
 

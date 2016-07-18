@@ -1337,6 +1337,15 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
+        <!--附近的活动详情-->
+        <activity android:name=".club.destination.DestinationActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"/>
+        <activity android:name=".club.destination.DestinationInfoActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+
+
     </application>
 
 

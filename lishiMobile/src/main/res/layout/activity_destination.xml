@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_destination"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lis99.mobile.club.destination.DestinationActivity">
+
+    <com.lis99.mobile.entry.view.PullToRefreshView
+        android:id="@+id/pull_refresh_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/pull_bg"
+        android:orientation="vertical" >
+
+        <ListView
+            android:background="@color/white"
+            android:id="@+id/listView"
+            android:scrollbars="none"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:dividerHeight="0px"
+            android:divider="@null"
+            android:listSelector="#00000000" >
+        </ListView>
+    </com.lis99.mobile.entry.view.PullToRefreshView>
+
+
+    <RelativeLayout android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height" >
+
+        <ImageView style="@style/fill_fill"
+            android:id="@+id/iv_title_bg"
+            android:background="@drawable/title_bar_bg"
+            />
+
+        <RelativeLayout
+            android:id="@+id/titleLeft"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dip"
+            >
+
+            <ImageView
+                android:id="@+id/titleLeftImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ls_page_back_icon"
+
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/titleRight"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="10dip"
+            >
+
+            <ImageView
+                android:id="@+id/titleRightImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/titleRight"
+            android:layout_toRightOf="@+id/titleLeft"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/title_bar_text"
+            android:textSize="@dimen/title_text_height" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

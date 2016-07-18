@@ -3,6 +3,7 @@ package com.lis99.mobile.util;
 import android.content.Intent;
 
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.destination.DestinationActivity;
 import com.lis99.mobile.club.newtopic.series.ApplyManagerSeries;
 
 /**
@@ -19,11 +20,13 @@ public class ActivityUtil {
         LSBaseActivity.activity.startActivity(intent);
     }
 //  跳转目的地详情
-    public static void goDestinationInfo (  int desId )
+    public static void goDestinationInfo ( int tagId, int desId )
     {
-        Intent intent = new Intent(LSBaseActivity.activity, ApplyManagerSeries.class);
-        intent.putExtra("topicID", desId);
+        Intent intent = new Intent(LSBaseActivity.activity, DestinationActivity.class);
+        intent.putExtra("destID", desId);
+        intent.putExtra("tagID", tagId);
         LSBaseActivity.activity.startActivity(intent);
+
     }
 
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <com.lis99.mobile.club.widget.RoundedImageView
+        android:id="@+id/coverView"
+        android:layout_width="112dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="12dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:border_color="#eee"
+        app:border_width="1px"
+        app:corner_radius="5px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="2"
+            android:textColor="#525252"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/avatarView"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:border_color="#eee"
+                app:border_width="10dp"
+                app:corner_radius="10dp" />
+
+            <TextView
+                android:id="@+id/nameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:maxLines="1"
+                android:textColor="#525252"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

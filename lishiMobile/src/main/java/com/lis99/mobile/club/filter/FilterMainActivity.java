@@ -45,7 +45,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
     private ImageView ivType;
     private PullToRefreshView pullRefreshView;
     private ListView list;
-
+//  排序下标
     private int dataPosition = 0, pricePosition = -1;
     private Page page;
 
