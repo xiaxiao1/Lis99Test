@@ -63,7 +63,7 @@
                   android:id="@+id/tv_nikeName"
                   android:textSize="@dimen/text_small"
                   android:textColor="@color/color_nine"
-                  android:text="元/人"
+                  android:text="元/起"
                   android:paddingLeft="10dp"
                   android:layout_gravity="bottom"
                   android:paddingBottom="2dp"

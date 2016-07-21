@@ -74,8 +74,10 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
      * 清除数据
      */
     public void clear() {
-        mData.clear();
-        notifyDataSetChanged();
+        if (mData != null && mData.size() > 0) {
+            mData.clear();
+            notifyDataSetChanged();
+        }
     }
 
     @Override

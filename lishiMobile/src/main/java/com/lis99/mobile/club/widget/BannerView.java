@@ -152,7 +152,7 @@ public class BannerView extends RelativeLayout {
 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 					Common.dip2px(5), Common.dip2px(5));
 			if (index != count - 1) {
-				layoutParams.rightMargin = 5;
+				layoutParams.rightMargin = 10;
 			}
 			
 			indicateView.setLayoutParams(layoutParams);

@@ -179,6 +179,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:textColor="#525252"
+                android:lineSpacingExtra="4dp"
                 android:textSize="14sp" />
 
 

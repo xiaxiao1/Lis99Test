@@ -233,6 +233,14 @@ public class Common {
         return i;
     }
 
+    public static String getIntInString ( String str )
+    {
+        if ( TextUtils.isEmpty(str)) return str;
+        int num = str.indexOf(".");
+        if ( num == -1 ) return str;
+        return str.substring(0,  num);
+    }
+
     /**
      * 是否是VIP
      */

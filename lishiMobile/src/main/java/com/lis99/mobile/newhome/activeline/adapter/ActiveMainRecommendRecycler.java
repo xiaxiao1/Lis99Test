@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.model.ActiveMainHeadModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -33,8 +34,8 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
                 .ActlistEntity) list.get(i);
         if ( item == null ) return false;
         vHolder.title.setText(item.topicTitle);
-        vHolder.content.setText(item.cate_name + item.harddesc);
-        vHolder.price.setText(item.price);
+        vHolder.content.setText(item.harddesc+item.cate_name);
+        vHolder.price.setText(""+Common.getIntInString(item.price));
         if ( !TextUtils.isEmpty(item.images))
         {
             ImageLoader.getInstance().displayImage(item.images, vHolder.roundedImageView, ImageUtil.getDefultImageOptions());

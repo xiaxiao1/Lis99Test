@@ -66,8 +66,13 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
         headerView = new DestinationHeaderView(this);
         headerView.setOnTabSelectListener(this);
         listView.addHeaderView(headerView);
+        eventAdapter = new DestinationEventAdapter(this, null);
+        noteAdapter = new DestinationNoteAdapter(this, null);
+        listView.setAdapter(eventAdapter);
         pull_refresh_view.setOnFooterRefreshListener(this);
         pull_refresh_view.setOnHeaderRefreshListener(this);
+
+        listView.setOnScrollListener(listScroll);
 
 
         setTitleBarAlpha(0f);
@@ -176,8 +181,8 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
     private void refresh() {
         page = new Page();
         notePage = new Page();
-        eventAdapter = null;
-        noteAdapter = null;
+        eventAdapter.clear();
+        noteAdapter.clear();
         getDestinationDetail();
         loadList();
         ;
@@ -185,16 +190,20 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
 
     private void loadList() {
         if (type == 1) {
-            if (eventAdapter == null) {
+            listView.setAdapter(eventAdapter);
+            if (eventAdapter == null || eventAdapter.getCount() == 0) {
+                headerView.noContentView.setVisibility(View.VISIBLE);
                 getEventList();
             } else {
-                listView.setAdapter(eventAdapter);
+                headerView.noContentView.setVisibility(View.GONE);
             }
         } else {
-            if (noteAdapter == null) {
+            listView.setAdapter(noteAdapter);
+            if (noteAdapter == null || noteAdapter.getCount() == 0) {
+                headerView.noContentView.setVisibility(View.VISIBLE);
                 getNoteList();
             } else {
-                listView.setAdapter(noteAdapter);
+                headerView.noContentView.setVisibility(View.GONE);
             }
         }
     }
@@ -238,19 +247,24 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
                 DestinationEventListModel eventList = response.body();
                 page.nextPage();
                 page.setPageSize(eventList.pageTotal);
-                if (eventAdapter == null) {
-                    eventAdapter = new DestinationEventAdapter(DestinationActivity.this, eventList.activityList);
-                    listView.setAdapter(eventAdapter);
-                    listView.setOnScrollListener(listScroll);
+                if (eventList.pageTotal == 0) {
+                    headerView.noContentView.setVisibility(View.VISIBLE);
                 } else {
-                    eventAdapter.appendData(eventList.activityList);
+                    headerView.noContentView.setVisibility(View.GONE);
                 }
+                eventAdapter.appendData(eventList.activityList);
             }
 
             @Override
             public void onFailure(Call<DestinationEventListModel> call, Throwable t) {
                 pull_refresh_view.onHeaderRefreshComplete();
                 pull_refresh_view.onFooterRefreshComplete();
+
+                if (eventAdapter.getCount() == 0) {
+                    headerView.noContentView.setVisibility(View.VISIBLE);
+                } else {
+                    headerView.noContentView.setVisibility(View.GONE);
+                }
 
             }
         });
@@ -276,24 +290,36 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
                 DestinationNoteListModel eventList = response.body();
                 notePage.nextPage();
                 notePage.setPageSize(eventList.pageTotal);
-                if (noteAdapter == null) {
-                    noteAdapter = new DestinationNoteAdapter(DestinationActivity.this, eventList.topiclist);
-                    listView.setAdapter(noteAdapter);
-                    listView.setOnScrollListener(listScroll);
+                if (eventList.pageTotal == 0) {
+                    headerView.noContentView.setVisibility(View.VISIBLE);
                 } else {
-                    noteAdapter.appendData(eventList.topiclist);
+                    headerView.noContentView.setVisibility(View.GONE);
                 }
+                noteAdapter.appendData(eventList.topiclist);
             }
 
             @Override
             public void onFailure(Call<DestinationNoteListModel> call, Throwable t) {
                 pull_refresh_view.onHeaderRefreshComplete();
                 pull_refresh_view.onFooterRefreshComplete();
+                if (noteAdapter.getCount() == 0) {
+                    headerView.noContentView.setVisibility(View.VISIBLE);
+                } else {
+                    headerView.noContentView.setVisibility(View.GONE);
+                }
             }
         });
 
     }
 
+
+    private void setNoContent(boolean value) {
+        if (value) {
+            headerView.noContentView.setVisibility(View.VISIBLE);
+        } else {
+            headerView.noContentView.setVisibility(View.GONE);
+        }
+    }
 
     @Override
     public void onTabSelected(int tabIndex) {

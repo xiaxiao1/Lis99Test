@@ -51,6 +51,9 @@ public class DestinationHeaderView extends LinearLayout {
     @Bind(R.id.noteView)
     TextView noteView;
 
+    @Bind(R.id.noContentView)
+    public View noContentView;
+
     TextView selectedView;
 
     private Destination destination;

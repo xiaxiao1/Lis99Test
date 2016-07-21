@@ -92,7 +92,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
 
         tagId = getIntent().getIntExtra("TAGID", -1);
 //        附近的活动
-        if ( tagId != -1 )
+        if ( tagId == -1 )
         {
             activeType = 1;
         }

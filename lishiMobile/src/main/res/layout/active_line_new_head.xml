@@ -5,10 +5,12 @@
               android:layout_height="match_parent">
 
     <include
+        android:id="@+id/include_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/list_line"
-    />
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/choiceness_fragment_title_bar" />
 
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/viewBanner"

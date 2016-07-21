@@ -32,6 +32,7 @@ import com.lis99.mobile.newhome.activeline.adapter.ActiveMainRecommendAdapter;
 import com.lis99.mobile.newhome.activeline.adapter.MyBaseRecycler;
 import com.lis99.mobile.newhome.activeline.adapter.SupperLaderRecycler;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
+import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -98,6 +99,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 //
     private ActiveMainHeadModel headModel;
 
+    private View include_search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -136,6 +138,10 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
         viewBanner = (BannerView) head.findViewById(R.id.viewBanner);
         viewBanner.setDot(R.drawable.active_banner_grid_dot_select, R.drawable.active_banner_grid_nomal_dot);
+
+        include_search = head.findViewById(R.id.include_search);
+
+        include_search.setOnClickListener(this);
 
         list.addHeaderView(head);
 
@@ -324,6 +330,9 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId())
         {
+            case R.id.include_search:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+                break;
             case R.id.titleLeft:
 //                RedDotUtil.getInstance().InVisibleDot();
                 if ( Common.isLogin(getActivity()) )

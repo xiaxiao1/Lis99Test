@@ -19,7 +19,7 @@
         android:textColor="#525252"
         android:textSize="20sp"
         android:maxLines="1"
-        android:layout_marginTop="23dp"/>
+        android:layout_marginTop="18dp"/>
 
 
     <TextView
@@ -27,8 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="4dp"
-        android:maxLines="4"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="18dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:textColor="#525252"
@@ -37,20 +36,20 @@
 
     <Button
         android:id="@+id/moreButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_width="100dp"
+        android:layout_height="26dp"
         android:textColor="#2bca63"
-        android:textSize="13dp"
-        android:text=" 更多详细信息 "
-        android:layout_marginTop="25dp"
-        android:background="@drawable/destination_more_button_bg"/>
+        android:textSize="13sp"
+        android:text="更多详细信息"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/destination_moreinfo_bg"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#e3dbd0"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="20dp"/>
 
     <View
         android:layout_width="match_parent"
@@ -106,5 +105,30 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#eee"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#fff"/>
+
+    <TextView
+        android:id="@+id/noContentView"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#999"
+        android:textSize="13sp"
+        android:text="暂无内容"
+        />
 
 </LinearLayout>
