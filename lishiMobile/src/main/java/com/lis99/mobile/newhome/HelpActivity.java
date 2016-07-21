@@ -7,6 +7,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -86,9 +87,39 @@ public class HelpActivity extends Activity {
             scrollbtn.addView(d);
 
         }
-
+        setRitght2Left();
         mViewPager.setAdapter(mPagerAdapter);
 
+    }
+
+//    设置滑动到最后一张图片， 继续滑动进入主页
+    private void setRitght2Left ()
+    {
+        if ( views == null ) return;
+        View last = views.get(views.size() - 1);
+        last.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                float currentX = -1;
+                switch (event.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                        currentX = event.getX();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if ( event.getX() < currentX )
+                        {
+//                            跳转
+                            startbutton(startbtn);
+                            return true;
+                        }
+                        break;
+                }
+
+                return false;
+            }
+        });
     }
 
     // 填充ViewPager的数据适配器

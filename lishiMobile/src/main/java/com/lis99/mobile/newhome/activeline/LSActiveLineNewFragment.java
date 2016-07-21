@@ -315,7 +315,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 else
                 {
                     //                    最后一页
-                    adapter.setList(l);
+                    adapter.addList(model.getActivitylist());
                 }
 
 

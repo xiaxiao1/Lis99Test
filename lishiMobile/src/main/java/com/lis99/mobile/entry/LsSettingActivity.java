@@ -85,6 +85,7 @@ public class LsSettingActivity extends ActivityPattern {
 		}
 
 		ls_movie = findViewById(R.id.ls_movie);
+		ls_movie.setVisibility(View.GONE);
 
 	}
 

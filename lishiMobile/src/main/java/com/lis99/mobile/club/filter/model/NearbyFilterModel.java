@@ -45,7 +45,7 @@ public class NearbyFilterModel extends BaseModel {
             public int id;
             @SerializedName("name")
             public String name;
-//            0 未选中， 1 选中
+/**            0 未选中， 1 选中 */
             public int isSelect;
         }
     }

@@ -17,6 +17,7 @@
     >
 
         <ListView
+            android:background="@color/white"
                   style="@style/listViewStyle"
                   android:layout_height="match_parent"
                   android:layout_width="wrap_content"

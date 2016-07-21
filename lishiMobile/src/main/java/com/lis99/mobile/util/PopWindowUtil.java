@@ -234,7 +234,10 @@ public class PopWindowUtil {
             @Override
             public void handler(MyTask mTask) {
 
+                if ( mTask == null ) return;
                 ActiveMainCityListModel model = (ActiveMainCityListModel) mTask.getResultModel();
+
+                if ( model == null ) return;
 
                 setCurrentCity(model.citylist.get(position));
 

@@ -1,6 +1,7 @@
 package com.lis99.mobile.util;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
@@ -348,16 +349,33 @@ public class PopListAdapter {
                         NearbyFilterModel.SievenlistEntity.ListsEntity item = (NearbyFilterModel
                                 .SievenlistEntity.ListsEntity) adapter.getItem(position);
                         int select = adapter.getSelect();
-                        if ( item == null || select == position ) return;
-
-                        item.isSelect = 1;
-
-                        if ( select != -1 )
+                        if ( item == null ) return;
+//                      如果选的是当前选择的
+                        if ( select == position )
                         {
-                            item = (NearbyFilterModel
-                                    .SievenlistEntity.ListsEntity) adapter.getItem(select);
-                            item.isSelect = 0;
+                            if ( item.isSelect == 1 )
+                            {
+                                item.isSelect = 0;
+                                adapter.setSelect(-1);
+                            }
+                            else
+                            {
+                                item.isSelect = 1;
+                            }
                         }
+                        else
+                        {
+                            item.isSelect = 1;
+
+                            if ( select != -1 )
+                            {
+                                item = (NearbyFilterModel
+                                        .SievenlistEntity.ListsEntity) adapter.getItem(select);
+                                item.isSelect = 0;
+                            }
+                        }
+
+
                         adapter.notifyDataSetChanged();
 
 
@@ -404,6 +422,7 @@ public class PopListAdapter {
                 NearbyFilterModel.SievenlistEntity.ListsEntity item = (NearbyFilterModel
                         .SievenlistEntity.ListsEntity) getItem(select);
                 item.isSelect = 0;
+                setSelect(-1);
                 notifyDataSetChanged();
             }
         }
@@ -440,10 +459,12 @@ public class PopListAdapter {
             if ( item.isSelect == 1 )
             {
                 setSelect(i);
+                holder.name.setTextColor(Color.parseColor("#2bca63"));
                 holder.name.setBackgroundResource(R.drawable.destination_select);
             }
             else
             {
+                holder.name.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
                 holder.name.setBackgroundResource(R.drawable.destination_nomal);
             }
 

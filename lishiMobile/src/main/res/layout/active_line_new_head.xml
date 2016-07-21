@@ -35,6 +35,7 @@
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:layout_gravity="center"
+              android:gravity="center"
               android:drawablePadding="6dp"
               android:drawableLeft="@drawable/active_new_main_head_supper_icon"
               android:padding="20dp"
@@ -65,8 +66,9 @@
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:drawablePadding="6dp"
               android:layout_gravity="center"
+              android:gravity="center"
               android:drawableLeft="@drawable/active_new_main_native_icon"
-              android:padding="20dp"
+              android:paddingTop="20dp"
               android:textColor="@color/text_color_black"
               android:textSize="@dimen/text_large"
               android:text="本地活动"
