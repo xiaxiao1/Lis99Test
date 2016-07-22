@@ -67,18 +67,6 @@ public class NativeEntityUtil {
         activeBanner.add(item);
 
         item = new ActiveBannerInfoModel();
-        item.id = 225;
-        item.name = "深度游";
-        item.resultId = R.drawable.active_new_banner_deep;
-        activeBanner.add(item);
-
-        item = new ActiveBannerInfoModel();
-        item.id = 227;
-        item.name = "亲子户外";
-        item.resultId = R.drawable.active_new_banner_child;
-        activeBanner.add(item);
-
-        item = new ActiveBannerInfoModel();
         item.id = 202;
         item.name = "徒步";
         item.resultId = R.drawable.active_new_banner_onfoot;
@@ -92,7 +80,7 @@ public class NativeEntityUtil {
 
         item = new ActiveBannerInfoModel();
         item.id = 224;
-        item.name = "摄影";
+        item.name = "行摄";
         item.resultId = R.drawable.active_new_banner_photo;
         activeBanner.add(item);
 
@@ -103,16 +91,32 @@ public class NativeEntityUtil {
         activeBanner.add(item);
 
         item = new ActiveBannerInfoModel();
-        item.id = 210;
-        item.name = "自驾";
-        item.resultId = R.drawable.active_new_banner_car;
-        activeBanner.add(item);
-
-        item = new ActiveBannerInfoModel();
         item.id = 654;
         item.name = "水上";
         item.resultId = R.drawable.active_new_banner_water;
         activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 719;
+        item.name = "特色";
+        item.resultId = R.drawable.active_special_banner_icon;
+        activeBanner.add(item);
+
+        item = new ActiveBannerInfoModel();
+        item.id = 225;
+        item.name = "长线";
+        item.resultId = R.drawable.active_new_banner_deep;
+        activeBanner.add(item);
+
+
+
+//        item = new ActiveBannerInfoModel();
+//        item.id = 210;
+//        item.name = "自驾";
+//        item.resultId = R.drawable.active_new_banner_car;
+//        activeBanner.add(item);
+
+
 
         item = new ActiveBannerInfoModel();
         item.id = 655;

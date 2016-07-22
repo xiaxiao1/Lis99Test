@@ -1310,6 +1310,9 @@ public class ImageUtil
 				.showImageOnLoading(R.drawable.club_topic_default)
 				.showImageForEmptyUri(R.drawable.club_topic_default)
 				.showImageOnFail(R.drawable.club_topic_default)
+//				.showImageOnLoading(R.color.pull_bg)
+//				.showImageForEmptyUri(R.color.pull_bg)
+//				.showImageOnFail(R.color.pull_bg)
 				.considerExifParams(true)// 图片旋转
 				.cacheInMemory(true)
 				.cacheOnDisc(true)//设置下载的图片是否缓存在SD卡中

@@ -12,10 +12,16 @@
         android:layout_alignParentTop="true"
         layout="@layout/choiceness_fragment_title_bar" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_1px_stroke"
+    />
+
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/viewBanner"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="220dp"
     />
 
     <include
@@ -37,7 +43,7 @@
               android:layout_gravity="center"
               android:gravity="center"
               android:drawablePadding="6dp"
-              android:drawableLeft="@drawable/active_new_main_head_supper_icon"
+              android:drawableLeft="@drawable/active_new_main_head_supper_leader_icon"
               android:padding="20dp"
               android:textColor="@color/text_color_black"
               android:textSize="@dimen/text_large"
@@ -48,7 +54,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="270dp"
         android:scrollbars="none"
         android:id="@+id/recycler_supper_leader"
         android:layout_gravity="center_vertical"
@@ -67,11 +73,11 @@
               android:drawablePadding="6dp"
               android:layout_gravity="center"
               android:gravity="center"
-              android:drawableLeft="@drawable/active_new_main_native_icon"
+              android:drawableLeft="@drawable/active_new_main_head_native_icon"
               android:paddingTop="20dp"
               android:textColor="@color/text_color_black"
               android:textSize="@dimen/text_large"
-              android:text="本地活动"
+              android:text="本地俱乐部的活动"
               android:maxLines="1"
               android:ellipsize="end"
     />

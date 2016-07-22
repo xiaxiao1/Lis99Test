@@ -105,8 +105,8 @@
               android:text="热门专题"
               android:drawablePadding="6dp"
               android:layout_gravity="center_horizontal"
-              android:paddingTop="25dp"
-              android:paddingBottom="15dp"
+              android:paddingTop="20dp"
+              android:paddingBottom="10dp"
     />
 
 
@@ -130,7 +130,7 @@
               android:text="热门讨论区"
               android:drawablePadding="6dp"
               android:layout_gravity="center_horizontal"
-              android:padding="25dp"
+              android:padding="20dp"
     />
 
 </LinearLayout>

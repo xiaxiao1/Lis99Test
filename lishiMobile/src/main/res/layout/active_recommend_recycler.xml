@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="340dp"
+        android:layout_width="300dp"
         android:layout_height="260dp"
         android:paddingRight="15dp"
     >
@@ -33,6 +33,7 @@
               android:id="@+id/title"
               android:text="@string/temp_string_long"
               android:paddingTop="10dp"
+              android:textSize="15sp"
     />
 
         <TextView android:layout_width="wrap_content"
@@ -43,8 +44,8 @@
                   android:textSize="@dimen/text_small"
                   android:id="@+id/content"
                   android:text="@string/temp_string_long"
-                  android:paddingBottom="10dp"
-                  android:paddingTop="3dp"
+                  android:paddingBottom="5dp"
+                  android:paddingTop="5dp"
         />
 
     <RelativeLayout android:layout_width="wrap_content"

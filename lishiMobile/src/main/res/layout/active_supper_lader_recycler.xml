@@ -15,27 +15,27 @@
         android:layout_centerVertical="true"
         android:id="@+id/roundedImageView"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="150dp"
         android:src="@drawable/ls_nologin_header_icon"
         android:scaleType="fitXY"
-        app:corner_radius="5dp"
+        app:corner_radius="4dp"
         app:border_color="#e8e8e8"
         app:border_width="1px"/>
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="130dp"
+                  android:layout_height="110dp"
                   android:background="@drawable/supper_leader_bg"
                   android:layout_marginTop="-3dp"
                   android:orientation="vertical"
-                  android:gravity="center"
+                  android:gravity="center_horizontal"
     >
 
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:textColor="@color/text_color_black"
-                  android:textSize="16sp"
+                  android:textSize="15sp"
                   android:layout_centerHorizontal="true"
-                  android:paddingTop="10dp"
+                    android:paddingTop="10dp"
                   android:id="@+id/title"
                   android:text="@string/temp_string"
         />

@@ -19,7 +19,7 @@
             android:layout_height="110dp"
             android:src="@drawable/ls_nologin_header_icon"
             android:scaleType="fitXY"
-            app:corner_radius="3dp"
+            app:corner_radius="4dp"
             app:border_color="#e8e8e8"
             app:border_width="1px"/>
 

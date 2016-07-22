@@ -113,16 +113,9 @@
 
     </LinearLayout>
 
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/list_line"
-        android:id="@+id/line"
-        android:layout_below="@id/bottombar"
-        />
 
     <com.lis99.mobile.entry.view.PullToRefreshView
-        android:layout_below="@id/line"
+        android:layout_below="@id/bottombar"
         android:id="@+id/pull_refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -26,7 +26,9 @@
                   android:layout_weight="6"
                   android:id="@+id/list"
         />
-
+        <View android:layout_width="2px" android:layout_height="match_parent"
+              android:background="@color/color_eee"
+              />
         <FrameLayout android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:id="@+id/frameLayout"

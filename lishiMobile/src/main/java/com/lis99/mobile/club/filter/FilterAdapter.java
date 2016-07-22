@@ -34,14 +34,27 @@ public class FilterAdapter extends MyBaseAdapter {
             view = View.inflate(mContext, R.layout.active_line_new_item, null);
             view.setTag(new ViewHolder(view));
         }
-        initializeViews(getItem(i), (ViewHolder) view.getTag());
+        initializeViews(getItem(i), (ViewHolder) view.getTag(), i);
         return view;
     }
 
-    private void initializeViews(Object object, ViewHolder holder) {
+    private void initializeViews(Object object, ViewHolder holder, int i) {
         //TODO implement
+
+        if ( i == 0 )
+        {
+            holder.line.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.line.setVisibility(View.GONE);
+        }
+
         NearbyListMainModel.ListsEntity item = (NearbyListMainModel.ListsEntity) object;
         if ( item == null ) return;
+
+
+
         holder.tvTitle.setText(item.title);
         holder.tvTag.setText(item.harddesc);
         holder.tvStyle.setText(item.cateName);
@@ -59,6 +72,7 @@ public class FilterAdapter extends MyBaseAdapter {
         private TextView tvTag;
         private TextView tvStyle;
         private TextView tvTitle;
+        private View line;
 
         public ViewHolder(View view) {
             ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
@@ -67,6 +81,7 @@ public class FilterAdapter extends MyBaseAdapter {
             tvTag = (TextView) view.findViewById(R.id.tv_tag);
             tvStyle = (TextView) view.findViewById(R.id.tv_style);
             tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            line = view.findViewById(R.id.line);
         }
     }
 }

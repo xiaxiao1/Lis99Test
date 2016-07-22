@@ -433,14 +433,27 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
 //                postMessage(DISMISS_PROGRESS);
                         isSending = false;
                         if ( customProgressDialog != null && customProgressDialog.isShowing() )
+                        {
                             customProgressDialog.cancel();
+                            customProgressDialog = null;
+                        }
             }
 
         });
 
     }
 
-    private RequestParams getNewTopic ( String title, String userId, List<String> files, List<String> content, List<String> filename )
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if ( customProgressDialog != null && customProgressDialog.isShowing() )
+        {
+            customProgressDialog.cancel();
+            customProgressDialog = null;
+        }
+    }
+
+    private RequestParams getNewTopic (String title, String userId, List<String> files, List<String> content, List<String> filename )
     {
         RequestParams params = new RequestParams();
         params.put("club_id", clubID);

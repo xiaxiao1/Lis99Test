@@ -38,7 +38,7 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
         vHolder.price.setText(""+Common.getIntInString(item.price));
         if ( !TextUtils.isEmpty(item.images))
         {
-            ImageLoader.getInstance().displayImage(item.images, vHolder.roundedImageView, ImageUtil.getDefultImageOptions());
+            ImageLoader.getInstance().displayImage(item.images, vHolder.roundedImageView, ImageUtil.getclub_topic_imageOptions());
         }
 
 
