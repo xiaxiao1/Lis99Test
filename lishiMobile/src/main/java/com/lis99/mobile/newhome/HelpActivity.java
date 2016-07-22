@@ -37,7 +37,12 @@ public class HelpActivity extends Activity {
     private int currentPosition;
 
     private int[] is = new int[] { R.drawable.help1, R.drawable.help2,
-            R.drawable.help3 };
+            R.drawable.help3, R.drawable.help4, R.drawable.help5 };
+
+    private int[] dots = new int[]{
+            R.drawable.ico_s,
+            R.drawable.ico_n,
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,13 +79,13 @@ public class HelpActivity extends Activity {
             d.setLayoutParams(lp);
             if ( i == 0 )
             {
-                d.setImageResource(R.drawable.ico_s);
+                d.setImageResource(dots[0]);
                 currentView = d;
                 currentPosition = 0;
             }
             else
             {
-                d.setImageResource(R.drawable.ico_n);
+                d.setImageResource(dots[1]);
             }
 
             dot.add(d);
@@ -92,32 +97,45 @@ public class HelpActivity extends Activity {
 
     }
 
+    private float currentX = -1;
+    private float moveX = -1;
 //    设置滑动到最后一张图片， 继续滑动进入主页
     private void setRitght2Left ()
     {
         if ( views == null ) return;
         View last = views.get(views.size() - 1);
+
         last.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                float currentX = -1;
                 switch (event.getAction())
                 {
                     case MotionEvent.ACTION_DOWN:
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
                         currentX = event.getX();
                         break;
+                    case MotionEvent.ACTION_MOVE:
+                        moveX = event.getX();
+                        if ( moveX > currentX )
+                        {
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
+                        }
+                        break;
                     case MotionEvent.ACTION_UP:
-                        if ( event.getX() < currentX )
+                        if ( moveX < currentX )
                         {
 //                            跳转
                             startbutton(startbtn);
-                            return true;
+                        }
+                        else
+                        {
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
                         }
                         break;
                 }
 
-                return false;
+                return true;
             }
         });
     }
@@ -154,16 +172,18 @@ public class HelpActivity extends Activity {
             if (arg0 == dot.size() - 1)
             {
                 startbtn.setVisibility(View.VISIBLE);
+                scrollbtn.setVisibility(View.GONE);
             }
             else
             {
                 startbtn.setVisibility(View.GONE);
+                scrollbtn.setVisibility(View.VISIBLE);
             }
 
             if ( currentPosition != arg0 )
             {
-                dot.get(currentPosition).setImageResource(R.drawable.ico_n);
-                dot.get(arg0).setImageResource(R.drawable.ico_s);
+                dot.get(currentPosition).setImageResource(dots[1]);
+                dot.get(arg0).setImageResource(dots[0]);
                 currentPosition = arg0;
             }
         }

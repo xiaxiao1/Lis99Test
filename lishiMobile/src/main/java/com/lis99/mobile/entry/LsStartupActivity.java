@@ -114,6 +114,7 @@ public class LsStartupActivity extends ActivityPatternStartUp {
         iv_img = (ImageView) findViewById(R.id.iv_img);
         iv_channel = (ImageView) findViewById(R.id.iv_channel);
         iv_name = (ImageView) findViewById(R.id.iv_name);
+        iv_name.setVisibility(View.GONE);
 
         //＝＝＝＝＝＝＝＝＝＝＝根据渠道更换启动Icon ＝＝＝＝＝＝＝＝＝＝＝
         StartLogoOption.showStartLogoOption(iv_channel);
@@ -125,8 +126,8 @@ public class LsStartupActivity extends ActivityPatternStartUp {
 
 
         animation_img = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_forground_in);
-        animation_info = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_new_logo_in);
-        animation_scale = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_scale_anim_in);
+//        animation_info = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_new_logo_in);
+//        animation_scale = AnimationUtils.loadAnimation(this, R.anim.ls_lauch_scale_anim_in);
 
 
         iv_ad = (ImageView) findViewById(R.id.iv_ad);
@@ -228,15 +229,15 @@ public class LsStartupActivity extends ActivityPatternStartUp {
 //        }
 //    }, 600);
 
-        iv_name.startAnimation(animation_info);
+//        iv_name.startAnimation(animation_info);
         iv_img.startAnimation(animation_img);
-        iv_bg.startAnimation(animation_scale);
+//        iv_bg.startAnimation(animation_scale);
 
         animation_img.setFillAfter(true);
-        animation_info.setFillAfter(true);
-        animation_scale.setFillAfter(true);
+//        animation_info.setFillAfter(true);
+//        animation_scale.setFillAfter(true);
 
-        animation_scale.setAnimationListener(new Animation.AnimationListener() {
+        animation_img.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
             }
@@ -349,10 +350,10 @@ public class LsStartupActivity extends ActivityPatternStartUp {
             SharedPreferencesHelper.saveClientVersion(""+DeviceInfo.CLIENTVERSIONCODE);
             visible = true;
         }
-//        visible = true;
+        visible = true;
         if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()) || visible )
         {
-            startActivity( new Intent(this, HelpActivity.class));
+//            startActivity( new Intent(this, HelpActivity.class));
             intent = new Intent(LsStartupActivity.this,
                     HelpActivity.class);
 //            intent = new Intent(LsStartupActivity.this,
