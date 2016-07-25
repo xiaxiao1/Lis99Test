@@ -20,6 +20,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
+import com.lis99.mobile.club.LSRecommendActivity;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
@@ -40,6 +41,8 @@ import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.lis99.mobile.util.letv.MovieActivity;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.xutils.ImageManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -75,8 +78,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     private final int REPLY = 3;
 
     private final int NO_REPLY = 4;
+
+    //增加底部推荐活动入口
+    private final int RECOMMEND = 5;
 //  总数
-    private final int count = 5;
+    private final int count = 6;
 
 
 
@@ -132,6 +138,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 return getReply(i, view, viewGroup);
             case NO_REPLY:
                 return getNoReply (i, view, viewGroup);
+            case RECOMMEND:
+                return getRecommend(i,view,viewGroup);
         }
 
 
@@ -157,6 +165,10 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         {
             num = NO_REPLY;
         }
+        /*//判断是否是推荐活动item，等待接口匹配
+        else if(){
+            num = RECOMMEND;
+        }*/
 
         return num;
     }
@@ -680,6 +692,43 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     }
 
 
+    //     推荐活动，，，，等待匹配接口
+    private View getRecommend(int i,View view,ViewGroup viewGroup){
+        ViewHolderRecommend holder = null;
+        if (view == null) {
+            view = View.inflate(mContext, R.layout.club_topic_to_recommended_activity, null);
+            holder = new ViewHolderRecommend(view);
+            view.setTag(holder);
+        } else {
+            holder = (ViewHolderRecommend) view.getTag();
+        }
+
+        //获取返回的数据，判断是否显示推荐活动，及具体的参数设置
+        final TopicNewListMainModel.TopicsreplylistEntity item = (TopicNewListMainModel
+                .TopicsreplylistEntity) getItem(i);
+
+        //show
+        if (true) {
+            holder.clubTopicToRecommendViewRl.setVisibility(View.VISIBLE);
+            //设置底层大背景图
+            ImageLoader.getInstance().displayImage(item.headicon, holder.clubTopicToRecommendBgImg,
+                    ImageUtil.getDefultImageOptions());
+            holder.clubTopicToRecommendTextTv.setText("显示返回的字符串");
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i=new Intent(mContext,LSRecommendActivity.class);
+                    i.putExtra("", "");
+                    mContext.startActivity(i);
+                }
+            });
+        }
+        //没有要推荐的活动，隐藏此item
+        else{
+            holder.clubTopicToRecommendViewRl.setVisibility(View.GONE);
+        }
+        return view;
+    }
     //  回复
     protected class ViewHolderReply {
         private View include1;
@@ -862,6 +911,27 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
             specialPanel = view.findViewById(R.id.specialPanel);
             specialTitle = (TextView) view.findViewById(R.id.specialTitle);
+        }
+    }
+
+
+
+    /**
+     * 底部，推荐活动入口项item
+     */
+    protected class ViewHolderRecommend {
+        private RelativeLayout clubTopicToRecommendViewRl;
+        private ImageView clubTopicToRecommendBgImg;
+        private ImageView clubTopicToRecommendLeftImg;
+        private TextView clubTopicToRecommendTextTv;
+        private ImageView clubTopicToRecommendRightImg;
+
+        public ViewHolderRecommend(View view) {
+            clubTopicToRecommendViewRl = (RelativeLayout) view.findViewById(R.id.club_topic_to_recommend_view_rl);
+            clubTopicToRecommendBgImg = (ImageView) view.findViewById(R.id.club_topic_to_recommend_bg_img);
+            clubTopicToRecommendLeftImg = (ImageView) view.findViewById(R.id.club_topic_to_recommend_left_img);
+            clubTopicToRecommendTextTv = (TextView) view.findViewById(R.id.club_topic_to_recommend_text_tv);
+            clubTopicToRecommendRightImg = (ImageView) view.findViewById(R.id.club_topic_to_recommend_right_img);
         }
     }
 
