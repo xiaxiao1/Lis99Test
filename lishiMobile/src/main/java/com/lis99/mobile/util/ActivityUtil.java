@@ -1,7 +1,9 @@
 package com.lis99.mobile.util;
 
+import android.content.Context;
 import android.content.Intent;
 
+import com.lis99.mobile.choiceness.SpecialInfoActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.destination.DestinationActivity;
 import com.lis99.mobile.club.newtopic.series.ApplyManagerSeries;
@@ -27,6 +29,13 @@ public class ActivityUtil {
         intent.putExtra("tagID", tagId);
         LSBaseActivity.activity.startActivity(intent);
 
+    }
+//  跳转专栏
+    public static void goSpecialInfoActivity (Context c, int tagid )
+    {
+        Intent intent = new Intent(c, SpecialInfoActivity.class);
+        intent.putExtra("tagid", tagid);
+        c.startActivity(intent);
     }
 
 }

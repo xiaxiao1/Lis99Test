@@ -16,13 +16,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.lis99.mobile.LsBuyActivity;
 import com.lis99.mobile.LsEquiCateActivity;
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LsEquiFilterActivity;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.RedDotUtil;
@@ -349,9 +349,10 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
             break;
             case R.id.worthPanel:
             {
-                intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-                intent.putExtra("tagid", 10);
-                startActivity( intent );
+//                intent = new Intent(getActivity(), SpecialInfoActivity.class);
+//                intent.putExtra("tagid", 10);
+//                startActivity( intent );
+                ActivityUtil.goSpecialInfoActivity(getActivity(), 10);
             }
             break;
             case R.id.outdoorPanel:

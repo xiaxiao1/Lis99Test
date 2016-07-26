@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSRecommendActivity;
@@ -30,6 +29,7 @@ import com.lis99.mobile.club.widget.LSClubTopicHeadLike;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
@@ -40,8 +40,6 @@ import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.lis99.mobile.util.letv.MovieActivity;
 import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import org.xutils.ImageManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -454,9 +452,12 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 holder.tvTag1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
-                        intent.putExtra("tagid", item.taglist.get(0).tagid);
-                        mContext.startActivity(intent);
+//                        SpecialInfoActivity
+//                        Intent intent = new Intent(mContext, SpecialInfoActivity.class);
+////                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
+//                        intent.putExtra("tagid", item.taglist.get(0).tagid);
+//                        mContext.startActivity(intent);
+                        ActivityUtil.goSpecialInfoActivity(mContext, item.taglist.get(0).tagid);
                     }
                 });
             }
@@ -467,9 +468,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 holder.tvTag2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
-                        intent.putExtra("tagid", item.taglist.get(1).tagid);
-                        mContext.startActivity(intent);
+//                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
+//                        Intent intent = new Intent(mContext, SpecialInfoActivity.class);
+//                        intent.putExtra("tagid", item.taglist.get(1).tagid);
+//                        mContext.startActivity(intent);
+                        ActivityUtil.goSpecialInfoActivity(mContext, item.taglist.get(1).tagid);
                     }
                 });
             }
@@ -480,9 +483,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 holder.tvTag3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
-                        intent.putExtra("tagid", item.taglist.get(2).tagid);
-                        mContext.startActivity(intent);
+//                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
+//                        Intent intent = new Intent(mContext, SpecialInfoActivity.class);
+//                        intent.putExtra("tagid", item.taglist.get(2).tagid);
+//                        mContext.startActivity(intent);
+                        ActivityUtil.goSpecialInfoActivity(mContext, item.taglist.get(2).tagid);
                     }
                 });
             }

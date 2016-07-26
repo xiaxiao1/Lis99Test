@@ -1,6 +1,5 @@
 package com.lis99.mobile.choiceness;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.adapter.LSSelectColumnAdapter;
 import com.lis99.mobile.club.model.LSClubSpecialList;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.MyRequestManager;
@@ -132,9 +131,11 @@ public class LSSelectColumnFragment extends Fragment implements
     @Override
     public void onSelectColumn(int columnID) {
 
-        Intent intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-        intent.putExtra("tagid", columnID);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), ClubSpecialListActivity.class);
+//        Intent intent = new Intent(getActivity(), SpecialInfoActivity.class);
+//        intent.putExtra("tagid", columnID);
+//        startActivity(intent);
+        ActivityUtil.goSpecialInfoActivity(getActivity(), columnID);
     }
 
     public void scrollToTop() {

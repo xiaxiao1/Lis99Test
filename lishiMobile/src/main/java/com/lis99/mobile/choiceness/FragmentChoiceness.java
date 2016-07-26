@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSCLubSpecialMain;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
@@ -24,6 +23,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.newhome.DynamicActivity;
 import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.search.SearchActivity;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.Common;
@@ -116,9 +116,11 @@ OnHeaderRefreshListener, OnFooterRefreshListener, OnClickListener
 				}
 				else if ( item.type == 7 )
 				{
-					intent = new Intent(getActivity(), ClubSpecialListActivity.class);
-					intent.putExtra("tagid", item.tag_id);
-					startActivity( intent );
+//					intent = new Intent(getActivity(), ClubSpecialListActivity.class);
+//					intent = new Intent(getActivity(), SpecialInfoActivity.class);
+//					intent.putExtra("tagid", item.tag_id);
+//					startActivity( intent );
+					ActivityUtil.goSpecialInfoActivity(getActivity(), item.tag_id);
 				}
 				else if ( item.type == 8 )
 				{

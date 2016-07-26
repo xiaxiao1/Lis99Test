@@ -47,6 +47,7 @@ import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.LSFragment;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
@@ -1083,9 +1084,10 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 			tv.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(LSClubDetailActivity.this, ClubSpecialListActivity.class);
-					intent.putExtra("tagid", item.id);
-					startActivity(intent);
+//					Intent intent = new Intent(LSClubDetailActivity.this, SpecialInfoActivity.class);
+//					intent.putExtra("tagid", item.id);
+//					startActivity(intent);
+					ActivityUtil.goSpecialInfoActivity(activity, item.id);
 				}
 			});
 			LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, height);

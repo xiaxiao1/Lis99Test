@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
@@ -28,6 +27,7 @@ import com.lis99.mobile.club.model.ClubTopicNewActiveInfo;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
@@ -427,9 +427,10 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                 tv_tag1.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
-                        intent.putExtra("tagid", model.taglist.get(0).id);
-                        mContext.startActivity(intent);
+//                        Intent intent = new Intent(mContext, SpecialInfoActivity.class);
+//                        intent.putExtra("tagid", model.taglist.get(0).id);
+//                        mContext.startActivity(intent);
+                        ActivityUtil.goSpecialInfoActivity(mContext, model.taglist.get(0).id);
                     }
                 });
             }
@@ -440,9 +441,10 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                 tv_tag2.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
-                        intent.putExtra("tagid", model.taglist.get(1).id);
-                        mContext.startActivity(intent);
+//                        Intent intent = new Intent(mContext, SpecialInfoActivity.class);
+//                        intent.putExtra("tagid", model.taglist.get(1).id);
+//                        mContext.startActivity(intent);
+                        ActivityUtil.goSpecialInfoActivity(mContext, model.taglist.get(1).id);
                     }
                 });
             }
@@ -453,9 +455,11 @@ public class LSClubTopicNewActive extends LinearLayout implements View.OnClickLi
                 tv_tag3.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, ClubSpecialListActivity.class);
-                        intent.putExtra("tagid", model.taglist.get(2).id);
-                        mContext.startActivity(intent);
+//                        Intent intent = new Intent(mContext, SpecialInfoActivity.class);
+//                        intent.putExtra("tagid", model.taglist.get(2).id);
+//                        mContext.startActivity(intent);
+                        ActivityUtil.goSpecialInfoActivity(mContext, model.taglist.get(2).id);
+
                     }
                 });
             }

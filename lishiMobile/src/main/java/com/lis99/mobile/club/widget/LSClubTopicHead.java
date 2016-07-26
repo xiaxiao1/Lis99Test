@@ -18,13 +18,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.ClubSpecialListActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
 import com.lis99.mobile.club.model.ClubTopicDetailHead;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
@@ -325,9 +325,10 @@ public class LSClubTopicHead extends LinearLayout implements
 				tv_tag1.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Intent intent = new Intent(c, ClubSpecialListActivity.class);
-						intent.putExtra("tagid", clubhead.taglist.get(0).id);
-						c.startActivity(intent);
+//						Intent intent = new Intent(c, SpecialInfoActivity.class);
+//						intent.putExtra("tagid", clubhead.taglist.get(0).id);
+//						c.startActivity(intent);
+						ActivityUtil.goSpecialInfoActivity(c, clubhead.taglist.get(0).id);
 					}
 				});
 			}
@@ -338,9 +339,10 @@ public class LSClubTopicHead extends LinearLayout implements
 				tv_tag2.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Intent intent = new Intent(c, ClubSpecialListActivity.class);
-						intent.putExtra("tagid", clubhead.taglist.get(1).id);
-						c.startActivity(intent);
+//						Intent intent = new Intent(c, SpecialInfoActivity.class);
+//						intent.putExtra("tagid", clubhead.taglist.get(1).id);
+//						c.startActivity(intent);
+						ActivityUtil.goSpecialInfoActivity(c, clubhead.taglist.get(1).id);
 					}
 				});
 			}
@@ -351,9 +353,10 @@ public class LSClubTopicHead extends LinearLayout implements
 				tv_tag3.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						Intent intent = new Intent(c, ClubSpecialListActivity.class);
-						intent.putExtra("tagid", clubhead.taglist.get(2).id);
-						c.startActivity(intent);
+//						Intent intent = new Intent(c, SpecialInfoActivity.class);
+//						intent.putExtra("tagid", clubhead.taglist.get(2).id);
+//						c.startActivity(intent);
+						ActivityUtil.goSpecialInfoActivity(c, clubhead.taglist.get(2).id);
 					}
 				});
 			}

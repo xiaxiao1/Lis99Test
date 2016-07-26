@@ -1,6 +1,5 @@
 package com.lis99.mobile.choiceness;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +12,7 @@ import com.lis99.mobile.club.model.LSClubSpecialList;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.MyRequestManager;
@@ -69,10 +69,10 @@ public class SpecialActivity extends LSBaseActivity implements
 
                 if ( item == null ) return;
 
-                Intent intent = new Intent(activity, SpecialInfoActivity.class);
-                intent.putExtra("tagid", item.id);
-                startActivity(intent);
-
+//                Intent intent = new Intent(activity, SpecialInfoActivity.class);
+//                intent.putExtra("tagid", item.id);
+//                startActivity(intent);
+                ActivityUtil.goSpecialInfoActivity(activity, item.id);
             }
         });
 

@@ -1,6 +1,5 @@
 package com.lis99.mobile.club;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +11,7 @@ import com.lis99.mobile.club.model.LSClubSpecialList;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.CardsAnimationAdapter;
 import com.lis99.mobile.util.MyRequestManager;
@@ -72,9 +72,10 @@ public class LSCLubSpecialMain extends LSBaseActivity implements
                 if( adapter == null ) return;
                 LSClubSpecialList.Taglist info = (LSClubSpecialList.Taglist) adapter.getItem(i);
 
-                Intent intent = new Intent(activity, ClubSpecialListActivity.class);
-                intent.putExtra("tagid", info.id);
-                startActivity( intent );
+//                Intent intent = new Intent(activity, SpecialInfoActivity.class);
+//                intent.putExtra("tagid", info.id);
+//                startActivity( intent );
+                ActivityUtil.goSpecialInfoActivity(activity, info.id);
             }
         });
 
