@@ -1346,6 +1346,10 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
 
 
+        <activity android:name=".club.LSRecommendActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+                  />
     </application>
 
 
