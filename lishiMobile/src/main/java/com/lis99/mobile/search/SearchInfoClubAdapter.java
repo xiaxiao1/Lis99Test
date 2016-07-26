@@ -1,6 +1,6 @@
 package com.lis99.mobile.search;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.text.Html;
 import android.view.View;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class SearchInfoClubAdapter extends MyBaseAdapter{
 
 
-    public SearchInfoClubAdapter(Context c, ArrayList listItem) {
+    public SearchInfoClubAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

@@ -1,7 +1,6 @@
 package com.lis99.mobile.choiceness.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ import java.util.List;
  */
 public class CommunityStarInfoAdapter extends MyBaseAdapter {
 
-    public CommunityStarInfoAdapter(Context c, List listItem) {
+    public CommunityStarInfoAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 
@@ -63,6 +62,10 @@ public class CommunityStarInfoAdapter extends MyBaseAdapter {
                     int num = NativeEntityUtil.getInstance().getCommunityStarTags().get(name);
                     holder.tvTag1.setBackgroundResource(num);
                 }
+                else
+                {
+                    holder.tvTag1.setBackgroundResource(R.drawable.label_bg_default);
+                }
             }
             if ( tagList.size() > 1 )
             {
@@ -73,6 +76,10 @@ public class CommunityStarInfoAdapter extends MyBaseAdapter {
                 {
                     int num = NativeEntityUtil.getInstance().getCommunityStarTags().get(name);
                     holder.tvTag2.setBackgroundResource(num);
+                }
+                else
+                {
+                    holder.tvTag2.setBackgroundResource(R.drawable.label_bg_default);
                 }
             }
         }

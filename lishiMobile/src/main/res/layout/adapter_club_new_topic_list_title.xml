@@ -230,7 +230,7 @@
             android:drawableLeft="@drawable/topic_destination_loc"
             android:drawablePadding="7dp"
             android:text="西藏"
-            android:textColor="#2bca63"
+            android:textColor="#3ac01a"
             android:textSize="11sp" />
 
         <ImageView

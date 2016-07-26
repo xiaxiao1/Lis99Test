@@ -1,6 +1,6 @@
 package com.lis99.mobile.choiceness;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ public class ActiveAllAdapter extends MyBaseAdapter {
 
 
 
-    public ActiveAllAdapter(Context c, ArrayList listItem) {
+    public ActiveAllAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

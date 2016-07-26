@@ -1,6 +1,6 @@
 package com.lis99.mobile.util;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,11 +12,11 @@ import java.util.List;
  */
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
-    public Context mContext;
+    public Activity mContext;
 
     protected List<T> listItem;
 
-    public MyBaseAdapter ( Context c, List<T> listItem )
+    public MyBaseAdapter (Activity c, List<T> listItem )
     {
         this.mContext = c;
         this.listItem = listItem;

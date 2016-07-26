@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.topicstrimg;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -55,7 +55,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 //    private EditText currentEdit;
 
 
-    public TopicStringImageAdapter(Context c, List listItem) {
+    public TopicStringImageAdapter(Activity c, List listItem) {
         super(c, listItem);
 
         this.layoutInflater = LayoutInflater.from(c);

@@ -253,7 +253,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_select_all_club"
-            android:textColor="#2bca63"
+            android:textColor="#3ac01a"
             android:textSize="12sp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"

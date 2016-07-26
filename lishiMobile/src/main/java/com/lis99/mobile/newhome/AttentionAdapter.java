@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class AttentionAdapter extends MyBaseAdapter {
 
 
-    public AttentionAdapter(Context c, ArrayList listItem) {
+    public AttentionAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

@@ -1,6 +1,6 @@
 package com.lis99.mobile.choiceness.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by yy on 16/6/23.
  */
 public class HotTalkAdapter extends MyBaseAdapter {
-    public HotTalkAdapter(Context c, List listItem) {
+    public HotTalkAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

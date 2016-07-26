@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.filter;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -33,7 +34,7 @@ import java.util.Set;
  */
 public class FilterMainActivity extends LSBaseActivity implements PullToRefreshView.OnFooterRefreshListener, PullToRefreshView.OnHeaderRefreshListener{
 
-    private View line;
+    private View bottombar;
     private LinearLayout layoutTabData;
     private TextView tvData;
     private ImageView ivData;
@@ -86,7 +87,15 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
 
         initViews();
 
-        setTitle("附近的活动");
+        String title = getIntent().getStringExtra("TITLE");
+
+        if ( TextUtils.isEmpty(title) )
+        {
+            title = "附近的活动";
+        }
+
+        setTitle(title);
+//        setTitle("附近的活动");
 
 //        onHeaderRefresh(pullRefreshView);
 
@@ -118,7 +127,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
     protected void initViews() {
         super.initViews();
 
-        line = findViewById(R.id.line);
+        bottombar = findViewById(R.id.bottombar);
         layoutTabData = (LinearLayout) findViewById(R.id.layout_tab_data);
         tvData = (TextView) findViewById(R.id.tv_data);
         ivData = (ImageView) findViewById(R.id.iv_data);
@@ -150,12 +159,12 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
             case R.id.layout_tab_data:
                 unSelectTab(tvCity, ivCity);
                 selectText(tvData);
-                PopWindowUtil.showNearbyActiveTime(dataPosition, line, dataCallBack);
+                PopWindowUtil.showNearbyActiveTime(dataPosition, bottombar, dataCallBack);
                 break;
             case R.id.layout_tab_city:
                 unSelectTab(tvData, ivData);
                 selectText(tvCity);
-                PopWindowUtil.showNearbyActivePrice(pricePosition, line, priceCallBack);
+                PopWindowUtil.showNearbyActivePrice(pricePosition, bottombar, priceCallBack);
                 break;
             case R.id.layout_tab_type:
                 selectFilter(tvType, ivType);
@@ -174,9 +183,9 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
 
     private void getFilterInfo ()
     {
-        if ( filterModel != null && filterModel.sievenlist != null )
+        if ( filterModel != null && filterModel.sievenlist != null && filterModel.sievenlist.size() != 0 )
         {
-            PopWindowUtil.showNearbyFilter(types, line, filterModel, filetCallBack);
+            PopWindowUtil.showNearbyFilter(types, bottombar, filterModel, filetCallBack);
             return;
         }
 //        PopWindowUtil.showNearbyFilter();
@@ -187,7 +196,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
             public void handler(MyTask mTask) {
                 filterModel = (NearbyFilterModel) mTask.getResultModel();
                 if ( filterModel == null || filterModel.sievenlist == null ) return;
-                        PopWindowUtil.showNearbyFilter(types, line, filterModel, filetCallBack);
+                        PopWindowUtil.showNearbyFilter(types, bottombar, filterModel, filetCallBack);
             }
         });
 

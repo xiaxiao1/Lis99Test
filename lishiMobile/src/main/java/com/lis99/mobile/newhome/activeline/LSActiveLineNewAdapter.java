@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.activeline;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class LSActiveLineNewAdapter extends MyBaseAdapter {
 
-    public LSActiveLineNewAdapter(Context c, List listItem) {
+    public LSActiveLineNewAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

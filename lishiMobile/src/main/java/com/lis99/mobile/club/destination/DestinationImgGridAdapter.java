@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.destination;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by yy on 16/7/11.
  */
 public class DestinationImgGridAdapter extends MyBaseAdapter {
-    public DestinationImgGridAdapter(Context c, List listItem) {
+    public DestinationImgGridAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

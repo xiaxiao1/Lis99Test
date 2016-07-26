@@ -20,7 +20,7 @@
             android:background="@null"
             android:text="更多免费装备"
             android:id="@+id/actionButton"
-            android:textColor="#2bca63"
+            android:textColor="#3ac01a"
             android:drawableRight="@drawable/ls_equip_even_dot"
             android:drawablePadding="10dp"
             android:textSize="12sp"

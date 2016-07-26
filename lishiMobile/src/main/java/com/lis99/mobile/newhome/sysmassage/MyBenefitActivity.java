@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.sysmassage;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -204,7 +204,7 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
 
         private BenefitListModel.BenefitItem currentItem;
 
-        public MyBenefitAdapter(Context c, List listItem) {
+        public MyBenefitAdapter(Activity c, List listItem) {
             super(c, listItem);
         }
 

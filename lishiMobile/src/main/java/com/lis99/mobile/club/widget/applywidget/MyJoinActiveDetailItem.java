@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.widget.applywidget;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class MyJoinActiveDetailItem extends MyBaseAdapter {
 
-    public MyJoinActiveDetailItem(Context c, ArrayList listItem) {
+    public MyJoinActiveDetailItem(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

@@ -1,7 +1,6 @@
 package com.lis99.mobile.club.topicstrimg;
 
 import android.app.Activity;
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import java.util.List;
  */
 public class DraftsListAdapter extends MyBaseAdapter {
 
-    public DraftsListAdapter(Context c, List listItem) {
+    public DraftsListAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.widget.applywidget;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -30,7 +30,7 @@ public class MyApplyItem extends MyBaseAdapter{
     private ArrayList<String> visibleItem;
 
 
-    public MyApplyItem(Context c, ArrayList listItem) {
+    public MyApplyItem(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

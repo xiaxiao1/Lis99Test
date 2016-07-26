@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class FansAdapter extends MyBaseAdapter {
 
 
-    public FansAdapter(Context c, ArrayList listItem) {
+    public FansAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

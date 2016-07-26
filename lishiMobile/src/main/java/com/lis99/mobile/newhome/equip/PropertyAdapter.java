@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.equip;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,7 +29,7 @@ public class PropertyAdapter extends MyBaseAdapter{
 
     private int state = 0;
 
-    public PropertyAdapter(Context c, ArrayList listItem) {
+    public PropertyAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

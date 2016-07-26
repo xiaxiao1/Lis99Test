@@ -1,7 +1,7 @@
 package com.lis99.mobile.club.newtopic;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.text.TextUtils;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
  */
 public class LSClubTopicDetailAdapter extends MyBaseAdapter {
 
-    public LSClubTopicDetailAdapter(Context c, ArrayList listItem) {
+    public LSClubTopicDetailAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

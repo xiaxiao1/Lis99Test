@@ -1,6 +1,6 @@
 package com.lis99.mobile.choiceness.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +25,7 @@ public class ChoicenessNewAdapter extends MyBaseAdapter {
 
 
 
-    public ChoicenessNewAdapter(Context c, List listItem) {
+    public ChoicenessNewAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

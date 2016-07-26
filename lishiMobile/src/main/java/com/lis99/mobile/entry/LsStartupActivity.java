@@ -350,7 +350,7 @@ public class LsStartupActivity extends ActivityPatternStartUp {
             SharedPreferencesHelper.saveClientVersion(""+DeviceInfo.CLIENTVERSIONCODE);
             visible = true;
         }
-        visible = true;
+//        visible = true;
         if (TextUtils.isEmpty(SharedPreferencesHelper.getHelp()) || visible )
         {
 //            startActivity( new Intent(this, HelpActivity.class));

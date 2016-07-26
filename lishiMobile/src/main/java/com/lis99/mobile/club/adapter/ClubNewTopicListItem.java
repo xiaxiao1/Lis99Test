@@ -1,7 +1,6 @@
 package com.lis99.mobile.club.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -101,7 +100,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     private LSClubNewTopicListMain main;
 
 
-    public ClubNewTopicListItem(Context c, List listItem) {
+    public ClubNewTopicListItem(Activity c, List listItem) {
         super(c, listItem);
 
         drawable = LSBaseActivity.activity.getResources().getDrawable(
@@ -495,6 +494,12 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
         if (item.is_show_user == 1) {
             holder.hostInfoPanel.setVisibility(View.VISIBLE);
+            holder.hostInfoPanel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Common.goUserHomeActivit((Activity)mContext, ""+item.userId);
+                }
+            });
             if (!TextUtils.isEmpty(item.headicon))
                 ImageLoader.getInstance().displayImage(item.headicon, holder.hostInfoHeaderView,
                         ImageUtil.getclub_topic_headImageOptions());

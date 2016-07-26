@@ -1,13 +1,12 @@
 package com.lis99.mobile.club.newtopic.series;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.widget.applywidget.ApplyManagerItem1;
 import com.lis99.mobile.util.MyBaseAdapter;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class ApplySeriesManagerItem2 extends MyBaseAdapter {
 
     private int INFO = 1;
 
-    public ApplySeriesManagerItem2(Context c, ArrayList listItem) {
+    public ApplySeriesManagerItem2(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

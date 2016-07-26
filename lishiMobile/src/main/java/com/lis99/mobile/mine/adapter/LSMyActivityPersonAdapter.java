@@ -1,21 +1,15 @@
 package com.lis99.mobile.mine.adapter;
 
-import android.content.Context;
-import android.graphics.Color;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.mine.model.LSMyActivity;
-import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by zhangjie on 5/22/16.
@@ -23,7 +17,7 @@ import java.util.Map;
 
 public class LSMyActivityPersonAdapter extends MyBaseAdapter {
 
-    public LSMyActivityPersonAdapter(Context c, ArrayList listItem) {
+    public LSMyActivityPersonAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

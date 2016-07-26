@@ -1,6 +1,6 @@
 package com.lis99.mobile.util;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -439,7 +439,7 @@ public class PopWindowUtil {
     static class ActiveAllTimesAdapter extends MyBaseAdapter
     {
 
-        public ActiveAllTimesAdapter(Context c, ArrayList listItem) {
+        public ActiveAllTimesAdapter(Activity c, ArrayList listItem) {
             super(c, listItem);
         }
 
@@ -502,7 +502,7 @@ public class PopWindowUtil {
     static class ActiveCityMainList extends MyBaseAdapter
     {
 
-        public ActiveCityMainList(Context c, ArrayList listItem) {
+        public ActiveCityMainList(Activity c, ArrayList listItem) {
             super(c, listItem);
         }
 

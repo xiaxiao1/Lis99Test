@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.destination;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by yy on 16/7/11.
  */
 public class DestinationTabAdapter extends MyBaseAdapter {
-    public DestinationTabAdapter(Context c, List listItem) {
+    public DestinationTabAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

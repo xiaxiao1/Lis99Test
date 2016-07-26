@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.filter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +24,7 @@ public class FilterAdapter extends MyBaseAdapter {
 
 
 
-    public FilterAdapter(Context c, List listItem) {
+    public FilterAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

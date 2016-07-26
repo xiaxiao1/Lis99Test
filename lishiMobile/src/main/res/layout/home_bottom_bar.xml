@@ -87,7 +87,7 @@
                 android:textColor="@color/color_tab_unselect"
                 android:layout_marginTop="0dip"
                 style="@style/wrap_wrap"
-                android:text="装备"
+                android:text="福利社"
                 android:textSize="12sp"
                 android:layout_below="@id/dynamicimg"
                 android:layout_centerHorizontal="true"

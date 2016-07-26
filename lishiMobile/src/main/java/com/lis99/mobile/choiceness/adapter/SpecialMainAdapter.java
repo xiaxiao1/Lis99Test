@@ -1,6 +1,6 @@
 package com.lis99.mobile.choiceness.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ public class SpecialMainAdapter extends MyBaseAdapter {
 
 
 
-    public SpecialMainAdapter(Context c, List listItem) {
+    public SpecialMainAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

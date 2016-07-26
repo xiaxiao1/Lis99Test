@@ -1,6 +1,6 @@
 package com.lis99.mobile.choiceness;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class ChoicenessAllAdapter extends MyBaseAdapter{
 
-    public ChoicenessAllAdapter(Context c, ArrayList listItem) {
+    public ChoicenessAllAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

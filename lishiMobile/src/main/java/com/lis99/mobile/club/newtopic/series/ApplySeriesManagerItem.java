@@ -1,7 +1,7 @@
 package com.lis99.mobile.club.newtopic.series;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +56,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
     };
 
 
-    public ApplySeriesManagerItem(Context c, ArrayList listItem) {
+    public ApplySeriesManagerItem(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

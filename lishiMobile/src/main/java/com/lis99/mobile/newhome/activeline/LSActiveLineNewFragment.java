@@ -77,7 +77,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
     private List<Object> l = new ArrayList<Object>();
 
-    private View v;
+    private View v, foodView;
 
     private View titleLeft;
 
@@ -131,6 +131,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
         head = View.inflate(getActivity(), R.layout.active_line_new_head, null);
 
+        foodView = View.inflate(getActivity(),R.layout.active_no_info_food, null );
+
         recycler_supper_leader = (RecyclerView) head.findViewById(R.id.recycler_supper_leader);
         recycler_supper_leader.setLayoutManager(new LinearLayoutManager(
                 getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -144,6 +146,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         include_search.setOnClickListener(this);
 
         list.addHeaderView(head);
+//        list.addFooterView(foodView);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -211,6 +214,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
     private void cleanList ()
     {
+//        foodView.setVisibility(View.VISIBLE);
+//        list.addFooterView(foodView);
         head.setVisibility(View.GONE);
         page = new Page();
         list.setAdapter(null);
@@ -290,10 +295,10 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                 if ( model == null ) return;
 //              没有这个省的数据，弹出提示
-                if ( model.getDefault_data() == 1 )
-                {
-                    showNoCityDialog();
-                }
+//                if ( model.getDefault_data() == 1 )
+//                {
+//                    showNoCityDialog();
+//                }
 
                 page.nextPage();
 
@@ -307,19 +312,31 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                 if ( adapter == null ) {
                     page.setPageSize(model.getTotalpage());
+//                    有数据
+                    if ( model.getActivitylist() != null && model.getActivitylist().size() > 0 )
+                    {
 
-                    adapter = new LSActiveLineNewAdapter(getActivity(), model.getActivitylist());
-                    list.setAdapter(adapter);
+                        if ( list.getFooterViewsCount() != 0 )
+                        {
+                            list.removeFooterView(foodView);
+                        }
 
+                        adapter = new LSActiveLineNewAdapter(getActivity(), model.getActivitylist());
+                        list.setAdapter(adapter);
+                    }
+                    else
+                    {
+                        if ( list.getFooterViewsCount() == 0 )
+                        {
+                            list.addFooterView(foodView);
+                        }
+                    }
                 }
                 else
                 {
                     //                    最后一页
                     adapter.addList(model.getActivitylist());
                 }
-
-
-
             }
         });
 
@@ -471,13 +488,13 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
 //                Common.toast(""+item.id);
 //                目的地
-                if ( position == 0 )
+                if ( item.id == -1 )
                 {
                     Intent intent = new Intent(getActivity(), DestinationMainActivity.class);
                     startActivity(intent);
                 }
 //                附近的活动
-                else if ( position == 1 )
+                else if ( item.id == -2 )
                 {
 //                    FilterMainActivity
                     Intent intent = new Intent(getActivity(), FilterMainActivity.class);
@@ -486,6 +503,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 else
                 {
                     Intent intent = new Intent(getActivity(), FilterMainActivity.class);
+                    intent.putExtra("TITLE", item.name);
                     intent.putExtra("TAGID", item.id);
                     startActivity(intent);
                 }

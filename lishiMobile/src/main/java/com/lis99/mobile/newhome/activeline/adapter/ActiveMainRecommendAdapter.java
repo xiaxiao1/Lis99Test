@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.activeline.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -20,7 +20,7 @@ import java.util.List;
 public class ActiveMainRecommendAdapter extends MyBaseAdapter {
 
 
-    public ActiveMainRecommendAdapter(Context c, List listItem) {
+    public ActiveMainRecommendAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

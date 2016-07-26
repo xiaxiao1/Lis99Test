@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,7 +29,7 @@ public class NeedAttentionAdapter extends MyBaseAdapter {
 
 
 
-    public NeedAttentionAdapter(Context c, ArrayList listItem) {
+    public NeedAttentionAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

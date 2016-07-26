@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="最佳时间"
-                        android:textColor="#2bca63"
+                        android:textColor="#3ac01a"
                         android:textSize="11sp" />
 
                     <ImageView

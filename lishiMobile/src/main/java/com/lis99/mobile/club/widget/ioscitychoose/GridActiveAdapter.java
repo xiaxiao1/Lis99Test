@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.widget.ioscitychoose;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GridActiveAdapter extends MyBaseAdapter {
 
-    public GridActiveAdapter(Context c, List listItem) {
+    public GridActiveAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

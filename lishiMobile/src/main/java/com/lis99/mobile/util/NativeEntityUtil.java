@@ -40,7 +40,7 @@ public class NativeEntityUtil {
         communityStarTags.put("光影大师", R.drawable.label_bg_guangying);
         communityStarTags.put("徒步行者", R.drawable.label_bg_tubu);
         communityStarTags.put("企业官方帐号", R.drawable.label_bg_qiye);
-        communityStarTags.put("潜白色瘾君子", R.drawable.label_bg_baise);
+        communityStarTags.put("白色瘾君子", R.drawable.label_bg_baise);
         communityStarTags.put("山友", R.drawable.label_bg_shanyou);
         communityStarTags.put("老司机", R.drawable.label_bg_laosiji);
 
@@ -54,14 +54,14 @@ public class NativeEntityUtil {
         activeBanner = new ArrayList<>();
         ActiveBannerInfoModel item = new ActiveBannerInfoModel();
 
-        item.id = 0;
+        item.id = -1;
         item.name = "目的地";
         item.resultId = R.drawable.active_new_main_head_supper_icon;
         activeBanner.add(item);
 
 
         item = new ActiveBannerInfoModel();
-        item.id = 0;
+        item.id = -2;
         item.name = "附近的活动";
         item.resultId = R.drawable.active_new_main_native_icon;
         activeBanner.add(item);

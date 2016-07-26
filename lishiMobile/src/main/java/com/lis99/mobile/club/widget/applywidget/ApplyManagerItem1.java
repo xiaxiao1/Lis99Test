@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.widget.applywidget;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,7 +18,7 @@ public class ApplyManagerItem1 extends MyBaseAdapter {
 
 
 
-    public ApplyManagerItem1(Context c, ArrayList listItem) {
+    public ApplyManagerItem1(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

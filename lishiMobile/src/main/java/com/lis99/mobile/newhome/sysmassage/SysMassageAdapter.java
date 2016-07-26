@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.sysmassage;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class SysMassageAdapter extends MyBaseAdapter{
 
-    public SysMassageAdapter(Context c, ArrayList listItem) {
+    public SysMassageAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

@@ -385,7 +385,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 
         final String tel = getResources().getString(R.string.tel);
 
-        String telInfo = "<font color=\"#525252\">免费咨询电话</font><font color=\"#2bca63\">" + tel + "</font><font color=\"#525252\">(工作日9:00-18:00)</font>";
+        String telInfo = "<font color=\"#525252\">免费咨询电话</font><font color=\"#3ac01a\">" + tel + "</font><font color=\"#525252\">(工作日9:00-18:00)</font>";
 
         tv_tel.setText(Html.fromHtml(telInfo));
 
@@ -526,30 +526,6 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 
     public void doAction()
     {
-
-//        if ( true )
-//        {
-//            PushModel p = new PushModel();
-//            p.type = 3;
-//
-//            Intent i = new Intent();
-//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            i.putExtra(PushManager.TAG, p);
-//            i.setClass(activity,
-//                    LsStartupActivity.class);
-//            startActivity(i);
-//            return;
-//        }
-
-//        if ( true )
-//        {
-//            Intent intent = new Intent(activity, WXPayEntryActivity.class);
-//            startActivity(intent);
-//            return;
-//        }
-
-
-
         String userID = DataManager.getInstance().getUser().getUser_id();
         if (TextUtils.isEmpty(userID))
         {

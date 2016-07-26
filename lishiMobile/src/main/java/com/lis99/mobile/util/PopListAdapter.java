@@ -1,6 +1,6 @@
 package com.lis99.mobile.util;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.View;
@@ -41,7 +41,7 @@ public class PopListAdapter {
 
         private int position = -1;
 
-        public TopicActiveSeriesLineAdapter(Context c, List listItem) {
+        public TopicActiveSeriesLineAdapter(Activity c, List listItem) {
             super(c, listItem);
         }
 
@@ -170,7 +170,7 @@ public class PopListAdapter {
 
         private int position = -1;
 
-        public TopicActiveSeriesLineManagerAdapter(Context c, List listItem) {
+        public TopicActiveSeriesLineManagerAdapter(Activity c, List listItem) {
             super(c, listItem);
         }
 
@@ -236,7 +236,7 @@ public class PopListAdapter {
 
         private int postion;
 
-        public NearByActiveTime(Context c, List listItem) {
+        public NearByActiveTime(Activity c, List listItem) {
             super(c, listItem);
         }
 
@@ -291,7 +291,7 @@ public class PopListAdapter {
 
         private List<NearbyFilterGrid> adapters;
 
-        public NearbyFilter(Context c, List listItem) {
+        public NearbyFilter(Activity c, List listItem) {
             super(c, listItem);
             adapters = new ArrayList<NearbyFilterGrid>();
         }
@@ -400,7 +400,7 @@ public class PopListAdapter {
     public static class NearbyFilterGrid extends MyBaseAdapter
     {
 
-        public NearbyFilterGrid(Context c, List listItem) {
+        public NearbyFilterGrid(Activity c, List listItem) {
             super(c, listItem);
         }
 
@@ -459,7 +459,7 @@ public class PopListAdapter {
             if ( item.isSelect == 1 )
             {
                 setSelect(i);
-                holder.name.setTextColor(Color.parseColor("#2bca63"));
+                holder.name.setTextColor(Color.parseColor("#3ac01a"));
                 holder.name.setBackgroundResource(R.drawable.destination_select);
             }
             else

@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class ClubSpecialListItemAdapter extends MyBaseAdapter {
 
-    public ClubSpecialListItemAdapter(Context c, ArrayList listItem) {
+    public ClubSpecialListItemAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

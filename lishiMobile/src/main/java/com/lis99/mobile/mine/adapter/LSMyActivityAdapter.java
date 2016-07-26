@@ -1,6 +1,6 @@
 package com.lis99.mobile.mine.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +44,7 @@ public class LSMyActivityAdapter extends MyBaseAdapter {
         payStatus.put(8, "无法退款");
     }
 
-    public LSMyActivityAdapter(Context c, ArrayList listItem) {
+    public LSMyActivityAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

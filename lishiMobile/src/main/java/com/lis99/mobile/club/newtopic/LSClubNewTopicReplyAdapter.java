@@ -3,7 +3,6 @@ package com.lis99.mobile.club.newtopic;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
@@ -131,7 +130,7 @@ public class LSClubNewTopicReplyAdapter extends MyBaseAdapter {
     }
 
 
-    public LSClubNewTopicReplyAdapter(Context c, List listItem) {
+    public LSClubNewTopicReplyAdapter(Activity c, List listItem) {
         super(c, listItem);
 
         drawable = LSBaseActivity.activity.getResources().getDrawable(

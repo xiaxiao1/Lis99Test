@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,7 +21,7 @@ public class MyJoinAdapter extends MyBaseAdapter {
 
     private boolean visibleLine = true;
 
-    public MyJoinAdapter(Context c, ArrayList listItem) {
+    public MyJoinAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

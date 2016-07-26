@@ -86,7 +86,7 @@ public class DestinationHeaderView extends LinearLayout {
                     Drawable drawable= getResources().getDrawable(R.drawable.icon_destination_activity_selected);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     activityView.setCompoundDrawables(drawable,null,null,null);
-                    activityView.setTextColor(Color.parseColor("#2bca63"));
+                    activityView.setTextColor(Color.parseColor("#3ac01a"));
 
                     drawable= getResources().getDrawable(R.drawable.icon_destination_note);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
@@ -106,7 +106,7 @@ public class DestinationHeaderView extends LinearLayout {
                     Drawable drawable= getResources().getDrawable(R.drawable.icon_destination_note_selected);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     noteView.setCompoundDrawables(drawable,null,null,null);
-                    noteView.setTextColor(Color.parseColor("#2bca63"));
+                    noteView.setTextColor(Color.parseColor("#3ac01a"));
 
                     drawable= getResources().getDrawable(R.drawable.icon_destination_activity);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());

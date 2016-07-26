@@ -101,7 +101,7 @@ public class DestinationInfoActivity extends LSBaseActivity {
         if (textView == selectedTextView) {
             return;
         }
-        textView.setTextColor(Color.parseColor("#2bca63"));
+        textView.setTextColor(Color.parseColor("#3ac01a"));
         selectedTextView.setTextColor(Color.parseColor("#525252"));
         selectedTextView = textView;
 

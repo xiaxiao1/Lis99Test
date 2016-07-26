@@ -35,6 +35,7 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
             viewHolder.ivLoad = (ImageView) view.findViewById(R.id.iv_load);
             viewHolder.tvTag = (TextView) view.findViewById(R.id.tv_tag);
             viewHolder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            viewHolder.tv_style = (TextView) view.findViewById(R.id.tv_style);
             view.setTag(viewHolder);
         } else
         {
@@ -50,6 +51,8 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
 
         viewHolder.tvTag.setText(item.harddesc);
 
+        viewHolder.tv_style.setText(item.cate_name);
+
 
         viewHolder.tvTitle.setText(item.topic_title);
 
@@ -61,6 +64,7 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
         private ImageView ivLoad;
         private TextView tvTag;
         private TextView tvTitle;
+        private TextView tv_style;
     }
 
 }

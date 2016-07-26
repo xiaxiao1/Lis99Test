@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -43,7 +43,7 @@ public class LSSelectColumnAdapter extends MyBaseAdapter {
     }
 
 
-    public LSSelectColumnAdapter(Context c, ArrayList listItem) {
+    public LSSelectColumnAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

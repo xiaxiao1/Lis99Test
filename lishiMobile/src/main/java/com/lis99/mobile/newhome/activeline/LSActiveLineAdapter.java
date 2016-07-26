@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.activeline;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,7 +39,7 @@ public class LSActiveLineAdapter extends MyBaseAdapter {
     private int num = 3;
 
 
-    public LSActiveLineAdapter(Context c, List listItem) {
+    public LSActiveLineAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
 

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/club_info_btn_info"
         android:layout_gravity="center_horizontal"
-        android:textColor="#2bca63"
+        android:textColor="#3ac01a"
         android:text="查看所有活动"
         android:drawableRight="@drawable/club_info_arrow"
         android:drawablePadding="5dp"

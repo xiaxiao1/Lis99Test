@@ -1,7 +1,6 @@
 package com.lis99.mobile.newhome;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -32,7 +31,7 @@ public class DynamicAdapter extends MyBaseAdapter {
 
     private DisplayImageOptions options;
 
-    public DynamicAdapter(Context c, ArrayList listItem) {
+    public DynamicAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
         animation = AnimationUtils.loadAnimation(c, R.anim.like_anim_rotate);
 

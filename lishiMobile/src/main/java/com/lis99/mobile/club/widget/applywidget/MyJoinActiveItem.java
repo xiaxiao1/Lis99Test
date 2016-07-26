@@ -1,6 +1,6 @@
 package com.lis99.mobile.club.widget.applywidget;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class MyJoinActiveItem extends MyBaseAdapter {
 
-    public MyJoinActiveItem(Context c, ArrayList listItem) {
+    public MyJoinActiveItem(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

@@ -1,7 +1,6 @@
 package com.lis99.mobile.club.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +50,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 	public int ui_level = 1;
 	
-	public LSClubDitalAdapter(Context context, List topiclist, boolean active ){
+	public LSClubDitalAdapter(Activity context, List topiclist, boolean active ){
 		super(context, topiclist);
 		inflater = LayoutInflater.from(context);
 		this.activeList = active;

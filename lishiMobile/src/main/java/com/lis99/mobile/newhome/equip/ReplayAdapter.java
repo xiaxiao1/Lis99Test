@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.equip;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +33,7 @@ public class ReplayAdapter extends MyBaseAdapter {
         this.id = id;
     }
 
-    public ReplayAdapter(Context c, ArrayList listItem) {
+    public ReplayAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

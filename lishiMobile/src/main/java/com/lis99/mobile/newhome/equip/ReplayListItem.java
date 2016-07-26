@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome.equip;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 public class ReplayListItem extends MyBaseAdapter {
 
-    public ReplayListItem(Context c, ArrayList listItem) {
+    public ReplayListItem(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

@@ -1,7 +1,7 @@
 package com.lis99.mobile.club.widget.applywidget;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +46,7 @@ public class ApplyManagerItem extends MyBaseAdapter {
     };
 
 
-    public ApplyManagerItem(Context c, ArrayList listItem) {
+    public ApplyManagerItem(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

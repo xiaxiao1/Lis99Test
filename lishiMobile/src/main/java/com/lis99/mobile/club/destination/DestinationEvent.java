@@ -15,9 +15,11 @@ public class DestinationEvent {
     public int image_height;
 
 
+
     public String topic_title;
     public String activity_code;
     public String harddesc;
     public String topic_image;
+    public String cate_name;
     
 }

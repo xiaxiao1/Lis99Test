@@ -1,6 +1,6 @@
 package com.lis99.mobile.newhome;
 
-import android.content.Context;
+import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +27,7 @@ public class RecommendAdapter extends MyBaseAdapter {
 
     private String userId;
 
-    public RecommendAdapter(Context c, ArrayList listItem) {
+    public RecommendAdapter(Activity c, ArrayList listItem) {
         super(c, listItem);
     }
 

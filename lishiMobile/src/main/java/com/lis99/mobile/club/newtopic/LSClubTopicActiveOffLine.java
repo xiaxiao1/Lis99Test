@@ -388,7 +388,7 @@ public class LSClubTopicActiveOffLine extends LSBaseActivity implements
 
         final String tel = getResources().getString(R.string.tel);
 
-        String telInfo = "<font color=\"#525252\">免费咨询电话</font><font color=\"#2bca63\">" + tel + "</font><font color=\"#525252\">(工作日9:00-18:00)</font>";
+        String telInfo = "<font color=\"#525252\">免费咨询电话</font><font color=\"#3ac01a\">" + tel + "</font><font color=\"#525252\">(工作日9:00-18:00)</font>";
 
         tv_tel.setText(Html.fromHtml(telInfo));
 
