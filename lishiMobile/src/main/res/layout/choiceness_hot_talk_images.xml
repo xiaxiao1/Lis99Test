@@ -168,7 +168,7 @@
                   android:padding="20dp"
                   android:textColor="@color/text_color_green"
                   android:layout_gravity="center_horizontal"
-                  android:text="查看全部讨论区"
+                  android:text="查看更多讨论"
                   android:textSize="@dimen/text_small"
         />
 
