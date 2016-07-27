@@ -86,7 +86,6 @@
         layout="@layout/club_topic_reply_new"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/reply_height"
-        android:layout_marginBottom="10dip"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginTop="10dp" />
@@ -96,6 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:layout_marginBottom="18dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
 
@@ -223,8 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/topic_new_add_info_btn" />
 
     <LinearLayout

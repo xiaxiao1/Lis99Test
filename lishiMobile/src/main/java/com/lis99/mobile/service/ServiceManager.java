@@ -2,6 +2,7 @@ package com.lis99.mobile.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.lis99.mobile.util.C;
 
 import java.security.cert.CertificateException;
 import java.util.HashMap;
@@ -38,12 +39,14 @@ public final class ServiceManager {
                 .registerTypeAdapterFactory(new ApiTypeAdapterFactory("data"))
                 .create();
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://apis.lis99.com/")
+//                .baseUrl("https://apis.lis99.com/")
+                .baseUrl(C.getDOMAIN())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(getUnsafeOkHttpClient())
                 .build();
         retrofit2 = new Retrofit.Builder()
-                .baseUrl("http://api.lis99.com/")
+//                .baseUrl("http://api.lis99.com/")
+                .baseUrl(C.getDOMAIN())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }

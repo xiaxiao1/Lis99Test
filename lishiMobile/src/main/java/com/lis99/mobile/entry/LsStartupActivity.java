@@ -108,6 +108,9 @@ public class LsStartupActivity extends ActivityPatternStartUp {
 //        int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
         //设备信息
         DeviceInfo.getDeviceInfo(this);
+//        设置连接地址
+//        Common.setHost();
+
 
 //		ll_startup = (LinearLayout) findViewById(R.id.ll_startup);
 

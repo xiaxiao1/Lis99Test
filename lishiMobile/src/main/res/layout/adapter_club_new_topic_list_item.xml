@@ -14,12 +14,12 @@
         android:textColor="@color/text_color_black"
         android:id="@+id/tv_title"
         android:text="@string/temp_string"
-        android:layout_marginBottom="12dp"
         android:textSize="16sp"
         android:textStyle="bold"
         />
 
     <TextView
+        android:paddingTop="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:id="@+id/layout_iv"
         >
 
@@ -77,7 +77,7 @@
     <TextView
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginTop="10dp"
+        android:paddingTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/text_color_black"

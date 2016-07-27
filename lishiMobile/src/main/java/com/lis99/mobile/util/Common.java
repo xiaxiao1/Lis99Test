@@ -7,6 +7,7 @@ import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -42,6 +43,16 @@ public class Common {
     public static boolean mainIsStart;
 
     private static String TAG = "MYUTIL";
+
+    public static int getHEIGHT ()
+    {
+        if ( HEIGHT != 0 ) return HEIGHT;
+        DisplayMetrics metric = new DisplayMetrics();
+        LSBaseActivity.activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
+        WIDTH = metric.widthPixels;  // 屏幕宽度（像素）
+        HEIGHT = metric.heightPixels;  // 屏幕高度（像素）
+        return HEIGHT;
+    }
 
     public static void log(String str) {
         if ("ttest".equals(DeviceInfo.CHANNELVERSION))
@@ -607,6 +618,20 @@ public class Common {
             return true;
         }
         return false;
+    }
+
+//    192.168.1.196  apis.lis99.net
+    public static void setHost ()
+    {
+//        Common.log("HOST="+C.getDOMAIN());
+        C.setDOMAIN("http://api.lis99.com");
+        C.setDOMAINS("https://apis.lis99.com");
+        if ( Common.isTest() && C.TESTHOST )
+        {
+            C.setDOMAIN("http://apis.lis99.net");
+            C.setDOMAINS("http://apis.lis99.net");
+        }
+//        Common.log("HOST1="+C.getDOMAIN());
     }
 
 }

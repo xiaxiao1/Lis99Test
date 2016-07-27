@@ -17,7 +17,8 @@ public class FullScreenADImage  {
 
     private static FullScreenADImage instance;
 
-    private String URl = "http://api.lis99.com/v2/advertise/channelAd/";
+//    private String URl = "http://api.lis99.com/v2/advertise/channelAd/";
+private String URl = C.getDOMAIN()+"/v2/advertise/channelAd/";
 
     private String platform, channel, version;
 

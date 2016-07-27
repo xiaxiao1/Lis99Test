@@ -19,7 +19,7 @@ public class LSScoreManager {
 
 //    private static final String URL = C.DOMAIN + "/v3/user/incrUserPoints";
 //    /v3/user/newIncrUserPoints
-private static final String URL = C.DOMAIN + "/v3/user/newIncrUserPoints";
+private static final String URL = C.getDOMAIN() + "/v3/user/newIncrUserPoints";
 
     private static String /*action,*/ user_id, version, platform, channel, topicid;
 

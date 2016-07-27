@@ -12,7 +12,9 @@ import com.lis99.mobile.entry.application.DemoApplication;
  *  
  ******************************************/
 public class C {
-	
+//	测试地址开关
+	public static boolean TESTHOST = false;
+
 	/** 客户端版本 */
 	public static String VERSION = DemoApplication.getInstance().versionName;
 	
@@ -137,11 +139,33 @@ public class C {
 	public static final String WEIXIN_TOKEN      = "weixin_token";
 	public static final String WEIXIN_OPENID      = "weixin_openid";
 
-	
+
 	/** 服务器地址 */
-	public static final String DOMAIN = "http://api.lis99.com";
+	private static String DOMAIN;// = "http://api.lis99.com";
 //	HTTPS 地址
-	private static final String DOMAINS = "https://apis.lis99.com";
+	private static String DOMAINS;// = "https://apis.lis99.com";
+
+	public static String getDOMAIN() {
+		return DOMAIN;
+	}
+
+	public static void setDOMAIN(String DOMAIN) {
+		C.DOMAIN = DOMAIN;
+	}
+
+	public static String getDOMAINS() {
+		return DOMAINS;
+	}
+
+	public static void setDOMAINS(String DOMAINS) {
+		C.DOMAINS = DOMAINS;
+	}
+
+	static {
+		Common.log("===HOST====");
+		Common.setHost();
+	}
+
 	/** 首屏-焦点图 */
 	public static final String MAIN_BANNER_URL = DOMAIN + "/main/banner/";
 	/** 装备-热门装备 */

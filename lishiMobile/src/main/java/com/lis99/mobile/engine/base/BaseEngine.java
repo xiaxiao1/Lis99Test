@@ -28,9 +28,9 @@ public abstract class BaseEngine {
 		
 		if(method.equalsIgnoreCase("get")){
 			
-			httpUriRequest=new HttpGet(C.DOMAIN+url);
+			httpUriRequest=new HttpGet(C.getDOMAIN()+url);
 		}else if(method.equalsIgnoreCase("post")){			
-			httpUriRequest=new HttpPost(C.DOMAIN+url);
+			httpUriRequest=new HttpPost(C.getDOMAIN()+url);
 		}
 		addRequestHeader();
 		return httpUriRequest;
