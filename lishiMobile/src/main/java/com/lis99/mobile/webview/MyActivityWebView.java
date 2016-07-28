@@ -28,6 +28,7 @@ import com.lis99.mobile.club.model.ShareModel;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.newhome.sysmassage.MyBenefitAddAddress;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ShareManager;
 
 public class MyActivityWebView extends LSBaseActivity
@@ -376,20 +377,25 @@ public class MyActivityWebView extends LSBaseActivity
 		public void onLoadResource(WebView view, String url) {
 			// TODO Auto-generated method stub
 //			Toast.makeText(getApplicationContext(), "WebViewClient.onLoadResource", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onLoadResource");
 			super.onLoadResource(view, url);
 		}
 
 		@Override
 		public void onPageFinished(WebView view, String url) {
 			// TODO Auto-generated method stub
-//			Toast.makeText(getApplicationContext(), "WebViewClient.onPageFinished", Toast.LENGTH_SHORT).show(); 
+//			Toast.makeText(getApplicationContext(), "WebViewClient.onPageFinished", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageFinished");
+			DialogManager.getInstance().stopWaitting();
 			super.onPageFinished(view, url);
 		}
 
 		@Override
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
 			// TODO Auto-generated method stub
-//			Toast.makeText(getApplicationContext(), "WebViewClient.onPageStarted", Toast.LENGTH_SHORT).show(); 
+//			Toast.makeText(getApplicationContext(), "WebViewClient.onPageStarted", Toast.LENGTH_SHORT).show();
+//			Common.log("WebViewClient.onPageStarted");
+			DialogManager.getInstance().startWaiting(activity, "", "");
 			super.onPageStarted(view, url, favicon);
 		}
 
@@ -397,7 +403,8 @@ public class MyActivityWebView extends LSBaseActivity
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
 			// TODO Auto-generated method stub
 			view.loadUrl(url);
-			return super.shouldOverrideUrlLoading(view, url);
+			return true;
+//			return super.shouldOverrideUrlLoading(view, url);
 		}
     	
     }

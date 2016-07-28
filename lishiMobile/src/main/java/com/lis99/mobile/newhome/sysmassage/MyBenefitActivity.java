@@ -229,7 +229,7 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
             if ( item == null ) return view;
 
             holder.tv_title.setText(item.title);
-            holder.tv_content.setText(item.enddate);
+            holder.tv_content.setText(item.enddate+" 日前领取");
 
 
             switch (item.flag )

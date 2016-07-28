@@ -150,7 +150,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
                 titleView.setText(model.getTitle());
                 if ( TextUtils.isEmpty(model.batchDesc))
                 {
-                    tvdata.setText(model.activitytimes);
+                    tvdata.setText(model.activitytimes+" 共"+model.batchTotal+" 批次");
                 }
                 else
                 {

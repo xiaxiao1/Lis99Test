@@ -331,8 +331,21 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 				LSRequestManager.getInstance().getFriendsAddAttention(id, new CallBack() {
 					@Override
 					public void handler(MyTask mTask) {
-						finalHolder.btnConcern.setVisibility(View.GONE);
-						item.is_follow = 1;
+//						finalHolder.btnConcern.setVisibility(View.GONE);
+//						item.is_follow = 1;
+						String id = item.user_id;
+						for ( Object o : listItem )
+						{
+							if ( o instanceof  Topiclist )
+							{
+								Topiclist info = (Topiclist) o;
+								if ( id.equals(info.user_id) )
+								{
+									info.is_follow = 1;
+								}
+							}
+						}
+						notifyDataSetChanged();
 					}
 				});
 

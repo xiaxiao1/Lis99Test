@@ -437,13 +437,13 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
         setTitle(user.getNickname());
 
 
-        String loginedID = DataManager.getInstance().getUser().getUser_id();
+//        String loginedID = DataManager.getInstance().getUser().getUser_id();
 
-        if (this.userID.equals(loginedID)) {
-            titleRight.setVisibility(View.INVISIBLE);
-        } else {
-            titleRight.setVisibility(View.VISIBLE);
-        }
+//        if (this.userID.equals(loginedID)) {
+//            titleRight.setVisibility(View.INVISIBLE);
+//        } else {
+//            titleRight.setVisibility(View.VISIBLE);
+//        }
 
         headerView.setBackgroundResource(R.drawable.club_0);
         nameView.setText(user.getNickname());
