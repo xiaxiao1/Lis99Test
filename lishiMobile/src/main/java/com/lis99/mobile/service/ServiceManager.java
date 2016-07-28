@@ -91,11 +91,20 @@ public final class ServiceManager {
             builder.readTimeout(TIME_OUT, TimeUnit.SECONDS);
             builder.writeTimeout(TIME_OUT, TimeUnit.SECONDS);
 
+//            builder.addInterceptor(getLog());
+
             OkHttpClient okHttpClient = builder.build();
             return okHttpClient;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static HttpLoggingInterceptor getLog()
+    {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        return loggingInterceptor;
     }
 
     public static <T> T getHttpApiService(Class<T> clazz) {

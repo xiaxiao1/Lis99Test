@@ -65,8 +65,8 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
         payStatus.put(5, "免费活动");
         payStatus.put(6, "退款处理中");
         payStatus.put(7, "逾期未支付");
-        payStatus.put(8, "无法付款");
-        payStatus.put(8, "无法退款");
+        payStatus.put(8, "订单关闭");
+        payStatus.put(9, "无法退款");
 
         payTypes.put(0, "免费活动");
         payTypes.put(1, "线下支付");

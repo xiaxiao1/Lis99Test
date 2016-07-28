@@ -71,7 +71,7 @@ public class MyBenefitInfoActivity extends LSBaseActivity implements View.OnClic
         item = (BenefitListModel.BenefitItem) info;
 
         tv_title.setText(item.title);
-        tv_content.setText(item.enddate);
+        tv_content.setText(item.enddate+" 日前领取");
         tv_readme.setText(item.readme);
 
 
