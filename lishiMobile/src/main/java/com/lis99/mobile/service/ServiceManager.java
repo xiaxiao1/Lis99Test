@@ -3,6 +3,7 @@ package com.lis99.mobile.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 
 import java.security.cert.CertificateException;
 import java.util.HashMap;
@@ -35,18 +36,21 @@ public final class ServiceManager {
     private static Gson gson;
 
     static {
+                String url = C.getDOMAIN();
+                String urls = C.getDOMAINS();
+        Common.log("rul="+url+"\nurls="+urls);
         gson = new GsonBuilder()
                 .registerTypeAdapterFactory(new ApiTypeAdapterFactory("data"))
                 .create();
         retrofit = new Retrofit.Builder()
 //                .baseUrl("https://apis.lis99.com/")
-                .baseUrl(C.getDOMAIN())
+                .baseUrl(urls)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(getUnsafeOkHttpClient())
                 .build();
         retrofit2 = new Retrofit.Builder()
 //                .baseUrl("http://api.lis99.com/")
-                .baseUrl(C.getDOMAIN())
+                .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
@@ -91,9 +95,10 @@ public final class ServiceManager {
             builder.readTimeout(TIME_OUT, TimeUnit.SECONDS);
             builder.writeTimeout(TIME_OUT, TimeUnit.SECONDS);
 
-//            builder.addInterceptor(getLog());
+            builder.addInterceptor(getLog());
 
             OkHttpClient okHttpClient = builder.build();
+
             return okHttpClient;
         } catch (Exception e) {
             throw new RuntimeException(e);

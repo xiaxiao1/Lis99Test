@@ -15,6 +15,7 @@ import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.service.RetrofitCall;
 import com.lis99.mobile.service.ServiceManager;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.Page;
@@ -211,9 +212,27 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
     private void getDestinationDetail() {
         DestinationService service = ServiceManager.getHttpsApiService(DestinationService.class);
         Call<Destination> call = service.getDestinationDetail(destID);
-        call.enqueue(new Callback<Destination>() {
+//        call.enqueue(new Callback<Destination>() {
+//            @Override
+//            public void onResponse(Call<Destination> call, Response<Destination> response) {
+//                destination = response.body();
+//                if (destination != null) {
+//                    headerView.setDestination(destination);
+//                    setTitle(destination.title);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Destination> call, Throwable t) {
+//
+//            }
+//        });
+
+
+        call.enqueue(new RetrofitCall<Destination>() {
+
             @Override
-            public void onResponse(Call<Destination> call, Response<Destination> response) {
+            public void myResponse(Call<Destination> call, Response<Destination> response) {
                 destination = response.body();
                 if (destination != null) {
                     headerView.setDestination(destination);
@@ -222,10 +241,13 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
             }
 
             @Override
-            public void onFailure(Call<Destination> call, Throwable t) {
+            public void myFailure(Call<Destination> call, Throwable t) {
 
             }
+
+
         });
+
     }
 
     private void getEventList() {

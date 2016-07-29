@@ -44,8 +44,6 @@ public class ActivityTest extends LSBaseActivity implements View.OnClickListener
         findViewById(R.id.button3).setOnClickListener(this);
 
 
-
-
     }
 
 

@@ -3,7 +3,6 @@ package com.lis99.mobile.club.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,6 @@ import com.lis99.mobile.util.MyBaseAdapter;
 import com.lis99.mobile.util.NativeEntityUtil;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
 import com.lis99.mobile.util.letv.MovieActivity;
-import com.lis99.mobile.webview.MyActivityWebView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.HashMap;
@@ -293,12 +291,15 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(mContext, MyActivityWebView.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("URL", item.areaurl);
-                    bundle.putString("TITLE", item.areaname);
-                    intent.putExtras(bundle);
-                    mContext.startActivity(intent);
+//                    Intent intent = new Intent(mContext, MyActivityWebView.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("URL", item.areaurl);
+//                    bundle.putString("TITLE", item.areaname);
+//                    intent.putExtras(bundle);
+//                    mContext.startActivity(intent);
+
+                    ActivityUtil.goDestinationInfo(item.tag_id, item.desti_id);
+
 
                 }
             });

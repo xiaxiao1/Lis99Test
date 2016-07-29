@@ -77,6 +77,8 @@ public class TopicNewListMainModelTitle extends BaseModel {
     @SerializedName("sharetxt")
     public String sharetxt;
 
+    public int tag_id;
+    public int desti_id;
 
     public int is_show_user;
     public int is_jingpin;

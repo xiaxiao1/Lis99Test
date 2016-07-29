@@ -3,6 +3,7 @@ package com.lis99.mobile.service;
 import com.lis99.mobile.util.Common;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -17,21 +18,17 @@ public class HttpLoggingInterceptor implements Interceptor {
         Request request = chain.request();
 
         long t1 = System.nanoTime();
-        Response response = chain.proceed(request);
+        okhttp3.Response response = chain.proceed(chain.request());
         long t2 = System.nanoTime();
-
-        double time = (t2 - t1) / 1e6d;
-
-        if (request.method().equals("GET")) {
-            Common.log(String.format("GET ", request.url(), time, request.headers(), response.code(), response.headers(), response.body().charStream()));
-        } else if (request.method().equals("POST")) {
-            Common.log(String.format("POST ", request.url(), time, request.headers(), request.body(), response.code(), response.headers(), response.body().charStream()));
-        } else if (request.method().equals("PUT")) {
-            Common.log(String.format("PUT " , request.url(), time, request.headers(), request.body().toString(), response.code(), response.headers(), response.body().charStream()));
-        } else if (request.method().equals("DELETE")) {
-            Common.log(String.format("DELETE " , request.url(), time, request.headers(), response.code(), response.headers()));
-        }
-
-        return response;
+        Common.log(String.format(Locale.getDefault(), "Received response for %s in %.1fms",
+                response.request().url(), (t2 - t1) / 1e6d));
+        okhttp3.MediaType mediaType = response.body().contentType();
+        String content = response.body().string();
+        Common.log("request:" + request.toString());
+        Common.log("request:" + request.body().toString());
+        Common.log("response body:" + content);
+        return response.newBuilder()
+                .body(okhttp3.ResponseBody.create(mediaType, content))
+                .build();
     }
 }
