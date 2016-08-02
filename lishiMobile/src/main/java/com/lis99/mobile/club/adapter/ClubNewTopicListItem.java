@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSRecommendActivity;
+import com.lis99.mobile.club.model.IsToRecommendActive;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
@@ -134,6 +136,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             case NO_REPLY:
                 return getNoReply (i, view, viewGroup);
             case RECOMMEND:
+                Log.i("xx"," return getRecommend(i,view,viewGroup);");
                 return getRecommend(i,view,viewGroup);
         }
 
@@ -160,10 +163,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         {
             num = NO_REPLY;
         }
-        /*//判断是否是推荐活动item，等待接口匹配
-        else if(){
+        //判断是否是推荐活动item，等待接口匹配
+        else if(o instanceof IsToRecommendActive){
             num = RECOMMEND;
-        }*/
+            Log.i("xx","o instanceof IsToRecommendActive");
+        }
 
         return num;
     }
@@ -713,30 +717,30 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         } else {
             holder = (ViewHolderRecommend) view.getTag();
         }
-
+        Log.i("xx", "获取返回的数据，判断是否显示推荐活动");
         //获取返回的数据，判断是否显示推荐活动，及具体的参数设置
-        final TopicNewListMainModel.TopicsreplylistEntity item = (TopicNewListMainModel
-                .TopicsreplylistEntity) getItem(i);
+        final IsToRecommendActive item = (IsToRecommendActive) getItem(i);
 
         //show
-        if (true) {
+        Log.i("xx", item.toString() + "");
+        if (item.getIs_tagid()>0) {//表示有要推荐的活动
             holder.clubTopicToRecommendViewRl.setVisibility(View.VISIBLE);
-            //设置底层大背景图
-            ImageLoader.getInstance().displayImage(item.headicon, holder.clubTopicToRecommendBgImg,
-                    ImageUtil.getDefultImageOptions());
-            holder.clubTopicToRecommendTextTv.setText("显示返回的字符串");
+            //用于在textview上显示两行效果
+            String reason=item.getReason();
+            if (reason != null && !reason.equals("")) {
+                StringBuffer sb = new StringBuffer(reason);
+                sb.insert(reason.length() / 2 - 1, "\n");
+                holder.clubTopicToRecommendTextTv.setText(sb.toString());
+            }
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i=new Intent(mContext,LSRecommendActivity.class);
-                    i.putExtra("", "");
+                    i.putExtra("is_tagid", item.getIs_tagid());
                     mContext.startActivity(i);
                 }
             });
-        }
-        //没有要推荐的活动，隐藏此item
-        else{
-            holder.clubTopicToRecommendViewRl.setVisibility(View.GONE);
         }
         return view;
     }

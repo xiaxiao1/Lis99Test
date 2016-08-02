@@ -10,6 +10,24 @@ import java.util.List;
  */
 public class TopicNewListMainModel extends TopicNewListMainModelEquip implements ShareInterface {
 
+    private int is_tagId;
+    private String reason;
+
+    public int getIs_tagId() {
+        return is_tagId;
+    }
+
+    public void setIs_tagId(int is_tagId) {
+        this.is_tagId = is_tagId;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     /**
      * content : 测试内容
@@ -61,6 +79,8 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
         public int videoimgHeight;
         @SerializedName("videoimg_width")
         public int videoimgWidth;
+
+
     }
 
     public static class TopicsreplylistEntity {
@@ -111,6 +131,7 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
             @SerializedName("title")
             public String title;
         }
+
 
     }
 
