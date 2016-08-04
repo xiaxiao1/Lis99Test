@@ -25,7 +25,6 @@ public class HttpLoggingInterceptor implements Interceptor {
         okhttp3.MediaType mediaType = response.body().contentType();
         String content = response.body().string();
         Common.log("request:" + request.toString());
-        Common.log("request:" + request.body().toString());
         Common.log("response body:" + content);
         return response.newBuilder()
                 .body(okhttp3.ResponseBody.create(mediaType, content))

@@ -3,6 +3,7 @@ package com.lis99.mobile.club.newtopic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,6 +17,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.adapter.ClubNewTopicListItem;
 import com.lis99.mobile.club.adapter.LSClubTopicImageListener;
+import com.lis99.mobile.club.model.IsToRecommendActive;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
@@ -161,7 +163,6 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                 if (model == null) return;
 
 //                page.nextPage();
-
 //              分享图片获取URL
                 if (model.topicsdetaillist != null && model.topicsdetaillist.size() >= 1) {
                     for (int i = 0; i < model.topicsdetaillist.size(); i++) {
@@ -186,6 +187,9 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
                     TopicNewListMainModelTitle title = model;
 
+
+
+
                     ArrayList<Object> mList = new ArrayList<Object>();
 
                     mList.add(title);
@@ -203,7 +207,22 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                     {
                         mList.addAll(model.topicsreplylist);
                     }
-
+                    //根据is_tagid判断是否有推荐活动，有则将info添加到List尾端
+                    //组装话题帖底部到推荐活动页的入口信息
+                    Log.i("xx","is_tagid:"+model.getIs_tagid());
+                    if (model.getIs_tagid()>0) {
+                        IsToRecommendActive info=new IsToRecommendActive();
+                        info.setIs_tagid(model.getIs_tagid());
+                        info.setReason(model.getReason());
+                        mList.add(info);
+                    }
+                    //else语句块是测试用例，正常时应该注释掉
+                    /*else{
+                        IsToRecommendActive info=new IsToRecommendActive();
+                        info.setIs_tagid(202);
+                        info.setReason("这是测试用的，显示出这个表示当前话题没有关联的活动，");
+                        mList.add(info);
+                    }*/
                     adapter = new ClubNewTopicListItem(activity, mList);
 
                     adapter.setLikeCall(likeCall);
