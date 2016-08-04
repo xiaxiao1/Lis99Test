@@ -209,9 +209,10 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                     }
                     //根据is_tagid判断是否有推荐活动，有则将info添加到List尾端
                     //组装话题帖底部到推荐活动页的入口信息
-                    if (model.getIs_tagId()>0) {
+                    Log.i("xx","is_tagid:"+model.getIs_tagid());
+                    if (model.getIs_tagid()>0) {
                         IsToRecommendActive info=new IsToRecommendActive();
-                        info.setIs_tagid(model.getIs_tagId());
+                        info.setIs_tagid(model.getIs_tagid());
                         info.setReason(model.getReason());
                         mList.add(info);
                     }

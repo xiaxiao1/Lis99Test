@@ -81,6 +81,7 @@ public class LSRecommendActivity extends LSBaseActivity implements PullToRefresh
 
                 if (model != null) {
                     NearbyListMainModel.ListsEntity active= model.lists.get(position);
+                    Log.i("xx",""+active.activityCode);
                     Common.goTopic(activity, 4, Common.string2int(active.id));
                 }
             }

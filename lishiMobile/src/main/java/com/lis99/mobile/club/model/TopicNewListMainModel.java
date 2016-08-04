@@ -10,15 +10,15 @@ import java.util.List;
  */
 public class TopicNewListMainModel extends TopicNewListMainModelEquip implements ShareInterface {
 
-    private int is_tagId;
+    private int is_tagid;
     private String reason;
 
-    public int getIs_tagId() {
-        return is_tagId;
+    public int getIs_tagid() {
+        return is_tagid;
     }
 
-    public void setIs_tagId(int is_tagId) {
-        this.is_tagId = is_tagId;
+    public void setIs_tagid(int is_tagid) {
+        this.is_tagid = is_tagid;
     }
 
     public String getReason() {
