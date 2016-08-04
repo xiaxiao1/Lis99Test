@@ -22,7 +22,6 @@ import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.LsEquiFilterActivity;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
-import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.RedDotUtil;
@@ -347,21 +346,21 @@ public class LSEquipFragment extends LSFragment implements View.OnClickListener,
 
             }
             break;
-            case R.id.worthPanel:
-            {
-//                intent = new Intent(getActivity(), SpecialInfoActivity.class);
-//                intent.putExtra("tagid", 10);
-//                startActivity( intent );
-                ActivityUtil.goSpecialInfoActivity(getActivity(), 10);
-            }
-            break;
-            case R.id.outdoorPanel:
-            {
-                intent = new Intent(getActivity(), LsBuyActivity.class);
-                intent.putExtra("shoptype", "0");
-                startActivity(intent);
-            }
-            break;
+//            case R.id.worthPanel:
+//            {
+////                intent = new Intent(getActivity(), SpecialInfoActivity.class);
+////                intent.putExtra("tagid", 10);
+////                startActivity( intent );
+//                ActivityUtil.goSpecialInfoActivity(getActivity(), 10);
+//            }
+//            break;
+//            case R.id.outdoorPanel:
+//            {
+//                intent = new Intent(getActivity(), LsBuyActivity.class);
+//                intent.putExtra("shoptype", "0");
+//                startActivity(intent);
+//            }
+//            break;
 
         }
     }

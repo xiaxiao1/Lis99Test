@@ -100,7 +100,7 @@
 
 
     <application
-        android:debuggable="true"
+        android:largeHeap="true"
         android:name=".entry.application.DemoApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon_ls"
@@ -398,11 +398,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
-        <activity
-            android:name=".entry.CopyOfLsShaiActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
+
         <activity
             android:name=".entry.LsDarenHuidaActivity"
             android:screenOrientation="portrait"
@@ -564,11 +560,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
-        <activity
-            android:name=".entry.LsShaiActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
+
         <activity
             android:name=".entry.LsShaiUploadActivity"
             android:screenOrientation="portrait"
