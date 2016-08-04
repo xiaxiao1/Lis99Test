@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 
 import com.baidu.location.BDLocation;
@@ -17,9 +18,12 @@ import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.club.BaseConfig;
 import com.lis99.mobile.util.FileUtil;
 import com.lis99.mobile.util.ImageLoaderOption;
+import com.lis99.mobile.util.MyOnTrimMemory;
 import com.lis99.mobile.util.PushManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.umeng.analytics.MobclickAgent;
+
+import org.xutils.x;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -102,14 +106,15 @@ public class DemoApplication extends Application
         initLeTv();
 
 //      xUtils
-        org.xutils.x.Ext.init(this);
-        org.xutils.x.Ext.setDebug(BuildConfig.DEBUG);
+        x.Ext.init(this);
+        x.Ext.setDebug(BuildConfig.DEBUG);
 
 
 
-
-
-
+//      注册内存太低释放接口
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            this.registerComponentCallbacks( new MyOnTrimMemory());
+        }
 
 
     }

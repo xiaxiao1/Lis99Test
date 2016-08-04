@@ -42,9 +42,16 @@ public class ImageLoaderOption {
                 .discCacheFileNameGenerator(new Md5FileNameGenerator())
                 .discCacheFileCount(100) // 缓存的文件数量
                 .discCache(new UnlimitedDiscCache(cacheDir))// 自定义缓存路径
-                .tasksProcessingOrder(QueueProcessingType.FIFO).build();
+                .tasksProcessingOrder(QueueProcessingType.FIFO)
+                .build();
+
         imageLoader.init(config);
 
+    }
+
+    public static void cleanMemory ()
+    {
+        ImageLoader.getInstance().clearMemoryCache();
     }
 
 
