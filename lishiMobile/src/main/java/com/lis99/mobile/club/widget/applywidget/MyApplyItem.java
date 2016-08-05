@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -103,8 +104,11 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_qq = view.findViewById(R.id.layout_qq);
             holder.layout_address = view.findViewById(R.id.layout_address);
             holder.delete = view.findViewById(R.id.delete);
+            holder.layout_sex = view.findViewById(R.id.layout_sex);
 
             holder.title = (TextView) view.findViewById(R.id.title);
+
+            holder.iv_contacts = (ImageView) view.findViewById(R.id.iv_contacts);
 
 
             view.setTag(holder);
@@ -240,11 +244,11 @@ public class MyApplyItem extends MyBaseAdapter{
         }
         if ("0".equals(visibleItem.get(2)))
         {
-            holder.radioGroup.setVisibility(View.GONE);
+            holder.layout_sex.setVisibility(View.GONE);
             holder.v_man.setVisibility(View.GONE);
         } else
         {
-            holder.radioGroup.setVisibility(View.VISIBLE);
+            holder.layout_sex.setVisibility(View.VISIBLE);
             holder.v_man.setVisibility(View.VISIBLE);
         }
         if ("0".equals(visibleItem.get(3)))
@@ -426,9 +430,11 @@ public class MyApplyItem extends MyBaseAdapter{
 
         View v_name, v_idcode, v_man, v_phone, v_telOhter, v_qq;
 
-        View layout_name, layout_idcode, layout_phone, layout_telOhter, layout_qq, layout_address,delete;
+        View layout_name, layout_idcode, layout_phone, layout_telOhter, layout_qq, layout_address,delete, layout_sex;
 
         TextView title;
+
+        ImageView iv_contacts;
 
     }
 

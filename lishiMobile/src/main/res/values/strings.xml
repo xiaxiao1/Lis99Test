@@ -158,5 +158,8 @@
     <string name="tel">400-672-8099</string>
 
 
+    <string name="apply_add_contacts">添加报名人</string>
+    <string name="apply_add_next">下一步</string>
+
 
 </resources>

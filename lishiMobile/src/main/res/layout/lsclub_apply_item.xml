@@ -10,20 +10,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/apply_bg"
+
             android:orientation="vertical"
-            android:layout_margin="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
             >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+            >
+
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_large"
+                    android:textColor="@color/text_color_black"
+                    android:id="@+id/title"
+                    android:text="报名人1"
+                />
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/apply_delete"
+                    android:layout_alignParentRight="true"
+                />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
 
             <LinearLayout
                 android:id="@+id/layout_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="45dip"
                 >
 
                 <TextView
@@ -37,13 +71,22 @@
                 <EditText
                     android:background="@null"
                     android:id="@+id/nameView"
-                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:padding="10dip"
                     android:singleLine="true"
                     android:textColor="#666"
                     android:textSize="15sp" >
                 </EditText>
+
+                <ImageView android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:src="@drawable/apply_contacts"
+                           android:layout_gravity="center_vertical"
+                           android:id="@+id/iv_contacts"
+                           android:paddingLeft="8dp"
+                />
 
             </LinearLayout>
 
@@ -57,47 +100,59 @@
                 />
 
             <LinearLayout
-                android:id="@+id/layout_idcode"
+                android:id="@+id/layout_phone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                >
+            >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="身份证号："
+                    android:text="手机号码："
                     android:textSize="15sp"
                     android:textColor="@color/color_six"
-                    />
+                />
 
                 <EditText
-                    android:hint="仅用于购买保险、办理住宿"
-                    android:id="@+id/idNumView"
+                    android:maxLength="11"
+                    android:id="@+id/phoneView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    android:numeric="integer"
                     android:padding="10dip"
                     android:singleLine="true"
                     android:textColor="#666"
-                    android:maxLength="18"
                     android:textSize="15sp" >
                 </EditText>
 
             </LinearLayout>
 
             <View
-                android:id="@+id/v_idcode"
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
                 android:background="#eee"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                />
+                android:id="@+id/v_phone"/>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="10dp"
+                          android:layout_marginBottom="10dp"
+                          android:id="@+id/layout_sex"
+            >
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="性别"
+                      android:textColor="@color/color_six"
+                      android:layout_gravity="center_vertical"
+            />
 
             <RadioGroup
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+
                 android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,6 +182,8 @@
                     />
             </RadioGroup>
 
+            </LinearLayout>
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
@@ -136,42 +193,43 @@
                 android:id="@+id/v_man"/>
 
             <LinearLayout
-                android:id="@+id/layout_phone"
+                android:id="@+id/layout_idcode"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                >
+            >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="手机号码："
+                    android:text="身份证号："
                     android:textSize="15sp"
                     android:textColor="@color/color_six"
-                    />
+                />
 
                 <EditText
-                    android:maxLength="11"
-                    android:id="@+id/phoneView"
+                    android:hint="仅用于购买保险、办理住宿"
+                    android:id="@+id/idNumView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:numeric="integer"
                     android:padding="10dip"
                     android:singleLine="true"
                     android:textColor="#666"
+                    android:maxLength="18"
                     android:textSize="15sp" >
                 </EditText>
 
             </LinearLayout>
 
             <View
+                android:id="@+id/v_idcode"
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
                 android:background="#eee"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:id="@+id/v_phone"/>
+            />
 
             <LinearLayout
                 android:id="@+id/layout_telOhter"
@@ -293,27 +351,5 @@
 
         </LinearLayout>
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/apply_tag1"
-        android:gravity="center"
-        android:text="报名人1"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:textColor="#c6b6a7"
-        android:textSize="12sp"
-        />
-
-    <ImageView
-        android:id="@+id/delete"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/apply_delete"
-        android:layout_alignParentRight="true"
-        />
 
 </RelativeLayout>
