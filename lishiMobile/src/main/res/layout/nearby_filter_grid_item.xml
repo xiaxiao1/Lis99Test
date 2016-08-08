@@ -13,7 +13,7 @@
               android:text="@string/temp_string_long"
               android:gravity="center"
               android:textSize="@dimen/text_small"
-              android:maxLength="4"
+              android:maxLines="1"
     />
 
 </RelativeLayout>

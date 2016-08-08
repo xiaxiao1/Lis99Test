@@ -1,65 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/club_topic_to_recommend_view_rl"
+    android:id="@+id/club_topic_to_recommend_view_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f7f3ec"
+    android:orientation="vertical"
     >
-
     <View
         android:id="@+id/v1"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="#f7f3ec"
+        android:layout_alignParentTop="true"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/club_topic_to_recommend_bg_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/huati_to_recommend_active_default_bg"
         android:layout_centerInParent="true"
-        android:layout_below="@id/v1"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
 
         />
-    <View
 
-        android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:background="#f7f3ec"
-        android:layout_below="@id/club_topic_to_recommend_bg_img"
-        />
     <ImageView
         android:id="@+id/club_topic_to_recommend_left_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="33dp"
+        android:layout_height="34dp"
         android:src="@drawable/huati_to_recommend_active_left_img"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="31dp"
         />
-    <TextView
-        android:id="@+id/club_topic_to_recommend_text_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HI,我是会飞的鱼\n荣幸推荐我带队的活动"
-        android:layout_toRightOf="@id/club_topic_to_recommend_left_img"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:lineSpacingExtra="8dp"
-        android:textSize="@dimen/text_large"
-        android:textColor="#ffffff"
-        />
+
     <ImageView
         android:id="@+id/club_topic_to_recommend_right_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
         android:src="@drawable/huati_to_recommend_active_arr"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         />
 
-</RelativeLayout>
+
+        <TextView
+            android:layout_toLeftOf="@id/club_topic_to_recommend_right_img"
+            android:id="@+id/club_topic_to_recommend_text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temp_string_long"
+            android:layout_toRightOf="@id/club_topic_to_recommend_left_img"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="2"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="#f7f3ec"
+        android:layout_below="@id/club_topic_to_recommend_bg_img"
+        />
+</LinearLayout>

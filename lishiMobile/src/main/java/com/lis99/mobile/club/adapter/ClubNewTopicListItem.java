@@ -724,13 +724,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         //show
         Log.i("xx", item.toString() + "");
         if (item.getIs_tagid()>0) {//表示有要推荐的活动
-            holder.clubTopicToRecommendViewRl.setVisibility(View.VISIBLE);
+            holder.clubTopicToRecommendViewLl.setVisibility(View.VISIBLE);
             //用于在textview上显示两行效果
             String reason=item.getReason();
             if (reason != null && !reason.equals("")) {
-                StringBuffer sb = new StringBuffer(reason);
-                sb.insert(reason.length() / 2 - 1, "\n");
-                holder.clubTopicToRecommendTextTv.setText(sb.toString());
+                holder.clubTopicToRecommendTextTv.setText(reason);
             }
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -935,14 +933,14 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
      * 底部，推荐活动入口项item
      */
     protected class ViewHolderRecommend {
-        private RelativeLayout clubTopicToRecommendViewRl;
+        private LinearLayout clubTopicToRecommendViewLl;
         private ImageView clubTopicToRecommendBgImg;
         private ImageView clubTopicToRecommendLeftImg;
         private TextView clubTopicToRecommendTextTv;
         private ImageView clubTopicToRecommendRightImg;
 
         public ViewHolderRecommend(View view) {
-            clubTopicToRecommendViewRl = (RelativeLayout) view.findViewById(R.id.club_topic_to_recommend_view_rl);
+            clubTopicToRecommendViewLl = (LinearLayout) view.findViewById(R.id.club_topic_to_recommend_view_ll);
             clubTopicToRecommendBgImg = (ImageView) view.findViewById(R.id.club_topic_to_recommend_bg_img);
             clubTopicToRecommendLeftImg = (ImageView) view.findViewById(R.id.club_topic_to_recommend_left_img);
             clubTopicToRecommendTextTv = (TextView) view.findViewById(R.id.club_topic_to_recommend_text_tv);

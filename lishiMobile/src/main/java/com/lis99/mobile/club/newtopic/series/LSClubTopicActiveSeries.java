@@ -437,7 +437,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
         layout_address = findViewById(R.id.layout_address);
 
         pull_refresh_view = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
-//        pull_refresh_view.setOnFooterRefreshListener(this);
+        pull_refresh_view.setOnFooterRefreshListener(this);
         pull_refresh_view.setOnHeaderRefreshListener(this);
 
 
