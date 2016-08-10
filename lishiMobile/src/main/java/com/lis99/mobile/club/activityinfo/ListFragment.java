@@ -1,6 +1,8 @@
 package com.lis99.mobile.club.activityinfo;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,9 +32,11 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSClubTopicInfoLocation;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -52,6 +56,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     RecyclerView mRecyclerView;
     //百度地图
     MapView mMapView = null;
+    //跳转到全屏地图
+    ImageView toBigMap_img;
+    View map_view;
     //活动标题
     TextView activeTitle_tv;
     //活动说明
@@ -122,10 +129,21 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     //活动详情一共多少item数目
     int fullSize;
 
+
+    //回调赋值给Activity
+    FullInfoInterface fullInfoInterface;
+
     public ListFragment() {
 
     }
 
+    public FullInfoInterface getFullInfoInterface() {
+        return fullInfoInterface;
+    }
+
+    public void setFullInfoInterface(FullInfoInterface fullInfoInterface) {
+        this.fullInfoInterface = fullInfoInterface;
+    }
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Nullable
     @Override
@@ -145,15 +163,39 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         //以下具体是要放在网络请求的回调中处理的。
         listView = (RefreshListview) view.findViewById(R.id.list);
         header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
-        mMapView = (MapView) header.findViewById(R.id.afullinfo_header_bmapView);
-        mMapView.showZoomControls(false);
-        mMapView.showScaleControl(false);
-        mBaiduMap = mMapView.getMap();
-        //普通地图
-        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-        //开启交通图
-        mBaiduMap.setTrafficEnabled(true);
+        listView.addHeaderView(header);
+        View footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
+        View footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
+        View footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
+        listView.addFooterView(footer_ownerinfo);
+        listView.addFooterView(footer_playerEvaluation);
+        listView.addFooterView(footer_zhuangbei);
+        final View footView = getActivity().getLayoutInflater()
+                .inflate(R.layout.activityinfo_slidedetails_marker_default_layout, null);
+        footView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open(true);
+            }
+        });
+        listView.addFooterView(footView);
+        fullInfoAdapter=new FullInfoAdapter(activeInfos);
+        //下拉刷新
+        listView.setonRefreshListener(new RefreshListview.OnRefreshListener() {
+            @Override
+            public void onRefresh()
+            {
+                Toast.makeText(ListFragment.this.getActivity(), "hh", Toast.LENGTH_SHORT).show();
+                activeInfos.add(0,new FullInfo("我是新来的","http://pic10.nipic.com/20101019/3050636_171041025000_2.jpg"));
+                fullInfoAdapter.notifyDataSetChanged();
+                listView.onRefreshComplete();
+            }
+        });
+        listView.setAdapter(fullInfoAdapter);
+
         initBaiduMap();
+
+        //顶部轮播图片
         bannerView=(BannerView)header.findViewById(R.id.afullinfo_lv_header_banner_banner);
         bannerAdapter=new ImagePageAdapter(getActivity(), urls_banner.size());
         bannerAdapter.addImagePageAdapterListener(this);
@@ -184,45 +226,15 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         bannerView.setBannerAdapter(bannerAdapter);
         bannerView.startAutoScroll();
 
+        //横向可滑动标签串
         mRecyclerView=(RecyclerView)header.findViewById(R.id.afullinfo_recyclerview);
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
         recyclerviewAdapter=new MyRecyclerAdapter();
         mRecyclerView.setAdapter(recyclerviewAdapter);
 
-        final View footView = getActivity().getLayoutInflater()
-                                           .inflate(R.layout.activityinfo_slidedetails_marker_default_layout, null);
-        footView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                open(true);
-            }
-        });
 
-        listView.addHeaderView(header);
 
-        View footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4openmore_ownerinfo,null);
-        View footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
-        View footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
-        listView.addFooterView(footer_ownerinfo);
-        listView.addFooterView(footer_playerEvaluation);
-        listView.addFooterView(footer_zhuangbei);
-//        mmcontext=ListFragment.this.getActivity().getApplicationContext();
-        //正常需要把footer.xml删除  无用了
-       // listView.addFooterView(getActivity().getLayoutInflater().inflate(R.layout.footer,null));
-        listView.addFooterView(footView);
-        fullInfoAdapter=new FullInfoAdapter(activeInfos);
-        //下拉刷新
-        listView.setonRefreshListener(new RefreshListview.OnRefreshListener() {
-            @Override
-            public void onRefresh()
-            {
-                Toast.makeText(ListFragment.this.getActivity(), "hh", Toast.LENGTH_SHORT).show();
-                activeInfos.add(0,new FullInfo("我是新来的","http://pic10.nipic.com/20101019/3050636_171041025000_2.jpg"));
-                fullInfoAdapter.notifyDataSetChanged();
-                listView.onRefreshComplete();
-            }
-        });
-        listView.setAdapter(fullInfoAdapter);
+
     }
 
     @Override
@@ -234,6 +246,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
     }
 
+    //轮播图片的点击事件，这里不用
     @Override
     public void onClick(int index) {
 
@@ -287,6 +300,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 "未之有也。故不尽知用兵之害者，则不能尽知用兵之利也。","http://pic10.nipic.com/20101019/3050636_171041025000_2.jpg"));
         fullSize=activeInfos.size();
         currentSize=fullSize>3?3:fullSize;
+//        currentSize=fullSize;
+        updateActivity("fragment");
 
        //初始化banner
         urls_banner=new ArrayList<String>();
@@ -321,6 +336,24 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     public void initBaiduMap(){
 
+        mMapView = (MapView) header.findViewById(R.id.afullinfo_header_bmapView);
+        mMapView.showZoomControls(false);
+        mMapView.showScaleControl(false);
+        map_view = (View) header.findViewById(R.id.afullinfo_header_mapclick);
+        map_view.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ListFragment.this.getActivity(),"map",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mBaiduMap = mMapView.getMap();
+        mBaiduMap.getUiSettings().setRotateGesturesEnabled(false);
+        mBaiduMap.getUiSettings().setAllGesturesEnabled(false);
+        //普通地图
+        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+
         LatLng point = new LatLng(latx, laty);
 
         //构建Marker图标
@@ -335,13 +368,44 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         mBaiduMap.addOverlay(option);
         MapStatus mMapStatus = new MapStatus.Builder()
                 .target(point)
-                .zoom(12)
+                .zoom(11)
                 .build();
         //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
         MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
         //改变地图状态
         mBaiduMap.setMapStatus(mMapStatusUpdate);
+        toBigMap_img=(ImageView)header.findViewById(R.id.afullinfo_header_biggermap_img);
+        toBigMap_img.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public void onClick(View v) {
+                //跳转地图
+                Intent intent = new Intent(ListFragment.this.getActivity(), LSClubTopicInfoLocation.class);
+                String latx2 = "30.963175f";
+                String laty2 = "120.400244f";
+                Double latitude = Common.string2Double(latx2);
+                Double longtitude = Common.string2Double(laty2);
+                if ( latitude == -1 || longtitude == -1 )
+                {
+                    Common.toast("暂时没集合地图位置");
+                    return;
+                }
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longtitude", longtitude);
+                startActivity(intent);
+            }
+        });
 
+    }
+
+    /**
+     * 通过回调向Activity传值，更新数据
+     * @param datas 传递给Activity的数据
+     */
+    public void updateActivity(Object datas){
+        if (fullInfoInterface!=null) {
+            fullInfoInterface.initFullInfo(datas);
+        }
     }
 
     /**
@@ -451,7 +515,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
         @Override
         public void onClick(View v) {
-            currentSize=currentSize+3<fullSize?currentSize+3:fullSize;
+//            currentSize=currentSize+3<fullSize?currentSize+3:fullSize;
+            currentSize=fullSize;
             viewHolder.showMore_rl.setVisibility(View.GONE);
             FullInfoAdapter.this.notifyDataSetChanged();
         }

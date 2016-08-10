@@ -82,6 +82,7 @@ public class SlideDetailsLayout extends ViewGroup {
     private float mPercent = DEFAULT_PERCENT;
     private long mDuration = DEFAULT_DURATION;
     private int mDefaultPanel = 0;
+    public boolean close=true;
 
     private OnSlideDetailsListener mOnSlideDetailsListener;
 
@@ -124,6 +125,8 @@ public class SlideDetailsLayout extends ViewGroup {
             mStatus = Status.OPEN;
             final float height = -getMeasuredHeight();
             animatorSwitch(0, height, true, smooth ? mDuration : 0);
+
+            Log.i("xx","smoothOpen:"+close);
         }
     }
 
@@ -137,6 +140,9 @@ public class SlideDetailsLayout extends ViewGroup {
             mStatus = Status.OPEN;
             final float height = -getMeasuredHeight();
             animatorSwitch(height, 0, true, smooth ? mDuration : 0);
+            mStatus=Status.CLOSE;
+
+            Log.i("xx","smoothClose:"+close);
         }
     }
 
@@ -497,8 +503,10 @@ public class SlideDetailsLayout extends ViewGroup {
     private void ensureTarget() {
         if (mStatus == Status.CLOSE) {
             mTarget = mFrontView;
+            close=false;
         } else {
             mTarget = mBehindView;
+            close=false;
         }
     }
 

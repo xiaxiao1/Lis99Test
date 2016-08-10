@@ -40,10 +40,10 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
 
     //listview的头部 用于显示刷新的箭头等
     private LinearLayout headView;
-    private TextView tipsTextview;
-    private TextView lastUpdatedTextView;
-    private ImageView arrowImageView;
-    private ProgressBar progressBar;
+//    //private TextView tipsTextview;
+//    private TextView lastUpdatedTextView;
+//    private ImageView arrowImageView;
+//    private ProgressBar progressBar;
 
     //箭头旋转的动画
     private RotateAnimation animation;
@@ -80,15 +80,15 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
         inflater = LayoutInflater.from(context);
         headView = (LinearLayout) inflater.inflate(R.layout.activityinfo_refresh_head, null);
 
-        arrowImageView = (ImageView) headView
-                .findViewById(R.id.head_arrowImageView);
-        arrowImageView.setMinimumWidth(70);
-        arrowImageView.setMinimumHeight(50);
-        progressBar = (ProgressBar) headView
-                .findViewById(R.id.head_progressBar);
-        tipsTextview = (TextView) headView.findViewById(R.id.head_tipsTextView);
-        lastUpdatedTextView = (TextView) headView
-                .findViewById(R.id.head_lastUpdatedTextView);
+//        arrowImageView = (ImageView) headView
+//                .findViewById(R.id.head_arrowImageView);
+//        arrowImageView.setMinimumWidth(70);
+//        arrowImageView.setMinimumHeight(50);
+//        progressBar = (ProgressBar) headView
+//                .findViewById(R.id.head_progressBar);
+//        tipsTextview = (TextView) headView.findViewById(R.id.head_tipsTextView);
+//        lastUpdatedTextView = (TextView) headView
+//                .findViewById(R.id.head_lastUpdatedTextView);
 
         measureView(headView);
         headContentHeight = headView.getMeasuredHeight();
@@ -246,50 +246,50 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
         switch (state)
         {
             case RELEASE_TO_REFRESH:
-                arrowImageView.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
-                tipsTextview.setVisibility(View.VISIBLE);
-                lastUpdatedTextView.setVisibility(View.VISIBLE);
-
-                arrowImageView.clearAnimation();
-                arrowImageView.startAnimation(animation);
-                tipsTextview.setText("放开以刷新");
+//                arrowImageView.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.GONE);
+//                tipsTextview.setVisibility(View.VISIBLE);
+//                lastUpdatedTextView.setVisibility(View.VISIBLE);
+//
+//                arrowImageView.clearAnimation();
+//                arrowImageView.startAnimation(animation);
+            //    tipsTextview.setText("放开以刷新");
                 Log.v(TAG, "当前状态，松开刷新");
                 break;
             case PULL_TO_REFRESH:
-                progressBar.setVisibility(View.GONE);
-                tipsTextview.setVisibility(View.VISIBLE);
-                lastUpdatedTextView.setVisibility(View.VISIBLE);
-                arrowImageView.clearAnimation();
-                arrowImageView.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.GONE);
+//                tipsTextview.setVisibility(View.VISIBLE);
+//                lastUpdatedTextView.setVisibility(View.VISIBLE);
+//                arrowImageView.clearAnimation();
+//                arrowImageView.setVisibility(View.VISIBLE);
                 // 是由RELEASE_To_REFRESH状态转变来的
                 if (isBack) {
                     isBack = false;
-                    arrowImageView.clearAnimation();
-                    arrowImageView.startAnimation(reverseAnimation);
-                    tipsTextview.setText("下拉刷新");
+//                    arrowImageView.clearAnimation();
+//                    arrowImageView.startAnimation(reverseAnimation);
+//                    tipsTextview.setText("下拉刷新");
                 } else {
-                    tipsTextview.setText("下拉刷新");
+//                    tipsTextview.setText("下拉刷新");
                 }
                 Log.v(TAG, "当前状态，下拉刷新");
                 break;
 
             case REFRESHING:
                 headView.setPadding(0, 0, 0, 0);
-                progressBar.setVisibility(View.VISIBLE);
-                arrowImageView.clearAnimation();
-                arrowImageView.setVisibility(View.GONE);
-                tipsTextview.setText("正在刷新...");
-                lastUpdatedTextView.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.VISIBLE);
+//                arrowImageView.clearAnimation();
+//                arrowImageView.setVisibility(View.GONE);
+//                tipsTextview.setText("正在刷新...");
+//                lastUpdatedTextView.setVisibility(View.VISIBLE);
                 Log.v(TAG, "当前状态,正在刷新...");
                 break;
             case DONE:
                 headView.setPadding(0, -1 * headContentHeight, 0, 0);
-                progressBar.setVisibility(View.GONE);
-                arrowImageView.clearAnimation();
-                arrowImageView.setImageResource(R.drawable.easy);
-                tipsTextview.setText("下拉刷新");
-                lastUpdatedTextView.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.GONE);
+//                arrowImageView.clearAnimation();
+//                arrowImageView.setImageResource(R.drawable.easy);
+//                tipsTextview.setText("下拉刷新");
+//                lastUpdatedTextView.setVisibility(View.VISIBLE);
                 Log.v(TAG, "当前状态，done");
                 break;
         }
@@ -309,7 +309,7 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
     public void onRefreshComplete()
     {
         state = DONE;
-        lastUpdatedTextView.setText("最近更新:" + new Date().toLocaleString());
+//        lastUpdatedTextView.setText("最近更新:" + new Date().toLocaleString());
         changeHeaderViewByState();
     }
 
@@ -343,7 +343,7 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
 
     public void setAdapter(BaseAdapter adapter)
     {
-        lastUpdatedTextView.setText("最近更新:" + new Date().toLocaleString());
+//        lastUpdatedTextView.setText("最近更新:" + new Date().toLocaleString());
         super.setAdapter(adapter);
     }
 }

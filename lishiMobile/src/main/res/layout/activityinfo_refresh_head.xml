@@ -12,14 +12,32 @@
         android:id="@+id/head_contentLayout"
         android:paddingLeft="30dp"
         >
+        <ProgressBar
+            android:id="@+id/head_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:indeterminateDrawable="@drawable/pull_progress_updata_new"
+            />
+        <!--<ImageView
+            android:id="@+id/head_arrowImageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/easy"
+            android:layout_centerHorizontal="true"
+            />-->
         <!-- 箭头图像、进度条 -->
-        <FrameLayout
+       <!-- <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:visibility="gone"
             >
-            <!-- 箭头 -->
+            &lt;!&ndash; 箭头 &ndash;&gt;
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -27,7 +45,7 @@
                 android:src="@drawable/easy"
                 android:id="@+id/head_arrowImageView"
                 />
-            <!-- 进度条 -->
+            &lt;!&ndash; 进度条 &ndash;&gt;
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,7 +56,7 @@
                 />
 
         </FrameLayout>
-        <!-- 提示、最近更新 -->
+        &lt;!&ndash; 提示、最近更新 &ndash;&gt;
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +64,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal"
             >
-            <!-- 提示 -->
+            &lt;!&ndash; 提示 &ndash;&gt;
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,8 +72,9 @@
                 android:textColor="#33CCFF"
                 android:textSize="20sp"
                 android:id="@+id/head_tipsTextView"
+                android:visibility="gone"
                 />
-            <!-- 最近更新 -->
+            &lt;!&ndash; 最近更新 &ndash;&gt;
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +82,8 @@
                 android:text="上次更新"
                 android:textColor="#ff0000"
                 android:textSize="10sp"
+                android:visibility="gone"
                 />
-        </LinearLayout>
+        </LinearLayout>-->
     </RelativeLayout>
 </LinearLayout>

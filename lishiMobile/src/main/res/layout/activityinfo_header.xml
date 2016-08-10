@@ -229,6 +229,13 @@
     </RelativeLayout>
 
     <!--百度地图-->
+    <ImageView
+        android:id="@+id/afullinfo_header_nomap_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/club_0"
+        android:visibility="gone"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
@@ -242,7 +249,13 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:clickable="true" />
+        <View
+            android:id="@+id/afullinfo_header_mapclick"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:visibility="visible"/>
         <TextView
+            android:id="@+id/afullinfo_header_destination_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="马尔代夫"
@@ -256,8 +269,9 @@
             android:background="@drawable/map_text_bg"
             />
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:id="@+id/afullinfo_header_biggermap_img"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:src="@drawable/bigger_map"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"

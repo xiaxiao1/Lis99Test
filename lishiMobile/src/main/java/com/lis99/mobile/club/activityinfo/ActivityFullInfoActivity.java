@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,10 +14,16 @@ import android.widget.Toast;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.TopicNewListMainModel;
+import com.lis99.mobile.util.ShareManager;
 
 
 public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCallback,View.OnClickListener{
 
+   String s="ssss";
+    boolean close=true;
+    //root View
+    RelativeLayout layoutmain;
     //负责实现UI上拉加载显示详情
     private SlideDetailsLayout mSlideDetailsLayout;
     //显示主要页面内容
@@ -90,6 +97,13 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         FragmentManager fm ;
         fm=getFragmentManager();
         f1=new ListFragment();
+        f1.setFullInfoInterface(new FullInfoInterface() {
+            @Override
+            public void initFullInfo(Object datas) {
+                s=(String)datas;
+                toPlay_tv.setText("haah"+s);
+            }
+        });
         fm.beginTransaction().replace(R.id.slidedetails_front, f1).commit();
         back_img.setOnClickListener(this);
         share_img.setOnClickListener(this);
@@ -119,12 +133,16 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
      */
     @Override
     public void closeDetails(boolean smooth) {
-        mSlideDetailsLayout.smoothClose(smooth);
+       mSlideDetailsLayout.smoothClose(smooth);
+        mSlideDetailsLayout.close=true;
+      //  f1.closeInfo(smooth);
     }
 
 
     public void initViews(){
+        layoutmain = (RelativeLayout) findViewById(R.id.afullinfo_parent);
         mSlideDetailsLayout = (SlideDetailsLayout) findViewById(R.id.slidedetails);
+        mSlideDetailsLayout.close=true;
         fullInfoView_ll = (LinearLayout) findViewById(R.id.activityinfo_fullinfo_ll);
         advice_ll = (LinearLayout) findViewById(R.id.afullinfo_zixun_ll);
         toPlay_tv = (TextView) findViewById(R.id.afullinfo_baoming_img);
@@ -170,9 +188,19 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     public void onClick(View v) {
 
         if (v == back_img) {
-            closeDetails(true);
+            Log.i("xx","clickback:"+mSlideDetailsLayout.close);
+            if (mSlideDetailsLayout.close) {
+                finish();
+            } else {
+                closeDetails(true);
+         //       mSlideDetailsLayout.close=true;
+              //  close=false;
+            }
         } else if (v == share_img) {
-            Toast.makeText(this,"share",Toast.LENGTH_SHORT).show();
+            TopicNewListMainModel model = new TopicNewListMainModel();
+            model.shareurl="";
+            ShareManager.getInstance().showPopWindowInShare(model,layoutmain, null);
+            super.rightAction();
         } else if (v==advice_ll) {
             Toast.makeText(this,"advice",Toast.LENGTH_SHORT).show();
         } else if (v==toPlay_tv) {
