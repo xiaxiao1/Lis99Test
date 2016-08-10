@@ -10,12 +10,12 @@ import android.widget.ListView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.club.model.SysMassageModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.mine.LSMyActivityDetailActivity;
 import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
@@ -93,8 +93,8 @@ public class SysMassageActivity extends LSBaseActivity implements
 //                        startActivity(intent);
                         break;
                     case 6:
-                        intent = new Intent(activity, MyJoinActiveInfoActivity.class);
-                        intent.putExtra("ORDERID", item.orderid);
+                        intent = new Intent(activity, LSMyActivityDetailActivity.class);
+                        intent.putExtra("orderID", item.orderid);
                         startActivity(intent);
                         break;
                 }

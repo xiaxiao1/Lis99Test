@@ -376,6 +376,13 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 String errorCode = response.optString("status", "");
+
+                if ( customProgressDialog != null && customProgressDialog.isShowing() )
+                {
+                    customProgressDialog.cancel();
+                    customProgressDialog = null;
+                }
+
                 if ("OK".equals(errorCode)) {
                     postMessage(POPUP_TOAST, "发布成功");
 
@@ -424,6 +431,12 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                                   Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
 
+                if ( customProgressDialog != null && customProgressDialog.isShowing() )
+                {
+                    customProgressDialog.cancel();
+                    customProgressDialog = null;
+                }
+
                 Common.log("Http Post Fail responseString="+responseString);
 
             }
@@ -432,11 +445,7 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
             public void onFinish() {
 //                postMessage(DISMISS_PROGRESS);
                         isSending = false;
-                        if ( customProgressDialog != null && customProgressDialog.isShowing() )
-                        {
-                            customProgressDialog.cancel();
-                            customProgressDialog = null;
-                        }
+
             }
 
         });

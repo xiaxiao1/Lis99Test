@@ -187,6 +187,42 @@
             </com.lis99.mobile.view.MyListView>
 
 
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke" />
+
+            <TextView
+                style="@style/fill_wrap"
+                android:layout_height="wrap_content"
+                android:background="@color/pull_bg"
+                android:textColor="#c6b6a7"
+                android:text="备注"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+            />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke" />
+
+
+            <TextView android:layout_width="match_parent" android:layout_height="50dp"
+                      android:background="@color/white"
+                      android:id="@+id/tv_info"
+                      android:maxLines="1"
+                      android:gravity="center_vertical"
+                      android:textColor="@color/text_color_black"
+                      android:textSize="14sp"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="10dp"
+                      android:maxLength="200"
+            />
+
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
@@ -259,6 +295,7 @@
                     android:gravity="center_vertical"
                     android:background="#fff"
                     />
+
                 <Button
 
                     android:layout_width="wrap_content"
@@ -268,8 +305,69 @@
                     android:layout_centerVertical="true"
                     android:background="@drawable/pay_now_btn"
                     android:id="@+id/btn_pay"
+                    android:textColor="@color/white"
+                    android:text="去支付"
                     />
+
+                <Button
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/btn_pay"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/cancel_btn"
+                    android:id="@+id/btn_cancel"
+                    android:textColor="@color/text_color_black"
+                    android:text="取消报名"
+                />
+
+
+
             </RelativeLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:id="@+id/layout_cancel"
+            >
+
+                <View
+                    style="@style/fill_wrap"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
+
+                <TextView
+                    style="@style/fill_wrap"
+                    android:layout_height="wrap_content"
+                    android:background="@color/pull_bg"
+                    android:textColor="#c6b6a7"
+                    android:text="取消原因"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                />
+
+                <View
+                    style="@style/fill_wrap"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
+
+
+                <TextView android:layout_width="match_parent" android:layout_height="50dp"
+                          android:background="@color/white"
+                          android:id="@+id/tv_cancel"
+                          android:maxLines="1"
+                          android:gravity="center_vertical"
+                          android:textColor="@color/text_color_black"
+                          android:textSize="14sp"
+                          android:paddingLeft="10dp"
+                          android:paddingRight="10dp"
+                          android:maxLength="200"
+                />
+
+            </LinearLayout>
 
 
             <LinearLayout

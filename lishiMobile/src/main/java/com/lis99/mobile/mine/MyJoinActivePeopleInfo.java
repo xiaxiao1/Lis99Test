@@ -1,4 +1,4 @@
-package com.lis99.mobile.club.apply;
+package com.lis99.mobile.mine;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.model.MyJoinActiveDetailModel;
+import com.lis99.mobile.mine.model.LSMyActivity;
 
 /**
  * Created by yy on 15/12/2.
@@ -33,7 +33,7 @@ public class MyJoinActivePeopleInfo extends LSBaseActivity{
 
     private void getInfo ()
     {
-        MyJoinActiveDetailModel.Apply_info item = (MyJoinActiveDetailModel.Apply_info) getIntent().getSerializableExtra("PEOPLEINFO");
+        LSMyActivity.Applicant item = (LSMyActivity.Applicant) getIntent().getSerializableExtra("PEOPLEINFO");
         if ( item == null ) return;
 
         tv_title.setText("报名人"+getIntent().getIntExtra("NUM", 1));

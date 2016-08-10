@@ -1,7 +1,16 @@
 package com.lis99.mobile.engine.base;
 
-public interface CallBack {
+public abstract class CallBack extends CallBackBase{
 
-	public void handler(MyTask mTask);
-	
+
+	@Override
+	public void handlerError (MyTask mTask){
+//		处理错误信息
+
+	};
+
+	@Override
+	public void handlerCancel(MyTask mTask) {
+//
+	}
 }

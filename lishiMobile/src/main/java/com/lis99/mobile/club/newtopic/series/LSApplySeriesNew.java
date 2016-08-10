@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.ApplyContactsListModel;
 import com.lis99.mobile.club.model.ClubTopicGetApplyList;
 import com.lis99.mobile.club.model.NewApplyUpData;
 import com.lis99.mobile.club.widget.applywidget.MyApplyItem;
@@ -16,6 +17,7 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.ContactsUtil;
 import com.lis99.mobile.util.MyRequestManager;
 
 import java.util.ArrayList;
@@ -34,6 +36,9 @@ public class LSApplySeriesNew extends LSBaseActivity {
     private int topicID, clubID, batchID;
 // 上传列表
     public static ArrayList<NewApplyUpData> updata;
+
+    //  选择联系人
+    public final static int ADDCONTACTS = 998;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,8 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
 
 
-        getApplyList();
+//        getApplyList();
+        getContacts();
 
     }
 
@@ -244,6 +250,35 @@ public class LSApplySeriesNew extends LSBaseActivity {
     private ClubTopicGetApplyList listmodel;
 
 
+    private void getContacts ()
+    {
+        ContactsUtil.getInstance().getContactsList(new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                ApplyContactsListModel model = (ApplyContactsListModel) mTask.getResultModel();
+                if ( model == null && model.user_list == null && model.user_list.size() == 0 )
+                {
+
+                }
+                else {
+                    NewApplyUpData info = model.user_list.get(0);
+                    NewApplyUpData chenged = updata.get(0);
+                    chenged = info;
+//                    if (adapter != null)
+//                    {
+//                        adapter.setList(updata);
+//                    }
+                }
+                getApplyList();
+            }
+
+            @Override
+            public void handlerError(MyTask mTask) {
+                getApplyList();
+            }
+        });
+    }
+
     private void getApplyList()
     {
 
@@ -309,11 +344,23 @@ public class LSApplySeriesNew extends LSBaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+//      退出
         if ( requestCode == 999 && resultCode == RESULT_OK )
         {
             setResult(RESULT_OK);
             finish();
+        }
+//        选择报名人
+        else if ( requestCode == ADDCONTACTS && resultCode == RESULT_OK )
+        {
+            NewApplyUpData info = (NewApplyUpData) data.getSerializableExtra("INFO");
+            int position = data.getIntExtra("POSITION", -1);
+            NewApplyUpData cheng = updata.get(position);
+            cheng = info;
+            if ( adapter != null )
+            {
+                adapter.setList(updata);
+            }
         }
     }
 }

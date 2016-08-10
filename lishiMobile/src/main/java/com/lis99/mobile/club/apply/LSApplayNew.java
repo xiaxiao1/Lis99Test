@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
@@ -27,7 +27,7 @@ public class LSApplayNew extends LSBaseActivity {
 
     private ListView list;
 
-    private RelativeLayout layout_btn_ok, layout_btn_add;
+    private Button layout_btn_ok, layout_btn_add;
 
     private MyApplyItem adapter;
 
@@ -85,9 +85,9 @@ public class LSApplayNew extends LSBaseActivity {
 
         list = (ListView) findViewById(R.id.list);
 
-            layout_btn_add = (RelativeLayout) findViewById(R.id.layout_btn_add);
+            layout_btn_add = (Button) findViewById(R.id.btn_add);
 
-            layout_btn_ok = (RelativeLayout) findViewById(R.id.layout_btn_ok);
+            layout_btn_ok = (Button) findViewById(R.id.btn_ok);
 
             layout_btn_ok.setOnClickListener(this);
 
@@ -101,7 +101,7 @@ public class LSApplayNew extends LSBaseActivity {
 
         switch (arg0.getId())
         {
-            case R.id.layout_btn_ok:
+            case R.id.btn_ok:
 
                 if ( !isOk() )
                 {
@@ -114,7 +114,7 @@ public class LSApplayNew extends LSBaseActivity {
                 intent.putExtra("TYPE", TYPE);
                 startActivityForResult(intent, 999);
                 break;
-            case R.id.layout_btn_add:
+            case R.id.btn_add:
 
                 if ( !isOk() )
                 {

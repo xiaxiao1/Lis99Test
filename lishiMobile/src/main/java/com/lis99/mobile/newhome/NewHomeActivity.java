@@ -41,7 +41,6 @@ import com.lis99.mobile.application.data.VersionBean;
 import com.lis99.mobile.choiceness.FragmentChoicenessNewMain;
 import com.lis99.mobile.club.LSClubFragment;
 import com.lis99.mobile.club.LSClubFragmentNew;
-import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.PushModel;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
@@ -54,6 +53,7 @@ import com.lis99.mobile.entry.LsUserOrderActivity;
 import com.lis99.mobile.entry.view.AsyncLoadImageView;
 import com.lis99.mobile.entry.view.SlidingMenuView;
 import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.mine.LSMyActivityDetailActivity;
 import com.lis99.mobile.newhome.activeline.LSActiveLineFragment;
 import com.lis99.mobile.newhome.activeline.LSActiveLineNewFragment;
 import com.lis99.mobile.util.BitmapUtil;
@@ -861,8 +861,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
 //        订单详情
         else if ( model.type == 6 )
         {
-            Intent intent = new Intent(this, MyJoinActiveInfoActivity.class);
-            intent.putExtra("ORDERID", model.order_id);
+            Intent intent = new Intent(this, LSMyActivityDetailActivity.class);
+            intent.putExtra("orderID", model.order_id);
             startActivity(intent);
         }
         else if ( model.type == 7 && !TextUtils.isEmpty(model.url))

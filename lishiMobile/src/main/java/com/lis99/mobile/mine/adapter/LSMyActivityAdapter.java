@@ -32,7 +32,7 @@ public class LSMyActivityAdapter extends MyBaseAdapter {
         commentStatus.put(1, "通过");
         commentStatus.put(2, "待审核");
 
-        payStatus.put(0, "待支付");
+        payStatus.put(0, "支付中");
         payStatus.put(1, "已支付");
         payStatus.put(2, "退款已完成");
         payStatus.put(3, "退款申请中");
@@ -42,6 +42,7 @@ public class LSMyActivityAdapter extends MyBaseAdapter {
         payStatus.put(7, "逾期未支付");
         payStatus.put(8, "订单关闭");
         payStatus.put(9, "无法退款");
+        payStatus.put(10, "取消报名");
     }
 
     public LSMyActivityAdapter(Activity c, ArrayList listItem) {

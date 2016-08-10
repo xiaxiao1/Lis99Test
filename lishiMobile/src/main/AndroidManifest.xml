@@ -1138,7 +1138,7 @@
                   android:launchMode="singleTask"
             />
 
-        <activity android:name="com.lis99.mobile.club.apply.MyJoinActivePeopleInfo"
+        <activity android:name=".mine.MyJoinActivePeopleInfo"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar" />
 
@@ -1342,6 +1342,18 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   />
+        <!--报名列表选择-->
+        <activity android:name="com.lis99.mobile.club.widget.applywidget.ContactsActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+        />
+        <!--报名编辑页面-->
+        <activity android:name="com.lis99.mobile.club.widget.applywidget.ContactsEdtingActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+        />
+
+
     </application>
 
 

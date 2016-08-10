@@ -14,6 +14,7 @@ import com.lis99.mobile.club.widget.applywidget.MyJoinActiveItem;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
+import com.lis99.mobile.mine.LSMyActivityDetailActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
@@ -68,8 +69,11 @@ public class MyJoinActiveActivity extends LSBaseActivity implements com.lis99.mo
                 if ( adapter == null ) return;
                 MyJoinActiveModel.Lists item = (MyJoinActiveModel.Lists) adapter.getItem(i);
                 if ( item == null ) return;
-                Intent intent = new Intent(activity, MyJoinActiveInfoActivity.class);
-                intent.putExtra("ORDERID", item.id);
+//                Intent intent = new Intent(activity, MyJoinActiveInfoActivity.class);
+//                intent.putExtra("ORDERID", item.id);
+//                startActivity(intent);
+                Intent intent = new Intent(activity, LSMyActivityDetailActivity.class);
+                intent.putExtra("orderID", item.id);
                 startActivity(intent);
             }
         });

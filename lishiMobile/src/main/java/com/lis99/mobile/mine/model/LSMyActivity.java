@@ -1,11 +1,13 @@
 package com.lis99.mobile.mine.model;
 
+import com.lis99.mobile.club.model.BaseModel;
+
 import java.util.ArrayList;
 
 /**
  * Created by zhangjie on 5/21/16.
  */
-public class LSMyActivity {
+public class LSMyActivity extends BaseModel{
     public int id;
     public int orderid;
     public int club_id;
@@ -37,17 +39,31 @@ public class LSMyActivity {
     public String create_user_nickname;
     public String create_user_headicon;
     public String leader_headicon;
+//  备注
+    public String remark;
+//    取消报名理由
+    public String reason;
 
     public ArrayList<String> leader_tag;
     public ArrayList<Applicant> apply_info;
 
-    public static class Applicant {
+    public static class Applicant extends BaseModel{
+//        public String name;
+//        public String names;
+//        public String mobile;
+//        public String mobiles;
+//        public String consts;
+//        public String constss;
+
         public String name;
-        public String names;
+        public String sex;
         public String mobile;
-        public String mobiles;
+        public String qq;
+        public String postaladdress;
         public String consts;
-        public String constss;
+        public String credentials;
+        public String phone;
+
     }
 
 }

@@ -155,6 +155,8 @@
         <item name="android:listSelector">#00000000</item>
         <item name="android:cacheColorHint">#00000000</item>
         <item name="android:scrollbars">none</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:fadingEdge">none</item>
     </style>
 
     <style name="scroll" parent="@fill_fill">
@@ -232,7 +234,7 @@
 
     </style>
 
-    <!-- 自定义Dialog -->
+    <!-- 自定义Dialog更新 -->
     <style
         name="CustomDialog"
         parent="@android:style/Theme.Dialog">
@@ -363,6 +365,37 @@
     　　
     　　</style>
 
+
+    <!-- 自定义Dialog取消报名 -->
+    <style
+        name="cancelDialog"
+        parent="@android:style/Theme.Dialog">
+
+        <!-- 除去背景 -->
+        <item
+            name="android:windowBackground">@drawable/updata_dialog_bg
+        </item>
+        <!--windowFrame框为无 -->
+        <item
+            name="android:windowFrame">@null
+        </item>
+
+        <item
+            name="android:windowNoTitle">true
+        </item>
+        <!--是否浮现在activity之上 -->
+        <item
+            name="android:windowIsFloating">true
+        </item>
+        <!-- 是否半透明 -->
+        <item
+            name="android:windowIsTranslucent">true
+        </item>
+        <!-- 设置背景颜色 -->
+        <item
+            name="android:background">@null
+        </item>
+    </style>
 
 
     </resources>

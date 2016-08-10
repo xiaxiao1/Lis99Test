@@ -663,9 +663,12 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
 //            else if (v.getId() == R.id.myActivityPanel) {
 //                startActivity(new Intent(getActivity(), LSMineActivityActivity.class));
 //            }
+//            待支付的活动
             else if (v.getId() == R.id.unpayActivityPanel) {
                 startActivity(new Intent(getActivity(), LSUnpayActivityActivity.class));
-            } else if (v.getId() == R.id.unpayCommentPanel) {
+            }
+//            待评价的活动
+            else if (v.getId() == R.id.unpayCommentPanel) {
                 startActivity(new Intent(getActivity(), LSUnCommentActivityActivity.class));
             }
 //            草稿箱

@@ -1,6 +1,7 @@
 package com.lis99.mobile.club.widget.applywidget;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.NewApplyUpData;
+import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.MyBaseAdapter;
 
@@ -67,7 +69,7 @@ public class MyApplyItem extends MyBaseAdapter{
     }
 
     @Override
-    public View setView(int i, View view, ViewGroup viewGroup) {
+    public View setView(final int i, View view, ViewGroup viewGroup) {
 
         getItemViewType(i);
 
@@ -214,6 +216,14 @@ public class MyApplyItem extends MyBaseAdapter{
             }
         });
 
+        holder.iv_contacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ContactsActivity.class);
+                intent.putExtra("POSITION", i);
+                mContext.startActivityForResult(intent, LSApplySeriesNew.ADDCONTACTS);
+            }
+        });
 
 
 

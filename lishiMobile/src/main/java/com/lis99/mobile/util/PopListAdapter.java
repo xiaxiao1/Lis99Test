@@ -479,6 +479,63 @@ public class PopListAdapter {
         }
     }
 
+    public static class CancelApply extends MyBaseAdapter
+    {
+
+
+        public int getSelect() {
+            return select;
+        }
+
+        public void setSelect(int select) {
+            this.select = select;
+        }
+
+        private int select = -1;
+
+        public CancelApply(Activity c, List listItem) {
+            super(c, listItem);
+        }
+
+        @Override
+        public View setView(int i, View convertView, ViewGroup viewGroup) {
+            if (convertView == null) {
+                convertView = View.inflate(mContext, R.layout.cancel_apply_item, null);
+                convertView.setTag(new ViewHolder(convertView));
+            }
+            initializeViews(getItem(i), (ViewHolder) convertView.getTag(), i);
+
+            return convertView;
+        }
+
+        private void initializeViews(Object object, ViewHolder holder, int i) {
+            //TODO implement
+
+            String value = (String) object;
+
+            if ( i == select )
+            {
+                holder.name.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
+            }
+            else
+            {
+                holder.name.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
+            }
+
+            holder.name.setText(value);
+
+
+        }
+
+        protected class ViewHolder {
+            private TextView name;
+
+            public ViewHolder(View view) {
+                name = (TextView) view.findViewById(R.id.name);
+            }
+        }
+    }
+
 
 
 }

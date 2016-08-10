@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -28,6 +29,7 @@ import com.lis99.mobile.mine.adapter.LSMyActivityPersonAdapter;
 import com.lis99.mobile.mine.model.LSMyActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.PayUtil;
@@ -57,7 +59,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
         commentStatus.put(1, "通过");
         commentStatus.put(2, "待审核");
 
-        payStatus.put(0, "待支付");
+        payStatus.put(0, "支付中");
         payStatus.put(1, "已支付");
         payStatus.put(2, "退款已完成");
         payStatus.put(3, "退款申请中");
@@ -67,6 +69,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
         payStatus.put(7, "逾期未支付");
         payStatus.put(8, "订单关闭");
         payStatus.put(9, "无法退款");
+        payStatus.put(10, "取消报名");
 
         payTypes.put(0, "免费活动");
         payTypes.put(1, "线下支付");
@@ -82,6 +85,14 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
     View tucaoPanel, labelPanel, commentPanel, commentView, myCommentPanel;
     TextView rateInfoView, comentTitleView, labelView3, labelView2, labelView1, nameView, myCommentView;
     RatingBar ratingBar, myRateBar;
+
+//    备注    取消原因
+    private TextView tv_info, tv_cancel;
+//    取消报名
+    private Button btn_cancel;
+
+    private View layout_cancel;
+
 
 
 
@@ -112,6 +123,21 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
 
         listView = (ListView) findViewById(R.id.list);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if ( adapter == null ) return;
+//                MyJoinActiveDetailModel.Apply_info item = (MyJoinActiveDetailModel.Apply_info) adapter.getItem(i);
+                LSMyActivity.Applicant item = (LSMyActivity.Applicant) adapter.getItem(i);
+
+                if ( item == null ) return;
+                Intent intent = new Intent(LSMyActivityDetailActivity.this, MyJoinActivePeopleInfo.class);
+                intent.putExtra("PEOPLEINFO", item);
+                intent.putExtra("NUM", (i + 1));
+                startActivity(intent);
+            }
+        });
+
 
         commentView = findViewById(R.id.commentView);
         commentPanel = commentView.findViewById(R.id.commentPanel);
@@ -141,6 +167,14 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
         diffcultView.setOnCheckedChangeListener(this);
         feeView.setOnCheckedChangeListener(this);
         tripView.setOnCheckedChangeListener(this);
+
+        tv_info = (TextView) findViewById(R.id.tv_info);
+        btn_cancel = (Button) findViewById(R.id.btn_cancel);
+        btn_cancel.setOnClickListener(this);
+
+        layout_cancel = findViewById(R.id.layout_cancel);
+        tv_cancel = (TextView) findViewById(R.id.tv_cancel);
+
 
         ratingBar = (RatingBar) commentPanel.findViewById(R.id.ratingBar);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -236,6 +270,8 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 adapter = new LSMyActivityPersonAdapter(LSMyActivityDetailActivity.this, activity.apply_info);
                 listView.setAdapter(adapter);
 
+                tv_info.setText(activity.remark);
+
                 personTitleView.setText("报名人员（共" + (activity.apply_info == null ? 0 : activity.apply_info.size()) + "）");
 
                 titleView.setText(activity.title);
@@ -244,8 +280,21 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
 
                 orderIDView.setText(activity.ordercode);
 
+
                 statusView.setText(commentStatus.get(activity.flag));
                 payStatusView.setText(payStatus.get(activity.pay_status));
+//                取消支付， 显示取消支付原因
+                if ( activity.pay_status == 10 )
+                {
+                    layout_cancel.setVisibility(View.VISIBLE);
+                    tv_cancel.setText(activity.reason);
+                }
+                else
+                {
+                    layout_cancel.setVisibility(View.GONE);
+                }
+
+
                 payTypeView.setText(payTypes.get(activity.pay_type));
 
                 if (activity.leader_userid != 0) {
@@ -315,7 +364,9 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
 
                 if (activity.pay_status == 0) {
                     btn_pay.setVisibility(View.VISIBLE);
+                    btn_cancel.setVisibility(View.VISIBLE);
                 } else {
+                    btn_pay.setVisibility(View.GONE);
                     btn_pay.setVisibility(View.GONE);
                 }
 
@@ -455,6 +506,17 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 break;
             case R.id.titleView:
                 Common.goTopic(this, 4, activity.topic_id);
+                break;
+//            取消报名
+            case R.id.btn_cancel:
+                DialogManager.getInstance().cancelApplyDialog(activity.orderid, new CallBack() {
+                    @Override
+                    public void handler(MyTask mTask) {
+                        //更新数据
+                        getData();
+                    }
+                });
+
                 break;
         }
     }

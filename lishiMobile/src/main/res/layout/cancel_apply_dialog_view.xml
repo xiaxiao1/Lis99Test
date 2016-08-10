@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="260dp"
+        >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/color_nine"
+            android:text="选择理由"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_title"
+            />
+
+
+
+        <LinearLayout
+            android:id="@+id/bottombar"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cancel_btn"
+                android:text="稍后再说"
+
+                android:textColor="@color/text_color_black"
+                android:id="@+id/cancel"
+                android:layout_marginRight="40dp"
+                />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cancel_btn"
+                android:textColor="@color/text_color_black"
+                android:text="立即更新"
+
+                android:id="@+id/ok"
+                />
+
+        </LinearLayout>
+
+        <ListView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  style="@style/listViewStyle"
+                  android:layout_below="@+id/tv_title"
+                  android:layout_above="@+id/bottombar"
+                  android:paddingRight="20dp"
+                  android:paddingLeft="20dp"
+                  android:dividerHeight="1px"
+                  android:divider="@color/color_eee"
+                  android:id="@+id/list"
+        />
+
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

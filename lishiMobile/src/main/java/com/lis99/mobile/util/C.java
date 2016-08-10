@@ -579,7 +579,16 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String NEARBY_FILTER = DOMAINS + "/main/filterinfo/";
 //	筛选主列表 			https://apis.lis99.com/main/activityfilter
 	public static final String NEARBY_MAIN_LIST_FILTER = DOMAINS + "/main/activityfilter/";
-
+//	 获取当前用户所有报名信息列表接口	https://apis.lis99.com/enroll/getUserList
+	public static final String GET_APPLY_CONTACTS_LIST = DOMAINS + "/enroll/getUserList";
+//	添加用户			https://apis.lis99.com/enroll/addUser
+	public static final String APPLY_CONTACTS_ADD_NEW = DOMAINS + "/enroll/addUser";
+//	更新用户			https://apis.lis99.com/enroll/modUser
+	public static final String APPLY_CONTACTS_UPDATA = DOMAINS + "/enroll/modUser";
+//	删除一条数据		https://apis.lis99.com/enroll/delUser
+	public static final String APPLY_CONTACTS_REMOVE = DOMAINS + "/enroll/delUser";
+//	取消订单			https://apis.lis99.com/activity/cancelOrder
+	public static final String CANCEL_APPLY_ACTIVE = DOMAINS + "/activity/cancelOrder";
 }
 
 

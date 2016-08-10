@@ -1,0 +1,224 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        layout="@layout/activity_title" />
+
+
+        <LinearLayout
+            android:layout_below="@id/include1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            >
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/layout_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名  "
+                    android:textSize="15sp"
+                    android:textColor="@color/color_nine"
+                    />
+
+                <EditText
+                    android:background="@null"
+                    android:id="@+id/nameView"
+                    android:layout_weight="1"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="15sp" >
+                </EditText>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v_name"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="10dp"
+                          android:layout_marginBottom="10dp"
+                          android:id="@+id/layout_sex"
+            >
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="性别"
+                          android:textColor="@color/color_nine"
+                          android:layout_gravity="center_vertical"
+                />
+
+                <RadioGroup
+
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/radioMan"
+                        style="@style/wrap_wrap"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="男"
+                        android:textColor="#666"
+                        android:button="@drawable/club_radio_apply_man"
+                        android:layout_marginRight="20dip"
+                        android:paddingLeft="15dp"
+                    />
+
+                    <RadioButton
+                        android:id="@+id/radioWoman"
+                        style="@style/wrap_wrap"
+                        android:gravity="center"
+                        android:text="女"
+                        android:textColor="#666"
+                        android:button="@drawable/club_radio_apply_man"
+                        android:paddingLeft="15dp"
+                    />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/v_man"/>
+
+            <LinearLayout
+                android:id="@+id/layout_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="手机  "
+                    android:textSize="15sp"
+                    android:textColor="@color/color_nine"
+                />
+
+                <EditText
+                    android:maxLength="11"
+                    android:id="@+id/phoneView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:numeric="integer"
+                    android:padding="10dip"
+                    android:singleLine="true"
+                    android:textColor="#666"
+                    android:textSize="15sp" >
+                </EditText>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/v_phone"/>
+
+
+            <LinearLayout
+                android:id="@+id/layout_idcode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份证号  "
+                    android:textSize="15sp"
+                    android:textColor="@color/color_nine"
+                />
+
+                <EditText
+                    android:hint="仅用于购买保险、办理住宿"
+                    android:id="@+id/idNumView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:padding="10dip"
+                    android:singleLine="true"
+                    android:textColor="#666"
+                    android:maxLength="18"
+                    android:textSize="15sp" >
+                </EditText>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v_idcode"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#eee"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+            />
+
+
+            <CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_marginTop="10dp"
+                      android:layout_marginBottom="10dp"
+                      android:text="默认报名信息"
+                      android:id="@+id/checkbox"
+                      android:textColor="@color/color_nine"
+                      android:button="@drawable/contacts_checkbox"
+                      android:paddingLeft="5dp"
+                      android:gravity="center_vertical"
+                      android:checked="false"
+            />
+
+
+            </LinearLayout>
+
+
+    <Button android:layout_width="match_parent" android:layout_height="50dp"
+            android:background="@color/text_color_green"
+            android:textColor="@color/white"
+            android:text="保存"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btn_ok"
+    />
+
+
+</RelativeLayout>

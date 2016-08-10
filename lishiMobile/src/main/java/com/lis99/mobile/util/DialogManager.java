@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -28,6 +30,9 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.CustomProgressDialog;
 import com.lis99.mobile.model.UpdataModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 提示框类
@@ -588,7 +593,61 @@ public class DialogManager {
 
     }
 
+    //  应用更新提醒框
+    public void cancelApplyDialog(final int orderId, final CallBack callBack) {
 
+        final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.cancelDialog);
+
+        dialog.show();
+
+        dialog.setContentView(R.layout.cancel_apply_dialog_view);
+
+        ListView list = (ListView) dialog.findViewById(R.id.list);
+
+        List<String> alist = new ArrayList<>();
+
+        alist.add("不想去了");
+        alist.add("报名信息有误");
+        alist.add("换一个支付方式");
+        alist.add("其他");
+
+        final PopListAdapter.CancelApply adapter = new PopListAdapter.CancelApply(LSBaseActivity.activity, alist);
+
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                adapter.setSelect(position);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        Button cancel = (Button) dialog.findViewById(R.id.cancel);
+
+        Button ok = (Button) dialog.findViewById(R.id.ok);
+
+        cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog != null) dialog.dismiss();
+            }
+        });
+
+        ok.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialog != null) dialog.dismiss();
+                int position = adapter.getSelect();
+                if ( position == -1 )
+                {
+                    Common.toast("请选择取消原因");
+                }
+
+                LSRequestManager.getInstance().cancelApplyActive(position + 1, orderId, callBack);
+            }
+        });
+    }
 
 
 

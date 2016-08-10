@@ -17,6 +17,7 @@ import com.lis99.mobile.club.model.MyJoinActiveDetailModel;
 import com.lis99.mobile.club.widget.applywidget.MyJoinActiveDetailItem;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.mine.MyJoinActivePeopleInfo;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
@@ -42,7 +43,7 @@ public class MyJoinActiveInfoActivity extends LSBaseActivity
     private int orderid;
 //    支付状态（0待支付1已支付 2退款已完成 3退款申请中 4 线下支付 5免费活动 6 退款中 7逾期未支付 8 订单关闭 9 无法退款）
     public static String[] PAY_TYPE = new String[]{
-            "待支付","已支付","退款已完成","退款申请中","线下支付","免费活动", "退款处理中", "逾期未支付", "订单关闭", "无法退款",
+            "支付中","已支付","退款已完成","退款申请中","线下支付","免费活动", "退款处理中", "逾期未支付", "订单关闭", "无法退款","取消报名",
     };
 
     private Button btn_pay;

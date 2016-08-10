@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -61,6 +62,10 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
     private int payType = -1;
     //    不显示网上支付
     private boolean test = false;
+
+
+    //    新加的
+    private EditText et_info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +130,8 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         radio_free = (RadioButton) findViewById(R.id.radio_free);
 
 //        currentRadio = radio_free;
+
+        et_info = (EditText) findViewById(R.id.et_info);
 
         layout_free.setOnClickListener(this);
         layout_off_line.setOnClickListener(this);
@@ -336,6 +343,8 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         map.put("client_version", client_version);
         map.put("platform", platform);
         map.put("apply_info", OrderList);
+//        备注
+        map.put("remark", et_info.getText().toString());
 
         bModel = new PayEnterOrderModel();
 

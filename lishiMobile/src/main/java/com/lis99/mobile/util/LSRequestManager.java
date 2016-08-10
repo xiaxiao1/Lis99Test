@@ -671,8 +671,27 @@ public class LSRequestManager
 			}
 		});
 	}
+/**
+ * 		取消报名， reasonId跟列表顺序一致
+ * 		理由:1不想去了，2报名信息有误，3换一个支付方式,4其他。
+  */
+	public void cancelApplyActive ( int position, int orderId, CallBack callBack )
+	{
+		String url = C.CANCEL_APPLY_ACTIVE;
+
+		String userId = Common.getUserId();
+
+		HashMap<String, Object> map = new HashMap<>();
+
+		map.put("user_id", userId);
+		map.put("order_id", orderId);
+		map.put("reason_id", position);
+
+		BaseModel model = new BaseModel();
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
 
 
+	}
 
 
 	
