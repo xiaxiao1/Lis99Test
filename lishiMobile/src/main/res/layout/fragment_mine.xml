@@ -13,6 +13,13 @@
         android:layout_alignParentTop="true"
         layout="@layout/fragment_title" />
 
+    <!--测试按钮，待删除-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hahaha"
+        android:onClick="doba"
+        />
 
     <ScrollView
         android:layout_below="@id/include"

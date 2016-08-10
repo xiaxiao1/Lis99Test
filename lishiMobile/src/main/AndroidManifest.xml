@@ -1346,10 +1346,16 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
 
 
+       <!-- 推荐活动-->
         <activity android:name=".club.LSRecommendActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
                   />
+        <!--新版活动详情-->
+        <activity android:name=".club.activityinfo.ActivityFullInfoActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
     </application>
 
 

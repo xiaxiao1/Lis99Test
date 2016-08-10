@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/filter_bottom_bg"
+        android:layout_alignParentBottom="true"
+        >
+        <LinearLayout
+            android:id="@+id/afullinfo_zixun_ll"
+            android:layout_width="104dp"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bottom_button_border"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            >
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/bottom_phone"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我要咨询"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="9dp"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/afullinfo_baoming_img"
+            android:layout_width="204dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/apply_bottom_btn"
+            android:text="我要去玩"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            />
+    </LinearLayout>
+<com.lis99.mobile.club.activityinfo.SlideDetailsLayout
+    android:id="@+id/slidedetails"
+    app:default_panel="front"
+    app:duration="500"
+    app:percent="0.4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:layout_above="@id/bottom_ll"
+    >
+
+
+
+
+    <FrameLayout
+        android:id="@+id/slidedetails_front"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="50dp"
+            android:orientation="vertical"
+            >
+            <!--<ListView
+                android:id="@+id/info_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>-->
+            <include
+                android:id="@+id/activityinfo_fullinfo_ll"
+                layout="@layout/club_topic_info_detail_route_series"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</com.lis99.mobile.club.activityinfo.SlideDetailsLayout>
+    <LinearLayout
+        android:id="@+id/title_bg_ll"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#ff0000"
+        android:orientation="horizontal"
+        android:alpha="0.5"
+        >
+    </LinearLayout>
+
+
+
+    <ImageView
+        android:id="@+id/afullinfo_title_back_img"
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:src="@drawable/ls_club_back_icon_bg"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="4dp"
+        />
+
+    <ImageView
+        android:id="@+id/afullinfo_title_share_img"
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:src="@drawable/more_banner"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="4dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        />
+</RelativeLayout>
