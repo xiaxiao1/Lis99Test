@@ -104,6 +104,20 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
                 toPlay_tv.setText("haah"+s);
             }
         });
+        f1.setAlphaInterface(new AlphaInterface() {
+            @Override
+            public void setTitleAlpha(float alpha) {
+                alpha = Math.abs(alpha);
+                if (alpha < 500) {
+                    titleBackground_ll.setAlpha(alpha / 500);
+                } else {
+                    titleBackground_ll.setAlpha(1.0f);
+                    back_img.setImageResource(R.drawable.ls_page_back_icon_bg);
+                    share_img.setImageResource(R.drawable.topic_more);
+
+                }
+            }
+        });
         fm.beginTransaction().replace(R.id.slidedetails_front, f1).commit();
         back_img.setOnClickListener(this);
         share_img.setOnClickListener(this);

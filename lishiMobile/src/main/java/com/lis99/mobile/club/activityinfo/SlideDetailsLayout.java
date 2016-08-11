@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
@@ -339,6 +340,7 @@ public class SlideDetailsLayout extends ViewGroup {
 
             case MotionEvent.ACTION_MOVE: {
                 final float y = ev.getY();
+                Log.i("slide","  "+y);
                 final float yDiff = y - mInitMotionY;
                 if (canChildScrollVertically(((int) yDiff))) {
                     wantTouch = false;
@@ -508,6 +510,8 @@ public class SlideDetailsLayout extends ViewGroup {
             mTarget = mBehindView;
             close=false;
         }
+
+        Log.i("mtarget","hehehe");
     }
 
     /**
@@ -540,7 +544,16 @@ public class SlideDetailsLayout extends ViewGroup {
     }
 
     protected boolean canListViewSroll(AbsListView absListView) {
+        /*float alpha=absListView.getChildAt(0).getMeasuredHeight();
+        Log.i("mtarget"," xxxxx  "+alpha);*/
+       /* RefreshListview listView=(RefreshListview)absListView;
+        View v = listView.get;
+
+        float alpha = v.getTop();
+        Log.i("mtarget"," xxxxx  "+alpha);*/
+
         if (mStatus == Status.OPEN) {
+
             return absListView.getChildCount() > 0
                    && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
                                                                                .getTop() <

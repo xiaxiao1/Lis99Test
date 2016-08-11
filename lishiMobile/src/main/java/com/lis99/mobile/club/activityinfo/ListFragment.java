@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -133,8 +134,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     //回调赋值给Activity
     FullInfoInterface fullInfoInterface;
 
+    //回调给activity执行title透明度操作
+    AlphaInterface alphaInterface;
+
     public ListFragment() {
 
+    }
+    public void setAlphaInterface(AlphaInterface alphaInterface) {
+        this.alphaInterface = alphaInterface;
     }
 
     public FullInfoInterface getFullInfoInterface() {
@@ -188,9 +195,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 Toast.makeText(ListFragment.this.getActivity(), "hh", Toast.LENGTH_SHORT).show();
                 activeInfos.add(0,new FullInfo("我是新来的","http://pic10.nipic.com/20101019/3050636_171041025000_2.jpg"));
                 fullInfoAdapter.notifyDataSetChanged();
+                fullSize++;
                 listView.onRefreshComplete();
             }
         });
+        listView.setAlphaInterface(alphaInterface);
         listView.setAdapter(fullInfoAdapter);
 
         initBaiduMap();

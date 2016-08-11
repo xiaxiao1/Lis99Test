@@ -28,6 +28,7 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
 
     private static final String TAG = "PullToRefreshListView";
 
+    private AlphaInterface alphaInterface;
     private final static int RELEASE_TO_REFRESH = 0;
     private final static int PULL_TO_REFRESH = 1;
     private final static int REFRESHING = 2;
@@ -124,7 +125,16 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
     @Override
     public void onScroll(AbsListView arg0, int firstVisiableItem, int arg2, int arg3)
     {
+        View v = this.getChildAt(0);
+        if (v == null) return;
+        float alpha = v.getTop();
+        if (alphaInterface!=null) {
+            alphaInterface.setTitleAlpha(alpha);
+        }
         firstItemIndex = firstVisiableItem;
+    }
+    public void setAlphaInterface(AlphaInterface alphaInterface) {
+        this.alphaInterface = alphaInterface;
     }
 
     @Override

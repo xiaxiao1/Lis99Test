@@ -106,9 +106,9 @@
         android:id="@+id/title_bg_ll"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#ff0000"
+        android:background="#ffffff"
         android:orientation="horizontal"
-        android:alpha="0.5"
+        android:alpha="1.0"
         >
     </LinearLayout>
 
