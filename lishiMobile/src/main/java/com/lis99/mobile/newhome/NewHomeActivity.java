@@ -41,6 +41,8 @@ import com.lis99.mobile.application.data.VersionBean;
 import com.lis99.mobile.choiceness.FragmentChoicenessNewMain;
 import com.lis99.mobile.club.LSClubFragment;
 import com.lis99.mobile.club.LSClubFragmentNew;
+import com.lis99.mobile.club.activityinfo.ActivityFullInfoActivity;
+import com.lis99.mobile.club.apply.MyJoinActiveInfoActivity;
 import com.lis99.mobile.club.model.PushModel;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
@@ -970,5 +972,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         }
     }
 
+    public void doba(View view) {
+        startActivity(new Intent(this, ActivityFullInfoActivity.class));
+    }
 
 }

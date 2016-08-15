@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="440"
-    android:versionName="4.4.0" >
+    android:versionCode="441"
+    android:versionName="4.4.1" >
 
 
 
@@ -1338,6 +1338,7 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
 
 
+       <!-- 推荐活动-->
         <activity android:name=".club.LSRecommendActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
@@ -1352,6 +1353,12 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
         />
+
+        <!--新版活动详情-->
+        <activity android:name=".club.activityinfo.ActivityFullInfoActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+            />
 
 
     </application>
