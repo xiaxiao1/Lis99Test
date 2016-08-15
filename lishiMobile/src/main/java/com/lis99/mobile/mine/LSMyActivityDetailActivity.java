@@ -509,7 +509,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 break;
 //            取消报名
             case R.id.btn_cancel:
-                DialogManager.getInstance().cancelApplyDialog(activity.orderid, new CallBack() {
+                DialogManager.getInstance().cancelApplyDialog(orderID, new CallBack() {
                     @Override
                     public void handler(MyTask mTask) {
                         //更新数据

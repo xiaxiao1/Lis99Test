@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apply_manager_item_bg"
+        android:layout_margin="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="6dp"
+        >
+
+    <include android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/apply_manager_item_head"
+             android:id="@+id/include"
+             android:layout_marginLeft="10dp"
+             android:layout_marginRight="10dp"
+             />
+
+    <LinearLayout
+        android:layout_alignBottom="@id/include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/manager_pay_state_bg"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_pay_state"
+            android:textColor="#73706e"
+            android:text="未支付"
+            android:textSize="12sp"
+            android:layout_marginRight="3dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pay_weixin"
+            android:id="@+id/iv_pay_state"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/include"
+        >
+
+
+    <com.lis99.mobile.view.MyListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/listViewStyle"
+        android:divider="@null"
+        android:dividerHeight="0px"
+        android:padding="8dp"
+        android:id="@+id/list"
+        >
+
+    </com.lis99.mobile.view.MyListView>
+
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:paddingRight="10dp"
+              android:paddingLeft="10dp"
+              android:paddingTop="6dp"
+              android:id="@+id/remark"
+              android:text="@string/temp_string"
+              android:maxLines="1"
+              android:textColor="@color/text_color_black"
+              android:textSize="12sp"
+    />
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:paddingRight="10dp"
+                  android:paddingLeft="10dp"
+                  android:paddingTop="6dp"
+                  android:id="@+id/cancel_reason"
+                  android:text="@string/temp_string_long"
+                  android:maxLines="1"
+                  android:textColor="@color/text_color_black"
+                  android:textSize="12sp"
+        />
+
+        <RelativeLayout
+
+            android:id="@+id/bottombar"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            >
+
+            <View android:layout_width="match_parent" android:layout_height="1px"
+                  android:background="@color/color_eee"
+                  />
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                          android:layout_centerVertical="true"
+                          android:layout_alignParentRight="true"
+            >
+
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="22dp"
+                    android:background="@drawable/apply_manager_refuse"
+                    android:id="@+id/btn_out"
+                    android:visibility="visible"
+                />
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="22dp"
+                    android:background="@drawable/apply_manager_enter"
+                    android:id="@+id/btn_ok"
+                    android:visibility="visible"
+                    android:layout_marginLeft="20dp"
+                />
+
+            </LinearLayout>
+
+
+
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tv_wait"
+                      android:textColor="#ff7800"
+                      android:text="请等待对方支付费用, 逾期未支付的报名将被系统拒绝"
+                      android:maxLines="1"
+                      android:drawableLeft="@drawable/warning_icon"
+                      android:drawablePadding="6dp"
+                      android:textSize="12sp"
+                      android:layout_centerVertical="true"
+            />
+
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

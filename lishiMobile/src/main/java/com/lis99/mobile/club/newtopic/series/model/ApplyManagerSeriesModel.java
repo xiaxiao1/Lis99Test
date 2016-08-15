@@ -104,6 +104,10 @@ public class ApplyManagerSeriesModel extends BaseModel {
 
             @SerializedName("batch_id")
             public int batch_id;
+            @SerializedName("reason")
+            public String reason;
+            @SerializedName("remark")
+            public String remark;
 
             /**
              * name : 振宇

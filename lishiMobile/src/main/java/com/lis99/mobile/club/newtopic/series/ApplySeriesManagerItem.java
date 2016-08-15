@@ -3,6 +3,7 @@ package com.lis99.mobile.club.newtopic.series;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -72,7 +73,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
     public View setView(int i, View view, ViewGroup viewGroup) {
         Holder holder = null;
         if (view == null) {
-            view = View.inflate(mContext, R.layout.apply_manager_list_item, null);
+            view = View.inflate(mContext, R.layout.apply_manager_list_item_series, null);
             holder = new Holder();
 
             holder.roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
@@ -86,7 +87,12 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             holder.btn_out = (Button) view.findViewById(R.id.btn_out);
             holder.iv_pay_state = (ImageView) view.findViewById(R.id.iv_pay_state);
             holder.tv_pay_state = (TextView) view.findViewById(R.id.tv_pay_state);
-            holder.view_wait = view.findViewById(R.id.view_wait);
+//            holder.view_wait = view.findViewById(R.id.view_wait);
+
+            holder.tv_wait = (TextView) view.findViewById(R.id.tv_wait);
+            holder.remark = (TextView) view.findViewById(R.id.remark);
+            holder.cancel_reason = (TextView) view.findViewById(R.id.cancel_reason);
+
 
 
             view.setTag(holder);
@@ -106,6 +112,20 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         holder.tv_name.setText(item.nickname);
 
         holder.tv_data.setText("报名时间：" + item.createdate);
+
+        holder.remark.setVisibility(View.GONE);
+        holder.cancel_reason.setVisibility(View.GONE);
+
+        if ( !TextUtils.isEmpty(item.remark))
+        {
+            holder.remark.setText("备注："+item.remark);
+            holder.remark.setVisibility(View.VISIBLE);
+        }
+        if ( !TextUtils.isEmpty(item.reason))
+        {
+            holder.cancel_reason.setText("取消理由："+item.reason);
+            holder.cancel_reason.setVisibility(View.VISIBLE);
+        }
 
         if ( item.isVip == 1 )
         {
@@ -157,10 +177,12 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
 
         holder.list.setAdapter(adapter);
 
-        holder.view_wait.setVisibility(View.GONE);
-
+//        holder.view_wait.setVisibility(View.GONE);
+        holder.tv_wait.setVisibility(View.GONE);
+        holder.bottombar.setVisibility(View.GONE);
         if (type == 0)
         {
+            holder.bottombar.setVisibility(View.VISIBLE);
             holder.btn_ok.setVisibility(View.GONE);
             holder.btn_out.setVisibility(View.VISIBLE);
 
@@ -172,15 +194,18 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         }
         else
         {
+            holder.bottombar.setVisibility(View.VISIBLE);
             holder.btn_ok.setVisibility(View.VISIBLE);
             holder.btn_out.setVisibility(View.VISIBLE);
         }
 
         if ( item.payStatus == 0 )
         {
+            holder.bottombar.setVisibility(View.VISIBLE);
             holder.btn_ok.setVisibility(View.GONE);
             holder.btn_out.setVisibility(View.GONE);
-            holder.view_wait.setVisibility(View.VISIBLE);
+//            holder.view_wait.setVisibility(View.VISIBLE);
+            holder.tv_wait.setVisibility(View.VISIBLE);
         }
 
         holder.btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +287,9 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         ImageView iv_pay_state;
         TextView tv_pay_state;
 
-        View view_wait;
+//        View view_wait;
+        //支付中提示， 备注， 取消理由
+        TextView tv_wait, remark, cancel_reason;
 
     }
 
