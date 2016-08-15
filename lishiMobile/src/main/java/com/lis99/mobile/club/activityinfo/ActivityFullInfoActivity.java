@@ -112,7 +112,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
                     titleBackground_ll.setAlpha(alpha / 500);
                 } else {
                     titleBackground_ll.setAlpha(1.0f);
-                    back_img.setImageResource(R.drawable.ls_page_back_icon_bg);
+                    back_img.setImageResource(R.drawable.ls_club_back_icon_bg);
                     share_img.setImageResource(R.drawable.topic_more);
 
                 }

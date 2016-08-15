@@ -45,7 +45,7 @@
             android:id="@+id/footer4playerevaluation_player_head1_img"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:src="@drawable/v"
+            android:src="@drawable/ls_nologin_header_icon"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
 
@@ -186,7 +186,7 @@
                 android:id="@+id/footer4playerevaluation_player_head2_img"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:src="@drawable/v"
+                android:src="@drawable/ls_nologin_header_icon"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
 
@@ -329,7 +329,7 @@
                 android:id="@+id/footer4playerevaluation_player_head3_img"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
-                android:src="@drawable/v"
+                android:src="@drawable/ls_nologin_header_icon"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
 

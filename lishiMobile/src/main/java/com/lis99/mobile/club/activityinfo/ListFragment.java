@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,15 +34,25 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubTopicInfoLocation;
+import com.lis99.mobile.club.model.ClubTopicActiveSeriesLineMainModel;
+import com.lis99.mobile.club.model.EquipRecommendInterFace;
+import com.lis99.mobile.club.newtopic.ActiveLineEquipRecommend;
+import com.lis99.mobile.club.newtopic.LSClubTopicInfoAdapter;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.MyRequestManager;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -115,11 +126,13 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     MyRecyclerAdapter recyclerviewAdapter;
 
 
+    String activity_id;
+    int clubID;
+    ClubTopicActiveSeriesLineMainModel model;
     BaiduMap mBaiduMap = null;
     //活动详情图文数据
     List<FullInfo> activeInfos;
-    //轮播图片urls
-    List<String> urls_banner;
+
     //标签串数据
     List<String> recycler_datas;
     //地图定位的坐标
@@ -166,37 +179,22 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initViews(view);
         initDatas();
+        getInfo();
         //以下具体是要放在网络请求的回调中处理的。
-        listView = (RefreshListview) view.findViewById(R.id.list);
-        header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
-        listView.addHeaderView(header);
-        View footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
-        View footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
-        View footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
-        listView.addFooterView(footer_ownerinfo);
-        listView.addFooterView(footer_playerEvaluation);
-        listView.addFooterView(footer_zhuangbei);
-        final View footView = getActivity().getLayoutInflater()
-                .inflate(R.layout.activityinfo_slidedetails_marker_default_layout, null);
-        footView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                open(true);
-            }
-        });
-        listView.addFooterView(footView);
-        fullInfoAdapter=new FullInfoAdapter(activeInfos);
+
         //下拉刷新
         listView.setonRefreshListener(new RefreshListview.OnRefreshListener() {
             @Override
             public void onRefresh()
             {
-                Toast.makeText(ListFragment.this.getActivity(), "hh", Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(ListFragment.this.getActivity(), "hh", Toast.LENGTH_SHORT).show();
                 activeInfos.add(0,new FullInfo("我是新来的","http://pic10.nipic.com/20101019/3050636_171041025000_2.jpg"));
                 fullInfoAdapter.notifyDataSetChanged();
                 fullSize++;
-                listView.onRefreshComplete();
+                listView.onRefreshComplete();*/
+                getInfo();
             }
         });
         listView.setAlphaInterface(alphaInterface);
@@ -204,36 +202,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
         initBaiduMap();
 
-        //顶部轮播图片
-        bannerView=(BannerView)header.findViewById(R.id.afullinfo_lv_header_banner_banner);
-        bannerAdapter=new ImagePageAdapter(getActivity(), urls_banner.size());
-        bannerAdapter.addImagePageAdapterListener(this);
-        bannerAdapter.setImagePageClickListener(this);
-        bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        bannerView.stopAutoScroll();
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        bannerView.stopAutoScroll();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        bannerView.startAutoScroll();
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
-                }
-                return false;
-            }
-        });
-        bannerView.setBannerAdapter(bannerAdapter);
-        bannerView.startAutoScroll();
 
         //横向可滑动标签串
         mRecyclerView=(RecyclerView)header.findViewById(R.id.afullinfo_recyclerview);
@@ -248,10 +217,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     @Override
     public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
-        if (urls_banner.size() == 0)
+        if (model.activityimgs.size() == 0)
             return;
 
-        ImageLoader.getInstance().displayImage(urls_banner.get(position), banner,
+        ImageLoader.getInstance().displayImage(model.activityimgs.get(position).images, banner,
                 ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
     }
 
@@ -312,12 +281,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 //        currentSize=fullSize;
         updateActivity("fragment");
 
-       //初始化banner
+      /* //初始化banner
         urls_banner=new ArrayList<String>();
         urls_banner.add("http://scimg.jb51.net/allimg/160618/77-16061Q44U6444.jpg");
         urls_banner.add("http://www.pptbz.com/pptpic/UploadFiles_6909/201204/2012041411433867.jpg");
         urls_banner.add("http://pic31.nipic.com/20130725/1729271_112810285306_2.jpg");
-        urls_banner.add("http://pic32.nipic.com/20130813/9422601_092721678000_2.jpg");
+        urls_banner.add("http://pic32.nipic.com/20130813/9422601_092721678000_2.jpg");*/
 
 
 
@@ -581,4 +550,189 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         }
     }
 }
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void initViews(View view){
+        listView = (RefreshListview) view.findViewById(R.id.list);
+        header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
+        listView.addHeaderView(header);
+        View footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
+        View footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
+        View footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
+        listView.addFooterView(footer_ownerinfo);
+        listView.addFooterView(footer_playerEvaluation);
+        listView.addFooterView(footer_zhuangbei);
+        final View footView = getActivity().getLayoutInflater()
+                .inflate(R.layout.activityinfo_slidedetails_marker_default_layout, null);
+        footView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                open(true);
+            }
+        });
+        listView.addFooterView(footView);
+        fullInfoAdapter=new FullInfoAdapter(activeInfos);
+
+        //正式开始
+        activeTitle_tv = (TextView) header.findViewById(R.id.afullinfo_active_title_tv);
+        activeNote_tv = (TextView) header.findViewById(R.id.afullinfo_active_note_tv);
+        activePrice_tv = (TextView) header.findViewById(R.id.afullinfo_active_nowprice_tv);
+
+        //顶部轮播图片
+        bannerView=(BannerView)header.findViewById(R.id.afullinfo_lv_header_banner_banner);
+        bannerView.mViewPager.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        bannerView.stopAutoScroll();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        bannerView.stopAutoScroll();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        bannerView.startAutoScroll();
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
+
+
+    }
+    private void getInfo() {
+        String url = C.CLUB_TOPIC_ACTIVE_SERIES_LINE_MIAN;
+
+        String userId = DataManager.getInstance().getUser().getUser_id();
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+
+        /*map.put("user_id", userId);
+        map.put("activity_id", activity_id);*/
+        map.put("user_id", 456957);
+        map.put("activity_id", 4829);
+
+        model = new ClubTopicActiveSeriesLineMainModel();
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public void handler(MyTask mTask) {
+                model = (ClubTopicActiveSeriesLineMainModel) mTask.getResultModel();
+
+                if (model == null) return;
+
+                clubID = model.clubId;
+
+                activeTitle_tv.setText(model.getTitle());
+                activeNote_tv.setText(model.catename);
+                activePrice_tv.setText(model.consts);
+                Log.i("xx", model.getTitle() + "ccc");
+
+
+                if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
+                    bannerView.setVisibility(View.VISIBLE);
+
+                    bannerAdapter=new ImagePageAdapter(getActivity(), model.activityimgs.size());
+                    bannerAdapter.addImagePageAdapterListener(ListFragment.this);
+                    bannerAdapter.setImagePageClickListener(ListFragment.this);
+                    bannerView.setBannerAdapter(bannerAdapter);
+                    bannerView.startAutoScroll();
+                }
+                else {
+                    bannerView.setVisibility(View.GONE);
+                }
+            /*
+                if (model.activelightspot != null && model.activelightspot.size() != 0) {
+                    listhighlights.setVisibility(View.VISIBLE);
+                    highlightsAdapter = new LSClubTopicInfoAdapter(activity, model.activelightspot);
+                    listhighlights.setAdapter(highlightsAdapter);
+                } else {
+
+                    if (model.activitydetail != null && model.activitydetail.size() != 0) {
+                        tvhighlights.setVisibility(View.VISIBLE);
+                        tvhighlights.setText(model.activitydetail.get(0).content);
+                    }
+                }
+
+                if ( TextUtils.isEmpty(""+model.leaderUserid) || "0".equals(model.leaderUserid))
+                {
+                    if (!TextUtils.isEmpty(model.clubIconv)) {
+                        ImageLoader.getInstance().displayImage(model.clubIconv, roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                    }
+//                    tvname.setText(model.getClub_title());
+                    tvname.setVisibility(View.GONE);
+                    vipStar.setVisibility(View.GONE);
+                }
+                else
+                {
+                    if (!TextUtils.isEmpty(model.leaderheadicon)) {
+                        ImageLoader.getInstance().displayImage(model.leaderheadicon, roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                    }
+                    vipStar.setVisibility(View.VISIBLE);
+                    tvname.setVisibility(View.VISIBLE);
+                    tvname.setText(model.leadernickname);
+                }
+
+
+//                标签
+                if (model.leaderdesc != null && model.leaderdesc.size() != 0) {
+                    for (int ii = 0; ii < model.leaderdesc.size(); ii++) {
+                        if (ii == 0) {
+                            tvtags1.setVisibility(View.VISIBLE);
+                            tvtags1.setText(model.leaderdesc.get(ii));
+                        } else if (ii == 1) {
+                            tvtags2.setVisibility(View.VISIBLE);
+                            tvtags2.setText(model.leaderdesc.get(ii));
+                        } else if (ii == 2) {
+                            tvtags3.setVisibility(View.VISIBLE);
+                            tvtags3.setText(model.leaderdesc.get(ii));
+                        } else if (ii == 3) {
+                            tvtags4.setVisibility(View.VISIBLE);
+                            tvtags4.setText(model.leaderdesc.get(ii));
+                        }
+                    }
+                }
+
+                clubname.setText(model.clubTitle);
+
+                tvtraveltag.setText(model.batchTotal+" 批次");
+
+//                ivtravelbg
+
+                if (model.tripdetail != null && model.tripdetail.size() != 0) {
+                    ImageLoader.getInstance().displayImage(model.tripdetail.get(0).images, ivtravelbg, ImageUtil.getDefultTravelImageOptions());
+                }
+
+                if (model.reportnote != null && model.reportnote.size() != 0) {
+                    layout_readme.setVisibility(View.VISIBLE);
+
+                    joinAdapter = new LSClubTopicInfoAdapter(activity, model.reportnote);
+
+                    listjoinreadme.setAdapter(joinAdapter);
+                } else {
+                    layout_readme.setVisibility(View.GONE);
+                }
+
+//                装备
+                if ( model.zhuangbeilist != null && model.zhuangbeilist.size() != 0 )
+                {
+                    include_equip.setVisibility(View.VISIBLE);
+                    equipRecommend = new ActiveLineEquipRecommend(activity);
+                    equipRecommend.init(include_equip);
+
+                    ArrayList<EquipRecommendInterFace> item = new ArrayList<EquipRecommendInterFace>(model.zhuangbeilist);
+
+                    equipRecommend.setModel(item);
+
+                }*/
+            }
+        });
+
+    }
 }

@@ -55,7 +55,7 @@
                 android:id="@+id/footer4openmore_ownerhead_img"
                 android:layout_width="61dp"
                 android:layout_height="61dp"
-                android:src="@drawable/v"
+                android:src="@drawable/ls_nologin_header_icon"
                 android:layout_centerHorizontal="true"
                 app:corner_radius="14dp"
                 />
