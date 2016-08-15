@@ -1010,7 +1010,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 
 		int margin = dip2px(this, 8);
 		int imageSize = dip2px(this, 27);
-		int round = dip2px(this, 4);
+		int round = dip2px(this, 50);
 
 		int size = leaders.size();
 		if (size > 8) {

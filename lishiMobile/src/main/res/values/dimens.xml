@@ -26,7 +26,7 @@
     <dimen name="ls_menu_item_tv_sp">18sp</dimen>
     <dimen name="ls_sildeshow_point_height">20dp</dimen>
     
-    <dimen name="user_header_corner_radius">10dp</dimen>
+    <dimen name="user_header_corner_radius">50dp</dimen>
     
     <dimen name="ls_setting_bt_width">120dp</dimen>
     <dimen name="ls_setting_bt_height">35dp</dimen>
