@@ -97,7 +97,7 @@ public class ContactsUtil {
      */
     public void getContactsList (final CallBack callBack)
     {
-        if ( !isChenged && model != null && callBack != null )
+        if ( !isChenged && model != null && model.user_list != null && model.user_list.size() != 0 && callBack != null )
         {
             MyTask myTask = new MyTask();
             myTask.setResultModel(model);

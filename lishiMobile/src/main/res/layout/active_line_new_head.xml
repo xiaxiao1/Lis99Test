@@ -22,6 +22,7 @@
         android:id="@+id/viewBanner"
         android:layout_width="match_parent"
         android:layout_height="220dp"
+        android:visibility="gone"
     />
 
     <include
@@ -80,6 +81,17 @@
               android:text="本地俱乐部的活动"
               android:maxLines="1"
               android:ellipsize="end"
+              android:id="@+id/tv_club_name"
+    />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/btn_change"
+            android:background="@drawable/cancle_press"
+            android:text="切换城市"
+            android:textColor="@color/text_color_green"
+            android:drawableRight="@drawable/topic_destination_arrow"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
     />
 
 

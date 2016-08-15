@@ -37,7 +37,7 @@ public class ContactsAdapter extends MyBaseAdapter {
 
         final NewApplyUpData info = (NewApplyUpData) object;
 
-        holder.tvDefault.setVisibility(View.GONE);
+        holder.tvDefault.setVisibility(View.INVISIBLE);
 
         holder.tvName.setText(info.name);
         holder.tvSex.setText(info.sex);

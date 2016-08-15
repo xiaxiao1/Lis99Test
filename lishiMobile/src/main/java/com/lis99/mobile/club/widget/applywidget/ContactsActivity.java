@@ -49,6 +49,10 @@ public class ContactsActivity extends LSBaseActivity implements PullToRefreshVie
 
         initViews();
 
+        setTitle("常用报名信息");
+
+        onHeaderRefresh(pullRefreshView);
+
     }
 
     @Override
@@ -101,7 +105,7 @@ public class ContactsActivity extends LSBaseActivity implements PullToRefreshVie
             public void handler(MyTask mTask) {
                 model = (ApplyContactsListModel) mTask.getResultModel();
 
-                if ( model == null && model.user_list == null && model.user_list.size() == 0 )
+                if ( model == null || model.user_list == null || model.user_list.size() == 0 )
                 {
                     tvNothing.setVisibility(View.VISIBLE);
                     return;

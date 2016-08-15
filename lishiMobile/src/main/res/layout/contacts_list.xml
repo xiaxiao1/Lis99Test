@@ -23,12 +23,14 @@
         android:id="@+id/pull_refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/pull_bg"
         android:orientation="vertical"
-        android:background="@null"
     >
 
         <ListView
-            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
             style="@style/listViewStyle"
             android:id="@+id/list_info"
             android:divider="@null"

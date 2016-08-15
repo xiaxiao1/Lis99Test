@@ -256,18 +256,13 @@ public class LSApplySeriesNew extends LSBaseActivity {
             @Override
             public void handler(MyTask mTask) {
                 ApplyContactsListModel model = (ApplyContactsListModel) mTask.getResultModel();
-                if ( model == null && model.user_list == null && model.user_list.size() == 0 )
+                if ( model == null || model.user_list == null || model.user_list.size() == 0 )
                 {
 
                 }
                 else {
                     NewApplyUpData info = model.user_list.get(0);
-                    NewApplyUpData chenged = updata.get(0);
-                    chenged = info;
-//                    if (adapter != null)
-//                    {
-//                        adapter.setList(updata);
-//                    }
+                  updata.set(0, info);
                 }
                 getApplyList();
             }
@@ -355,8 +350,7 @@ public class LSApplySeriesNew extends LSBaseActivity {
         {
             NewApplyUpData info = (NewApplyUpData) data.getSerializableExtra("INFO");
             int position = data.getIntExtra("POSITION", -1);
-            NewApplyUpData cheng = updata.get(position);
-            cheng = info;
+            updata.set(position, info);
             if ( adapter != null )
             {
                 adapter.setList(updata);

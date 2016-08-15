@@ -51,6 +51,8 @@ public class ContactsEdtingActivity extends LSBaseActivity {
 
         initViews();
 
+        setTitle("编辑报名信息");
+
         if ( info == null )
         {
             info = new NewApplyUpData();

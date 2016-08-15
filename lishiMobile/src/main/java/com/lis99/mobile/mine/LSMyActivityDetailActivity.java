@@ -367,7 +367,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                     btn_cancel.setVisibility(View.VISIBLE);
                 } else {
                     btn_pay.setVisibility(View.GONE);
-                    btn_pay.setVisibility(View.GONE);
+                    btn_cancel.setVisibility(View.GONE);
                 }
 
                 if (activity.star > 0) {

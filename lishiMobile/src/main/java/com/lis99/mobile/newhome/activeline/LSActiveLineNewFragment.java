@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -101,6 +102,10 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
     private View include_search;
 
+//俱乐部活动标题
+    private TextView tv_club_name;
+    private Button btn_change;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +118,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
-        tvLocation.setOnClickListener(this);
+        tvLocation.setText("活动");
+//        tvLocation.setOnClickListener(this);
         pull_refresh_view = (PullToRefreshView) v.findViewById(R.id.pull_refresh_view);
 //
         pull_refresh_view.setOnFooterRefreshListener(this);
@@ -130,6 +136,11 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
 
         head = View.inflate(getActivity(), R.layout.active_line_new_head, null);
+
+        tv_club_name = (TextView) head.findViewById(R.id.tv_club_name);
+
+        btn_change = (Button) head.findViewById(R.id.btn_change);
+        btn_change.setOnClickListener(this);
 
         foodView = View.inflate(getActivity(),R.layout.active_no_info_food, null );
 
@@ -308,7 +319,9 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 locationCityId = ""+cityId;
                 locationCityName = model.city_name;
 
-                tvLocation.setText(model.city_name);
+//                tvLocation.setText(model.city_name);
+                tv_club_name.setText(model.city_name+"俱乐部活动");
+
 
                 if ( adapter == null ) {
                     page.setPageSize(model.getTotalpage());
@@ -357,6 +370,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                 break;
             case R.id.tv_location:
+            case R.id.btn_change:
 
                 PopWindowUtil.showActiveMainCityList(locationCityName, locationCityId, position, list, new CallBack() {
                     @Override
@@ -370,7 +384,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                         cityName = values[0];
                         cityId = Common.string2int(values[1]);
 
-                        tvLocation.setText(cityName);
+//                        tvLocation.setText(cityName);
+                        tv_club_name.setText(cityName+"俱乐部活动");
 
                         position = Integer.parseInt(mTask.getresult());
 

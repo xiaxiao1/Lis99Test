@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="280dp"
-        android:layout_height="260dp"
+        android:layout_height="280dp"
+        android:paddingBottom="10dp"
         >
 
         <TextView
@@ -37,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cancel_btn"
-                android:text="稍后再说"
+                android:text="取消"
 
                 android:textColor="@color/text_color_black"
                 android:id="@+id/cancel"
@@ -50,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cancel_btn"
                 android:textColor="@color/text_color_black"
-                android:text="立即更新"
+                android:text="确定"
 
                 android:id="@+id/ok"
                 />
