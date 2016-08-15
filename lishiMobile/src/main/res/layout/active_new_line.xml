@@ -52,12 +52,10 @@
 
         <TextView
             android:id="@+id/tv_location"
-            android:drawableLeft="@drawable/active_line_location"
-            android:drawablePadding="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textColor="@color/text_color_green"
+            android:textColor="@color/title_bar_text"
             android:textSize="16sp"
             android:text="北京"
             />
