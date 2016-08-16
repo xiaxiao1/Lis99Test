@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lis99.mobile"
 
-    android:versionCode="441"
-    android:versionName="4.4.1" >
+    android:versionCode="443"
+    android:versionName="4.4.3" >
 
 
 
@@ -100,6 +100,7 @@
 
 
     <application
+        android:debuggable="true"
         android:largeHeap="true"
         android:name=".entry.application.DemoApplication"
         android:allowBackup="true"

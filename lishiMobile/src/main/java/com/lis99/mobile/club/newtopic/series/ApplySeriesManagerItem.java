@@ -113,13 +113,15 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
 
         holder.tv_data.setText("报名时间：" + item.createdate);
 
-        holder.remark.setVisibility(View.GONE);
         holder.cancel_reason.setVisibility(View.GONE);
 
         if ( !TextUtils.isEmpty(item.remark))
         {
             holder.remark.setText("备注："+item.remark);
-            holder.remark.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.remark.setText("备注：无");
         }
         if ( !TextUtils.isEmpty(item.reason))
         {

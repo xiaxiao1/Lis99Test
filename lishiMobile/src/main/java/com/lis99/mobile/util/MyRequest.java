@@ -13,6 +13,7 @@ public class MyRequest{
 
 	private MyTask mTask;
 	private MyHttpClient http;
+	private OkHttpUtil okhttp;
 	private static ExecutorService myExecutor;
 	
 	static{
@@ -25,6 +26,7 @@ public class MyRequest{
 	{
 		mTask = task;
 		http = new MyHttpClient();
+//		okhttp = OkHttpUtil.getInstance();
 		
 	}
 
@@ -110,9 +112,23 @@ public class MyRequest{
 			{
 			case MyTask.POST:
 				result = http.HttpPost(mTask.getUrl(), mTask.getMap());
+//				try {
+//					result = okhttp.post(mTask.getUrl(), mTask.getMap());
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//					mTask.setError(e.getMessage());
+//					Common.log("GET RESULT ERROR="+e.getMessage());
+//				}
 				break;
 			case MyTask.GET:
 				result = http.HttpGet(mTask.getUrl());
+//				try {
+//					result = okhttp.get(mTask.getUrl());
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//					mTask.setError(e.getMessage());
+//					Common.log("GET RESULT ERROR="+e.getMessage());
+//				}
 				break;
 			case MyTask.IMAGE:
 				result = http.HttpImage(mTask.getUrl(), mTask.getMap());
