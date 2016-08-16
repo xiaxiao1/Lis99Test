@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:src="@drawable/ls_nologin_header_icon"
         android:scaleType="fitXY"
-        app:corner_radius="5dp"
+        app:corner_radius="@dimen/user_header_corner_radius"
         app:border_color="#e8e8e8"
         app:border_width="1px"/>
 

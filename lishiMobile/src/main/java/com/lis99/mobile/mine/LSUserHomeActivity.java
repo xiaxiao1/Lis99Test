@@ -556,6 +556,7 @@ public class LSUserHomeActivity extends LSBaseActivity implements PullToRefreshV
 
 	private void parserClubInfo(String result) {
 		try {
+            Common.log("result="+result);
 			JsonNode root = LSFragment.mapper.readTree(result);
 			String errCode = root.get("status").asText("");
 			if (!"OK".equals(errCode)) {

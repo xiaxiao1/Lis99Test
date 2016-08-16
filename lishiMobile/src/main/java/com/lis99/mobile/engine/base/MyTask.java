@@ -33,6 +33,9 @@ public class MyTask{
 	//返回模型类
 	public Object resultModel;
 
+	public String error;
+
+
 
 	public MyTask ()
 	{
@@ -55,6 +58,13 @@ public class MyTask{
 		this.map = map;
 	}
 
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
 
 	public void setErrorCallBack(boolean errorCallBack) {
 		ErrorCallBack = errorCallBack;

@@ -35,11 +35,11 @@ public class FileUtil {
         filePath = StorageUtils.getOwnCacheDirectory(
                 context.getApplicationContext(), "lishi99").getPath();
 
-        cachePath = context.getFilesDir() + "/cache";
+        cachePath = context.getFilesDir() + "/cache/";
 
-        imgPath = filePath + "/image";
+        imgPath = filePath + "/image/";
 
-        crashPath = filePath + "/crash";
+        crashPath = filePath + "/crash/";
 
         dbImgPath = context.getFilesDir() + "/lishi99/";
 

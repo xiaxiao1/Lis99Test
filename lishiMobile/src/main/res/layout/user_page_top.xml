@@ -29,7 +29,7 @@
             android:src="@drawable/ls_nologin_header_icon"
             app:border_color="#ffffff"
             app:border_width="2px"
-            app:corner_radius="10dp"
+            app:corner_radius="@dimen/user_header_corner_radius"
             />
 
         <RelativeLayout

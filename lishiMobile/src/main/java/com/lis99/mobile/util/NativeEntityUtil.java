@@ -26,7 +26,7 @@ public class NativeEntityUtil {
         return instance;
     }
 
-
+//      默认 label_bg_default
     public HashMap<String, Integer> getCommunityStarTags ()
     {
         if ( communityStarTags != null ) return communityStarTags;

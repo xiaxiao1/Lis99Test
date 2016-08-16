@@ -593,7 +593,7 @@ public class DialogManager {
 
     }
 
-    //  应用更新提醒框
+    //  取消支付
     public void cancelApplyDialog(final int orderId, final CallBack callBack) {
 
         final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.cancelDialog);
@@ -637,13 +637,13 @@ public class DialogManager {
         ok.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (dialog != null) dialog.dismiss();
                 int position = adapter.getSelect();
                 if ( position == -1 )
                 {
                     Common.toast("请选择取消原因");
+                    return;
                 }
-
+                if (dialog != null) dialog.dismiss();
                 LSRequestManager.getInstance().cancelApplyActive(position + 1, orderId, callBack);
             }
         });

@@ -496,7 +496,15 @@ public class Common {
      */
     public static void goTopic ( Context c, int catgory, int topicId )
     {
-        if ( 0 == catgory || 1 == catgory )
+        if ( -1 == catgory )
+        {
+            Common.toast("帖子类型获取失败");
+        }
+        else if ( -1 == topicId )
+        {
+            Common.toast("帖子获取失败");
+        }
+        else if ( 0 == catgory || 1 == catgory )
         {
             Intent intent = new Intent(c, LSClubTopicActivity.class);
             intent.putExtra("topicID", topicId);
@@ -526,14 +534,6 @@ public class Common {
             Intent intent = new Intent(c, ActivityFullInfoActivity.class);
             intent.putExtra("topicID", topicId);
             c.startActivity(intent);
-        }
-        else if ( -1 == catgory )
-        {
-            Common.toast("帖子类型获取失败");
-        }
-        else if ( -1 == topicId )
-        {
-            Common.toast("帖子获取失败");
         }
     }
 

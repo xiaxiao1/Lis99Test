@@ -43,7 +43,7 @@
             android:layout_marginBottom="20dip"
             android:scaleType="fitXY"
             android:src="@drawable/club_icon_header_default"
-            app:corner_radius="28dp"
+            app:corner_radius="@dimen/user_header_corner_radius"
             app:border_color="#eeeeee"
             app:border_width="1px" />
 

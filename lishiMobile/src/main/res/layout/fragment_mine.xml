@@ -43,7 +43,7 @@
                     android:layout_height="50dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ls_nologin_header_icon"
-                    app:corner_radius="8dp" />
+                    app:corner_radius="@dimen/user_header_corner_radius" />
 
                 <ImageView
                     android:id="@+id/vipStar"
