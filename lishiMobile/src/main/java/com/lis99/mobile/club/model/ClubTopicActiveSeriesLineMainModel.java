@@ -58,6 +58,8 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     public String leadernickname;
     @SerializedName("leaderheadicon")
     public String leaderheadicon;
+    @SerializedName("leadernote")
+    public String leadernote;
     @SerializedName("leadermobile")
     public String leadermobile;
     @SerializedName("equipadvise")
@@ -74,6 +76,20 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     public int isJion;
     @SerializedName("shareTxt")
     public String shareTxt;
+
+
+    @SerializedName("aimid")
+    public String aimid;
+    @SerializedName("aimlongitude")
+    public String aimlongitude;
+    @SerializedName("aimlatitude")
+    public String aimlatitude;
+
+
+    @SerializedName("commentlist")
+    public ArrayList<CommentEntity> commentlist;
+
+    public ArrayList<TagEntity> taglist;
     /**
      * images : http://i3.lis99.com/upload/club/c/1/5/c140e540a4949b2ecde2f7d7b8f0e265.png
      * width : 720
@@ -238,6 +254,37 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     }
 
 
+    public static class TagEntity implements  Serializable{
+        @SerializedName("id")
+        public int id;
+        @SerializedName("name")
+        public String name;
+
+
+    }
+
+    public static class CommentEntity implements Serializable{
+        @SerializedName("user_id")
+        public String user_id;
+
+        @SerializedName("nickname")
+        public String nickname;
+
+        @SerializedName("content")
+        public String content;
+
+        @SerializedName("star")
+        public String star;
+
+        @SerializedName("createtime")
+        public String createtime;
+
+       /* @SerializedName("image")
+        public String image;
+*/
+        @SerializedName("usercatelist")
+        public ArrayList<String> usercatelist;
+    }
 
 
     /**

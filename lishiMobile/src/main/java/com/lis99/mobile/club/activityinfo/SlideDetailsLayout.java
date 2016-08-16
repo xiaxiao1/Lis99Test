@@ -127,7 +127,7 @@ public class SlideDetailsLayout extends ViewGroup {
             final float height = -getMeasuredHeight();
             animatorSwitch(0, height, true, smooth ? mDuration : 0);
 
-            Log.i("xx","smoothOpen:"+close);
+        //    Log.i("xx","smoothOpen:"+close);
         }
     }
 
@@ -143,7 +143,7 @@ public class SlideDetailsLayout extends ViewGroup {
             animatorSwitch(height, 0, true, smooth ? mDuration : 0);
             mStatus=Status.CLOSE;
 
-            Log.i("xx","smoothClose:"+close);
+        //    Log.i("xx","smoothClose:"+close);
         }
     }
 
@@ -340,7 +340,7 @@ public class SlideDetailsLayout extends ViewGroup {
 
             case MotionEvent.ACTION_MOVE: {
                 final float y = ev.getY();
-                Log.i("slide","  "+y);
+            //    Log.i("slide","  "+y);
                 final float yDiff = y - mInitMotionY;
                 if (canChildScrollVertically(((int) yDiff))) {
                     wantTouch = false;
@@ -473,6 +473,9 @@ public class SlideDetailsLayout extends ViewGroup {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 if (changed) {
+                    Log.i("slide","change1:"+close);
+                    close=!close;
+                    Log.i("slide","change2:"+close);
                     if (mStatus == Status.OPEN) {
                         checkAndFirstOpenPanel();
                     }
@@ -480,13 +483,16 @@ public class SlideDetailsLayout extends ViewGroup {
                     if (null != mOnSlideDetailsListener) {
                         mOnSlideDetailsListener.onStatucChanged(mStatus);
                     }
+                } else {
+                 //   Log.i("slide","no change");
                 }
             }
         });
         animator.setDuration(duration);
         animator.start();
+        Log.i("slide","animatorSwitch"+(i++));
     }
-
+int i=0;
     /**
      * Whether the closed pannel is opened at first time.
      * If open first, we should set the behind view's visibility as VISIBLE.
@@ -505,13 +511,11 @@ public class SlideDetailsLayout extends ViewGroup {
     private void ensureTarget() {
         if (mStatus == Status.CLOSE) {
             mTarget = mFrontView;
-            close=false;
         } else {
             mTarget = mBehindView;
-            close=false;
         }
 
-        Log.i("mtarget","hehehe");
+    //    Log.i("mtarget","hehehe");
     }
 
     /**

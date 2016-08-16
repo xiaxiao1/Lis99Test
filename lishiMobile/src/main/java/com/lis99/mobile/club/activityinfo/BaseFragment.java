@@ -1,7 +1,9 @@
 package com.lis99.mobile.club.activityinfo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.os.Build;
 
 
 /**
@@ -10,6 +12,7 @@ import android.app.Fragment;
  * <b>Author:</b> Gordon<br>
  * <b>Description:</b> <br>
  */
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class BaseFragment extends Fragment {
 
     private ISlideCallback mISlideCallback;
@@ -19,6 +22,7 @@ public class BaseFragment extends Fragment {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onAttach1(Activity context) {
         super.onAttach(context);
         if (!(context instanceof ISlideCallback)) {

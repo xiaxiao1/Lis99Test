@@ -114,27 +114,42 @@
 
 
 
-    <ImageView
-        android:id="@+id/afullinfo_title_back_img"
+    <RelativeLayout
+        android:id="@+id/afullinfo_title_back_area_rl"
         android:layout_width="31dp"
         android:layout_height="31dp"
-        android:src="@drawable/ls_club_back_icon_bg"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="4dp"
-        />
+        >
+        <ImageView
+            android:id="@+id/afullinfo_title_back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ls_club_back_icon_bg"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/afullinfo_title_share_img"
+
+    <RelativeLayout
         android:layout_width="31dp"
         android:layout_height="31dp"
-        android:src="@drawable/more_banner"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:layout_marginTop="4dp"
-        />
+        >
+        <ImageView
+            android:id="@+id/afullinfo_title_share_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/more_banner"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

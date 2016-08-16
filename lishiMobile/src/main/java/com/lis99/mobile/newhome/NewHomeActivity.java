@@ -972,8 +972,6 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
         }
     }
 
-    public void doba(View view) {
-        startActivity(new Intent(this, ActivityFullInfoActivity.class));
-    }
+
 
 }

@@ -131,6 +131,9 @@ public class RefreshListview extends ListView implements AbsListView.OnScrollLis
         if (alphaInterface!=null) {
             alphaInterface.setTitleAlpha(alpha);
         }
+        if (firstVisiableItem>1) {
+            alphaInterface.setTitleAlpha(500);
+        }
         firstItemIndex = firstVisiableItem;
     }
     public void setAlphaInterface(AlphaInterface alphaInterface) {

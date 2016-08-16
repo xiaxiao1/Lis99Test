@@ -16,7 +16,7 @@
         android:id="@+id/afullinfo_active_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="碧海超声--乔如滴水马尔代夫在哪里啊怎么去坐火车吗"
+        android:text="活动title"
         android:textSize="20sp"
         android:textColor="#525252"
         android:layout_marginTop="21dp"
@@ -28,7 +28,7 @@
         android:id="@+id/afullinfo_active_note_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="亲子游优惠"
+        android:text="描述"
         android:textSize="12sp"
         android:textColor="#999999"
         android:layout_marginTop="19dp"
@@ -45,7 +45,7 @@
             android:id="@+id/afullinfo_active_nowprice_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="￥888"
+            android:text="￥00.00"
             android:textSize="19sp"
             android:textColor="#ff7800"
             android:layout_marginLeft="15dp"
@@ -85,6 +85,11 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="19dp"
             android:fadingEdge="none"
+            android:requiresFadingEdge="none"
+            android:overScrollFooter="@android:color/transparent"
+            android:overScrollHeader="@android:color/transparent"
+            android:overScrollMode="never"
+            android:visibility="gone"
             />
 
     <!--亮点 动态添加数据 逐条显示-->
@@ -94,24 +99,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="19dp"
+        android:visibility="gone"
         >
-        <!--activityinfo_liangdian_added_item-->
-        <!--<TextView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="亮点"
             android:textSize="14sp"
             android:textColor="#999999"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="19dp"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1asdsdasdsad\n2adasdasdasd\n3asdasdsad"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            />-->
+
+
     </LinearLayout>
 
 
@@ -231,17 +231,22 @@
     <!--百度地图-->
     <ImageView
         android:id="@+id/afullinfo_header_nomap_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/club_0"
-        android:visibility="gone"
-        />
-    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:src="@drawable/huodongxiangqing_default_map"
+        android:visibility="gone"
+        />
+    <RelativeLayout
+        android:id="@+id/afullinfo_header_baidumap_rl"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:visibility="gone"
         >
 
         <com.baidu.mapapi.map.MapView

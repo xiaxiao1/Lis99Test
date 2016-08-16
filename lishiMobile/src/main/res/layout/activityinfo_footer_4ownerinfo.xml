@@ -57,7 +57,7 @@
                 android:layout_height="61dp"
                 android:src="@drawable/ls_nologin_header_icon"
                 android:layout_centerHorizontal="true"
-                app:corner_radius="14dp"
+                app:corner_radius="40dp"
                 />
             <View
                 android:layout_width="50dp"
@@ -110,7 +110,8 @@
                 android:textColor="#ffffff"
                 android:layout_marginRight="4dp"
                 android:layout_marginLeft="4dp"
-                android:background="@drawable/topic_supper_tag4"
+                android:background="@drawable/label_bg_default"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/footer4openmore_ownerlabel2_tv"
@@ -122,7 +123,8 @@
                 android:textColor="#ffffff"
                 android:layout_marginRight="4dp"
                 android:layout_marginLeft="4dp"
-                android:background="@drawable/topic_supper_tag3"
+                android:background="@drawable/label_bg_default"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/footer4openmore_ownerlabel3_tv"
@@ -134,7 +136,8 @@
                 android:textColor="#ffffff"
                 android:layout_marginRight="4dp"
                 android:layout_marginLeft="4dp"
-                android:background="@drawable/topic_supper_tag3"
+                android:background="@drawable/label_bg_default"
+                android:visibility="gone"
                 />
         </LinearLayout>
         <TextView
@@ -159,21 +162,29 @@
         android:layout_below="@id/footer4openmore_labels_ll"
         />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e3dbd0"
 
-        android:layout_marginTop="20dp"
-        />
-    <View
+    <LinearLayout
+        android:id="@+id/afullinfo_leader_fengexian_ll"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#f7f3ec"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e3dbd0"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3dbd0"
+            android:layout_marginTop="20dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#f7f3ec"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3dbd0"
+            />
+    </LinearLayout>
 </LinearLayout>

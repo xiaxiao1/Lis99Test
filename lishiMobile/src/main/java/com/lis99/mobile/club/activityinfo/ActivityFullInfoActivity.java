@@ -2,8 +2,10 @@ package com.lis99.mobile.club.activityinfo;
 
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,21 +15,43 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubTopicInfoLocation;
+import com.lis99.mobile.club.model.ClubTopicActiveSeriesLineMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
+import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
+import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.mine.LSLoginActivity;
+import com.lis99.mobile.myactivty.Comment;
+import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.ShareManager;
+
+import java.util.HashMap;
 
 
 public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCallback,View.OnClickListener{
 
-   String s="ssss";
+
+    ClubTopicActiveSeriesLineMainModel model;
+    TopicSeriesBatchsListModel modelBatch;
+    private int activePosition = -1;
+    String s="ssss";
     boolean close=true;
+    int activity_id;
     //root View
     RelativeLayout layoutmain;
     //负责实现UI上拉加载显示详情
     private SlideDetailsLayout mSlideDetailsLayout;
     //显示主要页面内容
     ListFragment f1;
+    //标题栏返回区域
+    RelativeLayout back_rl;
     //标题栏返回
     ImageView back_img;
     //标题栏分享
@@ -93,15 +117,45 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activityinfo_activity_main);
+
         initViews();
         FragmentManager fm ;
         fm=getFragmentManager();
         f1=new ListFragment();
+        f1.setmSlideDetailsLayout(mSlideDetailsLayout);
+        //在ListFragment中回调， 更新本地的底部详情信息
         f1.setFullInfoInterface(new FullInfoInterface() {
             @Override
             public void initFullInfo(Object datas) {
-                s=(String)datas;
-                toPlay_tv.setText("haah"+s);
+                model=(ClubTopicActiveSeriesLineMainModel)datas;
+                if (!model.settime.equals("")) {
+                    tvGatherTime.setText(model.settime);
+                }
+                if (!model.setaddress.equals("")) {
+                    tvLocation.setText(model.setaddress);
+                }
+                if (!model.leadermobile.equals("")) {
+                    tvTel.setText(model.leadermobile);
+                }
+                if (model.tripdetail!=null&&model.tripdetail.size()!=0) {
+                    tvJourney.setText(model.tripdetail.get(0).content);
+                }
+                if (!model.equipadvise.equals("")) {
+                    tvEquip.setText(model.equipadvise);
+                }
+                if (!model.constdesc.equals("")) {
+                    tvPrice.setText(model.constdesc);
+                }
+                if (!model.disclaimer.equals("")) {
+                    tvReadme.setText(model.disclaimer);
+                }
+                if (model.reportnote!=null&&model.reportnote.size()>0) {
+                    String text="";
+                    for (String s:model.reportnote) {
+                        text = text + s + "\n";
+                    }
+                    tvSafely.setText(text);
+                }
             }
         });
         f1.setAlphaInterface(new AlphaInterface() {
@@ -110,16 +164,19 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
                 alpha = Math.abs(alpha);
                 if (alpha < 500) {
                     titleBackground_ll.setAlpha(alpha / 500);
+                    back_img.setImageResource(R.drawable.ls_club_back_icon_bg);
+                    share_img.setImageResource(R.drawable.more_banner);
                 } else {
                     titleBackground_ll.setAlpha(1.0f);
-                    back_img.setImageResource(R.drawable.ls_club_back_icon_bg);
+                    back_img.setImageResource(R.drawable.ls_page_back_icon);
                     share_img.setImageResource(R.drawable.topic_more);
 
                 }
             }
         });
         fm.beginTransaction().replace(R.id.slidedetails_front, f1).commit();
-        back_img.setOnClickListener(this);
+    //    back_img.setOnClickListener(this);
+        back_rl.setOnClickListener(this);
         share_img.setOnClickListener(this);
         advice_ll.setOnClickListener(this);
         toPlay_tv.setOnClickListener(this);
@@ -148,8 +205,8 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     @Override
     public void closeDetails(boolean smooth) {
        mSlideDetailsLayout.smoothClose(smooth);
-        mSlideDetailsLayout.close=true;
-      //  f1.closeInfo(smooth);
+     //   mSlideDetailsLayout.close=true;
+
     }
 
 
@@ -161,6 +218,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         advice_ll = (LinearLayout) findViewById(R.id.afullinfo_zixun_ll);
         toPlay_tv = (TextView) findViewById(R.id.afullinfo_baoming_img);
         back_img = (ImageView) findViewById(R.id.afullinfo_title_back_img);
+        back_rl=(RelativeLayout)findViewById(R.id.afullinfo_title_back_area_rl);
         share_img = (ImageView) findViewById(R.id.afullinfo_title_share_img);
         titleBackground_ll = (LinearLayout) findViewById(R.id.title_bg_ll);
 
@@ -190,10 +248,10 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
 
         tvGatherTime.setVisibility(View.VISIBLE);
         tvJourney.setVisibility(View.VISIBLE);
-        tvEquip.setVisibility(View.GONE);
-        tvPrice.setVisibility(View.GONE);
-        tvReadme.setVisibility(View.GONE);
-        tvSafely.setVisibility(View.GONE);
+        tvEquip.setVisibility(View.VISIBLE);
+        tvPrice.setVisibility(View.VISIBLE);
+        tvReadme.setVisibility(View.VISIBLE);
+        tvSafely.setVisibility(View.VISIBLE);
     }
 
 
@@ -201,8 +259,8 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     @Override
     public void onClick(View v) {
 
-        if (v == back_img) {
-            Log.i("xx","clickback:"+mSlideDetailsLayout.close);
+        if (v == back_rl) {
+            Log.i("slide","clickback:"+mSlideDetailsLayout.close);
             if (mSlideDetailsLayout.close) {
                 finish();
             } else {
@@ -216,13 +274,32 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             ShareManager.getInstance().showPopWindowInShare(model,layoutmain, null);
             super.rightAction();
         } else if (v==advice_ll) {
-            Toast.makeText(this,"advice",Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(this,"advice",Toast.LENGTH_SHORT).show();
+            if (model!=null&&!model.leadermobile.equals("")) {
+                Common.telPhone(model.leadermobile);
+            }
         } else if (v==toPlay_tv) {
-            Toast.makeText(this,"toplay",Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(this,"toplay",Toast.LENGTH_SHORT).show();
+                baoMing();
         } else if (v==layoutGatherTime) {
             showInfo(tvGatherTime,ivGatherTime);
         } else if (v==layoutLocation) {
             Toast.makeText(this, "go location ", Toast.LENGTH_SHORT).show();
+            if (model!=null) {
+                //跳转地图
+                Intent intent = new Intent(this, LSClubTopicInfoLocation.class);
+                Double latitudex = Common.string2Double(model.gaodelatitude);
+                Double longtitudex = Common.string2Double(model.gaodlongitude);
+
+                if ( latitudex == -1 || longtitudex == -1 )
+                {
+                    Common.toast("暂时没集合地图位置");
+                    return;
+                }
+                intent.putExtra("latitude", latitudex);
+                intent.putExtra("longtitude", longtitudex);
+                startActivity(intent);
+            }
         } else if (v==layoutJourney) {
             showInfo(tvJourney,ivJourney);
         } else if (v==layoutEquip) {
@@ -248,6 +325,90 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         {
             iv.setImageResource(R.drawable.club_info_dot_up);
             tv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void baoMing(){
+        if (model==null) {
+            return;
+        }
+        activity_id=model.activityId;
+        String userID = DataManager.getInstance().getUser().getUser_id();
+        if (TextUtils.isEmpty(userID))
+        {
+            Intent intent = new Intent(activity, LSLoginActivity.class);
+            startActivity(intent);
+        } else
+        {
+            getSeriesList();
+        }
+    }
+    //获取系列活动列表
+    private void getSeriesList () {
+
+        String url = C.CLUB_TOPIC_ACTIVE_SERIES_LINE_LIST;
+
+        String userId = Common.getUserId();
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("user_id", userId);
+        map.put("activity_id", activity_id);
+
+        modelBatch = new TopicSeriesBatchsListModel();
+
+        MyRequestManager.getInstance().requestPost(url, map, modelBatch, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                modelBatch = (TopicSeriesBatchsListModel) mTask.getResultModel();
+
+                if ( modelBatch == null || modelBatch.batchList == null || modelBatch.batchList.size() == 0 ) return;
+
+                showBacthList();
+            }
+        });
+    }
+    private void showBacthList ()
+    {
+        PopWindowUtil.showActiveSeriesLine(activePosition, toPlay_tv, modelBatch, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+
+                if ( mTask == null )
+                {
+                    return;
+                }
+
+                activePosition = Integer.parseInt(mTask.getresult());
+
+                if ( activePosition == -1 || modelBatch ==null || modelBatch.batchList == null && modelBatch.batchList.size() == 0 )
+                {
+                    return;
+                }
+
+                TopicSeriesBatchsListModel.BatchListEntity item = modelBatch.batchList.get(activePosition);
+
+                if ( item.isBaoming == 1 || item.isEnd == 1 )
+                {
+                    return;
+                }
+
+                Intent intent = new Intent(activity, LSApplySeriesNew.class);
+                intent.putExtra("clubID", model.clubId);
+                intent.putExtra("batchID", item.batchId);
+                intent.putExtra("topicID", activity_id);
+                startActivityForResult(intent, 997);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 报名
+        if (resultCode == RESULT_OK && requestCode == 997)
+        {
+
         }
     }
 }

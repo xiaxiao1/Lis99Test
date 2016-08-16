@@ -23,6 +23,7 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicActivity;
 import com.lis99.mobile.club.LSClubTopicNewActivity;
+import com.lis99.mobile.club.activityinfo.ActivityFullInfoActivity;
 import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
 import com.lis99.mobile.club.newtopic.series.LSClubTopicActiveSeries;
@@ -521,7 +522,8 @@ public class Common {
 //        }
         else if ( 4 == catgory )
         {
-            Intent intent = new Intent(c, LSClubTopicActiveSeries.class);
+        //    Intent intent = new Intent(c, LSClubTopicActiveSeries.class);
+            Intent intent = new Intent(c, ActivityFullInfoActivity.class);
             intent.putExtra("topicID", topicId);
             c.startActivity(intent);
         }

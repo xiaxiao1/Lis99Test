@@ -2,6 +2,7 @@ package com.lis99.mobile.club.activityinfo;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,10 +35,14 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.Text;
 import com.baidu.mapapi.model.LatLng;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicInfoLocation;
+import com.lis99.mobile.club.destination.DestinationActivity;
 import com.lis99.mobile.club.model.ClubTopicActiveSeriesLineMainModel;
 import com.lis99.mobile.club.model.EquipRecommendInterFace;
 import com.lis99.mobile.club.newtopic.ActiveLineEquipRecommend;
@@ -45,10 +52,12 @@ import com.lis99.mobile.club.widget.ImagePageAdapter;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.NativeEntityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -58,6 +67,14 @@ import java.util.List;
 
 public class ListFragment extends BaseFragment implements ImagePageAdapter.ImagePageAdapterListener, ImagePageAdapter.ImagePageClickListener{
 
+
+    //领队信息view
+    View footer_ownerinfo;
+    //玩家评论view
+    View footer_playerEvaluation;
+    //推荐装备View
+    View footer_zhuangbei;
+
     //下拉刷新
     RefreshListview listView;
     //listview头部
@@ -66,32 +83,52 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     BannerView bannerView;
     //顶部标签串
     RecyclerView mRecyclerView;
+    //百度地图是否显示区域
+    RelativeLayout baiduMap_rl;
     //百度地图
     MapView mMapView = null;
     //跳转到全屏地图
     ImageView toBigMap_img;
+    //目的地名称
+    TextView destinationName_tv;
     View map_view;
+    //没有地图时
+    ImageView noMap_img;
     //活动标题
     TextView activeTitle_tv;
     //活动说明
     TextView activeNote_tv;
     //活动价格
     TextView activePrice_tv;
+    //活动亮点区域
+    LinearLayout lightspots_ll;
+
+    //领队区域
+    RelativeLayout leaderArea_rl;
+    //领队view分割线
+    LinearLayout leader_fengexian_ll;
     //领队头像
     RoundedImageView leaderHead_img;
     //领队名字
     TextView leaderName_tv;
+    //领队标签区域
+    LinearLayout leaderlabels_ll;
     //领队标签1
     TextView leaderlabel1_tv;
     //两队标签2
     TextView leaderlabel2_tv;
     //领队标签3
     TextView leaderlabel3_tv;
+    TextView labels[]=new TextView[3];
     //两队简介
     TextView leaderIntroduce_tv;
     //领队来自的俱乐部
     TextView leaderFrom_tv;
-    //玩家评论view 动态是否显示
+
+    //玩家评论view分割线
+    LinearLayout player_fengexian_ll;
+
+    /*//玩家评论view 动态是否显示
     View  playerEvaluations_view;
     //玩家头像
     RoundedImageView playerHeader_img;
@@ -116,7 +153,15 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     //装备介绍
     TextView equipIntroduce_tv;
     //装备等级
-    RatingBar equipLevel;
+    RatingBar equipLevel;*/
+
+    //装备区域
+    LinearLayout zhuangbei1_ll;
+    LinearLayout zhuangbei2_ll;
+    LinearLayout zhuangbei3_ll;
+    //底部上拉详情条
+    View footView;
+
 
 
 
@@ -124,20 +169,25 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     ImagePageAdapter bannerAdapter;
     FullInfoAdapter fullInfoAdapter;
     MyRecyclerAdapter recyclerviewAdapter;
+    LSClubTopicInfoAdapter highlightsAdapter;
 
 
-    String activity_id;
+
+    private SlideDetailsLayout mSlideDetailsLayout;
+
+    int activity_id;
     int clubID;
+    int leaderId;
     ClubTopicActiveSeriesLineMainModel model;
     BaiduMap mBaiduMap = null;
     //活动详情图文数据
     List<FullInfo> activeInfos;
 
     //标签串数据
-    List<String> recycler_datas;
+    List<ClubTopicActiveSeriesLineMainModel.TagEntity> recycler_datas;
     //地图定位的坐标
-    private float latx = 30.963175f;
-    private float laty = 120.400244f;
+    private float longitude = 0.0000000f;
+    private float latitude = 0.0000000f;
     //活动详情中当前要显示的item数目
     int currentSize;
     //活动详情一共多少item数目
@@ -155,6 +205,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     }
     public void setAlphaInterface(AlphaInterface alphaInterface) {
         this.alphaInterface = alphaInterface;
+    }
+    public void setmSlideDetailsLayout(SlideDetailsLayout mSlideDetailsLayout) {
+        this.mSlideDetailsLayout = mSlideDetailsLayout;
     }
 
     public FullInfoInterface getFullInfoInterface() {
@@ -180,9 +233,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
-        initDatas();
+        activity_id=this.getActivity().getIntent().getIntExtra("topicID",0);
         getInfo();
-        //以下具体是要放在网络请求的回调中处理的。
+
 
         //下拉刷新
         listView.setonRefreshListener(new RefreshListview.OnRefreshListener() {
@@ -194,7 +247,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 fullInfoAdapter.notifyDataSetChanged();
                 fullSize++;
                 listView.onRefreshComplete();*/
+                cleanInfo();
                 getInfo();
+                listView.onRefreshComplete();
+
             }
         });
         listView.setAlphaInterface(alphaInterface);
@@ -204,11 +260,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
 
 
-        //横向可滑动标签串
-        mRecyclerView=(RecyclerView)header.findViewById(R.id.afullinfo_recyclerview);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
-        recyclerviewAdapter=new MyRecyclerAdapter();
-        mRecyclerView.setAdapter(recyclerviewAdapter);
+
 
 
 
@@ -217,11 +269,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     @Override
     public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
+        if (model!=null) {
+
         if (model.activityimgs.size() == 0)
             return;
 
         ImageLoader.getInstance().displayImage(model.activityimgs.get(position).images, banner,
                 ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
+        }
     }
 
     //轮播图片的点击事件，这里不用
@@ -238,59 +293,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         close(smooth);
     }
 
-    public void initDatas(){
 
-        //初始化recyclerview的数据
-        recycler_datas = new ArrayList<String>();
-        for (int i = 'A'; i < 'F'; i++)
-        {
-            recycler_datas.add("你好啊世界" + (char) i);
-        }
-        //初始化活动详情的图文信息
-        activeInfos= new ArrayList<FullInfo>();
-        activeInfos.add(new FullInfo("1在那遥远的地方，有一群姑娘，哇哈哈哈藕丝作线难胜针，蕊粉染黄那得深。玉白兰芳不相顾， \n" +
-                "青楼一笑轻千金。莫言自古皆如此，健剑刜钟铅绕指。 \n" +
-                "三秋庭绿尽迎霜，惟有荷花守红死。庐江小吏朱斑轮， \n" +
-                "柳缕吐芽香玉春。两股金钗已相许，不令独作空成尘。 \n" +
-                "悠悠楚水流如马，恨紫愁红满平野。野土千年怨不平，","http://img.taopic.com/uploads/allimg/140814/240410-140Q40A60222.jpg"));
-        activeInfos.add(new FullInfo("","http://pic45.nipic.com/20140804/2531170_201333732000_2.jpg"));
-        activeInfos.add(new FullInfo("","http://img.taopic.com/uploads/allimg/140814/240410-140Q40F92258.jpg"));
-        activeInfos.add(new FullInfo("4在那遥远的地方，有一群姑娘，哇哈哈哈故经之以五事，校之以计而索其情：一曰道，二曰天，三曰地，四曰将，" +
-                "五曰法。道者，令民与上同意也，故可以与之死，可以与之生，而不畏危。天者，阴阳、寒暑、时制也。地者，远近、险易、广狭、死生也。" +
-                "将者，智、信、仁、勇、严也。法者，曲制、官道、主用也。凡此五者，将莫不闻，知之者胜，不知者不胜。故校之以计而索其情，曰：" +
-                "主孰有道？将孰有能？天地孰得？法令孰行？兵众孰强？士卒孰练？赏罚孰明？" +
-                "吾以此知胜负矣。","http://img05.tooopen.com/images/20140805/sy_68279879485.jpg"));
-        activeInfos.add(new FullInfo("5在那遥远的地方，有一群姑娘，哇哈哈哈",""));
-        activeInfos.add(new FullInfo("6在那遥远的地方，有一群姑娘，哇哈哈哈计利以听，乃为之势，以佐其外。势者，因利而制权也。兵者，" +
-                "诡道也。故能而示之不能，用而示之不用，近而示之远，远而示之近；利而诱之，乱而取之，实而备之，强而避之，怒而挠之，卑而骄之，" +
-                "佚而劳之，亲而离之。攻其无备，出其不意。此兵家之胜，不可先传也。\n" +
-                "\n" +
-                "　　夫未战而庙算胜者，得算多也；未战而庙算不胜者，得算少也。多算胜，少算不胜，而况于无算乎！吾以此观之，胜负见矣。",""));
-        activeInfos.add(new FullInfo("","http://img05.tooopen.com/images/20140805/sy_68268574237.jpg"));
-        activeInfos.add(new FullInfo("8在那遥远的地方，有一群姑娘，哇哈哈哈",""));
-        activeInfos.add(new FullInfo("","http://img05.tooopen.com/images/20140621/sy_63746973469.jpg"));
-        activeInfos.add(new FullInfo("10在那遥远的地方，有一群姑娘，哇哈哈哈",""));
-        activeInfos.add(new FullInfo("11在那遥远的地方，有一群姑娘，哇哈哈哈孙子曰：凡用兵之法，驰车千驷，革车千乘，带甲十万，千里馈粮。则内外之费，" +
-                "宾客之用，胶漆之材，车甲之奉，日费千金，然后十万之师举矣。\n" +
-                "\n" +
-                "　　其用战也胜，久则钝兵挫锐，攻城则力屈，久暴师则国用不足。夫钝兵挫锐，屈力殚货，则诸侯乘其弊而起，虽有智者不能善其后矣。" +
-                "故兵闻拙速，未睹巧之久也。夫兵久而国利者，" +
-                "未之有也。故不尽知用兵之害者，则不能尽知用兵之利也。","http://pic10.nipic.com/20101019/3050636_171041025000_2.jpg"));
-        fullSize=activeInfos.size();
-        currentSize=fullSize>3?3:fullSize;
-//        currentSize=fullSize;
-        updateActivity("fragment");
-
-      /* //初始化banner
-        urls_banner=new ArrayList<String>();
-        urls_banner.add("http://scimg.jb51.net/allimg/160618/77-16061Q44U6444.jpg");
-        urls_banner.add("http://www.pptbz.com/pptpic/UploadFiles_6909/201204/2012041411433867.jpg");
-        urls_banner.add("http://pic31.nipic.com/20130725/1729271_112810285306_2.jpg");
-        urls_banner.add("http://pic32.nipic.com/20130813/9422601_092721678000_2.jpg");*/
-
-
-
-    }
 
     @Override
     public void onDestroy() {
@@ -318,13 +321,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         mMapView.showZoomControls(false);
         mMapView.showScaleControl(false);
         map_view = (View) header.findViewById(R.id.afullinfo_header_mapclick);
-        map_view.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ListFragment.this.getActivity(),"map",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         mBaiduMap = mMapView.getMap();
         mBaiduMap.getUiSettings().setRotateGesturesEnabled(false);
@@ -332,7 +328,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
 
-        LatLng point = new LatLng(latx, laty);
+        LatLng point = new LatLng(longitude, latitude);
 
         //构建Marker图标
         BitmapDescriptor bitmap = BitmapDescriptorFactory
@@ -359,17 +355,16 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             public void onClick(View v) {
                 //跳转地图
                 Intent intent = new Intent(ListFragment.this.getActivity(), LSClubTopicInfoLocation.class);
-                String latx2 = "30.963175f";
-                String laty2 = "120.400244f";
-                Double latitude = Common.string2Double(latx2);
-                Double longtitude = Common.string2Double(laty2);
-                if ( latitude == -1 || longtitude == -1 )
+
+               /* Double latitude2 =latitude;
+                Double longtitude2 = Common.string2Double(laty2);*/
+                if ( latitude == -1 || longitude == -1 )
                 {
                     Common.toast("暂时没集合地图位置");
                     return;
                 }
                 intent.putExtra("latitude", latitude);
-                intent.putExtra("longtitude", longtitude);
+                intent.putExtra("longtitude", longitude);
                 startActivity(intent);
             }
         });
@@ -419,10 +414,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
      */
     private class FullInfoAdapter extends BaseAdapter implements View.OnClickListener{
 
-        private List<FullInfo> datas;
+        private List<ClubTopicActiveSeriesLineMainModel.ActivitydetailEntity> datas;
         Holder viewHolder = null;
 
-        FullInfoAdapter(List<FullInfo> datas) {
+        FullInfoAdapter(List<ClubTopicActiveSeriesLineMainModel.ActivitydetailEntity> datas) {
             this.datas = datas;
         }
 
@@ -432,7 +427,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         }
 
         @Override
-        public FullInfo getItem(int position) {
+        public ClubTopicActiveSeriesLineMainModel.ActivitydetailEntity getItem(int position) {
             return null == datas ? null : datas.get(position);
         }
 
@@ -444,7 +439,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            FullInfo fi=datas.get(position);
+            ClubTopicActiveSeriesLineMainModel.ActivitydetailEntity entity=datas.get(position);
             if (null == convertView) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.activityinfo_layout_list_item, null);
                 viewHolder=new Holder();
@@ -461,8 +456,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             {
                 viewHolder = (Holder) convertView.getTag();
             }
-            String c=fi.getContent();
-            String img=fi.getImgUrl();
+            String c=entity.content;
+            String img=entity.images;
             Log.i("xx","c:"+c+"\n img:"+img+" currentsize:"+currentSize+"  fullsize:"+fullSize);
             viewHolder.img.setVisibility(View.GONE);
             viewHolder.load_img.setVisibility(View.GONE);
@@ -529,7 +524,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position)
     {
-        holder.tv.setText(recycler_datas.get(position));
+        holder.tv.setText(recycler_datas.get(position).name);
     }
 
     @Override
@@ -555,22 +550,23 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         listView = (RefreshListview) view.findViewById(R.id.list);
         header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
         listView.addHeaderView(header);
-        View footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
-        View footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
-        View footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
+        footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
+        footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
+        footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
         listView.addFooterView(footer_ownerinfo);
-        listView.addFooterView(footer_playerEvaluation);
-        listView.addFooterView(footer_zhuangbei);
-        final View footView = getActivity().getLayoutInflater()
+//        listView.addFooterView(footer_playerEvaluation);
+//        listView.addFooterView(footer_zhuangbei);
+        footView = getActivity().getLayoutInflater()
                 .inflate(R.layout.activityinfo_slidedetails_marker_default_layout, null);
         footView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open(true);
+                mSlideDetailsLayout.smoothOpen(true);
+            //    mSlideDetailsLayout.close=false;
             }
         });
-        listView.addFooterView(footView);
-        fullInfoAdapter=new FullInfoAdapter(activeInfos);
+     //   listView.addFooterView(footView);
+
 
         //正式开始
         activeTitle_tv = (TextView) header.findViewById(R.id.afullinfo_active_title_tv);
@@ -603,6 +599,68 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             }
         });
 
+        //横向可滑动标签串
+        mRecyclerView=(RecyclerView)header.findViewById(R.id.afullinfo_recyclerview);
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
+
+        //活动亮点区域
+        lightspots_ll = (LinearLayout) header.findViewById(R.id.afullinfo_header_add_liangdian_ll);
+
+        baiduMap_rl=(RelativeLayout)header.findViewById(R.id.afullinfo_header_baidumap_rl);
+        noMap_img=(ImageView)header.findViewById(R.id.afullinfo_header_nomap_img);
+        destinationName_tv=(TextView)header.findViewById(R.id.afullinfo_header_destination_name_tv);
+        //领队区域
+        leaderHead_img=(RoundedImageView)footer_ownerinfo.findViewById(R.id.footer4openmore_ownerhead_img);
+        leaderName_tv = (TextView) footer_ownerinfo.findViewById(R.id.footer4openmore_ownername_tv);
+        leaderIntroduce_tv=(TextView)footer_ownerinfo.findViewById(R.id.footer4openmore_ownerintroduce_tv);
+        leaderFrom_tv=(TextView)footer_ownerinfo.findViewById(R.id.footer4openmore_from_club_tv);
+        leaderFrom_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    Intent i = new Intent(ListFragment.this.getActivity(), LSClubDetailActivity.class);
+                    i.putExtra("clubID", clubID);
+                    startActivity(i);
+
+            }
+        });
+        leaderlabel1_tv=(TextView)footer_ownerinfo.findViewById(R.id.footer4openmore_ownerlabel1_tv);
+        leaderlabel2_tv=(TextView)footer_ownerinfo.findViewById(R.id.footer4openmore_ownerlabel2_tv);
+        leaderlabel3_tv=(TextView)footer_ownerinfo.findViewById(R.id.footer4openmore_ownerlabel3_tv);
+        labels[0]=leaderlabel1_tv;
+        labels[1]=leaderlabel2_tv;
+        labels[2]=leaderlabel3_tv;
+        leader_fengexian_ll=(LinearLayout)footer_ownerinfo.findViewById(R.id.afullinfo_leader_fengexian_ll);
+        leaderArea_rl=(RelativeLayout)footer_ownerinfo.findViewById(R.id.footer4openmore_ownerarea_rl);
+        //点击领队区域跳转
+        leaderArea_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ListFragment.this.getActivity(), "leader", Toast.LENGTH_SHORT).show();
+                if (leaderId>0) {
+                    Toast.makeText(ListFragment.this.getActivity(),"qu leader",Toast.LENGTH_SHORT).show();
+                    if ( TextUtils.isEmpty(""+model.leaderUserid) || "0".equals(model.leaderUserid) )
+                    {
+                        Intent i = new Intent(ListFragment.this.getActivity(), LSClubDetailActivity.class);
+                        i.putExtra("clubID", clubID);
+                        startActivity(i);
+                    }
+                    else
+                    {
+                        Common.goUserHomeActivit(ListFragment.this.getActivity(), ""+model.leaderUserid);
+                    }
+                }
+            }
+        });
+        leaderlabels_ll=(LinearLayout)footer_ownerinfo.findViewById(R.id.footer4openmore_labels_ll);
+
+        //玩家分割线
+        player_fengexian_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_player_fengexian_ll);
+        //装备
+        zhuangbei1_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_1);
+        zhuangbei2_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_2);
+        zhuangbei3_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_3);
+
 
     }
     private void getInfo() {
@@ -612,10 +670,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
         HashMap<String, Object> map = new HashMap<String, Object>();
 
-        /*map.put("user_id", userId);
-        map.put("activity_id", activity_id);*/
-        map.put("user_id", 456957);
-        map.put("activity_id", 4829);
+        map.put("user_id", userId);
+        map.put("activity_id", activity_id);
+        /*map.put("user_id", 456957);
+        map.put("activity_id", 4829);*/
 
         model = new ClubTopicActiveSeriesLineMainModel();
 
@@ -625,16 +683,22 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             public void handler(MyTask mTask) {
                 model = (ClubTopicActiveSeriesLineMainModel) mTask.getResultModel();
 
-                if (model == null) return;
+                if (model == null) {
+                    listView.addFooterView(footView);
+                    return;
+                }
 
                 clubID = model.clubId;
 
+                //设置活动标题
                 activeTitle_tv.setText(model.getTitle());
+                //设置活动备注
                 activeNote_tv.setText(model.catename);
-                activePrice_tv.setText(model.consts);
+                //设置价格
+                activePrice_tv.setText("￥"+model.consts);
                 Log.i("xx", model.getTitle() + "ccc");
 
-
+                //设置顶部轮播图
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
                     bannerView.setVisibility(View.VISIBLE);
 
@@ -647,92 +711,340 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 else {
                     bannerView.setVisibility(View.GONE);
                 }
-            /*
+
+                //设置标签串
+                if (model.taglist!=null&&model.taglist.size()!=0) {
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    recycler_datas=model.taglist;
+                    recyclerviewAdapter = new MyRecyclerAdapter();
+                    mRecyclerView.setAdapter(recyclerviewAdapter);
+                }else{
+                    mRecyclerView.setVisibility(View.GONE);
+                }
+
+                //设置活动亮点
                 if (model.activelightspot != null && model.activelightspot.size() != 0) {
-                    listhighlights.setVisibility(View.VISIBLE);
-                    highlightsAdapter = new LSClubTopicInfoAdapter(activity, model.activelightspot);
-                    listhighlights.setAdapter(highlightsAdapter);
+                    lightspots_ll.setVisibility(View.VISIBLE);
+                    addLightSpots(model.activelightspot);
                 } else {
-
-                    if (model.activitydetail != null && model.activitydetail.size() != 0) {
-                        tvhighlights.setVisibility(View.VISIBLE);
-                        tvhighlights.setText(model.activitydetail.get(0).content);
-                    }
+                    lightspots_ll.setVisibility(View.GONE);
                 }
 
-                if ( TextUtils.isEmpty(""+model.leaderUserid) || "0".equals(model.leaderUserid))
-                {
-                    if (!TextUtils.isEmpty(model.clubIconv)) {
-                        ImageLoader.getInstance().displayImage(model.clubIconv, roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
+                //设置百度地图
+                if (model.aimid != null && !model.aimid.equals("0")) {
+                    //如果关联了目的地并且有坐标
+                    if (!model.aimlongitude.equals("") && !model.aimlongitude.equals("")) {
+
+                        longitude = Float.parseFloat(model.aimlongitude);
+                        latitude = Float.parseFloat(model.aimlatitude);
+                        if (longitude != -1 && latitude != -1) {
+                            mMapView.setVisibility(View.VISIBLE);
+                            map_view.setVisibility(View.VISIBLE);
+                            //跳转到目的地页
+                            map_view.setOnClickListener(new View.OnClickListener() {
+                                @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+                                @Override
+                                public void onClick(View v) {
+                                        Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
+                                    //    goDestinationInfo(model.aimid,model.tagid);
+                                }
+                            });
+                            initBaiduMap();
+                            destinationName_tv.setText(model.harddesc);
+                        }
+
                     }
-//                    tvname.setText(model.getClub_title());
-                    tvname.setVisibility(View.GONE);
-                    vipStar.setVisibility(View.GONE);
+                    //关联了目的地 但是没有坐标
+                    else {
+                        mMapView.setVisibility(View.GONE);
+                        map_view.setVisibility(View.GONE);
+                        noMap_img.setVisibility(View.VISIBLE);
+                        //显示默认图时，也跳转到目的地页
+                        noMap_img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
+                            //    goDestinationInfo(model.aimid,model.tagid);
+                            }
+                        });
+                    }
+
                 }
-                else
-                {
-                    if (!TextUtils.isEmpty(model.leaderheadicon)) {
-                        ImageLoader.getInstance().displayImage(model.leaderheadicon, roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
-                    }
-                    vipStar.setVisibility(View.VISIBLE);
-                    tvname.setVisibility(View.VISIBLE);
-                    tvname.setText(model.leadernickname);
+                //没有关联目的地
+                else {
+                    mMapView.setVisibility(View.GONE);
+                    map_view.setVisibility(View.GONE);
+                    noMap_img.setVisibility(View.GONE);
                 }
 
+                //活动图文
+                if (model.activitydetail!=null&&model.activitydetail.size()>0) {
+                    //初始化活动详情的图文信息
+                   if (fullInfoAdapter==null) {
+                        fullInfoAdapter=new FullInfoAdapter(model.activitydetail);
+                    }
+                    fullSize=model.activitydetail.size();
+                    currentSize=fullSize>3?3:fullSize;
+                    listView.setAdapter(fullInfoAdapter);
+                }
 
-//                标签
-                if (model.leaderdesc != null && model.leaderdesc.size() != 0) {
-                    for (int ii = 0; ii < model.leaderdesc.size(); ii++) {
-                        if (ii == 0) {
-                            tvtags1.setVisibility(View.VISIBLE);
-                            tvtags1.setText(model.leaderdesc.get(ii));
-                        } else if (ii == 1) {
-                            tvtags2.setVisibility(View.VISIBLE);
-                            tvtags2.setText(model.leaderdesc.get(ii));
-                        } else if (ii == 2) {
-                            tvtags3.setVisibility(View.VISIBLE);
-                            tvtags3.setText(model.leaderdesc.get(ii));
-                        } else if (ii == 3) {
-                            tvtags4.setVisibility(View.VISIBLE);
-                            tvtags4.setText(model.leaderdesc.get(ii));
+                //设置leader头像leaderHead_img,ImageUtil.getclub_topic_headImageOptions()
+                leaderId=model.leaderUserid;
+                //    Log.i("mtarget","leaderheadicon:"+model.leaderheadicon);
+                if (!TextUtils.isEmpty(model.leaderheadicon)) {
+                    Log.i("mtarget","leaderheadicon11222:"+model.leaderheadicon);
+                    ImageLoader.getInstance().displayImage(model.leaderheadicon,leaderHead_img , ImageUtil.getclub_topic_headImageOptions());
+                }
+                //设置leader名字
+                if (!TextUtils.isEmpty(model.leadernickname)) {
+                    leaderName_tv.setText(model.leadernickname);
+                }
+                //设置leader简介
+                if (!TextUtils.isEmpty(model.leadernote)) {
+                    leaderIntroduce_tv.setText(model.leadernote);
+                }
+                //设置leader俱乐部
+                if (!TextUtils.isEmpty(model.clubTitle)) {
+                    leaderFrom_tv.setText(model.clubTitle);
+                }
+                //设置leader标签
+                if (model.leaderdesc!=null&&model.leaderdesc.size()!=0) {
+                    leaderlabels_ll.setVisibility(View.VISIBLE);
+                    for(int i=0;i<model.leaderdesc.size();i++){
+                        String s_label=model.leaderdesc.get(i);
+                        labels[i].setVisibility(View.VISIBLE);
+                        labels[i].setText(s_label);
+                        if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
+                            labels[i].setBackgroundResource(NativeEntityUtil.getInstance()
+                                    .getCommunityStarTags().get(s_label));
                         }
                     }
+                }else{
+                    leaderlabels_ll.setVisibility(View.GONE);
                 }
 
-                clubname.setText(model.clubTitle);
+                //设置玩家评论
+                if (model.commentlist != null && model.commentlist.size() != 0) {
+                    Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
+                    leader_fengexian_ll.setVisibility(View.VISIBLE);
+                    footer_playerEvaluation.setVisibility(View.VISIBLE);
+                    listView.addFooterView(footer_playerEvaluation);
+                    int size = model.commentlist.size();
+                    //第一条评论
+                    if (size > 0) {
+                        RoundedImageView playerHead1=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head1_img);
+                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(0).image, playerHead1, ImageUtil.getclub_topic_headImageOptions());
+                        TextView playerName1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name1_tv);
+                        playerName1.setText(model.commentlist.get(0).nickname);
+                        RatingBar ratBar1=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level1_img);
+                        ratBar1.setRating(Float.parseFloat(model.commentlist.get(0).star));
+                        TextView playTime1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time1_tv);
+                        playTime1.setText(model.commentlist.get(0).createtime+"玩过");
+                        TextView playComment1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation1_tv);
+                        playComment1.setText(model.commentlist.get(0).content);
+                        TextView playLabels1[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_11_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_12_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_13_tv)};
+                        if (model.commentlist.get(0).usercatelist!=null&&model.commentlist.get(0).usercatelist.size()!=0) {
 
-                tvtraveltag.setText(model.batchTotal+" 批次");
+                            for(int i=0;i<model.commentlist.get(0).usercatelist.size();i++){
+                                String s_label=model.leaderdesc.get(i);
+                                playLabels1[i].setVisibility(View.VISIBLE);
+                                playLabels1[i].setText(s_label);
+                                if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
+                                    playLabels1[i].setBackgroundResource(NativeEntityUtil.getInstance()
+                                            .getCommunityStarTags().get(s_label));
+                                }
+                            }
+                        }else{
+                        //    leaderlabels_ll.setVisibility(View.GONE);
+                        }
+                    }
+                    //第二条评论
+                    if (size > 1) {
+                        RoundedImageView playerHead2=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head2_img);
+                    //    ImageLoader.getInstance().displayImage(model.commentlist.get(1).image, playerHead2, ImageUtil.getclub_topic_headImageOptions());
+                        TextView playerName2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name2_tv);
+                        playerName2.setText(model.commentlist.get(1).nickname);
+                        RatingBar ratBar2=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level2_img);
+                        ratBar2.setRating(Float.parseFloat(model.commentlist.get(1).star));
+                        TextView playTime2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time2_tv);
+                        playTime2.setText(model.commentlist.get(1).createtime+"玩过");
+                        TextView playComment2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation2_tv);
+                        playComment2.setText(model.commentlist.get(1).content);
+                        TextView playLabels2[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_21_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_22_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_23_tv)};
+                        if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 
-//                ivtravelbg
+                            for(int i=0;i<model.commentlist.get(1).usercatelist.size();i++){
+                                String s_label=model.leaderdesc.get(i);
+                                playLabels2[i].setVisibility(View.VISIBLE);
+                                playLabels2[i].setText(s_label);
+                                if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
+                                    playLabels2[i].setBackgroundResource(NativeEntityUtil.getInstance()
+                                            .getCommunityStarTags().get(s_label));
+                                }
+                            }
+                        }else{
+                        //    leaderlabels_ll.setVisibility(View.GONE);
+                        }
+                    }
+                    //第三条评论
+                    if (size > 2) {
+                        RoundedImageView playerHead3=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head3_img);
+                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(2).image, playerHead3, ImageUtil.getclub_topic_headImageOptions());
+                        TextView playerName3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name3_tv);
+                        playerName3.setText(model.commentlist.get(2).nickname);
+                        RatingBar ratBar3=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level3_img);
+                        ratBar3.setRating(Float.parseFloat(model.commentlist.get(2).star));
+                        TextView playTime3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time3_tv);
+                        playTime3.setText(model.commentlist.get(2).createtime+"玩过");
+                        TextView playComment3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation3_tv);
+                        playComment3.setText(model.commentlist.get(2).content);
+                        TextView playLabels3[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_31_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_32_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_33_tv)};
+                        if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 
-                if (model.tripdetail != null && model.tripdetail.size() != 0) {
-                    ImageLoader.getInstance().displayImage(model.tripdetail.get(0).images, ivtravelbg, ImageUtil.getDefultTravelImageOptions());
-                }
+                            for(int i=0;i<model.commentlist.get(2).usercatelist.size();i++){
+                                String s_label=model.leaderdesc.get(i);
+                                playLabels3[i].setVisibility(View.VISIBLE);
+                                playLabels3[i].setText(s_label);
+                                if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
+                                    playLabels3[i].setBackgroundResource(NativeEntityUtil.getInstance()
+                                            .getCommunityStarTags().get(s_label));
+                                }
+                            }
+                        }else{
+                            listView.removeFooterView(footer_playerEvaluation);
+                        }
+                    }
 
-                if (model.reportnote != null && model.reportnote.size() != 0) {
-                    layout_readme.setVisibility(View.VISIBLE);
-
-                    joinAdapter = new LSClubTopicInfoAdapter(activity, model.reportnote);
-
-                    listjoinreadme.setAdapter(joinAdapter);
                 } else {
-                    layout_readme.setVisibility(View.GONE);
+                    Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
+                    footer_playerEvaluation.setVisibility(View.GONE);
+                    leader_fengexian_ll.setVisibility(View.GONE);
                 }
 
-//                装备
-                if ( model.zhuangbeilist != null && model.zhuangbeilist.size() != 0 )
-                {
-                    include_equip.setVisibility(View.VISIBLE);
-                    equipRecommend = new ActiveLineEquipRecommend(activity);
-                    equipRecommend.init(include_equip);
+                //设置推荐装备
+                if (model.zhuangbeilist != null && model.zhuangbeilist.size() > 0) {
+                    listView.addFooterView(footer_zhuangbei);
+                    player_fengexian_ll.setVisibility(View.VISIBLE);
+                    int size = model.zhuangbeilist.size();
+                    //第一个装备
+                    if (size > 0) {
+                        ImageView zhuangbei_img1 = (ImageView) footer_zhuangbei.findViewById(R.id
+                                .footer4zhuangbei_zhuangbei1_img);
+                        ImageLoader.getInstance().displayImage(model.zhuangbeilist.get(0)
+                                .zhuangbei_image, zhuangbei_img1, ImageUtil
+                                .getclub_topic_headImageOptions());
+                        TextView zhuangbei_miaoshu1 = (TextView) footer_zhuangbei.findViewById(R
+                                .id.footer4zhuangbei_introduce1_tv);
+                        zhuangbei_miaoshu1.setText(model.zhuangbeilist.get(0).zhuangbei_title);
+                        RatingBar zhaungbei_level1 = (RatingBar) footer_zhuangbei.findViewById(R
+                                .id.footer4zhuangbei_level1_ratingbar);
+                        zhaungbei_level1.setRating(model.zhuangbeilist.get(0).zhuangbei_star);
+                        zhuangbei1_ll.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //跳转到装备页
+                                toEquipInfo(model.zhuangbeilist.get(0).getId());
+                            }
+                        });
+                        zhuangbei1_ll.setVisibility(View.VISIBLE);
+                    }
+                    //第二个装备
+                    if (size > 1) {
+                        ImageView zhuangbei_img2 = (ImageView) footer_zhuangbei.findViewById(R.id
+                                .footer4zhuangbei_zhuangbei2_img);
+                        ImageLoader.getInstance().displayImage(model.zhuangbeilist.get(1)
+                                .zhuangbei_image, zhuangbei_img2, ImageUtil
+                                .getclub_topic_headImageOptions());
+                        TextView zhuangbei_miaoshu2 = (TextView) footer_zhuangbei.findViewById(R
+                                .id.footer4zhuangbei_introduce2_tv);
+                        zhuangbei_miaoshu2.setText(model.zhuangbeilist.get(1).zhuangbei_title);
+                        RatingBar zhaungbei_level2 = (RatingBar) footer_zhuangbei.findViewById(R
+                                .id.footer4zhuangbei_level2_ratingbar);
+                        zhaungbei_level2.setRating(model.zhuangbeilist.get(1).zhuangbei_star);
+                        zhuangbei2_ll.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //跳转到装备页
+                                toEquipInfo(model.zhuangbeilist.get(1).getId());
+                            }
+                        });
+                        zhuangbei2_ll.setVisibility(View.VISIBLE);
+                    }
+                    //第3个装备
+                    if (size > 2) {
+                        ImageView zhuangbei_img3 = (ImageView) footer_zhuangbei.findViewById(R.id
+                                .footer4zhuangbei_zhuangbei3_img);
+                        ImageLoader.getInstance().displayImage(model.zhuangbeilist.get(2)
+                                .zhuangbei_image, zhuangbei_img3, ImageUtil
+                                .getclub_topic_headImageOptions());
+                        TextView zhuangbei_miaoshu3 = (TextView) footer_zhuangbei.findViewById(R
+                                .id.footer4zhuangbei_introduce3_tv);
+                        zhuangbei_miaoshu3.setText(model.zhuangbeilist.get(2).zhuangbei_title);
+                        RatingBar zhaungbei_level3 = (RatingBar) footer_zhuangbei.findViewById(R
+                                .id.footer4zhuangbei_level3_ratingbar);
+                        zhaungbei_level3.setRating(model.zhuangbeilist.get(2).zhuangbei_star);
+                        zhuangbei3_ll.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //跳转到装备页
 
-                    ArrayList<EquipRecommendInterFace> item = new ArrayList<EquipRecommendInterFace>(model.zhuangbeilist);
+                                toEquipInfo(model.zhuangbeilist.get(2).getId());
+                            }
+                        });
+                        zhuangbei3_ll.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
+                    player_fengexian_ll.setVisibility(View.GONE);
+                }
 
-                    equipRecommend.setModel(item);
+                listView.addFooterView(footView);
+                //设置底部详情信息
+                updateActivity(model);
 
-                }*/
             }
         });
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void addLightSpots(List<String> lightspots) {
+        for (int i=0;i<lightspots.size();i++) {
+            View spot = getActivity().getLayoutInflater().inflate(R.layout
+                    .ls_club_topic_list_adapter, null);
+            TextView txt = (TextView) spot.findViewById(R.id.tv);
+            txt.setText(lightspots.get(i));
+            txt.setTextColor(Color.parseColor("#999999"));
+            txt.setTextSize(14);
+            lightspots_ll.addView(spot);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void toEquipInfo(String id){
+        Toast.makeText(ListFragment.this.getActivity(), "第n个装备", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ListFragment.this.getActivity(),LSEquipInfoActivity.class);
+//        String id
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
+
+    public void cleanInfo(){
+        listView.removeFooterView(footer_zhuangbei);
+        listView.removeFooterView(footer_playerEvaluation);
+        listView.removeFooterView(footView);
+        model=null;
+       // fullInfoAdapter=null;
+    }
+
+    //  跳转目的地详情
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public  void goDestinationInfo (int tagId, int desId )
+    {
+        Intent intent = new Intent(ListFragment.this.getActivity(), DestinationActivity.class);
+        intent.putExtra("destID", desId);
+        intent.putExtra("tagID", tagId);
+        startActivity(intent);
 
     }
 }

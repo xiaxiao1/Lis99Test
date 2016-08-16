@@ -80,8 +80,9 @@
                 android:gravity="center"
                 android:layout_marginLeft="4dp"
                 android:textColor="#ffffff"
-                android:background="@drawable/topic_supper_tag3"
+                android:background="@drawable/label_bg_default"
                 android:layout_gravity="center_vertical"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/footer4playerevaluation_player_label_12_tv"
@@ -92,8 +93,9 @@
                 android:maxLength="7"
                 android:layout_marginLeft="4dp"
                 android:textColor="#ffffff"
-                android:background="@drawable/topic_supper_tag3"
+                android:background="@drawable/label_bg_default"
                 android:layout_gravity="center_vertical"
+                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/footer4playerevaluation_player_label_13_tv"
@@ -104,8 +106,9 @@
                 android:maxLength="7"
                 android:textColor="#ffffff"
                 android:layout_marginLeft="4dp"
-                android:background="@drawable/topic_supper_tag3"
+                android:background="@drawable/label_bg_default"
                 android:layout_gravity="center_vertical"
+                android:visibility="gone"
                 />
         </LinearLayout>
         <RelativeLayout
@@ -118,7 +121,7 @@
             >
 
             <RatingBar
-                android:id="@+id/footer4playerevaluation_player_level_img"
+                android:id="@+id/footer4playerevaluation_player_level1_img"
                 style="@style/ls_equip_star_reply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,7 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/footer4playerevaluation_player_evaluation_tv"
+            android:id="@+id/footer4playerevaluation_player_evaluation1_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -222,8 +225,9 @@
                     android:gravity="center"
                     android:layout_marginLeft="4dp"
                     android:textColor="#ffffff"
-                    android:background="@drawable/topic_supper_tag3"
+                    android:background="@drawable/label_bg_default"
                     android:layout_gravity="center_vertical"
+                    android:visibility="gone"
 
                     />
                 <TextView
@@ -236,8 +240,9 @@
                     android:gravity="center"
                     android:layout_marginLeft="4dp"
                     android:textColor="#ffffff"
-                    android:background="@drawable/topic_supper_tag3"
+                    android:background="@drawable/label_bg_default"
                     android:layout_gravity="center_vertical"
+                    android:visibility="gone"
                     />
                 <TextView
                     android:id="@+id/footer4playerevaluation_player_label_23_tv"
@@ -249,8 +254,9 @@
                     android:gravity="center"
                     android:layout_marginLeft="4dp"
                     android:textColor="#ffffff"
-                    android:background="@drawable/topic_supper_tag3"
+                    android:background="@drawable/label_bg_default"
                     android:layout_gravity="center_vertical"
+                    android:visibility="gone"
                     />
             </LinearLayout>
             <RelativeLayout
@@ -262,7 +268,7 @@
                 android:layout_toRightOf="@id/footer4playerevaluation_player_head2_img"
                 >
                 <RatingBar
-                    android:id="@+id/footer4playerevaluation_player_leve2_img"
+                    android:id="@+id/footer4playerevaluation_player_level2_img"
                     style="@style/ls_equip_star_reply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -365,8 +371,9 @@
                     android:gravity="center"
                     android:layout_marginLeft="4dp"
                     android:textColor="#ffffff"
-                    android:background="@drawable/topic_supper_tag3"
+                    android:background="@drawable/label_bg_default"
                     android:layout_gravity="center_vertical"
+                    android:visibility="gone"
 
                     />
                 <TextView
@@ -379,8 +386,9 @@
                     android:gravity="center"
                     android:layout_marginLeft="4dp"
                     android:textColor="#ffffff"
-                    android:background="@drawable/topic_supper_tag3"
+                    android:background="@drawable/label_bg_default"
                     android:layout_gravity="center_vertical"
+                    android:visibility="gone"
                     />
                 <TextView
                     android:id="@+id/footer4playerevaluation_player_label_33_tv"
@@ -392,8 +400,9 @@
                     android:gravity="center"
                     android:layout_marginLeft="4dp"
                     android:textColor="#ffffff"
-                    android:background="@drawable/topic_supper_tag3"
+                    android:background="@drawable/label_bg_default"
                     android:layout_gravity="center_vertical"
+                    android:visibility="gone"
                     />
             </LinearLayout>
             <RelativeLayout
@@ -405,7 +414,7 @@
                 android:layout_toRightOf="@id/footer4playerevaluation_player_head3_img"
                 >
                 <RatingBar
-                    android:id="@+id/footer4playerevaluation_player_leve3_img"
+                    android:id="@+id/footer4playerevaluation_player_level3_img"
                     style="@style/ls_equip_star_reply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -449,23 +458,32 @@
     </LinearLayout>
 
         </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e3dbd0"
 
-        android:layout_marginTop="30dp"
-        />
-    <View
+    <LinearLayout
+        android:id="@+id/afullinfo_player_fengexian_ll"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#f7f3ec"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3dbd0"
 
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e3dbd0"
+            android:layout_marginTop="30dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#f7f3ec"
 
-        />
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3dbd0"
+
+            />
+    </LinearLayout>
 </LinearLayout>
