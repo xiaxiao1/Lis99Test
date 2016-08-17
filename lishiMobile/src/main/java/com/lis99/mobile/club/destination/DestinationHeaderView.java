@@ -74,6 +74,7 @@ public class DestinationHeaderView extends LinearLayout {
         switch (view.getId()) {
             case R.id.moreButton:
             {
+                if ( destination == null ) return;
                 Intent intent = new Intent(getContext(), DestinationInfoActivity.class);
                 intent.putExtra("destID" , destination.id);
                 getContext().startActivity(intent);
