@@ -242,7 +242,7 @@ public class DestinationActivity extends LSBaseActivity implements DestinationHe
 
             @Override
             public void myFailure(Call<Destination> call, Throwable t) {
-
+                
             }
 
 
