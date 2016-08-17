@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -84,7 +85,6 @@ public class LSEquipInfoActivity extends LSBaseActivity implements
         }
 
 //        id = 8407;
-
         initViews();
 
         setTitle("装备详情");

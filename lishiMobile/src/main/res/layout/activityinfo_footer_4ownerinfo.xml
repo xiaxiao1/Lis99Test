@@ -9,7 +9,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:background="#e3dbd0"
 
         />
@@ -21,7 +21,7 @@
         />
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:background="#e3dbd0"
 
         />
@@ -154,6 +154,11 @@
             android:text="这位领队害羞的没有写自我介绍"
             android:layout_marginTop="12dp"
             android:textColor="#999999"
+            android:textSize="12sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
             android:layout_below="@id/footer4openmore_labels_ll"
             />
     </RelativeLayout>
@@ -162,9 +167,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text=""
+        android:text="俱乐部"
+        android:textSize="12sp"
         android:textColor="#999999"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="6dp"
         android:layout_below="@id/footer4openmore_labels_ll"
         />
 
@@ -178,7 +184,7 @@
         >
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="#e3dbd0"
             android:layout_marginTop="20dp"
             />
@@ -189,7 +195,7 @@
             />
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="#e3dbd0"
             />
     </LinearLayout>

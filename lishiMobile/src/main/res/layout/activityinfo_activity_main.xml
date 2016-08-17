@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/afullinfo_parent"
+    android:background="#ffffff"
     >
 
 
@@ -64,6 +65,7 @@
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
     android:layout_above="@id/bottom_ll"
+    android:background="#ffffff"
     >
 
 
@@ -105,7 +107,7 @@
     <LinearLayout
         android:id="@+id/title_bg_ll"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="#ffffff"
         android:orientation="horizontal"
         android:alpha="1.0"
@@ -121,7 +123,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="9dp"
         >
         <ImageView
             android:id="@+id/afullinfo_title_back_img"
@@ -139,7 +141,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="9dp"
         >
         <ImageView
             android:id="@+id/afullinfo_title_share_img"

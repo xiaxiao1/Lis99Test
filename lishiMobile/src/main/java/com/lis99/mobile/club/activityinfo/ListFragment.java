@@ -314,10 +314,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     public void initBaiduMap(){
 
-        mMapView = (MapView) header.findViewById(R.id.afullinfo_header_bmapView);
         mMapView.showZoomControls(false);
         mMapView.showScaleControl(false);
-        map_view = (View) header.findViewById(R.id.afullinfo_header_mapclick);
 
         mBaiduMap = mMapView.getMap();
         mBaiduMap.getUiSettings().setRotateGesturesEnabled(false);
@@ -334,9 +332,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         OverlayOptions option = new MarkerOptions()
                 .position(point)
                 .icon(bitmap);
-
-        //在地图上添加Marker，并显示
         mBaiduMap.addOverlay(option);
+
         MapStatus mMapStatus = new MapStatus.Builder()
                 .target(point)
                 .zoom(11)
@@ -603,6 +600,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         //活动亮点区域
         lightspots_ll = (LinearLayout) header.findViewById(R.id.afullinfo_header_add_liangdian_ll);
 
+        //百度地图区域
+        mMapView = (MapView) header.findViewById(R.id.afullinfo_header_bmapView);
+        map_view = (View) header.findViewById(R.id.afullinfo_header_mapclick);
         baiduMap_rl=(RelativeLayout)header.findViewById(R.id.afullinfo_header_baidumap_rl);
         noMap_img=(ImageView)header.findViewById(R.id.afullinfo_header_nomap_img);
         destinationName_tv=(TextView)header.findViewById(R.id.afullinfo_header_destination_name_tv);
@@ -633,9 +633,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         leaderArea_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ListFragment.this.getActivity(), "leader", Toast.LENGTH_SHORT).show();
                 if (leaderId>0) {
-                    Toast.makeText(ListFragment.this.getActivity(),"qu leader",Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(ListFragment.this.getActivity(),"qu leader",Toast.LENGTH_SHORT).show();
                     //如果领队id不存在，直接去他所在的俱乐部
                     if ( TextUtils.isEmpty(""+model.leaderUserid) || "0".equals(model.leaderUserid) )
                     {
@@ -730,25 +729,24 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 }
 
                 //设置百度地图
-                if (model.aimid != null && !model.aimid.equals("0")) {
+                if (model.desti_id != null && !model.desti_id.equals("0")) {
                     //如果关联了目的地并且有坐标
-                    if (!model.aimlongitude.equals("") && !model.aimlongitude.equals("")) {
-
+                    if (!model.aimlongitude.equals("") && !model.aimlatitude.equals("")) {
                         longitude = Float.parseFloat(model.aimlongitude);
                         latitude = Float.parseFloat(model.aimlatitude);
                         if (longitude != -1 && latitude != -1) {
-                            mMapView.setVisibility(View.VISIBLE);
-                            map_view.setVisibility(View.VISIBLE);
                             //跳转到目的地页
                             map_view.setOnClickListener(new View.OnClickListener() {
                                 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                                 @Override
                                 public void onClick(View v) {
-                                        Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
                                     //去往目的地详情页
-                                    //    goDestinationInfo(model.desti_id,model.aimid);
+                                        goDestinationInfo(Integer.parseInt(model.desti_id),Integer.parseInt(model.aimid));
                                 }
                             });
+                            baiduMap_rl.setVisibility(View.VISIBLE);
+                            noMap_img.setVisibility(View.GONE);
                             initBaiduMap();
                             destinationName_tv.setText(model.harddesc);
                         }
@@ -756,16 +754,15 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     }
                     //关联了目的地 但是没有坐标
                     else {
-                        mMapView.setVisibility(View.GONE);
-                        map_view.setVisibility(View.GONE);
+                        baiduMap_rl.setVisibility(View.GONE);
                         noMap_img.setVisibility(View.VISIBLE);
                         //显示默认图时，也跳转到目的地页
                         noMap_img.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
                                 //去往目的地详情页
-                            //    goDestinationInfo(model.desti_id,model.aimid);
+                                goDestinationInfo(Integer.parseInt(model.desti_id),Integer.parseInt(model.aimid));
                             }
                         });
                     }
@@ -922,6 +919,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
                 //设置推荐装备
                 if (model.zhuangbeilist != null && model.zhuangbeilist.size() > 0) {
+                    Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
                     listView.addFooterView(footer_zhuangbei);
                     player_fengexian_ll.setVisibility(View.VISIBLE);
                     int size = model.zhuangbeilist.size();
@@ -942,6 +940,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                             @Override
                             public void onClick(View v) {
                                 //跳转到装备页
+                                Toast.makeText(ListFragment.this.getActivity(),"zhuangbeilist id:"+model.zhuangbeilist.get(0).getId(),Toast.LENGTH_SHORT).show();
                                 toEquipInfo(model.zhuangbeilist.get(0).getId());
                             }
                         });
