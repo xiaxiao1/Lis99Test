@@ -271,16 +271,17 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             super.rightAction();
         } else if (v==advice_ll) {
          //   Toast.makeText(this,"advice",Toast.LENGTH_SHORT).show();
-            if (model!=null&&!model.leadermobile.equals("")) {
+            /*if (model!=null&&!model.leadermobile.equals("")) {
                 Common.telPhone(model.leadermobile);
-            }
+            }*/
+            Common.telPhone("4006728099");
         } else if (v==toPlay_tv) {
         //    Toast.makeText(this,"toplay",Toast.LENGTH_SHORT).show();
                 baoMing();
         } else if (v==layoutGatherTime) {
             showInfo(tvGatherTime,ivGatherTime);
         } else if (v==layoutLocation) {
-            Toast.makeText(this, "go location ", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "go location ", Toast.LENGTH_SHORT).show();
             if (model!=null) {
                 //跳转地图
                 Intent intent = new Intent(this, LSClubTopicInfoLocation.class);

@@ -188,19 +188,20 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     public ArrayList<String> reportnote;
 
     //  装备列表
+    @SerializedName("zhuangbeilist")
     public ArrayList<EquipRecommend> zhuangbeilist;
 
 
     static public class EquipRecommend implements EquipRecommendInterFace, Serializable
     {
 
-
+        @SerializedName("zhuangbei_id")
         public String zhuangbei_id;
-
+        @SerializedName("zhuangbei_image")
         public String zhuangbei_image;
-
+        @SerializedName("zhuangbei_title")
         public String zhuangbei_title;
-
+        @SerializedName("zhuangbei_star")
         public int zhuangbei_star;
 
 
