@@ -178,8 +178,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     //标签串数据
     List<ClubTopicActiveSeriesLineMainModel.TagEntity> recycler_datas;
     //地图定位的坐标
-    private float longitude = 0.0000000f;
-    private float latitude = 0.0000000f;
+    private double longitude = 0.0000000;
+    private double latitude = 0.0000000;
     //活动详情中当前要显示的item数目
     int currentSize;
     //活动详情一共多少item数目
@@ -309,12 +309,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     public void initBaiduMap(){
 
-        mMapView.showZoomControls(false);
-        mMapView.showScaleControl(false);
+//        mMapView.showZoomControls(false);
+//        mMapView.showScaleControl(false);
 
         mBaiduMap = mMapView.getMap();
-        mBaiduMap.getUiSettings().setRotateGesturesEnabled(false);
-        mBaiduMap.getUiSettings().setAllGesturesEnabled(false);
+//        mBaiduMap.getUiSettings().setRotateGesturesEnabled(false);
+//        mBaiduMap.getUiSettings().setAllGesturesEnabled(false);
         //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
 
@@ -734,8 +734,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 if (model.desti_id != null && !model.desti_id.equals("0")) {
                     //如果关联了目的地并且有坐标
                     if (!model.aimlongitude.equals("") && !model.aimlatitude.equals("")) {
-                        longitude = Float.parseFloat(model.aimlongitude);
-                        latitude = Float.parseFloat(model.aimlatitude);
+                        longitude = Double.parseDouble(model.aimlongitude);
+                        latitude = Double.parseDouble(model.aimlatitude);
                         if (longitude != -1 && latitude != -1) {
                             //跳转到目的地页
                             map_view.setOnClickListener(new View.OnClickListener() {
