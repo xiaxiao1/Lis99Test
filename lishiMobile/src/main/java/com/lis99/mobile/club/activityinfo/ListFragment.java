@@ -639,6 +639,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 Toast.makeText(ListFragment.this.getActivity(), "leader", Toast.LENGTH_SHORT).show();
                 if (leaderId>0) {
                     Toast.makeText(ListFragment.this.getActivity(),"qu leader",Toast.LENGTH_SHORT).show();
+                    //如果领队id不存在，直接去他所在的俱乐部
                     if ( TextUtils.isEmpty(""+model.leaderUserid) || "0".equals(model.leaderUserid) )
                     {
                         Intent i = new Intent(ListFragment.this.getActivity(), LSClubDetailActivity.class);
@@ -647,6 +648,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     }
                     else
                     {
+                        //去领队个人主页
                         Common.goUserHomeActivit(ListFragment.this.getActivity(), ""+model.leaderUserid);
                     }
                 }
@@ -746,7 +748,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                                 @Override
                                 public void onClick(View v) {
                                         Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
-                                    //    goDestinationInfo(model.aimid,model.tagid);
+                                    //去往目的地详情页
+                                    //    goDestinationInfo(model.desti_id,model.aimid);
                                 }
                             });
                             initBaiduMap();
@@ -764,7 +767,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                             @Override
                             public void onClick(View v) {
                                 Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
-                            //    goDestinationInfo(model.aimid,model.tagid);
+                                //去往目的地详情页
+                            //    goDestinationInfo(model.desti_id,model.aimid);
                             }
                         });
                     }
@@ -833,7 +837,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     //第一条评论
                     if (size > 0) {
                         RoundedImageView playerHead1=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head1_img);
-                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(0).image, playerHead1, ImageUtil.getclub_topic_headImageOptions());
+                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(0).userhead, playerHead1, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name1_tv);
                         playerName1.setText(model.commentlist.get(0).nickname);
                         RatingBar ratBar1=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level1_img);
@@ -861,7 +865,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     //第二条评论
                     if (size > 1) {
                         RoundedImageView playerHead2=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head2_img);
-                    //    ImageLoader.getInstance().displayImage(model.commentlist.get(1).image, playerHead2, ImageUtil.getclub_topic_headImageOptions());
+                    //    ImageLoader.getInstance().displayImage(model.commentlist.get(1).userhead, playerHead2, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name2_tv);
                         playerName2.setText(model.commentlist.get(1).nickname);
                         RatingBar ratBar2=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level2_img);
@@ -889,7 +893,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     //第三条评论
                     if (size > 2) {
                         RoundedImageView playerHead3=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head3_img);
-                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(2).image, playerHead3, ImageUtil.getclub_topic_headImageOptions());
+                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(2).userhead, playerHead3, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name3_tv);
                         playerName3.setText(model.commentlist.get(2).nickname);
                         RatingBar ratBar3=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level3_img);

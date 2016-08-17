@@ -78,12 +78,19 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     public String shareTxt;
 
 
+    //tagid
     @SerializedName("aimid")
     public String aimid;
+    //目的地id
+    @SerializedName("desti_id")
+    public String desti_id;
     @SerializedName("aimlongitude")
     public String aimlongitude;
     @SerializedName("aimlatitude")
     public String aimlatitude;
+
+    /*@SerializedName("tagid")
+    public String tagid;*/
 
 
     @SerializedName("commentlist")
@@ -278,6 +285,9 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
 
         @SerializedName("createtime")
         public String createtime;
+
+        @SerializedName("userhead")
+        public String userhead;
 
        /* @SerializedName("image")
         public String image;
