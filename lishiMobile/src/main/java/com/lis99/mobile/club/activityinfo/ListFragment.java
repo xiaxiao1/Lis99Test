@@ -794,9 +794,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
                 //设置leader头像leaderHead_img,ImageUtil.getclub_topic_headImageOptions()
                 leaderId=model.leaderUserid;
-                //    Log.i("mtarget","leaderheadicon:"+model.leaderheadicon);
                 if (!TextUtils.isEmpty(model.leaderheadicon)) {
-                    Log.i("mtarget","leaderheadicon11222:"+model.leaderheadicon);
                     ImageLoader.getInstance().displayImage(model.leaderheadicon,leaderHead_img , ImageUtil.getclub_topic_headImageOptions());
                 }
                 //设置leader名字
