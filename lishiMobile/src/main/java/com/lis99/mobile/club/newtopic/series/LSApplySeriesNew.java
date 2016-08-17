@@ -48,7 +48,7 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
         initViews();
 
-        setTitle("报名");
+        setTitle("填写报名信息");
 
         topicID = getIntent().getIntExtra("topicID", 0);
         clubID = getIntent().getIntExtra("clubID", 0);
