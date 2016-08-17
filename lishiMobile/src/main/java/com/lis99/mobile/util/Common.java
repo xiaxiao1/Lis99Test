@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -26,7 +25,6 @@ import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.activityinfo.ActivityFullInfoActivity;
 import com.lis99.mobile.club.model.ShareInterface;
 import com.lis99.mobile.club.newtopic.LSClubNewTopicListMain;
-import com.lis99.mobile.club.newtopic.series.LSClubTopicActiveSeries;
 import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.mine.LSUserHomeActivity;
 import com.lis99.mobile.newhome.NewHomeActivity;
@@ -530,7 +528,7 @@ public class Common {
 //        }
         else if ( 4 == catgory )
         {
-        //    Intent intent = new Intent(c, LSClubTopicActiveSeries.class);
+//            Intent intent = new Intent(c, LSClubTopicActiveSeries.class);
             Intent intent = new Intent(c, ActivityFullInfoActivity.class);
             intent.putExtra("topicID", topicId);
             c.startActivity(intent);

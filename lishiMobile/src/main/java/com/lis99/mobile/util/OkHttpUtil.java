@@ -2,6 +2,7 @@ package com.lis99.mobile.util;
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -14,6 +15,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -109,7 +111,7 @@ public class OkHttpUtil {
         Response response = call.execute();
         if ( !response.isSuccessful()) throw new IOException("Not isSuccessful="+response);
 //        if ( null != response.cacheResponse() ) return response.cacheResponse().toString();
-        return response.body() == null ? "" : response.body().toString();
+        return response.body() == null ? "" : response.body().source().readUtf8();
     }
 
 
@@ -138,8 +140,39 @@ public class OkHttpUtil {
 
         if ( !response.isSuccessful()) throw new IOException("Not isSuccessful="+response);
 //        if ( null != response.cacheResponse() ) return response.body().toString();
-        return response.body() == null ? "" : response.body().toString();
+        return response.body() == null ? "" : response.body().source().readUtf8();
+    }
 
+    private void getHttpAsyn (String url, Callback callback ) throws IOException {
+        Request.Builder requestB = new Request.Builder().url(url);
+        requestB.method("GET", null);
+        Request request = requestB.build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(callback);
+    }
+
+    private void postHttpAsyn (String url, HashMap<String, Object> map, Callback callback ) throws IOException {
+        FormBody.Builder fbuilder = new FormBody.Builder();
+        if ( map != null && !map.isEmpty() )
+        {
+            Set<String> keys = map.keySet();
+
+            for ( String key : keys )
+            {
+                fbuilder.add(key, (String)map.get(key));
+            }
+        }
+
+        RequestBody requestBody = fbuilder.build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+
+        Call call = okHttpClient.newCall(request);
+
+        call.enqueue(callback);
     }
 
 
@@ -151,6 +184,13 @@ public class OkHttpUtil {
         return postHttp(url, map);
     }
 
+    public void getAsyn (String url, Callback callback ) throws IOException {
+        getHttpAsyn(url, callback);
+    }
+
+    public void postAsyn (String url, HashMap<String, Object> map ,Callback callback ) throws IOException {
+        postHttpAsyn(url, map, callback);
+    }
 
 
 

@@ -76,6 +76,8 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     public int isJion;
     @SerializedName("shareTxt")
     public String shareTxt;
+    @SerializedName("shareUrl")
+    public String shareUrl;
 
 
     //tagid
@@ -406,7 +408,8 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
      */
     @Override
     public String getShareUrl() {
-        return ("http://m.lis99.com/club/activity/detail/"+activityCode);
+//        return ("http://m.lis99.com/club/activity/detail/"+activityCode);
+        return shareUrl;
     }
 
     /**

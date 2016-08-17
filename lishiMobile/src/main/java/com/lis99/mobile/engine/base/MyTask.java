@@ -33,8 +33,7 @@ public class MyTask{
 	//返回模型类
 	public Object resultModel;
 
-	public String error;
-
+	public MyException myException;
 
 
 	public MyTask ()
@@ -56,14 +55,6 @@ public class MyTask{
 		this.RequestState = RequestState;
 		this.callBack = callBack;
 		this.map = map;
-	}
-
-	public String getError() {
-		return error;
-	}
-
-	public void setError(String error) {
-		this.error = error;
 	}
 
 	public void setErrorCallBack(boolean errorCallBack) {
@@ -138,6 +129,12 @@ public class MyTask{
 	public void setResultModel(Object resultModel) {
 		this.resultModel = resultModel;
 	}
-	
-	
+
+	public MyException getMyException() {
+		return myException;
+	}
+
+	public void setMyException(MyException myException) {
+		this.myException = myException;
+	}
 }
