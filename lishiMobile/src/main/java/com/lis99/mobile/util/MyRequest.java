@@ -4,8 +4,14 @@ import android.os.AsyncTask;
 import android.os.Build;
 
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.MyException;
 import com.lis99.mobile.engine.base.MyTask;
 
+import org.apache.http.conn.ConnectTimeoutException;
+
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,7 +32,7 @@ public class MyRequest{
 	{
 		mTask = task;
 		http = new MyHttpClient();
-//		okhttp = OkHttpUtil.getInstance();
+		okhttp = OkHttpUtil.getInstance();
 		
 	}
 
@@ -111,24 +117,60 @@ public class MyRequest{
 			switch ( mTask.getRequestState() )
 			{
 			case MyTask.POST:
-				result = http.HttpPost(mTask.getUrl(), mTask.getMap());
-//				try {
-//					result = okhttp.post(mTask.getUrl(), mTask.getMap());
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//					mTask.setError(e.getMessage());
-//					Common.log("GET RESULT ERROR="+e.getMessage());
-//				}
+//				result = http.HttpPost(mTask.getUrl(), mTask.getMap());
+				try {
+					result = okhttp.post(mTask.getUrl(), mTask.getMap());
+				}
+				catch ( ConnectException e )
+				{
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
+				catch (ConnectTimeoutException e)
+				{
+					// 捕获ConnectionTimeout
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
+				catch (SocketTimeoutException e)
+				{
+					// 捕获SocketTimeout
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
 				break;
 			case MyTask.GET:
-				result = http.HttpGet(mTask.getUrl());
-//				try {
-//					result = okhttp.get(mTask.getUrl());
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//					mTask.setError(e.getMessage());
-//					Common.log("GET RESULT ERROR="+e.getMessage());
-//				}
+//				result = http.HttpGet(mTask.getUrl());
+				try {
+					result = okhttp.get(mTask.getUrl());
+				}
+				catch ( ConnectException e )
+				{
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
+				catch (ConnectTimeoutException e)
+				{
+					// 捕获ConnectionTimeout
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
+				catch (SocketTimeoutException e)
+				{
+					// 捕获SocketTimeout
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+					MyException myException = new MyException(e.getMessage(), MyException.TIMEOUT);
+					mTask.setMyException(myException);
+				}
 				break;
 			case MyTask.IMAGE:
 				result = http.HttpImage(mTask.getUrl(), mTask.getMap());

@@ -42,6 +42,10 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
 
     @SerializedName("topicsdetaillist")
     public List<TopicsdetaillistEntity> topicsdetaillist;
+
+    //    1创始人，2管理员，4成员,8网站编辑，-1无权限信息
+    @SerializedName("is_jion")
+    public int is_jion;
     /**
      * id : 1
      * user_id : 3456
@@ -159,7 +163,7 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
      */
     @Override
     public String getCategory() {
-        return "";
+        return "999";
     }
 
     /**
@@ -167,7 +171,7 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
      */
     @Override
     public String getIsJoin() {
-        return null;
+        return ""+is_jion;
     }
 
     /**
