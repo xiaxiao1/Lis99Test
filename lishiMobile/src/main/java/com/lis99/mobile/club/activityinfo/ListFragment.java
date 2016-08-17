@@ -3,7 +3,6 @@ package com.lis99.mobile.club.activityinfo;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,11 +14,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,17 +32,13 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.Text;
 import com.baidu.mapapi.model.LatLng;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicInfoLocation;
 import com.lis99.mobile.club.destination.DestinationActivity;
 import com.lis99.mobile.club.model.ClubTopicActiveSeriesLineMainModel;
-import com.lis99.mobile.club.model.EquipRecommendInterFace;
-import com.lis99.mobile.club.newtopic.ActiveLineEquipRecommend;
 import com.lis99.mobile.club.newtopic.LSClubTopicInfoAdapter;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
@@ -60,7 +53,6 @@ import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.NativeEntityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -297,10 +289,15 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     @Override
     public void onDestroy() {
-        mBaiduMap.setMyLocationEnabled(false);
-        mMapView.onDestroy();
-        mMapView = null;
         super.onDestroy();
+        try
+        {
+            mBaiduMap.setMyLocationEnabled(false);
+            mMapView.onDestroy();
+            mMapView = null;
+        }
+        catch (Exception e)
+        {}
     }
     @Override
     public void onResume() {

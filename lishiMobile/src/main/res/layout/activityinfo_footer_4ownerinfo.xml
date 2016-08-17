@@ -51,14 +51,20 @@
             android:id="@+id/footer4openmore_ownerhead_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.lis99.mobile.club.widget.RoundedImageView
                 android:id="@+id/footer4openmore_ownerhead_img"
                 android:layout_width="61dp"
                 android:layout_height="61dp"
+                android:scaleType="fitXY"
+                app:border_color="#e8e8e8"
+                app:border_width="1px"
                 android:src="@drawable/ls_nologin_header_icon"
                 android:layout_centerHorizontal="true"
-                app:corner_radius="40dp"
+                app:corner_radius="@dimen/user_header_corner_radius"
                 />
+
+
             <View
                 android:layout_width="50dp"
                 android:layout_height="1dp"
