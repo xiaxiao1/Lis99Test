@@ -89,6 +89,7 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     @SerializedName("aimlatitude")
     public String aimlatitude;
 
+
     /*@SerializedName("tagid")
     public String tagid;*/
 

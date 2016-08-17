@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
@@ -46,6 +45,7 @@ import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
@@ -234,11 +234,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             @Override
             public void onRefresh()
             {
-                /*Toast.makeText(ListFragment.this.getActivity(), "hh", Toast.LENGTH_SHORT).show();
-                activeInfos.add(0,new FullInfo("我是新来的","http://pic10.nipic.com/20101019/3050636_171041025000_2.jpg"));
-                fullInfoAdapter.notifyDataSetChanged();
-                fullSize++;
-                listView.onRefreshComplete();*/
                 cleanInfo();
                 getInfo();
                 listView.onRefreshComplete();
@@ -516,9 +511,17 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position)
+    public void onBindViewHolder(MyViewHolder holder, final int position)
     {
         holder.tv.setText(recycler_datas.get(position).name);
+        holder.tv.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.goSpecialInfoActivity(ListFragment.this.getActivity(), recycler_datas.get(position).id);
+
+            }
+        });
     }
 
     @Override
@@ -634,7 +637,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             @Override
             public void onClick(View v) {
                 if (leaderId>0) {
-                //    Toast.makeText(ListFragment.this.getActivity(),"qu leader",Toast.LENGTH_SHORT).show();
                     //如果领队id不存在，直接去他所在的俱乐部
                     if ( TextUtils.isEmpty(""+model.leaderUserid) || "0".equals(model.leaderUserid) )
                     {
@@ -691,7 +693,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置活动标题
                 activeTitle_tv.setText(model.getTitle());
                 //设置活动备注
-                activeNote_tv.setText(model.catename);
+                activeNote_tv.setText(model.batchDesc);
                 //设置价格
                 activePrice_tv.setText("￥"+model.consts);
                 Log.i("xx", model.getTitle() + "ccc");
@@ -740,7 +742,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                                 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                                 @Override
                                 public void onClick(View v) {
-//                                        Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
                                     //去往目的地详情页
                                         goDestinationInfo(Integer.parseInt(model.desti_id),Integer.parseInt(model.aimid));
                                 }
@@ -760,7 +761,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         noMap_img.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                Toast.makeText(ListFragment.this.getActivity(),"去往目的地详情，这个参数还没有",Toast.LENGTH_SHORT).show();
                                 //去往目的地详情页
                                 goDestinationInfo(Integer.parseInt(model.desti_id),Integer.parseInt(model.aimid));
                             }
@@ -940,7 +940,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                             @Override
                             public void onClick(View v) {
                                 //跳转到装备页
-                                Toast.makeText(ListFragment.this.getActivity(),"zhuangbeilist id:"+model.zhuangbeilist.get(0).getId(),Toast.LENGTH_SHORT).show();
                                 toEquipInfo(model.zhuangbeilist.get(0).getId());
                             }
                         });
@@ -1020,7 +1019,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void toEquipInfo(String id){
-        Toast.makeText(ListFragment.this.getActivity(), "第n个装备", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ListFragment.this.getActivity(),LSEquipInfoActivity.class);
 //        String id
         intent.putExtra("id", id);
