@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class TopicNewListMainModel extends TopicNewListMainModelEquip implements ShareInterface {
 
-    private int is_tagid;
-    private String reason;
+   /* public int is_tagid;
+    public String reason;
 
     public int getIs_tagid() {
         return is_tagid;
@@ -27,7 +27,7 @@ public class TopicNewListMainModel extends TopicNewListMainModelEquip implements
 
     public void setReason(String reason) {
         this.reason = reason;
-    }
+    }*/
 
     /**
      * content : 测试内容

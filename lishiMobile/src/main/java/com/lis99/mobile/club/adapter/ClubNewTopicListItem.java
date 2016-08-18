@@ -79,7 +79,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     //增加底部推荐活动入口
     private final int RECOMMEND = 5;
 //  总数
-    private final int count = 6;
+    private final int count = 5;
 
 
 
@@ -135,9 +135,9 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
                 return getReply(i, view, viewGroup);
             case NO_REPLY:
                 return getNoReply (i, view, viewGroup);
-            case RECOMMEND:
+            /*case RECOMMEND:
                 Log.i("xx"," return getRecommend(i,view,viewGroup);");
-                return getRecommend(i,view,viewGroup);
+                return getRecommend(i,view,viewGroup);*/
         }
 
 
@@ -164,10 +164,10 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             num = NO_REPLY;
         }
         //判断是否是推荐活动item，等待接口匹配
-        else if(o instanceof IsToRecommendActive){
+       /* else if(o instanceof IsToRecommendActive){
             num = RECOMMEND;
             Log.i("xx","o instanceof IsToRecommendActive");
-        }
+        }*/
 
         return num;
     }
@@ -585,6 +585,24 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             holder.tvClubName.setVisibility(View.GONE);
         }
 
+        if (item.is_tagid>0) {
+            holder.recommendedActiveViwe_ll.setVisibility(View.VISIBLE);
+            String reason=item.getReason();
+            if (reason != null && !reason.equals("")) {
+                holder.recommendReason_tv.setText(reason);
+            }
+            holder.recommendedActiveViwe_ll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i=new Intent(mContext,LSRecommendActivity.class);
+                    i.putExtra("is_tagid", item.getIs_tagid());
+                    mContext.startActivity(i);
+                }
+            });
+        } else {
+            holder.recommendedActiveViwe_ll.setVisibility(View.GONE);
+        }
+
         return view;
     }
 
@@ -707,8 +725,11 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     }
 
 
+    /**
+     * 换位置了，所以注释了
+     */
     //     推荐活动，，，，等待匹配接口
-    private View getRecommend(int i,View view,ViewGroup viewGroup){
+    /*private View getRecommend(int i,View view,ViewGroup viewGroup){
         ViewHolderRecommend holder = null;
         if (view == null) {
             view = View.inflate(mContext, R.layout.club_topic_to_recommended_activity, null);
@@ -741,7 +762,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             });
         }
         return view;
-    }
+    }*/
     //  回复
     protected class ViewHolderReply {
         private View include1;
@@ -820,6 +841,8 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private TextView hostInfoTag3;
         private TextView hostInfoDescView;
         private TextView hostInfoDataView;
+        private TextView recommendReason_tv;
+        private LinearLayout recommendedActiveViwe_ll;
 
 
         private LSClubTopicHeadLike like;
@@ -856,6 +879,9 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             hostInfoTag3 = (TextView) view.findViewById(R.id.hostInfoTag3);
             hostInfoDescView = (TextView) view.findViewById(R.id.hostInfoDescView);
             hostInfoDataView = (TextView) view.findViewById(R.id.hostInfoDataView);
+
+            recommendedActiveViwe_ll=(LinearLayout)view.findViewById(R.id.club_show_recommended_active);
+            recommendReason_tv=(TextView)recommendedActiveViwe_ll.findViewById(R.id.club_topic_to_recommend_text_tv);
         }
     }
 
@@ -932,7 +958,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     /**
      * 底部，推荐活动入口项item
      */
-    protected class ViewHolderRecommend {
+    /*protected class ViewHolderRecommend {
         private LinearLayout clubTopicToRecommendViewLl;
         private ImageView clubTopicToRecommendBgImg;
         private ImageView clubTopicToRecommendLeftImg;
@@ -946,6 +972,6 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
             clubTopicToRecommendTextTv = (TextView) view.findViewById(R.id.club_topic_to_recommend_text_tv);
             clubTopicToRecommendRightImg = (ImageView) view.findViewById(R.id.club_topic_to_recommend_right_img);
         }
-    }
+    }*/
 
 }

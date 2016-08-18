@@ -90,10 +90,12 @@
         android:layout_marginRight="12dp"
         android:layout_marginTop="10dp" />
     <include
-        android:id="@+id/dddd"
+        android:id="@+id/club_show_recommended_active"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/club_topic_to_recommended_activity"/>
+        layout="@layout/club_topic_to_recommended_activity"
+
+        />
     <RelativeLayout
         android:id="@+id/hostInfoPanel"
         android:layout_width="match_parent"
