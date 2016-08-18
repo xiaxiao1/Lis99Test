@@ -9,6 +9,7 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.lis99.mobile.R;
+import com.lis99.mobile.util.LocationUtil;
 
 public class LSClubTopicInfoLocation extends LSBaseActivity
 {
@@ -37,6 +38,7 @@ public class LSClubTopicInfoLocation extends LSBaseActivity
 		mBaiduMap = mMapView.getMap();
 		
 		LatLng latlng = new LatLng(Latitude, Longtitude);
+		latlng = LocationUtil.getinstance().gaode2baidu(latlng);
 
 		mBaiduMap.addOverlay(new MarkerOptions().position(latlng)
 				.icon(BitmapDescriptorFactory

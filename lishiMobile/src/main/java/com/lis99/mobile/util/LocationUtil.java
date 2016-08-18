@@ -109,7 +109,7 @@ public class LocationUtil
 		public void Location ( double latitude, double longitude, String cityName );
 	}
 //
-	public void gaode2baidu( LatLng sourceLatLng )
+	public LatLng gaode2baidu( LatLng sourceLatLng )
 	{
 		// 将google地图、soso地图、aliyun地图、mapabc地图和amap地图// 所用坐标转换成百度坐标
 		CoordinateConverter converter  = new CoordinateConverter();
@@ -117,6 +117,7 @@ public class LocationUtil
 		// sourceLatLng待转换坐标
 		converter.coord(sourceLatLng);
 		LatLng desLatLng = converter.convert();
+		return desLatLng;
 
 	}
 	

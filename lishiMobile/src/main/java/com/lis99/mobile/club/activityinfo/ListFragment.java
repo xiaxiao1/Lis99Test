@@ -49,6 +49,7 @@ import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
+import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.NativeEntityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -314,6 +315,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
 
         LatLng latlng = new LatLng(latitude, longitude);
+        latlng = LocationUtil.getinstance().gaode2baidu(latlng);
         mBaiduMap.clear();
         mBaiduMap.addOverlay(new MarkerOptions().position(latlng)
                 .icon(BitmapDescriptorFactory
