@@ -4,6 +4,33 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
     >
+    <LinearLayout
+        android:id="@+id/afullinfo_player_fengexian_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3dbd0"
+
+            android:layout_marginTop="30dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#f7f3ec"
+
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e3dbd0"
+
+            />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,13 +39,13 @@
         android:textSize="17sp"
         android:textColor="#525252"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         />
     <View
         android:layout_width="36dp"
         android:layout_height="2dp"
         android:background="@drawable/title_line"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="11dp"
         android:layout_gravity="center_horizontal"
         />
     <!--装备1-->

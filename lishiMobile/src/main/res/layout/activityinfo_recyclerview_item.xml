@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+              android:layout_height="18dp"
+              android:layout_marginLeft="4dp"
+              android:layout_marginRight="4dp"
     android:gravity="center"
     >
         <TextView
@@ -10,11 +12,11 @@
             android:layout_width="wrap_content"
             android:layout_height="18dp"
             android:gravity="center"
-            android:layout_margin="4dp"
+
             android:textSize="11sp"
             android:text="标签"
             android:textColor="#cdad76"
-            android:background="@drawable/topic_tag_bg"
+            android:background="@drawable/club_top_header_tag_bg"
             />
 
 

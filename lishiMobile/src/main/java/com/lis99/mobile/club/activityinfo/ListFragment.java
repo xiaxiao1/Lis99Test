@@ -53,6 +53,7 @@ import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.NativeEntityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -98,7 +99,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     //领队区域
     RelativeLayout leaderArea_rl;
     //领队view分割线
-    LinearLayout leader_fengexian_ll;
+//    LinearLayout leader_fengexian_ll;
     //领队头像
     RoundedImageView leaderHead_img;
     //领队名字
@@ -118,7 +119,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     TextView leaderFrom_tv;
 
     //玩家评论view分割线
-    LinearLayout player_fengexian_ll;
+  //  LinearLayout player_fengexian_ll;
 
     /*//玩家评论view 动态是否显示
     View  playerEvaluations_view;
@@ -184,6 +185,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     int currentSize;
     //活动详情一共多少item数目
     int fullSize;
+    //存放动态加载的亮点views
+    List<View> lightSpots_list=new ArrayList<View>();
 
 
     //回调赋值给Activity
@@ -243,7 +246,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         listView.setAlphaInterface(alphaInterface);
         listView.setAdapter(fullInfoAdapter);
 
-        initBaiduMap();
+     //   initBaiduMap();
 
 
 
@@ -258,7 +261,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
         if (model!=null) {
 
-        if (model.activityimgs.size() == 0)
+        if (model.activityimgs==null||model.activityimgs.size() == 0)
             return;
 
         ImageLoader.getInstance().displayImage(model.activityimgs.get(position).images, banner,
@@ -309,28 +312,16 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     public void initBaiduMap(){
 
-//        mMapView.showZoomControls(false);
-//        mMapView.showScaleControl(false);
 
-        mBaiduMap = mMapView.getMap();
-//        mBaiduMap.getUiSettings().setRotateGesturesEnabled(false);
-//        mBaiduMap.getUiSettings().setAllGesturesEnabled(false);
-        //普通地图
-        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
 
-        LatLng point = new LatLng(longitude, latitude);
-
-        //构建Marker图标
-        BitmapDescriptor bitmap = BitmapDescriptorFactory
-                .fromResource(R.drawable.icon_gcoding);
-        //构建MarkerOption，用于在地图上添加Marker
-        OverlayOptions option = new MarkerOptions()
-                .position(point)
-                .icon(bitmap);
-        mBaiduMap.addOverlay(option);
+        LatLng latlng = new LatLng(latitude, longitude);
+        mBaiduMap.clear();
+        mBaiduMap.addOverlay(new MarkerOptions().position(latlng)
+                .icon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.icon_gcoding)));
 
         MapStatus mMapStatus = new MapStatus.Builder()
-                .target(point)
+                .target(latlng)
                 .zoom(11)
                 .build();
         //定义MapStatusUpdate对象，以便描述地图状态将要发生的变化
@@ -357,6 +348,13 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 startActivity(intent);
             }
         });
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        mMapView.onResume();
+
 
     }
 
@@ -513,7 +511,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position)
     {
-        holder.tv.setText(recycler_datas.get(position).name);
+        String tagName=recycler_datas.get(position).name;
+        if (tagName.length() > 7) {
+            holder.tv.setText("    "+tagName.substring(0,7) + "..." + "    ");
+        } else {
+            holder.tv.setText("    "+tagName+"    ");
+        }
         holder.tv.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
@@ -606,6 +609,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         //百度地图区域
         mMapView = (MapView) header.findViewById(R.id.afullinfo_header_bmapView);
         map_view = (View) header.findViewById(R.id.afullinfo_header_mapclick);
+        mMapView.showZoomControls(false);
+        mMapView.showScaleControl(false);
+
+        mBaiduMap = mMapView.getMap();
+        mBaiduMap.getUiSettings().setRotateGesturesEnabled(false);
+        mBaiduMap.getUiSettings().setAllGesturesEnabled(false);
         baiduMap_rl=(RelativeLayout)header.findViewById(R.id.afullinfo_header_baidumap_rl);
         noMap_img=(ImageView)header.findViewById(R.id.afullinfo_header_nomap_img);
         destinationName_tv=(TextView)header.findViewById(R.id.afullinfo_header_destination_name_tv);
@@ -630,7 +639,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         labels[0]=leaderlabel1_tv;
         labels[1]=leaderlabel2_tv;
         labels[2]=leaderlabel3_tv;
-        leader_fengexian_ll=(LinearLayout)footer_ownerinfo.findViewById(R.id.afullinfo_leader_fengexian_ll);
+//        leader_fengexian_ll=(LinearLayout)footer_ownerinfo.findViewById(R.id.afullinfo_leader_fengexian_ll);
         leaderArea_rl=(RelativeLayout)footer_ownerinfo.findViewById(R.id.footer4openmore_ownerarea_rl);
         //点击领队区域跳转
         leaderArea_rl.setOnClickListener(new View.OnClickListener() {
@@ -655,7 +664,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         leaderlabels_ll=(LinearLayout)footer_ownerinfo.findViewById(R.id.footer4openmore_labels_ll);
 
         //玩家分割线
-        player_fengexian_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_player_fengexian_ll);
+//        player_fengexian_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_player_fengexian_ll);
         //装备
         zhuangbei1_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_1);
         zhuangbei2_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_2);
@@ -733,7 +742,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置百度地图
                 if (model.desti_id != null && !model.desti_id.equals("0")) {
                     //如果关联了目的地并且有坐标
-                    if (!model.aimlongitude.equals("") && !model.aimlatitude.equals("")) {
+                    if (!model.aimlongitude.equals("0") && !model.aimlatitude.equals("0")) {
                         longitude = Double.parseDouble(model.aimlongitude);
                         latitude = Double.parseDouble(model.aimlatitude);
                         if (longitude != -1 && latitude != -1) {
@@ -749,7 +758,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                             baiduMap_rl.setVisibility(View.VISIBLE);
                             noMap_img.setVisibility(View.GONE);
                             initBaiduMap();
-                            destinationName_tv.setText(model.harddesc);
+                            destinationName_tv.setText(model.tagname);
                         }
 
                     }
@@ -822,7 +831,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置玩家评论
                 if (model.commentlist != null && model.commentlist.size() != 0) {
                     Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
-                    leader_fengexian_ll.setVisibility(View.VISIBLE);
+//                    leader_fengexian_ll.setVisibility(View.VISIBLE);
                     footer_playerEvaluation.setVisibility(View.VISIBLE);
                     listView.addFooterView(footer_playerEvaluation);
                     int size = model.commentlist.size();
@@ -914,14 +923,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 } else {
                     Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
                     footer_playerEvaluation.setVisibility(View.GONE);
-                    leader_fengexian_ll.setVisibility(View.GONE);
+//                    leader_fengexian_ll.setVisibility(View.GONE);
                 }
 
                 //设置推荐装备
                 if (model.zhuangbeilist != null && model.zhuangbeilist.size() > 0) {
                     Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
                     listView.addFooterView(footer_zhuangbei);
-                    player_fengexian_ll.setVisibility(View.VISIBLE);
+//                    player_fengexian_ll.setVisibility(View.VISIBLE);
                     int size = model.zhuangbeilist.size();
                     //第一个装备
                     if (size > 0) {
@@ -992,7 +1001,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     }
                 } else {
                     Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
-                    player_fengexian_ll.setVisibility(View.GONE);
+//                    player_fengexian_ll.setVisibility(View.GONE);
                 }
 
                 listView.addFooterView(footView);
@@ -1014,7 +1023,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             txt.setTextColor(Color.parseColor("#999999"));
             txt.setTextSize(14);
             lightspots_ll.addView(spot);
+            lightSpots_list.add(spot);
         }
+    }
+    public void cleanLightSpots(){
+        for (int i=0;i<lightSpots_list.size();i++) {
+            lightspots_ll.removeView(lightSpots_list.get(i));
+        }
+        lightSpots_list.clear();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -1030,6 +1046,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         listView.removeFooterView(footer_playerEvaluation);
         listView.removeFooterView(footView);
         model=null;
+        cleanLightSpots();
        // fullInfoAdapter=null;
     }
 
