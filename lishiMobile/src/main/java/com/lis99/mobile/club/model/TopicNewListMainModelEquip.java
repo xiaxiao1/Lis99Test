@@ -11,6 +11,32 @@ import java.util.ArrayList;
 public class TopicNewListMainModelEquip extends TopicNewListMainModelTitle implements LikeInterface {
 
 
+    /**
+     * 为了修改推荐活动入口位置添加的字段，只在话题帖底部的关联推荐活动时使用
+     * is_tagid
+     * reason
+     * title
+     */
+    public int is_tagid;
+    public String reason;
+
+    public int getIs_tagid() {
+        return is_tagid;
+    }
+
+    public void setIs_tagid(int is_tagid) {
+        this.is_tagid = is_tagid;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+//*****************************************************************************************//
     @SerializedName("zhuangbei_id")
     public int zhuangbei_id;
     @SerializedName("zhuangbei_image")

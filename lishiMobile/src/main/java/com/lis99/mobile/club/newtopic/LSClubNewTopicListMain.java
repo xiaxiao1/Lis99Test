@@ -198,6 +198,10 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
 
                     TopicNewListMainModelEquip equipModel = model;
 
+                    /*if (model.getIs_tagid()>0) {
+                        equipModel.setIs_tagid(model.getIs_tagid());
+                        equipModel.setRecommend_reason(model.getReason());
+                    }*/
                     mList.add(equipModel);
                     if ( model.topicsreplylist == null || model.topicsreplylist.size() == 0 )
                     {
@@ -209,13 +213,13 @@ public class LSClubNewTopicListMain extends LSBaseActivity implements
                     }
                     //根据is_tagid判断是否有推荐活动，有则将info添加到List尾端
                     //组装话题帖底部到推荐活动页的入口信息
-                    Log.i("xx","is_tagid:"+model.getIs_tagid());
-                    if (model.getIs_tagid()>0) {
-                        IsToRecommendActive info=new IsToRecommendActive();
-                        info.setIs_tagid(model.getIs_tagid());
-                        info.setReason(model.getReason());
-                        mList.add(info);
-                    }
+//                    Log.i("xx","is_tagid:"+model.getIs_tagid());
+//                    if (model.getIs_tagid()>0) {
+//                        IsToRecommendActive info=new IsToRecommendActive();
+//                        info.setIs_tagid(model.getIs_tagid());
+//                        info.setReason(model.getReason());
+//                        mList.add(info);
+//                    }
                     //else语句块是测试用例，正常时应该注释掉
                     /*else{
                         IsToRecommendActive info=new IsToRecommendActive();
