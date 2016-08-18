@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -83,14 +84,14 @@
         android:layout_height="1px"
         android:layout_marginLeft="12dp"
         android:id="@+id/sepHalf"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/imageView"
         android:background="#eee"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:id="@+id/sepAll"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/imageView"
         android:background="#eee"/>
 
 

@@ -125,12 +125,12 @@ public class MyApplyItem extends MyBaseAdapter{
         if ( i == 0 )
         {
             holder.delete.setVisibility(View.GONE);
-            holder.line.setVisibility(View.VISIBLE);
+//            holder.line.setVisibility(View.VISIBLE);
         }
         else
         {
             holder.delete.setVisibility(View.VISIBLE);
-            holder.line.setVisibility(View.GONE);
+//            holder.line.setVisibility(View.GONE);
         }
 
         holder.title.setText("报名人" + (i + 1));

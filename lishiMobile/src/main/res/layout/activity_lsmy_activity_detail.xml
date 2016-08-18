@@ -313,6 +313,7 @@
                         android:id="@+id/btn_cancel"
                         android:textColor="@color/text_color_black"
                         android:text="取消报名"
+                        android:textSize="13sp"
                     />
 
                     <Button
@@ -323,6 +324,7 @@
                         android:id="@+id/btn_pay"
                         android:textColor="@color/white"
                         android:text="去支付"
+                        android:textSize="13sp"
                     />
 
                 </LinearLayout>

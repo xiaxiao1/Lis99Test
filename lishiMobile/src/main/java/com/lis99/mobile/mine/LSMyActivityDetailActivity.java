@@ -270,7 +270,14 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 adapter = new LSMyActivityPersonAdapter(LSMyActivityDetailActivity.this, activity.apply_info);
                 listView.setAdapter(adapter);
 
-                tv_info.setText(activity.remark);
+                if ( TextUtils.isEmpty(activity.remark))
+                {
+                    tv_info.setText("无");
+                }
+                else
+                {
+                    tv_info.setText(activity.remark);
+                }
 
                 personTitleView.setText("报名人员（共" + (activity.apply_info == null ? 0 : activity.apply_info.size()) + "）");
 
