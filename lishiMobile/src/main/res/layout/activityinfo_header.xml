@@ -19,7 +19,7 @@
         android:text="活动title"
         android:textSize="20sp"
         android:textColor="#525252"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:lineSpacingExtra="7dp"
@@ -31,14 +31,14 @@
         android:text="描述"
         android:textSize="12sp"
         android:textColor="#999999"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         >
         <TextView
@@ -84,7 +84,7 @@
             android:divider="#ffff0000"
             android:dividerHeight="10dp"
             android:layout_marginLeft="13dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="10dp"
             android:fadingEdge="none"
             android:requiresFadingEdge="none"
             android:overScrollFooter="@android:color/transparent"
@@ -101,7 +101,7 @@
         android:orientation="vertical"
         android:layout_marginLeft="17dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:visibility="gone"
         >
         <TextView
@@ -233,8 +233,8 @@
     <ImageView
         android:id="@+id/afullinfo_header_nomap_img"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:src="@drawable/huodongxiangqing_default_map"
@@ -309,7 +309,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -324,7 +324,7 @@
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/title_line"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="11dp"
 
             />
     </LinearLayout>

@@ -109,9 +109,19 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:alpha="1.0"
         >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="49.5dp"
+            android:visibility="invisible"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#dedede"
+            />
     </LinearLayout>
 
 
@@ -130,7 +140,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ls_club_back_icon_bg"
-            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             />
     </RelativeLayout>
 

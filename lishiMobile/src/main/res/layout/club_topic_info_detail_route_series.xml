@@ -21,7 +21,6 @@
             android:id="@+id/layout_gather_time"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             >
 
             <TextView
@@ -29,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="集合时间"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 />
 
             <ImageView
@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/club_info_dot_up"
+                android:layout_centerVertical="true"
                 />
 
         </RelativeLayout>
@@ -58,7 +59,6 @@
             android:id="@+id/layout_location"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             >
 
             <TextView
@@ -66,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="集合地点"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 android:id="@+id/tv"
                 />
 
@@ -74,7 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/club_info_dot_right"
+                android:src="@drawable/jihedidian_arrow"
+                android:layout_centerVertical="true"
                 />
 
             <TextView
@@ -89,6 +91,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 />
 
 
@@ -125,7 +128,7 @@
             android:id="@+id/layout_journey"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
+
             >
 
             <TextView
@@ -133,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:text="具体行程"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 />
 
             <ImageView
@@ -141,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/club_info_dot_up"
+                android:layout_centerVertical="true"
                 />
 
         </RelativeLayout>
@@ -163,7 +168,6 @@
             android:id="@+id/layout_equip"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             >
 
             <TextView
@@ -171,6 +175,7 @@
                 android:layout_height="wrap_content"
                 android:text="装备建议"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 />
 
             <ImageView
@@ -179,6 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/club_info_dot_down"
+                android:layout_centerVertical="true"
                 />
 
         </RelativeLayout>
@@ -200,7 +206,6 @@
             android:id="@+id/layout_price"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             >
 
             <TextView
@@ -208,6 +213,7 @@
                 android:layout_height="wrap_content"
                 android:text="费用说明"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 />
 
             <ImageView
@@ -216,6 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/club_info_dot_down"
+                android:layout_centerVertical="true"
                 />
 
         </RelativeLayout>
@@ -237,7 +244,6 @@
             android:id="@+id/layout_readme"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             >
 
             <TextView
@@ -245,6 +251,7 @@
                 android:layout_height="wrap_content"
                 android:text="免责声明"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 />
 
             <ImageView
@@ -253,6 +260,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/club_info_dot_down"
+                android:layout_centerVertical="true"
                 />
 
         </RelativeLayout>
@@ -274,7 +282,6 @@
             android:id="@+id/layout_safely"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             >
 
             <TextView
@@ -282,6 +289,7 @@
                 android:layout_height="wrap_content"
                 android:text="注意事项"
                 android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
                 />
 
             <ImageView
@@ -290,6 +298,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/club_info_dot_down"
+                android:layout_centerVertical="true"
                 />
 
         </RelativeLayout>

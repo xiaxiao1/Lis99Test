@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="18dp"
-        android:text="上拉查看图文详情"
+        android:text="上拉查看详细行程"
         android:textColor="#525252"
         android:layout_centerInParent="true"
         android:textSize="14dp"/>
