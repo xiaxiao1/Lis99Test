@@ -222,14 +222,16 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                              @Nullable Bundle savedInstanceState) {
         //初始化百度地图
         SDKInitializer.initialize(ListFragment.this.getActivity().getApplicationContext());
-        return inflater.inflate(R.layout.activityinfo_layout_listview, null);
+        View view = inflater.inflate(R.layout.activityinfo_layout_listview, null);
+        initViews(view);
+        return view;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initViews(view);
+
         activity_id=this.getActivity().getIntent().getIntExtra("topicID",0);
         getInfo();
         //下拉刷新
@@ -548,13 +550,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     public void initViews(View view){
         listView = (RefreshListview) view.findViewById(R.id.list);
         header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
-//        listView.addHeaderView(header);
         footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
         footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
         footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
-
+//
+//        listView.addHeaderView(header);
 //        listView.addFooterView(footer_playerEvaluation);
 //        listView.addFooterView(footer_zhuangbei);
+//        listView.addFooterView(footer_ownerinfo);
         footView = getActivity().getLayoutInflater()
                 .inflate(R.layout.activityinfo_slidedetails_marker_default_layout, null);
         footView.setOnClickListener(new View.OnClickListener() {
