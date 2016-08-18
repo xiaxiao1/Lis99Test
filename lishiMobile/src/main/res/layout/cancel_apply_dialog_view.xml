@@ -18,11 +18,16 @@
             android:textColor="@color/color_nine"
             android:text="选择理由"
             android:gravity="center_horizontal"
-            android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:id="@+id/tv_title"
             />
 
+        <View android:layout_width="match_parent" android:layout_height="1px"
+              android:background="@color/color_eee"
+              android:layout_below="@id/tv_title"
+              android:layout_marginTop="10dp"
+              android:id="@+id/line"
+              />
 
 
         <LinearLayout
@@ -61,7 +66,7 @@
         <ListView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   style="@style/listViewStyle"
-                  android:layout_below="@+id/tv_title"
+                  android:layout_below="@+id/line"
                   android:layout_above="@+id/bottombar"
                   android:paddingRight="20dp"
                   android:paddingLeft="20dp"
