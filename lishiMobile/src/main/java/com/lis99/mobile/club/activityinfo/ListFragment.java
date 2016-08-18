@@ -49,7 +49,6 @@ import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
-import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.NativeEntityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -88,6 +87,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     View map_view;
     //没有地图时
     ImageView noMap_img;
+    //活动标题区域
+    LinearLayout title_area_ll;
     //活动标题
     TextView activeTitle_tv;
     //活动说明
@@ -121,7 +122,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     TextView leaderFrom_tv;
 
     //玩家评论view分割线
-  //  LinearLayout player_fengexian_ll;
+    //  LinearLayout player_fengexian_ll;
 
     /*//玩家评论view 动态是否显示
     View  playerEvaluations_view;
@@ -222,18 +223,18 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                              @Nullable Bundle savedInstanceState) {
         //初始化百度地图
         SDKInitializer.initialize(ListFragment.this.getActivity().getApplicationContext());
-        View view = inflater.inflate(R.layout.activityinfo_layout_listview, null);
-        initViews(view);
-        return view;
+        return inflater.inflate(R.layout.activityinfo_layout_listview, null);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        initViews(view);
         activity_id=this.getActivity().getIntent().getIntExtra("topicID",0);
         getInfo();
+
+
         //下拉刷新
         listView.setonRefreshListener(new RefreshListview.OnRefreshListener() {
             @Override
@@ -246,9 +247,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             }
         });
         listView.setAlphaInterface(alphaInterface);
-     //   listView.setAdapter(fullInfoAdapter);
+        listView.setAdapter(fullInfoAdapter);
 
-     //   initBaiduMap();
+        //   initBaiduMap();
 
 
 
@@ -263,11 +264,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
         if (model!=null) {
 
-        if (model.activityimgs==null||model.activityimgs.size() == 0)
-            return;
+            if (model.activityimgs==null||model.activityimgs.size() == 0)
+                return;
 
-        ImageLoader.getInstance().displayImage(model.activityimgs.get(position).images, banner,
-                ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
+            ImageLoader.getInstance().displayImage(model.activityimgs.get(position).images, banner,
+                    ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
         }
     }
 
@@ -317,7 +318,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
 
         LatLng latlng = new LatLng(latitude, longitude);
-        latlng = LocationUtil.getinstance().gaode2baidu(latlng);
         mBaiduMap.clear();
         mBaiduMap.addOverlay(new MarkerOptions().position(latlng)
                 .icon(BitmapDescriptorFactory
@@ -339,6 +339,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //跳转地图
                 Intent intent = new Intent(ListFragment.this.getActivity(), LSClubTopicInfoLocation.class);
 
+               /* Double latitude2 =latitude;
+                Double longtitude2 = Common.string2Double(laty2);*/
                 if ( latitude == -1 || longitude == -1 )
                 {
                     Common.toast("暂时没集合地图位置");
@@ -349,8 +351,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 startActivity(intent);
             }
         });
-
-        mMapView.onPause();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mMapView.onResume();
 
 
@@ -424,9 +429,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if (datas.size()==0) {
-                return convertView;
-            }
             ClubTopicActiveSeriesLineMainModel.ActivitydetailEntity entity=datas.get(position);
             if (null == convertView) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.activityinfo_layout_list_item, null);
@@ -496,85 +498,87 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
      * recyclerView的adapter
      */
     class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>
-{
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
 
-        MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                ListFragment.this.getActivity()).inflate(R.layout.activityinfo_recyclerview_item, parent,
-                false));
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position)
-    {
-        String tagName=recycler_datas.get(position).name;
-        if (tagName.length() > 7) {
-            holder.tv.setText("    "+tagName.substring(0,7) + "..." + "    ");
-        } else {
-            holder.tv.setText("    "+tagName+"    ");
-        }
-        holder.tv.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onClick(View v) {
-                ActivityUtil.goSpecialInfoActivity(ListFragment.this.getActivity(), recycler_datas.get(position).id);
-
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount()
-    {
-        return recycler_datas.size();
-    }
-
-    class MyViewHolder extends RecyclerView.ViewHolder
-    {
-
-        TextView tv;
-
-        public MyViewHolder(View view)
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        @Override
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
         {
-            super(view);
-            tv = (TextView) view.findViewById(R.id.afullinfo_recycler_item_tv);
+
+            MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
+                    ListFragment.this.getActivity()).inflate(R.layout.activityinfo_recyclerview_item, parent,
+                    false));
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(MyViewHolder holder, final int position)
+        {
+            String tagName=recycler_datas.get(position).name;
+            if (tagName.length() > 7) {
+                holder.tv.setText("    "+tagName.substring(0,7) + "..." + "    ");
+            } else {
+                holder.tv.setText("    "+tagName+"    ");
+            }
+            holder.tv.setOnClickListener(new View.OnClickListener() {
+                @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+                @Override
+                public void onClick(View v) {
+                    ActivityUtil.goSpecialInfoActivity(ListFragment.this.getActivity(), recycler_datas.get(position).id);
+
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount()
+        {
+            return recycler_datas.size();
+        }
+
+        class MyViewHolder extends RecyclerView.ViewHolder
+        {
+
+            TextView tv;
+
+            public MyViewHolder(View view)
+            {
+                super(view);
+                tv = (TextView) view.findViewById(R.id.afullinfo_recycler_item_tv);
+            }
         }
     }
-}
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void initViews(View view){
         listView = (RefreshListview) view.findViewById(R.id.list);
         header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
+        listView.addHeaderView(header);
+        header.setVisibility(View.INVISIBLE);
+        title_area_ll=(LinearLayout)header.findViewById(R.id.ownerinfo_huodong_title_ll);
+        title_area_ll.setVisibility(View.INVISIBLE);
         footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
         footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
         footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
-//
-//        listView.addHeaderView(header);
+        listView.addFooterView(footer_ownerinfo);
+        footer_ownerinfo.setVisibility(View.INVISIBLE);
 //        listView.addFooterView(footer_playerEvaluation);
 //        listView.addFooterView(footer_zhuangbei);
-//        listView.addFooterView(footer_ownerinfo);
         footView = getActivity().getLayoutInflater()
                 .inflate(R.layout.activityinfo_slidedetails_marker_default_layout, null);
         footView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mSlideDetailsLayout.smoothOpen(true);
-            //    mSlideDetailsLayout.close=false;
+                //    mSlideDetailsLayout.close=false;
             }
         });
-     //   listView.addFooterView(footView);
+        //   listView.addFooterView(footView);
 
 
         //正式开始
         activeTitle_tv = (TextView) header.findViewById(R.id.afullinfo_active_title_tv);
         activeNote_tv = (TextView) header.findViewById(R.id.afullinfo_active_note_tv);
         activePrice_tv = (TextView) header.findViewById(R.id.afullinfo_active_nowprice_tv);
-        Qi_tv=(TextView)header.findViewById(R.id.afullinfo_active_qi_tv);
 
         //顶部轮播图片
         bannerView=(BannerView)header.findViewById(R.id.afullinfo_lv_header_banner_banner);
@@ -630,9 +634,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             @Override
             public void onClick(View v) {
 
-                    Intent i = new Intent(ListFragment.this.getActivity(), LSClubDetailActivity.class);
-                    i.putExtra("clubID", clubID);
-                    startActivity(i);
+                Intent i = new Intent(ListFragment.this.getActivity(), LSClubDetailActivity.class);
+                i.putExtra("clubID", clubID);
+                startActivity(i);
 
             }
         });
@@ -699,15 +703,15 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     listView.addFooterView(footView);
                     return;
                 }
+
                 clubID = model.clubId;
-                listView.addHeaderView(header);
+                header.setVisibility(View.VISIBLE);
                 //设置活动标题
                 activeTitle_tv.setText(model.getTitle());
-                //设置活动备注  后期决定去掉
-//                activeNote_tv.setText(model.batchDesc);
+                //设置活动备注
+                activeNote_tv.setText(model.batchDesc);
                 //设置价格
                 activePrice_tv.setText("￥"+model.consts);
-                Qi_tv.setText("起");
                 Log.i("xx", model.getTitle() + "ccc");
 
                 //设置顶部轮播图
@@ -755,7 +759,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                                 @Override
                                 public void onClick(View v) {
                                     //去往目的地详情页
-                                        goDestinationInfo(Integer.parseInt(model.aimid),Integer.parseInt(model.desti_id));
+                                    goDestinationInfo(Integer.parseInt(model.desti_id),Integer.parseInt(model.aimid));
                                 }
                             });
                             baiduMap_rl.setVisibility(View.VISIBLE);
@@ -790,17 +794,18 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //活动图文
                 if (model.activitydetail!=null&&model.activitydetail.size()>0) {
                     //初始化活动详情的图文信息
-
-                    fullInfoAdapter=new FullInfoAdapter(model.activitydetail);
-
+                    title_area_ll.setVisibility(View.VISIBLE);
+                    if (fullInfoAdapter==null) {
+                        fullInfoAdapter=new FullInfoAdapter(model.activitydetail);
+                    }
                     fullSize=model.activitydetail.size();
                     currentSize=fullSize>3?3:fullSize;
                     listView.setAdapter(fullInfoAdapter);
                 }
 
                 //设置leader头像leaderHead_img,ImageUtil.getclub_topic_headImageOptions()
-                listView.addFooterView(footer_ownerinfo);
                 leaderId=model.leaderUserid;
+                footer_ownerinfo.setVisibility(View.VISIBLE);
                 if (!TextUtils.isEmpty(model.leaderheadicon)) {
                     ImageLoader.getInstance().displayImage(model.leaderheadicon,leaderHead_img , ImageUtil.getclub_topic_headImageOptions());
                 }
@@ -819,11 +824,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置leader标签
                 if (model.leaderdesc!=null&&model.leaderdesc.size()!=0) {
                     leaderlabels_ll.setVisibility(View.VISIBLE);
-                    int leaderLabels=model.leaderdesc.size();
-                    if (leaderLabels>3) {
-                        leaderLabels=3;
+                    int labelSize=model.leaderdesc.size();
+                    if (labelSize>3) {
+                        labelSize=3;
                     }
-                    for(int i=0;i<leaderLabels;i++){
+                    for(int i=0;i<labelSize;i++){
                         String s_label=model.leaderdesc.get(i);
                         labels[i].setVisibility(View.VISIBLE);
                         labels[i].setText(s_label);
@@ -846,7 +851,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     //第一条评论
                     if (size > 0) {
                         RoundedImageView playerHead1=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head1_img);
-                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(0).userhead, playerHead1, ImageUtil.getclub_topic_headImageOptions());
+                        //     ImageLoader.getInstance().displayImage(model.commentlist.get(0).userhead, playerHead1, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name1_tv);
                         playerName1.setText(model.commentlist.get(0).nickname);
                         RatingBar ratBar1=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level1_img);
@@ -868,13 +873,13 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                                 }
                             }
                         }else{
-                        //    leaderlabels_ll.setVisibility(View.GONE);
+                            //    leaderlabels_ll.setVisibility(View.GONE);
                         }
                     }
                     //第二条评论
                     if (size > 1) {
                         RoundedImageView playerHead2=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head2_img);
-                    //    ImageLoader.getInstance().displayImage(model.commentlist.get(1).userhead, playerHead2, ImageUtil.getclub_topic_headImageOptions());
+                        //    ImageLoader.getInstance().displayImage(model.commentlist.get(1).userhead, playerHead2, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name2_tv);
                         playerName2.setText(model.commentlist.get(1).nickname);
                         RatingBar ratBar2=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level2_img);
@@ -896,13 +901,13 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                                 }
                             }
                         }else{
-                        //    leaderlabels_ll.setVisibility(View.GONE);
+                            //    leaderlabels_ll.setVisibility(View.GONE);
                         }
                     }
                     //第三条评论
                     if (size > 2) {
                         RoundedImageView playerHead3=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head3_img);
-                   //     ImageLoader.getInstance().displayImage(model.commentlist.get(2).userhead, playerHead3, ImageUtil.getclub_topic_headImageOptions());
+                        //     ImageLoader.getInstance().displayImage(model.commentlist.get(2).userhead, playerHead3, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name3_tv);
                         playerName3.setText(model.commentlist.get(2).nickname);
                         RatingBar ratBar3=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level3_img);
@@ -1050,18 +1055,16 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     }
 
     public void cleanInfo(){
-        listView.removeHeaderView(header);
-        listView.removeFooterView(footer_ownerinfo);
         listView.removeFooterView(footer_zhuangbei);
         listView.removeFooterView(footer_playerEvaluation);
         listView.removeFooterView(footView);
-        model=null;
+        header.setVisibility(View.INVISIBLE);
+        title_area_ll.setVisibility(View.INVISIBLE);
+        footer_ownerinfo.setVisibility(View.INVISIBLE);
         listView.setAdapter(null);
-//        fullInfoAdapter=null;
-      /*  fullInfoAdapter.datas.clear();
-        fullInfoAdapter.notifyDataSetChanged();*/
+        model=null;
         cleanLightSpots();
-       //
+        // fullInfoAdapter=null;
     }
 
     //  跳转目的地详情
@@ -1073,12 +1076,5 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         intent.putExtra("tagID", tagId);
         startActivity(intent);
 
-    }
-    public void hideView(){
-     //   header.setVisibility(View.INVISIBLE);
-    }
-
-    public void showView(){
-     //   header.setVisibility(View.VISIBLE);
     }
 }
