@@ -5,36 +5,44 @@
     >
 
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="280dp"
-        android:layout_height="280dp"
-        android:paddingBottom="10dp"
+        android:layout_height="wrap_content"
         >
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:singleLine="true"
             android:textColor="@color/color_nine"
             android:text="选择理由"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:id="@+id/tv_title"
             />
 
-        <View android:layout_width="match_parent" android:layout_height="1px"
+        <View android:layout_width="match_parent"
+              android:layout_height="1px"
               android:background="@color/color_eee"
-              android:layout_below="@id/tv_title"
-              android:layout_marginTop="10dp"
               android:id="@+id/line"
               />
 
+        <com.lis99.mobile.view.MyListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/listViewStyle"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:dividerHeight="0px"
+            android:divider="@null"
+            android:id="@+id/list"
+        />
 
         <LinearLayout
             android:id="@+id/bottombar"
             android:layout_alignParentBottom="true"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:orientation="horizontal"
             android:gravity="center"
             >
@@ -63,22 +71,7 @@
 
         </LinearLayout>
 
-        <ListView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  style="@style/listViewStyle"
-                  android:layout_below="@+id/line"
-                  android:layout_above="@+id/bottombar"
-                  android:paddingRight="20dp"
-                  android:paddingLeft="20dp"
-                  android:dividerHeight="1px"
-                  android:divider="@color/color_eee"
-                  android:id="@+id/list"
-        />
-
-
-
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>

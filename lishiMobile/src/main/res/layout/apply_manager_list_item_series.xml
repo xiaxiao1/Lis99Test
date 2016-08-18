@@ -10,7 +10,7 @@
         android:background="@drawable/apply_manager_item_bg"
         android:layout_margin="10dp"
         android:paddingTop="10dp"
-        android:paddingBottom="6dp"
+        android:paddingBottom="10dp"
         >
 
     <include android:layout_width="fill_parent"
@@ -94,7 +94,6 @@
         />
 
         <RelativeLayout
-
             android:id="@+id/bottombar"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
@@ -109,6 +108,7 @@
 
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                          android:paddingTop="5dp"
                           android:layout_centerVertical="true"
                           android:layout_alignParentRight="true"
             >
@@ -136,7 +136,9 @@
 
 
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:paddingTop="5dp"
                       android:id="@+id/tv_wait"
                       android:textColor="#ff7800"
                       android:text="请等待对方支付费用, 逾期未支付的报名将被系统拒绝"
