@@ -1,12 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}"
                 android:background="@color/white"
+              android:orientation="vertical"
 >
 
 
+    <include android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/list_line"
+             android:id="@+id/line"
+             />
 
 
         <LinearLayout
@@ -18,7 +24,6 @@
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
             >
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -67,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="真实姓名："
                     android:textSize="15sp"
-                    android:textColor="@color/color_six"
+                    android:textColor="@color/color_nine"
                     />
 
                 <EditText
@@ -113,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:text="手机号码："
                     android:textSize="15sp"
-                    android:textColor="@color/color_six"
+                    android:textColor="@color/color_nine"
                 />
 
                 <EditText
@@ -149,7 +154,7 @@
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="性别"
-                      android:textColor="@color/color_six"
+                      android:textColor="@color/color_nine"
                       android:layout_gravity="center_vertical"
             />
 
@@ -167,7 +172,7 @@
                     android:checked="true"
                     android:gravity="center"
                     android:text="男"
-                    android:textColor="#666"
+                    android:textColor="@color/text_color_black"
                     android:button="@drawable/club_radio_apply_man"
                     android:layout_marginRight="20dip"
                     android:paddingLeft="15dp"
@@ -178,7 +183,7 @@
                     style="@style/wrap_wrap"
                     android:gravity="center"
                     android:text="女"
-                    android:textColor="#666"
+                    android:textColor="@color/text_color_black"
                     android:button="@drawable/club_radio_apply_man"
                     android:paddingLeft="15dp"
                     />
@@ -206,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:text="身份证号："
                     android:textSize="15sp"
-                    android:textColor="@color/color_six"
+                    android:textColor="@color/color_nine"
                 />
 
                 <EditText
@@ -245,7 +250,7 @@
                     android:layout_height="wrap_content"
                     android:text="紧急联系电话："
                     android:textSize="15sp"
-                    android:textColor="@color/color_six"
+                    android:textColor="@color/color_nine"
                     />
 
                 <EditText
@@ -284,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:text="QQ："
                     android:textSize="15sp"
-                    android:textColor="@color/color_six"
+                    android:textColor="@color/color_nine"
                     />
 
                 <EditText
@@ -321,7 +326,7 @@
                     android:layout_height="wrap_content"
                     android:text="邮寄地址："
                     android:textSize="15sp"
-                    android:textColor="@color/color_six"
+                    android:textColor="@color/color_nine"
                     />
 
                 <EditText
@@ -354,4 +359,4 @@
         </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

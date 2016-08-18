@@ -112,6 +112,8 @@ public class MyApplyItem extends MyBaseAdapter{
 
             holder.iv_contacts = (ImageView) view.findViewById(R.id.iv_contacts);
 
+            holder.line = view.findViewById(R.id.line);
+
 
             view.setTag(holder);
         }
@@ -123,10 +125,12 @@ public class MyApplyItem extends MyBaseAdapter{
         if ( i == 0 )
         {
             holder.delete.setVisibility(View.GONE);
+            holder.line.setVisibility(View.VISIBLE);
         }
         else
         {
             holder.delete.setVisibility(View.VISIBLE);
+            holder.line.setVisibility(View.GONE);
         }
 
         holder.title.setText("报名人" + (i + 1));
@@ -445,6 +449,8 @@ public class MyApplyItem extends MyBaseAdapter{
         TextView title;
 
         ImageView iv_contacts;
+
+        View line;
 
     }
 
