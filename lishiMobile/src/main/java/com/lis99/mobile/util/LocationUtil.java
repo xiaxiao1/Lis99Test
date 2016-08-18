@@ -4,6 +4,8 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.utils.CoordinateConverter;
 import com.lis99.mobile.entry.application.DemoApplication;
 
 /***
@@ -105,6 +107,17 @@ public class LocationUtil
 	public interface getLocation
 	{
 		public void Location ( double latitude, double longitude, String cityName );
+	}
+//
+	public void gaode2baidu( LatLng sourceLatLng )
+	{
+		// 将google地图、soso地图、aliyun地图、mapabc地图和amap地图// 所用坐标转换成百度坐标
+		CoordinateConverter converter  = new CoordinateConverter();
+		converter.from(CoordinateConverter.CoordType.COMMON);
+		// sourceLatLng待转换坐标
+		converter.coord(sourceLatLng);
+		LatLng desLatLng = converter.convert();
+
 	}
 	
 }
