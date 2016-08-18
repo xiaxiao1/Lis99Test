@@ -93,6 +93,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     TextView activeNote_tv;
     //活动价格
     TextView activePrice_tv;
+    TextView Qi_tv;
     //活动亮点区域
     LinearLayout lightspots_ll;
 
@@ -230,8 +231,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         initViews(view);
         activity_id=this.getActivity().getIntent().getIntExtra("topicID",0);
         getInfo();
-
-
         //下拉刷新
         listView.setonRefreshListener(new RefreshListview.OnRefreshListener() {
             @Override
@@ -244,7 +243,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             }
         });
         listView.setAlphaInterface(alphaInterface);
-        listView.setAdapter(fullInfoAdapter);
+     //   listView.setAdapter(fullInfoAdapter);
 
      //   initBaiduMap();
 
@@ -336,8 +335,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //跳转地图
                 Intent intent = new Intent(ListFragment.this.getActivity(), LSClubTopicInfoLocation.class);
 
-               /* Double latitude2 =latitude;
-                Double longtitude2 = Common.string2Double(laty2);*/
                 if ( latitude == -1 || longitude == -1 )
                 {
                     Common.toast("暂时没集合地图位置");
@@ -348,11 +345,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 startActivity(intent);
             }
         });
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        mMapView.onPause();
         mMapView.onResume();
 
 
@@ -426,6 +420,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+            if (datas.size()==0) {
+                return convertView;
+            }
             ClubTopicActiveSeriesLineMainModel.ActivitydetailEntity entity=datas.get(position);
             if (null == convertView) {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.activityinfo_layout_list_item, null);
@@ -549,11 +546,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     public void initViews(View view){
         listView = (RefreshListview) view.findViewById(R.id.list);
         header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
-        listView.addHeaderView(header);
+//        listView.addHeaderView(header);
         footer_ownerinfo=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4ownerinfo,null);
         footer_playerEvaluation=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4player_evaluation,null);
         footer_zhuangbei=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_footer_4zhuangbei,null);
-        listView.addFooterView(footer_ownerinfo);
+
 //        listView.addFooterView(footer_playerEvaluation);
 //        listView.addFooterView(footer_zhuangbei);
         footView = getActivity().getLayoutInflater()
@@ -572,6 +569,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         activeTitle_tv = (TextView) header.findViewById(R.id.afullinfo_active_title_tv);
         activeNote_tv = (TextView) header.findViewById(R.id.afullinfo_active_note_tv);
         activePrice_tv = (TextView) header.findViewById(R.id.afullinfo_active_nowprice_tv);
+        Qi_tv=(TextView)header.findViewById(R.id.afullinfo_active_qi_tv);
 
         //顶部轮播图片
         bannerView=(BannerView)header.findViewById(R.id.afullinfo_lv_header_banner_banner);
@@ -696,15 +694,15 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     listView.addFooterView(footView);
                     return;
                 }
-
                 clubID = model.clubId;
-
+                listView.addHeaderView(header);
                 //设置活动标题
                 activeTitle_tv.setText(model.getTitle());
-                //设置活动备注
-                activeNote_tv.setText(model.batchDesc);
+                //设置活动备注  后期决定去掉
+//                activeNote_tv.setText(model.batchDesc);
                 //设置价格
                 activePrice_tv.setText("￥"+model.consts);
+                Qi_tv.setText("起");
                 Log.i("xx", model.getTitle() + "ccc");
 
                 //设置顶部轮播图
@@ -752,7 +750,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                                 @Override
                                 public void onClick(View v) {
                                     //去往目的地详情页
-                                        goDestinationInfo(Integer.parseInt(model.desti_id),Integer.parseInt(model.aimid));
+                                        goDestinationInfo(Integer.parseInt(model.aimid),Integer.parseInt(model.desti_id));
                                 }
                             });
                             baiduMap_rl.setVisibility(View.VISIBLE);
@@ -787,15 +785,16 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //活动图文
                 if (model.activitydetail!=null&&model.activitydetail.size()>0) {
                     //初始化活动详情的图文信息
-                   if (fullInfoAdapter==null) {
-                        fullInfoAdapter=new FullInfoAdapter(model.activitydetail);
-                    }
+
+                    fullInfoAdapter=new FullInfoAdapter(model.activitydetail);
+
                     fullSize=model.activitydetail.size();
                     currentSize=fullSize>3?3:fullSize;
                     listView.setAdapter(fullInfoAdapter);
                 }
 
                 //设置leader头像leaderHead_img,ImageUtil.getclub_topic_headImageOptions()
+                listView.addFooterView(footer_ownerinfo);
                 leaderId=model.leaderUserid;
                 if (!TextUtils.isEmpty(model.leaderheadicon)) {
                     ImageLoader.getInstance().displayImage(model.leaderheadicon,leaderHead_img , ImageUtil.getclub_topic_headImageOptions());
@@ -815,7 +814,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置leader标签
                 if (model.leaderdesc!=null&&model.leaderdesc.size()!=0) {
                     leaderlabels_ll.setVisibility(View.VISIBLE);
-                    for(int i=0;i<model.leaderdesc.size();i++){
+                    int leaderLabels=model.leaderdesc.size();
+                    if (leaderLabels>3) {
+                        leaderLabels=3;
+                    }
+                    for(int i=0;i<leaderLabels;i++){
                         String s_label=model.leaderdesc.get(i);
                         labels[i].setVisibility(View.VISIBLE);
                         labels[i].setText(s_label);
@@ -1042,12 +1045,18 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     }
 
     public void cleanInfo(){
+        listView.removeHeaderView(header);
+        listView.removeFooterView(footer_ownerinfo);
         listView.removeFooterView(footer_zhuangbei);
         listView.removeFooterView(footer_playerEvaluation);
         listView.removeFooterView(footView);
         model=null;
+        listView.setAdapter(null);
+//        fullInfoAdapter=null;
+      /*  fullInfoAdapter.datas.clear();
+        fullInfoAdapter.notifyDataSetChanged();*/
         cleanLightSpots();
-       // fullInfoAdapter=null;
+       //
     }
 
     //  跳转目的地详情
@@ -1059,5 +1068,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         intent.putExtra("tagID", tagId);
         startActivity(intent);
 
+    }
+    public void hideView(){
+     //   header.setVisibility(View.INVISIBLE);
+    }
+
+    public void showView(){
+     //   header.setVisibility(View.VISIBLE);
     }
 }
