@@ -627,7 +627,9 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
                 Intent intent = new Intent(getActivity(),
                         LSMineApplyActivity.class);
                 startActivity(intent);
-            } else if (v.getId() == R.id.applyManagePanel) {
+            }
+//            我发布的活动
+            else if (v.getId() == R.id.applyManagePanel) {
                 // applyManageDot.setVisibility(View.GONE);
                 Intent intent = new Intent(getActivity(),
                         LSMineApplyManageActivity.class);
