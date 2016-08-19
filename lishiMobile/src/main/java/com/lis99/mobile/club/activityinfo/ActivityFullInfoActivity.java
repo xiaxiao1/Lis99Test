@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
@@ -361,7 +360,8 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     }
     private void showBacthList ()
     {
-        PopWindowUtil.showActiveSeriesLine(activePosition, toPlay_tv, modelBatch, new CallBack() {
+
+        PopWindowUtil.showActiveSeriesLine(this, activePosition, toPlay_tv, modelBatch, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
 
