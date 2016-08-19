@@ -44,11 +44,11 @@ public class Common {
 
     private static String TAG = "MYUTIL";
 
-    public static int getHEIGHT ()
+    public static int getHEIGHT (Activity activity)
     {
         if ( HEIGHT != 0 ) return HEIGHT;
         DisplayMetrics metric = new DisplayMetrics();
-        LSBaseActivity.activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
         WIDTH = metric.widthPixels;  // 屏幕宽度（像素）
         HEIGHT = metric.heightPixels;  // 屏幕高度（像素）
         return HEIGHT;

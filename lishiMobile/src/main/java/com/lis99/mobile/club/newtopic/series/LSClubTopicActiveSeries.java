@@ -576,7 +576,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
 
     private void showBacthList ()
     {
-        PopWindowUtil.showActiveSeriesLine(activePosition, btnok, modelBatch, new CallBack() {
+        PopWindowUtil.showActiveSeriesLine(this, activePosition, btnok, modelBatch, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
 
