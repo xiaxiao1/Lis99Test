@@ -79,11 +79,38 @@
         </RelativeLayout>
 
         <View
-            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="15dp"
             android:background="#dedede" />
+
+        <RelativeLayout
+            android:id="@+id/rl_apply_manager"
+            android:clickable="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="15dp"
+            android:background="@drawable/ls_setting_item_bg"
+            android:paddingTop="15dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="14sp"
+                android:text="常用报名信息"
+                android:textColor="#666" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ls_second_main_arrow" />
+        </RelativeLayout>
+
+
 
         <RelativeLayout
             android:visibility="gone"

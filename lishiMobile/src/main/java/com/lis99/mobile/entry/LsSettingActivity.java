@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.club.widget.applywidget.ContactsActivity;
 import com.lis99.mobile.newhome.HelpMovieActivity;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.FileSizeUtil;
@@ -42,6 +43,8 @@ public class LsSettingActivity extends ActivityPattern {
 	TextView tv_size;
 
 	private View ls_movie;
+
+	private View rl_apply_manager;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -86,6 +89,9 @@ public class LsSettingActivity extends ActivityPattern {
 
 		ls_movie = findViewById(R.id.ls_movie);
 		ls_movie.setVisibility(View.GONE);
+
+		rl_apply_manager = findViewById(R.id.rl_apply_manager);
+		rl_apply_manager.setOnClickListener(this);
 
 	}
 
@@ -174,6 +180,11 @@ public class LsSettingActivity extends ActivityPattern {
 					logOut();
 				}
 			}, true, "取消", null);
+		}
+		else if ( v.getId() == rl_apply_manager.getId() )
+		{
+			Intent intent = new Intent(this, ContactsActivity.class);
+			startActivity(intent);
 		}
 	}
 
