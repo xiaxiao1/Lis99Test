@@ -6,7 +6,11 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="#ffffff"
+        />
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
