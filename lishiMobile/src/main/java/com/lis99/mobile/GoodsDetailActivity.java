@@ -16,7 +16,6 @@ import com.lis99.mobile.entity.bean.GetdisBean;
 import com.lis99.mobile.entity.bean.GoodsDetailBean;
 import com.lis99.mobile.entity.item.DisItem;
 import com.lis99.mobile.entity.item.GoodsDetailItem;
-import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.HttpNetRequest;
 import com.lis99.mobile.util.OptData;
 import com.lis99.mobile.util.QueryData;
@@ -87,7 +86,7 @@ public class GoodsDetailActivity extends BaseActivity {
 		DisplayImageOptions opt = new DisplayImageOptions.Builder()
 				.cacheInMemory().cacheOnDisc().imageScaleType(ist)
 				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		DemoApplication.initImageLoader(GoodsDetailActivity.this, opt);
+//		DemoApplication.initImageLoader(GoodsDetailActivity.this, opt);
 	}
 
 	@Override

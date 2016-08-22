@@ -17,7 +17,6 @@ import com.lis99.mobile.engine.base.BaseActivity;
 import com.lis99.mobile.entity.bean.FavBean;
 import com.lis99.mobile.entity.item.FavItem;
 import com.lis99.mobile.entry.adapter.FavAdapter;
-import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.HttpNetRequest;
 import com.lis99.mobile.util.OptData;
 import com.lis99.mobile.util.QueryData;
@@ -108,7 +107,7 @@ private ImageView iv_home;
 		DisplayImageOptions opt = new DisplayImageOptions.Builder()
 				.cacheInMemory().cacheOnDisc().imageScaleType(ist)
 				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		DemoApplication.initImageLoader(FavActivity.this, opt);
+//		DemoApplication.initImageLoader(FavActivity.this, opt);
 	}
 	public void getFav(){
 		

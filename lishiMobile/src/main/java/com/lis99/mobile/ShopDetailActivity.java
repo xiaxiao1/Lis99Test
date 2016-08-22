@@ -303,7 +303,7 @@ public class ShopDetailActivity extends ActivityPattern implements
 		DisplayImageOptions opt = new DisplayImageOptions.Builder()
 				.cacheInMemory().cacheOnDisc().imageScaleType(ist)
 				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		DemoApplication.initImageLoader(ShopDetailActivity.this, opt);
+//		DemoApplication.initImageLoader(ShopDetailActivity.this, opt);
 	}
 
 	public void initData() {

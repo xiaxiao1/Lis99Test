@@ -7,12 +7,12 @@ android {
     productFlavors {
         ttest {}
 
-        shichang {}
-        zhuzhan {}
-        tuiguang1 {}
+//        shichang {}
+//        zhuzhan {}
+//        tuiguang1 {}
 
-        sougou {}
-        baidu {}
+//        sougou {}
+//        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}
@@ -190,5 +190,5 @@ dependencies {
     compile files('libs/need_lib.jar')
     compile files('libs/jpush-android-2.1.5.jar')
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    //            compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
+//                compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
 }

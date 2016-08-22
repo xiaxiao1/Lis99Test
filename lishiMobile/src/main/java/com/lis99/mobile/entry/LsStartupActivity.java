@@ -92,6 +92,7 @@ public class LsStartupActivity extends ActivityPatternStartUp {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉信息
 
+//        启动页修改， 要修改 FirstActivity， 以及本Activity的Theme
         setContentView(R.layout.ls_startup);
 
 //        StatusUtil.setStatusBar(this);

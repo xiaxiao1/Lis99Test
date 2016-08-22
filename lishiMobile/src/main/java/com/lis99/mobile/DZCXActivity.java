@@ -14,7 +14,6 @@ import com.lis99.mobile.entity.bean.CXlistBean;
 import com.lis99.mobile.entity.item.CXListItem;
 import com.lis99.mobile.entity.item.CXinfo;
 import com.lis99.mobile.entry.adapter.DZCXAdapter;
-import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.util.HttpNetRequest;
 import com.lis99.mobile.util.OptData;
 import com.lis99.mobile.util.QueryData;
@@ -123,7 +122,7 @@ private LinearLayout ll_home;
 		DisplayImageOptions opt = new DisplayImageOptions.Builder()
 				.cacheInMemory().cacheOnDisc().imageScaleType(ist)
 				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		DemoApplication.initImageLoader(DZCXActivity.this, opt);
+//		DemoApplication.initImageLoader(DZCXActivity.this, opt);
 	}
 //	private BackBean getBAB(String text){
 //		BackBean backBean=new BackBean();

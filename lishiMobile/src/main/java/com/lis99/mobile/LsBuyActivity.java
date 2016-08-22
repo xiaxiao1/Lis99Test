@@ -42,7 +42,6 @@ import com.lis99.mobile.entry.ActivityPattern;
 import com.lis99.mobile.entry.ActivityPattern1;
 import com.lis99.mobile.entry.adapter.DPAdapter;
 import com.lis99.mobile.entry.adapter.LsBuyAdapter;
-import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnFooterRefreshListener;
 import com.lis99.mobile.entry.view.PullToRefreshView.OnHeaderRefreshListener;
@@ -820,7 +819,7 @@ public class LsBuyActivity extends ActivityPattern implements OnHeaderRefreshLis
 		DisplayImageOptions opt = new DisplayImageOptions.Builder()
 				.cacheInMemory().cacheOnDisc().imageScaleType(ist)
 				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		DemoApplication.initImageLoader(this, opt);
+//		DemoApplication.initImageLoader(this, opt);
 	}
 
 	public void onFooterRefresh(PullToRefreshView view) {

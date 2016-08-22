@@ -162,7 +162,7 @@ public class C {
 	}
 
 	static {
-		Common.log("===HOST====");
+//		Common.log("===HOST====");
 		Common.setHost();
 	}
 

@@ -819,7 +819,7 @@ public class LSShopFragment extends LSFragment implements
 		DisplayImageOptions opt = new DisplayImageOptions.Builder()
 				.cacheInMemory().cacheOnDisc().imageScaleType(ist)
 				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		DemoApplication.initImageLoader(getActivity(), opt);
+//		DemoApplication.initImageLoader(getActivity(), opt);
 	}
 
 	public void onFooterRefresh(PullToRefreshView view) {
