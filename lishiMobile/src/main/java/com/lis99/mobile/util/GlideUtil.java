@@ -60,17 +60,6 @@ public class GlideUtil {
                 .into( new GlideLoadingAnimation(img, imgDot));
     }
 
-    /**
-     *      有默认加载动画的
-     * @param imgDot
-     * @param imgRes
-     * @return
-     */
-    public SimpleTarget getGlideLoading (ImageView imgDot, ImageView imgRes)
-    {
-        return new GlideLoadingAnimation(imgRes, imgDot);
-    }
-
     public static class GlideLoadingAnimation extends SimpleTarget<Bitmap> {
         //3个点， 背影（展示的图片）
         private ImageView imgDot, imgRes;
