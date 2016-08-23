@@ -33,6 +33,7 @@ import com.lis99.mobile.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.ByteArrayOutputStream;
@@ -1310,6 +1311,7 @@ public class ImageUtil
 				.showImageOnLoading(R.drawable.club_topic_default)
 				.showImageForEmptyUri(R.drawable.club_topic_default)
 				.showImageOnFail(R.drawable.club_topic_default)
+				.imageScaleType(ImageScaleType.NONE_SAFE)
 //				.showImageOnLoading(R.color.pull_bg)
 //				.showImageForEmptyUri(R.color.pull_bg)
 //				.showImageOnFail(R.color.pull_bg)
@@ -1520,7 +1522,6 @@ public class ImageUtil
 		ImageUtil.savePic(file.getAbsolutePath(), b, 80);
 		return file;
 	}
-
 
 	public static class ImageLoadingListen implements com.nostra13.universalimageloader.core.listener.ImageLoadingListener {
 	//3个点， 背影（展示的图片）
