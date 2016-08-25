@@ -139,7 +139,8 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
             JsonNode root = LSFragment.mapper.readTree(result);
             String errCode = root.get("status").asText("");
             JsonNode data = root.get("data");
-            if (!"OK".equals(errCode)) {
+            if (!"OK".equals(errCode))
+            {
                 String error = data.get("error").asText();
                 postMessage(ActivityPattern1.POPUP_TOAST, error);
                 return;

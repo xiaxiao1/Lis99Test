@@ -3,8 +3,8 @@
     package="com.lis99.mobile"
 
 
-    android:versionCode="443"
-    android:versionName="4.4.3" >
+    android:versionCode="445"
+    android:versionName="4.4.5" >
 
 
 
@@ -102,7 +102,6 @@
 
 
     <application
-        android:debuggable="true"
         android:largeHeap="true"
         android:name=".entry.application.DemoApplication"
         android:allowBackup="true"

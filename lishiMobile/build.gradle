@@ -5,11 +5,11 @@ android {
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
-        ttest {}
+//        ttest {}
 
-//        shichang {}
-//        zhuzhan {}
-//        tuiguang1 {}
+        shichang {}
+        zhuzhan {}
+        tuiguang1 {}
 
 //        sougou {}
 //        baidu {}
@@ -55,7 +55,7 @@ android {
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
 
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.4.3.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.4.5.apk'
 
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
