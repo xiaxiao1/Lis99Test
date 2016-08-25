@@ -844,6 +844,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 }
 
                 //设置玩家评论
+                if (model.commentlist!=null) {
+                    model.commentlist=null;
+                }
                 if (model.commentlist != null && model.commentlist.size() != 0) {
                     Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
 //                    leader_fengexian_ll.setVisibility(View.VISIBLE);
@@ -936,7 +939,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     }
 
                 } else {
-                    Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
                     footer_playerEvaluation.setVisibility(View.GONE);
 //                    leader_fengexian_ll.setVisibility(View.GONE);
                 }
