@@ -299,7 +299,12 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
         public String image;
 */
         @SerializedName("usercatelist")
-        public ArrayList<String> usercatelist;
+        public ArrayList<TitleEntity> usercatelist;
+
+        public static class TitleEntity implements Serializable{
+            @SerializedName("title")
+            public String title;
+        }
     }
 
 
