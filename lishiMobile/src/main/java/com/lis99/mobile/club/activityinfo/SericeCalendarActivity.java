@@ -190,7 +190,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
                 for (int i = 0; i < model.batchList.size(); i++)
                 {
-                    BatchListEntity item = model.batchList.get(0);
+                    BatchListEntity item = model.batchList.get(i);
                     int[] ymd = new int[3];
                     ymd[0] = DateUtils.getYear(item.starttime);
                     ymd[1] = DateUtils.getMonth(item.starttime);
