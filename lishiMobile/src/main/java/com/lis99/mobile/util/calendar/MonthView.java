@@ -3,6 +3,7 @@ package com.lis99.mobile.util.calendar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,9 +32,10 @@ public abstract class MonthView extends View {
     private int leftYear,leftMonth,leftDay;
     private int rightYear,rightMonth,rightDay;
     protected int [][] daysString;
-    protected float columnSize,rowSize;
+    protected float columnSize,rowSize, rowHeight;
     private int mTouchSlop;
-    protected float density;
+//    DP, SP
+    protected float density, scaledDensity;
     private int indexMonth;
     private int width;
     protected List<CalendarInfo> calendarInfos = new ArrayList<CalendarInfo>();
@@ -43,6 +45,7 @@ public abstract class MonthView extends View {
     public MonthView(Context context, AttributeSet attrs) {
         super(context, attrs);
         density = getResources().getDisplayMetrics().density;
+        scaledDensity = getResources().getDisplayMetrics().scaledDensity;
         mScroller = new Scroller(context);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         Calendar calendar = Calendar.getInstance();
@@ -50,11 +53,12 @@ public abstract class MonthView extends View {
         currMonth = calendar.get(Calendar.MONTH);
         currDay = calendar.get(Calendar.DATE);
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        setSelectDate(currYear,currMonth,currDay);
-        setLeftDate();
-        setRightDate();
+//        setSelectDate(currYear,currMonth,currDay);
+//        computeDate();
+//        setLeftDate();
+//        setRightDate();
         createTheme();
-        rowSize = theme == null ? 70 : theme.dateHeight();
+        rowHeight = theme == null ? 70 * density : theme.dateHeight() * density;
         smoothMode = theme == null ? 0 : theme.smoothMode();
     }
 
@@ -67,7 +71,7 @@ public abstract class MonthView extends View {
         }
         width = widthSize;
         NUM_ROWS = 6; //本来是想根据每月的行数，动态改变控件高度，现在为了使滑动的左右两边效果相同，不适用getMonthRowNumber();
-        int heightSize = (int) (NUM_ROWS * rowSize);
+        int heightSize = (int) (NUM_ROWS * rowHeight);
         setMeasuredDimension(widthSize, heightSize);
     }
 
@@ -129,6 +133,14 @@ public abstract class MonthView extends View {
      */
     protected abstract void createTheme();
     private int lastMoveX;
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        return super.dispatchTouchEvent(event);
+    }
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int eventCode=  event.getAction();
@@ -141,6 +153,7 @@ public abstract class MonthView extends View {
                 if(smoothMode == 1)break;
                 int dx = (int) (downX - event.getX());
                 if(Math.abs(dx) > mTouchSlop){
+                    getParent().requestDisallowInterceptTouchEvent(true);
                     int moveX = dx + lastMoveX;
                     smoothScrollTo(moveX, 0);
                 }
@@ -170,6 +183,7 @@ public abstract class MonthView extends View {
                     lastMoveX = indexMonth * width;
                     smoothScrollTo(width * indexMonth, 0);
                 }
+                getParent().requestDisallowInterceptTouchEvent(false);
                 break;
         }
         return true;
@@ -240,6 +254,21 @@ public abstract class MonthView extends View {
     }
 
     /**
+     * 判断是否为事务天数,通过获取desc来辨别
+     * @param day
+     * @return  0 默认， 1过期
+     */
+    protected int iscalendarOverdue(int year,int month,int day){
+        if(calendarInfos == null || calendarInfos.size() == 0)return 0;
+        for(CalendarInfo calendarInfo : calendarInfos){
+            if(calendarInfo.day == day && calendarInfo.month == month + 1 && calendarInfo.year == year){
+                return calendarInfo.isOverdue;
+            }
+        }
+        return 0;
+    }
+
+    /**
      * 执行点击事件
      * @param x
      * @param y
@@ -247,6 +276,13 @@ public abstract class MonthView extends View {
     private void doClickAction(int x,int y){
         int row = (int) (y / rowSize);
         int column = (int) (x / columnSize);
+
+//         只有活动日才可以点击
+        if (TextUtils.isEmpty(iscalendarInfo(selYear,selMonth,daysString[row][column])))
+        {
+            return;
+        }
+
         if ( !theme.noneClick() )
         {
             clickDay = daysString[row][column];
@@ -268,9 +304,9 @@ public abstract class MonthView extends View {
     public void onLeftClick(){
         setLeftDate();
         invalidate();
-        if(monthLisener != null){
-            monthLisener.setTextMonth();
-        }
+//        if(monthLisener != null){
+//            monthLisener.setTextMonth();
+//        }
     }
 
     /**
@@ -279,9 +315,9 @@ public abstract class MonthView extends View {
     public void onRightClick(){
         setRightDate();
         invalidate();
-        if(monthLisener != null){
-            monthLisener.setTextMonth();
-        }
+//        if(monthLisener != null){
+//            monthLisener.setTextMonth();
+//        }
     }
 
     private void setLeftDate(){
@@ -373,4 +409,26 @@ public abstract class MonthView extends View {
     public int getSelMonth() {
         return selMonth;
     }
+
+
+    /**
+     *         设置当前显示的年月
+     * @param year
+     * @param month
+     */
+    public void setCurrentMonth ( int year, int month, int day )
+    {
+        setSelectDate(year,month,day);
+        computeDate();
+        invalidate();
+    }
+
+    /**
+     *         设置当前显示的年月
+     */
+    public void setCurrentMonth ()
+    {
+        setCurrentMonth(currYear,currMonth,currDay);
+    }
+
 }

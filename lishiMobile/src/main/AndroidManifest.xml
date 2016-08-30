@@ -1374,6 +1374,11 @@
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
+        <!--系列活动日历-->
+        <activity android:name="com.lis99.mobile.club.activityinfo.SericeCalendarActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+        />
 
 
     </application>

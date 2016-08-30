@@ -30,26 +30,4 @@ public class TopicSeriesBatchsListModel extends BaseModel{
         @SerializedName("batchList")
         public ArrayList<BatchListEntity> batchList;
 
-        public static class BatchListEntity {
-            @SerializedName("batch_id")
-            public int batchId;
-            @SerializedName("starttime")
-            public String starttime;
-            @SerializedName("endtime")
-            public String endtime;
-            @SerializedName("settime")
-            public String settime;
-            @SerializedName("deadline")
-            public String deadline;
-            @SerializedName("is_end")
-            public int isEnd;
-            @SerializedName("people")
-            public int people;
-            @SerializedName("price")
-            public String price;
-            @SerializedName("describe")
-            public String describe;
-            @SerializedName("is_baoming")
-            public int isBaoming;
-        }
 }

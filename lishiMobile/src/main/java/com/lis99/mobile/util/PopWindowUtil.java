@@ -18,6 +18,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.filter.model.NearbyFilterModel;
 import com.lis99.mobile.club.model.ActiveMainCityListModel;
+import com.lis99.mobile.club.model.BatchListEntity;
 import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
 import com.lis99.mobile.club.newtopic.series.model.ManagerSeriesLineListModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -669,8 +670,7 @@ public class PopWindowUtil {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                    TopicSeriesBatchsListModel.BatchListEntity item = (TopicSeriesBatchsListModel
-                            .BatchListEntity) adapter.getItem(i);
+                BatchListEntity item = (BatchListEntity) adapter.getItem(i);
                     if ( item.isEnd == 1 || item.isBaoming == 1 ) return;
 
                     adapter.setPosition(i);

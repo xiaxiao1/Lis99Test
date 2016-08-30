@@ -1,5 +1,9 @@
 package com.lis99.mobile.util.calendar;
 
+import com.lis99.mobile.club.model.BatchListEntity;
+
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2016/7/30.
  */
@@ -24,6 +28,32 @@ public class CalendarInfo {
      * 是否为休、班。。1为休，2为班，默认为普通日期
      */
     public int rest;
+    /**
+     *      是不是过期状态（控制文本展示颜色）， 0 无， 1 过期，
+     */
+    public int isOverdue;
+
+    /**
+     *      这一天的规格列表
+     */
+    public ArrayList<BatchListEntity> batchList = new ArrayList<>();
+
+
+    /**
+     * 构造函数
+     * @param year  事务年份
+     * @param month 事务月份
+     * @param day   事务日期号
+     * @param isOverdue   是否过期、报名 0无， 1过期、报名
+     * @param des   事务描述
+     */
+    public CalendarInfo(int year, int month, int day, int isOverdue, String des) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.des = des;
+        this.isOverdue = isOverdue;
+    }
 
     /**
      * 构造函数

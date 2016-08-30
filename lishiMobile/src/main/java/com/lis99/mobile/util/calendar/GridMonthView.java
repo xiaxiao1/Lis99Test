@@ -124,28 +124,31 @@ public class GridMonthView extends MonthView {
 
     @Override
     protected void drawText(Canvas canvas,int column,int row,int year,int month,int day) {
-        paint.setTextSize(theme.sizeDay());
+        paint.setTextSize(theme.sizeDay() * scaledDensity );
         float startX = columnSize * column + (columnSize - paint.measureText(day+""))/2;
-        float startY = rowSize * row + rowSize/2 - (paint.ascent() + paint.descent())/2;
+        float startY = rowSize * row + rowSize/2 - (paint.ascent() + paint.descent())/2 + theme.paddingTop() * density;
         paint.setStyle(Paint.Style.STROKE);
         String des = iscalendarInfo(year,month,day);
-
-        if( day== selDay && theme.noneClick() ){//日期为选中的日期
-            if(!TextUtils.isEmpty(des)){//desc不为空的时候
+        int overdue = iscalendarOverdue(year, month, day);
+//      默认当前日期选中
+        if( day== selDay && theme.noneClick() ){
+            //日期为选中的日期
+            if(!TextUtils.isEmpty(des)){
+                //desc不为空的时候
                 int dateY = (int) (startY);
                 paint.setColor(theme.colorSelectDay());
                 canvas.drawText(day+"", startX, dateY, paint);
 //              画描述
-                paint.setTextSize(theme.sizeDesc());
+                paint.setTextSize(theme.sizeDesc() * scaledDensity);
                 int priceX = (int) (columnSize * column + (columnSize - paint.measureText(des))/2);
-                int priceY = (int) (startY + 20 * density);
+                int priceY = (int) (startY + 20 * density );
                 canvas.drawText(des, priceX, priceY, paint);
             }else{//des为空的时候
                 paint.setColor(theme.colorSelectDay());
                 canvas.drawText(day+"", startX, startY, paint);
             }
         }
-//        点击的日期
+//        点击才选中日期
         else if ( !theme.noneClick() && day == clickDay && month == clickMonth && year == clickYear)
         {
             if(!TextUtils.isEmpty(des)){//desc不为空的时候
@@ -153,7 +156,7 @@ public class GridMonthView extends MonthView {
                 paint.setColor(theme.colorSelectDay());
                 canvas.drawText(day+"", startX, dateY, paint);
 //              画描述
-                paint.setTextSize(theme.sizeDesc());
+                paint.setTextSize(theme.sizeDesc() * scaledDensity);
                 int priceX = (int) (columnSize * column + (columnSize - paint.measureText(des))/2);
                 int priceY = (int) (startY + 20 * density);
                 canvas.drawText(des, priceX, priceY, paint);
@@ -162,18 +165,30 @@ public class GridMonthView extends MonthView {
                 canvas.drawText(day+"", startX, startY, paint);
             }
         }
-        else if(day== currDay && currDay != selDay && currMonth == selMonth){//今日的颜色，不是选中的时候
+        else if(day== currDay && currDay != selDay && currMonth == selMonth){
+            //今日的颜色，不是选中的时候
             //正常月，选中其他日期，则今日为红色
             paint.setColor(theme.colorToday());
             canvas.drawText(day+"", startX, startY, paint);
         }else{
-            if(!TextUtils.isEmpty(des)){//没选中，但是desc不为空
+            if(!TextUtils.isEmpty(des)){
+                //没选中，但是desc不为空
                 int dateY = (int) (startY);
-                paint.setColor(theme.colorWeekday());
+                paint.setColor(theme.clickDay());
                 canvas.drawText(day + "", startX, dateY, paint);
 
-                paint.setTextSize(theme.sizeDesc());
-                paint.setColor(theme.colorDesc());
+                paint.setTextSize(theme.sizeDesc() * scaledDensity);
+//                可选的绿色
+                if ( overdue == 0 )
+                {
+                    paint.setColor(theme.colorDesc());
+                }
+//                灰色
+                else
+                {
+                    paint.setColor(theme.unDesc());
+                }
+
                 int priceX = (int) (columnSize * column + Math.abs((columnSize - paint.measureText(des))/2));
                 int priceY = (int) (startY + 20 * density);
                 canvas.drawText(des, priceX, priceY, paint);
@@ -186,7 +201,6 @@ public class GridMonthView extends MonthView {
 
     @Override
     protected void createTheme() {
-//        theme = new DefaultDayTheme();
-        theme = new CalendarTheme();
+        theme = new DefaultDayTheme();
     }
 }

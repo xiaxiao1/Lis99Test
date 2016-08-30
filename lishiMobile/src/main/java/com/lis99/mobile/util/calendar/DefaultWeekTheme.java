@@ -8,27 +8,27 @@ import android.graphics.Color;
 public class DefaultWeekTheme implements IWeekTheme {
     @Override
     public int colorTopLinen() {
-        return Color.parseColor("#CCE4F2");
+        return Color.parseColor("#F1F1F1");
     }
 
     @Override
     public int colorBottomLine() {
-        return Color.parseColor("#CCE4F2");
+        return Color.parseColor("#F1F1F1");
     }
 
     @Override
     public int colorWeekday() {
-        return Color.parseColor("#1FC2F3");
+        return Color.parseColor("#525252");
     }
 
     @Override
     public int colorWeekend() {
-        return Color.parseColor("#fa4451");
+        return Color.parseColor("#525252");
     }
 
     @Override
     public int colorWeekView() {
-        return Color.parseColor("#EEEEEE");
+        return Color.parseColor("#F1F1F1");
     }
 
     @Override

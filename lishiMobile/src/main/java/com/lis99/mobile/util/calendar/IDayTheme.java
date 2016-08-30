@@ -104,4 +104,26 @@ public interface IDayTheme {
      * @return
      */
     public boolean noneClick();
+
+    /**
+     *      能选择日期颜色
+     * @return
+     */
+    public int clickDay ();
+
+    /**
+     *      不能用的描述颜色
+     * @return
+     */
+    public int unDesc ();
+
+    /**
+     *      默认日期剧中， paddingTop为负数上提一些
+     * @return
+     */
+    public int paddingTop ();
+
+
 }
+
+

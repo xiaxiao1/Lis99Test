@@ -8,7 +8,7 @@ import android.graphics.Color;
 public class DefaultDayTheme implements IDayTheme {
     @Override
     public int colorSelectBG() {
-        return Color.parseColor("#13A4D3");
+        return Color.parseColor("#3ac01a");
     }
 
     @Override
@@ -18,7 +18,7 @@ public class DefaultDayTheme implements IDayTheme {
 
     @Override
     public int colorToday() {
-        return Color.parseColor("#68CB00");
+        return Color.parseColor("#3ac01a");
     }
 
     @Override
@@ -28,12 +28,12 @@ public class DefaultDayTheme implements IDayTheme {
 
     @Override
     public int colorWeekday() {
-        return Color.parseColor("#404040");
+        return Color.parseColor("#C2C2C2");
     }
 
     @Override
     public int colorWeekend() {
-        return Color.parseColor("#404040");
+        return Color.parseColor("#C2C2C2");
     }
 
     @Override
@@ -53,12 +53,12 @@ public class DefaultDayTheme implements IDayTheme {
 
     @Override
     public int colorDesc() {
-        return Color.parseColor("#FF9B12");
+        return Color.parseColor("#3ac01a");
     }
 
     @Override
     public int sizeDay() {
-        return 30;
+        return 14;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class DefaultDayTheme implements IDayTheme {
 
     @Override
     public int sizeDesc() {
-        return 15;
+        return 10;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class DefaultDayTheme implements IDayTheme {
 
     @Override
     public int colorLine() {
-        return Color.parseColor("#CBCBCB");
+        return Color.parseColor("#EEEEEE");
     }
 
     @Override
@@ -86,13 +86,38 @@ public class DefaultDayTheme implements IDayTheme {
         return 0;
     }
 
+    @Override
+    public boolean noneClick() {
+        return false;
+    }
+
     /**
-     * 是否在每个月显示交点日期， true 每个月都会显示， false 只有选中的年月才会显示
+     * 能选择日期颜色
      *
      * @return
      */
     @Override
-    public boolean noneClick() {
-        return false;
+    public int clickDay() {
+        return Color.parseColor("#000000");
+    }
+
+    /**
+     * 不能用的描述颜色
+     *
+     * @return
+     */
+    @Override
+    public int unDesc() {
+        return Color.parseColor("#999999");
+    }
+
+    /**
+     * 默认日期剧中， paddingTop为负数上提一些
+     *
+     * @return
+     */
+    @Override
+    public int paddingTop() {
+        return -5;
     }
 }

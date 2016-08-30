@@ -1,5 +1,9 @@
 package com.lis99.mobile.util.calendar;
 
+import android.text.TextUtils;
+
+import com.lis99.mobile.util.Common;
+
 import java.util.Calendar;
 
 public class DateUtils {
@@ -76,5 +80,63 @@ public class DateUtils {
     			return "";
     	}
     }
+
+	/**
+	 * 		获取年
+	 * @param str
+	 * @return
+     */
+	public static int getYear (String str)
+	{
+		int year = 2016;
+		if (TextUtils.isEmpty(str))
+		{
+			return year;
+		}
+		String[] y = str.split("\\.");
+
+		if ( y.length >0)
+		year = Common.string2int(y[0]);
+
+		return year;
+	}
+	/**
+	 * 		获取月
+	 * @param str
+	 * @return
+	 */
+	public static int getMonth (String str)
+	{
+		int month = 1;
+
+		if (TextUtils.isEmpty(str))
+		{
+			return month;
+		}
+		String[] m = str.split("\\.");
+		if ( m.length > 1 )
+		month = Common.string2int(m[1]);
+
+		return  month;
+	}
+	/**
+	 * 		获取日
+	 * @param str
+	 * @return
+	 */
+	public static int getDay (String str)
+	{
+		int day = 1;
+
+		if (TextUtils.isEmpty(str))
+		{
+			return day;
+		}
+		String[] d = str.split("\\.");
+		if ( d.length > 2 )
+		day = Common.string2int(d[2]);
+
+		return day;
+	}
     
 }

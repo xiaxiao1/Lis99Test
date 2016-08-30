@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.filter.model.NearbyFilterModel;
-import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
+import com.lis99.mobile.club.model.BatchListEntity;
 import com.lis99.mobile.club.newtopic.series.model.ManagerSeriesLineListModel;
 import com.lis99.mobile.view.MyGridView;
 
@@ -70,8 +70,7 @@ public class PopListAdapter {
                 holder = (ViewHolder) view.getTag();
             }
 
-            TopicSeriesBatchsListModel.BatchListEntity item = (TopicSeriesBatchsListModel
-                    .BatchListEntity) getItem(i);
+            BatchListEntity item = (BatchListEntity) getItem(i);
 
 
             String str1 = "第 "+(i + 1)+" 批　　"+item.starttime + "~" + item.endtime;
