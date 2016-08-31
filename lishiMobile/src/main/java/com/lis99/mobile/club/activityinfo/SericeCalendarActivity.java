@@ -76,6 +76,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
         tvNone = (TextView) findViewById(R.id.tv_none);
         list = (MyListView) findViewById(R.id.list);
+        list.setAdapter(null);
         findViewById(R.id.btn_ok).setOnClickListener(this);
 
 //        Calendar calendar = Calendar.getInstance();
@@ -209,7 +210,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                         }
                         else
                         {
-                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥"+item.price);
+                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥"+getPrice(item.price));
 //                            默认显示的月份
                             if ( currentMonth == null )
                             {
@@ -289,7 +290,12 @@ public class SericeCalendarActivity extends LSBaseActivity {
     }
 
 
-
+    private String getPrice ( String price )
+    {
+        int end = price.indexOf(".");
+        if ( end == -1 ) return price;
+        return price.substring(0, end);
+    }
 
 
 

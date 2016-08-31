@@ -3,8 +3,8 @@ package com.lis99.mobile.club.activityinfo.adapter;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -40,6 +40,7 @@ public class SpecAdapter extends MyBaseAdapter {
 
     public void setCurrentPosition(int currentPosition) {
         this.currentPosition = currentPosition;
+        notifyDataSetChanged();
     }
 
     private int currentPosition = -1;
@@ -85,33 +86,32 @@ public class SpecAdapter extends MyBaseAdapter {
             currentPosition = i;
         }
 
+        holder.iv_checked.setImageResource(R.drawable.spec_normal);
+
         switch ( state )
         {
 //                默认
             case 1:
                 holder.tvStatus.setVisibility(View.GONE);
-                holder.checkbox.setVisibility(View.VISIBLE);
-                holder.checkbox.setChecked(false);
+                holder.iv_checked.setVisibility(View.VISIBLE);
                 break;
 //                    已报名
             case 2:
                 holder.tvStatus.setVisibility(View.VISIBLE);
-                holder.checkbox.setVisibility(View.GONE);
+                holder.iv_checked.setVisibility(View.GONE);
                 holder.tvStatus.setText("已报名");
-                holder.checkbox.setChecked(false);
                 break;
 //                报名截止
             case 3:
                 holder.tvStatus.setVisibility(View.VISIBLE);
-                holder.checkbox.setVisibility(View.GONE);
+                holder.iv_checked.setVisibility(View.GONE);
                 holder.tvStatus.setText("已截止");
-                holder.checkbox.setChecked(false);
                 break;
 //                选中
             case 4:
                 holder.tvStatus.setVisibility(View.GONE);
-                holder.checkbox.setVisibility(View.VISIBLE);
-                holder.checkbox.setChecked(true);
+                holder.iv_checked.setVisibility(View.VISIBLE);
+                holder.iv_checked.setImageResource(R.drawable.spec_select);
                 break;
         }
 
@@ -121,8 +121,8 @@ public class SpecAdapter extends MyBaseAdapter {
     static class ViewHolder {
         @Bind(R.id.fl_right)
         FrameLayout flRight;
-        @Bind(R.id.checkbox)
-        CheckBox checkbox;
+        @Bind(R.id.iv_checked)
+        ImageView iv_checked;
         @Bind(R.id.tv_status)
         TextView tvStatus;
         @Bind(R.id.tv_name) TextView tvName;
