@@ -91,6 +91,11 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     private ImageView ivPrice;
     //费用说明信息
     private TextView tvPrice;
+    //报名须知
+    private RelativeLayout layoutBaomingxvzhi;
+    private ImageView ivBaomingxvzhi;
+    //报名须知信息
+    private TextView tvBaomingxvzhi;
     //免责声明
     private RelativeLayout layoutReadme;
     private ImageView ivReadme;
@@ -151,7 +156,10 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
                     for (String s:model.reportnote) {
                         text = text + s + "\n";
                     }
-                    tvSafely.setText(text);
+                    tvBaomingxvzhi.setText(text);
+                }
+                if (!model.catematter.equals("")) {
+                    tvSafely.setText(model.catematter);
                 }
             }
         });
@@ -184,6 +192,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         layoutPrice.setOnClickListener(this);
         layoutReadme.setOnClickListener(this);
         layoutSafely.setOnClickListener(this);
+        layoutBaomingxvzhi.setOnClickListener(this);
     }
 
     /**
@@ -242,13 +251,17 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         layoutSafely = (RelativeLayout) fullInfoView_ll.findViewById(R.id.layout_safely);
         ivSafely = (ImageView) fullInfoView_ll.findViewById(R.id.iv_safely);
         tvSafely = (TextView) fullInfoView_ll.findViewById(R.id.tv_safely);
+        layoutBaomingxvzhi=(RelativeLayout)fullInfoView_ll.findViewById(R.id.layout_baomingxvzhi);
+        ivBaomingxvzhi=(ImageView)fullInfoView_ll.findViewById(R.id.iv_baomingxvzhi);
+        tvBaomingxvzhi=(TextView)fullInfoView_ll.findViewById(R.id.tv_baomingxvzhi);
 
-        tvGatherTime.setVisibility(View.VISIBLE);
+//        tvGatherTime.setVisibility(View.VISIBLE);
         tvJourney.setVisibility(View.VISIBLE);
         tvEquip.setVisibility(View.VISIBLE);
         tvPrice.setVisibility(View.VISIBLE);
         tvReadme.setVisibility(View.VISIBLE);
         tvSafely.setVisibility(View.VISIBLE);
+        tvBaomingxvzhi.setVisibility(View.VISIBLE);
     }
 
 
@@ -300,6 +313,8 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             showInfo(tvReadme,ivReadme);
         } else if (v==layoutSafely) {
             showInfo(tvSafely,ivSafely);
+        } else if (v==layoutBaomingxvzhi) {
+            showInfo(tvBaomingxvzhi,ivBaomingxvzhi);
         }
 
 

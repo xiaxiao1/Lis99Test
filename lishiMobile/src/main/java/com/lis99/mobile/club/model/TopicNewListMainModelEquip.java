@@ -19,6 +19,24 @@ public class TopicNewListMainModelEquip extends TopicNewListMainModelTitle imple
      */
     public int is_tagid;
     public String reason;
+    public String tag_name;
+    public String tag_image;
+
+    public String getTag_image() {
+        return tag_image;
+    }
+
+    public void setTag_image(String tag_image) {
+        this.tag_image = tag_image;
+    }
+
+    public String getTag_name() {
+        return tag_name;
+    }
+
+    public void setTag_name(String tag_name) {
+        this.tag_name = tag_name;
+    }
 
     public int getIs_tagid() {
         return is_tagid;

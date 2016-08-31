@@ -21,6 +21,7 @@
             android:id="@+id/layout_gather_time"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:visibility="gone"
             >
 
             <TextView
@@ -52,6 +53,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:drawableBottom="@color/color_eee"
+            android:visibility="gone"
             />
 
 
@@ -183,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/club_info_dot_down"
+                android:src="@drawable/club_info_dot_up"
                 android:layout_centerVertical="true"
                 />
 
@@ -221,7 +223,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/club_info_dot_down"
+                android:src="@drawable/club_info_dot_up"
                 android:layout_centerVertical="true"
                 />
 
@@ -231,6 +233,43 @@
         <TextView
             android:lineSpacingExtra="5dp"
             android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_black"
+            android:text="@string/temp_string"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/layout_baomingxvzhi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="报名须知"
+                android:textColor="@color/text_color_black"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:id="@+id/iv_baomingxvzhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/club_info_dot_up"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:lineSpacingExtra="5dp"
+            android:id="@+id/tv_baomingxvzhi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color_black"
@@ -259,7 +298,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/club_info_dot_down"
+                android:src="@drawable/club_info_dot_up"
                 android:layout_centerVertical="true"
                 />
 

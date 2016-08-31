@@ -24,7 +24,7 @@
         android:layout_centerInParent="true"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-
+        android:tint="#80000000"
         />
 
     <ImageView

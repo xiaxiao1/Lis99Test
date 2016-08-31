@@ -588,14 +588,27 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         if (item.is_tagid>0) {
             holder.recommendedActiveViwe_ll.setVisibility(View.VISIBLE);
             String reason=item.getReason();
+            String image_url=item.getTag_image();
+            final String recommend_title=item.getTag_name();
+            //设置推荐原因
             if (reason != null && !reason.equals("")) {
                 holder.recommendReason_tv.setText(reason);
             }
+            //设置推荐条背景图
+            if (image_url!=null&&!image_url.equals("")) {
+                ImageLoader.getInstance().displayImage(image_url,holder.recommendBackground_img);
+            }
+            //设置跳转
             holder.recommendedActiveViwe_ll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i=new Intent(mContext,LSRecommendActivity.class);
                     i.putExtra("is_tagid", item.getIs_tagid());
+                    if (recommend_title!=null&&!recommend_title.equals("")) {
+                        i.putExtra("title", recommend_title);
+                    }else{
+                        i.putExtra("title","");
+                    }
                     mContext.startActivity(i);
                 }
             });
@@ -843,7 +856,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         private TextView hostInfoDataView;
         private TextView recommendReason_tv;
         private LinearLayout recommendedActiveViwe_ll;
-
+        private ImageView recommendBackground_img;
 
         private LSClubTopicHeadLike like;
 
@@ -882,6 +895,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 
             recommendedActiveViwe_ll=(LinearLayout)view.findViewById(R.id.club_show_recommended_active);
             recommendReason_tv=(TextView)recommendedActiveViwe_ll.findViewById(R.id.club_topic_to_recommend_text_tv);
+            recommendBackground_img=(ImageView)recommendedActiveViwe_ll.findViewById(R.id.club_topic_to_recommend_bg_img);
         }
     }
 

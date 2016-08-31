@@ -17,7 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:scaleType="center"
-            android:src="@drawable/blue_break" />
+            android:src="@drawable/club_ditail_title_back" />
     </RelativeLayout>
 
     <ImageView
@@ -28,16 +28,13 @@
         android:src="@drawable/login_title" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="@drawable/normal_bg"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:paddingTop="15dp"
+        android:layout_marginTop="27dp"
         android:gravity="center_horizontal">
 
 
@@ -46,24 +43,38 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
             android:scaleType="fitXY"
             android:src="@drawable/ls_nologin_header_icon"
-            app:corner_radius="10dp" />
+            app:corner_radius="30dp" />
 
-        <EditText
-            android:id="@+id/nickNameView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="32dip"
-            android:layout_height="45dp"
-            android:background="@drawable/edit_bg_login"
-            android:ems="10"
-            android:gravity="center"
-            android:textColor="@color/text_color_blue"
-            android:paddingLeft="9dp"
-            android:paddingRight="9dp"
-            android:textSize="16sp"
-            />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dip"
+            >
+            <EditText
+                android:id="@+id/nickNameView"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/txt_alpha_bg"
+                android:ems="10"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                /> 
+            <ImageView
+                android:id="@+id/clear_textview_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/wechat_login_clear"
+                android:clickable="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="9dp"
+                android:visibility="invisible"
+                />
+        </RelativeLayout>
+        
 
         <Button
             android:id="@+id/ls_login_bt"
@@ -71,17 +82,11 @@
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dip"
-            android:background="@drawable/login_btn"
+            android:background="@drawable/login_btn_new"
             android:text="完成"
             android:onClick="onClick"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginBottom="20dp"/>
-
-
-
-
-
+            android:textSize="16sp"/>
     </LinearLayout>
 
 </LinearLayout>

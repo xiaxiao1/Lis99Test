@@ -51,6 +51,11 @@ public class LSRecommendActivity extends LSBaseActivity implements PullToRefresh
         //获取intent传递过来的参数值
         is_tagid=getIntent().getIntExtra("is_tagid",-1);
         map.put("tag_id", is_tagid);
+        //动态设置title
+        String title = getIntent().getStringExtra("title");
+        if (!title.equals("")) {
+            setTitle(title);
+        }
         onHeaderRefresh(refreshView);
     }
 
@@ -70,7 +75,7 @@ public class LSRecommendActivity extends LSBaseActivity implements PullToRefresh
     @Override
     protected void initViews() {
         super.initViews();
-        setTitle("说不定您喜欢");
+        setTitle("");
         refreshView=(PullToRefreshView)findViewById(R.id.recommended_activity_pull_refresh_view);
         refreshView.setOnFooterRefreshListener(this);
         refreshView.setOnHeaderRefreshListener(this);
@@ -81,7 +86,6 @@ public class LSRecommendActivity extends LSBaseActivity implements PullToRefresh
 
                 if (model != null) {
                     NearbyListMainModel.ListsEntity active= model.lists.get(position);
-                    Log.i("xx",""+active.activityCode);
                     Common.goTopic(activity, 4, Common.string2int(active.id));
                 }
             }
@@ -116,7 +120,6 @@ public class LSRecommendActivity extends LSBaseActivity implements PullToRefresh
                     adapter = new FilterAdapter(LSRecommendActivity.this, model.lists);
                     listview.setAdapter(adapter);
 
-                    Log.i("xx",model.lists.size()+"    mei you shu ju ");
                 }
                 else
                 {

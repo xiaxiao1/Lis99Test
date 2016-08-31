@@ -16,7 +16,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:scaleType="center"
-            android:src="@drawable/blue_break" />
+            android:src="@drawable/club_ditail_title_back" />
     </RelativeLayout>
 
     <ImageView
@@ -24,31 +24,30 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dip"
-        android:src="@drawable/welcome_register"
+        android:src="@drawable/login_title"
 
         />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="42dp"
         android:orientation="vertical"
-        android:background="@drawable/normal_bg" 
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="15dp">
+        android:layout_gravity="center_horizontal"
+        >
 
         <EditText
             android:id="@+id/phoneView"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="@drawable/edit_bg_login"
+            android:background="@drawable/txt_alpha_bg"
             android:ems="10" 
             android:hint="手机号"
-            android:textColor="#666"
-            android:paddingLeft="9dp"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:paddingLeft="15dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
             android:singleLine="true"
@@ -63,11 +62,12 @@
 	            android:id="@+id/codeView"
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
-	            android:background="@drawable/edit_bg_login"
+	            android:background="@drawable/txt_alpha_bg"
 	            android:ems="10" 
 	            android:hint="短信验证码"
-	            android:textColor="#666"
-	            android:paddingLeft="9dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+	            android:paddingLeft="15dp"
 	            android:paddingRight="9dp"
 	            android:textSize="16sp"
                 android:singleLine="true"
@@ -75,13 +75,13 @@
              
              <Button
                  android:id="@+id/getCodeButton"
-                 android:layout_width="80dp"
+                 android:layout_width="wrap_content"
                  android:layout_height="25dp"
                  android:layout_alignParentRight="true"
                  android:layout_marginRight="10dp"
                  android:text="获取验证码"
-                 android:textColor="@color/text_color_blue"
-                 android:background="@drawable/getcode_bg_register"
+                 android:textColor="@color/white"
+                 android:background="@drawable/yanzhengma_border_new"
                  android:layout_centerVertical="true"
                  android:onClick="onClick"
                  android:textSize="12sp" />
@@ -94,12 +94,13 @@
             android:layout_width="match_parent"
             android:layout_marginTop="15dip"
             android:layout_height="45dp"
-            android:background="@drawable/edit_bg_login"
+            android:background="@drawable/txt_alpha_bg"
             android:ems="10" 
             android:hint="密码(6-20位大小写字母及数字)"
             android:password="true"
-            android:textColor="#666"
-            android:paddingLeft="9dp"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:paddingLeft="15dp"
             android:paddingRight="9dp"
             android:textSize="16sp"
             android:singleLine="true"
@@ -111,7 +112,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dip"
-            android:background="@drawable/login_btn"
+            android:background="@drawable/login_btn_new"
             android:text="注册"
             android:onClick="onClick"
             android:textColor="@color/white"
@@ -121,14 +122,14 @@
         <Button
             android:id="@+id/forgetButton"
             android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/ls_regist_bt_height"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="1dip"
-            android:background="#fff"
+            android:background="#00ffffff"
             android:text="接受用户协议"
-            android:drawablePadding="5dp"
+            android:drawablePadding="7dp"
             android:drawableLeft="@drawable/icon_register_check"
-            android:textColor="#666"
+            android:textColor="@color/white"
             android:textSize="14sp" />
         
         

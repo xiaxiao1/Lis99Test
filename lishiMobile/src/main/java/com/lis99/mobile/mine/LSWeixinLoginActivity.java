@@ -3,6 +3,8 @@ package com.lis99.mobile.mine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,6 +39,7 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
     String unionid;
 
     ImageView headerView;
+    ImageView clear_img;
     EditText nickNameView;
 
     private static final int LOGIN_SUCCESS = 200;
@@ -75,10 +78,44 @@ public class LSWeixinLoginActivity extends LSBaseActivity {
 
         headerView = (ImageView) findViewById(R.id.headerView);
         nickNameView = (EditText) findViewById(R.id.nickNameView);
-
+        clear_img=(ImageView)findViewById(R.id.clear_textview_img);
         ImageLoader.getInstance().displayImage(headerUrl, headerView, options);
         nickNameView.setText(nickName);
+        nickNameView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (count>0) {
+                    clear_img.setVisibility(View.VISIBLE);
+                }else{
+                    clear_img.setVisibility(View.INVISIBLE);
+                }
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (count>0) {
+                    clear_img.setVisibility(View.VISIBLE);
+                }else{
+                    clear_img.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!nickNameView.getText().toString().equals("")) {
+                    clear_img.setVisibility(View.VISIBLE);
+                }else{
+                    clear_img.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        clear_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nickNameView.setText("");
+                clear_img.setVisibility(View.INVISIBLE);
+            }
+        });
         iv_back = findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -51,7 +51,7 @@ public class LogUtil {
 			if (!directory.exists()) {
 				directory.mkdirs();
 			}
-			file = new File(new File(path), "log.txt");
+			file = new File(new File(path), "log.txt_alpha_bg2");
 			android.util.Log.i("SDCAEDTAG", path);
 			try {
 				outputStream = new FileOutputStream(file, true);
