@@ -15,6 +15,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
+import com.lis99.mobile.club.model.BatchListEntity;
 import com.lis99.mobile.club.model.ClubTopicActiveSeriesLineMainModel;
 import com.lis99.mobile.club.model.EquipRecommendInterFace;
 import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
@@ -592,7 +593,7 @@ public class LSClubTopicActiveSeries extends LSBaseActivity implements
                     return;
                 }
 
-                TopicSeriesBatchsListModel.BatchListEntity item = modelBatch.batchList.get(activePosition);
+                BatchListEntity item = modelBatch.batchList.get(activePosition);
 
                 if ( item.isBaoming == 1 || item.isEnd == 1 )
                 {

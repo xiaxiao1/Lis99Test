@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,7 +18,6 @@ import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSRecommendActivity;
-import com.lis99.mobile.club.model.IsToRecommendActive;
 import com.lis99.mobile.club.model.TopicNewListMainModel;
 import com.lis99.mobile.club.model.TopicNewListMainModelEquip;
 import com.lis99.mobile.club.model.TopicNewListMainModelTitle;
@@ -33,6 +31,7 @@ import com.lis99.mobile.newhome.equip.LSEquipInfoActivity;
 import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.GlideUtil;
 import com.lis99.mobile.util.HandlerList;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
@@ -355,9 +354,12 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
         } else {
             if (!TextUtils.isEmpty(item.images)) {
                 holder.layoutIv.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(item.images, holder.contentImageView,
-                        ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
-                                .contentImageView ));
+//                ImageLoader.getInstance().displayImage(item.images, holder.contentImageView,
+//                        ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
+//                                .contentImageView ));
+
+                GlideUtil.getInstance().getWithWhiteBG(mContext, item.images, holder.contentImageView, holder.ivLoad);
+
             }
         }
 

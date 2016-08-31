@@ -237,7 +237,7 @@ public class MyApplyItem extends MyBaseAdapter{
     //设置显示内容    0 gone, 1 visible
     private void setVisibleInfo ( Holder holder )
     {
-        //控制显示哪个选项
+        //控制显示哪个选项      姓名
         if ("0".equals(visibleItem.get(0)))
         {
             holder.layout_name.setVisibility(View.GONE);
@@ -247,6 +247,7 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_name.setVisibility(View.VISIBLE);
             holder.v_name.setVisibility(View.VISIBLE);
         }
+//        身份证号
         if ("0".equals(visibleItem.get(1)))
         {
             holder.layout_idcode.setVisibility(View.GONE);
@@ -256,6 +257,7 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_idcode.setVisibility(View.VISIBLE);
             holder.v_idcode.setVisibility(View.VISIBLE);
         }
+//        性别
         if ("0".equals(visibleItem.get(2)))
         {
             holder.layout_sex.setVisibility(View.GONE);
@@ -265,6 +267,7 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_sex.setVisibility(View.VISIBLE);
             holder.v_man.setVisibility(View.VISIBLE);
         }
+//        手机号
         if ("0".equals(visibleItem.get(3)))
         {
             holder.layout_phone.setVisibility(View.GONE);
@@ -274,6 +277,7 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_phone.setVisibility(View.VISIBLE);
             holder.v_phone.setVisibility(View.VISIBLE);
         }
+//        紧急联系电话
         if ("0".equals(visibleItem.get(4)))
         {
             holder.layout_telOhter.setVisibility(View.GONE);
@@ -283,6 +287,7 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_telOhter.setVisibility(View.VISIBLE);
             holder.v_telOhter.setVisibility(View.VISIBLE);
         }
+//        QQ
         if ("0".equals(visibleItem.get(5)))
         {
             holder.layout_qq.setVisibility(View.GONE);
@@ -292,6 +297,7 @@ public class MyApplyItem extends MyBaseAdapter{
             holder.layout_qq.setVisibility(View.VISIBLE);
             holder.v_qq.setVisibility(View.VISIBLE);
         }
+//        邮寄地址
         if ("0".equals(visibleItem.get(7)))
         {
             holder.layout_address.setVisibility(View.GONE);
@@ -299,6 +305,7 @@ public class MyApplyItem extends MyBaseAdapter{
         {
             holder.layout_address.setVisibility(View.VISIBLE);
         }
+//        居住城市
         if ("0".equals(visibleItem.get(8)))
         {
             holder.btn_address.setVisibility(View.GONE);
