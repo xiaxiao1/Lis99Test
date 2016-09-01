@@ -59,7 +59,6 @@ public class HandlerList {
 
     public void clean ()
     {
-        list.clear();
         list = null;
     }
 

@@ -400,10 +400,11 @@ public class LSTopicStringImageActivity extends LSBaseActivity {
                             JSONObject j = new JSONObject(data);
 
                             topicId = j.optInt("topics_id", -1);
-                            if ( topicId != -1) {
+                            if ( topicId != -1 ) {
 //                                增加积分
                                 LSScoreManager.getInstance().sendScore(LSScoreManager.pubtopics, "" + topicId);
-
+//                                追加不需要跳转
+                                if ( !getIsAdd() )
                                 Common.goTopic(activity, 3, topicId);
                             }
 
