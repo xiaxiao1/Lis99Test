@@ -7,17 +7,17 @@ android {
     productFlavors {
         ttest {}
 
-//        shichang {}
-//        zhuzhan {}
-//        tuiguang1 {}
+        shichang {}
+        zhuzhan {}
+        tuiguang1 {}
 
 //        sougou {}
-//        baidu {}
+        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}
 //        gfan {}
-//        zs360 {}
+        zs360 {}
 //        huawei {}
 //        lis99test {}
 //        jinli {}
@@ -55,7 +55,7 @@ android {
 //                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-sign.apk'
 //                android studio 批量打包
 
-                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.4.5.apk'
+                def releaseApkName = 'Lishi' + '-' + variant.productFlavors[0].name + '-4.4.6.apk'
 
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
