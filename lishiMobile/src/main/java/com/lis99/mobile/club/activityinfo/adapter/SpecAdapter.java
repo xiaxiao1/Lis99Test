@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.activityinfo.SericeCalendarActivity;
 import com.lis99.mobile.club.model.BatchListEntity;
 import com.lis99.mobile.util.MyBaseAdapter;
 
@@ -84,6 +85,7 @@ public class SpecAdapter extends MyBaseAdapter {
         else if ( currentPosition == -1 )
         {
             currentPosition = i;
+            ((SericeCalendarActivity)mContext).setBtnClick(true);
         }
 
         holder.iv_checked.setImageResource(R.drawable.spec_normal);

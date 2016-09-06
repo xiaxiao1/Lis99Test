@@ -195,7 +195,7 @@ public class GridMonthView extends MonthView {
                 int priceY = (int) (startY + 20 * density);
                 canvas.drawText(des, priceX, priceY, paint);
             }else{//des为空
-                if ( day >= currDay || month > currMonth || year > currYear )
+                if ( year >= currYear && month >= currMonth && day >= currDay )
                 {
                     paint.setColor(theme.colorAfterDay());
                 }

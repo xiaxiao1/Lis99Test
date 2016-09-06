@@ -27,6 +27,8 @@ import com.lis99.mobile.util.calendar.MonthView;
 import com.lis99.mobile.view.MyListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -136,8 +138,8 @@ public class SericeCalendarActivity extends LSBaseActivity {
                     }
                 });
 
-                if ( adapter != null && adapter.getCurrentPosition() != -1 )
-                setBtnClick(true);
+//                if ( adapter != null && adapter.getCurrentPosition() != -1 )
+//                setBtnClick(true);
             }
         });
 
@@ -147,7 +149,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
     }
 
 //  按钮状态， true可点击， false 不可点击
-    private void setBtnClick ( boolean clickable )
+    public void setBtnClick ( boolean clickable )
     {
         if ( clickable )
         {
@@ -157,7 +159,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
         }
         else
         {
-            btnOk.setBackgroundResource(getResources().getColor(Color.parseColor("#e2e2e2")));
+            btnOk.setBackgroundColor(Color.parseColor("#e2e2e2"));
             btnOk.setText("请选择游玩日期");
             btnOk.setClickable(false);
         }
@@ -254,12 +256,31 @@ public class SericeCalendarActivity extends LSBaseActivity {
 //                价格做一个排序
                 for (CalendarInfo info : listInfo)
                 {
-                    int num = info.batchList.size();
+                    Collections.sort(info.batchList, new Comparator<BatchListEntity>() {
+                        @Override
+                        public int compare(BatchListEntity lhs, BatchListEntity rhs) {
+                            return Common.string2Integer(getPrice(lhs.price)).compareTo(Common.string2Integer(getPrice(rhs.price)));
+                        }
+                    });
 
-                    for ( int i = 0; i < num; i++ )
-                    {
-                        
-                    }
+
+//                    int num = info.batchList.size();
+//                    BatchListEntity cureentEntity = null;
+//                    for ( int i = 0; i < num - 1; i++ )
+//                    {
+//                        BatchListEntity item1 = info.batchList.get(i);
+//                        for ( int j = i + 1; j < num; j++ )
+//                        {
+//                            BatchListEntity item2 = info.batchList.get(i);
+//
+//                            if ( Common.string2int(getPrice(item1.price)) > Common.string2int(getPrice(item2.price)) )
+//                            {
+//                                cureentEntity = item1;
+//                                item1 = item2;
+//                                item2 = cureentEntity;
+//                            }
+//                        }
+//                    }
                 }
 
 //                如果没有可报名的信息， 展示最后一个服务器信息月份

@@ -28,7 +28,7 @@
             <com.lis99.mobile.util.calendar.GridCalendarView
                 android:id="@+id/gridMonthView"
                 android:layout_width="match_parent"
-                android:layout_height="530dp"
+                android:layout_height="410dp"
                 android:background="@color/white"
             />
 

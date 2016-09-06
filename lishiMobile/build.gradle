@@ -5,19 +5,17 @@ android {
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
-//        ttest {}
-
-        shichang {}
-        zhuzhan {}
-        tuiguang1 {}
-
+        ttest {}
+//        shichang {}
+//        zhuzhan {}
+//        tuiguang1 {}
 //        sougou {}
 //        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}
 //        gfan {}
-        zs360 {}
+//        zs360 {}
 //        huawei {}
 //        lis99test {}
 //        jinli {}

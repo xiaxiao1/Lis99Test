@@ -3,6 +3,7 @@ package com.lis99.mobile.club.activityinfo;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,9 @@ import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.ShareManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCallback, View
@@ -40,6 +43,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     String s = "ssss";
     boolean close = true;
     int activity_id;
+    List<View> baomingxvzhiList;
     //root View
     RelativeLayout layoutmain;
     //负责实现UI上拉加载显示详情
@@ -94,7 +98,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     private RelativeLayout layoutBaomingxvzhi;
     private ImageView ivBaomingxvzhi;
     //报名须知信息
-    private TextView tvBaomingxvzhi;
+    private LinearLayout tvBaomingxvzhi;
     //免责声明
     private RelativeLayout layoutReadme;
     private ImageView ivReadme;
@@ -114,6 +118,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         setContentView(R.layout.activityinfo_activity_main);
 
         initViews();
+        baomingxvzhiList = new ArrayList<View>();
         FragmentManager fm;
         fm = getFragmentManager();
         f1 = new ListFragment();
@@ -123,6 +128,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             @Override
             public void initFullInfo(Object datas) {
                 model = (ClubTopicActiveSeriesLineMainModel) datas;
+                cleanBaomingxvzhi();
                 if (!model.settime.equals("")) {
                     tvGatherTime.setText(model.settime);
                 }
@@ -145,11 +151,12 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
                     tvReadme.setText(model.disclaimer);
                 }
                 if (model.reportnote != null && model.reportnote.size() > 0) {
-                    String text = "";
+                    /*String text = "";
                     for (String s : model.reportnote) {
-                        text = text + s + "\n";
+                        text = text +"· "+ s + "\n";
                     }
-                    tvBaomingxvzhi.setText(text);
+                    tvBaomingxvzhi.setText(text);*/
+                    addBaomingxvzhiSpots(model.reportnote);
                 }
                 if (!model.catematter.equals("")) {
                     tvSafely.setText(model.catematter);
@@ -248,7 +255,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         tvSafely = (TextView) fullInfoView_ll.findViewById(R.id.tv_safely);
         layoutBaomingxvzhi=(RelativeLayout)fullInfoView_ll.findViewById(R.id.layout_baomingxvzhi);
         ivBaomingxvzhi=(ImageView)fullInfoView_ll.findViewById(R.id.iv_baomingxvzhi);
-        tvBaomingxvzhi=(TextView)fullInfoView_ll.findViewById(R.id.tv_baomingxvzhi);
+        tvBaomingxvzhi=(LinearLayout) fullInfoView_ll.findViewById(R.id.tv_baomingxvzhi);
 
 //        tvGatherTime.setVisibility(View.VISIBLE);
         tvJourney.setVisibility(View.VISIBLE);
@@ -259,6 +266,26 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         tvBaomingxvzhi.setVisibility(View.VISIBLE);
     }
 
+    //报名须知，每一条前面加点·
+    public void addBaomingxvzhiSpots(List<String> lightspots) {
+        for (int i=0;i<lightspots.size();i++) {
+            View spot = this.getLayoutInflater().inflate(R.layout
+                    .ls_club_topic_list_adapter, null);
+            TextView txt = (TextView) spot.findViewById(R.id.tv);
+            txt.setText(lightspots.get(i));
+            txt.setTextColor(Color.parseColor("#999999"));
+            txt.setTextSize(14);
+            tvBaomingxvzhi.addView(spot);
+            baomingxvzhiList.add(spot);
+        }
+    }
+    //清除报名须知内容，每次刷新时处理
+    public void cleanBaomingxvzhi(){
+        for (int i=0;i<baomingxvzhiList.size();i++) {
+            tvBaomingxvzhi.removeView(baomingxvzhiList.get(i));
+        }
+        baomingxvzhiList.clear();
+    }
 
     @Override
     public void onClick(View v) {
@@ -325,7 +352,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
 
     }
 
-    public void showInfo(TextView tv, ImageView iv) {
+    public void showInfo(View tv, ImageView iv) {
         if (tv.getVisibility() == View.VISIBLE) {
             iv.setImageResource(R.drawable.club_info_dot_down);
             tv.setVisibility(View.GONE);
@@ -347,6 +374,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             intent.putExtra("CLUBID", model.clubId);
             startActivityForResult(intent, 997);
         }
+
 
 
 //        activity_id = model.activityId;

@@ -6,8 +6,8 @@
 
 
     <LinearLayout
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,13 +60,14 @@
         <RelativeLayout
             android:id="@+id/layout_location"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="集合地点"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 android:layout_centerVertical="true"
                 android:id="@+id/tv"
@@ -92,8 +93,10 @@
                 android:text="@string/temp_string_long"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:textColor="@color/text_color_black"
+                android:textColor="@color/color_txt_light_gray"
+                android:textSize="@dimen/ls_text_14sp"
                 android:layout_centerVertical="true"
+                android:gravity="right"
                 />
 
 
@@ -102,7 +105,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
             >
 
@@ -110,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="联系方式"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 />
 
@@ -120,7 +124,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="@string/temp_string"
-                android:textColor="@color/text_color_black"
+                android:textColor="@color/color_txt_light_gray"
+                android:textSize="@dimen/ls_text_14sp"
                 />
 
         </RelativeLayout>
@@ -129,7 +134,7 @@
         <RelativeLayout
             android:id="@+id/layout_journey"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
 
             >
 
@@ -137,6 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="具体行程"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 android:layout_centerVertical="true"
                 />
@@ -158,7 +164,8 @@
             android:id="@+id/tv_journey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
+            android:textColor="@color/color_txt_light_gray"
+            android:textSize="@dimen/ls_text_14sp"
             android:text="@string/temp_string"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -169,13 +176,14 @@
         <RelativeLayout
             android:id="@+id/layout_equip"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="装备建议"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 android:layout_centerVertical="true"
                 />
@@ -197,7 +205,8 @@
             android:id="@+id/tv_equip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
+            android:textColor="@color/color_txt_light_gray"
+            android:textSize="@dimen/ls_text_14sp"
             android:text="@string/temp_string"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -207,13 +216,14 @@
         <RelativeLayout
             android:id="@+id/layout_price"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="费用说明"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 android:layout_centerVertical="true"
                 />
@@ -235,7 +245,8 @@
             android:id="@+id/tv_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
+            android:textColor="@color/color_txt_light_gray"
+            android:textSize="@dimen/ls_text_14sp"
             android:text="@string/temp_string"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -244,13 +255,14 @@
         <RelativeLayout
             android:id="@+id/layout_baomingxvzhi"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="报名须知"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 android:layout_centerVertical="true"
                 />
@@ -267,28 +279,28 @@
         </RelativeLayout>
 
 
-        <TextView
-            android:lineSpacingExtra="5dp"
+        <LinearLayout
             android:id="@+id/tv_baomingxvzhi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:text="@string/temp_string"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            />
+            android:orientation="vertical"
+            >
+            </LinearLayout>
 
 
         <RelativeLayout
             android:id="@+id/layout_readme"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="免责声明"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 android:layout_centerVertical="true"
                 />
@@ -310,7 +322,8 @@
             android:id="@+id/tv_readme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
+            android:textColor="@color/color_txt_light_gray"
+            android:textSize="@dimen/ls_text_14sp"
             android:text="@string/temp_string"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -320,13 +333,14 @@
         <RelativeLayout
             android:id="@+id/layout_safely"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="注意事项"
+                android:textSize="@dimen/text_large"
                 android:textColor="@color/text_color_black"
                 android:layout_centerVertical="true"
                 />
@@ -348,7 +362,8 @@
             android:id="@+id/tv_safely"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
+            android:textColor="@color/color_txt_light_gray"
+            android:textSize="@dimen/ls_text_14sp"
             android:text="@string/temp_string"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"

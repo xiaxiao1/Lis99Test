@@ -244,6 +244,17 @@ public class Common {
         return i;
     }
 
+    public static Integer string2Integer ( String str )
+    {
+        Integer i = -1;
+        try {
+            i = Integer.parseInt(str);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return i;
+    }
+
     public static String getIntInString ( String str )
     {
         if ( TextUtils.isEmpty(str)) return str;

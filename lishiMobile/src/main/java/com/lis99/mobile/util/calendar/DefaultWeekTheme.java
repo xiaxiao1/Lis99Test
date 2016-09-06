@@ -23,7 +23,7 @@ public class DefaultWeekTheme implements IWeekTheme {
 
     @Override
     public int colorWeekend() {
-        return Color.parseColor("##c2c2c2");
+        return Color.parseColor("#c2c2c2");
     }
 
     @Override
