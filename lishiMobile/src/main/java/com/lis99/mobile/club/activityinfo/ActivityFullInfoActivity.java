@@ -371,12 +371,15 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             return;
         }
 
+
         /*if (Common.isLogin(activity)) {
             Intent intent = new Intent(activity, SericeCalendarActivity.class);
             intent.putExtra("ACTIVITYID", model.activityId);
             intent.putExtra("CLUBID", model.clubId);
             startActivityForResult(intent, 997);
         }*/
+
+
 
 
         activity_id = model.activityId;
