@@ -1,11 +1,12 @@
 package com.lis99.mobile.club.activityinfo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
@@ -53,6 +54,8 @@ public class SericeCalendarActivity extends LSBaseActivity {
 //  选中的系列活动
     private BatchListEntity selectEntity;
 
+    private Button btnOk;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +80,10 @@ public class SericeCalendarActivity extends LSBaseActivity {
         tvNone = (TextView) findViewById(R.id.tv_none);
         list = (MyListView) findViewById(R.id.list);
         list.setAdapter(null);
-        findViewById(R.id.btn_ok).setOnClickListener(this);
+        btnOk = (Button) findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(this);
+
+        setBtnClick(false);
 
 //        Calendar calendar = Calendar.getInstance();
 //        int currYear = calendar.get(Calendar.YEAR);
@@ -104,7 +110,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
             @Override
             public void onClickOnDate(int year, int month, int day) {
-                Toast.makeText(activity,"点击了" +  year + "-" + month + "-" + day,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activity,"点击了" +  year + "-" + month + "-" + day,Toast.LENGTH_SHORT).show();
 
                 info = iscalendarInfo(year, month, day);
 
@@ -126,9 +132,12 @@ public class SericeCalendarActivity extends LSBaseActivity {
                             return;
                         }
                         adapter.setCurrentPosition(position);
+                        setBtnClick(true);
                     }
                 });
 
+                if ( adapter != null && adapter.getCurrentPosition() != -1 )
+                setBtnClick(true);
             }
         });
 
@@ -136,6 +145,24 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
 
     }
+
+//  按钮状态， true可点击， false 不可点击
+    private void setBtnClick ( boolean clickable )
+    {
+        if ( clickable )
+        {
+            btnOk.setBackgroundColor(getResources().getColor(R.color.text_color_green));
+            btnOk.setText("下一步");
+            btnOk.setClickable(true);
+        }
+        else
+        {
+            btnOk.setBackgroundResource(getResources().getColor(Color.parseColor("#e2e2e2")));
+            btnOk.setText("请选择游玩日期");
+            btnOk.setClickable(false);
+        }
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -189,40 +216,30 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
                 LinkedHashMap<String, CalendarInfo> map = new LinkedHashMap<>();
 
-                for (int i = 0; i < model.batchList.size(); i++)
-                {
+                for (int i = 0; i < model.batchList.size(); i++) {
                     BatchListEntity item = model.batchList.get(i);
                     int[] ymd = new int[3];
                     ymd[0] = DateUtils.getYear(item.starttime);
                     ymd[1] = DateUtils.getMonth(item.starttime);
                     ymd[2] = DateUtils.getDay(item.starttime);
 
-                    if ( !map.containsKey(item.starttime) )
-                    {
+                    if (!map.containsKey(item.starttime)) {
                         CalendarInfo ci = null;
-                        if ( item.isEnd == 1 )
-                        {
+                        if (item.isEnd == 1) {
                             ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 1, "已过期");
-                        }
-                        else if ( item.isBaoming == 1 )
-                        {
+                        } else if (item.isBaoming == 1) {
                             ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 1, "已报名");
-                        }
-                        else
-                        {
-                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥"+getPrice(item.price));
+                        } else {
+                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥" + getPrice(item.price));
 //                            默认显示的月份
-                            if ( currentMonth == null )
-                            {
+                            if (currentMonth == null) {
                                 currentMonth = ci;
                             }
                         }
-                        if ( ci.batchList == null ) ci.batchList = new ArrayList<BatchListEntity>();
+                        if (ci.batchList == null) ci.batchList = new ArrayList<BatchListEntity>();
                         ci.batchList.add(item);
                         map.put(item.starttime, ci);
-                    }
-                    else
-                    {
+                    } else {
                         map.get(item.starttime).batchList.add(item);
                     }
 
@@ -231,10 +248,20 @@ public class SericeCalendarActivity extends LSBaseActivity {
 //              合并列表
                 listInfo = new ArrayList<CalendarInfo>();
                 Set<String> set = map.keySet();
-                for ( String key : set )
-                {
+                for (String key : set) {
                     listInfo.add(map.get(key));
                 }
+//                价格做一个排序
+                for (CalendarInfo info : listInfo)
+                {
+                    int num = info.batchList.size();
+
+                    for ( int i = 0; i < num; i++ )
+                    {
+                        
+                    }
+                }
+
 //                如果没有可报名的信息， 展示最后一个服务器信息月份
                 if ( currentMonth == null && listInfo != null && listInfo.size() > 0 )
                 {

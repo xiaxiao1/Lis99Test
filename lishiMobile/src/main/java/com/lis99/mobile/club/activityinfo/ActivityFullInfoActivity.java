@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubTopicInfoLocation;
 import com.lis99.mobile.club.model.BatchListEntity;
@@ -23,7 +21,6 @@ import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
 import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
-import com.lis99.mobile.mine.LSLoginActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
@@ -344,22 +341,22 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             return;
         }
 
-//        if (Common.isLogin(activity)) {
-//            Intent intent = new Intent(activity, SericeCalendarActivity.class);
-//            intent.putExtra("ACTIVITYID", model.activityId);
-//            intent.putExtra("CLUBID", model.clubId);
-//            startActivityForResult(intent, 997);
-//        }
-
-
-        activity_id = model.activityId;
-        String userID = DataManager.getInstance().getUser().getUser_id();
-        if (TextUtils.isEmpty(userID)) {
-            Intent intent = new Intent(activity, LSLoginActivity.class);
-            startActivity(intent);
-        } else {
-            getSeriesList();
+        if (Common.isLogin(activity)) {
+            Intent intent = new Intent(activity, SericeCalendarActivity.class);
+            intent.putExtra("ACTIVITYID", model.activityId);
+            intent.putExtra("CLUBID", model.clubId);
+            startActivityForResult(intent, 997);
         }
+
+
+//        activity_id = model.activityId;
+//        String userID = DataManager.getInstance().getUser().getUser_id();
+//        if (TextUtils.isEmpty(userID)) {
+//            Intent intent = new Intent(activity, LSLoginActivity.class);
+//            startActivity(intent);
+//        } else {
+//            getSeriesList();
+//        }
     }
 
     //获取系列活动列表

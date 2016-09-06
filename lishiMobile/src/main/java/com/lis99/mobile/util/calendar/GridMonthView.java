@@ -165,12 +165,14 @@ public class GridMonthView extends MonthView {
                 canvas.drawText(day+"", startX, startY, paint);
             }
         }
-        else if(day== currDay && currDay != selDay && currMonth == selMonth){
-            //今日的颜色，不是选中的时候
-            //正常月，选中其他日期，则今日为红色
-            paint.setColor(theme.colorToday());
-            canvas.drawText(day+"", startX, startY, paint);
-        }else{
+//        else if(day== currDay && currDay != selDay && currMonth == selMonth){
+//            //今日的颜色，不是选中的时候
+//            //正常月，选中其他日期，则今日为红色
+//            paint.setColor(theme.colorToday());
+//            canvas.drawText(day+"", startX, startY, paint);
+//        }
+
+        else{
             if(!TextUtils.isEmpty(des)){
                 //没选中，但是desc不为空
                 int dateY = (int) (startY);
@@ -193,7 +195,14 @@ public class GridMonthView extends MonthView {
                 int priceY = (int) (startY + 20 * density);
                 canvas.drawText(des, priceX, priceY, paint);
             }else{//des为空
-                paint.setColor(theme.colorWeekday());
+                if ( day >= currDay || month > currMonth || year > currYear )
+                {
+                    paint.setColor(theme.colorAfterDay());
+                }
+                else
+                {
+                    paint.setColor(theme.colorWeekday());
+                }
                 canvas.drawText(day+"", startX, startY, paint);
             }
         }

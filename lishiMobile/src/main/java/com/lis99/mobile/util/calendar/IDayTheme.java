@@ -123,6 +123,11 @@ public interface IDayTheme {
      */
     public int paddingTop ();
 
+    /**
+     *      当前日期以后的日期颜色
+     * @return
+     */
+    public int colorAfterDay ();
 
 }
 

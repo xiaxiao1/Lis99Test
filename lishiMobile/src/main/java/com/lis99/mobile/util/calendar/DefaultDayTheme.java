@@ -73,7 +73,7 @@ public class DefaultDayTheme implements IDayTheme {
 
     @Override
     public int dateHeight() {
-        return 70;
+        return 50;
     }
 
     @Override
@@ -119,5 +119,10 @@ public class DefaultDayTheme implements IDayTheme {
     @Override
     public int paddingTop() {
         return -5;
+    }
+
+    public int colorAfterDay ()
+    {
+        return Color.parseColor("#000000");
     }
 }
