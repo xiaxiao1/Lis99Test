@@ -27,8 +27,6 @@ import com.lis99.mobile.util.calendar.MonthView;
 import com.lis99.mobile.view.MyListView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -232,7 +230,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                         } else if (item.isBaoming == 1) {
                             ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 1, "已报名");
                         } else {
-                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥" + getPrice(item.price));
+                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥" + getPrice(item.price)+"起");
 //                            默认显示的月份
                             if (currentMonth == null) {
                                 currentMonth = ci;
@@ -242,7 +240,15 @@ public class SericeCalendarActivity extends LSBaseActivity {
                         ci.batchList.add(item);
                         map.put(item.starttime, ci);
                     } else {
-                        map.get(item.starttime).batchList.add(item);
+                        CalendarInfo cinfo = map.get(item.starttime);
+                        if (item.isEnd == 1) {
+                            cinfo.isOverdue = 1;
+                            cinfo.des = "已过期";
+                        } else if (item.isBaoming == 1) {
+                            cinfo.isOverdue = 1;
+                            cinfo.des = "已报名";
+                        }
+                        cinfo.batchList.add(item);
                     }
 
                 }
@@ -256,31 +262,29 @@ public class SericeCalendarActivity extends LSBaseActivity {
 //                价格做一个排序
                 for (CalendarInfo info : listInfo)
                 {
-                    Collections.sort(info.batchList, new Comparator<BatchListEntity>() {
-                        @Override
-                        public int compare(BatchListEntity lhs, BatchListEntity rhs) {
-                            return Common.string2Integer(getPrice(lhs.price)).compareTo(Common.string2Integer(getPrice(rhs.price)));
-                        }
-                    });
-
-
-//                    int num = info.batchList.size();
-//                    BatchListEntity cureentEntity = null;
-//                    for ( int i = 0; i < num - 1; i++ )
-//                    {
-//                        BatchListEntity item1 = info.batchList.get(i);
-//                        for ( int j = i + 1; j < num; j++ )
-//                        {
-//                            BatchListEntity item2 = info.batchList.get(i);
-//
-//                            if ( Common.string2int(getPrice(item1.price)) > Common.string2int(getPrice(item2.price)) )
-//                            {
-//                                cureentEntity = item1;
-//                                item1 = item2;
-//                                item2 = cureentEntity;
-//                            }
+//                    规格根据价格从小到大排序
+//                    Collections.sort(info.batchList, new Comparator<BatchListEntity>() {
+//                        @Override
+//                        public int compare(BatchListEntity lhs, BatchListEntity rhs) {
+//                            return Common.string2Integer(getPrice(lhs.price)).compareTo(Common.string2Integer(getPrice(rhs.price)));
 //                        }
-//                    }
+//                    });
+                    int price = Integer.MAX_VALUE;
+                    for ( BatchListEntity be : info.batchList )
+                    {
+                        int p = Common.string2Integer(getPrice(be.price));
+                        if ( price >  p )
+                        {
+                            price = p;
+                        }
+                    }
+
+//                    显示价格的, 取最低的价格
+                    if ( info.isOverdue == 0 )
+                    {
+                        info.des = "¥"+getPrice(""+price)+"起";
+                    }
+
                 }
 
 //                如果没有可报名的信息， 展示最后一个服务器信息月份

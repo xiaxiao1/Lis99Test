@@ -31,7 +31,7 @@ public class WeekView extends View {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
         if(heightMode == MeasureSpec.AT_MOST){
-            heightSize = (int) (mDisplayMetrics.density * 30);
+            heightSize = (int) (mDisplayMetrics.density * 25);
         }
         if(widthMode == MeasureSpec.AT_MOST){
             widthSize = (int) (mDisplayMetrics.density * 300);

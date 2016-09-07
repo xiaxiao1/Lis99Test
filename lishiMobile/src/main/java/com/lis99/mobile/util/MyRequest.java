@@ -67,6 +67,7 @@ public class MyRequest{
 //				Common.toast("拉取失败");
 //				Common.log("result==null");
 //				错误返回
+				if ( mTask!=null && mTask.getCallBack() != null )
 				mTask.getCallBack().handlerError(mTask);
 				return;
 			}

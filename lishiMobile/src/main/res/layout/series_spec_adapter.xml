@@ -51,7 +51,7 @@
                       android:textSize="@dimen/text_small"
                       android:text="@string/temp_string"
                       android:id="@+id/tv_time"
-                      android:paddingTop="10dp"
+                      android:paddingTop="6dp"
             />
 
         </LinearLayout>

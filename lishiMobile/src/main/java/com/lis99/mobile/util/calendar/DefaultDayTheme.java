@@ -123,6 +123,6 @@ public class DefaultDayTheme implements IDayTheme {
 
     public int colorAfterDay ()
     {
-        return Color.parseColor("#000000");
+        return Color.parseColor("#525252");
     }
 }

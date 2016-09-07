@@ -54,7 +54,7 @@
                 <TextView android:layout_width="match_parent" android:layout_height="100dp"
                           android:gravity="center"
                           android:text="请选择游玩日期"
-                          android:textColor="@color/text_color_black"
+                          android:textColor="@color/color_nine"
                           android:id="@+id/tv_none"
                 />
 
