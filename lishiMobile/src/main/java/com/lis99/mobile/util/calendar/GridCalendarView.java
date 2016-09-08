@@ -44,9 +44,13 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
         });
     }
 
-    public void setLastDay(CalendarInfo info)
+    /**
+     *      最后一个月， 最早一个月
+     * @param info
+     */
+    public void setLastDay(CalendarInfo ...info)
     {
-        gridMonthView.setLastDay(info);
+        gridMonthView.setLastDay(info[0], info[1]);
     }
 
 

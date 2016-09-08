@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Scroller;
 
+import com.lis99.mobile.util.Common;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -152,6 +154,16 @@ public abstract class MonthView extends View {
             case MotionEvent.ACTION_MOVE:
                 if(smoothMode == 1)break;
                 int dx = (int) (downX - event.getX());
+                if ( dx < 0 && !hasLastMonth() )   //往左滑动
+                {
+                    Common.log("left");
+                    break;
+                }
+                else if ( dx > 0 && !hasNextMonth() )    //右滑动
+                {
+                    Common.log("right");
+                    break;
+                }
                 if(Math.abs(dx) > mTouchSlop){
                     getParent().requestDisallowInterceptTouchEvent(true);
                     int moveX = dx + lastMoveX;
@@ -161,14 +173,14 @@ public abstract class MonthView extends View {
             case MotionEvent.ACTION_UP:
                 int upX = (int) event.getX();
                 int upY = (int) event.getY();
-                if(upX-downX > 0 && Math.abs(upX-downX) > mTouchSlop*10){//左滑
+                if(upX-downX > 0 && Math.abs(upX-downX) > mTouchSlop*10 && hasLastMonth()){//左滑
                     if(smoothMode == 0){
                         setLeftDate();
                         indexMonth--;
                     }else{
                         onLeftClick();
                     }
-                }else if(upX-downX < 0 && Math.abs(upX-downX) > mTouchSlop*10 && !hasNextMonth() ){//右滑
+                }else if(upX-downX < 0 && Math.abs(upX-downX) > mTouchSlop*10 && hasNextMonth()){//右滑
                     if(smoothMode == 0){
                         setRightDate();
                         indexMonth++;
@@ -302,6 +314,10 @@ public abstract class MonthView extends View {
      * 左点击，日历向后翻页
      */
     public void onLeftClick(){
+        if ( !hasLastMonth() )
+        {
+            return;
+        }
         setLeftDate();
         invalidate();
 //        if(monthLisener != null){
@@ -436,9 +452,15 @@ public abstract class MonthView extends View {
     }
 
     /**
-     *
+     *      下个月是否有活动
      * @return
      */
     protected abstract boolean hasNextMonth ();
+
+    /**
+     *     上个月是否有活动
+     * @return
+     */
+    protected abstract boolean hasLastMonth ();
 
 }

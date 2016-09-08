@@ -216,6 +216,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
                 LinkedHashMap<String, CalendarInfo> map = new LinkedHashMap<>();
                 CalendarInfo lastDay = null;
+                CalendarInfo firstDay = null;
 
                 for (int i = 0; i < model.batchList.size(); i++) {
                     BatchListEntity item = model.batchList.get(i);
@@ -242,6 +243,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                         map.put(item.starttime, ci);
 //                        查找最后一个活动
                         lastDay = getLastDay (ci, lastDay);
+                        firstDay = getFirstDay(ci, firstDay);
 
                     } else {
                         CalendarInfo cinfo = map.get(item.starttime);
@@ -297,7 +299,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                     currentMonth = listInfo.get(listInfo.size() - 1);
                 }
 
-                gridCalendarView.setLastDay(lastDay);
+                gridCalendarView.setLastDay(lastDay, firstDay);
                 gridCalendarView.setCalendarInfos(listInfo);
                 gridCalendarView.setCurrentMonth(currentMonth);
             }
@@ -363,13 +365,28 @@ public class SericeCalendarActivity extends LSBaseActivity {
     private CalendarInfo getLastDay ( CalendarInfo info, CalendarInfo last )
     {
         if ( last == null ) return info;
-        if ( info.year > last.year && info.month > last.month && info.day > last.day )
+        if ( info.year > last.year && info.month > last.month )
         {
             return info;
         }
         return last;
     }
 
+    /**
+     *      判断日期， 返回日期最小的对象
+     * @param info
+     * @param first
+     * @return
+     */
+    private CalendarInfo getFirstDay ( CalendarInfo info, CalendarInfo first )
+    {
+        if ( first == null ) return info;
+        if ( info.year < first.year && info.month < first.month )
+        {
+            return info;
+        }
+        return first;
+    }
 
 
 }

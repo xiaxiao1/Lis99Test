@@ -12,12 +12,17 @@ import android.util.AttributeSet;
  */
 public class GridMonthView extends MonthView {
 
-//    设置最后一个月份数据
-    public void setLastDay(CalendarInfo lastDay) {
+    /**
+     *      最后一个月， 最早一个月
+     * @param lastDay
+     * @param firstDay
+     */
+    public void setLastDay(CalendarInfo lastDay, CalendarInfo firstDay ) {
         this.lastDay = lastDay;
+        this.firstDay = firstDay;
     }
 
-    private CalendarInfo lastDay;
+    private CalendarInfo lastDay, firstDay;
 
     public GridMonthView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -227,7 +232,23 @@ public class GridMonthView extends MonthView {
     protected boolean hasNextMonth() {
         if ( lastDay == null ) return true;
         //如果当前年、月 》＝ 数据最后的年 、月  返回false
-        if ( selYear >= lastDay.year && selMonth >= lastDay.month )
+        if ( selYear >= lastDay.year && selMonth+1 >= lastDay.month )
+        {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 上个月是否有活动
+     *
+     * @return
+     */
+    @Override
+    protected boolean hasLastMonth() {
+        if ( firstDay == null ) return true;
+        //如果当前年、月 》＝ 数据最后的年 、月  返回false
+        if ( selYear <= firstDay.year && selMonth+1 <= firstDay.month )
         {
             return false;
         }
