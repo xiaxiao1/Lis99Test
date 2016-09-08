@@ -29,10 +29,22 @@ public class WeekView extends View {
 
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
+//        本身warp && parent 明确尺寸
         if(heightMode == MeasureSpec.AT_MOST){
             heightSize = (int) (mDisplayMetrics.density * 25);
         }
+        //        本身warp&&parent也是warp
+        else if(heightMode == MeasureSpec.UNSPECIFIED){
+            heightSize = (int) (mDisplayMetrics.density * 25);
+        }
+//        本身明确尺寸
+        else if(heightMode == MeasureSpec.EXACTLY){
+        }
+        else
+        {
+            heightSize = (int) (mDisplayMetrics.density * 225);
+        }
+
         if(widthMode == MeasureSpec.AT_MOST){
             widthSize = (int) (mDisplayMetrics.density * 300);
         }
