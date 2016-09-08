@@ -17,18 +17,19 @@ import java.util.List;
 public class GridCalendarView extends LinearLayout implements View.OnClickListener {
     private WeekView weekView;
     private GridMonthView gridMonthView;
-    private TextView textViewYear,textViewMonth;
+    private TextView textViewYear, textViewMonth;
+
     public GridCalendarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
         LayoutParams llParams =
                 new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        View view = LayoutInflater.from(context).inflate(R.layout.display_grid_date,null);
-        weekView = new WeekView(context,null);
-        gridMonthView = new GridMonthView(context,null);
-        addView(view,llParams);
-        addView(weekView,llParams);
-        addView(gridMonthView,llParams);
+        View view = LayoutInflater.from(context).inflate(R.layout.display_grid_date, null);
+        weekView = new WeekView(context, null);
+        gridMonthView = new GridMonthView(context, null);
+        addView(view, llParams);
+        addView(weekView, llParams);
+        addView(gridMonthView, llParams);
 
         view.findViewById(R.id.left).setOnClickListener(this);
         view.findViewById(R.id.right).setOnClickListener(this);
@@ -37,11 +38,17 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
         gridMonthView.setMonthLisener(new MonthView.IMonthLisener() {
             @Override
             public void setTextMonth() {
-                textViewYear.setText(gridMonthView.getSelYear()+"-");
-                textViewMonth.setText((gridMonthView.getSelMonth() + 1)+"");
+                textViewYear.setText(gridMonthView.getSelYear() + "-");
+                textViewMonth.setText((gridMonthView.getSelMonth() + 1) + "");
             }
         });
     }
+
+    public void setLastDay(CalendarInfo info)
+    {
+        gridMonthView.setLastDay(info);
+    }
+
 
     public void setCurrentMonth ( CalendarInfo info )
     {

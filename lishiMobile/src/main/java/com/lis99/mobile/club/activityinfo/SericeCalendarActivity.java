@@ -215,6 +215,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                 if (model == null || model.batchList == null || model.batchList.size() == 0) return;
 
                 LinkedHashMap<String, CalendarInfo> map = new LinkedHashMap<>();
+                CalendarInfo lastDay = null;
 
                 for (int i = 0; i < model.batchList.size(); i++) {
                     BatchListEntity item = model.batchList.get(i);
@@ -239,6 +240,9 @@ public class SericeCalendarActivity extends LSBaseActivity {
                         if (ci.batchList == null) ci.batchList = new ArrayList<BatchListEntity>();
                         ci.batchList.add(item);
                         map.put(item.starttime, ci);
+//                        查找最后一个活动
+                        lastDay = getLastDay (ci, lastDay);
+
                     } else {
                         CalendarInfo cinfo = map.get(item.starttime);
                         if (item.isEnd == 1) {
@@ -293,6 +297,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                     currentMonth = listInfo.get(listInfo.size() - 1);
                 }
 
+                gridCalendarView.setLastDay(lastDay);
                 gridCalendarView.setCalendarInfos(listInfo);
                 gridCalendarView.setCurrentMonth(currentMonth);
             }
@@ -349,6 +354,21 @@ public class SericeCalendarActivity extends LSBaseActivity {
         return price.substring(0, end);
     }
 
+    /**
+     *      判断日期， 返回日期最大的对象
+     * @param info
+     * @param last
+     * @return
+     */
+    private CalendarInfo getLastDay ( CalendarInfo info, CalendarInfo last )
+    {
+        if ( last == null ) return info;
+        if ( info.year > last.year && info.month > last.month && info.day > last.day )
+        {
+            return info;
+        }
+        return last;
+    }
 
 
 

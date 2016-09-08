@@ -168,7 +168,7 @@ public abstract class MonthView extends View {
                     }else{
                         onLeftClick();
                     }
-                }else if(upX-downX < 0 && Math.abs(upX-downX) > mTouchSlop*10){//右滑
+                }else if(upX-downX < 0 && Math.abs(upX-downX) > mTouchSlop*10 && !hasNextMonth() ){//右滑
                     if(smoothMode == 0){
                         setRightDate();
                         indexMonth++;
@@ -313,6 +313,10 @@ public abstract class MonthView extends View {
      * 右点击，日历向前翻页
      */
     public void onRightClick(){
+        if ( !hasNextMonth() )
+        {
+            return;
+        }
         setRightDate();
         invalidate();
 //        if(monthLisener != null){
@@ -430,5 +434,11 @@ public abstract class MonthView extends View {
     {
         setCurrentMonth(currYear,currMonth,currDay);
     }
+
+    /**
+     *
+     * @return
+     */
+    protected abstract boolean hasNextMonth ();
 
 }
