@@ -129,9 +129,11 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             public void initFullInfo(Object datas) {
                 model = (ClubTopicActiveSeriesLineMainModel) datas;
                 cleanBaomingxvzhi();
-                if (!model.settime.equals("")) {
+
+                /*集合时间，后期决定去掉，*/
+                /*if (!model.settime.equals("")) {
                     tvGatherTime.setText(model.settime);
-                }
+                }*/
                 if (!model.setaddress.equals("")) {
                     tvLocation.setText(model.setaddress);
                 }

@@ -708,12 +708,13 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 header.setVisibility(View.VISIBLE);
                 //设置活动标题
                 activeTitle_tv.setText(model.getTitle());
-                //设置活动备注
-                activeNote_tv.setText(model.batchDesc);
-                //设置价格
-                activePrice_tv.setText("￥"+model.consts);
-                Log.i("xx", model.getTitle() + "ccc");
+                //设置活动时间区间，批次数量
+                if (!model.starttimeIntval.equals("")) {
 
+                    activeNote_tv.setText(model.starttimeIntval+"共"+model.batchCount+"期");
+                    //设置价格区间
+                    activePrice_tv.setText("￥"+model.priceIntval);
+                }
                 //设置顶部轮播图
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
                     bannerView.setVisibility(View.VISIBLE);

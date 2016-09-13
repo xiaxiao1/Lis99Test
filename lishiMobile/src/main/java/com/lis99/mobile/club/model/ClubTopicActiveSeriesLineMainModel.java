@@ -79,6 +79,16 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     @SerializedName("shareUrl")
     public String shareUrl;
 
+    //价格区间
+    @SerializedName("price_intval")
+    public String priceIntval;
+    //活动时间区间
+    @SerializedName("starttime_intval")
+    public String starttimeIntval;
+    //批次总数
+    @SerializedName("batch_count")
+    public int batchCount;
+
 
     //tagid
     @SerializedName("aimid")

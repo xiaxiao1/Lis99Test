@@ -30,13 +30,13 @@
         android:id="@+id/afullinfo_active_note_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2011nian5yue至2016年7月共15期"
+        android:text=""
         android:textSize="12sp"
         android:textColor="#999999"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
     <LinearLayout
@@ -64,6 +64,7 @@
             android:textSize="12sp"
             android:textColor="#999999"
             android:layout_marginLeft="7dp"
+            android:visibility="gone"
             />
     </LinearLayout>
 
