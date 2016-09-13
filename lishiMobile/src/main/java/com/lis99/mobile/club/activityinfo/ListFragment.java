@@ -844,11 +844,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置玩家评论
 
 
-
-                if(model.commentlist!=null){
+                /*打开推荐玩家评价，2016.9.13*/
+                /*if(model.commentlist!=null){
 
                     model.commentlist=null;
-                }
+                }*/
                 if (model.commentlist != null && model.commentlist.size() != 0) {
                     Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
 //                    leader_fengexian_ll.setVisibility(View.VISIBLE);
