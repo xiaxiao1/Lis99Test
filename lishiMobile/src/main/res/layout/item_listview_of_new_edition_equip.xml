@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="#eeeeee"
+        />
+
+    <ImageView
+        android:id="@+id/item_bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/active_line_ad_more"
+        android:scaleType="centerCrop"
+        />
+    I<ImageView
+    android:id="@+id/item_type_img"
+    android:layout_width="100dp"
+    android:layout_height="40dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="20dp"
+    android:src="@drawable/add_people_press"
+    />
+    <TextView
+        android:id="@+id/item_logo_desc_tv"
+        android:text="拿起大刀向鬼子冲，啦啦啦啦啦啦啦啦啦"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@id/item_bg_img"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/active_all_is_chosed"
+        android:gravity="center_vertical"
+        android:drawablePadding="16dp"
+        />
+    <View
+
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginTop="15dp"
+        android:background="#ececec"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/item_logo_desc_tv"
+        />
+    <ImageView
+        android:id="@+id/item_join_img"
+        android:src="@drawable/add_people"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_logo_desc_tv"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
