@@ -713,7 +713,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
                     activeNote_tv.setText(model.starttimeIntval+"共"+model.batchCount+"期");
                     //设置价格区间
-                    activePrice_tv.setText("￥"+model.priceIntval);
+                    activePrice_tv.setText(model.priceIntval);
                 }
                 //设置顶部轮播图
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
