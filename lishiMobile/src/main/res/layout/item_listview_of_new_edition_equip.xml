@@ -4,58 +4,66 @@
                 android:layout_height="match_parent"
     >
     <View
+        android:id="@+id/view_bar"
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:background="#eeeeee"
+        android:background="#f7f3ec"
         />
 
     <ImageView
         android:id="@+id/item_bg_img"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="235dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/active_line_ad_more"
         android:scaleType="centerCrop"
+        android:layout_below="@id/view_bar"
         />
     I<ImageView
-    android:id="@+id/item_type_img"
-    android:layout_width="100dp"
-    android:layout_height="40dp"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginLeft="20dp"
-    android:src="@drawable/add_people_press"
+        android:id="@+id/item_type_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/free_use"
+        android:layout_below="@id/view_bar"
     />
     <TextView
         android:id="@+id/item_logo_desc_tv"
         android:text="拿起大刀向鬼子冲，啦啦啦啦啦啦啦啦啦"
+        android:textColor="#d8b16c"
+        android:textSize="13sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_below="@id/item_bg_img"
         android:layout_marginTop="15dp"
-        android:drawableLeft="@drawable/active_all_is_chosed"
+        android:layout_below="@id/item_bg_img"
+        android:drawableLeft="@drawable/brand"
         android:gravity="center_vertical"
-        android:drawablePadding="16dp"
+        android:drawablePadding="10dp"
         />
     <View
-
         android:layout_width="wrap_content"
         android:layout_height="1px"
         android:layout_marginTop="15dp"
-        android:background="#ececec"
+        android:background="#eeeeee"
         android:layout_toRightOf="@+id/imageView"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_below="@id/item_logo_desc_tv"
         />
-    <ImageView
-        android:id="@+id/item_join_img"
-        android:src="@drawable/add_people"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/item_join_tv"
+        android:background="@drawable/cancle_press"
+        android:text="立即参加"
+        android:textSize="12sp"
+        android:textColor="#3ac01a"
+        android:gravity="center"
+        android:layout_width="87dp"
+        android:layout_height="26dp"
         android:layout_below="@id/item_logo_desc_tv"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         />
 
