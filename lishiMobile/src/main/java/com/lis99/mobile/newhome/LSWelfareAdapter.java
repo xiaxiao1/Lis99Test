@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,24 +23,22 @@ import java.util.List;
  */
 public class LSWelfareAdapter extends BaseAdapter {
 
-
-
+    //福利列表数据
     List<Object> contents;
+
     private Context c;
-    List<String> goods = new ArrayList<String>();
-
     LayoutInflater inflater;
-
-    private static final int ITEM_TYPE_WELFARE=0;
-    private static final int ITEM_TYPE_HUANGOU=1;
+    //积分换购适配器
+    JiFenhuangouAdapter jAdapter;
+    //item类型
+    private static final int ITEM_TYPE_WELFARE=0;   //福利
+    private static final int ITEM_TYPE_HUANGOU=1;   //换购商品
 
     public LSWelfareAdapter(Context context, List<Object> contents){
         this.contents = contents;
         inflater = LayoutInflater.from(context);
         c = context;
-        for (int i=0;i<10;i++) {
-            goods.add("cdcdc " + i);
-        }
+
     }
     public List<Object> getContents() {
         return contents;
@@ -77,6 +74,7 @@ public class LSWelfareAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
+        //第二个item展示换购列表
         if (position==1) {
             return ITEM_TYPE_HUANGOU;
         }
@@ -98,6 +96,7 @@ public class LSWelfareAdapter extends BaseAdapter {
         }
     }
 
+    //加载福利item
     private View getWelfareView(final Object obj, View convertView, ViewGroup parent) {
         WelfareViewHolder holder;
         if (convertView == null) {
@@ -113,6 +112,7 @@ public class LSWelfareAdapter extends BaseAdapter {
     }
 
 
+    //加载换购item
     private View getHuanGouView(final Object obj, View convertView, ViewGroup parent) {
         HuanGouViewHolder holder;
         if (convertView == null) {
@@ -123,7 +123,8 @@ public class LSWelfareAdapter extends BaseAdapter {
             holder = (HuanGouViewHolder) convertView.getTag();
         }
 
-        JiFenhuangouAdapter jAdapter = new JiFenhuangouAdapter(c,goods );
+        //为积分换购列表设置数据源和适配器
+        jAdapter = new JiFenhuangouAdapter(c,(List<String>)obj );
         holder.jifenhuangouRc.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
         holder.jifenhuangouRc.setAdapter(jAdapter);
 

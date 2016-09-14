@@ -31,14 +31,13 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 
 
 
+    //页面列表适配器
     LSWelfareAdapter adapter;
     private PullToRefreshView refreshView;
     private ListView listView;
+    //福利信息数据
     List<Object> welfares=new ArrayList<Object>();
 //    List<LSEquipContent> loadedContents = new ArrayList<LSEquipContent>();
-
-//    private View titleLeft;
-    private TextView tvMassage;
 
     public LSEquipFragmentNewEdition() {
         // Required empty public constructor
@@ -53,14 +52,10 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 
     }
 
-
-
-
-
     @Override
     protected void initViews(ViewGroup container) {
 //        super.initViews(container);
-        initdatas();
+        getDatas("asasas");
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         body = inflater.inflate(R.layout.fragment_lsequip_new_edition, container, false);
         refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
@@ -86,13 +81,7 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
         });
         adapter = new LSWelfareAdapter(this.getActivity(), welfares);
         listView.setAdapter(adapter);
-
-
     }
-
-
-
-
 
     @Override
     public void onFooterRefresh(PullToRefreshView view) {
@@ -103,6 +92,9 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
     public void onHeaderRefresh(PullToRefreshView view) {
      //   getEquipContents();
         view.onHeaderRefreshComplete();
+        clearDatas();
+        getDatas(System.currentTimeMillis()+"");
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -110,9 +102,22 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 
     }
 
-    public void initdatas(){
+    public void clearDatas(){
+        welfares.clear();
+    }
+    //测试数据
+    public void initdatas(String s){
         for (int i=0;i<20;i++) {
-            welfares.add(i + " hello");
+            welfares.add(i + " 福利"+s);
         }
+        //测试数据
+        List<String> goods = new ArrayList<>();
+        for (int i=0;i<10;i++) {
+            goods.add(s+"积分兑换 " + i);
+        }
+        welfares.add(1,goods);
+    }
+    public void getDatas(String s){
+        initdatas(s);
     }
 }
