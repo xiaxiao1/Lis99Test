@@ -153,7 +153,8 @@ public class NewHomeActivity extends ActivityPattern1 implements OnItemClickList
             switch (msg.what) {
                 case LSTab.SELECT:
                     if (equiFragment == null) {
-                        equiFragment = new LSEquipFragment();
+//                        equiFragment = new LSEquipFragment();
+                        equiFragment = new LSEquipFragmentNewEdition();
                     }
                     switchContent(equiFragment);
                     break;

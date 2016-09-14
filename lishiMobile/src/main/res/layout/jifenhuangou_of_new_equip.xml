@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="356dp"
-    android:background="#ff0000"
+              android:orientation="vertical"
+    android:background="#ffffff"
     >
     <LinearLayout
         android:id="@+id/top_bar_ll"
@@ -33,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
         >
         <ImageView
@@ -55,14 +56,15 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/jifenhuangou_rc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/jifenhuangou_title_ll"
+        android:layout_height="260dp"
         android:layout_marginTop="40dp"
         android:fadingEdge="none"
         android:requiresFadingEdge="none"
         android:overScrollFooter="@android:color/transparent"
         android:overScrollHeader="@android:color/transparent"
         android:overScrollMode="never"
-        android:orientation="horizonal"/>
+        android:background="#ffffff"
+        android:layout_marginBottom="40dp"
+        />
 
-</RelativeLayout>
+</LinearLayout>
