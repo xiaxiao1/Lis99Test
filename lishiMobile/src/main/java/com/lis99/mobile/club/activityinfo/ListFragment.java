@@ -711,7 +711,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置活动时间区间，批次数量
                 if (!model.starttimeIntval.equals("")) {
 
-                    activeNote_tv.setText(model.starttimeIntval+"共"+model.batchCount+"期");
+                    activeNote_tv.setText(model.starttimeIntval+"  共"+model.batchCount+"期");
                     //设置价格区间
                     activePrice_tv.setText(model.priceIntval);
                 }
