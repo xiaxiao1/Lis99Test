@@ -467,7 +467,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
         }
 
 
-        String url = C.MY_ACTIVITY_ADD_COMMENT;
+        String url = C.MY_ACTIVITY_ADD_COMMENT_NEW;
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("comment", sb.toString());
@@ -479,6 +479,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
         map.put("leader_userid", activity.leader_userid);
         map.put("create_userid", activity.create_userid);
         map.put("club_id", activity.club_id);
+        map.put("batch_id", activity.batch);
         if (activity.activity_code != null) {
             map.put("activity_code", activity.activity_code);
         }
