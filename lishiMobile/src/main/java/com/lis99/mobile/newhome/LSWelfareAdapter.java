@@ -85,20 +85,21 @@ public class LSWelfareAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         int type = getItemViewType(position);
-        Object obj = contents.get(position);
+
         switch (type) {
             case ITEM_TYPE_WELFARE:
-                return getWelfareView(obj, convertView, parent);
+                return getWelfareView(position, convertView, parent);
             case ITEM_TYPE_HUANGOU:
-                return getHuanGouView(obj, convertView, parent);
+                return getHuanGouView(position, convertView, parent);
             default:
                 return null;
         }
     }
 
     //加载福利item
-    private View getWelfareView(final Object obj, View convertView, ViewGroup parent) {
+    private View getWelfareView(final int position, View convertView, ViewGroup parent) {
         WelfareViewHolder holder;
+        Object obj = contents.get(position);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_listview_of_new_edition_equip, null);
             holder = new WelfareViewHolder(convertView);
@@ -107,14 +108,20 @@ public class LSWelfareAdapter extends BaseAdapter {
             holder = (WelfareViewHolder) convertView.getTag();
         }
         holder.itemLogoDescTv.setText((String)obj);
+        if (position==0) {
+            holder.itemTopLineV.setVisibility(View.GONE);
+        }else{
+            holder.itemTopLineV.setVisibility(View.VISIBLE);
+        }
 
         return convertView;
     }
 
 
     //加载换购item
-    private View getHuanGouView(final Object obj, View convertView, ViewGroup parent) {
+    private View getHuanGouView(final int position, View convertView, ViewGroup parent) {
         HuanGouViewHolder holder;
+        Object obj = contents.get(position);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.jifenhuangou_of_new_equip, null);
             holder = new HuanGouViewHolder(convertView);
@@ -139,6 +146,7 @@ public class LSWelfareAdapter extends BaseAdapter {
         private ImageView itemTypeImg;
         private TextView itemLogoDescTv;
         private TextView itemJoinTv;
+        private View itemTopLineV;
 
         public WelfareViewHolder(View view) {
             viewBar = (View) view.findViewById(R.id.view_bar);
@@ -146,6 +154,7 @@ public class LSWelfareAdapter extends BaseAdapter {
             itemTypeImg = (ImageView) view.findViewById(R.id.item_type_img);
             itemLogoDescTv = (TextView) view.findViewById(R.id.item_logo_desc_tv);
             itemJoinTv = (TextView) view.findViewById(R.id.item_join_tv);
+            itemTopLineV = (View) view.findViewById(R.id.item_top_line_v);
         }
     }
 
