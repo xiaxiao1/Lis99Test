@@ -13,14 +13,23 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 
+import com.lis99.mobile.club.filter.FilterAdapter;
+import com.lis99.mobile.club.filter.model.NearbyListMainModel;
+import com.lis99.mobile.club.model.WelfareModel;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
+import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.MyRequestManager;
+import com.lis99.mobile.util.Page;
 
 
 import java.util.ArrayList;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -35,6 +44,10 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
     LSWelfareAdapter adapter;
     private PullToRefreshView refreshView;
     private ListView listView;
+    private Page page;
+    private WelfareModel model;
+    String url;
+    HashMap<String,Object> map=new HashMap<String,Object>();
     //福利信息数据
     List<Object> welfares=new ArrayList<Object>();
 //    List<LSEquipContent> loadedContents = new ArrayList<LSEquipContent>();
@@ -55,6 +68,8 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
     @Override
     protected void initViews(ViewGroup container) {
 //        super.initViews(container);
+        page=new Page();
+
         getDatas("asasas");
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         body = inflater.inflate(R.layout.fragment_lsequip_new_edition, container, false);
@@ -79,8 +94,8 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 
             }
         });
-        adapter = new LSWelfareAdapter(this.getActivity(), welfares);
-        listView.setAdapter(adapter);
+       /* adapter = new LSWelfareAdapter(this.getActivity(), welfares);
+        listView.setAdapter(adapter);*/
     }
 
     @Override
@@ -94,7 +109,7 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
         view.onHeaderRefreshComplete();
         clearDatas();
         getDatas(System.currentTimeMillis()+"");
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -104,6 +119,7 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 
     public void clearDatas(){
         welfares.clear();
+        adapter=null;
     }
     //测试数据
     public void initdatas(String s){
@@ -118,6 +134,47 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
         welfares.add(1,goods);
     }
     public void getDatas(String s){
-        initdatas(s);
+        getList();
+    }
+
+    public void getList(){
+
+        if ( page.isLastPage())
+        {
+            return;
+        }
+
+        String url = C.FULISHE+page.getPageNo();
+
+        model = new WelfareModel();
+
+        MyRequestManager.getInstance().requestPost(url,map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                model = (WelfareModel) mTask.getResultModel();
+
+                if (model == null) {
+
+                    return;
+                }
+
+                page.nextPage();
+                if ( adapter == null ) {
+                    page.setPageSize(model.getTotPage());
+                    welfares.addAll(model.getFreegoods());
+                    welfares.add(1, model.getJfgoods());
+                    adapter=new LSWelfareAdapter(LSEquipFragmentNewEdition.this.getContext(),welfares);
+                    listView.setAdapter(adapter);
+                }
+                else
+                {
+                    //                    最后一页
+                    welfares.addAll(model.getFreegoods());
+                }
+
+                adapter.notifyDataSetChanged();
+
+            }
+        });
     }
 }

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.WelfareModel;
 
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class LSWelfareAdapter extends BaseAdapter {
     //加载福利item
     private View getWelfareView(final int position, View convertView, ViewGroup parent) {
         WelfareViewHolder holder;
-        Object obj = contents.get(position);
+        WelfareModel.FreegoodsBean obj = (WelfareModel.FreegoodsBean)contents.get(position);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_listview_of_new_edition_equip, null);
             holder = new WelfareViewHolder(convertView);
@@ -107,7 +108,7 @@ public class LSWelfareAdapter extends BaseAdapter {
         } else {
             holder = (WelfareViewHolder) convertView.getTag();
         }
-        holder.itemLogoDescTv.setText((String)obj);
+        holder.itemLogoDescTv.setText(obj.getTitle());
         if (position==0) {
             holder.itemTopLineV.setVisibility(View.GONE);
         }else{
@@ -121,7 +122,7 @@ public class LSWelfareAdapter extends BaseAdapter {
     //加载换购item
     private View getHuanGouView(final int position, View convertView, ViewGroup parent) {
         HuanGouViewHolder holder;
-        Object obj = contents.get(position);
+        List<WelfareModel.JfgoodsBean> obj = ( List<WelfareModel.JfgoodsBean>)contents.get(position);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.jifenhuangou_of_new_equip, null);
             holder = new HuanGouViewHolder(convertView);
@@ -131,7 +132,7 @@ public class LSWelfareAdapter extends BaseAdapter {
         }
 
         //为积分换购列表设置数据源和适配器
-        jAdapter = new JiFenhuangouAdapter(c,(List<String>)obj );
+        jAdapter = new JiFenhuangouAdapter(c,obj);
         holder.jifenhuangouRc.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
         holder.jifenhuangouRc.setAdapter(jAdapter);
 

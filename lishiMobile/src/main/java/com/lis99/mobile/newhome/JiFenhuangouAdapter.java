@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.WelfareModel;
 import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.Common;
 
@@ -24,12 +25,12 @@ import java.util.List;
 class JiFenhuangouAdapter extends RecyclerView.Adapter<JiFenhuangouAdapter.MyViewHolder>
 {
     Context context;
-    List<String> datas;
+    List<WelfareModel.JfgoodsBean> datas;
 
     private static final int ITEM_TYPE_NORMAL=0;
     private static final int ITEM_TYPE_FOOTER=1;
 
-    public JiFenhuangouAdapter(Context context, List<String> datas) {
+    public JiFenhuangouAdapter(Context context, List<WelfareModel.JfgoodsBean> datas) {
         this.context=context;
         this.datas = datas;
     }
@@ -78,12 +79,12 @@ class JiFenhuangouAdapter extends RecyclerView.Adapter<JiFenhuangouAdapter.MyVie
                 }
             });
         }else {
-            String tagName=datas.get(position);
-            holder.goodsNameTv.setText("  " + tagName + "  ");
+            final WelfareModel.JfgoodsBean jfGood=datas.get(position);
+            holder.goodsNameTv.setText("  " +jfGood.getTitle());
             holder.getItemView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Common.toast(datas.get(position));
+                    Common.toast(jfGood.getMarket_price());
                 }
             });
         }
