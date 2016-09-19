@@ -283,6 +283,12 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 {
                     tv_info.setText(activity.remark);
                 }
+                if (activity.leader_mobile != null && !activity.leader_mobile.equals("")) {
+                    leaderPhone_ll.setVisibility(View.VISIBLE);
+                    leaderPhone_tv.setText(activity.leader_mobile);
+                } else {
+                    leaderPhone_ll.setVisibility(View.GONE);
+                }
 
                 personTitleView.setText("报名人员（共" + (activity.apply_info == null ? 0 : activity.apply_info.size()) + "）");
 

@@ -157,11 +157,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="#e3dbd0"/>
+            <!--领队手机号-->
             <LinearLayout
                 android:id="@+id/leader_phone_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 >
 
                 <TextView

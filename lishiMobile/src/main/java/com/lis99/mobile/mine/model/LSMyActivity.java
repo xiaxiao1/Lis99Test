@@ -22,7 +22,7 @@ public class LSMyActivity extends BaseModel{
     public int applyNum;
     public int star;
     public int flag;
-
+    public String leader_mobile;
     public int batch;
 
     public double consts;
