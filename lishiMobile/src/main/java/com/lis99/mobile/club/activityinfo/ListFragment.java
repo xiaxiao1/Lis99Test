@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -120,6 +119,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     //领队来自的俱乐部
     TextView leaderFrom_tv;
 
+    //玩家评论区域
+    LinearLayout player_pinglun1_ll;
+    LinearLayout player_pinglun2_ll;
+    LinearLayout player_pinglun3_ll;
     //玩家评论view分割线
     //  LinearLayout player_fengexian_ll;
 
@@ -448,7 +451,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             }
             String c=entity.content;
             String img=entity.images;
-            Log.i("xx","c:"+c+"\n img:"+img+" currentsize:"+currentSize+"  fullsize:"+fullSize);
             viewHolder.img.setVisibility(View.GONE);
             viewHolder.load_img.setVisibility(View.GONE);
             viewHolder.content.setVisibility(View.GONE);
@@ -672,6 +674,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
         //玩家分割线
 //        player_fengexian_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_player_fengexian_ll);
+
+        player_pinglun1_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_players_pinglun1_ll);
+        player_pinglun2_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_players_pinglun2_ll);
+        player_pinglun3_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_players_pinglun3_ll);
         //装备
         zhuangbei1_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_1);
         zhuangbei2_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_2);
@@ -851,15 +857,15 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     model.commentlist=null;
                 }*/
                 if (model.commentlist != null && model.commentlist.size() != 0) {
-                    Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
 //                    leader_fengexian_ll.setVisibility(View.VISIBLE);
                     footer_playerEvaluation.setVisibility(View.VISIBLE);
                     listView.addFooterView(footer_playerEvaluation);
                     int size = model.commentlist.size();
                     //第一条评论
                     if (size > 0) {
+                        player_pinglun1_ll.setVisibility(View.VISIBLE);
                         RoundedImageView playerHead1=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head1_img);
-                        //     ImageLoader.getInstance().displayImage(model.commentlist.get(0).userhead, playerHead1, ImageUtil.getclub_topic_headImageOptions());
+                        ImageLoader.getInstance().displayImage(model.commentlist.get(0).userhead, playerHead1, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name1_tv);
                         playerName1.setText(model.commentlist.get(0).nickname);
                         RatingBar ratBar1=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level1_img);
@@ -883,11 +889,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         }else{
                             //    leaderlabels_ll.setVisibility(View.GONE);
                         }
+                    }else{
+                        player_pinglun1_ll.setVisibility(View.GONE);
                     }
                     //第二条评论
                     if (size > 1) {
+                        player_pinglun2_ll.setVisibility(View.VISIBLE);
                         RoundedImageView playerHead2=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head2_img);
-                        //    ImageLoader.getInstance().displayImage(model.commentlist.get(1).userhead, playerHead2, ImageUtil.getclub_topic_headImageOptions());
+                        ImageLoader.getInstance().displayImage(model.commentlist.get(1).userhead, playerHead2, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name2_tv);
                         playerName2.setText(model.commentlist.get(1).nickname);
                         RatingBar ratBar2=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level2_img);
@@ -911,11 +920,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         }else{
                             //    leaderlabels_ll.setVisibility(View.GONE);
                         }
+                    }else{
+                        player_pinglun2_ll.setVisibility(View.GONE);
                     }
                     //第三条评论
                     if (size > 2) {
+                        player_pinglun3_ll.setVisibility(View.VISIBLE);
                         RoundedImageView playerHead3=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head3_img);
-                        //     ImageLoader.getInstance().displayImage(model.commentlist.get(2).userhead, playerHead3, ImageUtil.getclub_topic_headImageOptions());
+                        ImageLoader.getInstance().displayImage(model.commentlist.get(2).userhead, playerHead3, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name3_tv);
                         playerName3.setText(model.commentlist.get(2).nickname);
                         RatingBar ratBar3=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level3_img);
@@ -939,6 +951,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         }else{
                             listView.removeFooterView(footer_playerEvaluation);
                         }
+                    }else{
+                        player_pinglun3_ll.setVisibility(View.GONE);
                     }
 
                 } else {
@@ -948,7 +962,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
                 //设置推荐装备
                 if (model.zhuangbeilist != null && model.zhuangbeilist.size() > 0) {
-                    Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
                     listView.addFooterView(footer_zhuangbei);
 //                    player_fengexian_ll.setVisibility(View.VISIBLE);
                     int size = model.zhuangbeilist.size();
@@ -1020,7 +1033,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         zhuangbei3_ll.setVisibility(View.VISIBLE);
                     }
                 } else {
-                    Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
 //                    player_fengexian_ll.setVisibility(View.GONE);
                 }
 

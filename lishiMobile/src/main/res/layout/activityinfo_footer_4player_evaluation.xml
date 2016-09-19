@@ -41,6 +41,7 @@
         android:layout_marginLeft="15dp"
         >
     <LinearLayout
+        android:id="@+id/afullinfo_players_pinglun1_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -72,12 +73,15 @@
             android:id="@+id/footer4playerevaluation_player_head1_img"
             android:layout_width="37dp"
             android:layout_height="37dp"
+            android:scaleType="fitXY"
+            app:border_color="#e8e8e8"
+            app:border_width="1px"
             android:src="@drawable/ls_nologin_header_icon"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-
-            app:corner_radius="14dp"
+            app:corner_radius="30dp"
             />
+
 
         <LinearLayout
             android:id="@+id/footer4playerevaluation_ll"
@@ -189,23 +193,24 @@
             android:layout_marginTop="14dp"
             />
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/fengexian"
-        />
+
     </LinearLayout>
 
     <!--第二个用户-->
     <LinearLayout
+        android:id="@+id/afullinfo_players_pinglun2_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="51dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/fengexian"
+            />
         <RelativeLayout
             android:id="@+id/footer4playerevaluation_rl3"
             android:layout_width="match_parent"
@@ -216,11 +221,13 @@
                 android:id="@+id/footer4playerevaluation_player_head2_img"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
+                android:scaleType="fitXY"
+                app:border_color="#e8e8e8"
+                app:border_width="1px"
                 android:src="@drawable/ls_nologin_header_icon"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-
-                app:corner_radius="14dp"
+                app:corner_radius="30dp"
                 />
 
             <LinearLayout
@@ -335,6 +342,17 @@
                 android:layout_marginTop="14dp"
                 />
         </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--第3个用户-->
+    <LinearLayout
+        android:id="@+id/afullinfo_players_pinglun3_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -342,16 +360,6 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/fengexian"
             />
-    </LinearLayout>
-
-    <!--第3个用户-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-
         <RelativeLayout
             android:id="@+id/footer4playerevaluation_rl5"
             android:layout_width="match_parent"
@@ -362,11 +370,13 @@
                 android:id="@+id/footer4playerevaluation_player_head3_img"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
+                android:scaleType="fitXY"
+                app:border_color="#e8e8e8"
+                app:border_width="1px"
                 android:src="@drawable/ls_nologin_header_icon"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-
-                app:corner_radius="14dp"
+                app:corner_radius="30dp"
                 />
 
             <LinearLayout
