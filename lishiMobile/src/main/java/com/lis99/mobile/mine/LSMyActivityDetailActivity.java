@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -93,6 +94,9 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
 
     private View layout_cancel;
 
+    //领队手机号
+    LinearLayout leaderPhone_ll;
+    TextView leaderPhone_tv;
 
 
 
@@ -109,7 +113,8 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
     @Override
     protected void initViews() {
         super.initViews();
-
+        leaderPhone_ll = (LinearLayout) findViewById(R.id.leader_phone_ll);
+        leaderPhone_tv = (TextView) findViewById(R.id.leader_phone_tv);
         titleView = (TextView) findViewById(R.id.titleView);
         titleView.setOnClickListener(this);
         priceView = (TextView) findViewById(R.id.priceView);
