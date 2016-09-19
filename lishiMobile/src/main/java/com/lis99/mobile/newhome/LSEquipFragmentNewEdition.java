@@ -50,7 +50,6 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
     HashMap<String,Object> map=new HashMap<String,Object>();
     //福利信息数据
     List<Object> welfares=new ArrayList<Object>();
-//    List<LSEquipContent> loadedContents = new ArrayList<LSEquipContent>();
 
     public LSEquipFragmentNewEdition() {
         // Required empty public constructor
@@ -70,7 +69,7 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 //        super.initViews(container);
         page=new Page();
 
-        getDatas("asasas");
+        getDatas();
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         body = inflater.inflate(R.layout.fragment_lsequip_new_edition, container, false);
         refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
@@ -89,7 +88,7 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
                     intent.putExtra("url", "http://m.lis99.com/club/integralshop/goodList");
                     startActivity(intent);
                 }*/
-                Common.toast("haha"+welfares.get(position));
+                Common.Log_i("haha"+welfares.get(position));
 
 
             }
@@ -101,14 +100,16 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
     @Override
     public void onFooterRefresh(PullToRefreshView view) {
         view.onFooterRefreshComplete();
+        getDatas();
     }
 
     @Override
     public void onHeaderRefresh(PullToRefreshView view) {
      //   getEquipContents();
         view.onHeaderRefreshComplete();
+        Common.Log_i("onHeaderRefresh");
         clearDatas();
-        getDatas(System.currentTimeMillis()+"");
+        getDatas();
 //        adapter.notifyDataSetChanged();
     }
 
@@ -118,10 +119,13 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
     }
 
     public void clearDatas(){
+        Common.Log_i("clearDatas");
         welfares.clear();
+       page.setPageNo(0);
+        listView.setAdapter(null);
         adapter=null;
     }
-    //测试数据
+   /* //测试数据
     public void initdatas(String s){
         for (int i=0;i<20;i++) {
             welfares.add(i + " 福利"+s);
@@ -132,15 +136,16 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
             goods.add(s+"积分兑换 " + i);
         }
         welfares.add(1,goods);
-    }
-    public void getDatas(String s){
+    }*/
+    public void getDatas(){
         getList();
     }
 
     public void getList(){
-
+        Common.Log_i("xx");
         if ( page.isLastPage())
         {
+            Common.Log_i("xx1");
             return;
         }
 
@@ -152,14 +157,15 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
             @Override
             public void handler(MyTask mTask) {
                 model = (WelfareModel) mTask.getResultModel();
-
+                Common.Log_i("xx2");
                 if (model == null) {
-
+                    Common.Log_i("xx3");
                     return;
                 }
 
                 page.nextPage();
                 if ( adapter == null ) {
+                    Common.Log_i("xx4");
                     page.setPageSize(model.getTotPage());
                     welfares.addAll(model.getFreegoods());
                     welfares.add(1, model.getJfgoods());
@@ -168,6 +174,7 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
                 }
                 else
                 {
+                    Common.Log_i("xx5");
                     //                    最后一页
                     welfares.addAll(model.getFreegoods());
                 }
