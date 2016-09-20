@@ -878,7 +878,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         if (model.commentlist.get(0).usercatelist!=null&&model.commentlist.get(0).usercatelist.size()!=0) {
 
                             for(int i=0;i<model.commentlist.get(0).usercatelist.size();i++){
-                                String s_label=model.leaderdesc.get(i);
+                                String s_label=model.commentlist.get(0).usercatelist.get(i).title;
                                 playLabels1[i].setVisibility(View.VISIBLE);
                                 playLabels1[i].setText(s_label);
                                 if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
@@ -909,7 +909,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 
                             for(int i=0;i<model.commentlist.get(1).usercatelist.size();i++){
-                                String s_label=model.leaderdesc.get(i);
+                                String s_label=model.commentlist.get(1).usercatelist.get(i).title;
                                 playLabels2[i].setVisibility(View.VISIBLE);
                                 playLabels2[i].setText(s_label);
                                 if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
@@ -940,7 +940,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 
                             for(int i=0;i<model.commentlist.get(2).usercatelist.size();i++){
-                                String s_label=model.leaderdesc.get(i);
+                                String s_label=model.commentlist.get(2).usercatelist.get(i).title;
                                 playLabels3[i].setVisibility(View.VISIBLE);
                                 playLabels3[i].setText(s_label);
                                 if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
