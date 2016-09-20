@@ -873,7 +873,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         TextView playTime1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time1_tv);
                         playTime1.setText(model.commentlist.get(0).createtime+"玩过");
                         TextView playComment1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation1_tv);
-                        playComment1.setText(model.commentlist.get(0).content);
+                        playComment1.setText(model.commentlist.get(0).custom);
                         TextView playLabels1[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_11_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_12_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_13_tv)};
                         if (model.commentlist.get(0).usercatelist!=null&&model.commentlist.get(0).usercatelist.size()!=0) {
 
@@ -904,7 +904,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         TextView playTime2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time2_tv);
                         playTime2.setText(model.commentlist.get(1).createtime+"玩过");
                         TextView playComment2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation2_tv);
-                        playComment2.setText(model.commentlist.get(1).content);
+                        playComment2.setText(model.commentlist.get(1).custom);
                         TextView playLabels2[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_21_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_22_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_23_tv)};
                         if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 
@@ -935,7 +935,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         TextView playTime3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time3_tv);
                         playTime3.setText(model.commentlist.get(2).createtime+"玩过");
                         TextView playComment3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation3_tv);
-                        playComment3.setText(model.commentlist.get(2).content);
+                        playComment3.setText(model.commentlist.get(2).custom);
                         TextView playLabels3[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_31_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_32_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_33_tv)};
                         if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 

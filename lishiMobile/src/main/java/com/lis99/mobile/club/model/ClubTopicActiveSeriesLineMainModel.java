@@ -296,6 +296,9 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
         @SerializedName("content")
         public String content;
 
+        @SerializedName("custom")
+        public String custom;
+
         @SerializedName("star")
         public String star;
 
