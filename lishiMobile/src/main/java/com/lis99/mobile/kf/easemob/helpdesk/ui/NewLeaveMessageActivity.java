@@ -10,14 +10,14 @@ import android.widget.Toast;
 
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
-import com.easemob.helpdeskdemo.Constant;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.domain.NewTicketBody;
-import com.easemob.helpdeskdemo.domain.TicketEntity;
-import com.easemob.helpdeskdemo.utils.HelpDeskPreferenceUtils;
-import com.easemob.helpdeskdemo.utils.ListenerManager;
-import com.easemob.helpdeskdemo.utils.RetrofitAPIManager;
 import com.google.gson.Gson;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.Constant;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.NewTicketBody;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.TicketEntity;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.ListenerManager;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.RetrofitAPIManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;

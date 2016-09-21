@@ -277,11 +277,11 @@ public class ShopDetailMapActivity extends BaseActivity {
 
 		builder.setPositiveButton("标注", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				Intent intent = new Intent(ShopDetailMapActivity.this,
-						ShopDetailTYPEActivity.class);
-				intent.putExtra("data", shop);
-				intent.putExtra("dis", dis);
-				startActivity(intent);
+//				Intent intent = new Intent(ShopDetailMapActivity.this,
+//						ShopDetailTYPEActivity.class);
+//				intent.putExtra("data", shop);
+//				intent.putExtra("dis", dis);
+//				startActivity(intent);
 				dialog.dismiss();
 			}
 		});

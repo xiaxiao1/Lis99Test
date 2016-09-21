@@ -3,10 +3,12 @@ package com.lis99.mobile.kf.easemob.helpdesk.domain;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * 用户订单消息 
  */
-public class OrderMessageEntity {
+public class OrderMessageEntity implements Serializable {
 	
 	private int id;//id 是没有任何意义的，demo传这个id，只是为了知道选择的是哪张图片，应该显示哪张图片
 	private String title;

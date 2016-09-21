@@ -28,8 +28,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.easemob.helpdeskdemo.Constant;
-import com.easemob.helpdeskdemo.R;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.Constant;
 
 import java.util.Timer;
 import java.util.TimerTask;

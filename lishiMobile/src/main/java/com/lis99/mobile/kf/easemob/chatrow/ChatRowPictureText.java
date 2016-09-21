@@ -13,13 +13,13 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.easeui.utils.EaseImageUtils;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.exceptions.EaseMobException;
-import com.easemob.helpdeskdemo.DemoHelper;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.domain.OrderMessageEntity;
-import com.easemob.helpdeskdemo.domain.TrackMessageEntity;
-import com.easemob.helpdeskdemo.ui.ChatFragment;
-import com.easemob.helpdeskdemo.ui.ContextMenuActivity;
 import com.easemob.util.DensityUtil;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.OrderMessageEntity;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.TrackMessageEntity;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.ChatFragment;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.ContextMenuActivity;
 
 import org.json.JSONObject;
 

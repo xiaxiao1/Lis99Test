@@ -16,11 +16,11 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.easeui.utils.EaseSmileUtils;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.exceptions.EaseMobException;
-import com.easemob.helpdeskdemo.Constant;
-import com.easemob.helpdeskdemo.DemoHelper;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.ui.ChatActivity;
 import com.easemob.util.DensityUtil;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.Constant;
+import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.ChatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

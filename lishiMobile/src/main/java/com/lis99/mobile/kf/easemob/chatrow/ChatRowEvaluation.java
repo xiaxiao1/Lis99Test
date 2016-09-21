@@ -9,11 +9,11 @@ import android.widget.Button;
 
 import com.easemob.chat.EMMessage;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
-import com.easemob.helpdeskdemo.Constant;
-import com.easemob.helpdeskdemo.DemoHelper;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.ui.ChatFragment;
-import com.easemob.helpdeskdemo.ui.SatisfactionActivity;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.Constant;
+import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.ChatFragment;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.SatisfactionActivity;
 
 import org.json.JSONObject;
 
@@ -57,7 +57,7 @@ public class ChatRowEvaluation extends EaseChatRow {
 					@Override
 					public void onClick(View v) {
 						((Activity)context).startActivityForResult(new Intent(context, SatisfactionActivity.class)
-								.putExtra("msgId", message.getMsgId()),ChatFragment.REQUEST_CODE_EVAL);
+								.putExtra("msgId", message.getMsgId()), ChatFragment.REQUEST_CODE_EVAL);
 					}
 				});
 				

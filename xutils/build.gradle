@@ -8,7 +8,7 @@ group = "org.xutils"
 version = "3.3.22"
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 19
     buildToolsVersion "22.0.1"
 
     defaultConfig {
@@ -28,6 +28,13 @@ android {
             jniLibs.srcDirs = ['libs']
             java.srcDirs = ['src/main/java', 'src/main/java_compat']
         }
+    }
+    dexOptions {
+        incremental true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 

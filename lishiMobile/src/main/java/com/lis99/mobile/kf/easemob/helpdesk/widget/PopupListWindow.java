@@ -22,9 +22,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 
-import com.easemob.helpdeskdemo.Constant;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.ui.LoginActivity;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.Constant;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.LoginActivity;
+
 
 public class PopupListWindow extends PopupWindow implements OnClickListener {
 

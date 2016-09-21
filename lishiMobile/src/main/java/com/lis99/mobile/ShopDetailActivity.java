@@ -46,7 +46,6 @@ import com.lis99.mobile.entity.item.ShopDetailItem;
 import com.lis99.mobile.entry.ActivityPattern;
 import com.lis99.mobile.entry.adapter.DPAdapter;
 import com.lis99.mobile.entry.adapter.ImageAdapter;
-import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.entry.view.scroll.PullToRefreshView;
 import com.lis99.mobile.entry.view.scroll.PullToRefreshView.OnHeaderRefreshListener;
 import com.lis99.mobile.mine.LSLoginActivity;
@@ -1253,12 +1252,12 @@ public class ShopDetailActivity extends ActivityPattern implements
 		builder.setPositiveButton("标注", new OnClickListener() {
 
 			public void onClick(DialogInterface dialog, int which) {
-				Intent intent = new Intent(ShopDetailActivity.this,
-						ShopDetailTYPEActivity.class);
-				int Dis = (int) Double.parseDouble(dis);
-				intent.putExtra("data", info);
-				intent.putExtra("dis", Dis);
-				startActivity(intent);
+//				Intent intent = new Intent(ShopDetailActivity.this,
+//						ShopDetailTYPEActivity.class);
+//				int Dis = (int) Double.parseDouble(dis);
+//				intent.putExtra("data", info);
+//				intent.putExtra("dis", Dis);
+//				startActivity(intent);
 				dialog.dismiss();
 			}
 

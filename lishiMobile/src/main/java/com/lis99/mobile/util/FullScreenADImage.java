@@ -12,6 +12,9 @@ import java.util.HashMap;
 
 /**
  * Created by yy on 15/9/1.
+ *
+ *  全屏广告
+ *
  */
 public class FullScreenADImage  {
 
@@ -31,10 +34,17 @@ private String URl = C.getDOMAIN()+"/v2/advertise/channelAd/";
         initNative();
     }
 
-    public static FullScreenADImage getInstance ()
+//    public static FullScreenADImage getInstance ()
+//    {
+//        if ( instance == null ) instance = new FullScreenADImage();
+//        return instance;
+//    }
+
+    public void clean ()
     {
-        if ( instance == null ) instance = new FullScreenADImage();
-        return instance;
+        if ( bAD != null )
+        bAD.recycle();
+        bAD = null;
     }
 
     public void initNative ()

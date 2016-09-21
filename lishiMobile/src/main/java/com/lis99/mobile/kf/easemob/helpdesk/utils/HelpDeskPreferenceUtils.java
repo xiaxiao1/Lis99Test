@@ -15,8 +15,11 @@ package com.lis99.mobile.kf.easemob.helpdesk.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
-import com.easemob.helpdeskdemo.Constant;
+import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.kf.easemob.KFCommon;
+
 
 public class HelpDeskPreferenceUtils {
 
@@ -55,7 +58,8 @@ public class HelpDeskPreferenceUtils {
 	}
 
 	public String getSettingCustomerAppkey() {
-		return mSharedPreferences.getString(SHARED_KEY_SETTING_CUSTOMER_APPKEY, Constant.DEFAULT_COSTOMER_APPKEY);
+//		return mSharedPreferences.getString(SHARED_KEY_SETTING_CUSTOMER_APPKEY, Constant.DEFAULT_COSTOMER_APPKEY);
+		return KFCommon.APPKEY;
 	}
 
 	public void setSettingCustomerAccount(String account) {
@@ -64,7 +68,8 @@ public class HelpDeskPreferenceUtils {
 	}
 
 	public String getSettingCustomerAccount() {
-		return mSharedPreferences.getString(SHARED_KEY_SETTING_CUSTOMER_ACCOUNT, Constant.DEFAULT_COSTOMER_ACCOUNT);
+//		return mSharedPreferences.getString(SHARED_KEY_SETTING_CUSTOMER_ACCOUNT, Constant.DEFAULT_COSTOMER_ACCOUNT);
+		return KFCommon.imCode;
 	}
 
 	public void setSettingCurrentNick(String nick){
@@ -73,7 +78,13 @@ public class HelpDeskPreferenceUtils {
 	}
 	
 	public String getSettingCurrentNick(){
-		return mSharedPreferences.getString(SHARED_KEY_SETTING_CURRENT_NICK, "");
+//		return mSharedPreferences.getString(SHARED_KEY_SETTING_CURRENT_NICK, "");
+		String name = DataManager.getInstance().getUser().getNickname();
+		if (TextUtils.isEmpty(name))
+		{
+			name = "是我"+ (int)(Math.random() * 10);
+		}
+		return name;
 	}
 	
 	public void setSettingProjectId(long projectId){
@@ -87,11 +98,13 @@ public class HelpDeskPreferenceUtils {
 	}
 
 	public long getSettingTenantId(){
-		return mSharedPreferences.getLong(SHARED_KEY_SETTING_TENANT_ID, Constant.DEFAULT_TENANT_ID);
+//		return mSharedPreferences.getLong(SHARED_KEY_SETTING_TENANT_ID, Constant.DEFAULT_TENANT_ID);
+		return KFCommon.TenantId;
 	}
 
 	public long getSettingProjectId(){
-		return mSharedPreferences.getLong(SHARED_KEY_SETTING_PROJECT_ID, Constant.DEFAULT_PROJECT_ID);
+//		return mSharedPreferences.getLong(SHARED_KEY_SETTING_PROJECT_ID, Constant.DEFAULT_PROJECT_ID);
+		return KFCommon.ProjectId;
 	}
 
 }

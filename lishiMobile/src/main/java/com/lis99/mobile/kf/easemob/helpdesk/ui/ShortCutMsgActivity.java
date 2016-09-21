@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.easemob.helpdeskdemo.R;
+import com.lis99.mobile.R;
 
 /**
  * 常用语列表

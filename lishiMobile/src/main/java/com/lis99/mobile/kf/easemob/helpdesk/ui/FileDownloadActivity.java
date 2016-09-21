@@ -10,11 +10,11 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.filedownload.FileApi;
-import com.easemob.helpdeskdemo.filedownload.FileCallback;
-import com.easemob.helpdeskdemo.utils.CommonUtils;
 import com.easemob.util.PathUtil;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.filedownload.FileApi;
+import com.lis99.mobile.kf.easemob.helpdesk.filedownload.FileCallback;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.CommonUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;

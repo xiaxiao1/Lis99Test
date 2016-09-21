@@ -1,11 +1,11 @@
 package com.lis99.mobile.kf.easemob.helpdesk.utils;
 
 import com.easemob.chat.EMChatManager;
-import com.easemob.helpdeskdemo.domain.CommentListResponse;
-import com.easemob.helpdeskdemo.domain.NewCommentBody;
-import com.easemob.helpdeskdemo.domain.NewTicketBody;
-import com.easemob.helpdeskdemo.domain.TicketEntity;
-import com.easemob.helpdeskdemo.domain.TicketListResponse;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.CommentListResponse;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.NewCommentBody;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.NewTicketBody;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.TicketEntity;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.TicketListResponse;
 
 import java.io.IOException;
 

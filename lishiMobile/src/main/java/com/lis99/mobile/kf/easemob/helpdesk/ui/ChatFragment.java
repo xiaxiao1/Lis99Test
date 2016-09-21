@@ -19,15 +19,15 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.easeui.ui.EaseChatFragment;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
-import com.easemob.easeuix.widget.chatrow.ChatRowEvaluation;
-import com.easemob.easeuix.widget.chatrow.ChatRowPictureText;
-import com.easemob.easeuix.widget.chatrow.ChatRowRobotMenu;
-import com.easemob.easeuix.widget.chatrow.ChatRowTransferToKefu;
-import com.easemob.helpdeskdemo.Constant;
-import com.easemob.helpdeskdemo.DemoHelper;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.domain.MessageHelper;
-import com.easemob.helpdeskdemo.utils.HelpDeskPreferenceUtils;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.chatrow.ChatRowEvaluation;
+import com.lis99.mobile.kf.easemob.chatrow.ChatRowPictureText;
+import com.lis99.mobile.kf.easemob.chatrow.ChatRowRobotMenu;
+import com.lis99.mobile.kf.easemob.chatrow.ChatRowTransferToKefu;
+import com.lis99.mobile.kf.easemob.helpdesk.Constant;
+import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.MessageHelper;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -382,7 +382,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 	 * @param message 消息
 	 * @param agentUsername 客服的登录账号
 	 */
-	private void pointToAgentUser(EMMessage message,String agentUsername){
+	private void pointToAgentUser(EMMessage message, String agentUsername){
 		try {
 			JSONObject weichatJson = getWeichatJSONObject(message);
 			weichatJson.put("agentUsername", agentUsername);
@@ -398,7 +398,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 	 * @param message 消息
 	 * @param groupName 分组名称
 	 */
-	private void pointToSkillGroup(EMMessage message,String groupName){
+	private void pointToSkillGroup(EMMessage message, String groupName){
 		try {
 			JSONObject weichatJson = getWeichatJSONObject(message);
 			weichatJson.put("queueName", groupName);

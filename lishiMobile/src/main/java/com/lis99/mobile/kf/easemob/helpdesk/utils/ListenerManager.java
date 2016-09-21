@@ -1,6 +1,7 @@
 package com.lis99.mobile.kf.easemob.helpdesk.utils;
 
-import com.easemob.helpdeskdemo.interfaces.IListener;
+
+import com.lis99.mobile.kf.easemob.helpdesk.interfaces.IListener;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

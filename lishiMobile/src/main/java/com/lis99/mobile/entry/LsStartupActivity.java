@@ -266,11 +266,11 @@ public class LsStartupActivity extends ActivityPatternStartUp {
 
     private void startAD ()
     {
-
+        FullScreenADImage full = new FullScreenADImage();
         //获取本地图片
-        Bitmap b = FullScreenADImage.getInstance().getbAD();
+        Bitmap b = full.getbAD();
         //获取更新
-        FullScreenADImage.getInstance().getUpdata();
+        full.getUpdata();
         if ( b == null )
         {
 //            startInfoAnimation();
@@ -287,6 +287,10 @@ public class LsStartupActivity extends ActivityPatternStartUp {
                 }
             }, 2800);
         }
+
+        iv_ad.setImageBitmap(null);
+        full.clean();
+
     }
 
 //    private void startInfoAnimation() {

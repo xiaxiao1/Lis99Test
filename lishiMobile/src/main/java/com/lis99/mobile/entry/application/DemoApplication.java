@@ -12,10 +12,14 @@ import android.support.multidex.MultiDex;
 
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.SDKInitializer;
+import com.easemob.chat.EMChat;
 import com.lecloud.config.LeCloudPlayerConfig;
 import com.letv.proxy.LeCloudProxy;
 import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.club.BaseConfig;
+import com.lis99.mobile.kf.easemob.KFCommon;
+import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.FileUtil;
 import com.lis99.mobile.util.ImageLoaderOption;
 import com.lis99.mobile.util.MyOnTrimMemory;
@@ -26,6 +30,7 @@ import com.umeng.analytics.MobclickAgent;
 import org.xutils.x;
 
 import java.lang.ref.WeakReference;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -69,6 +74,10 @@ public class DemoApplication extends Application
     {
         super.onCreate();
         mInstance = this;
+
+//        客服
+        kfInit();
+
         try
         {
 //			地图
@@ -117,6 +126,47 @@ public class DemoApplication extends Application
         }
 
 
+    }
+
+    private void kfInit ()
+    {
+
+        int pid = android.os.Process.myPid();
+        String processAppName = getAppName(pid);
+// 如果APP启用了远程的service，此application:onCreate会被调用2次
+// 为了防止环信SDK被初始化2次，加此判断会保证SDK被初始化1次
+// 默认的APP会在以包名为默认的process name下运行，如果查到的process name不是APP的process name就立即返回
+
+        if (processAppName == null ||!processAppName.equalsIgnoreCase(getPackageName())) {
+            Common.log("enter the service process!");
+
+            // 则此application::onCreate 是被service 调用的，直接返回
+            return;
+        }
+
+        EMChat.getInstance().setAppkey(KFCommon.APPKEY);
+        // init demo helper
+        DemoHelper.getInstance().init(mInstance);
+    }
+
+    private String getAppName(int pID) {
+        String processName = null;
+        ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+        List l = am.getRunningAppProcesses();
+        Iterator i = l.iterator();
+        PackageManager pm = this.getPackageManager();
+        while (i.hasNext()) {
+            ActivityManager.RunningAppProcessInfo info = (ActivityManager.RunningAppProcessInfo) (i.next());
+            try {
+                if (info.pid == pID) {
+                    processName = info.processName;
+                    return processName;
+                }
+            } catch (Exception e) {
+                // Log.d("Process", "Error>> :"+ e.toString());
+            }
+        }
+        return processName;
     }
 
     private void getPackageIngo()

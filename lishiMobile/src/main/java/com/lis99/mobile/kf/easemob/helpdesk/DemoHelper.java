@@ -33,12 +33,12 @@ import com.easemob.easeui.model.EaseNotifier.EaseNotificationInfoProvider;
 import com.easemob.easeui.utils.EaseCommonUtils;
 import com.easemob.easeui.utils.EaseUserUtils;
 import com.easemob.exceptions.EaseMobException;
-import com.easemob.helpdeskdemo.domain.EmojiconExampleGroupData;
-import com.easemob.helpdeskdemo.ui.ChatActivity;
-import com.easemob.helpdeskdemo.ui.MainActivity;
-import com.easemob.helpdeskdemo.utils.ListenerManager;
-import com.easemob.helpdeskdemo.utils.PreferenceManager;
 import com.easemob.util.EMLog;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.EmojiconExampleGroupData;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.ChatActivity;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.ListenerManager;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.PreferenceManager;
+import com.lis99.mobile.util.Common;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -255,20 +255,22 @@ public class DemoHelper {
      * 账号在别的设备登录
      */
     protected void onConnectionConflict(){
-        Intent intent = new Intent(appContext, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constant.ACCOUNT_CONFLICT, true);
-        appContext.startActivity(intent);
+//        Intent intent = new Intent(appContext, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.putExtra(Constant.ACCOUNT_CONFLICT, true);
+//        appContext.startActivity(intent);
+        Common.toast("账号在别的设备登录");
     }
     
     /**
      * 账号被移除
      */
     protected void onCurrentAccountRemoved(){
-        Intent intent = new Intent(appContext, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(Constant.ACCOUNT_REMOVED, true);
-        appContext.startActivity(intent);
+//        Intent intent = new Intent(appContext, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.putExtra(Constant.ACCOUNT_REMOVED, true);
+//        appContext.startActivity(intent);
+        Common.toast("账号被移除");
     }
 	
 	 /**

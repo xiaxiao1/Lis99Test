@@ -23,12 +23,12 @@ import android.widget.Toast;
 
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.domain.NewCommentBody;
-import com.easemob.helpdeskdemo.utils.FileUploadManager;
-import com.easemob.helpdeskdemo.utils.HelpDeskPreferenceUtils;
-import com.easemob.helpdeskdemo.utils.RetrofitAPIManager;
 import com.easemob.util.DensityUtil;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.NewCommentBody;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.FileUploadManager;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.RetrofitAPIManager;
 
 import org.json.JSONObject;
 

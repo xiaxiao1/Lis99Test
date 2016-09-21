@@ -2,7 +2,8 @@ package com.lis99.mobile.kf.easemob.helpdesk;
 
 import android.content.Context;
 
-import com.easemob.helpdeskdemo.utils.PreferenceManager;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.PreferenceManager;
+
 
 public class DemoModel {
 	protected Context context = null;

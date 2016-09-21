@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.easemob.easeui.ui.EaseChatFragment;
-import com.easemob.helpdeskdemo.Constant;
-import com.easemob.helpdeskdemo.R;
-import com.easemob.helpdeskdemo.utils.HelpDeskPreferenceUtils;
+import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.helpdesk.Constant;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
 
 /**
  * 聊天页面，需要fragment的使用{@link EaseChatFragment}

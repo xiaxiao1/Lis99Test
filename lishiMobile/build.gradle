@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 19
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
@@ -110,8 +110,8 @@ android {
 
     defaultConfig {
         applicationId "com.lis99.mobile"
-        minSdkVersion 8
-        targetSdkVersion 21
+        minSdkVersion 15
+        targetSdkVersion 17
         // dex突破65535的限制
         multiDexEnabled true
     }
@@ -146,6 +146,10 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 
@@ -161,11 +165,13 @@ dependencies {
     compile project(':recyclerview')
     compile project(':playerskin')
     compile project(':xutils')
+    compile project(':easeui')
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile files('libs/alipaySdk-20151112.jar')
     compile files('libs/alibaba-fastjson-1.1.40.jar')
-    compile files('libs/BaiduLBS_Android.jar')
+//    EASEUI 里面有重复了注释掉
+//    compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/android-async-http-1.4.6.jar')
     compile files('libs/commons-io.jar')
     compile files('libs/commons-lang-2.3.jar')
@@ -188,5 +194,13 @@ dependencies {
     compile files('libs/need_lib.jar')
     compile files('libs/jpush-android-2.1.5.jar')
     compile 'com.github.bumptech.glide:glide:3.7.0'
-//                compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
+// 客服
+//    compile 'com.jude:easyrecyclerview:4.0.4'
+    compile 'com.daimajia.numberprogressbar:library:1.2@aar'
+    //rxJava
+    compile 'io.reactivex:rxjava:latest.release'
+    compile 'io.reactivex:rxandroid:latest.release'
+    compile 'com.wefika:flowlayout:0.4.0'
+//    百度
+    //                compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
 }

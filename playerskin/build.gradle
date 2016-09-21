@@ -17,17 +17,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    dexOptions {
+        incremental true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
     compile 'com.android.support:multidex:'
     compile 'com.google.code.gson:gson:2.1'
     compile fileTree(include: ['*.jar'], dir: 'libs')
-//    compile files('libs/AdModule.jar')
-//    compile files('libs/Lesdk3.0.jar')
-//    compile files('libs/VideoTracker.jar')
-//    compile files('libs/avdsmart_sdk.jar')
-//    compile files('libs/cde-sdk-0.9.86.jar')
-//    compile files('libs/letvadlib_lecloud.jar')
-//    compile files('libs/playersdk_2016_01_26_17_v4.0_release.jar')
+    //    compile files('libs/AdModule.jar')
+    //    compile files('libs/Lesdk3.0.jar')
+    //    compile files('libs/VideoTracker.jar')
+    //    compile files('libs/avdsmart_sdk.jar')
+    //    compile files('libs/cde-sdk-0.9.86.jar')
+    //    compile files('libs/letvadlib_lecloud.jar')
+    //    compile files('libs/playersdk_2016_01_26_17_v4.0_release.jar')
 }
