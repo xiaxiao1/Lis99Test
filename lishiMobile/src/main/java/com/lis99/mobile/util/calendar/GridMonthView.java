@@ -24,6 +24,12 @@ public class GridMonthView extends MonthView {
 
     private CalendarInfo lastDay, firstDay;
 
+    public void setParent(GridCalendarView parent) {
+        this.parent = parent;
+    }
+
+    private GridCalendarView parent;
+
     public GridMonthView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -230,12 +236,18 @@ public class GridMonthView extends MonthView {
      */
     @Override
     protected boolean hasNextMonth() {
-        if ( lastDay == null ) return true;
+        if ( lastDay == null )
+        {
+            parent.setRightClick();
+            return true;
+        }
         //如果当前年、月 》＝ 数据最后的年 、月  返回false
         if ( selYear >= lastDay.year && selMonth+1 >= lastDay.month )
         {
+            parent.setRightUnClick();
             return false;
         }
+        parent.setRightClick();
         return true;
     }
 
@@ -246,12 +258,18 @@ public class GridMonthView extends MonthView {
      */
     @Override
     protected boolean hasLastMonth() {
-        if ( firstDay == null ) return true;
+        if ( firstDay == null )
+        {
+            parent.setLeftClick();
+            return true;
+        }
         //如果当前年、月 》＝ 数据最后的年 、月  返回false
         if ( selYear <= firstDay.year && selMonth+1 <= firstDay.month )
         {
+            parent.setLeftUnClick();
             return false;
         }
+        parent.setLeftClick();
         return true;
     }
 }
