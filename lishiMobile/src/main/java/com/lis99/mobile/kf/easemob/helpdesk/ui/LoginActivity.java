@@ -26,6 +26,7 @@ import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.exceptions.EaseMobException;
 import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.KFCommon;
 import com.lis99.mobile.kf.easemob.helpdesk.Constant;
 import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
 import com.lis99.mobile.kf.easemob.helpdesk.utils.CommonUtils;
@@ -211,8 +212,9 @@ public class LoginActivity extends BaseActivity {
 				if (!LoginActivity.this.isFinishing())
 					progressDialog.dismiss();
 				// 进入主页面
+
 				startActivity(new Intent(LoginActivity.this, ChatActivity.class).putExtra(
-						Constant.INTENT_CODE_IMG_SELECTED_KEY, selectedIndex).putExtra(
+						KFCommon.ENTITY, getIntent().getSerializableExtra(KFCommon.ENTITY)).putExtra(
 						Constant.MESSAGE_TO_INTENT_EXTRA, messageToIndex));
 				finish();
 			}

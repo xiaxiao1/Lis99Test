@@ -147,7 +147,6 @@ public class FragmentChoicenessNewMain extends LSFragment implements View.OnClic
 
                 Intent intent = new Intent(getActivity(), LSTopicStringImageActivity.class);
 			    startActivity(intent);
-//                goKFActivity();
 
                 break;
 

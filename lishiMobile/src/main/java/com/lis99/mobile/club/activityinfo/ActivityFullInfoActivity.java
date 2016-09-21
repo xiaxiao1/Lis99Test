@@ -22,6 +22,7 @@ import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
 import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.kf.easemob.KFCommon;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
@@ -110,6 +111,8 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     //注意事项信息
     private TextView tvSafely;
 
+    private TextView tv_kf;
+
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -181,6 +184,8 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         });
         fm.beginTransaction().replace(R.id.slidedetails_front, f1).commit();
         //    back_img.setOnClickListener(this);
+
+        tv_kf.setOnClickListener(this);
         back_rl.setOnClickListener(this);
         share_img.setOnClickListener(this);
         advice_ll.setOnClickListener(this);
@@ -219,6 +224,9 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
 
 
     public void initViews() {
+
+        tv_kf = (TextView) findViewById(R.id.tv_kf);
+
         layoutmain = (RelativeLayout) findViewById(R.id.afullinfo_parent);
         mSlideDetailsLayout = (SlideDetailsLayout) findViewById(R.id.slidedetails);
         mSlideDetailsLayout.close = true;
@@ -306,7 +314,26 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             Common.telPhone("4006728099");
         } else if (v == toPlay_tv) {
             baoMing();
-        } else if (v == layoutGatherTime) {
+        }
+        else if ( v == tv_kf )
+        {
+            if ( !Common.isLogin(activity))
+            {
+                return;
+            }
+            if (model == null )
+            {
+                return;
+            }
+            String imgUrl = "";
+            if ( model.activityimgs != null && model.activityimgs.size() > 0 )
+            {
+                imgUrl = model.activityimgs.get(0).images;
+            }
+
+            KFCommon.goKFActivity(activity, KFCommon.getMessageExtFromPicture(model.title+"-"+Common.getUserId(), imgUrl, model.getTopicId(), model.title, model.shareUrl));
+        }
+        else if (v == layoutGatherTime) {
             showInfo(tvGatherTime, ivGatherTime);
         } else if (v == layoutLocation) {
             if (model != null) {

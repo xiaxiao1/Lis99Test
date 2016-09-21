@@ -20,13 +20,14 @@ import com.easemob.easeui.ui.EaseChatFragment;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
 import com.lis99.mobile.R;
+import com.lis99.mobile.kf.easemob.KFCommon;
 import com.lis99.mobile.kf.easemob.chatrow.ChatRowEvaluation;
 import com.lis99.mobile.kf.easemob.chatrow.ChatRowPictureText;
 import com.lis99.mobile.kf.easemob.chatrow.ChatRowRobotMenu;
 import com.lis99.mobile.kf.easemob.chatrow.ChatRowTransferToKefu;
 import com.lis99.mobile.kf.easemob.helpdesk.Constant;
 import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
-import com.lis99.mobile.kf.easemob.helpdesk.domain.MessageHelper;
+import com.lis99.mobile.kf.easemob.helpdesk.domain.OrderMessageEntity;
 import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
 
 import org.json.JSONException;
@@ -61,10 +62,12 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 	public static final int REQUEST_CODE_SHORTCUT = 27;
 
 	//从详情进来的，发送轨迹跟踪
-	private int imgSelectedIndex = Constant.INTENT_CODE_IMG_SELECTED_DEFAULT;
+//	private int imgSelectedIndex = Constant.INTENT_CODE_IMG_SELECTED_DEFAULT;
 	protected int messageToIndex = Constant.MESSAGE_TO_DEFAULT;
 
 	protected String currentUserNick;
+
+	private OrderMessageEntity cureentEntity;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,7 +79,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 		//在父类中调用了initView和setUpView两个方法
 		super.onActivityCreated(savedInstanceState);
 		//检查是否是从某个商品详情进来
-		imgSelectedIndex = fragmentArgs.getInt(Constant.INTENT_CODE_IMG_SELECTED_KEY, Constant.INTENT_CODE_IMG_SELECTED_DEFAULT);
+//		imgSelectedIndex = fragmentArgs.getInt(Constant.INTENT_CODE_IMG_SELECTED_KEY, Constant.INTENT_CODE_IMG_SELECTED_DEFAULT);
 		//判断是默认，还是用技能组（售前、售后）
 		messageToIndex = fragmentArgs.getInt(Constant.MESSAGE_TO_INTENT_EXTRA, Constant.MESSAGE_TO_DEFAULT);
 		currentUserNick = HelpDeskPreferenceUtils.getInstance(getActivity()).getSettingCurrentNick();
@@ -86,7 +89,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 //			messageToIndex = Constant.MESSAGE_TO_AFTER_SALES;
 //		}
 		if (savedInstanceState == null) {
-			sendPictureTxtMessage(imgSelectedIndex);
+			sendPictureTxtMessage((OrderMessageEntity)fragmentArgs.getSerializable(KFCommon.ENTITY));
 		}
 		messageList.setShowUserNick(true);
 	}
@@ -414,15 +417,18 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 	 * <p/>
 	 * 从商品详情界面进入会话，自动发一条订单或轨迹消息。
 	 *
-	 * @param selectedImgIndex 选中的某个商品，用户要按照自己的需求传递。
 	 */
-	private void sendPictureTxtMessage(int selectedImgIndex) {
-		if (selectedImgIndex == Constant.INTENT_CODE_IMG_SELECTED_DEFAULT) {
+	private void sendPictureTxtMessage(OrderMessageEntity entity) {
+
+		if ( entity == null || cureentEntity == entity )
+		{
 			return;
 		}
+
+		cureentEntity = entity;
+
 		EMMessage message = EMMessage.createTxtSendMessage("客服图文混排消息", toChatUsername);
-		JSONObject jsonMsgType = MessageHelper.getMessageExtFromPicture(selectedImgIndex);
-		imgSelectedIndex = Constant.INTENT_CODE_IMG_SELECTED_DEFAULT;
+		JSONObject jsonMsgType = entity.getJSONObject();
 		if (jsonMsgType != null) {
 			message.setAttribute("msgtype", jsonMsgType);
 			sendMessage(message);

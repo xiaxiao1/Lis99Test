@@ -1,8 +1,5 @@
 package com.easemob.easeui.ui;
 
-import java.io.File;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -59,6 +56,9 @@ import com.easemob.easeui.widget.EaseVoiceRecorderView.EaseVoiceRecorderCallback
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * 可以直接new出来使用的聊天对话页面fragment，
@@ -128,7 +128,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         // 会话人或群组id
         toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
         // 是否显示用户昵称
-        showUserNick = fragmentArgs.getBoolean(EaseConstant.EXTRA_SHOW_USERNICK, false);
+        showUserNick = fragmentArgs.getBoolean(EaseConstant.EXTRA_SHOW_USERNICK, true);
         super.onActivityCreated(savedInstanceState);
     }
 
