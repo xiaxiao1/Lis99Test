@@ -21,6 +21,8 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
     private TextView textViewYear, textViewMonth;
     private ImageView left, right;
 
+    private CalendarInfo lastDay, firstDay;
+
     public GridCalendarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
@@ -42,13 +44,13 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
         textViewYear = (TextView) view.findViewById(R.id.year);
         textViewMonth = (TextView) view.findViewById(R.id.month);
 
-        gridMonthView.setParent(this);
-
         gridMonthView.setMonthLisener(new MonthView.IMonthLisener() {
             @Override
             public void setTextMonth() {
                 textViewYear.setText(gridMonthView.getSelYear() + "-");
                 textViewMonth.setText((gridMonthView.getSelMonth() + 1) + "");
+
+                dotClickable(gridMonthView.getSelYear(), gridMonthView.getSelMonth());
             }
         });
     }
@@ -79,6 +81,8 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
      */
     public void setLastDay(CalendarInfo ...info)
     {
+        lastDay = info[0];
+        firstDay = info[1];
         gridMonthView.setLastDay(info[0], info[1]);
     }
 
@@ -133,4 +137,23 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
             gridMonthView.onRightClick();
         }
     }
+
+    //    设置按钮点击状态
+    private void dotClickable ( int selYear, int selMonth )
+    {
+        setLeftClick();
+        setRightClick();
+        //如果当前年、月 》＝ 数据最后的年 、月  返回false
+        if ( lastDay != null && selYear >= lastDay.year && selMonth+1 >= lastDay.month )
+        {
+            setRightUnClick();
+        }
+
+        //如果当前年、月 》＝ 数据最后的年 、月  返回false
+        if ( firstDay != null && selYear <= firstDay.year && selMonth + 1 <= firstDay.month )
+        {
+            setLeftUnClick();
+        }
+    }
+
 }
