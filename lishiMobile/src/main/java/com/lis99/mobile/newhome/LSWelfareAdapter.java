@@ -2,6 +2,7 @@ package com.lis99.mobile.newhome;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,7 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSClubTopicActivity;
+import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.WelfareModel;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.ImageUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -100,7 +106,7 @@ public class LSWelfareAdapter extends BaseAdapter {
     //加载福利item
     private View getWelfareView(final int position, View convertView, ViewGroup parent) {
         WelfareViewHolder holder;
-        WelfareModel.FreegoodsBean obj = (WelfareModel.FreegoodsBean)contents.get(position);
+        final WelfareModel.FreegoodsBean obj = (WelfareModel.FreegoodsBean)contents.get(position);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_listview_of_new_edition_equip, null);
             holder = new WelfareViewHolder(convertView);
@@ -108,13 +114,31 @@ public class LSWelfareAdapter extends BaseAdapter {
         } else {
             holder = (WelfareViewHolder) convertView.getTag();
         }
-        holder.itemLogoDescTv.setText(obj.getTitle());
+
+       convertView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if ( "2".equals(obj.getCategory()))
+               {
+                   Intent intent = new Intent(c, LSClubTopicNewActivity.class);
+                   intent.putExtra("topicID", Common.string2int(obj.getTopicid()));
+                   c.startActivity(intent);
+               }
+               else
+               {
+                   Intent intent = new Intent(c, LSClubTopicActivity.class);
+                   intent.putExtra("topicID", obj.getTopicid());
+                   c.startActivity(intent);
+               }
+           }
+       });
         if (position==0) {
             holder.itemTopLineV.setVisibility(View.GONE);
         }else{
             holder.itemTopLineV.setVisibility(View.VISIBLE);
         }
-
+        holder.itemLogoDescTv.setText(obj.getTitle());
+        ImageLoader.getInstance().displayImage(obj.getImages(),holder.itemBgImg, ImageUtil.getDefultImageOptions());
         return convertView;
     }
 
@@ -132,9 +156,11 @@ public class LSWelfareAdapter extends BaseAdapter {
         }
 
         //为积分换购列表设置数据源和适配器
-        jAdapter = new JiFenhuangouAdapter(c,obj);
-        holder.jifenhuangouRc.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
-        holder.jifenhuangouRc.setAdapter(jAdapter);
+        if (jAdapter==null) {
+            jAdapter = new JiFenhuangouAdapter(c,obj);
+            holder.jifenhuangouRc.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
+            holder.jifenhuangouRc.setAdapter(jAdapter);
+        }
 
         return convertView;
     }

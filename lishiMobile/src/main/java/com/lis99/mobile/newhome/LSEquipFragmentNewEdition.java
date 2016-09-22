@@ -6,15 +6,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-
 
 import com.lis99.mobile.R;
 
-import com.lis99.mobile.club.filter.FilterAdapter;
-import com.lis99.mobile.club.filter.model.NearbyListMainModel;
 import com.lis99.mobile.club.model.WelfareModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -33,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * create by xiaxiao.
+ * create by xiaxiao 2016.09.18.
  * 新版福利社页 4.4.8
  */
 public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClickListener,PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener {
@@ -48,7 +43,7 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
     private WelfareModel model;
     String url;
     HashMap<String,Object> map=new HashMap<String,Object>();
-    //福利信息数据
+    //组装后的福利信息数据
     List<Object> welfares=new ArrayList<Object>();
 
     public LSEquipFragmentNewEdition() {
@@ -76,25 +71,6 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
         refreshView.setOnHeaderRefreshListener(this);
         refreshView.setOnFooterRefreshListener(this);
         listView = (ListView) findViewById(R.id.listView);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-               /* LSEquipContent content = loadedContents.get(position);
-                if (content.getType() == LSEquipContent.CHANGE_FOOTER) {
-                    Intent intent = new Intent(getActivity(),LSWebActivity.class);
-                    intent.putExtra("url", "http://m.lis99.com/club/integralshop/goodList");
-                    startActivity(intent);
-                }*/
-                Common.Log_i("haha"+welfares.get(position));
-
-
-            }
-        });
-       /* adapter = new LSWelfareAdapter(this.getActivity(), welfares);
-        listView.setAdapter(adapter);*/
     }
 
     @Override
@@ -105,12 +81,9 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 
     @Override
     public void onHeaderRefresh(PullToRefreshView view) {
-     //   getEquipContents();
         view.onHeaderRefreshComplete();
-        Common.Log_i("onHeaderRefresh");
         clearDatas();
         getDatas();
-//        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -118,34 +91,22 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
 
     }
 
+    /**
+     * 清理数据
+     */
     public void clearDatas(){
-        Common.Log_i("clearDatas");
         welfares.clear();
        page.setPageNo(0);
         listView.setAdapter(null);
         adapter=null;
     }
-   /* //测试数据
-    public void initdatas(String s){
-        for (int i=0;i<20;i++) {
-            welfares.add(i + " 福利"+s);
-        }
-        //测试数据
-        List<String> goods = new ArrayList<>();
-        for (int i=0;i<10;i++) {
-            goods.add(s+"积分兑换 " + i);
-        }
-        welfares.add(1,goods);
-    }*/
-    public void getDatas(){
-        getList();
-    }
 
-    public void getList(){
-        Common.Log_i("xx");
+    /**
+     * 获取数据
+     */
+    public void getDatas(){
         if ( page.isLastPage())
         {
-            Common.Log_i("xx1");
             return;
         }
 
@@ -157,25 +118,26 @@ public class LSEquipFragmentNewEdition extends LSFragment implements View.OnClic
             @Override
             public void handler(MyTask mTask) {
                 model = (WelfareModel) mTask.getResultModel();
-                Common.Log_i("xx2");
                 if (model == null) {
-                    Common.Log_i("xx3");
                     return;
                 }
 
                 page.nextPage();
                 if ( adapter == null ) {
-                    Common.Log_i("xx4");
                     page.setPageSize(model.getTotPage());
+
+                    //页面包含福利和积分兑换两部分数据
+                    //添加所有的免费福利数据
                     welfares.addAll(model.getFreegoods());
+                    //将积分兑换数据添加到指定位置
                     welfares.add(1, model.getJfgoods());
                     adapter=new LSWelfareAdapter(LSEquipFragmentNewEdition.this.getContext(),welfares);
                     listView.setAdapter(adapter);
                 }
                 else
                 {
-                    Common.Log_i("xx5");
                     //                    最后一页
+                    //积分兑换部分待定，是否要也刷新
                     welfares.addAll(model.getFreegoods());
                 }
 

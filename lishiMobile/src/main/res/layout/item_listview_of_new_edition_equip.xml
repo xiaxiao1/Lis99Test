@@ -25,7 +25,7 @@
         android:layout_height="235dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/active_line_ad_more"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:layout_below="@id/view_bar"
         />
     I<ImageView
