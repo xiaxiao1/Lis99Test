@@ -107,7 +107,6 @@ class JiFenhuangouAdapter extends RecyclerView.Adapter<JiFenhuangouAdapter.MyVie
             holder.getItemView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Common.toast(jfGood.getMarket_price());
                     int id = 0;
                     String Userid = DataManager.getInstance().getUser().getUser_id();
                     if (!TextUtils.isEmpty(Userid))
