@@ -7,6 +7,7 @@ import com.easemob.chat.EMMessage;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.kf.easemob.helpdesk.domain.OrderMessageEntity;
 import com.lis99.mobile.kf.easemob.helpdesk.ui.LoginActivity;
+import com.lis99.mobile.kf.easemob.helpdesk.ui.NewLeaveMessageActivity;
 import com.lis99.mobile.util.Common;
 
 import org.json.JSONException;
@@ -59,6 +60,14 @@ public class KFCommon {
         intent.putExtra(ENTITY, entity);
         intent.setClass(a, LoginActivity.class);
         a.startActivityForResult(intent,RESULT);
+    }
+
+    /**
+     * 进入留言界面
+     */
+    public static void intoLeaveMessage( Activity a ){
+        Intent intent = new Intent(a, NewLeaveMessageActivity.class);
+        a.startActivity(intent);
     }
 
     /**

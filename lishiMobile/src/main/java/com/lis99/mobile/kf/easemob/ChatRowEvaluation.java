@@ -1,4 +1,4 @@
-package com.easemob.easeuix.widget.chatrow;
+package com.lis99.mobile.kf.easemob;
 
 import android.app.Activity;
 import android.content.Context;

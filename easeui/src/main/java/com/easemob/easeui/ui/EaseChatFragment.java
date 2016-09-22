@@ -128,7 +128,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         // 会话人或群组id
         toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
         // 是否显示用户昵称
-        showUserNick = fragmentArgs.getBoolean(EaseConstant.EXTRA_SHOW_USERNICK, true);
+        showUserNick = fragmentArgs.getBoolean(EaseConstant.EXTRA_SHOW_USERNICK, false);
         super.onActivityCreated(savedInstanceState);
     }
 
