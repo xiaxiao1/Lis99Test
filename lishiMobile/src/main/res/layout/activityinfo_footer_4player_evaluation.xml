@@ -209,7 +209,7 @@
             android:layout_height="0.5dp"
             android:layout_marginLeft="51dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/fengexian"
+            android:background="@color/color_eee"
             />
         <RelativeLayout
             android:id="@+id/footer4playerevaluation_rl3"
@@ -358,7 +358,7 @@
             android:layout_height="0.5dp"
             android:layout_marginLeft="51dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/fengexian"
+            android:background="@color/color_eee"
             />
         <RelativeLayout
             android:id="@+id/footer4playerevaluation_rl5"
