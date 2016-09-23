@@ -7,6 +7,7 @@
     android:paddingTop="13dp" >
 
     <TextView
+        android:text="11111"
         android:id="@+id/timestamp"
         style="@style/chat_text_date_style"
         android:layout_width="wrap_content"
@@ -45,7 +46,9 @@
                 android:id="@+id/tv_order"
                 android:layout_below="@id/shop_details_title_new"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"/>
+                android:layout_width="wrap_content"
+                android:text="111111111111"
+            />
 
             <ImageView
                 android:layout_below="@id/tv_order"
@@ -62,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:maxEms="6"
-                android:text=""
+                android:text="22222222"
                 />
             <TextView 
                 android:layout_marginLeft="5dp"
@@ -72,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="#C1021B"
-                android:text=""
+                android:text="22222222"
                 />
         </RelativeLayout>
         <LinearLayout

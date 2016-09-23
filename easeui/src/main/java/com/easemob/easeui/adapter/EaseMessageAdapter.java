@@ -93,10 +93,10 @@ public class EaseMessageAdapter extends BaseAdapter{
 			// UI线程不能直接使用conversation.getAllMessages()
 			// 否则在UI刷新过程中，如果收到新的消息，会导致并发问题
 			messages = (EMMessage[]) conversation.getAllMessages().toArray(new EMMessage[conversation.getAllMessages().size()]);
-			for (int i = 0; i < messages.length; i++) {
-				// getMessage will set message as read status
-				conversation.getMessage(i);
-			}
+//			for (int i = 0; i < messages.length; i++) {
+//				// getMessage will set message as read status
+//				conversation.getMessage(i);
+//			}
 			notifyDataSetChanged();
 		}
 		
@@ -193,7 +193,7 @@ public class EaseMessageAdapter extends BaseAdapter{
 		if(customRowProvider != null && customRowProvider.getCustomChatRowType(message) > 0){
 		    return customRowProvider.getCustomChatRowType(message) + 13;
 		}
-		
+//		消息
 		if (message.getType() == EMMessage.Type.TXT) {
 		    if(message.getBooleanAttribute(EaseConstant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
 		        return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_EXPRESSION : MESSAGE_TYPE_SENT_EXPRESSION;

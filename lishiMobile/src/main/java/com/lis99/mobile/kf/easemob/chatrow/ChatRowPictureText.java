@@ -10,16 +10,14 @@ import android.widget.TextView;
 
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
-import com.easemob.easeui.utils.EaseImageUtils;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.exceptions.EaseMobException;
-import com.easemob.util.DensityUtil;
 import com.lis99.mobile.R;
 import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
 import com.lis99.mobile.kf.easemob.helpdesk.domain.OrderMessageEntity;
-import com.lis99.mobile.kf.easemob.helpdesk.domain.TrackMessageEntity;
 import com.lis99.mobile.kf.easemob.helpdesk.ui.ChatFragment;
 import com.lis99.mobile.kf.easemob.helpdesk.ui.ContextMenuActivity;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONObject;
 
@@ -39,7 +37,7 @@ public class ChatRowPictureText extends EaseChatRow {
 	protected void onInflatView() {
 		if (DemoHelper.getInstance().isPictureTxtMessage(message)) {
 			inflater.inflate(message.direct == EMMessage.Direct.RECEIVE ? R.layout.ease_row_received_message
-					: R.layout.em_row_sent_picture_new, this);
+					: R.layout.kf_image_text_item/*R.layout.em_row_sent_picture_new*/, this);
 		}
 	}
 
@@ -87,31 +85,33 @@ public class ChatRowPictureText extends EaseChatRow {
 		} else if (jsonMsgType.has("order")) {
 			OrderMessageEntity entity = OrderMessageEntity.getEntityFromJSONObject(jsonMsgType);
 			mTextViewDes.setText(entity.getDesc());
-			mTextViewprice.setText(entity.getPrice());
-			mTV.setVisibility(View.VISIBLE);
-			mTV.setText(entity.getOrderTitle());
-			if (entity.getId() == 1) {
-				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_one, DensityUtil.dip2px(context, 100),
-						DensityUtil.dip2px(context, 120));
-			} else if (entity.getId() == 2) {
-				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_two, DensityUtil.dip2px(context, 100),
-						DensityUtil.dip2px(context, 120));
-			}
-		} else if (jsonMsgType.has("track")) {
-			TrackMessageEntity entity = TrackMessageEntity.getEntityFromJSONObject(jsonMsgType);
-			mTextViewDes.setText(entity.getDesc());
-			mTextViewprice.setText(entity.getPrice());
-			if (entity.getId() == 3) {
-				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_three, DensityUtil.dip2px(context, 100),
-						DensityUtil.dip2px(context, 120));
-			} else if (entity.getId() == 4) {
-				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_four, DensityUtil.dip2px(context, 100),
-						DensityUtil.dip2px(context, 120));
-			}
+			ImageLoader.getInstance().displayImage(entity.getImgUrl(), mImageView);
+//			mTextViewprice.setText(entity.getPrice());
+//			mTV.setVisibility(View.VISIBLE);
+//			mTV.setText(entity.getOrderTitle());
+//			if (entity.getId() == 1) {
+//				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_one, DensityUtil.dip2px(context, 100),
+//						DensityUtil.dip2px(context, 120));
+//			} else if (entity.getId() == 2) {
+//				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_two, DensityUtil.dip2px(context, 100),
+//						DensityUtil.dip2px(context, 120));
+//			}
 		}
-		if (newBitmap != null) {
-			mImageView.setImageBitmap(newBitmap);
-		}
+//		else if (jsonMsgType.has("track")) {
+//			TrackMessageEntity entity = TrackMessageEntity.getEntityFromJSONObject(jsonMsgType);
+//			mTextViewDes.setText(entity.getDesc());
+////			mTextViewprice.setText(entity.getPrice());
+//			if (entity.getId() == 3) {
+//				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_three, DensityUtil.dip2px(context, 100),
+//						DensityUtil.dip2px(context, 120));
+//			} else if (entity.getId() == 4) {
+//				newBitmap = EaseImageUtils.decodeScaleImage(context, R.drawable.em_four, DensityUtil.dip2px(context, 100),
+//						DensityUtil.dip2px(context, 120));
+//			}
+//		}
+//		if (newBitmap != null) {
+//			mImageView.setImageBitmap(newBitmap);
+//		}
 
 	}
 

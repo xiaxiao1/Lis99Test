@@ -91,7 +91,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 		if (savedInstanceState == null) {
 			sendPictureTxtMessage((OrderMessageEntity)fragmentArgs.getSerializable(KFCommon.ENTITY));
 		}
-		messageList.setShowUserNick(true);
+		messageList.setShowUserNick(false);
 	}
 
 	@Override
@@ -287,7 +287,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 					// 满意度评价
 					return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_EVAL : MESSAGE_TYPE_SENT_EVAL;
 				} else if (DemoHelper.getInstance().isPictureTxtMessage(message)) {
-					// 订单图文组合
+					// 订单图文组合    消息
 					return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_PICTURE_TXT
 							: MESSAGE_TYPE_SENT_PICTURE_TXT;
 				} else if(DemoHelper.getInstance().isTransferToKefuMsg(message)){
