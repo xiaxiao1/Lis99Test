@@ -101,9 +101,15 @@ class JiFenhuangouAdapter extends RecyclerView.Adapter<JiFenhuangouAdapter.MyVie
         }else {
             //正常item 显示各种信息
             final WelfareModel.JfgoodsBean jfGood=datas.get(position);
-            holder.goodsNameTv.setText("  " +jfGood.getTitle());
+            holder.goodsNameTv.setText(""+jfGood.getTitle());
             ImageLoader.getInstance().displayImage(jfGood.getImages(),holder.goodsImg, ImageUtil.getDefultImageOptions());
             holder.goodsJifenNumTv.setText(""+jfGood.getMarket_price()+"积分");
+            if (position==datas.size()-1) {
+                holder.goodsFengexianV.setVisibility(View.INVISIBLE);
+            }else{
+                holder.goodsFengexianV.setVisibility(View.VISIBLE);
+
+            }
             holder.getItemView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -136,6 +142,7 @@ class JiFenhuangouAdapter extends RecyclerView.Adapter<JiFenhuangouAdapter.MyVie
         private TextView goodsNameTv;
         private TextView goodsJifenNumTv;
         private TextView goodsDuihuanTv;
+        private View goodsFengexianV;
         private int viewType;
 
         //footer布局的
@@ -151,6 +158,7 @@ class JiFenhuangouAdapter extends RecyclerView.Adapter<JiFenhuangouAdapter.MyVie
                 goodsNameTv = (TextView) view.findViewById(R.id.goods_name_tv);
                 goodsJifenNumTv = (TextView) view.findViewById(R.id.goods_jifen_num_tv);
                 goodsDuihuanTv = (TextView) view.findViewById(R.id.goods_duihuan_tv);
+                goodsFengexianV = (View) view.findViewById(R.id.goods_fengexian_v);
             } else {
                 goodsLoadMore_Img = (ImageView) view.findViewById(R.id.goods_loadmore_img);
             }

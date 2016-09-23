@@ -53,6 +53,7 @@
         android:drawablePadding="10dp"
         />
     <View
+        android:id="@+id/item_bottom_line_v"
         android:layout_width="wrap_content"
         android:layout_height="1px"
         android:layout_marginTop="15dp"
@@ -70,10 +71,10 @@
         android:textColor="#3ac01a"
         android:gravity="center"
         android:layout_width="87dp"
-        android:layout_height="26dp"
-        android:layout_below="@id/item_logo_desc_tv"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_bottom_line_v"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         />
 
