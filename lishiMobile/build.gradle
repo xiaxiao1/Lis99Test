@@ -6,11 +6,11 @@ android {
     //多渠道
     productFlavors {
         ttest {}
-        shichang {}
-        zhuzhan {}
-        tuiguang1 {}
-        sougou {}
-        baidu {}
+//        shichang {}
+//        zhuzhan {}
+//        tuiguang1 {}
+//        sougou {}
+//        baidu {}
 //        pp{}
 //        oppo {}
 //        oppo {}

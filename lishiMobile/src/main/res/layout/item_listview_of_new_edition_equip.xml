@@ -19,15 +19,40 @@
         android:layout_below="@id/item_top_line_v"
         />
 
-    <ImageView
-        android:id="@+id/item_bg_img"
+
+
+
+    <RelativeLayout
+        android:id="@+id/ffff"
         android:layout_width="match_parent"
-        android:layout_height="235dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/active_line_ad_more"
-        android:scaleType="fitCenter"
+        android:layout_height="wrap_content"
         android:layout_below="@id/view_bar"
-        />
+        android:visibility="visible"
+        >
+
+        <ImageView
+            android:id="@+id/item_bg_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/club_topic_default"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            />
+
+        <ImageView
+            android:id="@+id/iv_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="10dp"
+            android:src="@drawable/load_image_temp_bg"
+            />
+
+    </RelativeLayout>
+
+
     I<ImageView
         android:id="@+id/item_type_img"
         android:layout_width="wrap_content"
@@ -39,7 +64,7 @@
     />
     <TextView
         android:id="@+id/item_logo_desc_tv"
-        android:text="拿起大刀向鬼子冲，啦啦啦啦啦啦啦啦啦"
+        android:text=""
         android:textColor="#d8b16c"
         android:textSize="13sp"
         android:layout_width="match_parent"
@@ -47,7 +72,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:layout_below="@id/item_bg_img"
+        android:layout_below="@id/ffff"
         android:drawableLeft="@drawable/brand"
         android:gravity="center_vertical"
         android:drawablePadding="10dp"

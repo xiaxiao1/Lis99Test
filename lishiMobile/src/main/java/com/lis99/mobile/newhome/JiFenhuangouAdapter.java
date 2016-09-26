@@ -103,7 +103,7 @@ class JiFenhuangouAdapter extends RecyclerView.Adapter<JiFenhuangouAdapter.MyVie
             final WelfareModel.JfgoodsBean jfGood=datas.get(position);
             holder.goodsNameTv.setText(""+jfGood.getTitle());
             ImageLoader.getInstance().displayImage(jfGood.getImages(),holder.goodsImg, ImageUtil.getDefultImageOptions());
-            holder.goodsJifenNumTv.setText(""+jfGood.getMarket_price()+"积分");
+            holder.goodsJifenNumTv.setText(""+jfGood.getIntegral()+"积分");
             if (position==datas.size()-1) {
                 holder.goodsFengexianV.setVisibility(View.INVISIBLE);
             }else{
