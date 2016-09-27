@@ -234,7 +234,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
         activity_id=this.getActivity().getIntent().getIntExtra("topicID",0);
-        getInfo();
+        getInfo(activity_id);
 
 
         //下拉刷新
@@ -243,7 +243,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             public void onRefresh()
             {
                 cleanInfo();
-                getInfo();
+                getInfo(activity_id);
                 listView.onRefreshComplete();
 
             }
@@ -685,7 +685,16 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
 
     }
-    private void getInfo() {
+
+    public void refreshDatas(int activityId) {
+        if (activityId!=this.activity_id) {
+            this.activity_id=activityId;
+            Common.toast("refreshDatas");
+            cleanInfo();
+            getInfo(activityId);
+        }
+    }
+    private void getInfo(int activityId) {
         String url = C.CLUB_TOPIC_ACTIVE_SERIES_LINE_MIAN;
 
         String userId = DataManager.getInstance().getUser().getUser_id();
@@ -693,7 +702,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("user_id", userId);
-        map.put("activity_id", activity_id);
+        map.put("activity_id", activityId);
         /*map.put("user_id", 456957);
         map.put("activity_id", 4829);*/
 
@@ -1080,6 +1089,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         header.setVisibility(View.INVISIBLE);
         title_area_ll.setVisibility(View.INVISIBLE);
         footer_ownerinfo.setVisibility(View.INVISIBLE);
+        fullInfoAdapter=null;
         listView.setAdapter(null);
         model=null;
         cleanLightSpots();
