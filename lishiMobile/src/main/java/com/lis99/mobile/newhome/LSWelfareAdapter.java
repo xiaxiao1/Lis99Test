@@ -131,7 +131,7 @@ public class LSWelfareAdapter extends BaseAdapter {
                else
                {
                    Intent intent = new Intent(c, LSClubTopicActivity.class);
-                   intent.putExtra("topicID", obj.getTopicid());
+                   intent.putExtra("topicID", Common.string2int(obj.getTopicid()));
                    c.startActivity(intent);
                }
            }

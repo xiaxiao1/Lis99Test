@@ -34,6 +34,7 @@ import com.lis99.mobile.newhome.activeline.adapter.MyBaseRecycler;
 import com.lis99.mobile.newhome.activeline.adapter.SupperLaderRecycler;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.search.SearchActivity;
+import com.lis99.mobile.util.AnimationHelper;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -56,6 +57,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener,
         LSSelectAdapter.OnSelectItemClickListener, ScrollTopUtil.ToTop {
 
+    AnimationHelper animationHelper ;
     private TextView tvMassage;
     private TextView tvLocation;
     private ListView list;
@@ -115,7 +117,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         v = View.inflate(getActivity(), R.layout.active_new_line, null);
-
+        animationHelper=new AnimationHelper(this.getContext());
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
         tvLocation.setText("活动");
@@ -495,13 +497,15 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             item.add(gridList.get(i));
         }
 
+
         final GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), item);
         gridView.setAdapter(gridadapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
-//                Common.toast(""+item.id);
+                Common.toast(""+position);
+                animationHelper.showAnimation(view,R.anim.home_banner);
 //                目的地
                 if ( item.id == -1 )
                 {
