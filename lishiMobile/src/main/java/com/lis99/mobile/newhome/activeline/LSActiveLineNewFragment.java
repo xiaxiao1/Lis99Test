@@ -1,12 +1,14 @@
 package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -482,7 +484,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
 
     @Override
-    public void dispalyImage(GridView gridView, int position) {
+    public void dispalyImage(final GridView gridView, int position) {
 
         if ( gridList == null )
         {
@@ -500,12 +502,15 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
         final GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), item);
         gridView.setAdapter(gridadapter);
+        Common.Log_i("cc"+gridView.getChildCount());
+
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
-                Common.toast(""+position);
-                animationHelper.showAnimation(view,R.anim.home_banner);
+                animationHelper.showAnimation(view.findViewById(R.id.item_rl),R.anim.add_home_banner_click);
+
 //                目的地
                 if ( item.id == -1 )
                 {
