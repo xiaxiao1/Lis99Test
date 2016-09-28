@@ -350,7 +350,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/club_info_dot_down"
+                android:src="@drawable/club_info_dot_up"
                 android:layout_centerVertical="true"
                 />
 
