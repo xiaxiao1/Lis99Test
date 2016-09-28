@@ -451,13 +451,13 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         });
     }
 
-    @Override
+  /*  @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
 //        f1.refreshDatas(int activityId);
 
-    }
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
