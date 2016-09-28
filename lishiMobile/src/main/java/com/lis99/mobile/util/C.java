@@ -589,6 +589,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String APPLY_CONTACTS_REMOVE = DOMAINS + "/enroll/delUser";
 //	取消订单			https://apis.lis99.com/activity/cancelOrder
 	public static final String CANCEL_APPLY_ACTIVE = DOMAINS + "/activity/cancelOrder";
+//	根据code 转换成 topicid		https://apis.lis99.com/activity/getIdByCode
+	public static final String CODE_TO_TOPICID = DOMAINS + "/activity/getIdByCode/";
 }
 
 

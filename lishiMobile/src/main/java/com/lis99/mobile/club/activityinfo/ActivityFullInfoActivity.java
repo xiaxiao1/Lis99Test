@@ -23,6 +23,7 @@ import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.kf.easemob.KFCommon;
+import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
@@ -330,7 +331,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             {
                 imgUrl = model.activityimgs.get(0).images;
             }
-
+            HelpDeskPreferenceUtils.getInstance(activity).setTOPIC_ID(model.getTopicId());
             KFCommon.goKFActivity(activity, KFCommon.getMessageExtFromPicture(model.title+"-"+Common.getUserId(), imgUrl, model.getTopicId(), model.title, model.shareUrl));
         }
         else if (v == layoutGatherTime) {

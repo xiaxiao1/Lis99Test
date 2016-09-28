@@ -167,12 +167,6 @@
             android:theme="@style/horizontal_slide" >
         </activity>
 
-        <!-- 商品详情界面 -->
-        <activity android:name="com.lis99.mobile.kf.easemob.helpdesk.ui.ShopDetailsActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/horizontal_slide"
-        ></activity>
-
         <!-- 设置appkey界面 -->
         <activity android:name="com.lis99.mobile.kf.easemob.helpdesk.ui.ModifyActivity"
                   android:screenOrientation="portrait"

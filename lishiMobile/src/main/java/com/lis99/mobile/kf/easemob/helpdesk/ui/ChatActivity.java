@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.easemob.easeui.ui.EaseChatFragment;
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.kf.easemob.helpdesk.Constant;
 import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
 
@@ -28,7 +29,7 @@ public class ChatActivity extends BaseActivity {
         chatFragment = new ChatFragment();
         Intent intent = getIntent();
         intent.putExtra(Constant.EXTRA_USER_ID, toChatUsername);
-        intent.putExtra(Constant.EXTRA_SHOW_USERNICK, true);
+        intent.putExtra(Constant.EXTRA_SHOW_USERNICK, false);
         // 传入参数
         chatFragment.setArguments(intent.getExtras());
         getSupportFragmentManager().beginTransaction().add(R.id.container, chatFragment).commit();
@@ -42,6 +43,7 @@ public class ChatActivity extends BaseActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        LSBaseActivity.activity = this;
         super.onNewIntent(intent);
         setIntent(intent);
         // 点击notification bar进入聊天页面，保证只有一个聊天页面

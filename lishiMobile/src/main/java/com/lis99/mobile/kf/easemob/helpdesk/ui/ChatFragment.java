@@ -20,6 +20,10 @@ import com.easemob.easeui.ui.EaseChatFragment;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.engine.base.CallBack;
+import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.kf.easemob.CodeToTopicIdModel;
 import com.lis99.mobile.kf.easemob.KFCommon;
 import com.lis99.mobile.kf.easemob.chatrow.ChatRowEvaluation;
 import com.lis99.mobile.kf.easemob.chatrow.ChatRowPictureText;
@@ -29,6 +33,8 @@ import com.lis99.mobile.kf.easemob.helpdesk.Constant;
 import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
 import com.lis99.mobile.kf.easemob.helpdesk.domain.OrderMessageEntity;
 import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
+import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.LSRequestManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,6 +77,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		LSBaseActivity.activity = getActivity();
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
@@ -98,14 +105,40 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 	protected void setUpView() {
 		setChatFragmentListener(this);
 		super.setUpView();
-		titleBar.setLeftImageResource(R.drawable.em_btn_back);
-		titleBar.setRightImageResource(R.drawable.em_icon_comment);
-		titleBar.setRightLayoutClickListener(new View.OnClickListener(){
+		titleBar.setLeftImageResource(R.drawable.ls_page_back_icon);
+
+		// 设置标题栏点击事件
+		titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				intoLeaveMessage();
+				getActivity().finish();
 			}
 		});
+
+		// 设置标题栏点击事件
+		titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+//				跳转到帖子详情
+				int topicId = Common.string2int(HelpDeskPreferenceUtils.getInstance(getActivity()).getTOPIC_ID());
+				if ( topicId > 0 )
+				{
+					Common.goTopic(getActivity(), 4, topicId);
+				}
+
+				getActivity().finish();
+			}
+		});
+
+//		titleBar.setRightImageResource(R.drawable.em_icon_comment);
+//		titleBar.setRightLayoutClickListener(new View.OnClickListener(){
+//			@Override
+//			public void onClick(View v) {
+//				intoLeaveMessage();
+//			}
+//		});
 
 		//自定义大表情，后期客服平台可能会支持，可以通过此代码查看效果
 //		((EaseEmojiconMenu)inputMenu.getEmojiconMenu()).addEmojiconGroup(EmojiconExampleGroupData.getData());
@@ -126,12 +159,13 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 		//增加扩展item
 		inputMenu.registerExtendMenuItem(R.string.attach_file, R.drawable.em_chat_file_selector, ITEM_FILE, extendMenuItemClickListener);
 		// 增加扩展item
-		inputMenu.registerExtendMenuItem(R.string.attach_short_cut_message, R.drawable.em_icon_answer, ITEM_SHORT_CUT_MESSAGE, extendMenuItemClickListener);
+//		inputMenu.registerExtendMenuItem(R.string.attach_short_cut_message, R.drawable.em_icon_answer, ITEM_SHORT_CUT_MESSAGE, extendMenuItemClickListener);
 	}
 
 	@SuppressLint("NewApi")
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		LSBaseActivity.activity = getActivity();
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == REQUEST_CODE_CONTEXT_MENU) {
 			switch (resultCode) {
@@ -201,7 +235,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
 	@Override
 	public void onAvatarClick(String username) {
-		Toast.makeText(getActivity(), "click＝"+username, Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getActivity(), "click＝"+username, Toast.LENGTH_SHORT).show();
 		// 头像点击事件
 //		Intent intent = new Intent(getActivity(), UserProfileActivity.class);
 //		intent.putExtra("username", username);
@@ -212,6 +246,21 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 	public boolean onMessageBubbleClick(EMMessage message) {
 		// 消息框点击事件，demo这里不做覆盖，如需覆盖，return true
 		Toast.makeText(getActivity(), "click＝"+message, Toast.LENGTH_SHORT).show();
+		String code = message.getBody().toString();
+		code = KFCommon.getTopicCode(code);
+		if ( TextUtils.isEmpty(code)) return true;
+		LSRequestManager.getInstance().getTopicIdWithCode(code, new CallBack() {
+			@Override
+			public void handler(MyTask mTask) {
+				if ( mTask == null ) return;
+				CodeToTopicIdModel model = (CodeToTopicIdModel) mTask.getResultModel();
+				if ( model == null ) return;
+				int id = Common.string2int(model.activity_id);
+				if ( id == -1 ) return;
+				Common.goTopic(getActivity(), 4, id);
+			}
+		});
+
 		return true;
 	}
 

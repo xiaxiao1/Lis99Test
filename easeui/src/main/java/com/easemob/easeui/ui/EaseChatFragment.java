@@ -218,14 +218,14 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
             onMessageListInit();
         }
 
-        // 设置标题栏点击事件
-        titleBar.setLeftLayoutClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
+//        // 设置标题栏点击事件
+//        titleBar.setLeftLayoutClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().finish();
+//            }
+//        });
         titleBar.setRightLayoutClickListener(new OnClickListener() {
 
             @Override

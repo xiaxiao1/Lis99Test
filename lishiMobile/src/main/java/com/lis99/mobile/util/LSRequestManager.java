@@ -24,6 +24,7 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.application.DemoApplication;
 import com.lis99.mobile.entry.mobel.LSRegistModel;
+import com.lis99.mobile.kf.easemob.CodeToTopicIdModel;
 import com.lis99.mobile.newhome.LSTab;
 
 import java.util.HashMap;
@@ -689,6 +690,24 @@ public class LSRequestManager
 
 		BaseModel model = new BaseModel();
 		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
+
+
+	}
+
+	/**
+	 *				客服用到根据Code获取帖子的topicId
+	 * @param code
+	 * @param callBack
+     */
+	public void getTopicIdWithCode ( String code, CallBack callBack )
+	{
+		String url = C.CODE_TO_TOPICID;
+
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("activity_code", code);
+
+		CodeToTopicIdModel model = new CodeToTopicIdModel();
+		MyRequestManager.getInstance().requestGet(url, model, callBack);
 
 
 	}

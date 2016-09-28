@@ -17,4 +17,8 @@
     <dimen name="image_thumbnail_spacing">1dp</dimen>
 	<dimen name="chat_nick_margin_left">12dp</dimen>
 	<dimen name="chat_nick_text_size">13sp</dimen>
+
+
+    <dimen name="round_kf_head">50dp</dimen>
+
 </resources>

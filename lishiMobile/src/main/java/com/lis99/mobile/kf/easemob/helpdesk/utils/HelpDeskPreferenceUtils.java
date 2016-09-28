@@ -38,6 +38,8 @@ public class HelpDeskPreferenceUtils {
 	private String SHARED_KEY_SETTING_CURRENT_NICK = "shared_key_setting_current_nick";
 	private String SHARED_KEY_SETTING_TENANT_ID = "shared_key_setting_tenant_id";
 	private String SHARED_KEY_SETTING_PROJECT_ID = "shared_key_setting_project_id";
+//	保存的帖子ID
+	private String TOPIC_ID = "topic_id";
 
 
 	private HelpDeskPreferenceUtils(Context cxt) {
@@ -105,6 +107,25 @@ public class HelpDeskPreferenceUtils {
 	public long getSettingProjectId(){
 //		return mSharedPreferences.getLong(SHARED_KEY_SETTING_PROJECT_ID, Constant.DEFAULT_PROJECT_ID);
 		return KFCommon.ProjectId;
+	}
+
+	/**
+	 * 		设置最后一个打开客服的帖子ID
+	 * @param topic_id
+     */
+	public void setTOPIC_ID ( String topic_id )
+	{
+		editor.putString(TOPIC_ID, topic_id);
+		editor.commit();
+	}
+
+	/**
+	 * 		获取最后一个打开客服的帖子ID
+	 * @return
+     */
+	public String getTOPIC_ID ()
+	{
+		return mSharedPreferences.getString(TOPIC_ID, "-1");
 	}
 
 }

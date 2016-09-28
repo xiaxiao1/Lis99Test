@@ -13,18 +13,22 @@
  */
 package com.lis99.mobile.kf.easemob.helpdesk.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.view.View;
 
 import com.easemob.easeui.ui.EaseBaseActivity;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends EaseBaseActivity {
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
+		LSBaseActivity.activity = this;
 		super.onCreate(arg0);
+
 	}
 
 	@Override
@@ -39,6 +43,12 @@ public class BaseActivity extends EaseBaseActivity {
 		super.onPause();
 		//umeng
 		MobclickAgent.onPause(this);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		LSBaseActivity.activity = this;
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	/**

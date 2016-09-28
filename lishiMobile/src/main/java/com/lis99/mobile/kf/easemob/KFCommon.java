@@ -2,6 +2,7 @@ package com.lis99.mobile.kf.easemob;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.easemob.chat.EMMessage;
 import com.lis99.mobile.application.data.DataManager;
@@ -132,6 +133,19 @@ public class KFCommon {
         OrderMessageEntity entity1 = new OrderMessageEntity(1, titleOrder, "帖子编号："+topicId, "",
                 title, imgUrl, topicUrl);
         return entity1;
+    }
+
+
+    //    获取客服发来的链接找出topicCode
+    public static String getTopicCode ( String str )
+    {
+        if ( TextUtils.isEmpty(str)) return null;
+        if ( str.contains("http://club.lis99.com/activity/detail/") || str.contains("http://m.lis99.com/club/activity/detail/"))
+        {
+            String result = str.substring(str.lastIndexOf("/")+1);
+            return result;
+        }
+        return null;
     }
 
 

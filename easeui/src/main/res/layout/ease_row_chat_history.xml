@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:easeui="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="59dp"
      android:id="@+id/list_itease_layout"
@@ -14,6 +14,7 @@
         android:layout_alignParentLeft="true" >
 
       <com.easemob.easeui.widget.EaseImageView
+          app:ease_radius="@dimen/round_kf_head"
             android:id="@+id/avatar"
             android:layout_width="45dp"
             android:layout_height="45dp"
