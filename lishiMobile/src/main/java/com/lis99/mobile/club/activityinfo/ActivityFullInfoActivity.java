@@ -356,6 +356,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
 
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showInfo(View tv, ImageView iv) {
         /*if (tv.getVisibility() == View.VISIBLE) {
             iv.setImageResource(R.drawable.club_info_dot_down);
@@ -366,14 +367,13 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             animationHelper.startPropertyAnimationY(tv,AnimationHelper.TYPE_SHOW);
             tv.setVisibility(View.VISIBLE);
         }*/
-       /* if (tv.getTag()==null) {
-            animationHelper.startPropertyAnimationY(tv, AnimationHelper.TYPE_SHOW);
-            tv.setTag("O");
+        if (tv.getHeight()==0) {
+            animationHelper.startPropertyAnimationY(tv, 0,(Integer)tv.getTag());
         } else {
-            animationHelper.startPropertyAnimationY(tv, AnimationHelper.TYPE_HIDE);
-            tv.setTag("I");
-        }*/
-
+            tv.setTag(tv.getHeight());
+            animationHelper.startPropertyAnimationY(tv, tv.getHeight(),0);
+        }
+        animationHelper.startRotateAnimation(iv,iv.getRotation(),iv.getRotation()+180);
 
     }
 
