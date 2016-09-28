@@ -122,7 +122,8 @@ public class LSWelfareAdapter extends BaseAdapter {
        convertView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               if ( "2".equals(obj.getCategory()))
+               Common.goTopic(c,Common.string2int(obj.getCategory()),Common.string2int(obj.getTopicid()));
+               /*if ( "2".equals(obj.getCategory()))
                {
                    Intent intent = new Intent(c, LSClubTopicNewActivity.class);
                    intent.putExtra("topicID", Common.string2int(obj.getTopicid()));
@@ -131,9 +132,9 @@ public class LSWelfareAdapter extends BaseAdapter {
                else
                {
                    Intent intent = new Intent(c, LSClubTopicActivity.class);
-                   intent.putExtra("topicID", obj.getTopicid());
+                   intent.putExtra("topicID", Common.string2int(obj.getTopicid()));
                    c.startActivity(intent);
-               }
+               }*/
            }
        });
         if (position==0) {
