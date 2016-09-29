@@ -26,10 +26,10 @@ import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.exceptions.EaseMobException;
 import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.kf.easemob.KFCommon;
 import com.lis99.mobile.kf.easemob.helpdesk.Constant;
 import com.lis99.mobile.kf.easemob.helpdesk.DemoHelper;
-import com.lis99.mobile.kf.easemob.helpdesk.utils.CommonUtils;
 
 public class LoginActivity extends BaseActivity {
 
@@ -38,6 +38,9 @@ public class LoginActivity extends BaseActivity {
 	private int selectedIndex = Constant.INTENT_CODE_IMG_SELECTED_DEFAULT;
 	private int messageToIndex = Constant.MESSAGE_TO_DEFAULT;
 
+	private String randomAccount;
+	private String userPwd;
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -45,7 +48,12 @@ public class LoginActivity extends BaseActivity {
 		selectedIndex = intent.getIntExtra(Constant.INTENT_CODE_IMG_SELECTED_KEY,
 				Constant.INTENT_CODE_IMG_SELECTED_DEFAULT);
 		messageToIndex = intent.getIntExtra(Constant.MESSAGE_TO_INTENT_EXTRA, Constant.MESSAGE_TO_DEFAULT);
-		
+
+		randomAccount = "lishi"+DataManager.getInstance().getUser().getUser_id();
+
+		userPwd = Constant.DEFAULT_ACCOUNT_PWD;
+
+
 		//EMChat.getInstance().isLoggedIn() 可以检测是否已经登录过环信，如果登录过则环信SDK会自动登录，不需要再次调用登录操作
 		if (EMChat.getInstance().isLoggedIn()) {
 			progressDialog = getProgressDialog();
@@ -66,15 +74,18 @@ public class LoginActivity extends BaseActivity {
 			}).start();
 		} else {
 			//随机创建一个用户并登录环信服务器
-			createRandomAccountAndLoginChatServer();
+//			createRandomAccountAndLoginChatServer();
+			//登录
+			loginHuanxinServer();
 		}
 
 	}
 
 	private void createRandomAccountAndLoginChatServer() {
 		// 自动生成账号
-		final String randomAccount = CommonUtils.getRandomAccount();
-		final String userPwd = Constant.DEFAULT_ACCOUNT_PWD;
+//		final String randomAccount = CommonUtils.getRandomAccount();
+//		final String randomAccount = "lishi"+DataManager.getInstance().getUser().getUser_id();
+//		final String userPwd = Constant.DEFAULT_ACCOUNT_PWD;
 		progressDialog = getProgressDialog();
 		progressDialog.setMessage(getResources().getString(R.string.system_is_regist));
 		progressDialog.show();
@@ -199,6 +210,51 @@ public class LoginActivity extends BaseActivity {
 								getResources().getString(R.string.is_contact_customer_failure_seconed) + message,
 								Toast.LENGTH_SHORT).show();
 						finish();
+					}
+				});
+			}
+		});
+	}
+
+
+	public void loginHuanxinServer() {
+		progressShow = true;
+		progressDialog = getProgressDialog();
+		progressDialog.setMessage(getResources().getString(R.string.is_contact_customer));
+		if (!progressDialog.isShowing()) {
+			progressDialog.show();
+		}
+		// login huanxin server
+		EMChatManager.getInstance().login(randomAccount, userPwd, new EMCallBack() {
+			@Override
+			public void onSuccess() {
+				if (!progressShow) {
+					return;
+				}
+				DemoHelper.getInstance().setCurrentUserName(randomAccount);
+				DemoHelper.getInstance().setCurrentPassword(userPwd);
+				try {
+					EMChatManager.getInstance().loadAllConversations();
+				} catch (Exception e) {
+					e.printStackTrace();
+					return;
+				}
+				toChatActivity();
+			}
+
+			@Override
+			public void onProgress(int progress, String status) {
+			}
+
+			@Override
+			public void onError(final int code, final String message) {
+				if (!progressShow) {
+					return;
+				}
+				runOnUiThread(new Runnable() {
+					public void run() {
+						progressDialog.dismiss();
+						createRandomAccountAndLoginChatServer();
 					}
 				});
 			}

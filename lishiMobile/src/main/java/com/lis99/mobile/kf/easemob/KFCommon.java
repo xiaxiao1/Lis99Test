@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.kf.easemob.helpdesk.domain.OrderMessageEntity;
@@ -140,12 +141,21 @@ public class KFCommon {
     public static String getTopicCode ( String str )
     {
         if ( TextUtils.isEmpty(str)) return null;
+        str = str.replace("\"", "");
         if ( str.contains("http://club.lis99.com/activity/detail/") || str.contains("http://m.lis99.com/club/activity/detail/"))
         {
             String result = str.substring(str.lastIndexOf("/")+1);
             return result;
         }
         return null;
+    }
+
+    /**
+     *      登出
+     */
+    public static void kfLogout ()
+    {
+        EMChatManager.getInstance().logout(true);
     }
 
 

@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Toast;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
@@ -245,8 +244,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 	@Override
 	public boolean onMessageBubbleClick(EMMessage message) {
 		// 消息框点击事件，demo这里不做覆盖，如需覆盖，return true
-		Toast.makeText(getActivity(), "click＝"+message, Toast.LENGTH_SHORT).show();
-		String code = message.getBody().toString();
+//		Toast.makeText(getActivity(), "click＝"+message, Toast.LENGTH_SHORT).show();
+		String code = message.getBody().toString().trim();
 		code = KFCommon.getTopicCode(code);
 		if ( TextUtils.isEmpty(code)) return true;
 		LSRequestManager.getInstance().getTopicIdWithCode(code, new CallBack() {

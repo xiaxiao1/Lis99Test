@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.widget.applywidget.ContactsActivity;
+import com.lis99.mobile.kf.easemob.KFCommon;
 import com.lis99.mobile.newhome.HelpMovieActivity;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.FileSizeUtil;
@@ -208,8 +209,8 @@ public class LsSettingActivity extends ActivityPattern {
 		DataHelp.getInstance().cleanAll();
 
 		SharedPreferencesHelper.cleanUserInfo();
-
-
+//		客服登出
+		KFCommon.kfLogout();
 
 
 		finish();

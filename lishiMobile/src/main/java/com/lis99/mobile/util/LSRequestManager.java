@@ -707,7 +707,7 @@ public class LSRequestManager
 		map.put("activity_code", code);
 
 		CodeToTopicIdModel model = new CodeToTopicIdModel();
-		MyRequestManager.getInstance().requestGet(url, model, callBack);
+		MyRequestManager.getInstance().requestPost(url, map, model, callBack);
 
 
 	}

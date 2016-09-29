@@ -85,6 +85,7 @@ public class ParserUtil {
 	 */
 	public static Object getParserResult ( String result, Object o, MyTask task )
 	{
+		Common.log("Httpresult="+result);
 		//fastJson
 //		JSONObject json1 = JSONObject.parseObject(result);
 //		String ok1 = json1.getString("status");
@@ -112,7 +113,7 @@ public class ParserUtil {
 //		data = getUTF8(data);
 		o = getGosnParser(data, o);
 //			Common.log("Httpresult="+Common.convert(result));
-			Common.log("Httpresult="+result);
+//			Common.log("Httpresult="+result);
 		}
 		catch ( JsonSyntaxException e )
 		{
