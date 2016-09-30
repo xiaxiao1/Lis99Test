@@ -133,9 +133,11 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             public void initFullInfo(Object datas) {
                 model = (ClubTopicActiveSeriesLineMainModel) datas;
                 cleanBaomingxvzhi();
-                if (!model.settime.equals("")) {
+
+                /*集合时间，后期决定去掉，*/
+                /*if (!model.settime.equals("")) {
                     tvGatherTime.setText(model.settime);
-                }
+                }*/
                 if (!model.setaddress.equals("")) {
                     tvLocation.setText(model.setaddress);
                 }
@@ -311,9 +313,12 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         } else if (v == share_img) {
             ShareManager.getInstance().showPopWindowInShare(model, layoutmain, null);
             super.rightAction();
-        } else if (v == advice_ll) {
+        }
+        else if (v == advice_ll)
+        {
             Common.telPhone("4006728099");
-        } else if (v == toPlay_tv) {
+        }
+        else if (v == toPlay_tv) {
             baoMing();
         }
         else if ( v == tv_kf )
@@ -476,6 +481,14 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
             }
         });
     }
+
+  /*  @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+//        f1.refreshDatas(int activityId);
+
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -120,6 +119,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     //领队来自的俱乐部
     TextView leaderFrom_tv;
 
+    //玩家评论区域
+    LinearLayout player_pinglun1_ll;
+    LinearLayout player_pinglun2_ll;
+    LinearLayout player_pinglun3_ll;
     //玩家评论view分割线
     //  LinearLayout player_fengexian_ll;
 
@@ -231,7 +234,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
         activity_id=this.getActivity().getIntent().getIntExtra("topicID",0);
-        getInfo();
+        getInfo(activity_id);
 
 
         //下拉刷新
@@ -240,7 +243,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             public void onRefresh()
             {
                 cleanInfo();
-                getInfo();
+                getInfo(activity_id);
                 listView.onRefreshComplete();
 
             }
@@ -448,7 +451,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             }
             String c=entity.content;
             String img=entity.images;
-            Log.i("xx","c:"+c+"\n img:"+img+" currentsize:"+currentSize+"  fullsize:"+fullSize);
             viewHolder.img.setVisibility(View.GONE);
             viewHolder.load_img.setVisibility(View.GONE);
             viewHolder.content.setVisibility(View.GONE);
@@ -672,6 +674,10 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
         //玩家分割线
 //        player_fengexian_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_player_fengexian_ll);
+
+        player_pinglun1_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_players_pinglun1_ll);
+        player_pinglun2_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_players_pinglun2_ll);
+        player_pinglun3_ll=(LinearLayout)footer_playerEvaluation.findViewById(R.id.afullinfo_players_pinglun3_ll);
         //装备
         zhuangbei1_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_1);
         zhuangbei2_ll=(LinearLayout)footer_zhuangbei.findViewById(R.id.footer4zhuangbei_ll_2);
@@ -679,7 +685,16 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
 
     }
-    private void getInfo() {
+
+    public void refreshDatas(int activityId) {
+        if (activityId!=this.activity_id) {
+            this.activity_id=activityId;
+            Common.toast("refreshDatas");
+            cleanInfo();
+            getInfo(activityId);
+        }
+    }
+    private void getInfo(int activityId) {
         String url = C.CLUB_TOPIC_ACTIVE_SERIES_LINE_MIAN;
 
         String userId = DataManager.getInstance().getUser().getUser_id();
@@ -687,7 +702,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         HashMap<String, Object> map = new HashMap<String, Object>();
 
         map.put("user_id", userId);
-        map.put("activity_id", activity_id);
+        map.put("activity_id", activityId);
         /*map.put("user_id", 456957);
         map.put("activity_id", 4829);*/
 
@@ -708,12 +723,13 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 header.setVisibility(View.VISIBLE);
                 //设置活动标题
                 activeTitle_tv.setText(model.getTitle());
-                //设置活动备注
-                activeNote_tv.setText(model.batchDesc);
-                //设置价格
-                activePrice_tv.setText("￥"+model.consts);
-                Log.i("xx", model.getTitle() + "ccc");
+                //设置活动时间区间，批次数量
+                if (!model.starttimeIntval.equals("")) {
 
+                    activeNote_tv.setText(model.starttimeIntval+"  共"+model.batchCount+"期");
+                    //设置价格区间
+                    activePrice_tv.setText(model.priceIntval);
+                }
                 //设置顶部轮播图
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
                     bannerView.setVisibility(View.VISIBLE);
@@ -844,21 +860,21 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置玩家评论
 
 
-
-                if(model.commentlist!=null){
+                /*打开推荐玩家评价，2016.9.13*/
+                /*if(model.commentlist!=null){
 
                     model.commentlist=null;
-                }
+                }*/
                 if (model.commentlist != null && model.commentlist.size() != 0) {
-                    Log.i("mtarget","model.commentlist :"+ model.commentlist.size());
 //                    leader_fengexian_ll.setVisibility(View.VISIBLE);
                     footer_playerEvaluation.setVisibility(View.VISIBLE);
                     listView.addFooterView(footer_playerEvaluation);
                     int size = model.commentlist.size();
                     //第一条评论
                     if (size > 0) {
+                        player_pinglun1_ll.setVisibility(View.VISIBLE);
                         RoundedImageView playerHead1=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head1_img);
-                        //     ImageLoader.getInstance().displayImage(model.commentlist.get(0).userhead, playerHead1, ImageUtil.getclub_topic_headImageOptions());
+                        ImageLoader.getInstance().displayImage(model.commentlist.get(0).userhead, playerHead1, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name1_tv);
                         playerName1.setText(model.commentlist.get(0).nickname);
                         RatingBar ratBar1=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level1_img);
@@ -866,12 +882,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         TextView playTime1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time1_tv);
                         playTime1.setText(model.commentlist.get(0).createtime+"玩过");
                         TextView playComment1=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation1_tv);
-                        playComment1.setText(model.commentlist.get(0).content);
+                        playComment1.setText(model.commentlist.get(0).custom);
                         TextView playLabels1[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_11_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_12_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_13_tv)};
                         if (model.commentlist.get(0).usercatelist!=null&&model.commentlist.get(0).usercatelist.size()!=0) {
 
                             for(int i=0;i<model.commentlist.get(0).usercatelist.size();i++){
-                                String s_label=model.leaderdesc.get(i);
+                                String s_label=model.commentlist.get(0).usercatelist.get(i).title;
                                 playLabels1[i].setVisibility(View.VISIBLE);
                                 playLabels1[i].setText(s_label);
                                 if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
@@ -882,11 +898,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         }else{
                             //    leaderlabels_ll.setVisibility(View.GONE);
                         }
+                    }else{
+                        player_pinglun1_ll.setVisibility(View.GONE);
                     }
                     //第二条评论
                     if (size > 1) {
+                        player_pinglun2_ll.setVisibility(View.VISIBLE);
                         RoundedImageView playerHead2=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head2_img);
-                        //    ImageLoader.getInstance().displayImage(model.commentlist.get(1).userhead, playerHead2, ImageUtil.getclub_topic_headImageOptions());
+                        ImageLoader.getInstance().displayImage(model.commentlist.get(1).userhead, playerHead2, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name2_tv);
                         playerName2.setText(model.commentlist.get(1).nickname);
                         RatingBar ratBar2=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level2_img);
@@ -894,12 +913,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         TextView playTime2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time2_tv);
                         playTime2.setText(model.commentlist.get(1).createtime+"玩过");
                         TextView playComment2=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation2_tv);
-                        playComment2.setText(model.commentlist.get(1).content);
+                        playComment2.setText(model.commentlist.get(1).custom);
                         TextView playLabels2[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_21_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_22_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_23_tv)};
                         if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 
                             for(int i=0;i<model.commentlist.get(1).usercatelist.size();i++){
-                                String s_label=model.leaderdesc.get(i);
+                                String s_label=model.commentlist.get(1).usercatelist.get(i).title;
                                 playLabels2[i].setVisibility(View.VISIBLE);
                                 playLabels2[i].setText(s_label);
                                 if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
@@ -910,11 +929,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         }else{
                             //    leaderlabels_ll.setVisibility(View.GONE);
                         }
+                    }else{
+                        player_pinglun2_ll.setVisibility(View.GONE);
                     }
                     //第三条评论
                     if (size > 2) {
+                        player_pinglun3_ll.setVisibility(View.VISIBLE);
                         RoundedImageView playerHead3=(RoundedImageView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_head3_img);
-                        //     ImageLoader.getInstance().displayImage(model.commentlist.get(2).userhead, playerHead3, ImageUtil.getclub_topic_headImageOptions());
+                        ImageLoader.getInstance().displayImage(model.commentlist.get(2).userhead, playerHead3, ImageUtil.getclub_topic_headImageOptions());
                         TextView playerName3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_name3_tv);
                         playerName3.setText(model.commentlist.get(2).nickname);
                         RatingBar ratBar3=(RatingBar)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_level3_img);
@@ -922,12 +944,12 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         TextView playTime3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_play_time3_tv);
                         playTime3.setText(model.commentlist.get(2).createtime+"玩过");
                         TextView playComment3=(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_evaluation3_tv);
-                        playComment3.setText(model.commentlist.get(2).content);
+                        playComment3.setText(model.commentlist.get(2).custom);
                         TextView playLabels3[]={(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_31_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_32_tv),(TextView)footer_playerEvaluation.findViewById(R.id.footer4playerevaluation_player_label_33_tv)};
                         if (model.commentlist.get(1).usercatelist!=null&&model.commentlist.get(1).usercatelist.size()!=0) {
 
                             for(int i=0;i<model.commentlist.get(2).usercatelist.size();i++){
-                                String s_label=model.leaderdesc.get(i);
+                                String s_label=model.commentlist.get(2).usercatelist.get(i).title;
                                 playLabels3[i].setVisibility(View.VISIBLE);
                                 playLabels3[i].setText(s_label);
                                 if (NativeEntityUtil.getInstance().getCommunityStarTags().get(s_label) != null) {
@@ -938,6 +960,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         }else{
                             listView.removeFooterView(footer_playerEvaluation);
                         }
+                    }else{
+                        player_pinglun3_ll.setVisibility(View.GONE);
                     }
 
                 } else {
@@ -947,7 +971,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
                 //设置推荐装备
                 if (model.zhuangbeilist != null && model.zhuangbeilist.size() > 0) {
-                    Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
                     listView.addFooterView(footer_zhuangbei);
 //                    player_fengexian_ll.setVisibility(View.VISIBLE);
                     int size = model.zhuangbeilist.size();
@@ -1019,7 +1042,6 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                         zhuangbei3_ll.setVisibility(View.VISIBLE);
                     }
                 } else {
-                    Log.i("mtarget","model.zhuangbeilist :"+ model.zhuangbeilist.size());
 //                    player_fengexian_ll.setVisibility(View.GONE);
                 }
 
@@ -1067,6 +1089,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         header.setVisibility(View.INVISIBLE);
         title_area_ll.setVisibility(View.INVISIBLE);
         footer_ownerinfo.setVisibility(View.INVISIBLE);
+        fullInfoAdapter=null;
         listView.setAdapter(null);
         model=null;
         cleanLightSpots();

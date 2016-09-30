@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,9 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
     private WeekView weekView;
     private GridMonthView gridMonthView;
     private TextView textViewYear, textViewMonth;
+    private ImageView left, right;
+
+    private CalendarInfo lastDay, firstDay;
 
     public GridCalendarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -31,17 +35,44 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
         addView(weekView, llParams);
         addView(gridMonthView, llParams);
 
-        view.findViewById(R.id.left).setOnClickListener(this);
-        view.findViewById(R.id.right).setOnClickListener(this);
+        left = (ImageView) view.findViewById(R.id.left);
+        right = (ImageView) view.findViewById(R.id.right);
+
+        left.setOnClickListener(this);
+        right.setOnClickListener(this);
+
         textViewYear = (TextView) view.findViewById(R.id.year);
         textViewMonth = (TextView) view.findViewById(R.id.month);
+
         gridMonthView.setMonthLisener(new MonthView.IMonthLisener() {
             @Override
             public void setTextMonth() {
                 textViewYear.setText(gridMonthView.getSelYear() + "-");
                 textViewMonth.setText((gridMonthView.getSelMonth() + 1) + "");
+
+                dotClickable(gridMonthView.getSelYear(), gridMonthView.getSelMonth());
             }
         });
+    }
+
+    public void setRightUnClick ()
+    {
+        right.setBackgroundResource(R.drawable.calendar_right_unclick);
+    }
+
+    public void setRightClick ()
+    {
+        right.setBackgroundResource(R.drawable.calendar_right);
+    }
+
+    public void setLeftUnClick ()
+    {
+        left.setBackgroundResource(R.drawable.calendar_left_unclick);
+    }
+
+    public void setLeftClick ()
+    {
+        left.setBackgroundResource(R.drawable.calendar_left);
     }
 
     /**
@@ -50,6 +81,8 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
      */
     public void setLastDay(CalendarInfo ...info)
     {
+        lastDay = info[0];
+        firstDay = info[1];
         gridMonthView.setLastDay(info[0], info[1]);
     }
 
@@ -104,4 +137,23 @@ public class GridCalendarView extends LinearLayout implements View.OnClickListen
             gridMonthView.onRightClick();
         }
     }
+
+    //    设置按钮点击状态
+    private void dotClickable ( int selYear, int selMonth )
+    {
+        setLeftClick();
+        setRightClick();
+        //如果当前年、月 》＝ 数据最后的年 、月  返回false
+        if ( lastDay != null && selYear >= lastDay.year && selMonth+1 >= lastDay.month )
+        {
+            setRightUnClick();
+        }
+
+        //如果当前年、月 》＝ 数据最后的年 、月  返回false
+        if ( firstDay != null && selYear <= firstDay.year && selMonth + 1 <= firstDay.month )
+        {
+            setLeftUnClick();
+        }
+    }
+
 }

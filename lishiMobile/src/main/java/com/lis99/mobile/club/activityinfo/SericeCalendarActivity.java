@@ -365,7 +365,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
     private CalendarInfo getLastDay ( CalendarInfo info, CalendarInfo last )
     {
         if ( last == null ) return info;
-        if ( info.year > last.year && info.month > last.month )
+        if ( info.year > last.year || info.month > last.month )
         {
             return info;
         }
@@ -381,7 +381,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
     private CalendarInfo getFirstDay ( CalendarInfo info, CalendarInfo first )
     {
         if ( first == null ) return info;
-        if ( info.year < first.year && info.month < first.month )
+        if ( info.year < first.year || info.month < first.month )
         {
             return info;
         }

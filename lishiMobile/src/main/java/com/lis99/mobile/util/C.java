@@ -482,6 +482,7 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String MY_ACTIVITY_WAITPAY_LIST = DOMAIN + "/v5/user/waitPay/";
 	public static final String MY_ORDER_DETAIL = DOMAIN + "/v4/apply/orderDetail/";
 	public static final String MY_ACTIVITY_ADD_COMMENT = DOMAIN + "/v5/topics/leaderComment/";
+	public static final String MY_ACTIVITY_ADD_COMMENT_NEW = DOMAINS + "/activity/leaderComment/";
 
 //	http://api.lis99.com/v4/club/recommendClubList  推荐俱乐部
 	public static final String RECOMMEND_CLUB_LIST = DOMAIN + "/v4/club/recommendClubList";
@@ -591,6 +592,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String CANCEL_APPLY_ACTIVE = DOMAINS + "/activity/cancelOrder";
 //	根据code 转换成 topicid		https://apis.lis99.com/activity/getIdByCode
 	public static final String CODE_TO_TOPICID = DOMAINS + "/activity/getIdByCode/";
+//	福利社
+	public static final String FULISHE = DOMAINS + "/zhuangbei/fulishe/";
 }
 
 

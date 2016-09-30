@@ -207,13 +207,20 @@ public class GridMonthView extends MonthView {
                 int priceY = (int) (startY + 18 * density);
                 canvas.drawText(des, priceX, priceY, paint);
             }else{//des为空
-                if ( year >= currYear && month >= currMonth && day >= currDay )
+                if ( year > currYear || month > currMonth )
                 {
                     paint.setColor(theme.colorAfterDay());
                 }
                 else
                 {
-                    paint.setColor(theme.colorWeekday());
+                    if ( year == currYear && month == currMonth && day >= currDay )
+                    {
+                        paint.setColor(theme.colorAfterDay());
+                    }
+                    else
+                    {
+                        paint.setColor(theme.colorWeekday());
+                    }
                 }
                 canvas.drawText(day+"", startX, startY, paint);
             }
@@ -230,7 +237,10 @@ public class GridMonthView extends MonthView {
      */
     @Override
     protected boolean hasNextMonth() {
-        if ( lastDay == null ) return true;
+        if ( lastDay == null )
+        {
+            return true;
+        }
         //如果当前年、月 》＝ 数据最后的年 、月  返回false
         if ( selYear >= lastDay.year && selMonth+1 >= lastDay.month )
         {
@@ -246,7 +256,10 @@ public class GridMonthView extends MonthView {
      */
     @Override
     protected boolean hasLastMonth() {
-        if ( firstDay == null ) return true;
+        if ( firstDay == null )
+        {
+            return true;
+        }
         //如果当前年、月 》＝ 数据最后的年 、月  返回false
         if ( selYear <= firstDay.year && selMonth+1 <= firstDay.month )
         {
@@ -254,4 +267,7 @@ public class GridMonthView extends MonthView {
         }
         return true;
     }
+
+
+
 }

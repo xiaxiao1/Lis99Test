@@ -79,6 +79,21 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     @SerializedName("shareUrl")
     public String shareUrl;
 
+    //价格区间
+    @SerializedName("price_intval")
+    public String priceIntval;
+    //活动时间区间
+    @SerializedName("starttime_intval")
+    public String starttimeIntval;
+    //批次总数
+    @SerializedName("batch_count")
+    public int batchCount;
+    /**
+     *      客服类型,0-无客服 1-IM 2-留言
+     */
+    @SerializedName("service_type")
+    public int service_type;
+
 
     //tagid
     @SerializedName("aimid")
@@ -285,6 +300,9 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
 
         @SerializedName("content")
         public String content;
+
+        @SerializedName("custom")
+        public String custom;
 
         @SerializedName("star")
         public String star;

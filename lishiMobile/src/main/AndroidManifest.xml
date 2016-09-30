@@ -3,8 +3,8 @@
     package="com.lis99.mobile"
 
 
-    android:versionCode="446"
-    android:versionName="4.4.6" >
+    android:versionCode="448"
+    android:versionName="4.4.8" >
 
 
 
@@ -1510,8 +1510,10 @@
         />
 
         <!--新版活动详情-->
+        <!--android:launchMode="singleTask"-->
         <activity android:name=".club.activityinfo.ActivityFullInfoActivity"
                   android:screenOrientation="portrait"
+
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
         <!--系列活动日历-->

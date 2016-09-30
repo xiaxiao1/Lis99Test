@@ -157,6 +157,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="#e3dbd0"/>
+            <!--领队手机号-->
+            <LinearLayout
+                android:id="@+id/leader_phone_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="#c6b6a7"
+                    android:textSize="12sp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="@color/pull_bg"
+                    android:text="领队手机"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+                <TextView
+                    android:id="@+id/leader_phone_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColor="#525252"
+                    android:textSize="13sp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="#fff"
+                    />
+            </LinearLayout>
                 <TextView
                     android:id="@+id/personTitleView"
                     android:layout_width="match_parent"

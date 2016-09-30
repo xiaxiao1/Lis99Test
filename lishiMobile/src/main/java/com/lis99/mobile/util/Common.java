@@ -187,6 +187,10 @@ public class Common {
         }
     }
 
+    public static void Log_i(String info) {
+        Log.i("xx",info);
+    }
+
     /**
      * 1创始人，2管理员，4成员,8网站编辑，-1无权限信息
      *

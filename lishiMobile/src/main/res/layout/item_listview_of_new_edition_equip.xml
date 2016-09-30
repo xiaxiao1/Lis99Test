@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+    >
+    <View
+        android:id="@+id/item_top_line_v"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e3dbd0"
+        android:layout_alignParentTop="true"
+        />
+    <View
+        android:id="@+id/view_bar"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f7f3ec"
+        android:layout_below="@id/item_top_line_v"
+        />
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/ffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_bar"
+        android:visibility="visible"
+        >
+
+        <ImageView
+            android:id="@+id/item_bg_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/club_topic_default"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            />
+
+        <ImageView
+            android:id="@+id/iv_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingTop="10dp"
+            android:src="@drawable/load_image_temp_bg"
+            />
+
+    </RelativeLayout>
+
+
+    I<ImageView
+        android:id="@+id/item_type_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/free_use"
+        android:layout_below="@id/view_bar"
+    />
+    <TextView
+        android:id="@+id/item_logo_desc_tv"
+        android:text=""
+        android:textColor="#d8b16c"
+        android:textSize="13sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/ffff"
+        android:drawableLeft="@drawable/brand"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        />
+    <View
+        android:id="@+id/item_bottom_line_v"
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:layout_marginTop="15dp"
+        android:background="#eeeeee"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@id/item_logo_desc_tv"
+        />
+    <TextView
+        android:id="@+id/item_join_tv"
+        android:background="@drawable/cancle_press"
+        android:text="立即参加"
+        android:textSize="12sp"
+        android:textColor="#3ac01a"
+        android:gravity="center"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_bottom_line_v"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
