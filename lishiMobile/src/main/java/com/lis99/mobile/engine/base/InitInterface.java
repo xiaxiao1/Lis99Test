@@ -20,7 +20,7 @@ package com.lis99.mobile.engine.base;
 public interface InitInterface {
 
 	/**
-	 * ��ȡ����android��layout
+	 * ��ȡ����android��add_layout
 	 * @return
 	 */
 	int getLayoutId();

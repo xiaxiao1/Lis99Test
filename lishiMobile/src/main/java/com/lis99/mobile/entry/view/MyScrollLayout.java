@@ -89,7 +89,7 @@ public class MyScrollLayout extends ViewGroup{
 	 }  
 	
 	 public void snapToScreen(int whichScreen) {    	
-	        // get the valid layout page    
+	        // get the valid add_layout page
 	        whichScreen = Math.max(0, Math.min(whichScreen, getChildCount()-1));    
 	        if (getScrollX() != (whichScreen*getWidth())) {    	                
 	            final int delta = whichScreen*getWidth()-getScrollX();    
@@ -97,7 +97,7 @@ public class MyScrollLayout extends ViewGroup{
 	                    delta, 0, Math.abs(delta)*2);
 	            
 	            mCurScreen = whichScreen;    
-	            invalidate();       // Redraw the layout    	            
+	            invalidate();       // Redraw the add_layout
 	            if (mOnViewChangeListener != null)
 	            {
 	            	mOnViewChangeListener.OnViewChange(mCurScreen);

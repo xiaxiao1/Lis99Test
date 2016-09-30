@@ -82,10 +82,10 @@ public class WheelView extends View {
 	// Cyclic
 	boolean isCyclic = false;
 
-	// Items layout
+	// Items add_layout
 	private LinearLayout itemsLayout;
 
-	// The number of first item in layout
+	// The number of first item in add_layout
 	private int firstItem;
 
 	// View adapter
@@ -191,7 +191,7 @@ public class WheelView extends View {
 
 	/**
 	 * Sets the desired count of visible items. Actual amount of visible items
-	 * depends on wheel layout parameters. To apply changes and rebuild view
+	 * depends on wheel add_layout parameters. To apply changes and rebuild view
 	 * call measure().
 	 * 
 	 * @param count
@@ -475,11 +475,11 @@ public class WheelView extends View {
 	}
 
 	/**
-	 * Calculates desired height for layout
+	 * Calculates desired height for add_layout
 	 * 
 	 * @param layout
-	 *            the source layout
-	 * @return the desired layout height
+	 *            the source add_layout
+	 * @return the desired add_layout height
 	 */
 	private int getDesiredHeight(LinearLayout layout) {
 		if (layout != null && layout.getChildAt(0) != null) {
@@ -514,9 +514,9 @@ public class WheelView extends View {
 	 * Calculates control width and creates text layouts
 	 * 
 	 * @param widthSize
-	 *            the input layout width
+	 *            the input add_layout width
 	 * @param mode
-	 *            the layout mode
+	 *            the add_layout mode
 	 * @return the calculated control width
 	 */
 	private int calculateLayoutWidth(int widthSize, int mode) {
@@ -585,9 +585,9 @@ public class WheelView extends View {
 	 * Sets layouts width and height
 	 * 
 	 * @param width
-	 *            the layout width
+	 *            the add_layout width
 	 * @param height
-	 *            the layout height
+	 *            the add_layout height
 	 */
 	private void layout(int width, int height) {
 		int itemsWidth = width - 2 * PADDING;
@@ -884,7 +884,7 @@ public class WheelView extends View {
 	}
 
 	/**
-	 * Adds view for item to items layout
+	 * Adds view for item to items add_layout
 	 * 
 	 * @param index
 	 *            the item index

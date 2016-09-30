@@ -448,7 +448,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 	 * @param context
 	 * @param attrs
 	 *            AttributeSet from wrapped class. Means that anything you
-	 *            include in the XML layout declaration will be routed to the
+	 *            include in the XML add_layout declaration will be routed to the
 	 *            created View
 	 * @return New instance of the Refreshable View
 	 */

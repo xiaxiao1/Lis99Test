@@ -47,12 +47,12 @@ public class WheelRecycle {
 	}
 
 	/**
-	 * Recycles items from specified layout.
+	 * Recycles items from specified add_layout.
 	 * There are saved only items not included to specified range.
-	 * All the cached items are removed from original layout.
+	 * All the cached items are removed from original add_layout.
 	 * 
-	 * @param layout the layout containing items to be cached
-	 * @param firstItem the number of first item in layout
+	 * @param layout the add_layout containing items to be cached
+	 * @param firstItem the number of first item in add_layout
 	 * @param range the range of current wheel items 
 	 * @return the new value of first item number
 	 */
