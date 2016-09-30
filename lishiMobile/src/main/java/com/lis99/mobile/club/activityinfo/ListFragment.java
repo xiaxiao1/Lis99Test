@@ -686,10 +686,13 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     }
 
+    /**
+     * 根据传入的id 重新获取活动详情数据
+     * @param activityId 活动id
+     */
     public void refreshDatas(int activityId) {
         if (activityId!=this.activity_id) {
             this.activity_id=activityId;
-            Common.toast("refreshDatas");
             cleanInfo();
             getInfo(activityId);
         }
