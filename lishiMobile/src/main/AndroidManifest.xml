@@ -1513,7 +1513,7 @@
         <!--android:launchMode="singleTask"-->
         <activity android:name=".club.activityinfo.ActivityFullInfoActivity"
                   android:screenOrientation="portrait"
-
+                  android:launchMode="singleTask"
                   android:theme="@android:style/Theme.Light.NoTitleBar"
             />
         <!--系列活动日历-->
