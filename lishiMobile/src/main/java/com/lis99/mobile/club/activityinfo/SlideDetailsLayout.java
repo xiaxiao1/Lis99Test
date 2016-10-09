@@ -235,7 +235,7 @@ public class SlideDetailsLayout extends ViewGroup {
         for (int i = 0; i < getChildCount(); i++) {
             child = getChildAt(i);
 
-            // skip layout
+            // skip add_layout
             if (child.getVisibility() == GONE) {
                 continue;
             }

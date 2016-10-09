@@ -747,7 +747,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
     /*private View getRecommend(int i,View view,ViewGroup viewGroup){
         ViewHolderRecommend holder = null;
         if (view == null) {
-            view = View.inflate(mContext, R.layout.club_topic_to_recommended_activity, null);
+            view = View.inflate(mContext, R.add_layout.club_topic_to_recommended_activity, null);
             holder = new ViewHolderRecommend(view);
             view.setTag(holder);
         } else {

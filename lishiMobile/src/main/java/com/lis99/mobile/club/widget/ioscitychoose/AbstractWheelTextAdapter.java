@@ -71,7 +71,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     /**
      * Constructor
      * @param context the current context
-     * @param itemResource the resource ID for a layout file containing a TextView to use when instantiating items views
+     * @param itemResource the resource ID for a add_layout file containing a TextView to use when instantiating items views
      */
     protected AbstractWheelTextAdapter(Context context, int itemResource) {
         this(context, itemResource, NO_RESOURCE);
@@ -80,8 +80,8 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     /**
      * Constructor
      * @param context the current context
-     * @param itemResource the resource ID for a layout file containing a TextView to use when instantiating items views
-     * @param itemTextResource the resource ID for a text view in the item layout
+     * @param itemResource the resource ID for a add_layout file containing a TextView to use when instantiating items views
+     * @param itemTextResource the resource ID for a text view in the item add_layout
      */
     protected AbstractWheelTextAdapter(Context context, int itemResource, int itemTextResource) {
         this.context = context;
@@ -140,7 +140,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     }
     
     /**
-     * Gets resource Id for text view in item layout 
+     * Gets resource Id for text view in item add_layout
      * @return the item text resource Id
      */
     public int getItemTextResource() {
@@ -148,7 +148,7 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     }
     
     /**
-     * Sets resource Id for text view in item layout 
+     * Sets resource Id for text view in item add_layout
      * @param itemTextResourceId the item text resource Id to set
      */
     public void setItemTextResource(int itemTextResourceId) {
@@ -228,8 +228,8 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     
     /**
      * Loads a text view from view
-     * @param view the text view or layout containing it
-     * @param textResource the text resource Id in layout
+     * @param view the text view or add_layout containing it
+     * @param textResource the text resource Id in add_layout
      * @return the loaded text view
      */
     private TextView getTextView(View view, int textResource) {

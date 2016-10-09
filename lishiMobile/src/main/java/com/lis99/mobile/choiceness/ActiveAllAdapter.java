@@ -32,7 +32,7 @@ public class ActiveAllAdapter extends MyBaseAdapter {
         Holder holder = null;
 //        if ( view == null )
 //        {
-//            view = View.inflate(mContext, R.layout.active_all_adapter, null);
+//            view = View.inflate(mContext, R.add_layout.active_all_adapter, null);
 //            holder = new Holder();
 //
 //            holder.tv_title = (TextView) view.findViewById(R.id.tv_title);

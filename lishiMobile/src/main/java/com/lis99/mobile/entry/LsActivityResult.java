@@ -63,7 +63,7 @@ public class LsActivityResult extends ActivityPattern1 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// setContentView(R.layout.xxl_activity_result);
+		// setContentView(R.add_layout.xxl_activity_result);
 		setContentView(R.layout.xxl_activity_result_ls);
 
 		StatusUtil.setStatusBar(this);

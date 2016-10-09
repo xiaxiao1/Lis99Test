@@ -114,7 +114,7 @@ public class PushManager
 //								context);
 //						RemoteViews myNotificationView = new RemoteViews(
 //								context.getPackageName(),
-//								R.layout.notification_view);
+//								R.add_layout.notification_view);
 //						myNotificationView.setTextViewText(
 //								R.id.notification_title, msg.title);
 //						myNotificationView.setTextViewText(

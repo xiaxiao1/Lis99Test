@@ -1,12 +1,14 @@
 package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -34,6 +36,7 @@ import com.lis99.mobile.newhome.activeline.adapter.MyBaseRecycler;
 import com.lis99.mobile.newhome.activeline.adapter.SupperLaderRecycler;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.search.SearchActivity;
+import com.lis99.mobile.util.AnimationHelper;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -56,6 +59,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener,
         LSSelectAdapter.OnSelectItemClickListener, ScrollTopUtil.ToTop {
 
+    AnimationHelper animationHelper ;
     private TextView tvMassage;
     private TextView tvLocation;
     private ListView list;
@@ -115,7 +119,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         v = View.inflate(getActivity(), R.layout.active_new_line, null);
-
+        animationHelper=new AnimationHelper(this.getContext());
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
         tvLocation.setText("活动");
@@ -480,7 +484,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
 
     @Override
-    public void dispalyImage(GridView gridView, int position) {
+    public void dispalyImage(final GridView gridView, int position) {
 
         if ( gridList == null )
         {
@@ -495,13 +499,18 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             item.add(gridList.get(i));
         }
 
+
         final GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), item);
         gridView.setAdapter(gridadapter);
+        Common.Log_i("cc"+gridView.getChildCount());
+
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
-//                Common.toast(""+item.id);
+                animationHelper.showAnimation(view.findViewById(R.id.item_rl),R.anim.add_home_banner_click);
+
 //                目的地
                 if ( item.id == -1 )
                 {

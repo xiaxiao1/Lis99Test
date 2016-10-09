@@ -162,7 +162,7 @@ public class ChoicenessAdapter extends BaseAdapter
 		ClubHolder holder = null;
 		if ( view == null )
 		{
-//			view = View.inflate(a, R.layout.choiceness_item_club, null);
+//			view = View.inflate(a, R.add_layout.choiceness_item_club, null);
 			view = View.inflate(a, R.layout.choiceness_new_topic, null);
 			holder = new ClubHolder();
 			holder.iv_bg = (RoundedImageView) view.findViewById(R.id.iv_bg);

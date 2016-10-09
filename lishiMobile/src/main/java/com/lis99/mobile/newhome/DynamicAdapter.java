@@ -43,7 +43,7 @@ public class DynamicAdapter extends MyBaseAdapter {
     public View setView(int i, View view, ViewGroup viewGroup) {
         Holder holder = null;
         if (view == null) {
-//            view = View.inflate(mContext, R.layout.dynamic_item, null);
+//            view = View.inflate(mContext, R.add_layout.dynamic_item, null);
             view = View.inflate(mContext, R.layout.choiceness_new_topic, null);
             holder = new Holder();
 

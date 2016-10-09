@@ -5,6 +5,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 
 import com.lis99.mobile.R;
@@ -19,6 +20,7 @@ public class GridPageAdapter extends PagerAdapter {
 
     private List<View> banners;
     private GridPageAdapterListener mListener;
+    Context mContext;
 
     public static interface GridPageClickListener{
         public void onClick(int index);
@@ -40,6 +42,7 @@ public class GridPageAdapter extends PagerAdapter {
     public GridPageAdapter (Context context, int pageCount) {
         banners = new ArrayList<View>(pageCount);
         initBanners(context, pageCount);
+        mContext=context;
     }
 
     public void addGridPageAdapterListener(

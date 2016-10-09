@@ -195,7 +195,7 @@ public class LsXuanActivity extends ActivityPattern  implements OnRefreshListene
 	}
 	private Random mRand = new Random();
 	private void initAdapter() {
-		/*mAdapter = new MySimpleAdapter(this, R.layout.sample_item);
+		/*mAdapter = new MySimpleAdapter(this, R.add_layout.sample_item);
 
 		for( int i = 0; i < 30; ++i){
 			//generate 30 random items.
