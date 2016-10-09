@@ -1,14 +1,13 @@
 package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -176,7 +175,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                     int num = Common.string2int(item.getId());
 
-                    Common.goTopic(getActivity(), 4, num);
+                Common.goTopic(getActivity(), 4, num);
 
 
             }
