@@ -650,6 +650,52 @@ public class DialogManager {
     }
 
 
+    //  取消支付
+    public void contactKF(boolean showKf, final CallBack callBack) {
+
+        final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.cancelDialog);
+
+        dialog.show();
+
+        dialog.setContentView(R.layout.contact_kf_dialog);
+
+        View phone = dialog.findViewById(R.id.phone);
+        View tv_kf = dialog.findViewById(R.id.tv_kf);
+        View line = dialog.findViewById(R.id.line);
+
+        if ( !showKf )
+        {
+            line.setVisibility(View.GONE);
+            tv_kf.setVisibility(View.GONE);
+        }
+
+        phone.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if ( dialog.isShowing())
+                dialog.dismiss();
+                if ( callBack == null ) return;
+                callBack.handler(null);
+            }
+        });
+
+        tv_kf.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if ( dialog.isShowing())
+                    dialog.dismiss();
+                if ( callBack == null ) return;
+                callBack.handlerCancel(null);
+            }
+        });
+
+
+
+    }
+
+
+
+
 
 
 

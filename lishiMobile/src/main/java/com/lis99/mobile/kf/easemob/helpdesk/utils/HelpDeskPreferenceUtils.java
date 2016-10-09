@@ -109,23 +109,4 @@ public class HelpDeskPreferenceUtils {
 		return KFCommon.ProjectId;
 	}
 
-	/**
-	 * 		设置最后一个打开客服的帖子ID
-	 * @param topic_id
-     */
-	public void setTOPIC_ID ( String topic_id )
-	{
-		editor.putString(TOPIC_ID, topic_id);
-		editor.commit();
-	}
-
-	/**
-	 * 		获取最后一个打开客服的帖子ID
-	 * @return
-     */
-	public String getTOPIC_ID ()
-	{
-		return mSharedPreferences.getString(TOPIC_ID, "-1");
-	}
-
 }

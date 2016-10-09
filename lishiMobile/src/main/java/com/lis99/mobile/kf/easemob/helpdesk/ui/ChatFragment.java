@@ -97,7 +97,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 		if (savedInstanceState == null) {
 			sendPictureTxtMessage((OrderMessageEntity)fragmentArgs.getSerializable(KFCommon.ENTITY));
 		}
-		messageList.setShowUserNick(false);
+		messageList.setShowUserNick(true);
 	}
 
 	@Override
@@ -120,13 +120,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
 			@Override
 			public void onClick(View v) {
-//				跳转到帖子详情
-				int topicId = Common.string2int(HelpDeskPreferenceUtils.getInstance(getActivity()).getTOPIC_ID());
-				if ( topicId > 0 )
-				{
-					Common.goTopic(getActivity(), 4, topicId);
-				}
-
+				onCancel();
 				getActivity().finish();
 			}
 		});
@@ -156,7 +150,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 		// demo这里不覆盖基类已经注册的item,item点击listener沿用基类的
 		super.registerExtendMenuItem();
 		//增加扩展item
-		inputMenu.registerExtendMenuItem(R.string.attach_file, R.drawable.em_chat_file_selector, ITEM_FILE, extendMenuItemClickListener);
+//		inputMenu.registerExtendMenuItem(R.string.attach_file, R.drawable.em_chat_file_selector, ITEM_FILE, extendMenuItemClickListener);
 		// 增加扩展item
 //		inputMenu.registerExtendMenuItem(R.string.attach_short_cut_message, R.drawable.em_icon_answer, ITEM_SHORT_CUT_MESSAGE, extendMenuItemClickListener);
 	}
@@ -247,7 +241,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 //		Toast.makeText(getActivity(), "click＝"+message, Toast.LENGTH_SHORT).show();
 		String code = message.getBody().toString().trim();
 		code = KFCommon.getTopicCode(code);
-		if ( TextUtils.isEmpty(code)) return true;
+		if ( TextUtils.isEmpty(code)) return false;
 		LSRequestManager.getInstance().getTopicIdWithCode(code, new CallBack() {
 			@Override
 			public void handler(MyTask mTask) {
@@ -262,6 +256,18 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
 		return true;
 	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		onCancel();
+	}
+
+	public void onCancel ()
+	{
+
+	}
+
 
 	@Override
 	public void onMessageBubbleLongClick(EMMessage message) {
@@ -349,7 +355,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
 		@Override
 		public EaseChatRow getCustomChatRow(EMMessage message, int position, BaseAdapter adapter) {
-			if (message.getType() == EMMessage.Type.TXT) {
+			if (message.getType() == EMMessage.Type.TXT)
+			{
 				if (DemoHelper.getInstance().isRobotMenuMessage(message)) {
 					return new ChatRowRobotMenu(getActivity(), message, position, adapter);
 				} else if (DemoHelper.getInstance().isEvalMessage(message)) {

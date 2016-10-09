@@ -23,9 +23,9 @@ import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.kf.easemob.KFCommon;
-import com.lis99.mobile.kf.easemob.helpdesk.utils.HelpDeskPreferenceUtils;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.PopWindowUtil;
 import com.lis99.mobile.util.ShareManager;
@@ -112,8 +112,6 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     //注意事项信息
     private TextView tvSafely;
 
-    private TextView tv_kf;
-
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -188,7 +186,6 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         fm.beginTransaction().replace(R.id.slidedetails_front, f1).commit();
         //    back_img.setOnClickListener(this);
 
-        tv_kf.setOnClickListener(this);
         back_rl.setOnClickListener(this);
         share_img.setOnClickListener(this);
         advice_ll.setOnClickListener(this);
@@ -227,8 +224,6 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
 
 
     public void initViews() {
-
-        tv_kf = (TextView) findViewById(R.id.tv_kf);
 
         layoutmain = (RelativeLayout) findViewById(R.id.afullinfo_parent);
         mSlideDetailsLayout = (SlideDetailsLayout) findViewById(R.id.slidedetails);
@@ -316,28 +311,10 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         }
         else if (v == advice_ll)
         {
-            Common.telPhone("4006728099");
+            showPhone();
         }
         else if (v == toPlay_tv) {
             baoMing();
-        }
-        else if ( v == tv_kf )
-        {
-            if ( !Common.isLogin(activity))
-            {
-                return;
-            }
-            if (model == null )
-            {
-                return;
-            }
-            String imgUrl = "";
-            if ( model.activityimgs != null && model.activityimgs.size() > 0 )
-            {
-                imgUrl = model.activityimgs.get(0).images;
-            }
-            HelpDeskPreferenceUtils.getInstance(activity).setTOPIC_ID(model.getTopicId());
-            KFCommon.goKFActivity(activity, KFCommon.getMessageExtFromPicture(model.title+"-"+Common.getUserId(), imgUrl, model.getTopicId(), model.title, model.shareUrl));
         }
         else if (v == layoutGatherTime) {
             showInfo(tvGatherTime, ivGatherTime);
@@ -383,6 +360,40 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         }
 
 
+    }
+
+    public void showPhone ()
+    {
+        if ( model == null ) return;
+        boolean showKf = model.service_type == 1;
+        DialogManager.getInstance().contactKF(showKf, new CallBack(){
+
+            @Override
+            public void handler(MyTask mTask) {
+                Common.telPhone("4006728099");
+            }
+
+            @Override
+            public void handlerCancel(MyTask mTask) {
+                super.handlerCancel(mTask);
+
+                if ( !Common.isLogin(activity))
+                {
+                    return;
+                }
+                if (model == null )
+                {
+                    return;
+                }
+                String imgUrl = "";
+                if ( model.activityimgs != null && model.activityimgs.size() > 0 )
+                {
+                    imgUrl = model.activityimgs.get(0).images;
+                }
+                KFCommon.goKFActivity(activity, KFCommon.getMessageExtFromPicture(model.title+"-"+Common.getUserId(), imgUrl, model.getTopicId(), model.title, model.shareUrl));
+
+            }
+        });
     }
 
     public void showInfo(View tv, ImageView iv) {
@@ -485,8 +496,6 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-
-//        f1.refreshDatas(int activityId);
 
     }
 

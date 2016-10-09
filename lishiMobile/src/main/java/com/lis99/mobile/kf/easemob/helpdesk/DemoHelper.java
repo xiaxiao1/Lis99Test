@@ -23,7 +23,6 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.EMMessage.Type;
 import com.easemob.easeui.EaseConstant;
-import com.easemob.easeui.R;
 import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.domain.EaseEmojicon;
 import com.easemob.easeui.domain.EaseEmojiconGroupEntity;
@@ -31,9 +30,10 @@ import com.easemob.easeui.domain.EaseUser;
 import com.easemob.easeui.model.EaseNotifier;
 import com.easemob.easeui.model.EaseNotifier.EaseNotificationInfoProvider;
 import com.easemob.easeui.utils.EaseCommonUtils;
-import com.easemob.easeui.utils.EaseUserUtils;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
+import com.lis99.mobile.R;
+import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.kf.easemob.helpdesk.domain.EmojiconExampleGroupData;
 import com.lis99.mobile.kf.easemob.helpdesk.ui.ChatActivity;
 import com.lis99.mobile.kf.easemob.helpdesk.utils.ListenerManager;
@@ -118,12 +118,18 @@ public class DemoHelper {
             public void setNickAndAvatar(Context context, EMMessage message, ImageView userAvatarView, TextView usernickView) {
                 JSONObject jsonAgent = getAgentInfoByMessage(message);
                 if (message.direct == EMMessage.Direct.SEND) {
-                    EaseUserUtils.setUserAvatar(context, EMChatManager.getInstance().getCurrentUser(), userAvatarView);
+//                    EaseUserUtils.setUserAvatar(context, EMChatManager.getInstance().getCurrentUser(), userAvatarView);
+//                    用户头像
+                    String head = DataManager.getInstance().getUser().getHeadicon();
+                    if ( !TextUtils.isEmpty(head))
+                    {
+                        Glide.with(context).load(head).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ls_nologin_header_icon).into(userAvatarView);
+                    }
                     //发送方不显示nick
                     //            UserUtils.setUserNick(EMChatManager.getInstance().getCurrentUser(), usernickView);
                 } else {
                     if (jsonAgent == null) {
-                        userAvatarView.setImageResource(R.drawable.ease_default_avatar);
+                        userAvatarView.setImageResource(R.drawable.icon_ls);
                         usernickView.setText(message.getFrom());
                     } else {
                         String strNick = null;
@@ -147,9 +153,9 @@ public class DemoHelper {
                                 strUrl = "http:" + strUrl;
                             }
                             //正常的string路径
-                            Glide.with(context).load(strUrl).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ease_default_avatar).into(userAvatarView);
+                            Glide.with(context).load(strUrl).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.icon_ls).into(userAvatarView);
                         } else {
-                            Glide.with(context).load(R.drawable.ease_default_avatar).into(userAvatarView);
+                            Glide.with(context).load(R.drawable.icon_ls).into(userAvatarView);
                         }
                     }
                 }
@@ -195,7 +201,7 @@ public class DemoHelper {
                 if (chatType == ChatType.Chat) { // 单聊信息
                     intent.putExtra(EaseConstant.EXTRA_USER_ID, message.getFrom());
                     intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, Constant.CHATTYPE_SINGLE);
-                    intent.putExtra(EaseConstant.EXTRA_SHOW_USERNICK, false);
+                    intent.putExtra(EaseConstant.EXTRA_SHOW_USERNICK, true);
                 }
                 return intent;
             }
