@@ -364,6 +364,11 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
 
     }
 
+    /**
+     * 行程详情部分设置信息显示和动画
+     * @param tv
+     * @param iv
+     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showInfo(View tv, ImageView iv) {
         /*if (tv.getVisibility() == View.VISIBLE) {
@@ -378,6 +383,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         if (tv.getHeight()==0) {
             animationHelper.startPropertyAnimationY(tv, 0,(Integer)tv.getTag());
         } else {
+            //保存高度值
             tv.setTag(tv.getHeight());
             animationHelper.startPropertyAnimationY(tv, tv.getHeight(),0);
         }

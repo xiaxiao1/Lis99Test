@@ -36,7 +36,6 @@ import com.lis99.mobile.newhome.activeline.adapter.MyBaseRecycler;
 import com.lis99.mobile.newhome.activeline.adapter.SupperLaderRecycler;
 import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.search.SearchActivity;
-import com.lis99.mobile.util.AnimationHelper;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -59,7 +58,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener,
         LSSelectAdapter.OnSelectItemClickListener, ScrollTopUtil.ToTop {
 
-    AnimationHelper animationHelper ;
     private TextView tvMassage;
     private TextView tvLocation;
     private ListView list;
@@ -119,7 +117,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         v = View.inflate(getActivity(), R.layout.active_new_line, null);
-        animationHelper=new AnimationHelper(this.getContext());
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
         tvLocation.setText("活动");
@@ -509,7 +506,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
-                animationHelper.showAnimation(view.findViewById(R.id.item_rl),R.anim.add_home_banner_click);
 
 //                目的地
                 if ( item.id == -1 )
