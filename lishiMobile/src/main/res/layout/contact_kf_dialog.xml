@@ -19,7 +19,7 @@
         >
 
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:src="@drawable/active_topic_messge"
+                        android:src="@drawable/active_topic_phone"
                        android:layout_gravity="center_vertical"
                        android:paddingRight="10dp"
             />
@@ -49,7 +49,7 @@
         >
 
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                       android:src="@drawable/active_topic_phone"
+                       android:src="@drawable/active_topic_messge"
                        android:layout_gravity="center_vertical"
                        android:paddingRight="10dp"
             />

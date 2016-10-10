@@ -84,7 +84,7 @@ public class HelpDeskPreferenceUtils {
 		String name = DataManager.getInstance().getUser().getNickname();
 		if (TextUtils.isEmpty(name))
 		{
-			name = "是我"+ (int)(Math.random() * 10);
+			name = "消息"+ (int)(Math.random() * 10);
 		}
 		return name;
 	}

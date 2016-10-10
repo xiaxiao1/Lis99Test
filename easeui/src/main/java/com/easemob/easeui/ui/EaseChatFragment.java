@@ -44,7 +44,6 @@ import com.easemob.easeui.controller.EaseUI;
 import com.easemob.easeui.domain.EaseEmojicon;
 import com.easemob.easeui.utils.EaseCommonUtils;
 import com.easemob.easeui.utils.EaseImageUtils;
-import com.easemob.easeui.utils.EaseUserUtils;
 import com.easemob.easeui.widget.EaseAlertDialog;
 import com.easemob.easeui.widget.EaseAlertDialog.AlertDialogUser;
 import com.easemob.easeui.widget.EaseChatExtendMenu;
@@ -106,10 +105,10 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     static final int ITEM_PICTURE = 2;
     static final int ITEM_LOCATION = 3;
     
-    protected int[] itemStrings = { R.string.attach_take_pic, R.string.attach_picture, /*R.string.attach_location*/ };
-    protected int[] itemdrawables = { R.drawable.ease_chat_takepic_selector, R.drawable.ease_chat_image_selector,
+    protected int[] itemStrings = { /*R.string.attach_take_pic,*/ R.string.attach_picture, /*R.string.attach_location*/ };
+    protected int[] itemdrawables = { /*R.drawable.ease_chat_takepic_selector,*/ R.drawable.ease_chat_image_selector,
             /*R.drawable.ease_chat_location_selector*/ };
-    protected int[] itemIds = { ITEM_TAKE_PICTURE, ITEM_PICTURE, /*ITEM_LOCATION*/ };
+    protected int[] itemIds = { /*ITEM_TAKE_PICTURE,*/ ITEM_PICTURE, /*ITEM_LOCATION*/ };
     private EMChatRoomChangeListener chatRoomChangeListener;
     private boolean isMessageListInited;
     protected MyItemClickListener extendMenuItemClickListener;
@@ -126,7 +125,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         // 判断单聊还是群聊
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // 会话人或群组id
-        toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
+//        toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
+        toChatUsername = "在线客服";
         // 是否显示用户昵称
         showUserNick = fragmentArgs.getBoolean(EaseConstant.EXTRA_SHOW_USERNICK, false);
         super.onActivityCreated(savedInstanceState);
@@ -194,17 +194,17 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         titleBar.setTitle(toChatUsername);
         if (chatType == EaseConstant.CHATTYPE_SINGLE) { // 单聊
             // 设置标题
-            if(EaseUserUtils.getUserInfo(toChatUsername) != null){
-                titleBar.setTitle(EaseUserUtils.getUserInfo(toChatUsername).getNick());
-            }
+//            if(EaseUserUtils.getUserInfo(toChatUsername) != null){
+//                titleBar.setTitle(EaseUserUtils.getUserInfo(toChatUsername).getNick());
+//            }
             titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
         } else {
         	titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
             if (chatType == EaseConstant.CHATTYPE_GROUP) {
                 // 群聊
                 EMGroup group = EMGroupManager.getInstance().getGroup(toChatUsername);
-                if (group != null)
-                    titleBar.setTitle(group.getGroupName());
+//                if (group != null)
+//                    titleBar.setTitle(group.getGroupName());
                 // 监听当前会话的群聊解散被T事件
                 groupListener = new GroupListener();
                 EMGroupManager.getInstance().addGroupChangeListener(groupListener);
@@ -525,11 +525,11 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
                             return;
                         pd.dismiss();
                         EMChatRoom room = EMChatManager.getInstance().getChatRoom(toChatUsername);
-                        if (room != null) {
-                            titleBar.setTitle(room.getName());
-                        } else {
-                            titleBar.setTitle(toChatUsername);
-                        }
+//                        if (room != null) {
+//                            titleBar.setTitle(room.getName());
+//                        } else {
+//                            titleBar.setTitle(toChatUsername);
+//                        }
                         EMLog.d(TAG, "join room success : " + room.getName());
                         addChatRoomChangeListenr();
                         onConversationInit();

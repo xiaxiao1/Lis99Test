@@ -97,7 +97,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 		if (savedInstanceState == null) {
 			sendPictureTxtMessage((OrderMessageEntity)fragmentArgs.getSerializable(KFCommon.ENTITY));
 		}
-		messageList.setShowUserNick(true);
+		messageList.setShowUserNick(false);
 	}
 
 	@Override

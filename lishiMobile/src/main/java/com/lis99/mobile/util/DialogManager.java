@@ -650,7 +650,7 @@ public class DialogManager {
     }
 
 
-    //  取消支付
+    //拨打电话， 客服菜单
     public void contactKF(boolean showKf, final CallBack callBack) {
 
         final Dialog dialog = new Dialog(LSBaseActivity.activity, R.style.cancelDialog);
