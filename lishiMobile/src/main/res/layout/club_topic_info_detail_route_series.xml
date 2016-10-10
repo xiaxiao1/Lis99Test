@@ -256,6 +256,7 @@
             android:id="@+id/layout_baomingxvzhi"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:visibility="gone"
             >
 
             <TextView
@@ -286,6 +287,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:orientation="vertical"
+            android:visibility="gone"
             >
             </LinearLayout>
 

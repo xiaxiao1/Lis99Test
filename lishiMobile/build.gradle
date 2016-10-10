@@ -171,7 +171,7 @@ dependencies {
     compile files('libs/alipaySdk-20151112.jar')
     compile files('libs/alibaba-fastjson-1.1.40.jar')
 //    EASEUI 里面有重复了注释掉
-//    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/android-async-http-1.4.6.jar')
     compile files('libs/commons-io.jar')
     compile files('libs/commons-lang-2.3.jar')

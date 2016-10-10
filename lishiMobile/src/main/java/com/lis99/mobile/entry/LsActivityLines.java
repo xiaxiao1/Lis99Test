@@ -923,7 +923,7 @@ public class LsActivityLines extends ActivityPattern1 implements
 			return new View(LsActivityLines.this);
 			// ViewHolder viewHolder;
 			// if (convertView == null) {
-			// convertView = this.inflater.inflate(R.layout.my_gridview_item,
+			// convertView = this.inflater.inflate(R.add_layout.my_gridview_item,
 			// null);
 			// viewHolder = new ViewHolder();
 			// viewHolder.title = (TextView) convertView

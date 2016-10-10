@@ -884,7 +884,7 @@ private void AddImage1(ZhuanjiBean picture, int rowIndex, int id) {
 	}
 	private Random mRand = new Random();
 	private void initAdapter() {
-		/*mAdapter = new MySimpleAdapter(this, R.layout.sample_item);
+		/*mAdapter = new MySimpleAdapter(this, R.add_layout.sample_item);
 
 		for( int i = 0; i < 30; ++i){
 			//generate 30 random items.
@@ -912,7 +912,7 @@ private void AddImage1(ZhuanjiBean picture, int rowIndex, int id) {
 		refreshScrollView = refreshContainer.getRefreshableView();
 		refreshContainer.setBackgroundColor(0xffdedede);
 		refreshScrollView.setBackgroundColor(0xffdedede);
-		view = LayoutInflater.from(this).inflate(R.layout.ls_xuan_dangjiliuxing, null);
+		view = LayoutInflater.from(this).inflate(R.add_layout.ls_xuan_dangjiliuxing, null);
 		ls_remen_lv = (AutoResizeListView) view.findViewById(R.id.ls_remen_lv);
 		ls_dangji_layout = (MyLinerLayout) view.findViewById(R.id.ls_dangji_layout);
 		//ls_more = (Button) view.findViewById(R.id.ls_more);

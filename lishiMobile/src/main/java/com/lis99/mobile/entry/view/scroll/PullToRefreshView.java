@@ -95,7 +95,7 @@ public class PullToRefreshView extends LinearLayout {
 	 */
 	private ProgressBar mFooterProgressBar;
 	/**
-	 * layout inflater
+	 * add_layout inflater
 	 */
 	private LayoutInflater mInflater;
 	/**
@@ -176,7 +176,7 @@ public class PullToRefreshView extends LinearLayout {
 				.findViewById(R.id.head_lastUpdatedTextView);
 		mHeaderProgressBar = (ProgressBar) mHeaderView
 				.findViewById(R.id.head_progressBar);
-		// header layout
+		// header add_layout
 		measureView(mHeaderView);
 		mHeaderViewHeight = mHeaderView.getMeasuredHeight();
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
@@ -197,7 +197,7 @@ public class PullToRefreshView extends LinearLayout {
 				.findViewById(R.id.foot_tipsTextView);
 		mFooterProgressBar = (ProgressBar) mFooterView
 				.findViewById(R.id.foot_progressBar);
-		// footer layout
+		// footer add_layout
 		measureView(mFooterView);
 		mFooterViewHeight = mFooterView.getMeasuredHeight();
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
@@ -227,7 +227,7 @@ public class PullToRefreshView extends LinearLayout {
 		int count = getChildCount();
 		if (count < 3) {
 			throw new IllegalArgumentException(
-					"this layout must contain 3 child views,and AdapterView or ScrollView must in the second position!");
+					"this add_layout must contain 3 child views,and AdapterView or ScrollView must in the second position!");
 		}
 		View view = null;
 		for (int i = 0; i < count - 1; ++i) {
@@ -242,7 +242,7 @@ public class PullToRefreshView extends LinearLayout {
 		}
 		if (mAdapterView == null && mScrollView == null) {
 			throw new IllegalArgumentException(
-					"must contain a AdapterView or ScrollView in this layout!");
+					"must contain a AdapterView or ScrollView in this add_layout!");
 		}
 	}
 

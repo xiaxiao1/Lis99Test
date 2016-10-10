@@ -1,17 +1,15 @@
 package com.easemob.easeui.widget.chatrow;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
-import com.easemob.chat.LocationMessageBody;
 import com.easemob.chat.EMMessage.ChatType;
+import com.easemob.chat.LocationMessageBody;
 import com.easemob.easeui.R;
-import com.easemob.easeui.ui.EaseBaiduMapActivity;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.LatLng;
 
@@ -85,11 +83,6 @@ public class EaseChatRowLocation extends EaseChatRow{
     
     @Override
     protected void onBubbleClick() {
-        Intent intent = new Intent(context, EaseBaiduMapActivity.class);
-        intent.putExtra("latitude", locBody.getLatitude());
-        intent.putExtra("longitude", locBody.getLongitude());
-        intent.putExtra("address", locBody.getAddress());
-        activity.startActivity(intent);
     }
     
     /*

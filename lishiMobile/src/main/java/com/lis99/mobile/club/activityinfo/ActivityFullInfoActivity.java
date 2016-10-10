@@ -23,6 +23,7 @@ import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.kf.easemob.KFCommon;
+import com.lis99.mobile.util.AnimationHelper;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
@@ -38,7 +39,7 @@ import java.util.List;
 public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCallback, View
         .OnClickListener {
 
-
+    AnimationHelper animationHelper;
     ClubTopicActiveSeriesLineMainModel model;
     TopicSeriesBatchsListModel modelBatch;
     private int activePosition = -1;
@@ -120,6 +121,7 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         setContentView(R.layout.activityinfo_activity_main);
 
         initViews();
+        animationHelper = new AnimationHelper(this);
         baomingxvzhiList = new ArrayList<View>();
         FragmentManager fm;
         fm = getFragmentManager();
@@ -160,7 +162,12 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
                         text = text +"· "+ s + "\n";
                     }
                     tvBaomingxvzhi.setText(text);*/
+                    tvBaomingxvzhi.setVisibility(View.VISIBLE);
+                    layoutBaomingxvzhi.setVisibility(View.VISIBLE);
                     addBaomingxvzhiSpots(model.reportnote);
+                } else {
+                    tvBaomingxvzhi.setVisibility(View.GONE);
+                    layoutBaomingxvzhi.setVisibility(View.GONE);
                 }
                 if (!model.catematter.equals("")) {
                     tvSafely.setText(model.catematter);
@@ -287,10 +294,13 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
     }
     //清除报名须知内容，每次刷新时处理
     public void cleanBaomingxvzhi(){
-        for (int i=0;i<baomingxvzhiList.size();i++) {
-            tvBaomingxvzhi.removeView(baomingxvzhiList.get(i));
+        if (model.reportnote != null && model.reportnote.size() > 0) {
+
+            for (int i=0;i<baomingxvzhiList.size();i++) {
+                tvBaomingxvzhi.removeView(baomingxvzhiList.get(i));
+            }
+            baomingxvzhiList.clear();
         }
-        baomingxvzhiList.clear();
     }
 
     @Override
@@ -396,14 +406,31 @@ public class ActivityFullInfoActivity extends LSBaseActivity implements ISlideCa
         });
     }
 
+    /**
+     * 行程详情部分设置信息显示和动画
+     * @param tv
+     * @param iv
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void showInfo(View tv, ImageView iv) {
-        if (tv.getVisibility() == View.VISIBLE) {
+        /*if (tv.getVisibility() == View.VISIBLE) {
             iv.setImageResource(R.drawable.club_info_dot_down);
-            tv.setVisibility(View.GONE);
+            animationHelper.startPropertyAnimationY(tv,AnimationHelper.TYPE_HIDE);
+            tv.setVisibility(View.INVISIBLE);
         } else {
             iv.setImageResource(R.drawable.club_info_dot_up);
+            animationHelper.startPropertyAnimationY(tv,AnimationHelper.TYPE_SHOW);
             tv.setVisibility(View.VISIBLE);
+        }*/
+        if (tv.getHeight()==0) {
+            animationHelper.startPropertyAnimationY(tv, 0,(Integer)tv.getTag());
+        } else {
+            //保存高度值
+            tv.setTag(tv.getHeight());
+            animationHelper.startPropertyAnimationY(tv, tv.getHeight(),0);
         }
+        animationHelper.startRotateAnimation(iv,iv.getRotation(),iv.getRotation()+180);
+
     }
 
     public void baoMing() {

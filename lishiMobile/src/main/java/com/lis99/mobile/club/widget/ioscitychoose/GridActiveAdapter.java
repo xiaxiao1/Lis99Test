@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -38,16 +39,17 @@ public class GridActiveAdapter extends MyBaseAdapter {
         holder.ivImg.setImageResource(item.resultId);
         holder.tvName.setText(item.name);
 
-
     }
 
     protected class ViewHolder {
         private ImageView ivImg;
         private TextView tvName;
+        private RelativeLayout item;
 
         public ViewHolder(View view) {
             ivImg = (ImageView) view.findViewById(R.id.iv_img);
             tvName = (TextView) view.findViewById(R.id.tv_name);
+            item = (RelativeLayout) view.findViewById(R.id.item_rl);
         }
     }
 }

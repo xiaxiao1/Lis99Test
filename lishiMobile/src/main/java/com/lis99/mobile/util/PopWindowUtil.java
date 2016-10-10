@@ -620,7 +620,7 @@ public class PopWindowUtil {
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.layout);
 
         layout.getLayoutParams().height = Common.getHEIGHT(a) - Common.dip2px(200);
-//        layout.getLayoutParams().height = Common.HEIGHT - Common.dip2px(200);
+//        add_layout.getLayoutParams().height = Common.HEIGHT - Common.dip2px(200);
 
         Button btn_ok = (Button) v.findViewById(R.id.btn_ok);
 
@@ -823,7 +823,7 @@ public class PopWindowUtil {
 
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.layout);
 
-//        layout.getLayoutParams().height = Common.HEIGHT - Common.dip2px(200);
+//        add_layout.getLayoutParams().height = Common.HEIGHT - Common.dip2px(200);
 
         View bg = v.findViewById(R.id.bg);
 

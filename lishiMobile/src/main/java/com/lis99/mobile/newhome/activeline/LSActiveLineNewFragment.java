@@ -1,6 +1,7 @@
 package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -115,7 +116,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         v = View.inflate(getActivity(), R.layout.active_new_line, null);
-
         tvMassage = (TextView)v.findViewById(R.id.tv_massage);
         tvLocation = (TextView)v.findViewById(R.id.tv_location);
         tvLocation.setText("活动");
@@ -175,7 +175,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                     int num = Common.string2int(item.getId());
 
-                    Common.goTopic(getActivity(), 4, num);
+                Common.goTopic(getActivity(), 4, num);
 
 
             }
@@ -480,7 +480,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
 
     @Override
-    public void dispalyImage(GridView gridView, int position) {
+    public void dispalyImage(final GridView gridView, int position) {
 
         if ( gridList == null )
         {
@@ -495,13 +495,17 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             item.add(gridList.get(i));
         }
 
+
         final GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), item);
         gridView.setAdapter(gridadapter);
+        Common.Log_i("cc"+gridView.getChildCount());
+
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ActiveBannerInfoModel item = (ActiveBannerInfoModel) gridadapter.getItem(position);
-//                Common.toast(""+item.id);
+
 //                目的地
                 if ( item.id == -1 )
                 {
