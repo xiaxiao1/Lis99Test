@@ -1,5 +1,6 @@
 package com.lis99.mobile.club.topicstrimg;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.text.Editable;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
@@ -52,6 +55,8 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
     private int position = -1;
 
 //    private EditText currentEdit;
+
+    private int width = 0;
 
 
     public TopicStringImageAdapter(Activity c, List listItem) {
@@ -265,18 +270,35 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         return view;
     }
     //可删除的图文混排
-    private View getAddImageStringNomal (final int i, View view )
+    private View getAddImageStringNomal (final int i, View view1 )
     {
         ViewHolderNomal holder = null;
-        if (view == null) {
-            view = layoutInflater.inflate(R.layout.topic_img_string_adapter, null);
+//        if (view == null) {
+            View view = layoutInflater.inflate(R.layout.topic_img_string_adapter, null);
             holder = new ViewHolderNomal(view);
-            view.setTag(holder);
-        }
-        else
+//            view.setTag(holder);
+//        }
+//        else
+//        {
+//            holder = (ViewHolderNomal) view.getTag();
+//        }
+
+        if ( width == 0 )
         {
-            holder = (ViewHolderNomal) view.getTag();
+            ViewTreeObserver vto =holder.ivImage.getViewTreeObserver();
+            final ViewHolderNomal finalHolder1 = holder;
+
+            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                                              @SuppressLint("NewApi")
+                                              @Override
+                                              public void onGlobalLayout() {
+                                                  width = finalHolder1.ivImage.getMeasuredWidth();
+                                                  ViewTreeObserver obs = finalHolder1.ivImage.getViewTreeObserver();
+                                                  obs.removeOnGlobalLayoutListener(this);
+                                              }
+            });
         }
+
 
         holder.layoutAdded.setVisibility(View.GONE);
 
@@ -337,15 +359,21 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
                 }
             });
 
+            String imageUrl = item.img;
             if ( item.img.startsWith("/"))
             {
-                item.img = "file://" + item.img;
+                imageUrl = "file://" + item.img;
             }
 
-            ImageUtil.setImageWidthAndHeight( holder.ivImage, item.img, ImageUtil
-                    .getDefultImageOptions());
+            Common.log("file="+item.img);
 
-//            ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
+            ImageUtil.setImageWidthAndHeight( width, holder.ivImage, imageUrl, ImageUtil
+                        .getDefultImageOptions());
+
+
+//            Common.setAdaptedHeight(holder.ivImage, w, h);
+
+//            ImageLoader.getInstance().displayImage(imageUrl, holder.ivImage, ImageUtil
 //                    .getDefultImageOptions());
         }
 
@@ -370,6 +398,7 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
         StringImageChildModel item = (StringImageChildModel) getItem(i);
 
         holder.tvInfo.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
+
 
         ImageUtil.setImageWidthAndHeight( holder.ivImage, item.img, ImageUtil
                 .getDefultImageOptions());

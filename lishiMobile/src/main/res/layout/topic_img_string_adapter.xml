@@ -38,6 +38,11 @@
             android:id="@+id/layout_added"
             >
 
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+        >
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,6 +50,8 @@
             android:adjustViewBounds="true"
             android:id="@+id/iv_image"
             />
+
+        </LinearLayout>
 
             <ImageView
                 android:layout_width="wrap_content"

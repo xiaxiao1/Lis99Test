@@ -1512,6 +1512,97 @@ public class ImageUtil
 			}
 		});
 	}
+
+	/**
+	 * 			根据图片的宽度， 设置图片的高度
+	 * @param v
+	 * @param url
+	 * @param options
+	 */
+	public static void setImageWidthAndHeight ( final int ImageWidth, final ImageView v, final String url, final DisplayImageOptions options )
+	{
+		if ( ImageWidth == 0 )
+		{
+			ViewTreeObserver vto = v.getViewTreeObserver();
+			vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+				@Override
+				public boolean onPreDraw() {
+					final int ImageWidth = v.getWidth();
+					ImageLoader.getInstance().displayImage(
+							url,
+							v, options, new ImageLoadingListener() {
+
+								@Override
+								public void onLoadingStarted(String imageUri, View view) {
+									// TODO Auto-generated method stub
+
+								}
+
+								@Override
+								public void onLoadingFailed(String imageUri, View view,
+															FailReason failReason) {
+									// TODO Auto-generated method stub
+
+								}
+
+								@Override
+								public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+									// TODO Auto-generated method stub
+									int w = loadedImage.getWidth();
+									int h = loadedImage.getHeight();
+									int imgh = ImageWidth * h / w;
+									android.view.ViewGroup.LayoutParams l = v.getLayoutParams();
+									l.height = imgh;
+								}
+
+								@Override
+								public void onLoadingCancelled(String imageUri, View view) {
+									// TODO Auto-generated method stub
+
+								}
+							});
+					return true;
+				}
+			});
+			return;
+		}
+
+
+		ImageLoader.getInstance().displayImage(
+				url,
+				v, options, new ImageLoadingListener() {
+
+					@Override
+					public void onLoadingStarted(String imageUri, View view) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void onLoadingFailed(String imageUri, View view,
+												FailReason failReason) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+						// TODO Auto-generated method stub
+						int w = loadedImage.getWidth();
+						int h = loadedImage.getHeight();
+						int imgh = ImageWidth * h / w;
+						android.view.ViewGroup.LayoutParams l = v.getLayoutParams();
+						l.height = imgh;
+					}
+
+					@Override
+					public void onLoadingCancelled(String imageUri, View view) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+	}
+
 	/**
 	 * 	保存图片， 回复图片file
 	 * */
