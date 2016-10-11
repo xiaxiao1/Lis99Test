@@ -13,8 +13,8 @@
         >
     <ImageView
         android:id="@+id/goods_img"
-        android:layout_width="132dp"
-        android:layout_height="132dp"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
         android:scaleType="centerInside"
         android:layout_gravity="center_horizontal"
         />

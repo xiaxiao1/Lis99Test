@@ -144,7 +144,7 @@ public class LSWelfareAdapter extends BaseAdapter {
         }
         holder.itemLogoDescTv.setText(obj.getTitle());
         if (obj.getImages()!=null&&!obj.getImages().equals("")) {
-
+            Common.setAdaptedHeight(holder.itemBgImg,obj.getWidth(),obj.getHeight());
             ImageLoader.getInstance().displayImage(obj.getImages(),holder.itemBgImg, ImageUtil.getclub_topic_imageOptions(),ImageUtil.getImageLoading(holder.itemLoadingImg, holder.itemBgImg));
 
         }
