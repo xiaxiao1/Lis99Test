@@ -24,7 +24,6 @@ import com.lis99.mobile.util.MyBaseAdapter;
 import com.lis99.mobile.util.dbhelp.DataHelp;
 import com.lis99.mobile.util.dbhelp.StringImageChildModel;
 import com.lis99.mobile.util.emotion.MyEmotionsUtil;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -342,8 +341,12 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
             {
                 item.img = "file://" + item.img;
             }
-            ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
+
+            ImageUtil.setImageWidthAndHeight( holder.ivImage, item.img, ImageUtil
                     .getDefultImageOptions());
+
+//            ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
+//                    .getDefultImageOptions());
         }
 
         return view;
@@ -368,8 +371,11 @@ public class TopicStringImageAdapter extends MyBaseAdapter {
 
         holder.tvInfo.setText(MyEmotionsUtil.getInstance().getTextWithEmotion(main, item.content));
 
-        ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
+        ImageUtil.setImageWidthAndHeight( holder.ivImage, item.img, ImageUtil
                 .getDefultImageOptions());
+
+//        ImageLoader.getInstance().displayImage(item.img, holder.ivImage, ImageUtil
+//                .getDefultImageOptions());
 
 
         return view;
