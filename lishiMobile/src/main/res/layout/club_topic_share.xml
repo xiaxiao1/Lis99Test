@@ -166,6 +166,30 @@
         android:paddingRight="8dip"
         >
 
+        <LinearLayout
+            style="@style/wrap_wrap"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:alpha="1"
+            android:visibility="visible"
+            android:id="@+id/copy_link"
+        >
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:src="@drawable/copy_link" />
+
+            <TextView
+                style="@style/wrap_wrap"
+                android:alpha="1"
+                android:text="复制连接"
+                android:textSize="12sp"
+                android:layout_marginTop="3dip"
+                android:textColor="#666666"
+            />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/iv_manager_apply1"
             style="@style/wrap_wrap"
@@ -178,29 +202,6 @@
             android:drawablePadding="3dip"
             android:textColor="#666666"
             />
-
-        <LinearLayout
-            style="@style/wrap_wrap"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:alpha="1"
-            android:visibility="invisible"
-            >
-
-            <ImageView
-                style="@style/wrap_wrap"
-                android:src="@drawable/top" />
-
-            <TextView
-                style="@style/wrap_wrap"
-                android:alpha="1"
-                android:text="置顶"
-                android:textSize="12sp"
-                android:layout_marginTop="3dip"
-                android:textColor="#666666"
-                />
-        </LinearLayout>
 
         <TextView
             android:visibility="invisible"
