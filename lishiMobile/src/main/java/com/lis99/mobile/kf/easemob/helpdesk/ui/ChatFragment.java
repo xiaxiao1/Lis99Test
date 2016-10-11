@@ -22,6 +22,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
+import com.lis99.mobile.entry.application.FirstActivity;
 import com.lis99.mobile.kf.easemob.CodeToTopicIdModel;
 import com.lis99.mobile.kf.easemob.KFCommon;
 import com.lis99.mobile.kf.easemob.chatrow.ChatRowEvaluation;
@@ -265,7 +266,10 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
 	public void onCancel ()
 	{
-
+		if ( !Common.mainIsStart )
+		{
+			startActivity(new Intent(getActivity(), FirstActivity.class));
+		}
 	}
 
 
