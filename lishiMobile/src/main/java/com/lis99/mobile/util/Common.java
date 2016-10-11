@@ -1,6 +1,8 @@
 package com.lis99.mobile.util;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -203,7 +205,8 @@ public class Common {
     public static boolean clubDelete( String isJoin ) {
         if ( "1".equals(isJoin) )
         {
-            return true;
+            return false;
+//            return true;
         }
         return false;
     }
@@ -651,6 +654,20 @@ public class Common {
             C.setDOMAINS("http://apis.lis99.net");
         }
 //        Common.log("HOST1="+C.getDOMAIN());
+    }
+
+    /**
+     *      拷贝文字到剪切板
+     * @param a
+     * @param str
+     */
+    public static void copyText (Activity a, String str)
+    {
+        if ( TextUtils.isEmpty(str)) return;
+        ClipData myClip = ClipData.newPlainText("text", str);
+        ClipboardManager myClipBoard = (ClipboardManager) a.getSystemService(a.getApplicationContext().CLIPBOARD_SERVICE);
+        myClipBoard.setPrimaryClip(myClip);
+        Common.toast("已复制："+str);
     }
 
 

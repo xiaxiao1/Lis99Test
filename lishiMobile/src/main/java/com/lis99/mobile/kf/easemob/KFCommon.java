@@ -32,12 +32,14 @@ import org.json.JSONObject;
 public class KFCommon {
 
     public static String APPKEY = "lis99#lis99";
+//    public static String APPKEY = "experience-kefu#sandbox";
 
     public static String clientId = "YXA6UdUVYHMXEeaZ_L0u0cjtiw";
 
     public static String clientSecret = "YXA6IKCzidLpOi-tbaUme7ne22WF4tk";
 
     public static String imCode = "ceshi";
+//    public static String imCode = "101739";
 
     public static long TenantId = 26980;
 

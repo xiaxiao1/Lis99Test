@@ -123,7 +123,11 @@ public class DemoHelper {
                     String head = DataManager.getInstance().getUser().getHeadicon();
                     if ( !TextUtils.isEmpty(head))
                     {
-                        Glide.with(context).load(head).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ls_nologin_header_icon).into(userAvatarView);
+                        Glide.with(context).load(head).diskCacheStrategy(DiskCacheStrategy.ALL).
+                                placeholder(R.drawable.ls_nologin_header_icon)
+                                .error(R.drawable.ls_nologin_header_icon)
+                                .fallback(R.drawable.ls_nologin_header_icon)
+                                .into(userAvatarView);
                     }
                     //发送方不显示nick
                     //            UserUtils.setUserNick(EMChatManager.getInstance().getCurrentUser(), usernickView);
@@ -153,7 +157,11 @@ public class DemoHelper {
                                 strUrl = "http:" + strUrl;
                             }
                             //正常的string路径
-                            Glide.with(context).load(strUrl).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.icon_ls).into(userAvatarView);
+                            Glide.with(context).load(strUrl).diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .placeholder(R.drawable.icon_ls)
+                                    .error(R.drawable.icon_ls)
+                                    .fallback(R.drawable.icon_ls)
+                                    .into(userAvatarView);
                         } else {
                             Glide.with(context).load(R.drawable.icon_ls).into(userAvatarView);
                         }

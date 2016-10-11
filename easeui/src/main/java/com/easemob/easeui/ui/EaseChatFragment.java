@@ -125,8 +125,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         // 判断单聊还是群聊
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // 会话人或群组id
-//        toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
-        toChatUsername = "在线客服";
+        toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
+//        toChatUsername = "在线客服";
         // 是否显示用户昵称
         showUserNick = fragmentArgs.getBoolean(EaseConstant.EXTRA_SHOW_USERNICK, false);
         super.onActivityCreated(savedInstanceState);
@@ -179,7 +179,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         });
 
         swipeRefreshLayout = messageList.getSwipeRefreshLayout();
-        swipeRefreshLayout.setColorSchemeResources(R.color.holo_blue_bright, R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(R.color.roundrefrushcolor, R.color.holo_green_light,
                 R.color.holo_orange_light, R.color.holo_red_light);
 
         inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -191,7 +191,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
      * 设置属性，监听等
      */
     protected void setUpView() {
-        titleBar.setTitle(toChatUsername);
+        titleBar.setTitle("在线客服");
         if (chatType == EaseConstant.CHATTYPE_SINGLE) { // 单聊
             // 设置标题
 //            if(EaseUserUtils.getUserInfo(toChatUsername) != null){

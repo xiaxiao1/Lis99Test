@@ -147,6 +147,7 @@ public class ShareManager
 		final ImageView iv_top = (ImageView) view.findViewById(R.id.iv_top);
 		final TextView tv_top = (TextView) view.findViewById(R.id.tv_top);
 		final TextView iv_manager_apply = (TextView) view.findViewById(R.id.iv_manager_apply);
+
 		LinearLayout layoutmanager = (LinearLayout) view
 				.findViewById(R.id.layoutmanager);
 
@@ -154,10 +155,15 @@ public class ShareManager
 				.findViewById(R.id.layoutmanager1);
 
 		final TextView iv_manager_apply1 = (TextView) view.findViewById(R.id.iv_manager_apply1);
+//		复制链接
+		View copy_link = view.findViewById(R.id.copy_link);
 
 
 		layoutmanager.setVisibility(View.GONE);
+//		管理报名， 复制连接
 		layoutmanager1.setVisibility(View.GONE);
+		//		管理报名
+		iv_manager_apply1.setVisibility(View.INVISIBLE);
 
 		if (clubhead != null)
 		{
@@ -191,17 +197,21 @@ public class ShareManager
 			{
 				//  隐藏置顶
 				layoutmanager.setVisibility(View.GONE);
+				layoutmanager1.setVisibility(View.VISIBLE);
+
 //				管理员只显示 ， 管理报名, 创始人管理报名
 				if ( "2".equals(clubhead.getIsJoin()) || "1".equals(clubhead.getIsJoin()) )
 				{
 					//话题贴不显示 1,线下， 2线上活动, 新版//				是否为活动帖
 					if (Common.visibleApplyManager(clubhead))
 					{
-						layoutmanager1.setVisibility(View.VISIBLE);
+//						layoutmanager1.setVisibility(View.VISIBLE);
+						iv_manager_apply1.setVisibility(View.VISIBLE);
 					}
 					else
 					{
-						layoutmanager1.setVisibility(View.GONE);
+//						layoutmanager1.setVisibility(View.GONE);
+						iv_manager_apply1.setVisibility(View.INVISIBLE);
 					}
 				}
 			}
@@ -362,6 +372,11 @@ public class ShareManager
 //						}
 
 						break;
+//					复制链接
+					case R.id.copy_link:
+						Common.copyText(LSBaseActivity.activity, finalSharedUrl);
+						if ( pop != null && pop.isShowing()) pop.dismiss();
+						break;
 				}
 				// TODO Auto-generated method stub
 				// listener.onSuccess(null, 0, ((Button)
@@ -378,6 +393,7 @@ public class ShareManager
 		iv_top.setOnClickListener(click);
 		iv_manager_apply.setOnClickListener(click);
 		iv_manager_apply1.setOnClickListener(click);
+		copy_link.setOnClickListener(click);
 
 		pop = new PopupWindow(view, LayoutParams.FILL_PARENT,
 				LayoutParams.WRAP_CONTENT);
