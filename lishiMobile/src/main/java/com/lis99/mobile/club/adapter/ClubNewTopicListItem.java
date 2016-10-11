@@ -357,7 +357,7 @@ public class ClubNewTopicListItem extends MyBaseAdapter {
 //                ImageLoader.getInstance().displayImage(item.images, holder.contentImageView,
 //                        ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder
 //                                .contentImageView ));
-
+                Common.setAdaptedHeight(holder.contentImageView,item.imagesWidth,item.imagesHeight);
                 GlideUtil.getInstance().getWithWhiteBG(mContext, item.images, holder.contentImageView, holder.ivLoad);
 
             }

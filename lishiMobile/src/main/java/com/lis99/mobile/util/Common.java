@@ -10,11 +10,14 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.lis99.mobile.BuildConfig;
 import com.lis99.mobile.R;
@@ -650,5 +653,29 @@ public class Common {
 //        Common.log("HOST1="+C.getDOMAIN());
     }
 
+
+    /**
+     * ImageView宽度固定，高度自适应时，根据和图片的比例计算出ImageView的实际高度
+     * @param view 自适应的view
+     * @param sourceHieght 原图片的高度
+     * @param sourceHieght 原图片的宽度
+     * @return 自适应后的view的高度
+     */
+    public static void setAdaptedHeight(final ImageView view, final int sourceWidth, final int sourceHieght) {
+        ViewTreeObserver vto =view.getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+
+                int w =view.getMeasuredWidth();
+                int h=w*sourceHieght/sourceWidth;
+                ViewGroup.LayoutParams p=view.getLayoutParams();
+                p.width=w;
+                p.height=h;
+                view.setLayoutParams(p);
+                return true;
+            }
+        });
+    }
 
 }
