@@ -52,8 +52,8 @@
                     />
                 <View
                     android:id="@+id/item_label_line_v"
-                    android:layout_width="1dp"
-                    android:layout_height="10dp"
+                    android:layout_width="@dimen/virtical_line_width"
+                    android:layout_height="8dp"
                     android:background="#ffffff"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"

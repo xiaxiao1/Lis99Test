@@ -320,7 +320,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 locationCityName = model.city_name;
 
 //                tvLocation.setText(model.city_name);
-                tv_club_name.setText(model.city_name+"俱乐部活动");
+//                tv_club_name.setText(model.city_name+"俱乐部活动");
 
 
                 if ( adapter == null ) {

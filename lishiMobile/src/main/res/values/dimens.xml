@@ -102,4 +102,6 @@
     <dimen name="width">120dp</dimen>
     <dimen name="height">60dp</dimen>
 
+    <dimen name="virtical_line_width">0.5dp</dimen>
+
 </resources>

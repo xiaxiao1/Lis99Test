@@ -53,7 +53,7 @@
             >
 
             <TextView
-                android:id="@+id/item_label_tv"
+                android:id="@+id/tv_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -64,14 +64,14 @@
                 />
             <View
                 android:id="@+id/item_label_line_v"
-                android:layout_width="1dp"
-                android:layout_height="10dp"
+                android:layout_width="@dimen/virtical_line_width"
+                android:layout_height="8dp"
                 android:background="#ffffff"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="2dp"
-                android:layout_toRightOf="@id/item_label_tv"/>
+                android:layout_toRightOf="@id/tv_style"/>
             <TextView
-                android:id="@+id/item_location_tv"
+                android:id="@+id/tv_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/item_label_line_v"
@@ -128,24 +128,25 @@
                         android:layout_below="@id/tv_batch_info"
             >
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="20sp"
-                      android:textColor="@color/text_color_green"
-                      android:text="￥215 "
-                      android:id="@+id/price"
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/text_color_green"
+                android:text="￥215 "
                 />
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/tv_nikeName"
-                      android:textSize="@dimen/text_small"
-                      android:textColor="@color/text_color_green"
-                      android:text="/起8天行程"
-                      android:layout_toRightOf="@id/price"
-                      android:layout_alignBottom="@id/price"
-                      android:layout_marginBottom="-2dp"
-                      android:layout_alignBaseline="@id/price"
+            <TextView
+                android:id="@+id/tv_days"
+                android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/text_small"
+              android:textColor="@color/text_color_green"
+              android:text="/起8天行程"
+              android:layout_toRightOf="@id/tv_price"
+              android:layout_marginBottom="-2dp"
+              android:layout_alignBaseline="@id/tv_price"
                 />
 
         </RelativeLayout>
