@@ -13,16 +13,65 @@
         android:paddingRight="15dp"
     >
 
-    <com.lis99.mobile.club.widget.RoundedImageView
-        android:layout_centerVertical="true"
-        android:id="@+id/roundedImageView"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:src="@drawable/ls_nologin_header_icon"
-        android:scaleType="fitXY"
-        app:corner_radius="5dp"
-        app:border_color="#e8e8e8"
-        app:border_width="1px"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            >
+            <com.lis99.mobile.club.widget.RoundedImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/roundedImageView"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/ls_nologin_header_icon"
+                android:scaleType="fitXY"
+                app:corner_radius="5dp"
+                app:border_color="#e8e8e8"
+                app:border_width="1px"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:orientation="horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/item_label_bg"
+                >
+
+                <TextView
+                    android:id="@+id/item_label_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="11sp"
+                    android:textColor="#ffffff"
+                    android:text="徒步"
+                    />
+                <View
+                    android:id="@+id/item_label_line_v"
+                    android:layout_width="1dp"
+                    android:layout_height="10dp"
+                    android:background="#ffffff"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@id/item_label_tv"/>
+                <TextView
+                    android:id="@+id/item_location_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/item_label_line_v"
+                    android:layout_marginLeft="2dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="11sp"
+                    android:textColor="#ffffff"
+                    android:text="北京出发"
+                    />
+
+            </RelativeLayout>
+        </RelativeLayout>
 
 
     <TextView android:layout_width="wrap_content"
@@ -52,22 +101,24 @@
                   android:layout_height="wrap_content"
     >
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
                     android:textSize="20sp"
-                  android:textColor="#ff7800"
-                  android:text="215"
+                  android:textColor="@color/text_color_green"
+                  android:text="￥215 "
                   android:id="@+id/price"
         />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
                   android:id="@+id/tv_nikeName"
                   android:textSize="@dimen/text_small"
-                  android:textColor="@color/color_nine"
-                  android:text="元起"
-                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/text_color_green"
+                  android:text="/起8天行程"
                   android:layout_toRightOf="@id/price"
                   android:layout_alignBottom="@id/price"
                   android:layout_marginBottom="-2dp"
+                  android:layout_alignBaseline="@id/price"
         />
 
     </RelativeLayout>
