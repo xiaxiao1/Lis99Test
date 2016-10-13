@@ -13,7 +13,7 @@
              android:layout_height="wrap_content"
              layout="@layout/list_line"
              android:id="@+id/line"
-             android:visibility="gone"
+             android:visibility="visible"
     />
 
     <RelativeLayout

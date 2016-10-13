@@ -11,6 +11,11 @@ import com.lis99.mobile.club.LSBaseActivity;
  */
 public class NativeClubActivity extends LSBaseActivity {
 
+    private String cityName = "北京", locationCityName = "", locationCityId = "";
+
+    //    本地活动
+    private LSActiveLineNewAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,4 +28,16 @@ public class NativeClubActivity extends LSBaseActivity {
     protected void initViews() {
         super.initViews();
     }
+
+
+    private void getList ()
+    {
+
+    }
+
+    private void cleanList ()
+    {
+
+    }
+
 }
