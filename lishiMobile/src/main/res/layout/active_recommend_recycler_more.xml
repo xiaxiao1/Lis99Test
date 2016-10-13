@@ -7,6 +7,7 @@
     >
 
     <LinearLayout
+        android:id="@+id/root_ll"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="260dp"
@@ -20,8 +21,8 @@
             android:layout_gravity="center_horizontal"
             >
             <com.lis99.mobile.club.widget.RoundedImageView
+                android:id="@+id/bg_roundiv"
                 android:layout_centerInParent="true"
-                android:id="@+id/roundedImageView"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:src="@drawable/all_destination_active"
@@ -38,7 +39,7 @@
                 android:layout_marginTop="70dp"
                 />
             <TextView
-                android:id="@+id/tv"
+                android:id="@+id/title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="全部附近的活动"
