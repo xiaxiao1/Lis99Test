@@ -259,15 +259,17 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 head.setVisibility(View.VISIBLE);
 
 //              推荐活动
+
+                //测试代码，后期取消
                 for (int i=0;i<headModel.hotlist.size();i++) {
                     ActiveMainHeadModel.HotlistEntity.ActlistEntity a=new ActiveMainHeadModel.HotlistEntity.ActlistEntity();
-                    if (i==1) {
-                    } else if (i % 2 == 0) {
+                    if (i==0) {
+                    } else if (i == 1) {
                         a.topicId = -1;
                         a.topicTitle = "mudidi";
                         a.images = "xiaxiao.jpg";
                         headModel.hotlist.get(i).actlist.add(a);
-                    } else if (i % 3 == 0) {
+                    } else if (i == 2) {
                         a.topicId = -1;
                         a.topicTitle = "fujin";
                         a.images = "xiaxiao.jpg";
@@ -519,7 +521,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
         final GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), item);
         gridView.setAdapter(gridadapter);
-        Common.Log_i("cc"+gridView.getChildCount());
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

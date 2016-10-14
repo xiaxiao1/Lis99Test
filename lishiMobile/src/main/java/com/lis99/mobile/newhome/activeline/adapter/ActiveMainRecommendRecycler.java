@@ -26,14 +26,14 @@ import java.util.List;
 public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecommendRecycler.VHolder> {
 
 
-    static final int TYPE_MORE=1;
-    static final int TYPE_NORMAL=0;
+    static final int TYPE_MORE=1;//末端显示的更多活动
+    static final int TYPE_NORMAL=0;//正常item
     @Override
     public int getItemViewType(int position) {
-//        if (position == list.size() - 1) {
         ActiveMainHeadModel.HotlistEntity.ActlistEntity item = (ActiveMainHeadModel
                 .HotlistEntity
                 .ActlistEntity) list.get(position);
+        //通过设置id来判断item类型，正常的item是正常的id,添加的用来标记末端是否有更多活动项的item的id设置为-1了
         if (item.topicId==-1) {
             return TYPE_MORE;
         } else {
@@ -51,6 +51,7 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
         ActiveMainHeadModel.HotlistEntity.ActlistEntity item = (ActiveMainHeadModel
                 .HotlistEntity
                 .ActlistEntity) list.get(i);
+        //正常item,没有显示末端更多项item
         if (getItemViewType(i) == TYPE_NORMAL) {
             if (item == null) return false;
             VHolder1 vHolder = (VHolder1) holder;
@@ -63,7 +64,9 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
                         ImageUtil.getclub_topic_imageOptions());
             }
         } else {
+            //当末端有更多项item时 分情况：
             VHolder2 vHolder = (VHolder2) holder;
+            //全部目的地
             if (item.topicTitle.equals("mudidi")) {
                 vHolder.bg_roundiv.setImageResource(R.drawable.all_destination_active);
                 vHolder.title_tv.setText("全部目的地");
@@ -76,7 +79,7 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
 
                     }
                 });
-
+            //全部附近的活动
             } else if (item.topicTitle.equals("fujin")) {
                 vHolder.bg_roundiv.setImageResource(R.drawable.all_nearby_active);
                 vHolder.title_tv.setText("全部附近的活动");
@@ -89,7 +92,7 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
 
                     }
                 });
-
+            //全部本地活动
             } else if (item.topicTitle.equals("bendi")) {
                 vHolder.bg_roundiv.setImageResource(R.drawable.all_local_active);
                 vHolder.title_tv.setText("全部本地活动");
@@ -105,10 +108,6 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
             }
 
         }
-
-
-
-
         return false;
     }
 
@@ -126,7 +125,7 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
         return holder;
     }
 
-
+    //多个Holder的父类，用于实现item多布局
     class VHolder extends RecyclerView.ViewHolder
     {
         public VHolder(View view) {
@@ -134,6 +133,9 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
         }
     }
 
+    /**
+     * 正常item的布局
+     */
     class VHolder1 extends ActiveMainRecommendRecycler.VHolder
     {
 
@@ -153,6 +155,9 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
         }
     }
 
+    /**
+     * 末端item的布局
+     */
     class VHolder2 extends ActiveMainRecommendRecycler.VHolder
     {
         private LinearLayout root_ll;

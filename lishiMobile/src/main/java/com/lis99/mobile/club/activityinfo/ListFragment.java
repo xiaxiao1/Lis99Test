@@ -3,19 +3,16 @@ package com.lis99.mobile.club.activityinfo;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,9 +29,9 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.bumptech.glide.Glide;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicInfoLocation;
 import com.lis99.mobile.club.destination.DestinationActivity;
@@ -53,8 +50,6 @@ import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.NativeEntityUtil;
-import com.lis99.mobile.util.Util;
-import com.lis99.mobile.util.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -307,6 +302,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         }
         catch (Exception e)
         {}
+        model=null;
     }
     @Override
     public void onResume() {
@@ -563,7 +559,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void initViews(View view){
         listView = (RefreshListview) view.findViewById(R.id.list);
-        header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
+        header=LSBaseActivity.activity.getLayoutInflater().inflate(R.layout.activityinfo_header,null);
         listView.addHeaderView(header);
         header.setVisibility(View.INVISIBLE);
         title_area_ll=(LinearLayout)header.findViewById(R.id.ownerinfo_huodong_title_ll);
@@ -746,8 +742,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置顶部轮播图
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
                     bannerView.setVisibility(View.VISIBLE);
-
-                    bannerAdapter=new ImagePageAdapter(getActivity(), model.activityimgs.size());
+                    bannerAdapter=new ImagePageAdapter(LSBaseActivity.activity, model.activityimgs.size());
                     bannerAdapter.addImagePageAdapterListener(ListFragment.this);
                     bannerAdapter.setImagePageClickListener(ListFragment.this);
                     bannerView.setBannerAdapter(bannerAdapter);
@@ -1070,7 +1065,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void addLightSpots(List<String> lightspots) {
         for (int i=0;i<lightspots.size();i++) {
-            View spot = getActivity().getLayoutInflater().inflate(R.layout
+            View spot = LSBaseActivity.activity.getLayoutInflater().inflate(R.layout
                     .ls_club_topic_list_adapter, null);
             TextView txt = (TextView) spot.findViewById(R.id.tv);
             txt.setText(lightspots.get(i));
