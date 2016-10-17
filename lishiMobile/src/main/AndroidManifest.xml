@@ -1515,6 +1515,11 @@
                   android:theme="@android:style/Theme.Light.NoTitleBar"
         />
 
+        <!--本地俱乐部活动-->
+        <activity android:name="com.lis99.mobile.newhome.activeline.NativeClubActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@android:style/Theme.Light.NoTitleBar"
+        />
 
 
 

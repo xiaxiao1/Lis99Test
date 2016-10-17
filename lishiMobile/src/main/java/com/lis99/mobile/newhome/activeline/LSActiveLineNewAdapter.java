@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
@@ -56,20 +55,26 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
     }
 
     protected class ViewHolder {
+        private View line;
         private RoundedImageView ivBg;
         private ImageView ivLoad;
-        private LinearLayout layouttag;
-        private TextView tvTag;
         private TextView tvStyle;
+        private TextView tvTag;
         private TextView tvTitle;
+        private TextView tvBatchInfo;
+        private TextView tvPrice;
+        private TextView tvDays;
 
         public ViewHolder(View view) {
+            line = view.findViewById(R.id.line);
             ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
             ivLoad = (ImageView) view.findViewById(R.id.iv_load);
-            layouttag = (LinearLayout) view.findViewById(R.id.layouttag);
-            tvTag = (TextView) view.findViewById(R.id.tv_tag);
             tvStyle = (TextView) view.findViewById(R.id.tv_style);
+            tvTag = (TextView) view.findViewById(R.id.tv_tag);
             tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            tvBatchInfo = (TextView) view.findViewById(R.id.tv_batch_info);
+            tvPrice = (TextView) view.findViewById(R.id.tv_price);
+            tvDays = (TextView) view.findViewById(R.id.tv_days);
         }
     }
 }

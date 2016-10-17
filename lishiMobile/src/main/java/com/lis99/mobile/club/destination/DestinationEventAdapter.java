@@ -29,13 +29,13 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (view == null) {
-            view = View.inflate(mContext, R.layout.destination_activiity_item, null);
-            viewHolder = new ViewHolder();
-            viewHolder.ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
-            viewHolder.ivLoad = (ImageView) view.findViewById(R.id.iv_load);
-            viewHolder.tvTag = (TextView) view.findViewById(R.id.tv_tag);
-            viewHolder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
-            viewHolder.tv_style = (TextView) view.findViewById(R.id.tv_style);
+            view = View.inflate(mContext, R.layout.active_line_new_item, null);
+            viewHolder = new ViewHolder(view);
+//            viewHolder.ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+//            viewHolder.ivLoad = (ImageView) view.findViewById(R.id.iv_load);
+//            viewHolder.tvTag = (TextView) view.findViewById(R.id.tv_tag);
+//            viewHolder.tvTitle = (TextView) view.findViewById(R.id.tv_title);
+//            viewHolder.tv_style = (TextView) view.findViewById(R.id.tv_style);
             view.setTag(viewHolder);
         } else
         {
@@ -51,7 +51,7 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
 
         viewHolder.tvTag.setText(item.harddesc);
 
-        viewHolder.tv_style.setText(item.cate_name);
+//        viewHolder.tv_style.setText(item.cate_name);
 
 
         viewHolder.tvTitle.setText(item.topic_title);
@@ -59,12 +59,36 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
         return view;
     }
 
+//    protected class ViewHolder {
+//        private RoundedImageView ivBg;
+//        private ImageView ivLoad;
+//        private TextView tvTag;
+//        private TextView tvTitle;
+//        private TextView tv_style;
+//    }
+
     protected class ViewHolder {
+        private View line;
         private RoundedImageView ivBg;
         private ImageView ivLoad;
+        private TextView tvStyle;
         private TextView tvTag;
         private TextView tvTitle;
-        private TextView tv_style;
+        private TextView tvBatchInfo;
+        private TextView tvPrice;
+        private TextView tvDays;
+
+        public ViewHolder(View view) {
+            line = view.findViewById(R.id.line);
+            ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+            ivLoad = (ImageView) view.findViewById(R.id.iv_load);
+            tvStyle = (TextView) view.findViewById(R.id.tv_style);
+            tvTag = (TextView) view.findViewById(R.id.tv_tag);
+            tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            tvBatchInfo = (TextView) view.findViewById(R.id.tv_batch_info);
+            tvPrice = (TextView) view.findViewById(R.id.tv_price);
+            tvDays = (TextView) view.findViewById(R.id.tv_days);
+        }
     }
 
 }

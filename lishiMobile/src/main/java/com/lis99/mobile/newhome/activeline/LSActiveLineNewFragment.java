@@ -1,7 +1,6 @@
 package com.lis99.mobile.newhome.activeline;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -167,7 +166,13 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 {
                     return;
                 }
+                if ( i == 1 )
+                {
+                    Intent intent = new Intent(getActivity(), NativeClubActivity.class);
 
+                    startActivity(intent);
+                    return;
+                }
 
                 ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel
                         .ActivitylistEntity) adapter.getItem(i - 1);

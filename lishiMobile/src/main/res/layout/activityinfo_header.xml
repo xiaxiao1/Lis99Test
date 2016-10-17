@@ -5,13 +5,60 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="236dp">
+
     <com.lis99.mobile.club.widget.BannerView
         android:id="@+id/afullinfo_lv_header_banner_banner"
         android:layout_width="match_parent"
         android:layout_height="236dp"
-        android:text="fdfdsfdfgfdgdfg"
-        android:textSize="40sp"
         />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/item_label_bg"
+        >
+
+            <TextView
+                android:id="@+id/tv_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="11sp"
+                android:textColor="#ffffff"
+                android:text="徒步"
+            />
+            <View
+                android:id="@+id/item_label_line_v"
+                android:layout_width="@dimen/virtical_line_width"
+                android:layout_height="8dp"
+                android:background="#ffffff"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@id/tv_style"/>
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/item_label_line_v"
+                android:layout_marginLeft="2dp"
+                android:layout_centerVertical="true"
+                android:textSize="11sp"
+                android:textColor="#ffffff"
+                android:text="北京出发"
+            />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
     <TextView
         android:id="@+id/afullinfo_active_title_tv"
         android:layout_width="match_parent"

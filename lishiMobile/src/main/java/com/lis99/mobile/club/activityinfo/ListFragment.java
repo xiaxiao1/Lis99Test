@@ -3,19 +3,16 @@ package com.lis99.mobile.club.activityinfo;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,7 +29,6 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.bumptech.glide.Glide;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSClubDetailActivity;
@@ -53,8 +49,6 @@ import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.NativeEntityUtil;
-import com.lis99.mobile.util.Util;
-import com.lis99.mobile.util.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -205,6 +199,8 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 
     //回调给activity执行title透明度操作
     AlphaInterface alphaInterface;
+//  标签（运动类型）、出发地
+    private TextView tv_style, tv_tag;
 
     public ListFragment() {
 
@@ -725,6 +721,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
             @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void handler(MyTask mTask) {
+
                 model = (ClubTopicActiveSeriesLineMainModel) mTask.getResultModel();
 
                 if (model == null) {

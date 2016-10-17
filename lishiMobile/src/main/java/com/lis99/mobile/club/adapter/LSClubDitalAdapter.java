@@ -632,21 +632,13 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 		return view;
 	}
-
+//活动
 	private View conifgTopicActivityItemNewView (int position, View view, ViewGroup parent) {
 		ActivityHolder holder = null;
 		if ( view == null )
 		{
-			view = View.inflate(mContext, R.layout.club_topic_activity_item_new, null);
-			holder = new ActivityHolder();
-			holder.imageView = (RoundedImageView) view.findViewById(R.id.iv_bg);
-			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
-
-
-			holder.titleTextView = (TextView)view.findViewById(R.id.titleTextView);
-			holder.timeTextView = (TextView)view.findViewById(R.id.timeTextView);
-			holder.topGapView = view.findViewById(R.id.topGapView);
-
+			view = View.inflate(mContext, R.layout.active_line_new_item, null);
+			holder = new ActivityHolder(view);
 			view.setTag(holder);
 		}
 		else
@@ -658,22 +650,22 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		if ( item == null ) return view;
 
 
-		if (ui_level == 3) {
-			holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
-		} else {
-			holder.topGapView.setVisibility(View.GONE);
-		}
+//		if (ui_level == 3) {
+//			holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+//		} else {
+//			holder.topGapView.setVisibility(View.GONE);
+//		}
 
 
 		if ( item.image != null && item.image.size() != 0 )
-		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
+		ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.ivBg, optionsBg, ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
 //			ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
 
 
 
-		holder.titleTextView.setText(item.title);
+		holder.tvTitle.setText(item.title);
 
-		holder.timeTextView.setText(item.starttime);
+		holder.tvBatchInfo.setText(item.starttime);
 
 		return view;
 	}
@@ -708,12 +700,35 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		View topGapView;
 	}
 
-	static class ActivityHolder
-	{
+//	static class ActivityHolder
+//	{
+//
+//		ImageView imageView, iv_load;
+//		TextView titleTextView, timeTextView;
+//		View topGapView;
+//	}
+	protected class ActivityHolder {
+		private View line;
+		private RoundedImageView ivBg;
+		private ImageView ivLoad;
+		private TextView tvStyle;
+		private TextView tvTag;
+		private TextView tvTitle;
+		private TextView tvBatchInfo;
+		private TextView tvPrice;
+		private TextView tvDays;
 
-		ImageView imageView, iv_load;
-		TextView titleTextView, timeTextView;
-		View topGapView;
+		public ActivityHolder(View view) {
+			line = view.findViewById(R.id.line);
+			ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
+			ivLoad = (ImageView) view.findViewById(R.id.iv_load);
+			tvStyle = (TextView) view.findViewById(R.id.tv_style);
+			tvTag = (TextView) view.findViewById(R.id.tv_tag);
+			tvTitle = (TextView) view.findViewById(R.id.tv_title);
+			tvBatchInfo = (TextView) view.findViewById(R.id.tv_batch_info);
+			tvPrice = (TextView) view.findViewById(R.id.tv_price);
+			tvDays = (TextView) view.findViewById(R.id.tv_days);
+		}
 	}
 
 
