@@ -87,22 +87,22 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     private String cityName = "北京", locationCityName = "", locationCityId = "";
 
 
-//    Grid信息
+    //    Grid信息
     private ArrayList<ActiveBannerInfoModel> gridList;
 
     private ListView s_list;
     private ActiveMainRecommendAdapter recommendAdapter;
-//    超级领队
+    //    超级领队
     private RecyclerView recycler_supper_leader;
     private SupperLaderRecycler supperRecycler;
-//    本地活动
+    //    本地活动
     private LSActiveLineNewAdapter adapter;
-//
+    //
     private ActiveMainHeadModel headModel;
 
     private View include_search;
 
-//俱乐部活动标题
+    //俱乐部活动标题
     private TextView tv_club_name;
     private Button btn_change;
 
@@ -176,9 +176,9 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                 ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel
                         .ActivitylistEntity) adapter.getItem(i - 1);
-                    if ( item == null ) return;
+                if ( item == null ) return;
 
-                    int num = Common.string2int(item.getId());
+                int num = Common.string2int(item.getId());
 
                 Common.goTopic(getActivity(), 4, num);
 
@@ -264,6 +264,29 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 head.setVisibility(View.VISIBLE);
 
 //              推荐活动
+
+                //测试代码，后期取消
+                for (int i=0;i<headModel.hotlist.size();i++) {
+                    ActiveMainHeadModel.HotlistEntity.ActlistEntity a=new ActiveMainHeadModel.HotlistEntity.ActlistEntity();
+                    if (i==0) {
+                    } else if (i == 1) {
+                        a.topicId = -1;
+                        a.topicTitle = "mudidi";
+                        a.images = "xiaxiao.jpg";
+                        headModel.hotlist.get(i).actlist.add(a);
+                    } else if (i == 2) {
+                        a.topicId = -1;
+                        a.topicTitle = "fujin";
+                        a.images = "xiaxiao.jpg";
+                        headModel.hotlist.get(i).actlist.add(a);
+                    } else {
+                        a.topicId = -1;
+                        a.topicTitle = "bendi";
+                        a.images = "xiaxiao.jpg";
+                        headModel.hotlist.get(i).actlist.add(a);
+                    }
+                }
+
                 recommendAdapter = new ActiveMainRecommendAdapter(getActivity(), headModel.hotlist);
                 s_list.setAdapter(recommendAdapter);
                 getList(Latitude, Longitude);
@@ -371,7 +394,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             case R.id.titleLeft:
 //                RedDotUtil.getInstance().InVisibleDot();
                 if ( Common.isLogin(getActivity()) )
-                startActivity(new Intent(getActivity(), SysMassageActivity.class));
+                    startActivity(new Intent(getActivity(), SysMassageActivity.class));
 
                 break;
             case R.id.tv_location:
@@ -464,7 +487,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         location.getLocation();
     }
 
-//    切换View 会被调用
+    //    切换View 会被调用
     @Override
     public void handler() {
 
@@ -503,7 +526,6 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
         final GridActiveAdapter gridadapter = new GridActiveAdapter(getActivity(), item);
         gridView.setAdapter(gridadapter);
-        Common.Log_i("cc"+gridView.getChildCount());
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -514,7 +536,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 //                目的地
                 if ( item.id == -1 )
                 {
-                    Intent intent = new Intent(getActivity(), DestinationMainActivity.class);
+                    Intent intent = new Intent(
+                            getActivity(), DestinationMainActivity.class);
                     startActivity(intent);
                 }
 //                附近的活动
@@ -541,3 +564,4 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
     }
 }
+

@@ -31,6 +31,7 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
+import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.LSClubDetailActivity;
 import com.lis99.mobile.club.LSClubTopicInfoLocation;
 import com.lis99.mobile.club.destination.DestinationActivity;
@@ -303,6 +304,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         }
         catch (Exception e)
         {}
+        model=null;
     }
     @Override
     public void onResume() {
@@ -559,7 +561,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void initViews(View view){
         listView = (RefreshListview) view.findViewById(R.id.list);
-        header=getActivity().getLayoutInflater().inflate(R.layout.activityinfo_header,null);
+        header=LSBaseActivity.activity.getLayoutInflater().inflate(R.layout.activityinfo_header,null);
         listView.addHeaderView(header);
         header.setVisibility(View.INVISIBLE);
         title_area_ll=(LinearLayout)header.findViewById(R.id.ownerinfo_huodong_title_ll);
@@ -743,8 +745,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 //设置顶部轮播图
                 if (model.activityimgs != null && model.activityimgs.size() != 0 ) {
                     bannerView.setVisibility(View.VISIBLE);
-
-                    bannerAdapter=new ImagePageAdapter(getActivity(), model.activityimgs.size());
+                    bannerAdapter=new ImagePageAdapter(LSBaseActivity.activity, model.activityimgs.size());
                     bannerAdapter.addImagePageAdapterListener(ListFragment.this);
                     bannerAdapter.setImagePageClickListener(ListFragment.this);
                     bannerView.setBannerAdapter(bannerAdapter);
@@ -1067,7 +1068,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void addLightSpots(List<String> lightspots) {
         for (int i=0;i<lightspots.size();i++) {
-            View spot = getActivity().getLayoutInflater().inflate(R.layout
+            View spot = LSBaseActivity.activity.getLayoutInflater().inflate(R.layout
                     .ls_club_topic_list_adapter, null);
             TextView txt = (TextView) spot.findViewById(R.id.tv);
             txt.setText(lightspots.get(i));

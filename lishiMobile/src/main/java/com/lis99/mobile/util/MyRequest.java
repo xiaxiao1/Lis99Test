@@ -87,7 +87,12 @@ public class MyRequest{
 					return;
 				}
 				if ( mTask.getCallBack() != null )
-				mTask.getCallBack().handler(mTask);
+					try {
+						mTask.getCallBack().handler(mTask);
+					} catch (NullPointerException e) {
+						Common.Log_i("MyRequest catched error:"+e.getMessage());
+					}
+
 			}
 			
 			
