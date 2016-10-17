@@ -33,14 +33,20 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
             view = View.inflate(mContext, R.layout.active_line_new_item, null);
             view.setTag(new ViewHolder(view));
         }
-        initializeViews(getItem(i), (ViewHolder) view.getTag());
+        initializeViews(i, (ViewHolder) view.getTag());
         return view;
     }
 
-    private void initializeViews(Object object, ViewHolder holder) {
+    private void initializeViews(int i, ViewHolder holder) {
         //TODO implement
-        ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) object;
-        if ( object == null ) return;
+        ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) getItem(i);
+        if ( item == null ) return;
+        if (i == 0) {
+            holder.line.setVisibility(View.GONE);
+        } else {
+            holder.line.setVisibility(View.VISIBLE);
+
+        }
 
         if ( !TextUtils.isEmpty(item.getImages()))
         {
