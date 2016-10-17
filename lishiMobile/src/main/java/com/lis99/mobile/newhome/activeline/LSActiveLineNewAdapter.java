@@ -47,11 +47,16 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
             ImageLoader.getInstance().displayImage(item.getImages(), holder.ivBg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
         }
 
-        holder.tvTag.setText(item.getHarddesc().substring(0,2));
+//        holder.tvTag.setText(item.getHarddesc().substring(0,2));
+        holder.tvTag.setText(" "+item.setcityname);
 
-        holder.tvStyle.setText(item.getCatename());
+        holder.tvStyle.setText(item.getCatename()+" ");
 
         holder.tvTitle.setText(item.getTitle());
+
+        holder.tvBatchInfo.setText(item.starttime_intval);
+        holder.tvPrice.setText(item.min_price);
+        holder.tvDays.setText(" 起 / "+item.trip_days);
     }
 
     protected class ViewHolder {

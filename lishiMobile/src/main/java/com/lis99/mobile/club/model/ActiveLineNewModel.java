@@ -92,6 +92,16 @@ public class ActiveLineNewModel extends BaseModel {
         private String images;
         private int height;
         private int width;
+//        出发城市
+        public String setcityname;
+//        批次总数
+        public String batch_count;
+//        批次里价格最小
+        public String min_price;
+//          活动批次区间
+        public String starttime_intval;
+//          行成天数
+        public String trip_days;
 
         public String getCatename() {
             return catename;

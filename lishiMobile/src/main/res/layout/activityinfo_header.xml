@@ -22,7 +22,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="14dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/item_label_bg"
         >
 
@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:textSize="11sp"
                 android:textColor="#ffffff"
-                android:text="徒步"
+                android:text="徒步 "
             />
             <View
                 android:id="@+id/item_label_line_v"
@@ -53,7 +53,7 @@
                 android:layout_centerVertical="true"
                 android:textSize="11sp"
                 android:textColor="#ffffff"
-                android:text="北京出发"
+                android:text=" 北京出发"
             />
 
         </RelativeLayout>
@@ -99,7 +99,7 @@
             android:text="0"
             android:gravity="left"
             android:textSize="19sp"
-            android:textColor="#ff7800"
+            android:textColor="@color/text_color_green"
             android:layout_marginLeft="13dp"
 
             />
