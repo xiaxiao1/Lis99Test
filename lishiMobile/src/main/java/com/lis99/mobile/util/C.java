@@ -511,6 +511,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 //	新版线路活动    http://api.lis99.com/v5/club/lists
 //	public static final String NEW_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/lists/";
 	public static final String NEW_ACTIVE_LINE_MIAN = DOMAIN + "/v5/club/providActivity/";
+	//新版的活动主页下部 砾石推荐活动列表
+	public static final String ACTIVE_LISHI_RECOMMEND =DOMAINS+"/main/pushActivitys/";
 
 //	新版话题贴		http://api.lis99.com/v5/topics/detail/[page]
 	public static final String CLUB_NEW_TOPIC_LIST_MAIN = DOMAINS + "/topics/detail/";

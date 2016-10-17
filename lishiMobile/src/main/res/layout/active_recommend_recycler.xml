@@ -48,7 +48,7 @@
                     android:layout_centerVertical="true"
                     android:textSize="11sp"
                     android:textColor="#ffffff"
-                    android:text="徒步"
+                    android:text="徒步 "
                     />
                 <View
                     android:id="@+id/item_label_line_v"
@@ -67,7 +67,7 @@
                     android:layout_centerVertical="true"
                     android:textSize="11sp"
                     android:textColor="#ffffff"
-                    android:text="北京出发"
+                    android:text=" 北京出发"
                     />
 
             </RelativeLayout>
@@ -105,8 +105,9 @@
                   android:layout_height="wrap_content"
                     android:textSize="20sp"
                   android:textColor="@color/text_color_green"
-                  android:text="￥215 "
+                  android:text="￥215"
                   android:id="@+id/price"
+                  android:paddingLeft="-4dp"
         />
 
         <TextView android:layout_width="wrap_content"
@@ -114,7 +115,7 @@
                   android:id="@+id/tv_nikeName"
                   android:textSize="@dimen/text_small"
                   android:textColor="@color/text_color_green"
-                  android:text="起/8天行程"
+                  android:text="  起/8天行程"
                   android:layout_toRightOf="@id/price"
                   android:layout_alignBottom="@id/price"
                   android:layout_marginBottom="-2dp"

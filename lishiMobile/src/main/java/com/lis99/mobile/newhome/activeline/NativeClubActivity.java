@@ -36,7 +36,7 @@ public class NativeClubActivity extends LSBaseActivity implements  PullToRefresh
     private LocationUtil location;
 
     //    本地活动
-    private LSActiveLineNewAdapter adapter;
+    private LSNativeActiveAdapter adapter;
 
     private ListView list;
 
@@ -210,7 +210,7 @@ public class NativeClubActivity extends LSBaseActivity implements  PullToRefresh
 //                    有数据
                     if ( model.getActivitylist() != null && model.getActivitylist().size() > 0 )
                     {
-                        adapter = new LSActiveLineNewAdapter(activity, model.getActivitylist());
+                        adapter = new LSNativeActiveAdapter(activity, model.getActivitylist());
                         list.setAdapter(adapter);
                     }
 //                    else

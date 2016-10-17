@@ -19,6 +19,7 @@ import com.lis99.mobile.club.filter.FilterMainActivity;
 import com.lis99.mobile.club.model.ActiveBannerInfoModel;
 import com.lis99.mobile.club.model.ActiveLineNewModel;
 import com.lis99.mobile.club.model.ActiveMainHeadModel;
+import com.lis99.mobile.club.model.LiShiRecommendActiveModel;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ioscitychoose.GridActiveAdapter;
 import com.lis99.mobile.club.widget.ioscitychoose.GridPageAdapter;
@@ -72,7 +73,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
     public static double Latitude = -1, Longitude = -1;
 
-    private ActiveLineNewModel model;
+    private LiShiRecommendActiveModel model;
 
 //    private LSActiveLineAdapter adapter;
 
@@ -162,17 +163,15 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if ( model == null || model.getActivitylist() == null || model.getActivitylist().size() == 0 || adapter == null )
+                if ( model == null || model.getLists() == null || model.getLists().size() == 0 || adapter == null )
                 {
                     return;
                 }
 
-
-                ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel
-                        .ActivitylistEntity) adapter.getItem(i - 1);
+                LiShiRecommendActiveModel.ActiveEntity item = (LiShiRecommendActiveModel.ActiveEntity) adapter.getItem(i - 1);
                 if ( item == null ) return;
 
-                int num = Common.string2int(item.getId());
+                int num = item.getActivity_id();
 
                 Common.goTopic(getActivity(), 4, num);
 
@@ -302,6 +301,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     }
 
 
+    //获得砾石推荐活动列表数据
     private void getList (double latitude, double longitude)
     {
         if ( page.isLastPage())
@@ -309,22 +309,22 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             return;
         }
 
-        String url = "";
+        String url = "https://apis.lis99.com/main/pushActivitys/";
         if ( cityId == -1 )
         {
-            url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?latitude="+latitude+"&longitude="+longitude;
+            url = C.ACTIVE_LISHI_RECOMMEND + page.getPageNo() ;
         }
         else
         {
-            url = C.NEW_ACTIVE_LINE_MIAN + page.getPageNo() + "/?city_id="+cityId;
+            url = C.ACTIVE_LISHI_RECOMMEND + page.getPageNo();
         }
 
-        model = new ActiveLineNewModel();
+        model = new LiShiRecommendActiveModel();
 
         MyRequestManager.getInstance().requestGet(url, model, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                model = (ActiveLineNewModel) mTask.getResultModel();
+                model = (LiShiRecommendActiveModel) mTask.getResultModel();
 
                 if ( model == null ) return;
 //              没有这个省的数据，弹出提示
@@ -335,11 +335,11 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                 page.nextPage();
 
-                cityId = model.city_id;
-                cityName = model.city_name;
-
-                locationCityId = ""+cityId;
-                locationCityName = model.city_name;
+//                cityId = model.city_id;
+//                cityName = model.city_name;
+//
+//                locationCityId = ""+cityId;
+//                locationCityName = model.city_name;
 
 //                tvLocation.setText(model.city_name);
 //                tv_club_name.setText(model.city_name+"俱乐部活动");
@@ -348,7 +348,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 if ( adapter == null ) {
                     page.setPageSize(model.getTotalpage());
 //                    有数据
-                    if ( model.getActivitylist() != null && model.getActivitylist().size() > 0 )
+                    if ( model.getLists() != null && model.getLists().size() > 0 )
                     {
 
                         if ( list.getFooterViewsCount() != 0 )
@@ -356,7 +356,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                             list.removeFooterView(foodView);
                         }
 
-                        adapter = new LSActiveLineNewAdapter(getActivity(), model.getActivitylist());
+                        adapter = new LSActiveLineNewAdapter(getActivity(), model.getLists());
                         list.setAdapter(adapter);
                     }
                     else
@@ -370,7 +370,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 else
                 {
                     //                    最后一页
-                    adapter.addList(model.getActivitylist());
+                    adapter.addList(model.getLists());
                 }
             }
         });
