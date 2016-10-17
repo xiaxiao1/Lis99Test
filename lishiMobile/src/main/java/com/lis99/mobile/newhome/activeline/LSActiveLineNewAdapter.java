@@ -52,10 +52,10 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
         {
             ImageLoader.getInstance().displayImage(item.getImages(), holder.ivBg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
         }
-
-        holder.tvTag.setText(item.getHarddesc().substring(0,2));
-
-        holder.tvStyle.setText(item.getCatename());
+        //设置出发地
+        holder.tvTag.setText(" "+item.getHarddesc().substring(0,2));
+        //设置活动类型
+        holder.tvStyle.setText(item.getCatename()+" ");
 
         holder.tvTitle.setText(item.getTitle());
     }
