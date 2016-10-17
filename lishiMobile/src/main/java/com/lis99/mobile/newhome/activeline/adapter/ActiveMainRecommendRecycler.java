@@ -14,6 +14,7 @@ import com.lis99.mobile.club.destination.DestinationMainActivity;
 import com.lis99.mobile.club.filter.FilterMainActivity;
 import com.lis99.mobile.club.model.ActiveMainHeadModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
+import com.lis99.mobile.newhome.activeline.NativeClubActivity;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.ImageUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -57,7 +58,7 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
             VHolder1 vHolder = (VHolder1) holder;
             vHolder.title.setText(item.topicTitle);
             vHolder.content.setText(item.harddesc + " " + item.cate_name);
-            vHolder.price.setText("" + Common.getIntInString(item.price));
+            vHolder.price.setText("￥" + Common.getIntInString(item.price));
 
             if (!TextUtils.isEmpty(item.images)) {
                 ImageLoader.getInstance().displayImage(item.images, vHolder.roundedImageView,
@@ -98,7 +99,9 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
                     @Override
                     public void onClick(View v) {
                         //这里跳转到本地活动
-                        Common.toast("这里跳转到本地活动");
+                        Intent intent = new Intent(mContext, NativeClubActivity.class);
+                        mContext.startActivity(intent);
+
                     }
                 });
             }

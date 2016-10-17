@@ -166,13 +166,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                 {
                     return;
                 }
-                if ( i == 1 )
-                {
-                    Intent intent = new Intent(getActivity(), NativeClubActivity.class);
 
-                    startActivity(intent);
-                    return;
-                }
 
                 ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel
                         .ActivitylistEntity) adapter.getItem(i - 1);
