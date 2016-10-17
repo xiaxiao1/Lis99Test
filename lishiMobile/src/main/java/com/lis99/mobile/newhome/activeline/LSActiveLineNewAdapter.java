@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
-import com.lis99.mobile.club.model.ActiveLineNewModel;
+import com.lis99.mobile.club.model.LiShiRecommendActiveModel;
 import com.lis99.mobile.club.widget.RoundedImageView;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
@@ -39,7 +39,7 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
 
     private void initializeViews(int i, ViewHolder holder) {
         //TODO implement
-        ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) getItem(i);
+        LiShiRecommendActiveModel.ActiveEntity item = (LiShiRecommendActiveModel.ActiveEntity) getItem(i);
         if ( item == null ) return;
         if (i == 0) {
             holder.line.setVisibility(View.GONE);
@@ -52,12 +52,19 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
         {
             ImageLoader.getInstance().displayImage(item.getImages(), holder.ivBg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
         }
-        //设置出发地
-        holder.tvTag.setText(" "+item.getHarddesc().substring(0,2));
         //设置活动类型
         holder.tvStyle.setText(item.getCatename()+" ");
-
+        //设置出发地
+        holder.tvTag.setText(" "+item.getCityname());
+        //设置title
         holder.tvTitle.setText(item.getTitle());
+        //活动批次信息
+        holder.tvBatchInfo.setText(item.getMonth_day()+"  共"+item.getTotbatchs()+"期");
+        //活动价格
+        holder.tvPrice.setText("￥"+item.getLowprice());
+        //几天行程
+        holder.tvDays.setText("  起 / "+item.getTripdays()+"天行程");
+
     }
 
     protected class ViewHolder {
