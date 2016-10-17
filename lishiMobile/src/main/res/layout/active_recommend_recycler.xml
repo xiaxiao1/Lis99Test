@@ -114,7 +114,7 @@
                   android:id="@+id/tv_nikeName"
                   android:textSize="@dimen/text_small"
                   android:textColor="@color/text_color_green"
-                  android:text="/起8天行程"
+                  android:text="起/8天行程"
                   android:layout_toRightOf="@id/price"
                   android:layout_alignBottom="@id/price"
                   android:layout_marginBottom="-2dp"

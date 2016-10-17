@@ -73,7 +73,6 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
                 vHolder.root_ll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Common.toast("i 我是第二个布局" + i);
                         Intent intent = new Intent(mContext, DestinationMainActivity.class);
                         mContext.startActivity(intent);
 
@@ -86,7 +85,6 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
                 vHolder.root_ll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Common.toast("i 我是第二个布局" + i);
                         Intent intent = new Intent(mContext, FilterMainActivity.class);
                         mContext.startActivity(intent);
 
@@ -99,10 +97,8 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
                 vHolder.root_ll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Common.toast("i 我是第二个布局 本地的还没做出来" + i);
-                        /*Intent intent = new Intent(mContext, FilterMainActivity.class);
-                        mContext.startActivity(intent);*/
-
+                        //这里跳转到本地活动
+                        Common.toast("这里跳转到本地活动");
                     }
                 });
             }
