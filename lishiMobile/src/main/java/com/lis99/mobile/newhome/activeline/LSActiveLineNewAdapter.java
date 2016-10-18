@@ -44,7 +44,7 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
         if (i == 0) {
             holder.line.setVisibility(View.GONE);
         } else {
-            holder.line.setVisibility(View.VISIBLE);
+            holder.line.setVisibility(View.GONE);
 
         }
 
