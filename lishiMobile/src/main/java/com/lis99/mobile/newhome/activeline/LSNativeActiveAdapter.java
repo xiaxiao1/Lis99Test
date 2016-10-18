@@ -43,6 +43,15 @@ public class LSNativeActiveAdapter extends MyBaseAdapter {
         ActiveLineNewModel.ActivitylistEntity item = (ActiveLineNewModel.ActivitylistEntity) getItem(i);
         if ( item == null ) return;
 
+        if ( i == 0 )
+        {
+            holder.line.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.line.setVisibility(View.GONE);
+        }
+
         if ( !TextUtils.isEmpty(item.getImages()))
         {
             ImageLoader.getInstance().displayImage(item.getImages(), holder.ivBg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));

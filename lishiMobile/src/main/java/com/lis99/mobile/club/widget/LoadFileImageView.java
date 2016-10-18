@@ -9,10 +9,6 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 
-
-import java.util.Iterator;
-
-
 public class LoadFileImageView extends ImageView {
     private String path;
     private DownloadImageManager manager;
@@ -35,6 +31,7 @@ public class LoadFileImageView extends ImageView {
 
 
     public void loadUrl(String path, int width, int height) {
+        setImageBitmap(null);
         this.path = path;
         if (manager.getImage(path) != null) {
             setImageBitmap(manager.getImage(path));
