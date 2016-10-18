@@ -665,7 +665,13 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 		holder.tvTitle.setText(item.title);
 
-		holder.tvBatchInfo.setText(item.starttime);
+		holder.tvTag.setText(" "+item.setcityname);
+
+		holder.tvStyle.setText(item.catename+" ");
+
+		holder.tvBatchInfo.setText(item.starttime_intval);
+		holder.tvPrice.setText(item.min_price);
+		holder.tvDays.setText(" 起 / "+item.trip_days);
 
 		return view;
 	}

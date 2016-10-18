@@ -49,12 +49,24 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
             ImageLoader.getInstance().displayImage(item.topic_image, viewHolder.ivBg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(viewHolder.ivLoad, viewHolder.ivBg));
         }
 
-        viewHolder.tvTag.setText(item.harddesc);
+//        viewHolder.tvTag.setText(item.harddesc);
 
 //        viewHolder.tv_style.setText(item.cate_name);
 
 
         viewHolder.tvTitle.setText(item.topic_title);
+
+
+//        viewHolder.tvTitle.setText(item.title);
+
+        viewHolder.tvTag.setText(" "+item.setcityname);
+
+        viewHolder.tvStyle.setText(item.cate_name+" ");
+
+        viewHolder.tvBatchInfo.setText(item.starttime_intval);
+        viewHolder.tvPrice.setText(item.min_price);
+        viewHolder.tvDays.setText(" 起 / "+item.trip_days);
+
 
         return view;
     }

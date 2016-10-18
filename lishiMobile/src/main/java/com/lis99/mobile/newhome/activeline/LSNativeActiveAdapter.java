@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * Created by yy on 16/1/15.
+ *      附近的俱乐部活动
  */
 public class LSNativeActiveAdapter extends MyBaseAdapter {
 
