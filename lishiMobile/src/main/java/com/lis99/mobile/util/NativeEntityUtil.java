@@ -90,10 +90,16 @@ public class NativeEntityUtil {
         item.resultId = R.drawable.active_new_banner_rock;
         activeBanner.add(item);
 
+//        item = new ActiveBannerInfoModel();
+//        item.id = 654;
+//        item.name = "水上";
+//        item.resultId = R.drawable.active_new_banner_water;
+//        activeBanner.add(item);
+
         item = new ActiveBannerInfoModel();
-        item.id = 654;
-        item.name = "水上";
-        item.resultId = R.drawable.active_new_banner_water;
+        item.id = 211;
+        item.name = "滑雪";
+        item.resultId = R.drawable.active_new_banner_snow;
         activeBanner.add(item);
 
         item = new ActiveBannerInfoModel();

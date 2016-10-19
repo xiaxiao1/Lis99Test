@@ -31,6 +31,9 @@ public class LoadFileImageView extends ImageView {
 
 
     public void loadUrl(String path, int width, int height) {
+        if (this.path != null && this.path.equals(path)) {
+            return;
+        }
         setImageBitmap(null);
         this.path = path;
         if (manager.getImage(path) != null) {
