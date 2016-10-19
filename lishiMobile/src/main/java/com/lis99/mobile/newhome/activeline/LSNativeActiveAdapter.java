@@ -58,13 +58,23 @@ public class LSNativeActiveAdapter extends MyBaseAdapter {
         }
 
 //        holder.tvTag.setText(item.getHarddesc().substring(0,2));
+
+        if ( TextUtils.isEmpty(item.getCatename()))
+        {
+            holder.item_label_line_v.setVisibility(View.GONE);
+            holder.tvStyle.setText("");
+        }
+        else
+        {
+            holder.tvStyle.setText(item.getCatename()+" ");
+        }
+
         holder.tvTag.setText(" "+item.setcityname);
 
-        holder.tvStyle.setText(item.getCatename()+" ");
 
         holder.tvTitle.setText(item.getTitle());
 
-        holder.tvBatchInfo.setText(item.starttime_intval);
+        holder.tvBatchInfo.setText(item.starttime_intval + " " + item.batch_count);
         holder.tvPrice.setText(item.min_price);
         holder.tvDays.setText(" 起 / "+item.trip_days);
 
@@ -80,6 +90,7 @@ public class LSNativeActiveAdapter extends MyBaseAdapter {
         private TextView tvBatchInfo;
         private TextView tvPrice;
         private TextView tvDays;
+        private View item_label_line_v;
 
         public ViewHolder(View view) {
             line = view.findViewById(R.id.line);
@@ -91,6 +102,7 @@ public class LSNativeActiveAdapter extends MyBaseAdapter {
             tvBatchInfo = (TextView) view.findViewById(R.id.tv_batch_info);
             tvPrice = (TextView) view.findViewById(R.id.tv_price);
             tvDays = (TextView) view.findViewById(R.id.tv_days);
+            item_label_line_v = view.findViewById(R.id.item_label_line_v);
         }
     }
 }

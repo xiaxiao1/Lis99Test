@@ -59,11 +59,20 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
 
 //        viewHolder.tvTitle.setText(item.title);
 
+        if ( TextUtils.isEmpty(item.cate_name))
+        {
+            viewHolder.item_label_line_v.setVisibility(View.GONE);
+            viewHolder.tvStyle.setText("");
+        }
+        else
+        {
+            viewHolder.tvStyle.setText(item.cate_name+" ");
+        }
+
         viewHolder.tvTag.setText(" "+item.setcityname);
 
-        viewHolder.tvStyle.setText(item.cate_name+" ");
 
-        viewHolder.tvBatchInfo.setText(item.starttime_intval);
+        viewHolder.tvBatchInfo.setText(item.starttime_intval + " " + item.batch_count);
         viewHolder.tvPrice.setText(item.min_price);
         viewHolder.tvDays.setText(" 起 / "+item.trip_days);
 
@@ -89,6 +98,7 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
         private TextView tvBatchInfo;
         private TextView tvPrice;
         private TextView tvDays;
+        private View item_label_line_v;
 
         public ViewHolder(View view) {
             line = view.findViewById(R.id.line);
@@ -100,6 +110,7 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
             tvBatchInfo = (TextView) view.findViewById(R.id.tv_batch_info);
             tvPrice = (TextView) view.findViewById(R.id.tv_price);
             tvDays = (TextView) view.findViewById(R.id.tv_days);
+            item_label_line_v = view.findViewById(R.id.item_label_line_v);
         }
     }
 

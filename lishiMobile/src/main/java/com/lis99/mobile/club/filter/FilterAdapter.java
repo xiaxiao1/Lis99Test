@@ -63,14 +63,21 @@ public class FilterAdapter extends MyBaseAdapter {
             ImageLoader.getInstance().displayImage(item.images, holder.ivBg, ImageUtil.getDefultImageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
         }
 
-
+        if ( TextUtils.isEmpty(item.cateName))
+        {
+            holder.item_label_line_v.setVisibility(View.GONE);
+            holder.tvStyle.setText("");
+        }
+        else
+        {
+            holder.tvStyle.setText(item.cateName+" ");
+        }
         holder.tvTitle.setText(item.title);
 
         holder.tvTag.setText(" "+item.setcityname);
 
-        holder.tvStyle.setText(item.cateName+" ");
 
-        holder.tvBatchInfo.setText(item.starttime_intval);
+        holder.tvBatchInfo.setText(item.starttime_intval + " " + item.batch_count);
         holder.tvPrice.setText(item.min_price);
         holder.tvDays.setText(" 起 / "+item.trip_days);
 
@@ -88,6 +95,7 @@ public class FilterAdapter extends MyBaseAdapter {
         private TextView tvBatchInfo;
         private TextView tvPrice;
         private TextView tvDays;
+        private View item_label_line_v;
 
         public ViewHolder(View view) {
             ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
@@ -100,6 +108,8 @@ public class FilterAdapter extends MyBaseAdapter {
             tvBatchInfo = (TextView) view.findViewById(R.id.tv_batch_info);
             tvPrice = (TextView) view.findViewById(R.id.tv_price);
             tvDays = (TextView) view.findViewById(R.id.tv_days);
+            item_label_line_v = view.findViewById(R.id.item_label_line_v);
+
         }
     }
 }

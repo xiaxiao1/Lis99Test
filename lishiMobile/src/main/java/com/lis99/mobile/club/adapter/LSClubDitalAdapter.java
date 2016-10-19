@@ -662,14 +662,21 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 //			ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
 
 
-
+		if ( TextUtils.isEmpty(item.catename))
+		{
+			holder.item_label_line_v.setVisibility(View.GONE);
+			holder.tvStyle.setText("");
+		}
+		else
+		{
+			holder.tvStyle.setText(item.catename+" ");
+		}
 		holder.tvTitle.setText(item.title);
 
 		holder.tvTag.setText(" "+item.setcityname);
 
-		holder.tvStyle.setText(item.catename+" ");
 
-		holder.tvBatchInfo.setText(item.starttime_intval);
+		holder.tvBatchInfo.setText(item.starttime_intval + " " + item.batch_count);
 		holder.tvPrice.setText(item.min_price);
 		holder.tvDays.setText(" 起 / "+item.trip_days);
 
@@ -723,6 +730,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		private TextView tvBatchInfo;
 		private TextView tvPrice;
 		private TextView tvDays;
+		private View item_label_line_v;
 
 		public ActivityHolder(View view) {
 			line = view.findViewById(R.id.line);
@@ -734,6 +742,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			tvBatchInfo = (TextView) view.findViewById(R.id.tv_batch_info);
 			tvPrice = (TextView) view.findViewById(R.id.tv_price);
 			tvDays = (TextView) view.findViewById(R.id.tv_days);
+			item_label_line_v = view.findViewById(R.id.item_label_line_v);
 		}
 	}
 

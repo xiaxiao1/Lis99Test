@@ -43,7 +43,7 @@
         >
 
             <TextView
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:id="@+id/titleRightText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,8 +55,6 @@
                 android:ellipsize="end"
                 android:drawableRight="@drawable/native_list_title_right"
                 android:drawablePadding="2dp"
-
-
             />
 
         </RelativeLayout>

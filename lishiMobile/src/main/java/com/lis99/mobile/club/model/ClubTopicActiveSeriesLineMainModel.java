@@ -28,6 +28,8 @@ public class ClubTopicActiveSeriesLineMainModel extends BaseModel implements Sha
     public String cateId;
     @SerializedName("catename")
     public String catename;
+    @SerializedName("setcityname")
+    public String setcityname;
     @SerializedName("batch_desc")
     public String batchDesc;
     @SerializedName("activitytimes")
