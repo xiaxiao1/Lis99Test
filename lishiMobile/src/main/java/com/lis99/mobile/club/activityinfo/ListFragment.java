@@ -741,12 +741,14 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 {
                     item_label_line_v.setVisibility(View.GONE);
                     tv_style.setText("");
+                    tv_tag.setText(model.setcityname);
                 }
                 else
                 {
                     tv_style.setText(model.catename+" ");
+                    tv_tag.setText(" "+model.setcityname);
                 }
-                tv_tag.setText(" "+model.setcityname);
+
 
                 clubID = model.clubId;
                 header.setVisibility(View.VISIBLE);

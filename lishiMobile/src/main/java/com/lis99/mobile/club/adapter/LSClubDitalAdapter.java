@@ -65,7 +65,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 	
 	@Override
 	public int getViewTypeCount() {
-		return 6;
+		return 7;
 	}
 	
 	@Override
@@ -85,6 +85,14 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		//线路活动
 		if ( activeList )
 		{
+			final Topiclist item = (Topiclist) o;
+			if ( item == null ) return 0;
+//			线上活动
+			if ( "2".equals(item.category))
+			{
+				return 6;
+			}
+//			线下活动
 			return  4;
 		}
 //		讨论区
@@ -190,8 +198,16 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			
 		} else if (type == 3) {
 			return conifgTopicItemNewView(position, convertView, parent);
-		} else if (type == 4) {
+		}
+//		线下活动
+		else if (type == 4) {
+//			线下活动
 			return conifgTopicActivityItemNewView(position, convertView, parent);
+		}
+		//			线上活动
+		else if ( type == 6 )
+		{
+			return conifgTopicActivityOnItem(position, convertView, parent);
 		}
 //		讨论区
 		else if ( type == 5 )
@@ -632,7 +648,54 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 
 		return view;
 	}
-//活动
+
+	//线上活动
+	private View conifgTopicActivityOnItem (int position, View view, ViewGroup parent) {
+		ActivityHolder1 holder = null;
+		if ( view == null )
+		{
+			view = View.inflate(mContext, R.layout.club_topic_activity_item_new, null);
+			holder = new ActivityHolder1();
+			holder.imageView = (RoundedImageView) view.findViewById(R.id.iv_bg);
+			holder.iv_load = (ImageView) view.findViewById(R.id.iv_load);
+
+
+			holder.titleTextView = (TextView)view.findViewById(R.id.titleTextView);
+			holder.timeTextView = (TextView)view.findViewById(R.id.timeTextView);
+			holder.topGapView = view.findViewById(R.id.topGapView);
+
+			view.setTag(holder);
+		}
+		else
+		{
+			holder = (ActivityHolder1) view.getTag();
+		}
+
+		final Topiclist item = (Topiclist) getItem(position);//topiclist.get(position);
+		if ( item == null ) return view;
+
+
+//		if (ui_level == 3) {
+//			holder.topGapView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+//		} else {
+//			holder.topGapView.setVisibility(View.GONE);
+//		}
+
+
+		if ( item.image != null && item.image.size() != 0 )
+			ImageLoader.getInstance().displayImage(item.image.get(0).image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
+//			ImageLoader.getInstance().displayImage(item.image, holder.imageView, optionsBg, ImageUtil.getImageLoading(holder.iv_load, holder.imageView));
+
+
+
+		holder.titleTextView.setText(item.title);
+
+		holder.timeTextView.setText(item.starttime);
+
+		return view;
+	}
+
+//线下活动
 	private View conifgTopicActivityItemNewView (int position, View view, ViewGroup parent) {
 		ActivityHolder holder = null;
 		if ( view == null )
@@ -666,15 +729,14 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		{
 			holder.item_label_line_v.setVisibility(View.GONE);
 			holder.tvStyle.setText("");
+			holder.tvTag.setText(item.setcityname);
 		}
 		else
 		{
 			holder.tvStyle.setText(item.catename+" ");
+			holder.tvTag.setText(" "+item.setcityname);
 		}
 		holder.tvTitle.setText(item.title);
-
-		holder.tvTag.setText(" "+item.setcityname);
-
 
 		holder.tvBatchInfo.setText(item.starttime_intval + " " + item.batch_count);
 		holder.tvPrice.setText(item.min_price);
@@ -713,13 +775,13 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		View topGapView;
 	}
 
-//	static class ActivityHolder
-//	{
-//
-//		ImageView imageView, iv_load;
-//		TextView titleTextView, timeTextView;
-//		View topGapView;
-//	}
+	static class ActivityHolder1
+	{
+
+		ImageView imageView, iv_load;
+		TextView titleTextView, timeTextView;
+		View topGapView;
+	}
 	protected class ActivityHolder {
 		private View line;
 		private RoundedImageView ivBg;

@@ -67,14 +67,14 @@ public class FilterAdapter extends MyBaseAdapter {
         {
             holder.item_label_line_v.setVisibility(View.GONE);
             holder.tvStyle.setText("");
+            holder.tvTag.setText(item.setcityname);
         }
         else
         {
             holder.tvStyle.setText(item.cateName+" ");
+            holder.tvTag.setText(" "+item.setcityname);
         }
         holder.tvTitle.setText(item.title);
-
-        holder.tvTag.setText(" "+item.setcityname);
 
 
         holder.tvBatchInfo.setText(item.starttime_intval + " " + item.batch_count);

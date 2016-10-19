@@ -63,13 +63,15 @@ public class LSNativeActiveAdapter extends MyBaseAdapter {
         {
             holder.item_label_line_v.setVisibility(View.GONE);
             holder.tvStyle.setText("");
+            holder.tvTag.setText(item.setcityname);
         }
         else
         {
             holder.tvStyle.setText(item.getCatename()+" ");
+            holder.tvTag.setText(" "+item.setcityname);
         }
 
-        holder.tvTag.setText(" "+item.setcityname);
+
 
 
         holder.tvTitle.setText(item.getTitle());
