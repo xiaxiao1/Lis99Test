@@ -203,6 +203,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
 //  标签（运动类型）、出发地
     private TextView tv_style, tv_tag;
 
+    private View item_label_line_v;
     public ListFragment() {
 
     }
@@ -562,6 +563,11 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
     public void initViews(View view){
         listView = (RefreshListview) view.findViewById(R.id.list);
         header=LSBaseActivity.activity.getLayoutInflater().inflate(R.layout.activityinfo_header,null);
+
+        tv_style = (TextView) header.findViewById(R.id.tv_style);
+        tv_tag = (TextView) header.findViewById(R.id.tv_tag);
+        item_label_line_v = header.findViewById(R.id.item_label_line_v);
+
         listView.addHeaderView(header);
         header.setVisibility(View.INVISIBLE);
         title_area_ll=(LinearLayout)header.findViewById(R.id.ownerinfo_huodong_title_ll);
@@ -730,6 +736,17 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                     listView.addFooterView(footView);
                     return;
                 }
+
+                if ( TextUtils.isEmpty(model.catename))
+                {
+                    item_label_line_v.setVisibility(View.GONE);
+                    tv_style.setText("");
+                }
+                else
+                {
+                    tv_style.setText(model.catename+" ");
+                }
+                tv_tag.setText(" "+model.setcityname);
 
                 clubID = model.clubId;
                 header.setVisibility(View.VISIBLE);
