@@ -69,13 +69,13 @@
                 android:background="#ffffff"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
                 android:layout_toRightOf="@id/tv_style"/>
             <TextView
                 android:id="@+id/tv_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/item_label_line_v"
-                android:layout_marginLeft="2dp"
                 android:layout_centerVertical="true"
                 android:textSize="11sp"
                 android:textColor="#ffffff"
