@@ -47,7 +47,9 @@ import com.lis99.mobile.util.RedDotUtil;
 import com.lis99.mobile.util.ScrollTopUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yy on 16/1/14.
@@ -246,8 +248,11 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             return;
         }
         String url = C.ACTIVE_NEW_MAIN_HEAD;
+        Map<String, Object> map = new HashMap<>();
+        map.put("latitude", Latitude);
+        map.put("longitude", Longitude);
         headModel = new ActiveMainHeadModel();
-        MyRequestManager.getInstance().requestGet(url, headModel, new CallBack() {
+        MyRequestManager.getInstance().requestPost(url, map,headModel, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 headModel = (ActiveMainHeadModel) mTask.getResultModel();
@@ -258,24 +263,25 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
 //              推荐活动
 
-                //测试代码，后期取消
+                //添加尾部item
                 for (int i=0;i<headModel.hotlist.size();i++) {
                     ActiveMainHeadModel.HotlistEntity.ActlistEntity a=new ActiveMainHeadModel.HotlistEntity.ActlistEntity();
-                    if (i==0) {
-                    } else if (i == 1) {
+                    //topicId 用来标识item布局类型的。 -1：在热门活动的列表中，标识最后一个item 的布局，，，--->ActiveMainRecommendRecycler
+                    if (headModel.hotlist.get(i).jumpto==0) {//没有跳转
+                    }
+                    else if (headModel.hotlist.get(i).jumpto == 1) {//全部目的地
                         a.topicId = -1;
                         a.topicTitle = "mudidi";
-                        a.images = "xiaxiao.jpg";
                         headModel.hotlist.get(i).actlist.add(a);
-                    } else if (i == 2) {
-                        a.topicId = -1;
-                        a.topicTitle = "fujin";
-                        a.images = "xiaxiao.jpg";
-                        headModel.hotlist.get(i).actlist.add(a);
-                    } else {
+                    }
+                    else if (headModel.hotlist.get(i).jumpto == 2) {//当地俱乐部
                         a.topicId = -1;
                         a.topicTitle = "bendi";
-                        a.images = "xiaxiao.jpg";
+                        headModel.hotlist.get(i).actlist.add(a);
+                    }
+                    else {                                         //3 附近的活动
+                        a.topicId = -1;
+                        a.topicTitle = "fujin";
                         headModel.hotlist.get(i).actlist.add(a);
                     }
                 }

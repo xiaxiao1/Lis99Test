@@ -52,10 +52,20 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
         {
             ImageLoader.getInstance().displayImage(item.getImages(), holder.ivBg, ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(holder.ivLoad, holder.ivBg));
         }
+        String space="";
         //设置活动类型
-        holder.tvStyle.setText(item.getCatename()+" ");
+        if (item.getCatename().equals("")) {
+            holder.tvStyle.setText("");
+            holder.label_line.setVisibility(View.GONE);
+            space="";
+        } else {
+            holder.label_line.setVisibility(View.VISIBLE);
+            holder.tvStyle.setText(item.getCatename()+" ");
+            space=" ";
+        }
+
         //设置出发地
-        holder.tvTag.setText(" "+item.getCityname());
+        holder.tvTag.setText(space+item.getCityname());
         //设置title
         holder.tvTitle.setText(item.getTitle());
         //活动批次信息
@@ -63,12 +73,13 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
         //活动价格
         holder.tvPrice.setText("￥"+item.getLowprice());
         //几天行程
-        holder.tvDays.setText("  起 / "+item.getTripdays()+"天行程");
+        holder.tvDays.setText(" 起 / "+item.getTripdays()+"天行程");
 
     }
 
     protected class ViewHolder {
         private View line;
+        private View label_line;
         private RoundedImageView ivBg;
         private ImageView ivLoad;
         private TextView tvStyle;
@@ -80,6 +91,7 @@ public class LSActiveLineNewAdapter extends MyBaseAdapter {
 
         public ViewHolder(View view) {
             line = view.findViewById(R.id.line);
+            label_line = view.findViewById(R.id.item_label_line_v);
             ivBg = (RoundedImageView) view.findViewById(R.id.iv_bg);
             ivLoad = (ImageView) view.findViewById(R.id.iv_load);
             tvStyle = (TextView) view.findViewById(R.id.tv_style);

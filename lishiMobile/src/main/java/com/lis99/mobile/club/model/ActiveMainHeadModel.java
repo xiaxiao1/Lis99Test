@@ -45,6 +45,10 @@ public class ActiveMainHeadModel extends BaseModel {
         public String id;
         @SerializedName("title")
         public String title;
+
+        //跳转链接 '跳转目标 0无 1全部目的地 2当地俱乐部活动 3附近活动'
+        @SerializedName("jumpto")
+        public int jumpto;
         /**
          * topic_id : 4205
          * topic_title : 杏树山头伏漂流活动召集
@@ -70,7 +74,7 @@ public class ActiveMainHeadModel extends BaseModel {
             public String harddesc;
             @SerializedName("cate_name")
             public String cate_name;
-            @SerializedName("price")
+            @SerializedName("min_price")
             public String price;
             @SerializedName("images")
             public String images;
@@ -78,6 +82,12 @@ public class ActiveMainHeadModel extends BaseModel {
             public int width;
             @SerializedName("height")
             public int height;
+
+
+            @SerializedName("setcityname")
+            public String cityname;
+            @SerializedName("trip_days")
+            public String trip_days;
         }
     }
 
