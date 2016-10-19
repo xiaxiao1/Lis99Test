@@ -56,9 +56,27 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
         if (getItemViewType(i) == TYPE_NORMAL) {
             if (item == null) return false;
             VHolder1 vHolder = (VHolder1) holder;
+            String space="";
+            //设置活动标题
             vHolder.title.setText(item.topicTitle);
-            vHolder.content.setText(item.harddesc + " " + item.cate_name);
-            vHolder.price.setText("￥" + Common.getIntInString(item.price));
+            //设置活动描述
+            vHolder.content.setText(item.harddesc);
+            //设置活动价格
+            vHolder.price.setText("" + item.price);
+            //设置活动类型
+            if (item.cate_name.equals("")) {
+                space = "";
+                vHolder.activiteType_tv.setText("");
+                vHolder.verticalLine_v.setVisibility(View.GONE);
+            } else {
+                space=" ";
+                vHolder.verticalLine_v.setVisibility(View.VISIBLE);
+                vHolder.activiteType_tv.setText(item.cate_name+" ");
+            }
+            //设置出发城市
+            vHolder.startCity_tv.setText(space+item.cityname);
+            //设置几天行程
+            vHolder.days_tv.setText(" 起 / "+item.trip_days);
 
             if (!TextUtils.isEmpty(item.images)) {
                 ImageLoader.getInstance().displayImage(item.images, vHolder.roundedImageView,
@@ -142,7 +160,10 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
         private TextView title;
         private TextView content;
         private TextView price;
-        private TextView tvNikeName;
+        private TextView activiteType_tv;
+        private TextView startCity_tv;
+        private TextView days_tv;
+        private View verticalLine_v;
 
         public VHolder1(View view) {
             super(view);
@@ -150,7 +171,10 @@ public class ActiveMainRecommendRecycler extends MyBaseRecycler<ActiveMainRecomm
             title = (TextView) view.findViewById(R.id.title);
             content = (TextView) view.findViewById(R.id.content);
             price = (TextView) view.findViewById(R.id.price);
-            tvNikeName = (TextView) view.findViewById(R.id.tv_nikeName);
+            activiteType_tv = (TextView) view.findViewById(R.id.item_label_tv);
+            startCity_tv = (TextView) view.findViewById(R.id.item_location_tv);
+            days_tv = (TextView) view.findViewById(R.id.tv_nikeName);
+            verticalLine_v = (View) view.findViewById(R.id.item_label_line_v);
         }
     }
 
