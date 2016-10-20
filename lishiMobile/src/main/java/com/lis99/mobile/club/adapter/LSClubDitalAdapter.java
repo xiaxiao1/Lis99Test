@@ -88,7 +88,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 			final Topiclist item = (Topiclist) o;
 			if ( item == null ) return 0;
 //			线上活动
-			if ( "2".equals(item.category))
+			if ( "2".equals(item.category) || "1".equals(item.category))
 			{
 				return 6;
 			}
