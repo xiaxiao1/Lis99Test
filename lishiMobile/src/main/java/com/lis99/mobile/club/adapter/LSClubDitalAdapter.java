@@ -733,6 +733,7 @@ public class LSClubDitalAdapter extends MyBaseAdapter {
 		}
 		else
 		{
+			holder.item_label_line_v.setVisibility(View.VISIBLE);
 			holder.tvStyle.setText(item.catename+" ");
 			holder.tvTag.setText(" "+item.setcityname);
 		}

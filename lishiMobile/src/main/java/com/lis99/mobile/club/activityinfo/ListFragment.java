@@ -745,6 +745,7 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
                 }
                 else
                 {
+                    item_label_line_v.setVisibility(View.VISIBLE);
                     tv_style.setText(model.catename+" ");
                     tv_tag.setText(" "+model.setcityname);
                 }

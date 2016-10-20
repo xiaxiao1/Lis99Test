@@ -67,6 +67,7 @@ public class DestinationEventAdapter extends BaseListAdapter<DestinationEvent> {
         }
         else
         {
+            viewHolder.item_label_line_v.setVisibility(View.VISIBLE);
             viewHolder.tvStyle.setText(item.cate_name+" ");
             viewHolder.tvTag.setText(" "+item.setcityname);
         }

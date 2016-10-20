@@ -71,6 +71,7 @@ public class FilterAdapter extends MyBaseAdapter {
         }
         else
         {
+            holder.item_label_line_v.setVisibility(View.VISIBLE);
             holder.tvStyle.setText(item.cateName+" ");
             holder.tvTag.setText(" "+item.setcityname);
         }
