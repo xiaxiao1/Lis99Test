@@ -5,7 +5,7 @@ android {
     buildToolsVersion '22.0.1'
     //多渠道
     productFlavors {
-        ttest {}
+//        ttest {}
 //        shichang {}
 //        zhuzhan {}
 //        tuiguang1 {}
@@ -18,7 +18,7 @@ android {
 //        zs360 {}
 //        huawei {}
 //        lis99test {}
-//        jinli {}
+        jinli {}
 //        xiaomi {}
     }
 
@@ -202,5 +202,5 @@ dependencies {
     compile 'io.reactivex:rxandroid:latest.release'
     compile 'com.wefika:flowlayout:0.4.0'
 //    百度
-    //                compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
+//                    compile files('libs/BDAutoUpdateSDK_20150605_V1.2.0.jar')
 }
