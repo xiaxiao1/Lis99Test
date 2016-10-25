@@ -1,7 +1,6 @@
 package com.lis99.mobile.club.activityinfo;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -149,18 +148,18 @@ public class SericeCalendarActivity extends LSBaseActivity {
 //  按钮状态， true可点击， false 不可点击
     public void setBtnClick ( boolean clickable )
     {
-        if ( clickable )
-        {
+//        if ( clickable )
+//        {
             btnOk.setBackgroundColor(getResources().getColor(R.color.text_color_green));
             btnOk.setText("下一步");
             btnOk.setClickable(true);
-        }
-        else
-        {
-            btnOk.setBackgroundColor(Color.parseColor("#e2e2e2"));
-            btnOk.setText("请选择游玩日期");
-            btnOk.setClickable(false);
-        }
+//        }
+//        else
+//        {
+//            btnOk.setBackgroundColor(Color.parseColor("#e2e2e2"));
+//            btnOk.setText("请选择游玩日期");
+//            btnOk.setClickable(false);
+//        }
     }
 
 

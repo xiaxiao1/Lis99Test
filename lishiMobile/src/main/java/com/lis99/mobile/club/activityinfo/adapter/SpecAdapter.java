@@ -31,7 +31,7 @@ public class SpecAdapter extends MyBaseAdapter {
     {
         BatchListEntity item = (BatchListEntity) getItem(currentPosition);
 
-        if ( item.isEnd == 1 || item.isBaoming == 1 )
+        if ( item.isEnd == 1 /*|| item.isBaoming == 1*/ )
         {
             return -1;
         }
@@ -74,10 +74,10 @@ public class SpecAdapter extends MyBaseAdapter {
         {
             state = 3;
         }
-        else if ( item.isBaoming == 1 )
-        {
-            state = 2;
-        }
+//        else if ( item.isBaoming == 1 )
+//        {
+//            state = 2;
+//        }
         else if ( currentPosition == i )
         {
             state = 4;
