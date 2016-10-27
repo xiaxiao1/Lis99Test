@@ -270,14 +270,17 @@ public abstract class MonthView extends View {
      * @param day
      * @return  0 默认， 1过期
      */
-    protected int iscalendarOverdue(int year,int month,int day){
-        if(calendarInfos == null || calendarInfos.size() == 0)return 0;
+    protected boolean iscalendarOverdue(int year,int month,int day){
+        if(calendarInfos == null || calendarInfos.size() == 0)return false;
         for(CalendarInfo calendarInfo : calendarInfos){
             if(calendarInfo.day == day && calendarInfo.month == month + 1 && calendarInfo.year == year){
-                return calendarInfo.isOverdue;
+                if (calendarInfo.isOverdue == 1 )
+                {
+                    return true;
+                }
             }
         }
-        return 0;
+        return false;
     }
 
     /**

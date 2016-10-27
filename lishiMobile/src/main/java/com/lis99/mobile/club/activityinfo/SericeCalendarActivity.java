@@ -229,7 +229,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                         if (item.isEnd == 1) {
                             ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 1, "已过期");
                         } else if (item.isBaoming == 1) {
-                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 1, "已报名");
+                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 2, "已报名");
                         } else {
                             ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥" + getPrice(item.price)+"起");
 //                            默认显示的月份
@@ -250,7 +250,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
                             cinfo.isOverdue = 1;
                             cinfo.des = "已过期";
                         } else if (item.isBaoming == 1) {
-                            cinfo.isOverdue = 1;
+                            cinfo.isOverdue = 2;
                             cinfo.des = "已报名";
                         }
                         cinfo.batchList.add(item);

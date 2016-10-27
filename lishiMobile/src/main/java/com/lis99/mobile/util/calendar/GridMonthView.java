@@ -141,7 +141,7 @@ public class GridMonthView extends MonthView {
         float startY = rowSize * row + rowSize/2 - (paint.ascent() + paint.descent())/2 + theme.paddingTop() * density;
         paint.setStyle(Paint.Style.STROKE);
         String des = iscalendarInfo(year,month,day);
-        int overdue = iscalendarOverdue(year, month, day);
+        boolean overdue = iscalendarOverdue(year, month, day);
 //      默认当前日期选中
         if( day== selDay && theme.noneClick() ){
             //日期为选中的日期
@@ -183,7 +183,7 @@ public class GridMonthView extends MonthView {
 //            paint.setColor(theme.colorToday());
 //            canvas.drawText(day+"", startX, startY, paint);
 //        }
-
+//      默认的
         else{
             if(!TextUtils.isEmpty(des)){
                 //没选中，但是desc不为空
@@ -192,15 +192,15 @@ public class GridMonthView extends MonthView {
                 canvas.drawText(day + "", startX, dateY, paint);
 
                 paint.setTextSize(theme.sizeDesc() * scaledDensity);
-//                可选的绿色
-                if ( overdue == 0 )
-                {
-                    paint.setColor(theme.colorDesc());
-                }
 //                灰色
-                else
+                if ( overdue )
                 {
                     paint.setColor(theme.unDesc());
+                }
+//                可选的绿色
+                else
+                {
+                    paint.setColor(theme.colorDesc());
                 }
 
                 int priceX = (int) (columnSize * column + Math.abs((columnSize - paint.measureText(des))/2));

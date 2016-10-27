@@ -29,7 +29,7 @@ public class CalendarInfo {
      */
     public int rest;
     /**
-     *      是不是过期状态（控制文本展示颜色）， 0 无， 1 过期，
+     *      是不是过期状态（控制文本展示颜色）， 0 无， 1 过期，2 已报名
      */
     public int isOverdue;
 
