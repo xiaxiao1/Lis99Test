@@ -262,7 +262,14 @@ public class LSApplySeriesNew extends LSBaseActivity {
                 }
                 else {
                     NewApplyUpData info = model.user_list.get(0);
-                  updata.set(0, info);
+                    if ( updata.size() == 0 )
+                    {
+                        updata.add(info);
+                    }
+                    else
+                    {
+                        updata.set(0, info);
+                    }
                 }
                 getApplyList();
             }
@@ -328,12 +335,18 @@ public class LSApplySeriesNew extends LSBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        updata.clear();
+//        updata.clear();
     }
 
     private void cleanList()
     {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        updata.clear();
     }
 
     @Override
@@ -344,6 +357,7 @@ public class LSApplySeriesNew extends LSBaseActivity {
         {
             setResult(RESULT_OK);
             finish();
+//            updata.clear();
         }
 //        选择报名人
         else if ( requestCode == ADDCONTACTS && resultCode == RESULT_OK )

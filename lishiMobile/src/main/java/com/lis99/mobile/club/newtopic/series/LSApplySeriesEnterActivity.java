@@ -262,7 +262,8 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
                 ArrayList<HashMap<String, String>> item = new ArrayList<HashMap<String, String>>();
 
-                for (int i = 0; i < jonNum; i++) {
+//                for (int i = 0; i < jonNum; i++) {
+                for (int i = 0; i < LSApplySeriesNew.updata.size(); i++) {
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("name", LSApplySeriesNew.updata.get(i).name);
                     item.add(map);
