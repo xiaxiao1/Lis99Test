@@ -25,6 +25,7 @@ import com.lis99.mobile.engine.base.IEventHandler;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.engine.io.IOManager;
 import com.lis99.mobile.entry.view.CustomProgressDialog;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.InternetUtil;
 import com.lis99.mobile.util.PushManager;
@@ -105,7 +106,7 @@ public class ActivityPattern extends Activity implements OnClickListener,
 		activity = this;
 		mHandler = new Handler(this);
 		PushManager.getInstance().onAppStart(activity);
-
+		Common.Log_i(this.getLocalClassName());
 //		StatusUtil.setStatusBar(this);
 
 	}

@@ -300,7 +300,7 @@ public class LsLoginActivity extends ActivityPattern
 					public void onCancel()
 					{
 						postMessage(DISMISS_PROGRESS);
-						Toast.makeText(LsLoginActivity.this, "登录取消", 0).show();
+						Toast.makeText(LsLoginActivity.this, "登录取消", Toast.LENGTH_SHORT).show();
 					}
 				});
 			}
@@ -725,7 +725,7 @@ public class LsLoginActivity extends ActivityPattern
 		}
 		if (password == null || "".equals(password.trim()))
 		{
-			Toast.makeText(this, "密码不能为空", 0).show();
+			Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if (!StringUtil.checkPassword(password))
@@ -832,7 +832,7 @@ public class LsLoginActivity extends ActivityPattern
 						u1.setPoint("");
 						DataManager.getInstance().setUser(u1);
 						DataManager.getInstance().setLogin_flag(true);
-						Toast.makeText(LsLoginActivity.this, "登录成功", 0).show();
+						Toast.makeText(LsLoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 						
 						//上传设备信息
 						LSRequestManager.getInstance().upDataInfo();
