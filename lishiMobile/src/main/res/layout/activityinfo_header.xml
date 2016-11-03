@@ -295,10 +295,17 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:clickable="true" />
+        <View
+            android:id="@+id/hehe_icon_v"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            />
         <ImageView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_gcoding"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@id/hehe_icon_v"
             />
         <View
             android:id="@+id/afullinfo_header_mapclick"
