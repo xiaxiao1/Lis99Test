@@ -295,6 +295,11 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:clickable="true" />
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_gcoding"
+            android:layout_centerInParent="true"
+            />
         <View
             android:id="@+id/afullinfo_header_mapclick"
             android:layout_width="match_parent"

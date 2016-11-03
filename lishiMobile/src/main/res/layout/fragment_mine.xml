@@ -514,7 +514,7 @@
             </RelativeLayout>
 
 
-
+<!--回复我的-->
             <RelativeLayout
                 android:id="@+id/replyPanel"
                 android:layout_width="match_parent"
@@ -570,7 +570,7 @@
 
 
             </RelativeLayout>
-
+<!--收到的赞-->
             <RelativeLayout
                 android:id="@+id/receivelike"
                 android:layout_width="match_parent"
@@ -626,7 +626,7 @@
 
 
             </RelativeLayout>
-
+<!--系统消息-->
             <RelativeLayout
                 android:id="@+id/layout_sys"
                 android:layout_width="match_parent"
@@ -697,7 +697,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/color_1px_stroke" />
-
+<!--我加入的俱乐部-->
             <RelativeLayout
                 android:id="@+id/layout_join_club"
                 android:layout_width="match_parent"
@@ -743,7 +743,7 @@
 
 
             </RelativeLayout>
-
+<!--我报名的活动-->
             <RelativeLayout
                 android:id="@+id/layout_my_join"
                 android:layout_width="match_parent"
@@ -801,7 +801,7 @@
 
             </RelativeLayout>
 
-
+<!--待支付的活动-->
             <RelativeLayout
                 android:id="@+id/unpayActivityPanel"
                 android:layout_width="match_parent"
@@ -846,7 +846,7 @@
 
             </RelativeLayout>
 
-
+<!--待评价的活动-->
             <RelativeLayout
                 android:id="@+id/unpayCommentPanel"
                 android:layout_width="match_parent"
@@ -919,7 +919,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/color_1px_stroke" />
-
+<!--管理我发布的活动-->
                 <RelativeLayout
                     android:id="@+id/applyManagePanel"
                     android:layout_width="match_parent"

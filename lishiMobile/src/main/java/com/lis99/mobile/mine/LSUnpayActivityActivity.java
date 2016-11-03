@@ -32,7 +32,7 @@ public class LSUnpayActivityActivity extends LSBaseActivity implements PullToRef
     private LSMyActivityListModel model;
 
     private Page page;
-
+    View emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,8 @@ public class LSUnpayActivityActivity extends LSBaseActivity implements PullToRef
         pull_refresh_view = (PullToRefreshView) findViewById(R.id.pull_refresh_view);
 
         list = (ListView) findViewById(R.id.list);
-
+//        list.setEmptyView(findViewById(R.id.show_when_empty));
+        emptyView = (View) findViewById(R.id.empty_view);
         pull_refresh_view.setOnHeaderRefreshListener(this);
         pull_refresh_view.setOnFooterRefreshListener(this);
 
@@ -80,8 +81,11 @@ public class LSUnpayActivityActivity extends LSBaseActivity implements PullToRef
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
-                model = (LSMyActivityListModel) mTask.getResultModel();
-
+                mTask.setShowErrorTost(false);
+                model = (LSMyActivityListModel)mTask.getResultModel();
+                if (model==null) {
+                    Common.toast("ai aiyou ewei");
+                }
                 page.nextPage();
 
                 if (adapter == null) {
@@ -103,7 +107,7 @@ public class LSUnpayActivityActivity extends LSBaseActivity implements PullToRef
                 } else {
                     adapter.addList(model.lists);
                 }
-
+                Common.showEmptyView(LSUnpayActivityActivity.this,R.id.empty_view,model.lists);
             }
         });
 
@@ -125,6 +129,7 @@ public class LSUnpayActivityActivity extends LSBaseActivity implements PullToRef
     @Override
     public void onHeaderRefresh(PullToRefreshView view) {
         pull_refresh_view.onHeaderRefreshComplete();
+        Common.showEmptyView(this,R.id.empty_view,null);
         cleanList();
         getList();
     }

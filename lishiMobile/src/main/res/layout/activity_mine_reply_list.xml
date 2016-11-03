@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         layout="@layout/activity_title" />
 
+
     <com.lis99.mobile.entry.view.PullToRefreshView
         android:id="@+id/pull_refresh_view"
         android:layout_width="fill_parent"

@@ -37,6 +37,7 @@ import com.lis99.mobile.newhome.NewHomeActivity;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -693,6 +694,21 @@ public class Common {
                 return true;
             }
         });
+    }
+
+    /**
+     * 判断当前页面listview无数据时显示提示信息
+     * @param activity 当前Activity
+     * @param emptyViewId emptyView 的id
+     * @param datas listview加载的数据列表
+     */
+    public static void showEmptyView(Activity activity,int emptyViewId,List datas) {
+        View emptyView = activity.findViewById(emptyViewId);
+        if (datas == null || datas.size() == 0) {
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            emptyView.setVisibility(View.GONE);
+        }
     }
 
 }
