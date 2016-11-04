@@ -128,6 +128,7 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
 
     private void getList() {
 
+        Common.showEmptyView(this,R.id.empty_view,false);
         if ( page.isLastPage() )
         {
             return;
@@ -150,6 +151,10 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
+            public void handlerError(MyTask myTask) {
+                Common.showEmptyView(MyBenefitActivity.this,R.id.empty_view,true);
+            }
+            @Override
             public void handler(MyTask mTask) {
 
                 if ( mTask == null ) return;
@@ -168,7 +173,7 @@ public class MyBenefitActivity extends LSBaseActivity implements PullToRefreshVi
                 {
                     adapter.addList(model.lists);
                 }
-
+                Common.showEmptyView(MyBenefitActivity.this,R.id.empty_view,model.lists);
 
 
             }

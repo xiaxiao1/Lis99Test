@@ -711,4 +711,19 @@ public class Common {
         }
     }
 
+    /**
+     * 是否展示
+     * @param activity
+     * @param emptyViewId 空数据时提示view的id
+     * @param show true 显示    false  不显示
+     */
+    public static void showEmptyView(Activity activity,int emptyViewId,boolean show) {
+        View emptyView = activity.findViewById(emptyViewId);
+        if (show) {
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            emptyView.setVisibility(View.GONE);
+        }
+    }
+
 }

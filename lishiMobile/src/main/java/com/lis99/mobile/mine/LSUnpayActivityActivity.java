@@ -80,12 +80,13 @@ public class LSUnpayActivityActivity extends LSBaseActivity implements PullToRef
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
+            public void handlerError(MyTask myTask) {
+                Common.showEmptyView(LSUnpayActivityActivity.this,R.id.empty_view,true);
+            }
+            @Override
             public void handler(MyTask mTask) {
                 mTask.setShowErrorTost(false);
                 model = (LSMyActivityListModel)mTask.getResultModel();
-                if (model==null) {
-                    Common.toast("ai aiyou ewei");
-                }
                 page.nextPage();
 
                 if (adapter == null) {

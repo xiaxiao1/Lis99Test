@@ -79,6 +79,10 @@ public class LSUnCommentActivityActivity extends LSBaseActivity implements PullT
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
+            public void handlerError(MyTask myTask) {
+                Common.showEmptyView(LSUnCommentActivityActivity.this,R.id.empty_view,true);
+            }
+            @Override
             public void handler(MyTask mTask) {
                 model = (LSMyActivityListModel) mTask.getResultModel();
 
@@ -103,7 +107,7 @@ public class LSUnCommentActivityActivity extends LSBaseActivity implements PullT
                 } else {
                     adapter.addList(model.lists);
                 }
-
+                Common.showEmptyView(LSUnCommentActivityActivity.this,R.id.empty_view,model.lists);
             }
         });
 

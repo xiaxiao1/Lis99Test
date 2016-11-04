@@ -84,6 +84,14 @@ public class MyRequest{
 				//没有生成解析类
 				if (mTask.getResultModel() == null && !mTask.isErrorCallBack() )
 				{
+					//以下代码用于处理正常返回时，但数据为空的情况
+					if (mTask.getCallBack()!=null) {
+						try {
+							mTask.getCallBack().handlerError(mTask);
+						} catch (NullPointerException e) {
+							Common.Log_i("MyRequest catched error:"+e.getMessage());
+						}
+					}
 					return;
 				}
 				if ( mTask.getCallBack() != null )

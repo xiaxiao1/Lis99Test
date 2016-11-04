@@ -134,5 +134,11 @@
             ></ListView>
 
     </com.lis99.mobile.entry.view.PullToRefreshView>
-
+    <include
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/view_show_when_empty"
+        android:layout_centerVertical="true"
+        />
 </RelativeLayout>

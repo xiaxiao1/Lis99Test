@@ -110,9 +110,11 @@ public class LSClubMyTopicActivity extends LSBaseActivity implements OnHeaderRef
 			String errCode = root.get("status").asText("");
 			if (!"OK".equals(errCode)) {
 				String msg = "没有内容";//root.get("data").asText();
-				postMessage(ActivityPattern1.POPUP_TOAST, msg);
+//				postMessage(ActivityPattern1.POPUP_TOAST, msg);
+				Common.showEmptyView(this,R.id.empty_view,true);
 				return;
 			}
+			Common.showEmptyView(this,R.id.empty_view,false) ;
 			JsonNode data = root.get("data");
 			totalNum = data.get("totalNum").asInt();
 			List<LSClubTopic> temp = LSFragment.mapper.readValue(data.get("list").traverse(), new TypeReference<List<LSClubTopic>>() {
@@ -136,6 +138,7 @@ public class LSClubMyTopicActivity extends LSBaseActivity implements OnHeaderRef
 			if (adapter == null) {
 				adapter = new LSMyTopicAdapter(this, topics);
 				listView.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
 			} else {
 				adapter.notifyDataSetChanged();
 			}

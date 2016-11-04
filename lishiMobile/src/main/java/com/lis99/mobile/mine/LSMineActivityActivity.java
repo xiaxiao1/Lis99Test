@@ -85,6 +85,10 @@ public class LSMineActivityActivity extends LSBaseActivity implements PullToRefr
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
+            public void handlerError(MyTask myTask) {
+                Common.showEmptyView(LSMineActivityActivity.this,R.id.empty_view,true);
+            }
+            @Override
             public void handler(MyTask mTask) {
                 model = (LSMyActivityListModel) mTask.getResultModel();
 
@@ -112,7 +116,7 @@ public class LSMineActivityActivity extends LSBaseActivity implements PullToRefr
                 {
                     adapter.addList(model.lists);
                 }
-
+                Common.showEmptyView(LSMineActivityActivity.this,R.id.empty_view,model.lists);
             }
         });
 
