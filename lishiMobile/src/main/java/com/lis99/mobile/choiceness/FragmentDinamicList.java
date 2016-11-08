@@ -1,6 +1,5 @@
 package com.lis99.mobile.choiceness;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -16,8 +15,6 @@ import android.widget.RelativeLayout;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
-import com.lis99.mobile.club.LSClubTopicActivity;
-import com.lis99.mobile.club.LSClubTopicNewActivity;
 import com.lis99.mobile.club.model.DynamicListModel;
 import com.lis99.mobile.club.model.MyFriendsRecommendModel;
 import com.lis99.mobile.engine.base.CallBack;
@@ -137,18 +134,20 @@ public class FragmentDinamicList extends Fragment implements
                 DynamicListModel.Topicslist item = (DynamicListModel.Topicslist) adapter.getItem(i);
                 if (item == null) return;
 
-                if ( item.category == 2 )
-                {
-                    Intent intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
-                    intent.putExtra("topicID", item.topic_id);
-                    startActivity(intent);
-                }
-                else
-                {
-                    Intent intent = new Intent(getActivity(), LSClubTopicActivity.class);
-                    intent.putExtra("topicID", item.topic_id);
-                    startActivity(intent);
-                }
+                Common.goTopic(getActivity(), item.category, item.topic_id);
+
+//                if ( item.category == 2 )
+//                {
+//                    Intent intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
+//                    intent.putExtra("topicID", item.topic_id);
+//                    startActivity(intent);
+//                }
+//                else
+//                {
+//                    Intent intent = new Intent(getActivity(), LSClubTopicActivity.class);
+//                    intent.putExtra("topicID", item.topic_id);
+//                    startActivity(intent);
+//                }
 
 
             }

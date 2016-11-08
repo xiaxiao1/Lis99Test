@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/text"
+        android:textColor="@color/text_color_black"
+        android:gravity="center_vertical"
+        android:text="金盾宇，男， 13146739203\n32147382928374839204"
+    />
+
+</LinearLayout>

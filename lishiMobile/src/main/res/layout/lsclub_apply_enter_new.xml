@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/pull_bg"
+>
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title_new" />
+
+
+    <RelativeLayout
+        android:id="@+id/bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/text_color_green"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+    >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="总计：￥1000.00"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv_price"
+        />
+
+        <Button
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/apply_bottom_btn"
+            android:id="@+id/btn_ok"
+            android:layout_marginLeft="26dp"
+            android:text="提交订单"
+            android:textColor="@color/white"
+        />
+
+    </RelativeLayout>
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/scroll"
+                android:layout_below="@id/include1"
+                android:layout_above="@id/bottombar"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    >
+
+        <!--<include-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--layout="@layout/list_line"-->
+        <!--/>-->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="10dp"
+        >
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_six"
+                android:textSize="16sp"
+                android:text="@string/temp_string_long"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:lineSpacingExtra="5dp"
+            />
+
+            <View
+                style="@style/fill_wrap"
+                android:layout_height="1px"
+                android:background="@color/color_1px_stroke"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+            />
+
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:gravity="center_vertical"
+            >
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="出行日期："
+                          android:textSize="@dimen/text_small"
+                          android:textColor="@color/color_nine"
+                          android:paddingRight="10dp"
+                />
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="2016-07-15"
+                          android:textColor="@color/color_0a0507"
+                          android:id="@+id/tv_date"
+                          />
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:paddingTop="10dp"
+            >
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="购买数量："
+                          android:textSize="@dimen/text_small"
+                          android:textColor="@color/color_nine"
+                          android:paddingRight="10dp"
+                />
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="成人价X1，300.00/人\n儿童价X1，200.00/人"
+                          android:textColor="@color/color_0a0507"
+                          android:id="@+id/tv_joins"
+                          android:lineSpacingExtra="5dp"
+                />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <TextView
+            android:drawableLeft="@drawable/series_join_info_icon"
+            android:drawablePadding="10dp"
+            android:id="@+id/tv_joinNum"
+            style="@style/fill_wrap"
+            android:layout_height="wrap_content"
+            android:background="@color/pull_bg"
+            android:textColor="#c6b6a7"
+            android:text="报名人员（共2人）"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+        />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <com.lis99.mobile.view.MyListView android:layout_width="match_parent"
+                                          android:layout_height="wrap_content"
+                                          style="@style/listViewStyle"
+                                          android:id="@+id/list"
+                                          android:paddingLeft="10dp"
+                                          android:paddingRight="10dp"
+                                          android:divider="@color/color_eee"
+                                          android:dividerHeight="1px"
+        ></com.lis99.mobile.view.MyListView>
+
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <TextView
+            android:drawableLeft="@drawable/series_edit_info_icon"
+            android:drawablePadding="10dp"
+            style="@style/fill_wrap"
+            android:layout_height="wrap_content"
+            android:background="@color/pull_bg"
+            android:textColor="#c6b6a7"
+            android:text="备注"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+        />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+
+        <EditText android:layout_width="match_parent" android:layout_height="50dp"
+                  android:background="@color/white"
+                  android:id="@+id/et_info"
+                  android:maxLines="1"
+                  android:gravity="center_vertical"
+                  android:hint="与领队协商一致的其他说明"
+                  android:textColor="@color/color_six"
+                  android:textSize="14sp"
+                  android:paddingLeft="10dp"
+                  android:paddingRight="10dp"
+                  android:maxLength="200"
+        />
+
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <TextView
+            android:drawableLeft="@drawable/series_pay_type"
+            android:drawablePadding="10dp"
+            style="@style/fill_wrap"
+            android:layout_height="wrap_content"
+            android:background="@color/pull_bg"
+            android:textColor="#c6b6a7"
+            android:text="支付方式"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+        />
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+
+        <RadioGroup
+            android:background="@color/white"
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/layout_free"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_six"
+                    android:text="免费"
+                    android:drawableRight="@drawable/pay_free"
+                    android:drawablePadding="10dp"
+                    android:layout_centerVertical="true"
+                />
+
+                <RadioButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/radio_free"
+                    style="@style/wrap_wrap"
+                    android:button="@drawable/club_radio_apply_man"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_alignParentBottom="true"
+                />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/layout_zhifubao"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_six"
+                    android:text="支付宝　"
+                    android:drawableRight="@drawable/pay_zhifubao"
+                    android:drawablePadding="10dp"
+                    android:layout_centerVertical="true"
+                />
+
+                <RadioButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/radio_zhifubao"
+                    style="@style/wrap_wrap"
+                    android:button="@drawable/club_radio_apply_man"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_alignParentBottom="true"
+                />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/layout_weixin"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_six"
+                    android:text="微信支付"
+                    android:drawableRight="@drawable/pay_weixin"
+                    android:drawablePadding="10dp"
+                    android:layout_centerVertical="true"
+                />
+
+                <RadioButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/radio_weixin"
+                    style="@style/wrap_wrap"
+                    android:button="@drawable/club_radio_apply_man"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_alignParentBottom="true"
+                />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/layout_off_line"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_six"
+                    android:text="线下支付"
+                    android:drawableRight="@drawable/pay_off_line"
+                    android:drawablePadding="10dp"
+                    android:layout_centerVertical="true"
+                />
+
+                <RadioButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/radio_off_line"
+                    style="@style/wrap_wrap"
+                    android:button="@drawable/club_radio_apply_man"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#eee"
+                    android:layout_alignParentBottom="true"
+                />
+
+
+            </RelativeLayout>
+
+
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

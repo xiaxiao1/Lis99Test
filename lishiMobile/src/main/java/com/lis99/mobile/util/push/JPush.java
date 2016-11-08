@@ -30,7 +30,7 @@ public class JPush implements PushBase {
     @Override
     public void init(Context c ) {
         Log.w("MYUTIL", "init Jpush");
-            JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+            JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
             JPushInterface.init(c);     		// 初始化 JPush
 
     }

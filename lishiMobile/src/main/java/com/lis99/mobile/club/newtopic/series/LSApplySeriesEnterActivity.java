@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
@@ -39,9 +39,11 @@ import java.util.HashMap;
  */
 public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
-    private TextView tv_title, tv_pay, tv_joinNum, tv_price;
+    private TextView tv_title, /*tv_pay*/ tv_joinNum, tv_price;
 
-    private GridView grid;
+//    private GridView grid;
+
+    private ListView list;
 
     private RadioGroup radioGroup;
 
@@ -71,7 +73,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.lsclub_apply_enter_main);
+        setContentView(R.layout.lsclub_apply_enter_new);
 
         initViews();
 
@@ -108,11 +110,12 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         super.initViews();
 
         tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_pay = (TextView) findViewById(R.id.tv_pay);
+//        tv_pay = (TextView) findViewById(tv_pay);
         tv_joinNum = (TextView) findViewById(R.id.tv_joinNum);
         tv_price = (TextView) findViewById(R.id.tv_price);
 
-        grid = (GridView) findViewById(R.id.grid);
+//        grid = (GridView) findViewById(grid);
+        list = (ListView) findViewById(R.id.list);
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
@@ -211,7 +214,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
                 tv_title.setText(model.title);
 
-                tv_pay.setText("人均费用" + model.consts + "元");
+//                tv_pay.setText("人均费用" + model.consts + "元");
 
                 tv_joinNum.setText("报名人员（共" + jonNum + "人）");
 
@@ -269,9 +272,9 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
                     item.add(map);
                 }
 
-                SimpleAdapter simpleAdapter = new SimpleAdapter(activity, item, R.layout.apply_enter_grid_item, new String[]{"name"}, new int[]{R.id.text});
+                SimpleAdapter simpleAdapter = new SimpleAdapter(activity, item, R.layout.apply_enter_list_item, new String[]{"name"}, new int[]{R.id.text});
 
-                grid.setAdapter(simpleAdapter);
+//                grid.setAdapter(simpleAdapter);
             }
         });
 

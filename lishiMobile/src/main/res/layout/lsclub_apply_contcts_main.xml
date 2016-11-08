@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/pull_bg"
+>
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/activity_title_new" />
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:background="@drawable/series_add_contacts_title"
+                  android:layout_below="@id/include1"
+                  android:id="@+id/layout"
+                  android:gravity="center"
+    >
+
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/series_warning_icon"
+        />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:id="@+id/tv_warning"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/text_small"
+                  android:text="应填5人，请依据活动要求填写报名信息"
+                  android:paddingLeft="10dp"
+        />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottombar"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/text_color_green"
+    >
+
+        <View
+            style="@style/fill_wrap"
+            android:layout_height="1px"
+            android:background="@color/color_1px_stroke" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal"
+        >
+
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/apply_bottom_btn"
+                    android:textColor="@color/white"
+                    android:text="@string/apply_add_contacts"
+                    android:id="@+id/btn_add"
+            />
+
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:background="@drawable/apply_bottom_btn"
+                    android:textColor="@color/white"
+                    android:text="@string/apply_add_next"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/btn_ok"
+            />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/listViewStyle"
+        android:layout_below="@id/layout"
+        android:layout_above="@id/bottombar"
+        android:id="@+id/list"
+        android:dividerHeight="0px"
+        android:divider="@null"
+    ></ListView>
+
+
+</RelativeLayout>

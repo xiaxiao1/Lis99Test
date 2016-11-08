@@ -26,6 +26,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ *      目的地详情
+ */
 public class DestinationActivity extends LSBaseActivity implements DestinationHeaderView.OnTabSelectListener, PullToRefreshView.OnFooterRefreshListener, PullToRefreshView.OnHeaderRefreshListener {
 
     @Bind(R.id.pull_refresh_view)

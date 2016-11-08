@@ -1,16 +1,18 @@
 package com.lis99.mobile.club.activityinfo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
-import com.lis99.mobile.club.activityinfo.adapter.SpecAdapter;
+import com.lis99.mobile.club.activityinfo.adapter.SpecAdapterNew;
 import com.lis99.mobile.club.model.BatchListEntity;
+import com.lis99.mobile.club.model.SpecInfoListModel;
 import com.lis99.mobile.club.model.TopicSeriesBatchsListModel;
 import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.engine.base.CallBack;
@@ -38,12 +40,14 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
     private GridCalendarView gridCalendarView;
 
-    private TextView tvNone;
+    private View layout;
     private MyListView list;
 
-    private SpecAdapter adapter;
+    private SpecAdapterNew adapter;
 
     private TopicSeriesBatchsListModel model;
+
+    private SpecInfoListModel specModel;
 
     private int activityId, clubId;
 
@@ -54,6 +58,8 @@ public class SericeCalendarActivity extends LSBaseActivity {
     private BatchListEntity selectEntity;
 
     private Button btnOk;
+
+    private TextView tv_desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,36 +74,23 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
         setTitle("选择出发日期");
 
-        getList();
-
+//        getList();
+        getListNew();
     }
 
     @Override
     protected void initViews() {
         super.initViews();
 
-        tvNone = (TextView) findViewById(R.id.tv_none);
+        tv_desc = (TextView) findViewById(R.id.tv_desc);
+
+        layout = findViewById(R.id.layout);
         list = (MyListView) findViewById(R.id.list);
         list.setAdapter(null);
         btnOk = (Button) findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(this);
 
         setBtnClick(false);
-
-//        Calendar calendar = Calendar.getInstance();
-//        int currYear = calendar.get(Calendar.YEAR);
-//        int currMonth = calendar.get(Calendar.MONTH)+ 1;
-//
-//        listInfo = new ArrayList<CalendarInfo>();
-//        listInfo.add(new CalendarInfo(currYear,currMonth,4,"已截至"));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,6,"已报名"));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,12,"￥1200"));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,16,"￥1200"));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,28,"￥1200"));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,1,"￥1200",1));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,11,"￥1200",1));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,19,"￥1200",2));
-//        listInfo.add(new CalendarInfo(currYear,currMonth,21,"￥1200",1));
 
         gridCalendarView = (GridCalendarView) findViewById(R.id.gridMonthView);
 
@@ -109,31 +102,25 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
             @Override
             public void onClickOnDate(int year, int month, int day) {
-//                Toast.makeText(activity,"点击了" +  year + "-" + month + "-" + day,Toast.LENGTH_SHORT).show();
+
+                setBtnClick(false);
 
                 info = iscalendarInfo(year, month, day);
 
                 if ( info == null ) return;
-                if ( tvNone.getVisibility() == View.VISIBLE)
-                tvNone.setVisibility(View.GONE);
 
-                adapter = new SpecAdapter(activity, info.batchList);
+                int num = listInfo.indexOf(info);
+                if ( num == -1 ) return;
 
-                list.setAdapter(adapter);
+                BatchListEntity item = model.batchList.get(num);
 
-                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        if ( adapter == null ) return;
-                        selectEntity = (BatchListEntity) adapter.getItem(position);
-                        if ( selectEntity.isEnd == 1 || selectEntity.isBaoming == 1 )
-                        {
-                            return;
-                        }
-                        adapter.setCurrentPosition(position);
-                        setBtnClick(true);
-                    }
-                });
+                String m = DateUtils.getMonth(item.settime)+"月";
+                String d  = getDay(item.settime)+"日";
+                String t = " "+getTime(item.settime);
+
+                tv_desc.setText("（名额"+item.people+"人， 集合时间："+m+d+t+"）");
+                getSpecs(item.batchId);
+
 
 //                if ( adapter != null && adapter.getCurrentPosition() != -1 )
 //                setBtnClick(true);
@@ -148,18 +135,18 @@ public class SericeCalendarActivity extends LSBaseActivity {
 //  按钮状态， true可点击， false 不可点击
     public void setBtnClick ( boolean clickable )
     {
-//        if ( clickable )
-//        {
+        if ( clickable )
+        {
             btnOk.setBackgroundColor(getResources().getColor(R.color.text_color_green));
-            btnOk.setText("下一步");
+            btnOk.setText("下一步：填写报名信息");
             btnOk.setClickable(true);
-//        }
-//        else
-//        {
-//            btnOk.setBackgroundColor(Color.parseColor("#e2e2e2"));
-//            btnOk.setText("请选择游玩日期");
-//            btnOk.setClickable(false);
-//        }
+        }
+        else
+        {
+            btnOk.setBackgroundColor(Color.parseColor("#e2e2e2"));
+            btnOk.setText("请选择游玩日期");
+            btnOk.setClickable(false);
+        }
     }
 
 
@@ -169,16 +156,16 @@ public class SericeCalendarActivity extends LSBaseActivity {
             case R.id.btn_ok:
                 //TODO implement
 
-                if ( adapter == null || adapter.getCurrentPosition() == -1 ) return;
-
-                int batchId = adapter.getBatchId();
-
-                if ( batchId == -1 )
-                {
-                    return;
-                }
-
-                goNextActivity(batchId);
+//                if ( adapter == null || adapter.getCurrentPosition() == -1 ) return;
+//
+//                int batchId = adapter.getBatchId();
+//
+//                if ( batchId == -1 )
+//                {
+//                    return;
+//                }
+                    Common.toast("is click="+adapter.getSelectNum());
+//                goNextActivity(0);
 
                 break;
         }
@@ -189,6 +176,102 @@ public class SericeCalendarActivity extends LSBaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         cleanList();
+    }
+//  获取活动规格
+    private void getSpecs ( int batchId )
+    {
+            list.setAdapter(null);
+            layout.setVisibility(View.VISIBLE);
+
+        String url = C.SPEC_LIST;
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("batch_id", batchId);
+        map.put("activity_id", activityId);
+
+        specModel = new SpecInfoListModel();
+
+        MyRequestManager.getInstance().requestPost(url, map, specModel, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                specModel = (SpecInfoListModel) mTask.getResultModel();
+                if ( specModel == null || specModel.guigelist == null ) return;
+
+                if ( layout.getVisibility() == View.VISIBLE )
+                    layout.setVisibility(View.GONE);
+
+                adapter = new SpecAdapterNew(activity, specModel.guigelist);
+
+                list.setAdapter(adapter);
+
+            }
+        });
+
+    }
+//    获取活动日期
+    private void getListNew ()
+    {
+        String url = C.BATCH_TIMES;
+
+        String userId = Common.getUserId();
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        activityId = 6436;
+
+        map.put("user_id", userId);
+        map.put("activity_id", activityId);
+
+        model = new TopicSeriesBatchsListModel();
+
+        MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                model = (TopicSeriesBatchsListModel) mTask.getResultModel();
+
+                if (model == null || model.batchList == null || model.batchList.size() == 0) return;
+
+                listInfo = new ArrayList<CalendarInfo>();
+
+                for (int i = 0; i < model.batchList.size(); i++) {
+                    BatchListEntity item = model.batchList.get(i);
+                    int[] ymd = new int[3];
+                    ymd[0] = DateUtils.getYear(item.starttime);
+                    ymd[1] = DateUtils.getMonth(item.starttime);
+                    ymd[2] = DateUtils.getDay(item.starttime);
+
+                        CalendarInfo ci = null;
+                        if (item.isEnd == 1) {
+                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 1, "已过期");
+                        } else if (item.isBaoming == 1) {
+                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 2, "已报名");
+                        } else {
+                            ci = new CalendarInfo(ymd[0], ymd[1], ymd[2], 0, "¥" + getPrice(item.price)+"起");
+//                            默认显示的月份
+                            if (currentMonth == null) {
+                                currentMonth = ci;
+                            }
+                        }
+                        listInfo.add(ci);
+                    }
+
+//                如果没有可报名的信息， 展示最后一个服务器信息月份
+                if ( currentMonth == null && listInfo != null && listInfo.size() > 0 )
+                {
+                    currentMonth = listInfo.get(listInfo.size() - 1);
+                }
+//              设置活动启止时间
+                gridCalendarView.setLastDay(listInfo.get(0), listInfo.get(listInfo.size() - 1));
+//                设置活动列表
+                gridCalendarView.setCalendarInfos(listInfo);
+//                设置当前选中的日期
+                gridCalendarView.setCurrentMonth(currentMonth);
+
+            }
+        });
+
+
+
     }
 
     private void getList ()
@@ -387,5 +470,54 @@ public class SericeCalendarActivity extends LSBaseActivity {
         return first;
     }
 
+
+    /**
+     * 		获取日
+     * @param str
+     * @return
+     */
+    public static String getTime (String str)
+    {
+        String day = "";
+
+        if (TextUtils.isEmpty(str))
+        {
+            return day;
+        }
+        String[] d = str.split(" ");
+        if ( d.length > 1 )
+            day = d[1];
+
+        return day;
+    }
+
+    /**
+     * 		获取日
+     * @param str
+     * @return
+     */
+    public static int getDay (String str)
+    {
+        int day = 1;
+
+        if (TextUtils.isEmpty(str))
+        {
+            return day;
+        }
+        String[] d = str.split("\\.");
+        if ( d.length > 2 )
+        {
+            if ( !TextUtils.isEmpty(d[2]))
+            {
+                String[] dd = d[2].split(" ");
+                if ( dd.length > 1)
+                {
+                    day = Common.string2int(dd[0]);
+                }
+            }
+        }
+
+        return day;
+    }
 
 }

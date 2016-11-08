@@ -39,11 +39,31 @@
                 android:layout_height="wrap_content"
             />
 
-            <TextView android:layout_width="match_parent" android:layout_height="50dp"
-                      android:gravity="center"
-                      android:text="选择规格"
-                      android:textColor="@color/text_color_black"
-            />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="50dp"
+                          android:orientation="horizontal"
+                          android:gravity="center_vertical"
+            >
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="规格与价格"
+                          android:textColor="@color/text_color_black"
+                          android:paddingLeft="10dp"
+                          android:paddingRight="3dp"
+                          android:textSize="16sp"
+                />
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:maxLines="1"
+                          android:ellipsize="end"
+                          android:textColor="@color/color_nine"
+                          android:text=""
+                          android:id="@+id/tv_desc"
+                          android:textSize="@dimen/text_small"
+                />
+
+
+            </LinearLayout>
+
 
             <View android:layout_width="match_parent" android:layout_height="1px"
                   android:background="@color/color_eee"/>
@@ -51,12 +71,14 @@
             <FrameLayout android:layout_width="match_parent"
                          android:layout_height="wrap_content">
 
-                <TextView android:layout_width="match_parent" android:layout_height="100dp"
-                          android:gravity="center"
-                          android:text="请选择游玩日期"
-                          android:textColor="@color/color_nine"
-                          android:id="@+id/tv_none"
-                />
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/series_spec_adapter_new"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/layout"
+                    />
 
                 <com.lis99.mobile.view.MyListView android:layout_width="match_parent"
                                                   android:layout_height="wrap_content"
@@ -76,8 +98,9 @@
     <Button android:id="@+id/btn_ok" android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/text_color_green"
-            android:text="下一步"
+            android:text="请选择游玩日期"
             android:textColor="@color/white"
+            android:clickable="false"
     />
 
 </LinearLayout>

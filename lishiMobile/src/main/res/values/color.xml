@@ -69,6 +69,7 @@
     <color name="club_active_info_btn_bg">#f4f4f4</color>
     <color name="color_text">#666666</color>
     <color name="color_eee">#eeeeee</color>
+	<color name="color_ddd">#dddddd</color>
     <color name="color_like_press_red">#fe7a60</color>
     
     <color name="color_six">#73706e</color>
@@ -101,5 +102,7 @@
 	<color name="colorPrimary">#3F51B5</color>
 	<color name="colorPrimaryDark">#303F9F</color>
 	<color name="colorAccent">#FF4081</color>
+	<color name="color_0a0507">#0a0507</color>
+
 
 </resources>

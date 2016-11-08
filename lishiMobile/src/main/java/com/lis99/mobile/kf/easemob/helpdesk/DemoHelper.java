@@ -96,7 +96,7 @@ public class DemoHelper {
             //在小米手机上当app被kill时使用小米推送进行消息提示，SDK已支持，可选
 //            EMChatManager.getInstance().setMipushConfig("2882303761517370134", "5131737040134");
 		    //设为调试模式，打成正式包时，最好设为false，以免消耗额外的资源
-		    EMChat.getInstance().setDebugMode(true);
+		    EMChat.getInstance().setDebugMode(false);
 		    //get easeui instance
 		    easeUI = EaseUI.getInstance();
 		    //调用easeui的api设置providers

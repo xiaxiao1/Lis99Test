@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+
+
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_centerVertical="true"
+                      android:gravity="center_vertical"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/layout"
+        >
+
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:id="@+id/btn_add"
+                    android:background="@drawable/series_add_no"
+            />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tv_num"
+                      android:text="0"
+                      android:padding="10dp"
+                      android:textColor="@color/color_ddd"
+            />
+
+            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/btn_remove"
+                    android:background="@drawable/series_reomve_no"
+            />
+
+        </LinearLayout>
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:maxLines="1"
+                  android:ellipsize="end"
+                  android:id="@+id/name"
+                  android:text="标准价"
+                  android:textColor="@color/color_ddd"
+                  android:layout_centerVertical="true"
+                  android:layout_toLeftOf="@id/layout"
+                  android:layout_alignParentLeft="true"
+        />
+
+    </RelativeLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1px"
+          android:background="@color/color_eee"/>
+
+
+</LinearLayout>

@@ -11,6 +11,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
 import com.lis99.mobile.club.model.ClubTopicGetApplyList;
 import com.lis99.mobile.club.model.NewApplyUpData;
+import com.lis99.mobile.club.newtopic.series.LSApplySeriesNew;
 import com.lis99.mobile.club.widget.applywidget.MyApplyItem;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
@@ -346,5 +347,17 @@ public class LSApplayNew extends LSBaseActivity {
             setResult(RESULT_OK);
             finish();
         }
+        //        选择报名人
+        else if ( requestCode == LSApplySeriesNew.ADDCONTACTS && resultCode == RESULT_OK )
+        {
+            NewApplyUpData info = (NewApplyUpData) data.getSerializableExtra("INFO");
+            int position = data.getIntExtra("POSITION", -1);
+            updata.set(position, info);
+            if ( adapter != null )
+            {
+                adapter.setList(updata);
+            }
+        }
+
     }
 }
