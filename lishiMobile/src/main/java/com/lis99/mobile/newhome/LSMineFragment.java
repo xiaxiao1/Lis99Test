@@ -445,11 +445,11 @@ public class LSMineFragment extends LSFragment implements OnClickListener {
             points = data.get("points").asInt();
             rank = data.get("rank").asInt();
 
-            if ("1".equals(vip)) {
-                isVip = true;
-            } else {
-                isVip = false;
-            }
+//            if ("1".equals(vip)) {
+//                isVip = true;
+//            } else {
+//                isVip = false;
+//            }
             // isVip = data.get("is_vip").asBoolean();
             if (data.has("tag")) {
                 List<String> temp = LSFragment.mapper.readValue(data.get("tag")

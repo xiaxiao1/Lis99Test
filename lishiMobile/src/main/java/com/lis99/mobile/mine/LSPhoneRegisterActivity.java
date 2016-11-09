@@ -13,6 +13,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.application.data.UserBean;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.model.BaseModel;
 import com.lis99.mobile.engine.base.IEvent;
 import com.lis99.mobile.engine.base.Task;
 import com.lis99.mobile.entry.ActivityPattern1;
@@ -20,6 +21,7 @@ import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.LSRequestManager;
 import com.lis99.mobile.util.LSScoreManager;
+import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.RequestParamUtil;
 import com.lis99.mobile.util.SharedPreferencesHelper;
 
@@ -81,7 +83,14 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 	
 	private static final int CountdownMsg = 1001;
 	
-	
+
+	private void getAuthCode ( String phone )
+	{
+		String url = C.GET_AUTHCODE;
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("mobile", phone);
+		MyRequestManager.getInstance().requestGetNoDialog(url, new BaseModel(), null);
+	}
 	
 	private void requestAuthCode(String phone) {
 		postMessage(POPUP_PROGRESS, getString(R.string.sending));
@@ -213,7 +222,8 @@ public class LSPhoneRegisterActivity extends LSBaseActivity {
 					return;
 				}
 				
-				requestAuthCode(userName);
+//				requestAuthCode(userName);
+				getAuthCode(userName);
 				
 				//一旦点击之后设置按钮不可点击
 				getAuthCodeBtn.setClickable(false);

@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
@@ -40,11 +41,13 @@ public class LSApplySeriesNew extends LSBaseActivity {
     //  选择联系人
     public final static int ADDCONTACTS = 998;
 
+    private TextView tv_warning;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.lsclub_new_apply_main);
+        setContentView(R.layout.lsclub_apply_contcts_main);
 
         initViews();
 
@@ -85,6 +88,8 @@ public class LSApplySeriesNew extends LSBaseActivity {
         @Override
     protected void initViews() {
         super.initViews();
+
+            tv_warning = (TextView) findViewById(R.id.tv_warning);
 
         list = (ListView) findViewById(R.id.list);
 

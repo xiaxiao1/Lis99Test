@@ -597,7 +597,29 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String CODE_TO_TOPICID = DOMAINS + "/activity/getIdByCode/";
 //	福利社
 	public static final String FULISHE = DOMAINS + "/zhuangbei/fulishe/";
+//	系列活动，获取系列活动所有时间 		https://apis.lis99.com/activity/batchtimes
+	public static final String BATCH_TIMES = DOMAINS + "/activity/batchtimes";
+//	获取规格		https://apis.lis99.com/activity/batchguige
+	public static final String SPEC_LIST = DOMAINS + "/activity/batchguige";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
 
 
 

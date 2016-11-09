@@ -85,7 +85,7 @@ public class LsStartupActivity extends ActivityPatternStartUp {
             finish();
             return;
         }
-        MobclickAgent.setDebugMode(true);
+        MobclickAgent.setDebugMode(false);
         MobclickAgent.updateOnlineConfig(this);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏

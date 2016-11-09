@@ -50,6 +50,7 @@ import com.lis99.mobile.newhome.LSFragment;
 import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
@@ -451,6 +452,46 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 		});
 	}
 
+	private void MyHeadRefresh ()
+	{
+		DialogManager.getInstance().startWaiting(LSBaseActivity.activity, null, "数据加载中...");
+
+		offset = 0;
+		String userID = DataManager.getInstance().getUser().getUser_id();
+
+		String url = C.CLUB_DETAIL_HEAD + clubID;
+		if (userID != null && !"".equals(userID)) {
+			url += "/"+userID;
+		}
+		MyRequestManager.getInstance().requestGetNoDialog(url, clubHead, new CallBack() {
+
+			@Override
+			public void handler(MyTask mTask) {
+				clubHead = (ClubDetailHead) mTask.getResultModel();
+				initClubHead();
+
+				if ( type == -1 )
+				{
+					if (clubHead.ui_levels == 3) {
+						getAllList();
+					} else {
+						getActiveList();
+					}
+				}
+				else
+				{
+					if (clubHead.ui_levels == 3) {
+						getActiveList();
+					} else {
+						getAllList();
+					}
+				}
+
+
+			}
+		});
+	}
+
 	@Override
 	protected void rightAction() {
 		String userID = DataManager.getInstance().getUser().getUser_id();
@@ -794,23 +835,9 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 //		offset = 0;
 
 		cleanList();
-		loadClubInfo();
-		if ( type == -1 )
-		{
-			if (clubHead.ui_levels == 3) {
-				getAllList();
-			} else {
-				getActiveList();
-			}
-		}
-		else
-		{
-			if (clubHead.ui_levels == 3) {
-				getActiveList();
-			} else {
-				getAllList();
-			}
-		}
+		MyHeadRefresh();
+//		loadClubInfo();
+
 	}
 
 	private void getHeadAdHeight ()
@@ -880,7 +907,7 @@ public class LSClubDetailActivity extends LSBaseActivity implements OnHeaderRefr
 						adapter.ui_level = clubHead.ui_levels;
 					}
 					listView.setAdapter(adapter);
-					loadClubInfo();
+//					loadClubInfo();
 					return;
 				}
 				adapter.addList(clubAll.topiclist);
