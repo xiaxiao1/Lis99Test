@@ -107,7 +107,10 @@ public class ActivityReplyMine extends LSBaseActivity implements OnHeaderRefresh
 		}
 		MyRequestManager.getInstance().requestPost(url, map, model, new CallBack()
 		{
-			
+			@Override
+			public void handlerError(MyTask myTask) {
+				Common.showEmptyView(ActivityReplyMine.this,R.id.empty_view,true);
+			}
 			@Override
 			public void handler(MyTask mTask)
 			{
@@ -128,7 +131,7 @@ public class ActivityReplyMine extends LSBaseActivity implements OnHeaderRefresh
 					adapter.addList(model.replylist);
 				}
 				page.pageNo += 1;
-				
+				Common.showEmptyView(ActivityReplyMine.this,R.id.empty_view,model.replylist);
 			}
 		});
 		

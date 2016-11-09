@@ -103,5 +103,7 @@
     <dimen name="height">60dp</dimen>
 
     <dimen name="virtical_line_width">0.5dp</dimen>
+    <dimen name="manage_apply_info_margin">8dp</dimen>
+    <dimen name="manage_apply_iteminfo_margin">8dp</dimen>
 
 </resources>

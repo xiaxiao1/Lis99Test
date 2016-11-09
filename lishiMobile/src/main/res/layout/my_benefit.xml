@@ -13,6 +13,9 @@
         android:layout_height="50dp"
         layout="@layout/activity_title" />
 
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <com.lis99.mobile.entry.view.PullToRefreshView
         android:layout_alignParentLeft="true"
         android:id="@+id/pull_refresh_view"
@@ -20,8 +23,7 @@
         android:layout_height="match_parent"
         android:background="@color/pull_bg"
         android:orientation="vertical"
-        android:layout_below="@+id/include1"
-        android:layout_above="@+id/buttonPanel">
+        >
 
 
         <ListView
@@ -37,6 +39,14 @@
         </ListView>
 
     </com.lis99.mobile.entry.view.PullToRefreshView>
+    <include
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/view_show_when_empty"
+        android:layout_centerVertical="true"
+        />
 
 
+    </RelativeLayout>
 </LinearLayout>

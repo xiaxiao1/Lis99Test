@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by yy on 15/11/19.
@@ -32,6 +34,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
 //  0:已确认， 1：已拒绝， 2：待确认
     private int type, topicId;//, clubId;
     private ApplyManagerSeries main;
+/*
 
     private String[] names = new String[]{
             "真实姓名",
@@ -56,6 +59,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             "postaladdress",
     };
 
+*/
 
     public ApplySeriesManagerItem(Activity c, ArrayList listItem) {
         super(c, listItem);
@@ -73,27 +77,9 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
     public View setView(int i, View view, ViewGroup viewGroup) {
         Holder holder = null;
         if (view == null) {
-            view = View.inflate(mContext, R.layout.apply_manager_list_item_series, null);
-            holder = new Holder();
-
-            holder.roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
-            holder.tv_name = (TextView) view.findViewById(R.id.tv_name);
-            holder.tv_data = (TextView) view.findViewById(R.id.tv_data);
-//            holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
-            holder.vipStar = (ImageView) view.findViewById(R.id.vipStar);
-            holder.list = (ListView) view.findViewById(R.id.list);
-            holder.bottombar = view.findViewById(R.id.bottombar);
-            holder.btn_ok = (Button) view.findViewById(R.id.btn_ok);
-            holder.btn_out = (Button) view.findViewById(R.id.btn_out);
-            holder.iv_pay_state = (ImageView) view.findViewById(R.id.iv_pay_state);
-            holder.tv_pay_state = (TextView) view.findViewById(R.id.tv_pay_state);
-//            holder.view_wait = view.findViewById(R.id.view_wait);
-
-            holder.tv_wait = (TextView) view.findViewById(R.id.tv_wait);
-            holder.remark = (TextView) view.findViewById(R.id.remark);
-            holder.cancel_reason = (TextView) view.findViewById(R.id.cancel_reason);
-
-
+//            view = View.inflate(mContext, R.layout.apply_manager_list_item_series, null);
+            view = View.inflate(mContext, R.layout.apply_manager_list_item_series_xiao, null);
+            holder = new Holder(view);
 
             view.setTag(holder);
         } else {
@@ -110,24 +96,27 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
 
         holder.tv_name.setText(item.nickname);
+        holder.applyTime_tv.setText(item.createdate);
 
-        holder.tv_data.setText("报名时间：" + item.createdate);
 
-        holder.cancel_reason.setVisibility(View.GONE);
-
+        /*备注*/
         if ( !TextUtils.isEmpty(item.remark))
         {
-            holder.remark.setText("备注："+item.remark);
+            holder.note_tv.setText(item.remark);
         }
         else
         {
-            holder.remark.setText("备注：无");
+            holder.note_tv.setText("无");
         }
-        if ( !TextUtils.isEmpty(item.reason))
-        {
-            holder.cancel_reason.setText("取消理由："+item.reason);
-            holder.cancel_reason.setVisibility(View.VISIBLE);
+        /*取消理由*/
+        if (!TextUtils.isEmpty(item.reason)) {
+            holder.cancelReason_tv.setText(item.reason);
+            holder.cancelReason_ll.setVisibility(View.VISIBLE);
+        } else {
+            holder.cancelReason_ll.setVisibility(View.GONE);
+
         }
+
 
         if ( item.isVip == 1 )
         {
@@ -138,12 +127,12 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             holder.vipStar.setVisibility(View.GONE);
         }
 
-        ArrayList<Object> list = new ArrayList<Object>();
+        ArrayList<String> list = new ArrayList<String>();
 
-        for ( int n = 0; n < item.applyinfoList.size(); n++ )
+        for ( int n = 0; n < 2; n++ )
         {
 
-            HashMap<String, String> map = item.applyinfoList.get(n);
+            /*HashMap<String, String> map = item.applyinfoList.get(n);
 
             String batchId = String.format("（第%s批）", item.batch_id);
 
@@ -170,16 +159,15 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
                     hmap.put("value", map.get(nameC));
                     ilist.add(hmap);
                 }
-            }
+            }*/
 
-            list.add(ilist);
+            list.add("vvv"+n);
         }
 
-        ApplySeriesManagerItem2 adapter = new ApplySeriesManagerItem2(mContext, list);
+        ApplySeriesManagerItemAdapter adapter = new ApplySeriesManagerItemAdapter(mContext, list);
 
         holder.list.setAdapter(adapter);
 
-//        holder.view_wait.setVisibility(View.GONE);
         holder.tv_wait.setVisibility(View.GONE);
         holder.bottombar.setVisibility(View.GONE);
         if (type == 0)
@@ -206,7 +194,6 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             holder.bottombar.setVisibility(View.VISIBLE);
             holder.btn_ok.setVisibility(View.GONE);
             holder.btn_out.setVisibility(View.GONE);
-//            holder.view_wait.setVisibility(View.VISIBLE);
             holder.tv_wait.setVisibility(View.VISIBLE);
         }
 
@@ -276,12 +263,12 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
     }
 
 
+
     class Holder
     {
         RoundedImageView roundedImageView1;
-        TextView tv_name, tv_data;
+        TextView tv_name;
         ImageView vipStar;
-        TextView tv_title;
         ListView list;
         View bottombar;
         Button btn_out, btn_ok;
@@ -289,9 +276,43 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         ImageView iv_pay_state;
         TextView tv_pay_state;
 
-//        View view_wait;
-        //支付中提示， 备注， 取消理由
-        TextView tv_wait, remark, cancel_reason;
+        //支付中提示，
+        TextView tv_wait;
+
+        /*订单头部的信息*/
+        TextView goTime_tv;
+        TextView applyTime_tv;
+        TextView orderNumber_tv;
+        TextView adult_tv;
+        TextView child_tv;
+        TextView totalPrice_tv;
+        TextView note_tv;
+        TextView cancelReason_tv;
+        LinearLayout cancelReason_ll;
+
+        public Holder(View view) {
+             roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
+             tv_name = (TextView) view.findViewById(R.id.tv_name);
+             vipStar = (ImageView) view.findViewById(R.id.vipStar);
+             list = (ListView) view.findViewById(R.id.list);
+             bottombar = view.findViewById(R.id.bottombar);
+             btn_ok = (Button) view.findViewById(R.id.btn_ok);
+             btn_out = (Button) view.findViewById(R.id.btn_out);
+             iv_pay_state = (ImageView) view.findViewById(R.id.iv_pay_state);
+             tv_pay_state = (TextView) view.findViewById(R.id.tv_pay_state);
+
+             tv_wait = (TextView) view.findViewById(R.id.tv_wait);
+
+            goTime_tv = (TextView) view.findViewById(R.id.order_info_gotime_tv);
+            applyTime_tv = (TextView) view.findViewById(R.id.order_info_applytime_tv);
+            orderNumber_tv = (TextView) view.findViewById(R.id.order_info_ordernumber_tv);
+            adult_tv = (TextView) view.findViewById(R.id.order_info_adult_tv);
+            child_tv = (TextView) view.findViewById(R.id.order_info_child_tv);
+            totalPrice_tv = (TextView) view.findViewById(R.id.order_info_totalprice_tv);
+            note_tv = (TextView) view.findViewById(R.id.order_info_note_tv);
+            cancelReason_tv = (TextView) view.findViewById(R.id.order_info_cancelreason_tv);
+            cancelReason_ll = (LinearLayout) view.findViewById(R.id.order_info_cancelreason_ll);
+        }
 
     }
 

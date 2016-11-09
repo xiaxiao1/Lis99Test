@@ -327,9 +327,9 @@ public class ListFragment extends BaseFragment implements ImagePageAdapter.Image
         LatLng latlng = new LatLng(latitude, longitude);
         latlng = LocationUtil.getinstance().gaode2baidu(latlng);
         mBaiduMap.clear();
-        mBaiduMap.addOverlay(new MarkerOptions().position(latlng)
+       /* mBaiduMap.addOverlay(new MarkerOptions().position(latlng)
                 .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.icon_gcoding)));
+                        .fromResource(R.drawable.icon_gcoding)));*/
 
         MapStatus mMapStatus = new MapStatus.Builder()
                 .target(latlng)

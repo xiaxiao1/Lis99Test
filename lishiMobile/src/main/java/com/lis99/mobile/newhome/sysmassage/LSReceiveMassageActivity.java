@@ -157,6 +157,10 @@ public class LSReceiveMassageActivity extends LSBaseActivity implements
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
+            public void handlerError(MyTask myTask) {
+                Common.showEmptyView(LSReceiveMassageActivity.this,R.id.empty_view,true);
+            }
+            @Override
             public void handler(MyTask mTask) {
                 model = (SysMassageModel) mTask.getResultModel();
 
@@ -175,7 +179,7 @@ public class LSReceiveMassageActivity extends LSBaseActivity implements
                 {
                     adapter.addList(model.lists);
                 }
-
+                Common.showEmptyView(LSReceiveMassageActivity.this,R.id.empty_view,model.lists);
             }
         });
 

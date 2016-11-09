@@ -314,6 +314,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
 
     private void getList ()
     {
+        Common.showEmptyView(this,R.id.empty_view,false);
         if ( page.isLastPage() )
         {
             return;
@@ -352,6 +353,10 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
 
         MyRequestManager.getInstance().requestPost(url, map, listModel, new CallBack() {
             @Override
+            public void handlerError(MyTask myTask) {
+                Common.showEmptyView(FilterMainActivity.this,R.id.empty_view,true);
+            }
+            @Override
             public void handler(MyTask mTask) {
                 listModel = (NearbyListMainModel) mTask.getResultModel();
                 if ( listModel == null || listModel.lists == null ) return;
@@ -377,6 +382,7 @@ public class FilterMainActivity extends LSBaseActivity implements PullToRefreshV
                 {
                     adapter.addList(listModel.lists);
                 }
+                Common.showEmptyView(FilterMainActivity.this,R.id.empty_view,listModel.lists);
             }
         });
 

@@ -9,6 +9,7 @@
     android:background="#fff"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--title-->
     <include
         android:id="@+id/include1"
         android:layout_width="match_parent"
@@ -16,16 +17,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout="@layout/activity_title" />
-
+<!--评价领队-->
     <Button
         android:id="@+id/commentButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:onClick="onClick"
-        android:layout_height="wrap_content"
-        android:background="@drawable/icon_comment_leader"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:background="@color/text_color_green"
+        android:text="评价领队"
+        android:textColor="#ffffff"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         />
 
@@ -46,7 +47,7 @@
                 android:layout_height="1px"
                 android:background="#e3dbd0"
                 android:layout_marginTop="8dp"/>
-
+<!--活动信息头-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 android:background="#fff">
+                <!--活动标题-->
                 <TextView
                     android:id="@+id/titleView"
                     android:layout_width="match_parent"
@@ -88,7 +90,51 @@
 
                 </RelativeLayout>
             </LinearLayout>
-
+<!--领队手机号-->
+            <LinearLayout
+                android:id="@+id/leader_phone_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="#c6b6a7"
+                    android:textSize="12sp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="@color/pull_bg"
+                    android:text="领队手机"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+                <TextView
+                    android:id="@+id/leader_phone_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColor="#525252"
+                    android:textSize="13sp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="#fff"
+                    />
+            </LinearLayout>
+<!--订单号-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
@@ -119,8 +165,261 @@
                     android:gravity="center_vertical"
                     android:background="#fff"
                     />
+            </LinearLayout>
+<!--价格-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#ffffff"
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="#c6b6a7"
+                    android:textSize="12sp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="@color/pull_bg"
+                    android:text="价格"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp"
+                    >
+                    <TextView
+                        android:id="@+id/number_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_nine"
+                        android:textSize="13sp"
+                        android:text="购买数量："
+                        android:gravity="center_vertical"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="12dp"
+                        />
+                    <TextView
+                        android:id="@+id/price_adult_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_nine"
+                        android:textSize="13sp"
+                        android:text="成人价，120;"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@id/number_tv"
+                        />
+                    <TextView
+                        android:id="@+id/price_child_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_nine"
+                        android:textSize="13sp"
+                        android:text="儿童价，2330"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/number_tv"
+                        android:layout_below="@id/price_adult_tv"
+                        />
+                    <TextView
+                        android:id="@+id/price_total_label_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_nine"
+                        android:textSize="13sp"
+                        android:text="费用总计："
+                        android:gravity="center_vertical"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@id/price_child_tv"
+                        android:layout_marginLeft="12dp"
+                        />
+                    <TextView
+                        android:id="@+id/price_total_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_nine"
+                        android:textSize="13sp"
+                        android:text="500.00"
+                        android:gravity="center_vertical"
+                        android:layout_toRightOf="@id/price_total_label_tv"
+                        android:layout_below="@id/price_child_tv"
+                        />
+                    <TextView
+                        android:id="@+id/price_discount_label_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_nine"
+                        android:textSize="13sp"
+                        android:text="优惠："
+                        android:gravity="center_vertical"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@id/price_total_label_tv"
+                        android:layout_marginLeft="12dp"
+                        />
+                    <TextView
+                        android:id="@+id/price_discount_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_nine"
+                        android:textSize="13sp"
+                        android:text="10.0"
+                        android:gravity="center_vertical"
+                        android:layout_below="@id/price_total_label_tv"
+                        android:layout_toRightOf="@id/price_total_label_tv"
+                        />
+                    <TextView
+                        android:id="@+id/price_real_pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color_black"
+                        android:textSize="13sp"
+                        android:text="实际支付：600.00"
+                        android:gravity="center_vertical"
+                        android:layout_below="@id/price_total_label_tv"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+<!--出行日期-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="#c6b6a7"
+                    android:textSize="12sp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="@color/pull_bg"
+                    android:text="出行日期"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+                <TextView
+                    android:id="@+id/order_start_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColor="#525252"
+                    android:textSize="13sp"
+                    android:text="2019-10-10"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="#fff"
+                    />
+            </LinearLayout>
+<!--报名信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+                <TextView
+                    android:id="@+id/personTitleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="#c6b6a7"
+                    android:textSize="12sp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center_vertical"
+                    android:background="@color/pull_bg"
+                    android:text="报名信息"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e3dbd0"/>
+
+                <com.lis99.mobile.view.MyListView
+                    android:id="@+id/list"
+                    android:background="@color/white"
+                    android:scrollbars="none"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="#00000000"
+                    android:dividerHeight="0px"
+                    android:divider="@null"
+                    android:listSelector="#00000000" >
+                </com.lis99.mobile.view.MyListView>
+            </LinearLayout>
+<!--备注-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <View
+                    style="@style/fill_wrap"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
+
+                <TextView
+                    style="@style/fill_wrap"
+                    android:layout_height="wrap_content"
+                    android:background="@color/pull_bg"
+                    android:textColor="#c6b6a7"
+                    android:text="备注"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp"
+                    />
+
+                <View
+                    style="@style/fill_wrap"
+                    android:layout_height="1px"
+                    android:background="@color/color_1px_stroke" />
 
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:id="@+id/tv_info"
+                    android:maxLines="1"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:maxLength="200"
+                    />
+            </LinearLayout>
+<!--报名状态-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
@@ -151,114 +450,14 @@
                     android:gravity="center_vertical"
                     android:background="#fff"
                     />
+            </LinearLayout>
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#e3dbd0"/>
-            <!--领队手机号-->
+<!--支付方式-->
             <LinearLayout
-                android:id="@+id/leader_phone_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
                 >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:textColor="#c6b6a7"
-                    android:textSize="12sp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:gravity="center_vertical"
-                    android:background="@color/pull_bg"
-                    android:text="领队手机"
-                    />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#e3dbd0"/>
-                <TextView
-                    android:id="@+id/leader_phone_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:textColor="#525252"
-                    android:textSize="13sp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:gravity="center_vertical"
-                    android:background="#fff"
-                    />
-            </LinearLayout>
-                <TextView
-                    android:id="@+id/personTitleView"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:textColor="#c6b6a7"
-                    android:textSize="12sp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:gravity="center_vertical"
-                    android:background="@color/pull_bg"
-                    android:text="报名人员"
-                    />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#e3dbd0"/>
-
-            <com.lis99.mobile.view.MyListView
-                android:background="@color/white"
-                android:id="@+id/list"
-                android:scrollbars="none"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:cacheColorHint="#00000000"
-                android:dividerHeight="0px"
-                android:divider="@null"
-                android:listSelector="#00000000" >
-            </com.lis99.mobile.view.MyListView>
-
-
-            <View
-                style="@style/fill_wrap"
-                android:layout_height="1px"
-                android:background="@color/color_1px_stroke" />
-
-            <TextView
-                style="@style/fill_wrap"
-                android:layout_height="wrap_content"
-                android:background="@color/pull_bg"
-                android:textColor="#c6b6a7"
-                android:text="备注"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="6dp"
-                android:paddingTop="6dp"
-            />
-
-            <View
-                style="@style/fill_wrap"
-                android:layout_height="1px"
-                android:background="@color/color_1px_stroke" />
-
-
-            <TextView android:layout_width="match_parent" android:layout_height="50dp"
-                      android:background="@color/white"
-                      android:id="@+id/tv_info"
-                      android:maxLines="1"
-                      android:gravity="center_vertical"
-                      android:textColor="@color/text_color_black"
-                      android:textSize="14sp"
-                      android:paddingLeft="10dp"
-                      android:paddingRight="10dp"
-                      android:maxLength="200"
-            />
-
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
@@ -278,25 +477,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="#e3dbd0"/>
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="50dp"
-                   android:background="#fff">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#fff">
 
-                   <TextView
-                       android:id="@+id/payTypeView"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:textColor="#525252"
-                       android:textSize="13sp"
-                       android:paddingLeft="12dp"
-                       android:paddingRight="12dp"
-                       android:drawablePadding="6dp"
-                       android:layout_centerVertical="true"
-                       />
+                    <TextView
+                        android:id="@+id/payTypeView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#525252"
+                        android:textSize="13sp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:drawablePadding="6dp"
+                        android:layout_centerVertical="true"
+                        />
 
-               </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
 
+<!--支付状态-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
@@ -316,67 +522,64 @@
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="#e3dbd0"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <TextView
-                    android:id="@+id/payStatusView"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:textColor="#525252"
-                    android:textSize="13sp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:gravity="center_vertical"
-                    android:background="#fff"
-                    />
+                    android:layout_height="50dp">
 
-                <LinearLayout android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                              android:layout_alignParentRight="true"
-                              android:layout_marginRight="12dp"
-                              android:layout_centerVertical="true"
-                >
+                    <TextView
+                        android:id="@+id/payStatusView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:textColor="#525252"
+                        android:textSize="13sp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:gravity="center_vertical"
+                        android:background="#fff"
+                        />
 
-                    <Button
-
-                        android:layout_width="wrap_content"
+                    <LinearLayout android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
                         android:layout_marginRight="12dp"
-                        android:background="@drawable/cancel_btn"
-                        android:id="@+id/btn_cancel"
-                        android:textColor="@color/text_color_black"
-                        android:text="取消报名"
-                        android:textSize="13sp"
-                    />
+                        android:layout_centerVertical="true"
+                        >
 
-                    <Button
+                        <Button
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/pay_now_btn"
-                        android:id="@+id/btn_pay"
-                        android:textColor="@color/white"
-                        android:text="去支付"
-                        android:textSize="13sp"
-                    />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="12dp"
+                            android:background="@drawable/cancel_btn"
+                            android:id="@+id/btn_cancel"
+                            android:textColor="@color/text_color_black"
+                            android:text="取消报名"
+                            android:textSize="13sp"
+                            />
 
-                </LinearLayout>
+                        <Button
 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/pay_now_btn"
+                            android:id="@+id/btn_pay"
+                            android:textColor="@color/white"
+                            android:text="去支付"
+                            android:textSize="13sp"
+                            />
 
+                    </LinearLayout>
 
+                </RelativeLayout>
+            </LinearLayout>
 
-
-
-
-            </RelativeLayout>
-
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical"
-                          android:id="@+id/layout_cancel"
+<!--取消原因-->
+            <LinearLayout
+                android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:id="@+id/layout_cancel"
             >
 
                 <View
@@ -416,7 +619,7 @@
 
             </LinearLayout>
 
-
+<!--我的评价-->
             <LinearLayout
                 android:id="@+id/myCommentPanel"
                 android:layout_width="match_parent"

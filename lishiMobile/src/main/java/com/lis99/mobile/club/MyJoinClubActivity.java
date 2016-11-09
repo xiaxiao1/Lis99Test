@@ -101,6 +101,10 @@ public class MyJoinClubActivity extends LSBaseActivity implements
 
         MyRequestManager.getInstance().requestPost(url, map, model, new CallBack() {
             @Override
+            public void handlerError(MyTask myTask) {
+                Common.showEmptyView(MyJoinClubActivity.this,R.id.empty_view,true);
+            }
+            @Override
             public void handler(MyTask mTask) {
                 model = (MyJoinClubModel) mTask.getResultModel();
 
@@ -129,7 +133,7 @@ public class MyJoinClubActivity extends LSBaseActivity implements
                 {
                     adapter.addList(model.clublist);
                 }
-
+                Common.showEmptyView(MyJoinClubActivity.this,R.id.empty_view,model.clublist);
             }
         });
 

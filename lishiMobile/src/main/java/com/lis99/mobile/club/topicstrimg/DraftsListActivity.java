@@ -138,6 +138,7 @@ public class DraftsListActivity extends LSBaseActivity  implements PullToRefresh
 
     private void getList ()
     {
+        Common.showEmptyView(this,R.id.empty_view,false);
         model = DataHelp.getInstance().searchDraft();
 
         if ( model != null && model.size() != 0 )
@@ -147,7 +148,8 @@ public class DraftsListActivity extends LSBaseActivity  implements PullToRefresh
         }
         else
         {
-            Common.toast("草稿箱里没有数据");
+//            Common.toast("草稿箱里没有数据");
+            Common.showEmptyView(this,R.id.empty_view,true);
         }
     }
 
