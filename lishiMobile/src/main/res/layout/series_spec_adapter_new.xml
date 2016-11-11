@@ -20,8 +20,8 @@
         >
 
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:id="@+id/btn_add"
-                    android:background="@drawable/series_add_no"
+                    android:id="@+id/btn_remove"
+                    android:background="@drawable/series_reomve_no"
             />
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -32,15 +32,16 @@
             />
 
             <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:id="@+id/btn_remove"
-                    android:background="@drawable/series_reomve_no"
+                    android:id="@+id/btn_add"
+                    android:background="@drawable/series_add_no"
             />
+
 
         </LinearLayout>
 
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:maxLines="1"
+                  android:maxLines="2"
                   android:ellipsize="end"
                   android:id="@+id/name"
                   android:text="标准价"

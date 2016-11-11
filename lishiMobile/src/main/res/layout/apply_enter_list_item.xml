@@ -7,11 +7,12 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:id="@+id/text"
         android:textColor="@color/text_color_black"
         android:gravity="center_vertical"
         android:text="金盾宇，男， 13146739203\n32147382928374839204"
+        android:lineSpacingExtra="3dp"
     />
 
 </LinearLayout>

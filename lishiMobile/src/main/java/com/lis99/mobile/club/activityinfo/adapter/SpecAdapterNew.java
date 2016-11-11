@@ -12,6 +12,8 @@ import com.lis99.mobile.club.model.SpecInfoListModel;
 import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyBaseAdapter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,10 +23,13 @@ import java.util.List;
 public class SpecAdapterNew extends MyBaseAdapter {
 
     private int select;
+    private double price;
+    private ArrayList<SpecInfoListModel.GuigelistEntity> joinList;
 
     public SpecAdapterNew(Activity c, List listItem) {
         super(c, listItem);
         select = 0;
+        price = 0;
     }
 
     @Override
@@ -41,7 +46,8 @@ public class SpecAdapterNew extends MyBaseAdapter {
         //TODO implement
         final SpecInfoListModel.GuigelistEntity item = (SpecInfoListModel.GuigelistEntity) object;
 
-        holder.name.setText(item.name);
+        holder.name.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
+        holder.name.setText(item.name+"，"+item.price);
         holder.tvNum.setText(""+item.selectNum);
         holder.btnAdd.setBackgroundResource(R.drawable.series_add);
         if ( item.selectNum == 0 )
@@ -68,7 +74,10 @@ public class SpecAdapterNew extends MyBaseAdapter {
                 if ( item.selectNum == 0 )
                 {
                     holder.btnRemove.setBackgroundResource(R.drawable.series_reomve_no);
-                    ((SericeCalendarActivity)mContext).setBtnClick(false);
+                    if ( select == 0 )
+                    {
+                        ((SericeCalendarActivity)mContext).setBtnClick(false);
+                    }
                 }
                 else
                 {
@@ -79,6 +88,34 @@ public class SpecAdapterNew extends MyBaseAdapter {
         });
 
 
+    }
+//  获取选择的规格， key 规格id， value 规格数量
+    public HashMap<Integer, Integer> getInfo ()
+    {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        price = 0;
+        joinList = new ArrayList<>();
+        int num = listItem.size();
+        for ( int i = 0; i < num; i++ )
+        {
+            final SpecInfoListModel.GuigelistEntity item = (SpecInfoListModel.GuigelistEntity) getItem(i);
+            if ( item.selectNum > 0 )
+            {
+                map.put(item.guigeId, item.selectNum);
+                joinList.add(item);
+                price += Common.string2Double(item.price) * item.selectNum;
+            }
+        }
+        return map;
+    }
+
+    public ArrayList<SpecInfoListModel.GuigelistEntity> getJoinList ()
+    {
+        return joinList;
+    }
+    public double getPrice ()
+    {
+        return price;
     }
 
     private void refresh ()

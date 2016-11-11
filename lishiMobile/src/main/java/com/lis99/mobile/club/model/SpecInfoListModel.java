@@ -2,6 +2,7 @@ package com.lis99.mobile.club.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -30,13 +31,13 @@ public class SpecInfoListModel extends BaseModel {
     @SerializedName("guigelist")
     public List<GuigelistEntity> guigelist;
 
-    public static class GuigelistEntity {
+    public static class GuigelistEntity implements Serializable{
         @SerializedName("guige_id")
         public int guigeId;
         @SerializedName("name")
         public String name;
         @SerializedName("price")
-        public int price;
+        public String price;
 //      选择的数量
         public int selectNum;
     }

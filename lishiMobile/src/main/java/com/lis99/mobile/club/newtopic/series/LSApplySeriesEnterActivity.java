@@ -15,8 +15,11 @@ import android.widget.TextView;
 import com.lis99.mobile.R;
 import com.lis99.mobile.application.data.DataManager;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.activityinfo.PayModel;
+import com.lis99.mobile.club.model.NewApplyUpData;
 import com.lis99.mobile.club.model.OrderInfoModel;
 import com.lis99.mobile.club.model.PayEnterOrderModel;
+import com.lis99.mobile.club.model.SpecInfoListModel;
 import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.util.C;
@@ -69,6 +72,10 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
     //    新加的
     private EditText et_info;
 
+    private PayModel payModel;
+
+    private TextView tv_date, tv_joins, tvAllPrice, tvPayPrice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,11 +91,14 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
         setTitle("报名");
 
-        topicID = getIntent().getIntExtra("topicID", 0);
-        clubID = getIntent().getIntExtra("clubID", 0);
-        batchID = getIntent().getIntExtra("batchID", 0);
+        payModel = (PayModel) getIntent().getSerializableExtra("PAYMODEL");
 
-        jonNum = LSApplySeriesNew.updata.size();
+        topicID = payModel.topicId;//getIntent().getIntExtra("topicID", 0);
+        clubID = payModel.clubId;//getIntent().getIntExtra("clubID", 0);
+        batchID = payModel.batchId;//getIntent().getIntExtra("batchID", 0);
+
+        jonNum = payModel.selectNum;//getIntent().getIntExtra("SELECTNUM", -1);
+
 
         getList();
 
@@ -108,6 +118,12 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
     @Override
     protected void initViews() {
         super.initViews();
+
+        tv_date = (TextView) findViewById(R.id.tv_date);
+        tv_joins = (TextView) findViewById(R.id.tv_joins);
+        tvPayPrice = (TextView) findViewById(R.id.tvPayPrice);
+        tvAllPrice = (TextView) findViewById(R.id.tvAllPrice);
+
 
         tv_title = (TextView) findViewById(R.id.tv_title);
 //        tv_pay = (TextView) findViewById(tv_pay);
@@ -219,13 +235,16 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
                 tv_joinNum.setText("报名人员（共" + jonNum + "人）");
 
                 //总价
-                float allPrice = model.consts * jonNum;
+                double allPrice = payModel.price;
 
                 DecimalFormat df = new DecimalFormat("0.00");
 
                 String priceAll = df.format(allPrice);
 
-                tv_price.setText("总计：" + priceAll + "元");
+                tv_price.setText("共计：" + priceAll + "元");
+
+                tvAllPrice.setText("费用总计￥"+priceAll);
+                tvPayPrice.setText("实际支付￥"+priceAll);
 
                 //显示支付方式
                 int typeLength = model.type.length;
@@ -263,17 +282,48 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
                     }
                 }
 
+                String startTime = payModel.startTime;
+                startTime = startTime.replace(".", "-");
+                tv_date.setText(startTime);
+                String joins = "";
+                int num = payModel.joinList.size();
+                for ( int i = 0; i < num; i++ )
+                {
+                    SpecInfoListModel.GuigelistEntity item = payModel.joinList.get(i);
+                    joins += item.name+"X"+item.selectNum+"，"+item.price+"/人";
+                    if ( i < num - 1 )
+                    {
+                        joins += "\n";
+                    }
+                }
+                tv_joins.setText(joins);
+
                 ArrayList<HashMap<String, String>> item = new ArrayList<HashMap<String, String>>();
 
 //                for (int i = 0; i < jonNum; i++) {
-                for (int i = 0; i < LSApplySeriesNew.updata.size(); i++) {
+                int nums = payModel.updata.size();
+                for (int i = 0; i < nums; i++) {
                     HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("name", LSApplySeriesNew.updata.get(i).name);
+                    NewApplyUpData info = payModel.updata.get(i);
+                    String name = info.name;
+                    if ( !TextUtils.isEmpty(info.sex) )
+                    {
+                        name += "，"+info.sex;
+                    }
+                    if ( !TextUtils.isEmpty(info.phone) )
+                    {
+                        name += "，"+info.phone;
+                    }
+                    if ( !TextUtils.isEmpty(info.credentials) )
+                    {
+                        name += "\n"+info.credentials;
+                    }
+                    map.put("name", name);
                     item.add(map);
                 }
 
                 SimpleAdapter simpleAdapter = new SimpleAdapter(activity, item, R.layout.apply_enter_list_item, new String[]{"name"}, new int[]{R.id.text});
-
+                list.setAdapter(simpleAdapter);
 //                grid.setAdapter(simpleAdapter);
             }
         });
@@ -333,8 +383,8 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         String platform = DeviceInfo.PLATFORM;
 
         String url = C.ADD_ACTIVE_SERIES_LINE;
-
-        String OrderList = ParserUtil.getGsonString(LSApplySeriesNew.updata);
+//      报名信息
+        String OrderList = ParserUtil.getGsonString(payModel.updata);
         OrderList = ParserUtil.getJsonArrayWithName("lists", OrderList);
         Common.log("OrderList==" + OrderList);
         HashMap<String, Object> map = new HashMap<String, Object>();
@@ -347,6 +397,9 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         map.put("client_version", client_version);
         map.put("platform", platform);
         map.put("apply_info", OrderList);
+
+//        规格
+        map.put("guige_info", ParserUtil.getGsonString(payModel.batchs));
 //        备注
         map.put("remark", et_info.getText().toString());
 
