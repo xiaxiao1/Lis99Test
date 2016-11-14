@@ -24,8 +24,6 @@ import com.lis99.mobile.util.MyBaseAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by yy on 15/11/19.
@@ -77,8 +75,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
     public View setView(int i, View view, ViewGroup viewGroup) {
         Holder holder = null;
         if (view == null) {
-//            view = View.inflate(mContext, R.layout.apply_manager_list_item_series, null);
-            view = View.inflate(mContext, R.layout.apply_manager_list_item_series_xiao, null);
+            view = View.inflate(mContext, R.layout.apply_manager_list_item_series_new, null);
             holder = new Holder(view);
 
             view.setTag(holder);
@@ -92,11 +89,10 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
 
         setIv_pay_state(item.payType, item.payStatus, holder.iv_pay_state, holder.tv_pay_state);
 
-//        holder.tv_title.setText("报名信息" + (i + 1));
         ImageLoader.getInstance().displayImage(item.headicon, holder.roundedImageView1, ImageUtil.getclub_topic_headImageOptions());
 
         holder.tv_name.setText(item.nickname);
-        holder.applyTime_tv.setText(item.createdate);
+
 
 
         /*备注*/
@@ -127,44 +123,8 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             holder.vipStar.setVisibility(View.GONE);
         }
 
-        ArrayList<String> list = new ArrayList<String>();
-
-        for ( int n = 0; n < 2; n++ )
-        {
-
-            /*HashMap<String, String> map = item.applyinfoList.get(n);
-
-            String batchId = String.format("（第%s批）", item.batch_id);
-
-            list.add("报名信息" + (n + 1) + batchId);
-
-            ArrayList<HashMap<String, String>> ilist = new ArrayList<HashMap<String, String>>();
-
-            for ( int m = 0; m < namesCode.length; m++ )
-            {
-                String nameC = namesCode[m];
-
-                if ( map.containsKey(nameC))
-                {
-                    String nameS = names[m];
-                    if ( m == 1 && ilist.size() > 0 )
-                    {
-                        String str = ilist.get(0).get("value");
-                        str = str + "（"+map.get(nameC)+"）";
-                        ilist.get(0).put("value", str);
-                        continue;
-                    }
-                    HashMap<String, String> hmap = new HashMap<String, String>();
-                    hmap.put("name", nameS);
-                    hmap.put("value", map.get(nameC));
-                    ilist.add(hmap);
-                }
-            }*/
-
-            list.add("vvv"+n);
-        }
-
-        ApplySeriesManagerItemAdapter adapter = new ApplySeriesManagerItemAdapter(mContext, list);
+        /*订单的报名人信息*/
+        ApplySeriesManagerItemAdapter adapter = new ApplySeriesManagerItemAdapter(mContext, item.applyinfoList);
 
         holder.list.setAdapter(adapter);
 
@@ -233,6 +193,38 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             }
         });
 
+        //出行时间
+        holder.goTime_tv.setText(item.starttime);
+        //报名时间
+        holder.applyTime_tv.setText(item.createdate);
+        //订单编号
+        holder.orderNumber_tv.setText(item.ordercode);
+        //规格部分
+        int guigeSize=item.orderbglist.size();
+        if (guigeSize==1) {
+            holder.guige1_label_tv.setText(item.orderbglist.get(0)[0]+" : ");
+            holder.adult_tv.setText(item.orderbglist.get(0)[1]+" × "+item.orderbglist.get(0)[2]);
+
+            holder.adultInfo_ll.setVisibility(View.VISIBLE);
+            holder.childInfo_ll.setVisibility(View.GONE);
+        } else if (guigeSize == 2) {
+            holder.guige1_label_tv.setText(item.orderbglist.get(0)[0]+" : ");
+            holder.adult_tv.setText(item.orderbglist.get(0)[1] + " × " + item.orderbglist.get(0)
+                    [2]);
+
+            holder.guige2_label_tv.setText(item.orderbglist.get(1)[0]+" : ");
+            holder.child_tv.setText(item.orderbglist.get(1)[1] + " × " + item.orderbglist.get(1)
+                    [2]);
+
+            holder.adultInfo_ll.setVisibility(View.VISIBLE);
+            holder.childInfo_ll.setVisibility(View.VISIBLE);
+        } else {
+            holder.adultInfo_ll.setVisibility(View.GONE);
+            holder.childInfo_ll.setVisibility(View.GONE);
+        }
+        //总价
+        holder.totalPrice_tv.setText(item.totprice);
+
 
         return view;
     }
@@ -283,12 +275,16 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         TextView goTime_tv;
         TextView applyTime_tv;
         TextView orderNumber_tv;
+        TextView guige1_label_tv;
+        TextView guige2_label_tv;
         TextView adult_tv;
         TextView child_tv;
         TextView totalPrice_tv;
         TextView note_tv;
         TextView cancelReason_tv;
         LinearLayout cancelReason_ll;
+        LinearLayout adultInfo_ll;
+        LinearLayout childInfo_ll;
 
         public Holder(View view) {
              roundedImageView1 = (RoundedImageView) view.findViewById(R.id.roundedImageView1);
@@ -308,10 +304,14 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             orderNumber_tv = (TextView) view.findViewById(R.id.order_info_ordernumber_tv);
             adult_tv = (TextView) view.findViewById(R.id.order_info_adult_tv);
             child_tv = (TextView) view.findViewById(R.id.order_info_child_tv);
+            guige1_label_tv = (TextView) view.findViewById(R.id.order_info_guige1_label_tv);
+            guige2_label_tv = (TextView) view.findViewById(R.id.order_info_guige2_label_tv);
             totalPrice_tv = (TextView) view.findViewById(R.id.order_info_totalprice_tv);
             note_tv = (TextView) view.findViewById(R.id.order_info_note_tv);
             cancelReason_tv = (TextView) view.findViewById(R.id.order_info_cancelreason_tv);
             cancelReason_ll = (LinearLayout) view.findViewById(R.id.order_info_cancelreason_ll);
+            adultInfo_ll = (LinearLayout) view.findViewById(R.id.order_info_adult_ll);
+            childInfo_ll = (LinearLayout) view.findViewById(R.id.order_info_child_ll);
         }
 
     }

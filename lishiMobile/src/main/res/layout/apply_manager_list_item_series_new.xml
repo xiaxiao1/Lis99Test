@@ -136,7 +136,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="出行日期:"
+                    android:text="出行日期 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
@@ -160,7 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="报名时间:"
+                    android:text="报名时间 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
@@ -184,7 +184,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="订单编号:"
+                    android:text="订单编号 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
@@ -204,11 +204,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/manage_apply_info_margin"
+
                 >
                 <TextView
+                    android:id="@+id/order_info_guige1_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="成人:"
+                    android:text="成人 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
@@ -230,9 +232,10 @@
                 android:layout_marginTop="@dimen/manage_apply_info_margin"
                 >
                 <TextView
+                    android:id="@+id/order_info_guige2_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="儿童:"
+                    android:text="儿童 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
@@ -256,7 +259,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="总价:"
+                    android:text="总价 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
@@ -280,7 +283,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="备注:"
+                    android:text="备注 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
@@ -304,7 +307,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="取消理由:"
+                    android:text="取消理由 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
                     />
