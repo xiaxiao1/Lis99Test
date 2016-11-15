@@ -381,7 +381,7 @@
                     android:layout_height="30dp"
                     android:background="@drawable/green"
                     android:visibility="visible"
-                    android:text="确认"
+                    android:text="    确认    "
                     android:textColor="@color/text_color_green"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center_vertical"
@@ -400,6 +400,7 @@
                       android:drawablePadding="6dp"
                       android:textSize="12sp"
                       android:layout_centerVertical="true"
+
             />
         </RelativeLayout>
 

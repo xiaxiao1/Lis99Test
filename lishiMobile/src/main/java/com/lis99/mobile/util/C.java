@@ -481,6 +481,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String MY_ACTIVITY_WAITCOMMENT_LIST = DOMAIN + "/v5/user/waitComment/";
 	public static final String MY_ACTIVITY_WAITPAY_LIST = DOMAIN + "/v5/user/waitPay/";
 	public static final String MY_ORDER_DETAIL = DOMAIN + "/v4/apply/orderDetail/";
+	/*新版接口 2016.11.14 */
+	public static final String MY_ORDER_DETAIL_NEW = DOMAINS + "/activity/order_detail";
 	public static final String MY_ACTIVITY_ADD_COMMENT = DOMAIN + "/v5/topics/leaderComment/";
 	public static final String MY_ACTIVITY_ADD_COMMENT_NEW = DOMAINS + "/activity/leaderComment/";
 
