@@ -99,7 +99,6 @@ public class LSMineActivityActivity extends LSBaseActivity implements PullToRefr
                     page.setPageSize(model.totalpage);
                     adapter = new LSMyActivityAdapter(activity, model.lists);
                     list.setAdapter(adapter);
-
                     list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
