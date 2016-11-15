@@ -44,6 +44,12 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
 
     TextView titleView, priceView, totalView, orderIDView, statusView, personTitleView, payTypeView, payStatusView;
 
+    TextView buyInfo_tv;
+    TextView totalPrice_tv;
+    TextView realPayPrice_tv;
+    TextView buyNumberLabel_tv;
+    TextView startTime_tv;
+
     LSMyActivityPersonAdapter adapter;
     ListView listView;
     LSMyActivity activity;
@@ -113,6 +119,11 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
     @Override
     protected void initViews() {
         super.initViews();
+        buyInfo_tv = (TextView) findViewById(R.id.price_child_tv);
+        startTime_tv = (TextView) findViewById(R.id.order_start_time);
+        buyNumberLabel_tv = (TextView) findViewById(R.id.number_tv);
+        totalPrice_tv = (TextView) findViewById(R.id.price_total_tv);
+        realPayPrice_tv = (TextView) findViewById(R.id.price_real_pay);
         leaderPhone_ll = (LinearLayout) findViewById(R.id.leader_phone_ll);
         leaderPhone_tv = (TextView) findViewById(R.id.leader_phone_tv);
         titleView = (TextView) findViewById(R.id.titleView);
@@ -259,7 +270,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
 
 
 
-        String url = C.MY_ORDER_DETAIL;
+        String url = C.MY_ORDER_DETAIL_NEW;
 
         HashMap<String, Object> map = new HashMap<String, Object>();
 
@@ -275,6 +286,25 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 adapter = new LSMyActivityPersonAdapter(LSMyActivityDetailActivity.this, activity.apply_info);
                 listView.setAdapter(adapter);
 
+                /*组装 价格区域信息*/
+                int size = activity.orderbglist.size();
+                StringBuffer priceInfos = new StringBuffer();
+                if (size==0) {
+                    buyNumberLabel_tv.setVisibility(View.GONE);
+                    buyInfo_tv.setVisibility(View.GONE);
+                } else if (size==1) {
+                    priceInfos.append(activity.orderbglist.get(0)[0]+", "+activity.orderbglist.get(0)[1]+" × "+activity.orderbglist.get(0)[2]+";");
+                    buyInfo_tv.setText(priceInfos.toString());
+                } else if (size==2) {
+                    priceInfos.append(activity.orderbglist.get(0)[0]+", "+activity.orderbglist.get(0)[1]+" × "+activity.orderbglist.get(0)[2]+";");
+                    priceInfos.append("\n");
+                    priceInfos.append(activity.orderbglist.get(1)[0]+", "+activity.orderbglist.get(1)[1]+" × "+activity.orderbglist.get(1)[2]+";");
+                    buyInfo_tv.setText(priceInfos.toString());
+                }
+
+                realPayPrice_tv.setText("实际支付： ￥"+activity.totprice);
+                totalPrice_tv.setText("￥"+activity.totprice);
+                startTime_tv.setText(activity.starttime);
                 if ( TextUtils.isEmpty(activity.remark))
                 {
                     tv_info.setText("无");

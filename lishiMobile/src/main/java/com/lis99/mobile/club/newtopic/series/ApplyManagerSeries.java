@@ -291,7 +291,7 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
             type = 0;
         }
 
-        String url = C.MANAGER_SERIES_LINE_JOIN + "/" + currentPage.getPageNo();
+        String url = C.MANAGER_SERIES_LINE_JOIN_NEW + "/" + currentPage.getPageNo();
 
 
         HashMap<String, Object> map = new HashMap<String, Object>();

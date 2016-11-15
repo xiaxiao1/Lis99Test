@@ -91,6 +91,10 @@ public class ApplyManagerSeriesModel extends BaseModel {
             public int payType;
             @SerializedName("orderid")
             public int orderid;
+            @SerializedName("ordercode")
+            public String ordercode;
+            @SerializedName("totprice")
+            public String totprice;
             @SerializedName("orderuserid")
             public int orderuserid;
             @SerializedName("is_vip")
@@ -108,6 +112,14 @@ public class ApplyManagerSeriesModel extends BaseModel {
             public String reason;
             @SerializedName("remark")
             public String remark;
+
+            /*
+            * 新版 添加的字段 2016.11.11
+            * */
+            @SerializedName("starttime")
+            public String starttime;
+            @SerializedName("orderbglist")
+            public ArrayList<String[]> orderbglist;
 
             /**
              * name : 振宇

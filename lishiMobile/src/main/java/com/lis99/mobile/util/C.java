@@ -481,6 +481,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String MY_ACTIVITY_WAITCOMMENT_LIST = DOMAIN + "/v5/user/waitComment/";
 	public static final String MY_ACTIVITY_WAITPAY_LIST = DOMAIN + "/v5/user/waitPay/";
 	public static final String MY_ORDER_DETAIL = DOMAIN + "/v4/apply/orderDetail/";
+	/*新版接口 2016.11.14 */
+	public static final String MY_ORDER_DETAIL_NEW = DOMAINS + "/activity/order_detail";
 	public static final String MY_ACTIVITY_ADD_COMMENT = DOMAIN + "/v5/topics/leaderComment/";
 	public static final String MY_ACTIVITY_ADD_COMMENT_NEW = DOMAINS + "/activity/leaderComment/";
 
@@ -549,6 +551,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String MANAGER_SERIES_LINE_JOIN_LIST = DOMAINS + "/activity/applybatchs/";
 //	https://apis.lis99.com/activity/enrollList/[page]
 	public static final String MANAGER_SERIES_LINE_JOIN = DOMAINS + "/activity/enrollList/";
+	//新版 领队管理活动接口 2016.11.11
+	public static final String MANAGER_SERIES_LINE_JOIN_NEW = DOMAINS + "/activity/enroll_list/";
 //	https://apis.lis99.com/activity/enroll	添加活动报名信息接口
 	public static final String ADD_ACTIVE_SERIES_LINE = DOMAINS+"/activity/enroll";
 //public static final String ADD_ACTIVE_SERIES_LINE = DOMAINS+"/activity/enroll_test";
