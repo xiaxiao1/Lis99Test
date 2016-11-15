@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.lis99.mobile.R;
 import com.lis99.mobile.club.LSBaseActivity;
+import com.lis99.mobile.club.activityinfo.PayModel;
 import com.lis99.mobile.club.model.ApplyContactsListModel;
 import com.lis99.mobile.club.model.ClubTopicGetApplyList;
 import com.lis99.mobile.club.model.NewApplyUpData;
@@ -36,12 +37,16 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
     private int topicID, clubID, batchID;
 // 上传列表
-    public static ArrayList<NewApplyUpData> updata;
+    public ArrayList<NewApplyUpData> updata;
 
     //  选择联系人
     public final static int ADDCONTACTS = 998;
 
     private TextView tv_warning;
+
+    private int joinPeople = 5;
+
+    private PayModel payModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +58,14 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
         setTitle("填写报名信息");
 
-        topicID = getIntent().getIntExtra("topicID", 0);
-        clubID = getIntent().getIntExtra("clubID", 0);
-        batchID = getIntent().getIntExtra("batchID", 0);
+        payModel = (PayModel) getIntent().getSerializableExtra("PAYMODEL");
+
+        topicID = payModel.topicId;//getIntent().getIntExtra("topicID", 0);
+        clubID = payModel.clubId;//getIntent().getIntExtra("clubID", 0);
+        batchID = payModel.batchId;//getIntent().getIntExtra("batchID", 0);
+        joinPeople = payModel.selectNum;//getIntent().getIntExtra("SELECTNUM", 1);
+
+        tv_warning.setText("应填"+joinPeople+"人，请依据活动要求填写报名信息");
 
         updata = new ArrayList<NewApplyUpData>();
 
@@ -116,10 +126,14 @@ public class LSApplySeriesNew extends LSBaseActivity {
 //                    Common.toast("还有一些信息未填写");
                     return;
                 }
+                payModel.updata = updata;
                 Intent intent = new Intent(this, LSApplySeriesEnterActivity.class);
-                intent.putExtra("clubID", clubID);
-                intent.putExtra("topicID", topicID);
-                intent.putExtra("batchID",batchID );
+//                intent.putExtra("clubID", clubID);
+//                intent.putExtra("topicID", topicID);
+//                intent.putExtra("batchID",batchID );
+//                intent.putExtra("SELECTNUM", getIntent().getIntExtra("SELECTNUM", -1));
+//                intent.putExtra("PRICE", getIntent().getLongExtra("PRICE", -1));
+                intent.putExtra("PAYMODEL", payModel);
                 startActivityForResult(intent, 999);
                 break;
             case R.id.btn_add:
@@ -130,9 +144,9 @@ public class LSApplySeriesNew extends LSBaseActivity {
                     return;
                 }
 
-                if ( updata.size() >= 5 )
+                if ( updata.size() >= joinPeople )
                 {
-                    Common.toast("您好，一次最多报名五人,如有特殊需求请联系领队");
+                    Common.toast("您好，报名人员数量不能多与规格数量");
                     return;
                 }
 

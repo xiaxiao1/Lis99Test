@@ -61,6 +61,12 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
     private TextView tv_desc;
 
+    private int batchId = -1;
+
+    private PayModel payModel;
+//  出行日期
+    private String startTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +96,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
         btnOk = (Button) findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(this);
 
-        setBtnClick(false);
+//        setBtnClick(false);
 
         gridCalendarView = (GridCalendarView) findViewById(R.id.gridMonthView);
 
@@ -119,6 +125,11 @@ public class SericeCalendarActivity extends LSBaseActivity {
                 String t = " "+getTime(item.settime);
 
                 tv_desc.setText("（名额"+item.people+"人， 集合时间："+m+d+t+"）");
+
+                batchId = item.batchId;
+
+                startTime = item.starttime;
+
                 getSpecs(item.batchId);
 
 
@@ -144,7 +155,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
         else
         {
             btnOk.setBackgroundColor(Color.parseColor("#e2e2e2"));
-            btnOk.setText("请选择游玩日期");
+            btnOk.setText("请选择规格");
             btnOk.setClickable(false);
         }
     }
@@ -156,16 +167,14 @@ public class SericeCalendarActivity extends LSBaseActivity {
             case R.id.btn_ok:
                 //TODO implement
 
-//                if ( adapter == null || adapter.getCurrentPosition() == -1 ) return;
+                if ( adapter == null || adapter.getSelectNum() == 0 ) return;
 //
-//                int batchId = adapter.getBatchId();
-//
-//                if ( batchId == -1 )
-//                {
-//                    return;
-//                }
-                    Common.toast("is click="+adapter.getSelectNum());
-//                goNextActivity(0);
+                if ( batchId == -1 )
+                {
+                    return;
+                }
+//                    Common.toast("is click="+adapter.getSelectNum());
+                goNextActivity(batchId);
 
                 break;
         }
@@ -397,10 +406,22 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
     private void goNextActivity (int batchId)
     {
+        payModel = new PayModel();
+        payModel.clubId = clubId;
+        payModel.batchId = batchId;
+        payModel.topicId = activityId;
+        payModel.selectNum = adapter.getSelectNum();
+//                获取选择的规格信息
+        payModel.batchs = adapter.getInfo();
+//        先计算规格数量， 再获取价格
+        payModel.price = adapter.getPrice();
+
+        payModel.joinList = adapter.getJoinList();
+
+        payModel.startTime = startTime;
+
         Intent intent = new Intent(activity, LSApplySeriesNew.class);
-        intent.putExtra("clubID", clubId);
-        intent.putExtra("batchID", batchId);
-        intent.putExtra("topicID", activityId);
+        intent.putExtra("PAYMODEL", payModel);
         startActivityForResult(intent, 997);
     }
 

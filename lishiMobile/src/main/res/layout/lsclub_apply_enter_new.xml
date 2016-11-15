@@ -175,6 +175,7 @@
                                           android:paddingRight="10dp"
                                           android:divider="@color/color_eee"
                                           android:dividerHeight="1px"
+                                          android:background="@color/white"
         ></com.lis99.mobile.view.MyListView>
 
 
@@ -401,6 +402,24 @@
 
 
         </RadioGroup>
+
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                  android:textSize="@dimen/text_small"
+                  android:textColor="@color/color_nine"
+                  android:id="@+id/tvAllPrice"
+        />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_gravity="right"
+                  android:padding="10dp"
+                  android:textColor="@color/text_color_green"
+                  android:id="@+id/tvPayPrice"
+                  android:layout_marginBottom="10dp"
+        />
 
 
     </LinearLayout>

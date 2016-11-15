@@ -554,7 +554,9 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	//新版 领队管理活动接口 2016.11.11
 	public static final String MANAGER_SERIES_LINE_JOIN_NEW = DOMAINS + "/activity/enroll_list/";
 //	https://apis.lis99.com/activity/enroll	添加活动报名信息接口
-	public static final String ADD_ACTIVE_SERIES_LINE = DOMAINS+"/activity/enroll";
+//	public static final String ADD_ACTIVE_SERIES_LINE = DOMAINS+"/activity/enroll";
+//	https://apis.lis99.com/activity/enroll_batch_guige	新版
+	public static final String ADD_ACTIVE_SERIES_LINE = DOMAINS+"/activity/enroll_batch_guige";
 //public static final String ADD_ACTIVE_SERIES_LINE = DOMAINS+"/activity/enroll_test";
 //	https://apis.lis99.com/activity/applyEnroll/2631	获取报名填写信息
 	public static final String ACTIVE_SERIES_APPLY_LIST = DOMAINS + "/activity/applyEnroll/";
