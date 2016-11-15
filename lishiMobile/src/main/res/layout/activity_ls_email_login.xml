@@ -50,7 +50,7 @@
             android:paddingRight="9dp"
             android:textSize="16sp"
             android:singleLine="true"
-            android:text="578580936@qq.com"
+            android:text=""
             />
 
         <EditText
@@ -68,7 +68,7 @@
             android:paddingRight="9dp"
             android:textSize="16sp"
             android:singleLine="true"
-            android:text="159357jeremy"
+            android:text=""
             />
         
         <Button

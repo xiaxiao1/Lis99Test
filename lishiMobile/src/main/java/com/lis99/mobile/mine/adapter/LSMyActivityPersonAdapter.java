@@ -53,7 +53,7 @@ public class LSMyActivityPersonAdapter extends MyBaseAdapter {
         }
 
         LSMyActivity.Applicant item = (LSMyActivity.Applicant) getItem(i);
-        holder.nameVieww.setText(item.name);
+        holder.nameVieww.setText(formatInfos(new String[]{item.name,item.sex,item.mobile,item.credentials,item.postaladdress,item.qq,item.phone,item.consts}));
         return view;
     }
 
@@ -63,4 +63,16 @@ public class LSMyActivityPersonAdapter extends MyBaseAdapter {
         public View  sepHalf;
     }
 
+    public String formatInfos(String[] infos) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i=0;i<infos.length;i++) {
+            if (infos[i]!=null) {
+                stringBuffer.append(infos[i]);
+                stringBuffer.append(", ");
+            }
+        }
+        stringBuffer=stringBuffer.deleteCharAt(stringBuffer.length() - 2);
+        return stringBuffer.toString();
+
+    }
 }

@@ -63,15 +63,19 @@
                     android:maxLines="2"
                     android:lineSpacingExtra="8dp"
                     android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp"
                     android:textColor="#525252"
                     android:textSize="16sp"/>
 
+                <!--活动批次信息，已停用-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         android:id="@+id/priceView"
@@ -212,6 +216,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="12dp"
                         />
+                    <!--返回数据字段不确定 ，所以都组装在儿童价字段中，此字段停用-->
                     <TextView
                         android:id="@+id/price_adult_tv"
                         android:layout_width="wrap_content"
@@ -222,6 +227,7 @@
                         android:gravity="center_vertical"
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@id/number_tv"
+                        android:visibility="gone"
                         />
                     <TextView
                         android:id="@+id/price_child_tv"
@@ -229,7 +235,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_nine"
                         android:textSize="13sp"
-                        android:text="儿童价，2330"
+                        android:text="0"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/number_tv"
                         android:layout_below="@id/price_adult_tv"
@@ -252,7 +258,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_nine"
                         android:textSize="13sp"
-                        android:text="500.00"
+                        android:text="00.00"
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/price_total_label_tv"
                         android:layout_below="@id/price_child_tv"
@@ -268,6 +274,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_below="@id/price_total_label_tv"
                         android:layout_marginLeft="12dp"
+                        android:visibility="gone"
                         />
                     <TextView
                         android:id="@+id/price_discount_tv"
@@ -275,10 +282,11 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_nine"
                         android:textSize="13sp"
-                        android:text="10.0"
+                        android:text="0.0"
                         android:gravity="center_vertical"
                         android:layout_below="@id/price_total_label_tv"
                         android:layout_toRightOf="@id/price_total_label_tv"
+                        android:visibility="gone"
                         />
                     <TextView
                         android:id="@+id/price_real_pay"
@@ -291,6 +299,7 @@
                         android:layout_below="@id/price_total_label_tv"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="12dp"
+                        android:visibility="gone"
                         />
                 </RelativeLayout>
             </LinearLayout>
@@ -325,7 +334,7 @@
                     android:layout_height="50dp"
                     android:textColor="#525252"
                     android:textSize="13sp"
-                    android:text="2019-10-10"
+                    android:text=" "
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:gravity="center_vertical"
@@ -549,7 +558,7 @@
                         <Button
 
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
                             android:layout_marginRight="12dp"
                             android:background="@drawable/cancel_btn"
                             android:id="@+id/btn_cancel"
@@ -560,11 +569,11 @@
 
                         <Button
 
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="105dp"
+                            android:layout_height="30dp"
                             android:background="@drawable/pay_now_btn"
                             android:id="@+id/btn_pay"
-                            android:textColor="@color/white"
+                            android:textColor="@color/text_color_green"
                             android:text="去支付"
                             android:textSize="13sp"
                             />

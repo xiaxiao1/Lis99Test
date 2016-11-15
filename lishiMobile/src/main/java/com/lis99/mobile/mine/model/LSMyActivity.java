@@ -39,6 +39,7 @@ public class LSMyActivity extends BaseModel{
     public String create_user_nickname;
     public String create_user_headicon;
     public String leader_headicon;
+    public String starttime;
 //  备注
     public String remark;
 //    取消报名理由
@@ -46,6 +47,7 @@ public class LSMyActivity extends BaseModel{
 
     public ArrayList<String> leader_tag;
     public ArrayList<Applicant> apply_info;
+    public ArrayList<String[]> orderbglist;
 
     public static class Applicant extends BaseModel{
 //        public String name;
