@@ -289,10 +289,26 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                 /*组装 价格区域信息*/
                 int size = activity.orderbglist.size();
                 StringBuffer priceInfos = new StringBuffer();
-                if (size==0) {
+                if (size == 0) {
                     buyNumberLabel_tv.setVisibility(View.GONE);
                     buyInfo_tv.setVisibility(View.GONE);
-                } else if (size==1) {
+                } else {
+                    buyNumberLabel_tv.setVisibility(View.VISIBLE);
+                    buyInfo_tv.setVisibility(View.VISIBLE);
+                    for (int gi=0;gi<size;gi++) {
+                        priceInfos.append(activity.orderbglist.get(gi)[0]);
+                        priceInfos.append(", ");
+                        priceInfos.append(activity.orderbglist.get(gi)[1]);
+                        priceInfos.append(" × ");
+                        priceInfos.append(activity.orderbglist.get(gi)[2]);
+                        priceInfos.append(";");
+                        priceInfos.append("\n");
+                    }
+                    priceInfos.delete(priceInfos.length() - 1, priceInfos.length());
+                    buyInfo_tv.setText(priceInfos.toString());
+                }
+
+                    /*if (size==1) {
                     priceInfos.append(activity.orderbglist.get(0)[0]+", "+activity.orderbglist.get(0)[1]+" × "+activity.orderbglist.get(0)[2]+";");
                     buyInfo_tv.setText(priceInfos.toString());
                 } else if (size==2) {
@@ -300,7 +316,7 @@ public class LSMyActivityDetailActivity extends LSBaseActivity implements Compou
                     priceInfos.append("\n");
                     priceInfos.append(activity.orderbglist.get(1)[0]+", "+activity.orderbglist.get(1)[1]+" × "+activity.orderbglist.get(1)[2]+";");
                     buyInfo_tv.setText(priceInfos.toString());
-                }
+                }*/
 
                 realPayPrice_tv.setText("实际支付： ￥"+activity.totprice);
                 totalPrice_tv.setText("￥"+activity.totprice);
