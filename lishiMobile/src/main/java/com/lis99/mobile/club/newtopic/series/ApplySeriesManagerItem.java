@@ -199,9 +199,30 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         holder.applyTime_tv.setText(item.createdate);
         //订单编号
         holder.orderNumber_tv.setText(item.ordercode);
-        //规格部分
+
+        /*
+        规格部分
+        */
+        //得到规格数量
         int guigeSize=item.orderbglist.size();
-        if (guigeSize==1) {
+        StringBuffer guigeInfos = new StringBuffer();
+        if (guigeSize == 0) {//没有规格则不显示展示区域
+            holder.adultInfo_ll.setVisibility(View.GONE);
+        } else {
+            //遍历，组装规格信息，并展示
+            holder.adultInfo_ll.setVisibility(View.VISIBLE);
+            for (int gi=0;gi<guigeSize;gi++) {
+                guigeInfos.append(item.orderbglist.get(gi)[0]);
+                guigeInfos.append(" : ");
+                guigeInfos.append(item.orderbglist.get(gi)[1]);
+                guigeInfos.append(" × ");
+                guigeInfos.append(item.orderbglist.get(gi)[2]);
+                guigeInfos.append("\n");
+            }
+            guigeInfos.delete(guigeInfos.length() - 1, guigeInfos.length());
+            holder.guige1_label_tv.setText(guigeInfos.toString());
+        }
+        /*if (guigeSize==1) {
             holder.guige1_label_tv.setText(item.orderbglist.get(0)[0]+" : ");
             holder.adult_tv.setText(item.orderbglist.get(0)[1]+" × "+item.orderbglist.get(0)[2]);
 
@@ -221,7 +242,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
         } else {
             holder.adultInfo_ll.setVisibility(View.GONE);
             holder.childInfo_ll.setVisibility(View.GONE);
-        }
+        }*/
         //总价
         holder.totalPrice_tv.setText(item.totprice);
 
@@ -302,7 +323,7 @@ public class ApplySeriesManagerItem extends MyBaseAdapter {
             goTime_tv = (TextView) view.findViewById(R.id.order_info_gotime_tv);
             applyTime_tv = (TextView) view.findViewById(R.id.order_info_applytime_tv);
             orderNumber_tv = (TextView) view.findViewById(R.id.order_info_ordernumber_tv);
-            adult_tv = (TextView) view.findViewById(R.id.order_info_adult_tv);
+//            adult_tv = (TextView) view.findViewById(R.id.order_info_adult_tv);
             child_tv = (TextView) view.findViewById(R.id.order_info_child_tv);
             guige1_label_tv = (TextView) view.findViewById(R.id.order_info_guige1_label_tv);
             guige2_label_tv = (TextView) view.findViewById(R.id.order_info_guige2_label_tv);
