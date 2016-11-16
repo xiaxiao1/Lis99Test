@@ -46,6 +46,7 @@ public class SpecAdapterNew extends MyBaseAdapter {
         //TODO implement
         final SpecInfoListModel.GuigelistEntity item = (SpecInfoListModel.GuigelistEntity) object;
 
+        holder.tvNum.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
         holder.name.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
         holder.name.setText(item.name+"，"+item.price);
         holder.tvNum.setText(""+item.selectNum);
