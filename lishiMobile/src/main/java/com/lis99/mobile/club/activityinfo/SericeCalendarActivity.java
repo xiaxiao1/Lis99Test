@@ -226,7 +226,7 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
         HashMap<String, Object> map = new HashMap<>();
 
-        activityId = 6436;
+//        activityId = 6436;
 
         map.put("user_id", userId);
         map.put("activity_id", activityId);
