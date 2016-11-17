@@ -17,7 +17,7 @@ import com.lis99.mobile.R;
 import com.lis99.mobile.club.destination.DestinationMainActivity;
 import com.lis99.mobile.club.filter.FilterMainActivity;
 import com.lis99.mobile.club.model.ActiveBannerInfoModel;
-import com.lis99.mobile.club.model.ActiveLineNewModel;
+import com.lis99.mobile.club.model.ActiveLineADModel;
 import com.lis99.mobile.club.model.ActiveMainHeadModel;
 import com.lis99.mobile.club.model.LiShiRecommendActiveModel;
 import com.lis99.mobile.club.widget.BannerView;
@@ -118,8 +118,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         v = View.inflate(getActivity(), R.layout.active_new_line, null);
-        tvMassage = (TextView)v.findViewById(R.id.tv_massage);
-        tvLocation = (TextView)v.findViewById(R.id.tv_location);
+        tvMassage = (TextView) v.findViewById(R.id.tv_massage);
+        tvLocation = (TextView) v.findViewById(R.id.tv_location);
         tvLocation.setText("活动");
 //        tvLocation.setOnClickListener(this);
         pull_refresh_view = (PullToRefreshView) v.findViewById(R.id.pull_refresh_view);
@@ -127,7 +127,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         pull_refresh_view.setOnFooterRefreshListener(this);
         pull_refresh_view.setOnHeaderRefreshListener(this);
 
-        list = (ListView)v.findViewById(R.id.list);
+        list = (ListView) v.findViewById(R.id.list);
 
         titleLeft = v.findViewById(R.id.titleLeft);
 
@@ -144,7 +144,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         btn_change = (Button) head.findViewById(R.id.btn_change);
         btn_change.setOnClickListener(this);
 
-        foodView = View.inflate(getActivity(),R.layout.active_no_info_food, null );
+        foodView = View.inflate(getActivity(), R.layout.active_no_info_food, null);
 
         recycler_supper_leader = (RecyclerView) head.findViewById(R.id.recycler_supper_leader);
         recycler_supper_leader.setLayoutManager(new LinearLayoutManager(
@@ -165,13 +165,12 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if ( model == null || model.getLists() == null || model.getLists().size() == 0 || adapter == null )
-                {
+                if (model == null || model.getLists() == null || model.getLists().size() == 0 || adapter == null) {
                     return;
                 }
 
                 LiShiRecommendActiveModel.ActiveEntity item = (LiShiRecommendActiveModel.ActiveEntity) adapter.getItem(i - 1);
-                if ( item == null ) return;
+                if (item == null) return;
 
                 int num = item.getActivity_id();
 
@@ -188,8 +187,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         head.setVisibility(View.GONE);
 
         //                9宫格
-        if ( gridList == null )
-        {
+        if (gridList == null) {
             gridList = NativeEntityUtil.getInstance().getActiveBanner();
         }
 
@@ -215,16 +213,14 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
     }
 
     //  没有当前城市数据， 弹出提示
-    private void showNoCityDialog ()
-    {
+    private void showNoCityDialog() {
         DialogManager.getInstance().showActiveDialog(getActivity());
     }
 
 
     RedDotUtil redDotUtil = RedDotUtil.getInstance();
 
-    private void cleanList ()
-    {
+    private void cleanList() {
 //        foodView.setVisibility(View.VISIBLE);
 //        list.addFooterView(foodView);
         head.setVisibility(View.GONE);
@@ -236,14 +232,10 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         recommendAdapter = null;
 
 
-
-
     }
 
-    private void getHead ()
-    {
-        if ( recommendAdapter != null )
-        {
+    private void getHead() {
+        if (recommendAdapter != null) {
             getList(Latitude, Longitude);
             return;
         }
@@ -252,34 +244,31 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         map.put("latitude", Latitude);
         map.put("longitude", Longitude);
         headModel = new ActiveMainHeadModel();
-        MyRequestManager.getInstance().requestPost(url, map,headModel, new CallBack() {
+        MyRequestManager.getInstance().requestPost(url, map, headModel, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 headModel = (ActiveMainHeadModel) mTask.getResultModel();
 
-                if ( headModel == null ) return;
+                if (headModel == null) return;
 
                 head.setVisibility(View.VISIBLE);
 
 //              推荐活动
 
                 //添加尾部item
-                for (int i=0;i<headModel.hotlist.size();i++) {
-                    ActiveMainHeadModel.HotlistEntity.ActlistEntity a=new ActiveMainHeadModel.HotlistEntity.ActlistEntity();
+                for (int i = 0; i < headModel.hotlist.size(); i++) {
+                    ActiveMainHeadModel.HotlistEntity.ActlistEntity a = new ActiveMainHeadModel.HotlistEntity.ActlistEntity();
                     //topicId 用来标识item布局类型的。 -1：在热门活动的列表中，标识最后一个item 的布局，，，--->ActiveMainRecommendRecycler
-                    if (headModel.hotlist.get(i).jumpto==0) {//没有跳转
-                    }
-                    else if (headModel.hotlist.get(i).jumpto == 1) {//全部目的地
+                    if (headModel.hotlist.get(i).jumpto == 0) {//没有跳转
+                    } else if (headModel.hotlist.get(i).jumpto == 1) {//全部目的地
                         a.topicId = -1;
                         a.topicTitle = "mudidi";
                         headModel.hotlist.get(i).actlist.add(a);
-                    }
-                    else if (headModel.hotlist.get(i).jumpto == 2) {//当地俱乐部
+                    } else if (headModel.hotlist.get(i).jumpto == 2) {//当地俱乐部
                         a.topicId = -1;
                         a.topicTitle = "bendi";
                         headModel.hotlist.get(i).actlist.add(a);
-                    }
-                    else {                                         //3 附近的活动
+                    } else {                                         //3 附近的活动
                         a.topicId = -1;
                         a.topicTitle = "fujin";
                         headModel.hotlist.get(i).actlist.add(a);
@@ -288,6 +277,8 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 
                 recommendAdapter = new ActiveMainRecommendAdapter(getActivity(), headModel.hotlist);
                 s_list.setAdapter(recommendAdapter);
+
+                getADList();
                 getList(Latitude, Longitude);
 
                 supperRecycler = new SupperLaderRecycler(headModel.leaderlist, getActivity());
@@ -297,7 +288,7 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
                     @Override
                     public void onItemClick(int position) {
                         ActiveMainHeadModel.LeaderlistEntity item = headModel.leaderlist.get(position);
-                        Common.goUserHomeActivit(getActivity(), ""+item.userId);
+                        Common.goUserHomeActivit(getActivity(), "" + item.userId);
                     }
                 });
 
@@ -305,6 +296,24 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
         });
 
     }
+
+    private ActiveLineADModel adModel;
+//    获取广告列表
+    private void getADList()
+    {
+        String url = C.ACTIVE_AD_LIST;
+        adModel = new ActiveLineADModel();
+        MyRequestManager.getInstance().requestGet(url, adModel, new CallBack() {
+            @Override
+            public void handler(MyTask mTask) {
+                adModel = (ActiveLineADModel) mTask.getResultModel();
+                if ( adModel == null || adModel.adlist == null || adModel.adlist.size() == 0 ) return;
+                recommendAdapter.setAd(adModel);
+            }
+        });
+
+    }
+
 
 
     //获得砾石推荐活动列表数据

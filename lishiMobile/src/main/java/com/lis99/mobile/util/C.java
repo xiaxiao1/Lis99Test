@@ -607,7 +607,8 @@ public static final String USER_GET_MYTOPICS = DOMAIN + "/v5/user/myPubTopics/";
 	public static final String BATCH_TIMES = DOMAINS + "/activity/batchtimes";
 //	获取规格		https://apis.lis99.com/activity/batchguige
 	public static final String SPEC_LIST = DOMAINS + "/activity/batchguige";
-
+//	活动首页广告列表		https://apis.lis99.com/main/adlist
+	public static final String ACTIVE_AD_LIST = DOMAINS + "/main/adlist";
 
 
 
