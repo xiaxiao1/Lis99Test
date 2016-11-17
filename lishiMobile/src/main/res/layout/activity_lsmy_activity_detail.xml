@@ -235,7 +235,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_nine"
                         android:textSize="13sp"
-                        android:text="0"
+                        android:text=""
                         android:gravity="center_vertical"
                         android:layout_toRightOf="@id/number_tv"
                         android:layout_below="@id/price_adult_tv"
