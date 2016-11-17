@@ -1,6 +1,7 @@
 package com.lis99.mobile.newhome.activeline.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -10,13 +11,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lis99.mobile.R;
+import com.lis99.mobile.club.model.ActiveLineADModel;
 import com.lis99.mobile.club.model.ActiveMainHeadModel;
 import com.lis99.mobile.club.widget.BannerView;
 import com.lis99.mobile.club.widget.ImagePageAdapter;
+import com.lis99.mobile.util.ActivityUtil;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.ImageUtil;
 import com.lis99.mobile.util.MyBaseAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -34,7 +42,61 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
     public ActiveMainRecommendAdapter(Activity c, List listItem) {
         super(c, listItem);
     }
+//  添加广告， 遍历列表插入
+    public void setAd(ActiveLineADModel model )
+    {
+        int activeSize = listItem.size();
+//        int adSize = model.adlist.size();
+//        int size = Math.max(activeSize, adSize);
+        List<Object> newList = new ArrayList<>();
+        ActiveLineADModel.Adlist lastItem = null;
 
+        for ( int i = 0; i < activeSize; i++ )
+        {
+//            添加推荐活动
+            newList.add(listItem.get(i));
+//          权重从1开始
+            int weight = i + 1;
+            if ( model.adlist.containsKey(""+weight))
+            {
+                ActiveLineADModel.Adlist item = new ActiveLineADModel.Adlist();
+                item.lists = model.adlist.get(""+weight);
+                newList.add(item);
+                model.adlist.remove(""+weight);
+
+//                最后一条
+                if ( i == activeSize - 1 )
+                {
+                    lastItem = item;
+                }
+            }
+        }
+//        获取剩下的权重信息
+        Set<String> keySet =  model.adlist.keySet();
+
+        if ( keySet.isEmpty())
+        {
+            setList(newList);
+            return;
+        }
+
+//        如果最后一条没有广告， 则手动添加一个
+        if ( lastItem == null )
+        {
+            lastItem = new ActiveLineADModel.Adlist();
+            lastItem.lists = new ArrayList<>();
+            newList.add(lastItem);
+        }
+
+        Iterator<String> iterator = keySet.iterator();
+        while (iterator.hasNext())
+        {
+            String key = iterator.next();
+            lastItem.lists.addAll(model.adlist.get(key));
+        }
+
+        setList(newList);
+    }
 
     @Override
     public int getViewTypeCount() {
@@ -43,7 +105,17 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+
+        Object o = getItem(position);
+        if ( o instanceof ActiveMainHeadModel.HotlistEntity )
+        {
+            return info;
+        }
+        else
+        {
+            return ad;
+        }
+
     }
 
     @Override
@@ -68,7 +140,8 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
         if ( view == null )
         {
             view = View.inflate(mContext, R.layout.active_line_hot_ad, null);
-            view.setTag(new BannerHolder(view));
+            bannerHolder = new BannerHolder(view);
+            view.setTag(bannerHolder);
         }
         else
         {
@@ -100,22 +173,93 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
             }
         });
 
-        ImagePageAdapter bannerAdapter=new ImagePageAdapter(mContext, 0);
+        final ActiveLineADModel.Adlist item = (ActiveLineADModel.Adlist) getItem(i);
+
+        ImagePageAdapter bannerAdapter=new ImagePageAdapter(mContext, item.lists.size());
+        bannerHolder.bannerAD.setBannerAdapter(bannerAdapter);
+        bannerHolder.bannerAD.startAutoScroll();
+
         bannerAdapter.addImagePageAdapterListener(new ImagePageAdapter.ImagePageAdapterListener() {
             @Override
             public void dispalyImage(ImageView banner, ImageView iv_load, int position) {
+                if ( item == null || item.lists == null || item.lists.size() == 0 ) return;
+                ActiveLineADModel.Adlist info = item.lists.get(position);
+                ImageLoader.getInstance().displayImage(info.images, banner,
+                        ImageUtil.getclub_topic_imageOptions(), ImageUtil.getImageLoading(iv_load, banner));
 
             }
         });
         bannerAdapter.setImagePageClickListener(new ImagePageAdapter.ImagePageClickListener() {
             @Override
             public void onClick(int index) {
+                if ( item == null || item.lists == null || item.lists.size() == 0 ) return;
+
+                Intent intent = null;
+
+                ActiveLineADModel.Adlist info = item.lists.get(index);
+
+                int id = Common.string2int(item.url);
+
+                int type = Common.string2int(item.type);
+
+                switch (type) {
+//            话题
+                    case 0:
+                    case 1:
+//                        intent = new Intent(mContext, LSClubTopicActivity.class);
+//                        intent.putExtra("topicID", id);
+//                        mContext.startActivity(intent);
+                        Common.goTopic(mContext, 0, id);
+                        break;
+//            线下贴
+                    case 5:
+//                intent = new Intent(getActivity(), LSClubTopicActiveOffLine.class);
+//                intent.putExtra("topicID", item.id);
+//                startActivity(intent);
+                        Common.goTopic(mContext, 4, id);
+
+                        break;
+//            新版话题帖
+                    case 6:
+//                        intent = new Intent(getActivity(), LSClubNewTopicListMain.class);
+//                        intent.putExtra("TOPICID", ""+id);
+//                        startActivity(intent);
+                        Common.goTopic(mContext, 3, id);
+                        break;
+//            线上贴
+                    case 2:
+//                        intent = new Intent(getActivity(), LSClubTopicNewActivity.class);
+//                        intent.putExtra("topicID", id);
+//                        startActivity(intent);
+                        Common.goTopic(mContext, 2, id);
+                        break;
+//            URL
+                    case 3:
+//                        intent = new Intent(getActivity(), MyActivityWebView.class);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("URL", item.link);
+//                        bundle.putString("TITLE", "");
+//                        bundle.putString("IMAGE_URL", item.image);
+//                        bundle.putInt("TOPIC_ID", 0);
+//                        intent.putExtras(bundle);
+//                        startActivity(intent);
+                        ActivityUtil.getURLActivity(mContext, item.url, "", item.images, id);
+                        break;
+//            俱乐部
+                    case 4:
+//                        intent = new Intent(getActivity(), LSClubDetailActivity.class);
+//                        intent.putExtra("clubID", id);
+//                        startActivity(intent);
+
+                        ActivityUtil.goClubInfo(mContext, id);
+
+                        break;
+                }
+
+
 
             }
         });
-        bannerHolder.bannerAD.setBannerAdapter(bannerAdapter);
-        bannerHolder.bannerAD.startAutoScroll();
-
 
         return view;
     }
