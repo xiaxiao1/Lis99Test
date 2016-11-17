@@ -22,21 +22,21 @@ public class ApplySeriesManagerItemAdapter extends MyBaseAdapter {
     private String[] namesCode = new String[]{
             "name",
             "sex",
-            "credentials",
             "mobile",
+            "credentials",
             "phone",
             "qq",
-            "const",
+            /*"const",*/
             "postaladdress",
     };
     private String[] names = new String[]{
             "真实姓名",
             "性别",
-            "身份证号",
             "手机号码",
+            "身份证号",
             "紧急联系",
             "QQ",
-            "应付费用",
+           /* "应付费用",*/
             "邮寄地址",
             "居住城市",
     };
@@ -65,7 +65,10 @@ public class ApplySeriesManagerItemAdapter extends MyBaseAdapter {
         for (int index=0;index<keyNumber;index++) {
 //            Common.Log_i(keyNumber+"  index:"+index);
             if (infos.containsKey(namesCode[index])) {
-                stringBuffer.append(names[index]+" : "+infos.get(namesCode[index])+"\n");
+                stringBuffer.append(names[index]);
+                stringBuffer.append(" : ");
+                stringBuffer.append(infos.get(namesCode[index]));
+                stringBuffer.append("\n");
             }
         }
         holder.realName_tv.setText(stringBuffer.toString());

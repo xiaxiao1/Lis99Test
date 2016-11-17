@@ -313,8 +313,8 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
                 currentPage.pageNo += 1;
 
                 btn_enter.setText("已确认（" + model.applyPass + "）");
-                btn_refuse.setText("已拒绝（" + model.applyRefuse + "）");
-                btn_need_enter.setText("待审核（" + model.applyAudit + "）");
+                btn_refuse.setText("已关闭（" + model.applyRefuse + "）");
+                btn_need_enter.setText("待确认（" + model.applyAudit + "）");
 
                 tv2.setText("共"+model.applyTotPeople+"个用户，"+model.applyTotal+"个报名信息");
 

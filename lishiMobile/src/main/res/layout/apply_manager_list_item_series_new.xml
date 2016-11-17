@@ -213,23 +213,26 @@
                     android:text="成人 : "
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
+                    android:lineSpacingExtra="13dp"
                     />
-                <TextView
+                <!--<TextView
                     android:id="@+id/order_info_adult_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ww"
                     android:textColor="@color/text_color_black"
                     android:textSize="14sp"
-                    />
+                    />-->
             </LinearLayout>
             <!--儿童-->
+            <!-- 停用。需求改变，规格信息可能很多种类，所以都组装在成人价格区域了-->
             <LinearLayout
                 android:id="@+id/order_info_child_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/manage_apply_info_margin"
+                android:visibility="gone"
                 >
                 <TextView
                     android:id="@+id/order_info_guige2_label_tv"
