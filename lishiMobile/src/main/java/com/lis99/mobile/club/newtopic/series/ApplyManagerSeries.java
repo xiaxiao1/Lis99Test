@@ -16,6 +16,7 @@ import com.lis99.mobile.engine.base.CallBack;
 import com.lis99.mobile.engine.base.MyTask;
 import com.lis99.mobile.entry.view.PullToRefreshView;
 import com.lis99.mobile.util.C;
+import com.lis99.mobile.util.Common;
 import com.lis99.mobile.util.MyRequestManager;
 import com.lis99.mobile.util.Page;
 import com.lis99.mobile.util.PopWindowUtil;
@@ -181,9 +182,10 @@ public class ApplyManagerSeries extends LSBaseActivity implements PullToRefreshV
 
                 break;
             case R.id.tv_title:
-                    Intent intent = new Intent(activity, LSClubTopicActiveSeries.class);
+                    /*Intent intent = new Intent(activity, LSClubTopicActiveSeries.class);
                     intent.putExtra("topicID", topic_id);
-                    startActivity(intent);
+                    startActivity(intent);*/
+                Common.goTopic(activity,4,topic_id);
                 break;
 //            批次
             case R.id.view_series:
