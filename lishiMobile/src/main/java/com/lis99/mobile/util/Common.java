@@ -565,6 +565,7 @@ public class Common {
      */
     public static String httpUrlFomat ( String url )
     {
+        if ( url == null ) return url;
         if ( !url.startsWith("http://") )
         {
             url = "http://" + url;

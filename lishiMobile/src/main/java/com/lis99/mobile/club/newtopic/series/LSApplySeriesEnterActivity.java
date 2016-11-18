@@ -310,9 +310,9 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
                     {
                         name += "，"+info.sex;
                     }
-                    if ( !TextUtils.isEmpty(info.phone) )
+                    if ( !TextUtils.isEmpty(info.mobile) )
                     {
-                        name += "，"+info.phone;
+                        name += "，"+info.mobile;
                     }
                     if ( !TextUtils.isEmpty(info.credentials) )
                     {

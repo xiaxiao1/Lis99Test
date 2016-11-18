@@ -198,9 +198,9 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
 
                 ActiveLineADModel.Adlist info = item.lists.get(index);
 
-                int id = Common.string2int(item.url);
+                int id = Common.string2int(info.url);
 
-                int type = Common.string2int(item.type);
+                int type = Common.string2int(info.type);
 
                 switch (type) {
 //            话题
@@ -243,7 +243,7 @@ public class ActiveMainRecommendAdapter extends MyBaseAdapter {
 //                        bundle.putInt("TOPIC_ID", 0);
 //                        intent.putExtras(bundle);
 //                        startActivity(intent);
-                        ActivityUtil.getURLActivity(mContext, item.url, "", item.images, id);
+                        ActivityUtil.getURLActivity(mContext, info.url, "", item.images, 0);
                         break;
 //            俱乐部
                     case 4:

@@ -37,6 +37,7 @@ import com.lis99.mobile.newhome.sysmassage.SysMassageActivity;
 import com.lis99.mobile.search.SearchActivity;
 import com.lis99.mobile.util.C;
 import com.lis99.mobile.util.Common;
+import com.lis99.mobile.util.DeviceInfo;
 import com.lis99.mobile.util.DialogManager;
 import com.lis99.mobile.util.LocationUtil;
 import com.lis99.mobile.util.MyRequestManager;
@@ -301,9 +302,13 @@ public class LSActiveLineNewFragment extends LSFragment implements View.OnClickL
 //    获取广告列表
     private void getADList()
     {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("platform", DeviceInfo.PLATFORM);
+        map.put("channel", DeviceInfo.CHANNELVERSION);
+
         String url = C.ACTIVE_AD_LIST;
         adModel = new ActiveLineADModel();
-        MyRequestManager.getInstance().requestGet(url, adModel, new CallBack() {
+        MyRequestManager.getInstance().requestPost(url, map, adModel, new CallBack() {
             @Override
             public void handler(MyTask mTask) {
                 adModel = (ActiveLineADModel) mTask.getResultModel();
