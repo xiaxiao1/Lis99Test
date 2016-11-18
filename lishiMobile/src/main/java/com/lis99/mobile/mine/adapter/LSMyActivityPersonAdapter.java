@@ -53,7 +53,7 @@ public class LSMyActivityPersonAdapter extends MyBaseAdapter {
         }
 
         LSMyActivity.Applicant item = (LSMyActivity.Applicant) getItem(i);
-        holder.nameVieww.setText(formatInfos(new String[]{item.name,item.sex,item.mobile,item.credentials,item.postaladdress,item.qq,item.phone,item.consts}));
+        holder.nameVieww.setText(formatInfos(new String[]{item.name,item.sex,item.mobile,item.credentials}));
         return view;
     }
 
