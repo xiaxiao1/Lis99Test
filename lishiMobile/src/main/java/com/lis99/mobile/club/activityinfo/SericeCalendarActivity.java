@@ -80,6 +80,8 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
         setTitle("选择出发日期");
 
+        setBtnClick(false);
+
 //        getList();
         getListNew();
     }
@@ -111,8 +113,11 @@ public class SericeCalendarActivity extends LSBaseActivity {
 
                 setBtnClick(false);
 
+
+
                 info = iscalendarInfo(year, month, day);
 
+//                已过期， 的不能报名
                 if ( info == null ) return;
 
                 int num = listInfo.indexOf(info);

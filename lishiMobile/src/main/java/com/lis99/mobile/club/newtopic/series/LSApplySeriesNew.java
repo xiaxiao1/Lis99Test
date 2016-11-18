@@ -146,7 +146,7 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
                 if ( updata.size() >= joinPeople )
                 {
-                    Common.toast("您好，报名人员数量不能多与规格数量");
+                    Common.toast("您好，报名人员数量不能多于规格数量");
                     return;
                 }
 

@@ -3,7 +3,6 @@ package com.lis99.mobile.util.calendar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -268,6 +267,21 @@ public abstract class MonthView extends View {
     /**
      * 判断是否为事务天数,通过获取desc来辨别
      * @param day
+     * @return
+     */
+    protected CalendarInfo getcalendarInfo(int year,int month,int day){
+        if(calendarInfos == null || calendarInfos.size() == 0)return null;
+        for(CalendarInfo calendarInfo : calendarInfos){
+            if(calendarInfo.day == day && calendarInfo.month == month + 1 && calendarInfo.year == year){
+                return calendarInfo;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 判断是否为事务天数,通过获取desc来辨别
+     * @param day
      * @return  0 默认， 1过期
      */
     protected boolean iscalendarOverdue(int year,int month,int day){
@@ -292,8 +306,10 @@ public abstract class MonthView extends View {
         int row = (int) (y / rowSize);
         int column = (int) (x / columnSize);
 
-//         只有活动日才可以点击
-        if (TextUtils.isEmpty(iscalendarInfo(selYear,selMonth,daysString[row][column])))
+        CalendarInfo info = getcalendarInfo(selYear,selMonth,daysString[row][column]);
+
+//         没有活动， 活动已过期
+        if (info == null || info.isOverdue == 1 )
         {
             return;
         }

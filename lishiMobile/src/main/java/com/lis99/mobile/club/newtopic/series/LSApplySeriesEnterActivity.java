@@ -335,12 +335,15 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
     }
 
+    boolean lock = false;
+
     @Override
     public void onClick(View arg0) {
         super.onClick(arg0);
         switch (arg0.getId()) {
             case R.id.btn_ok:
-
+                if ( lock ) return;
+                lock = true;
                 //            上传设备信息
                 LSRequestManager.getInstance().upDataInfo();
 
@@ -407,8 +410,15 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
 
         MyRequestManager.getInstance().requestPost(url, map, bModel, new CallBack() {
             @Override
+            public void handlerError(MyTask mTask) {
+                super.handlerError(mTask);
+                lock = false;
+            }
+
+            @Override
             public void handler(MyTask mTask) {
                 bModel = (PayEnterOrderModel) mTask.getResultModel();
+                lock = false;
                 if (bModel != null) {
 
                     if (payType == 0 || payType == 1) {
@@ -432,6 +442,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
         if (payType == 2) {
             if (TextUtils.isEmpty(bModel.ordercode)) {
                 Common.toast("订单号获取失败");
+                lock = false;
                 return;
             }
 
@@ -439,9 +450,11 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
             WXPayEntryActivity.PayBackA = LSApplySeriesEnterActivity.this;
 
             PayUtil.getInstance().payWeiXin(bModel.ordercode);
+            lock = false;
         } else if (payType == 3) {
             if (TextUtils.isEmpty(bModel.ordercode)) {
                 Common.toast("订单号获取失败");
+                lock = false;
                 return;
             }
 
@@ -449,6 +462,7 @@ public class LSApplySeriesEnterActivity extends LSBaseActivity {
             WXPayEntryActivity.PayBackA = LSApplySeriesEnterActivity.this;
 
             PayUtil.getInstance().payZhiFuBao(bModel.ordercode);
+            lock = false;
         }
     }
 
