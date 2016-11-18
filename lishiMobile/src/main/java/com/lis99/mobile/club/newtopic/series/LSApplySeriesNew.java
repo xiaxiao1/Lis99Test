@@ -90,8 +90,8 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
 
 
-//        getApplyList();
-        getContacts();
+        getApplyList();
+//        getContacts();
 
     }
 
@@ -146,7 +146,7 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
                 if ( updata.size() >= joinPeople )
                 {
-                    Common.toast("您好，报名人员数量不能多与规格数量");
+                    Common.toast("您好，报名人员数量不能多于规格数量");
                     return;
                 }
 
@@ -268,7 +268,7 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
     private ClubTopicGetApplyList listmodel;
 
-
+//  获取常用联系人
     private void getContacts ()
     {
         ContactsUtil.getInstance().getContactsList(new CallBack() {
@@ -280,7 +280,8 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
                 }
                 else {
-                    NewApplyUpData info = model.user_list.get(0);
+//                    NewApplyUpData info = model.user_list.get(0);
+                    NewApplyUpData info = setInfo(listmodel.items, model.user_list.get(0));
                     if ( updata.size() == 0 )
                     {
                         updata.add(info);
@@ -289,13 +290,14 @@ public class LSApplySeriesNew extends LSBaseActivity {
                     {
                         updata.set(0, info);
                     }
+                    if ( adapter != null ) adapter.setList(updata);
                 }
-                getApplyList();
+//                getApplyList();
             }
 
             @Override
             public void handlerError(MyTask mTask) {
-                getApplyList();
+//                getApplyList();
             }
         });
     }
@@ -311,6 +313,12 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
         MyRequestManager.getInstance().requestGet(
                 url + topicID, listmodel, new CallBack() {
+
+                    @Override
+                    public void handlerError(MyTask mTask) {
+                        super.handlerError(mTask);
+                        getContacts();
+                    }
 
                     @Override
                     public void handler(MyTask mTask) {
@@ -345,7 +353,7 @@ public class LSApplySeriesNew extends LSBaseActivity {
 
                         list.setAdapter(adapter);
 
-
+                        getContacts();
                     }
                 });
 
@@ -382,12 +390,59 @@ public class LSApplySeriesNew extends LSBaseActivity {
         else if ( requestCode == ADDCONTACTS && resultCode == RESULT_OK )
         {
             NewApplyUpData info = (NewApplyUpData) data.getSerializableExtra("INFO");
+
             int position = data.getIntExtra("POSITION", -1);
-            updata.set(position, info);
+            updata.set(position, setInfo(listmodel.items, info));
+
             if ( adapter != null )
             {
                 adapter.setList(updata);
             }
         }
     }
+
+    /**
+     *       从常用联系人里选择， 判断哪些信息需要赋值
+     * @param item
+     * @param info
+     * @return
+     */
+    private NewApplyUpData setInfo ( ArrayList<String> item, NewApplyUpData info )
+    {
+        if ( item == null ) return info;
+        NewApplyUpData newInfo = new NewApplyUpData();
+
+        //控制显示哪个选项      姓名
+        if ("0".equals(item.get(0)))
+        {
+        } else
+        {
+            newInfo.name = info.name;
+        }
+        //        身份证号
+        if ("0".equals(item.get(1)))
+        {
+
+        } else
+        {
+            newInfo.credentials = info.credentials;
+        }
+//        性别
+        if ("0".equals(item.get(2)))
+        {
+        } else
+        {
+            newInfo.sex = info.sex;
+        }
+//        手机号
+        if ("0".equals(item.get(3)))
+        {
+        } else
+        {
+            newInfo.mobile = info.mobile;
+        }
+        return newInfo;
+    }
+
+
 }
