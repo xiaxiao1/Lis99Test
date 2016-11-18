@@ -10,7 +10,7 @@ public class NewApplyUpData extends BaseModel{
         public String name;
         //居住城市
         public String address;
-        public String sex = "男";
+        public String sex = "";
         public String qq;
         public String credentials;
         public String mobile;
