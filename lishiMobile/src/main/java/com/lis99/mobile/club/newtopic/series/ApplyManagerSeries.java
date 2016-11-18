@@ -1,6 +1,5 @@
 package com.lis99.mobile.club.newtopic.series;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
