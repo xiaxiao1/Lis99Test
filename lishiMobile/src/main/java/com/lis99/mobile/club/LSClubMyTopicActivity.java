@@ -73,6 +73,7 @@ public class LSClubMyTopicActivity extends LSBaseActivity implements OnHeaderRef
 	}
 	
 	private void loadTopicList() {
+		Common.showEmptyView(this,R.id.empty_view,false);
 		String userID = DataManager.getInstance().getUser().getUser_id();
 
 		postMessage(ActivityPattern1.POPUP_PROGRESS,
@@ -81,7 +82,10 @@ public class LSClubMyTopicActivity extends LSBaseActivity implements OnHeaderRef
 		
 
 		Task task = new Task(null, url, null, C.USER_GET_MYTOPICS, this);
-		publishTask(task, IEvent.IO);
+		boolean b=publishTask(task, IEvent.IO);
+		if(!b){
+			Common.showEmptyView(this,R.id.empty_view,true);
+		}
 
 	}
 	
